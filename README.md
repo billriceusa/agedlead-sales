@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sales Presentations
+
+A Next.js website for managing and displaying sales presentations, configured for deployment on Vercel.
 
 ## Getting Started
 
-First, run the development server:
+### Development
+
+Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Building for Production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Build the application:
 
-## Learn More
+```bash
+npm run build
+```
 
-To learn more about Next.js, take a look at the following resources:
+Start the production server:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm start
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deployment to Vercel
 
-## Deploy on Vercel
+This project is configured for easy deployment on Vercel:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. **Push to GitHub**: Push your code to a GitHub repository
+2. **Import to Vercel**: 
+   - Go to [vercel.com](https://vercel.com)
+   - Click "Add New Project"
+   - Import your GitHub repository
+3. **Automatic Deployment**: Vercel will automatically detect Next.js and deploy your project
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Manual Deployment
+
+You can also deploy using the Vercel CLI:
+
+```bash
+npm i -g vercel
+vercel
+```
+
+## Project Structure
+
+```
+app/
+  ├── layout.tsx          # Root layout
+  ├── page.tsx            # Home page with presentation list
+  ├── globals.css         # Global styles
+  └── presentations/
+      └── [slug]/
+          └── page.tsx    # Dynamic presentation pages
+```
+
+## Adding New Presentations
+
+To add a new presentation:
+
+1. Update the `presentations` array in `app/page.tsx` with your new presentation
+2. Add the presentation content to `app/presentations/[slug]/page.tsx` in the `presentationContent` object
+3. Or create a data file/API route to manage presentations dynamically
+
+## Technologies
+
+- **Next.js 16** - React framework with App Router
+- **TypeScript** - Type safety
+- **Tailwind CSS** - Styling
+- **Vercel** - Deployment platform
