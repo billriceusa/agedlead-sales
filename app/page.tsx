@@ -1,6 +1,12 @@
 export default function Home() {
   const presentations = [
     {
+      id: "high-roi-prospecting-strategy",
+      title: "The High-ROI Prospecting Strategy",
+      description: "Scaling Your Business with Validated, Intent-Based Consumer Data",
+      href: "/presentations/high-roi-prospecting-strategy",
+    },
+    {
       id: "sample-presentation",
       title: "Sample presentation",
       description: "A sample sales presentation to get you started",
