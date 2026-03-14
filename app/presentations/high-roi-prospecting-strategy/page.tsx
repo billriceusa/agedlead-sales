@@ -143,7 +143,7 @@ export default function HighROIProspectingPresentation() {
             <div className="bg-blue-600/20 rounded-lg p-6 border border-blue-400/50">
               <h4 className="text-blue-400 font-bold text-lg mb-3 uppercase">The Opportunity</h4>
               <p className="text-lg text-white">
-                You know their <strong className="text-blue-300">Name</strong>, their <strong className="text-blue-300">Contact Info</strong>, and exactly what they needed (e.g., "Life Insurance"). You just need the right <em className="text-blue-300">compliant</em> method to reach them.
+                You know their <strong className="text-blue-300">Name</strong>, their <strong className="text-blue-300">Contact Info</strong>, and exactly what they needed (e.g., "Life Insurance"). You just need the right approach to reach them.
               </p>
             </div>
           </div>
@@ -154,49 +154,55 @@ export default function HighROIProspectingPresentation() {
     },
     {
       id: 4,
-      title: 'The Compliance "Kill Zone"',
-      subtitle: 'How to Get Sued (Do NOT Do This)',
+      title: 'Important: Consult Your Compliance Team',
+      subtitle: 'Before You Start Outreach',
       content: (
         <div className="max-w-5xl mx-auto space-y-8">
           <div className="bg-white/10 backdrop-blur-sm rounded-lg p-8 border border-white/20">
             <div className="text-center mb-8">
               <div className="text-6xl mb-4">⚠️</div>
-              <h3 className="text-red-400 font-bold text-2xl uppercase mb-2">The Rules of Engagement</h3>
-              <p className="text-gray-300">These practices are strictly prohibited</p>
+              <h3 className="text-red-400 font-bold text-2xl uppercase mb-2">Before Launching Any Outreach Campaign</h3>
+              <p className="text-gray-300">Before launching any outreach campaign using aged lead data, you must consult your compliance and legal departments. They will advise you on:</p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-red-600/30 rounded-lg p-6 border-2 border-red-500">
+              <div className="bg-red-600/20 rounded-lg p-6 border-2 border-red-500/70">
                 <div className="flex items-center gap-3 mb-3">
-                  <span className="text-4xl">🚫</span>
-                  <h4 className="text-red-300 font-bold text-lg">NO Autodialers (ATDS)</h4>
+                  <span className="text-4xl">⚠️</span>
+                  <h4 className="text-red-300 font-bold text-lg">Approved Contact Methods</h4>
                 </div>
-                <p className="text-white">Do not load these leads into predictive dialers or any system that dials without human intervention</p>
+                <p className="text-white">What outreach methods are approved for your specific market and business model?</p>
               </div>
 
-              <div className="bg-red-600/30 rounded-lg p-6 border-2 border-red-500">
+              <div className="bg-red-600/20 rounded-lg p-6 border-2 border-red-500/70">
                 <div className="flex items-center gap-3 mb-3">
-                  <span className="text-4xl">🚫</span>
-                  <h4 className="text-red-300 font-bold text-lg">NO Ringless Voicemails (RVM)</h4>
+                  <span className="text-4xl">⚠️</span>
+                  <h4 className="text-red-300 font-bold text-lg">Technology & Dialing Systems</h4>
                 </div>
-                <p className="text-white">These are considered "calls" and require express written consent you do not have</p>
+                <p className="text-white">Which technology and dialing systems are you permitted to use for this type of data?</p>
               </div>
 
-              <div className="bg-red-600/30 rounded-lg p-6 border-2 border-red-500">
+              <div className="bg-red-600/20 rounded-lg p-6 border-2 border-red-500/70">
                 <div className="flex items-center gap-3 mb-3">
-                  <span className="text-4xl">🚫</span>
-                  <h4 className="text-red-300 font-bold text-lg">NO Mass Texting</h4>
+                  <span className="text-4xl">⚠️</span>
+                  <h4 className="text-red-300 font-bold text-lg">Data Handling & Record-Keeping</h4>
                 </div>
-                <p className="text-white">SMS blasting is strictly prohibited</p>
+                <p className="text-white">What data handling and record-keeping requirements apply to your lead processing workflow?</p>
               </div>
 
-              <div className="bg-red-600/30 rounded-lg p-6 border-2 border-red-500">
+              <div className="bg-red-600/20 rounded-lg p-6 border-2 border-red-500/70">
                 <div className="flex items-center gap-3 mb-3">
-                  <span className="text-4xl">🚫</span>
-                  <h4 className="text-red-300 font-bold text-lg">NO Pre-Recorded Messages</h4>
+                  <span className="text-4xl">⚠️</span>
+                  <h4 className="text-red-300 font-bold text-lg">State-Specific Restrictions</h4>
                 </div>
-                <p className="text-white">"Press 1" campaigns are illegal on this data type</p>
+                <p className="text-white">What state-specific restrictions apply to your business and the markets you operate in?</p>
               </div>
+            </div>
+
+            <div className="mt-8 bg-red-600/30 rounded-lg p-6 border-2 border-red-500 text-center">
+              <p className="text-white text-lg font-semibold">
+                Aged Lead Store does not provide legal or compliance advice. Your compliance team will determine the appropriate outreach methods for your specific situation.
+              </p>
             </div>
           </div>
         </div>
@@ -206,8 +212,8 @@ export default function HighROIProspectingPresentation() {
     },
     {
       id: 5,
-      title: 'The "Safe Harbor" Strategy',
-      subtitle: 'How to Prospect Safely',
+      title: 'Recommended Outreach Approach',
+      subtitle: 'Work With Your Compliance Team on Implementation',
       content: (
         <div className="max-w-5xl mx-auto space-y-8">
           <div className="bg-white/10 backdrop-blur-sm rounded-lg p-8 border border-white/20">
@@ -221,12 +227,9 @@ export default function HighROIProspectingPresentation() {
                 <div className="flex items-start gap-4">
                   <div className="flex-shrink-0 w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-xl">1</div>
                   <div className="flex-1">
-                    <h4 className="text-blue-300 font-bold text-xl mb-2 uppercase">Step 1: The Mandatory Scrub</h4>
-                    <p className="text-white text-lg mb-2">
-                      You <strong>MUST</strong> scrub this list against the <strong className="text-blue-300">National & State Do-Not-Call (DNC) Registries</strong> before dialing.
-                    </p>
-                    <p className="text-gray-300 italic">
-                      Note: If a number is on the DNC, you cannot call it (even manually) unless you have an existing relationship.
+                    <h4 className="text-blue-300 font-bold text-xl mb-2 uppercase">Step 1: Compliance Review</h4>
+                    <p className="text-white text-lg">
+                      Work with your compliance and legal team to establish your lead processing procedures before beginning outreach. They will guide you on appropriate data handling for your market.
                     </p>
                   </div>
                 </div>
@@ -236,9 +239,9 @@ export default function HighROIProspectingPresentation() {
                 <div className="flex items-start gap-4">
                   <div className="flex-shrink-0 w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-xl">2</div>
                   <div className="flex-1">
-                    <h4 className="text-blue-300 font-bold text-xl mb-2 uppercase">Step 2: Manual Outreach Only</h4>
+                    <h4 className="text-blue-300 font-bold text-xl mb-2 uppercase">Step 2: Personal, One-to-One Outreach</h4>
                     <p className="text-white text-lg">
-                      Use <strong className="text-blue-300">Click-to-Call</strong> or <strong className="text-blue-300">Hand Dialing</strong>. This ensures human intervention on every attempt and keeps you compliant with TCPA definitions.
+                      The most effective approach with aged leads is personal, individual outreach. This builds genuine rapport and lets you have real conversations with prospects.
                     </p>
                   </div>
                 </div>
@@ -324,7 +327,7 @@ export default function HighROIProspectingPresentation() {
           <div className="bg-white/10 backdrop-blur-sm rounded-lg p-8 border border-white/20">
             <div className="grid md:grid-cols-7 gap-4">
               {[
-                { day: 1, title: 'Download & Scrub', desc: 'Remove DNC numbers', icon: '📥' },
+                { day: 1, title: 'Download & Prepare', desc: 'Process through your compliance workflow', icon: '📥' },
                 { day: 2, title: 'Direct Mail Drop', desc: 'Send a "Yellow Letter" or Postcard', icon: '📮' },
                 { day: 3, title: '', desc: '', icon: '' },
                 { day: 4, title: 'Manual Call', desc: 'Use the "Honest Follow-Up" script', icon: '📞' },
@@ -391,7 +394,7 @@ export default function HighROIProspectingPresentation() {
                     <div className="text-lg">spend = <strong>1,000 Records</strong></div>
                   </div>
                   <div className="pt-4 border-t border-blue-400/50 space-y-2 text-sm">
-                    <p>• Scrub 40% for DNC = <strong>600 Callable Records</strong></p>
+                    <p>• After processing = <strong>~600 Contactable Records</strong></p>
                     <p className="mt-4">• Need only <strong className="text-blue-300">1% Conversion</strong> to make</p>
                     <div className="text-3xl font-bold text-blue-300 text-center mt-4">6 Sales</div>
                   </div>
@@ -493,7 +496,7 @@ export default function HighROIProspectingPresentation() {
                   <div className="flex-shrink-0 w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-xl">2</div>
                   <div className="flex-1">
                     <p className="text-white text-lg">
-                      Secure a subscription to a <strong className="text-blue-300">DNC Scrubber</strong> (Third Party)
+                      Consult your <strong className="text-blue-300">compliance team</strong> on lead processing requirements
                     </p>
                   </div>
                 </div>
