@@ -1,76 +1,118 @@
-# Sales Presentations
+# Aged Lead Store – Sales Training & Strategies
 
-A Next.js website for managing and displaying sales presentations, configured for deployment on Vercel.
+A Next.js + Sanity.io affiliate content site that helps sales professionals learn how to incorporate aged leads into their sales operations. The site drives traffic to [AgedLeadStore.com](https://agedleadstore.com) where visitors can purchase aged leads.
+
+## Tech Stack
+
+- **Framework:** [Next.js](https://nextjs.org/) (App Router)
+- **CMS:** [Sanity.io](https://www.sanity.io/) (embedded studio at `/studio`)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/) v4
+- **Deployment:** [Vercel](https://vercel.com/)
 
 ## Getting Started
 
-### Development
+### 1. Clone and Install
 
-Run the development server:
+```bash
+git clone <repo-url>
+cd agedleadstore-site
+npm install
+```
+
+### 2. Set Up Sanity
+
+1. Create a project at [sanity.io/manage](https://www.sanity.io/manage)
+2. Copy your project ID
+3. Create `.env.local` from the example:
+
+```bash
+cp .env.example .env.local
+```
+
+4. Fill in your Sanity project ID in `.env.local`:
+
+```
+NEXT_PUBLIC_SANITY_PROJECT_ID="your-project-id"
+NEXT_PUBLIC_SANITY_DATASET="production"
+NEXT_PUBLIC_SANITY_API_VERSION="2026-03-14"
+```
+
+5. Add `http://localhost:3000` to your Sanity project's CORS origins at [sanity.io/manage](https://www.sanity.io/manage)
+
+### 3. Run Development Server
 
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
-
-### Building for Production
-
-Build the application:
-
-```bash
-npm run build
-```
-
-Start the production server:
-
-```bash
-npm start
-```
-
-## Deployment to Vercel
-
-This project is configured for easy deployment on Vercel:
-
-1. **Push to GitHub**: Push your code to a GitHub repository
-2. **Import to Vercel**: 
-   - Go to [vercel.com](https://vercel.com)
-   - Click "Add New Project"
-   - Import your GitHub repository
-3. **Automatic Deployment**: Vercel will automatically detect Next.js and deploy your project
-
-### Manual Deployment
-
-You can also deploy using the Vercel CLI:
-
-```bash
-npm i -g vercel
-vercel
-```
+- **Site:** [http://localhost:3000](http://localhost:3000)
+- **Sanity Studio:** [http://localhost:3000/studio](http://localhost:3000/studio)
 
 ## Project Structure
 
 ```
-app/
-  ├── layout.tsx          # Root layout
-  ├── page.tsx            # Home page with presentation list
-  ├── globals.css         # Global styles
-  └── presentations/
-      └── [slug]/
-          └── page.tsx    # Dynamic presentation pages
+├── app/
+│   ├── (site)/                    # Public-facing site
+│   │   ├── page.tsx               # Homepage
+│   │   ├── layout.tsx             # Site layout (header + footer)
+│   │   ├── blog/                  # Blog listing & posts
+│   │   ├── lead-types/            # Lead type pages (mortgage, insurance, etc.)
+│   │   ├── playbooks/             # Sales playbooks & guides
+│   │   └── about/                 # About page
+│   ├── (studio)/                  # Sanity Studio (embedded)
+│   │   └── studio/[[...tool]]/    # Studio catch-all route
+│   └── globals.css
+├── components/                    # Shared React components
+│   ├── header.tsx
+│   ├── footer.tsx
+│   ├── cta-banner.tsx
+│   ├── post-card.tsx
+│   ├── lead-type-card.tsx
+│   ├── playbook-card.tsx
+│   └── portable-text.tsx
+├── sanity/
+│   ├── client.ts                  # Sanity client
+│   ├── env.ts                     # Environment variables
+│   ├── lib/
+│   │   ├── queries.ts             # GROQ queries
+│   │   └── image.ts               # Image URL builder
+│   └── schemaTypes/               # Content schemas
+│       ├── post.ts                # Blog posts
+│       ├── leadType.ts            # Lead type pages
+│       ├── playbook.ts            # Sales playbooks
+│       ├── author.ts              # Authors
+│       └── category.ts            # Categories
+├── sanity.config.ts               # Sanity studio configuration
+└── sanity.cli.ts                  # Sanity CLI configuration
 ```
 
-## Adding New Presentations
+## Content Types (Sanity Schemas)
 
-To add a new presentation:
+| Type | Description |
+|------|-------------|
+| **Lead Type** | Industry-specific pages (mortgage, insurance, etc.) with SEO fields and affiliate URLs |
+| **Blog Post** | Articles with rich text, images, author, categories, and lead type associations |
+| **Playbook** | Step-by-step sales guides with difficulty levels and estimated read times |
+| **Author** | Content author profiles |
+| **Category** | Blog post categories |
 
-1. Update the `presentations` array in `app/page.tsx` with your new presentation
-2. Add the presentation content to `app/presentations/[slug]/page.tsx` in the `presentationContent` object
-3. Or create a data file/API route to manage presentations dynamically
+## Lead Types Covered
 
-## Technologies
+- Mortgage Leads
+- Insurance Leads
+- Final Expense Leads
+- IUL (Indexed Universal Life) Leads
+- SSDI (Social Security Disability) Leads
+- MVA (Motor Vehicle Accident) Leads
+- Solar Leads
+- Medicare Leads
 
-- **Next.js 16** - React framework with App Router
-- **TypeScript** - Type safety
-- **Tailwind CSS** - Styling
-- **Vercel** - Deployment platform
+## Deployment
+
+Deploy to Vercel:
+
+```bash
+vercel
+```
+
+Make sure to set the environment variables in your Vercel project settings and add your production domain to Sanity's CORS origins.
