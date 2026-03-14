@@ -7,6 +7,9 @@ import { urlForImage } from "@/sanity/lib/image";
 import { PortableText } from "@/components/portable-text";
 import { PostCard } from "@/components/post-card";
 import { CtaBanner } from "@/components/cta-banner";
+import { JsonLd, articleJsonLd, breadcrumbJsonLd } from "@/components/json-ld";
+
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadstore.com";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -18,21 +21,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post: any = await sanityFetch(postBySlugQuery, { slug });
   if (!post) return {};
 
+  const title = post.seo?.metaTitle || post.title;
+  const description = post.seo?.metaDescription || post.excerpt;
+  const ogImageUrl = post.mainImage
+    ? urlForImage(post.mainImage)?.width(1200).height(630).url()
+    : `${baseUrl}/api/og?title=${encodeURIComponent(post.title)}&type=blog`;
+
   return {
-    title: post.seoTitle || post.title,
-    description: post.seoDescription || post.excerpt,
+    title,
+    description,
+    alternates: { canonical: `${baseUrl}/blog/${slug}` },
     openGraph: {
-      title: post.seoTitle || post.title,
-      description: post.seoDescription || post.excerpt,
+      title,
+      description,
       type: "article",
       publishedTime: post.publishedAt,
-      ...(post.mainImage && {
-        images: [
-          {
-            url: urlForImage(post.mainImage)?.width(1200).height(630).url() || "",
-          },
-        ],
-      }),
+      url: `${baseUrl}/blog/${slug}`,
+      ...(ogImageUrl && { images: [{ url: ogImageUrl }] }),
     },
   };
 }
@@ -49,21 +54,35 @@ export default async function BlogPostPage({ params }: Props) {
 
   return (
     <>
+      <JsonLd
+        data={articleJsonLd({
+          title: post.title,
+          description: post.excerpt,
+          slug: post.slug.current,
+          publishedAt: post.publishedAt,
+          modifiedAt: post._updatedAt,
+          authorName: post.author?.name,
+          imageUrl: imageUrl || undefined,
+        })}
+      />
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Home", url: baseUrl },
+          { name: "Blog", url: `${baseUrl}/blog` },
+          { name: post.title, url: `${baseUrl}/blog/${post.slug.current}` },
+        ])}
+      />
+
       <article className="bg-white py-12 dark:bg-zinc-950">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-          {/* Breadcrumb */}
           <nav className="mb-8 text-sm text-zinc-500">
-            <Link
-              href="/blog"
-              className="hover:text-zinc-700 dark:hover:text-zinc-300"
-            >
+            <Link href="/blog" className="hover:text-zinc-700 dark:hover:text-zinc-300">
               Blog
             </Link>
             <span className="mx-2">/</span>
             <span className="text-zinc-900 dark:text-white">{post.title}</span>
           </nav>
 
-          {/* Header */}
           <header className="mb-10">
             {post.categories && post.categories.length > 0 && (
               <div className="mb-4 flex flex-wrap gap-2">
@@ -80,6 +99,12 @@ export default async function BlogPostPage({ params }: Props) {
               </div>
             )}
 
+            {post.contentType && (
+              <span className="mb-3 inline-block rounded-full bg-zinc-100 px-3 py-0.5 text-xs font-medium uppercase tracking-wider text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400">
+                {post.contentType === "pillar" ? "Comprehensive Guide" : "Deep Dive"}
+              </span>
+            )}
+
             <h1 className="text-3xl font-bold text-zinc-900 dark:text-white sm:text-4xl lg:text-5xl">
               {post.title}
             </h1>
@@ -91,12 +116,7 @@ export default async function BlogPostPage({ params }: Props) {
                     <div className="h-10 w-10 overflow-hidden rounded-full bg-zinc-200 dark:bg-zinc-700">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
-                        src={
-                          urlForImage(post.author.image)
-                            ?.width(80)
-                            .height(80)
-                            .url() || ""
-                        }
+                        src={urlForImage(post.author.image)?.width(80).height(80).url() || ""}
                         alt={post.author.name}
                         className="h-full w-full object-cover"
                       />
@@ -113,10 +133,7 @@ export default async function BlogPostPage({ params }: Props) {
                 </div>
               )}
               {post.publishedAt && (
-                <time
-                  dateTime={post.publishedAt}
-                  className="text-sm text-zinc-500"
-                >
+                <time dateTime={post.publishedAt} className="text-sm text-zinc-500">
                   {new Date(post.publishedAt).toLocaleDateString("en-US", {
                     month: "long",
                     day: "numeric",
@@ -127,33 +144,56 @@ export default async function BlogPostPage({ params }: Props) {
             </div>
           </header>
 
-          {/* Featured Image */}
           {imageUrl && (
             <div className="mb-10 overflow-hidden rounded-xl">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={imageUrl}
-                alt={post.mainImage?.alt || post.title}
-                className="w-full"
-              />
+              <img src={imageUrl} alt={post.mainImage?.alt || post.title} className="w-full" />
             </div>
           )}
 
-          {/* Related Lead Types */}
+          {/* Pillar post — show cluster posts */}
+          {post.clusterPosts && post.clusterPosts.length > 0 && (
+            <div className="mb-8 rounded-lg border border-zinc-200 bg-zinc-50 p-5 dark:border-zinc-800 dark:bg-zinc-900">
+              <h2 className="mb-3 text-sm font-semibold uppercase tracking-wider text-zinc-500">
+                In This Series
+              </h2>
+              <ul className="space-y-2">
+                {post.clusterPosts.map(
+                  (cp: { _id: string; title: string; slug: { current: string } }) => (
+                    <li key={cp._id}>
+                      <Link
+                        href={`/blog/${cp.slug.current}`}
+                        className="text-sm text-blue-600 hover:text-blue-700 dark:text-blue-400"
+                      >
+                        {cp.title}
+                      </Link>
+                    </li>
+                  )
+                )}
+              </ul>
+            </div>
+          )}
+
+          {/* Cluster post — link back to pillar */}
+          {post.pillarPost && (
+            <div className="mb-8 rounded-lg border border-blue-200 bg-blue-50 p-4 dark:border-blue-900 dark:bg-blue-950/50">
+              <span className="text-sm text-zinc-600 dark:text-zinc-400">Part of: </span>
+              <Link
+                href={`/blog/${post.pillarPost.slug.current}`}
+                className="text-sm font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400"
+              >
+                {post.pillarPost.title} &rarr;
+              </Link>
+            </div>
+          )}
+
           {post.leadTypes && post.leadTypes.length > 0 && (
             <div className="mb-8 rounded-lg border border-blue-200 bg-blue-50 p-4 dark:border-blue-900 dark:bg-blue-950/50">
               <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
                 Related lead types:{" "}
               </span>
               {post.leadTypes.map(
-                (
-                  lt: {
-                    title: string;
-                    slug: { current: string };
-                    icon?: string;
-                  },
-                  i: number
-                ) => (
+                (lt: { title: string; slug: { current: string }; icon?: string }, i: number) => (
                   <span key={lt.slug.current}>
                     <Link
                       href={`/lead-types/${lt.slug.current}`}
@@ -161,30 +201,25 @@ export default async function BlogPostPage({ params }: Props) {
                     >
                       {lt.icon} {lt.title}
                     </Link>
-                    {i < post.leadTypes.length - 1 && (
-                      <span className="text-zinc-400">, </span>
-                    )}
+                    {i < post.leadTypes.length - 1 && <span className="text-zinc-400">, </span>}
                   </span>
                 )
               )}
             </div>
           )}
 
-          {/* Body */}
           {post.body && (
             <div className="prose-wrapper">
               <PortableText value={post.body} />
             </div>
           )}
 
-          {/* Inline CTA */}
           <div className="mt-12">
             <CtaBanner variant="compact" />
           </div>
         </div>
       </article>
 
-      {/* Related Posts */}
       {post.relatedPosts && post.relatedPosts.length > 0 && (
         <section className="border-t border-zinc-200 bg-zinc-50 py-16 dark:border-zinc-800 dark:bg-zinc-900">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

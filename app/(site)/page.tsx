@@ -5,6 +5,7 @@ import { LeadTypeCard } from "@/components/lead-type-card";
 import { PostCard } from "@/components/post-card";
 import { PlaybookCard } from "@/components/playbook-card";
 import { CtaBanner } from "@/components/cta-banner";
+import { JsonLd, websiteJsonLd, organizationJsonLd } from "@/components/json-ld";
 
 const LEAD_TYPE_DEFAULTS = [
   {
@@ -77,6 +78,9 @@ export default async function HomePage() {
 
   return (
     <>
+      <JsonLd data={websiteJsonLd()} />
+      <JsonLd data={organizationJsonLd()} />
+
       {/* Hero */}
       <section className="relative overflow-hidden bg-gradient-to-br from-zinc-900 via-zinc-900 to-blue-950">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-600/20 via-transparent to-transparent" />

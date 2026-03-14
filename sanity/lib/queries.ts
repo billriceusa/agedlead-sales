@@ -27,8 +27,7 @@ export const leadTypeBySlugQuery = defineQuery(
     affiliateUrl,
     averageCostPerLead,
     industries,
-    seoTitle,
-    seoDescription,
+    seo,
     "relatedPosts": *[_type == "post" && references(^._id)] | order(publishedAt desc)[0...3] {
       _id,
       title,
@@ -58,6 +57,8 @@ export const postsQuery = defineQuery(
     excerpt,
     mainImage,
     publishedAt,
+    contentType,
+    isFeatured,
     author->{name, slug, image},
     categories[]->{title, slug},
     leadTypes[]->{title, slug}
@@ -73,11 +74,19 @@ export const postBySlugQuery = defineQuery(
     mainImage,
     body,
     publishedAt,
+    _updatedAt,
+    contentType,
     author->{name, slug, image, bio, role},
     categories[]->{title, slug},
     leadTypes[]->{title, slug, icon},
-    seoTitle,
-    seoDescription,
+    pillarPost->{title, slug},
+    seo,
+    "clusterPosts": *[_type == "post" && pillarPost._ref == ^._id] | order(publishedAt desc) {
+      _id,
+      title,
+      slug,
+      excerpt
+    },
     "relatedPosts": *[_type == "post" && slug.current != $slug && count(categories[@._ref in ^.^.categories[]._ref]) > 0] | order(publishedAt desc)[0...3] {
       _id,
       title,
@@ -130,8 +139,7 @@ export const playbookBySlugQuery = defineQuery(
     publishedAt,
     author->{name, slug, image, bio, role},
     leadTypes[]->{title, slug, icon},
-    seoTitle,
-    seoDescription,
+    seo,
     "relatedPlaybooks": *[_type == "playbook" && slug.current != $slug] | order(publishedAt desc)[0...3] {
       _id,
       title,
@@ -139,6 +147,78 @@ export const playbookBySlugQuery = defineQuery(
       excerpt,
       mainImage,
       difficulty,
+      estimatedTime
+    }
+  }`
+);
+
+// ── Glossary ────────────────────────────────────────────────
+export const glossaryTermsQuery = defineQuery(
+  `*[_type == "glossaryTerm"] | order(term asc) {
+    _id,
+    term,
+    slug,
+    definition,
+    category
+  }`
+);
+
+export const glossaryTermBySlugQuery = defineQuery(
+  `*[_type == "glossaryTerm" && slug.current == $slug][0] {
+    _id,
+    term,
+    slug,
+    definition,
+    body,
+    category,
+    seo,
+    relatedTerms[]->{term, slug, definition},
+    relatedLeadTypes[]->{title, slug, icon, affiliateUrl},
+    "relatedPosts": *[_type == "post" && references(^._id)] | order(publishedAt desc)[0...3] {
+      _id,
+      title,
+      slug,
+      excerpt,
+      mainImage,
+      publishedAt
+    }
+  }`
+);
+
+// ── Guides ──────────────────────────────────────────────────
+export const guidesQuery = defineQuery(
+  `*[_type == "guide"] | order(publishedAt desc) {
+    _id,
+    title,
+    slug,
+    excerpt,
+    mainImage,
+    estimatedTime,
+    author->{name, slug, image},
+    leadTypes[]->{title, slug}
+  }`
+);
+
+export const guideBySlugQuery = defineQuery(
+  `*[_type == "guide" && slug.current == $slug][0] {
+    _id,
+    title,
+    slug,
+    excerpt,
+    mainImage,
+    body,
+    estimatedTime,
+    isGated,
+    publishedAt,
+    author->{name, slug, image, bio, role},
+    leadTypes[]->{title, slug, icon},
+    seo,
+    "relatedGuides": *[_type == "guide" && slug.current != $slug] | order(publishedAt desc)[0...3] {
+      _id,
+      title,
+      slug,
+      excerpt,
+      mainImage,
       estimatedTime
     }
   }`
@@ -183,6 +263,12 @@ export const homepageDataQuery = defineQuery(
       mainImage,
       difficulty,
       estimatedTime
+    },
+    "recentGlossaryTerms": *[_type == "glossaryTerm"] | order(_createdAt desc)[0...6] {
+      _id,
+      term,
+      slug,
+      definition
     }
   }`
 );

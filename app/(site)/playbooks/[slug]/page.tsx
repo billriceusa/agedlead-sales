@@ -7,6 +7,9 @@ import { urlForImage } from "@/sanity/lib/image";
 import { PortableText } from "@/components/portable-text";
 import { PlaybookCard } from "@/components/playbook-card";
 import { CtaBanner } from "@/components/cta-banner";
+import { JsonLd, breadcrumbJsonLd } from "@/components/json-ld";
+
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadstore.com";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -18,21 +21,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const playbook: any = await sanityFetch(playbookBySlugQuery, { slug });
   if (!playbook) return {};
 
+  const title = playbook.seo?.metaTitle || playbook.title;
+  const description = playbook.seo?.metaDescription || playbook.excerpt;
+  const ogImageUrl = playbook.mainImage
+    ? urlForImage(playbook.mainImage)?.width(1200).height(630).url()
+    : `${baseUrl}/api/og?title=${encodeURIComponent(playbook.title)}&type=playbook`;
+
   return {
-    title: playbook.seoTitle || playbook.title,
-    description: playbook.seoDescription || playbook.excerpt,
+    title,
+    description,
+    alternates: { canonical: `${baseUrl}/playbooks/${slug}` },
     openGraph: {
-      title: playbook.seoTitle || playbook.title,
-      description: playbook.seoDescription || playbook.excerpt,
-      ...(playbook.mainImage && {
-        images: [
-          {
-            url:
-              urlForImage(playbook.mainImage)?.width(1200).height(630).url() ||
-              "",
-          },
-        ],
-      }),
+      title,
+      description,
+      url: `${baseUrl}/playbooks/${slug}`,
+      ...(ogImageUrl && { images: [{ url: ogImageUrl }] }),
     },
   };
 }
@@ -53,9 +56,16 @@ export default async function PlaybookPage({ params }: Props) {
 
   return (
     <>
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Home", url: baseUrl },
+          { name: "Playbooks", url: `${baseUrl}/playbooks` },
+          { name: playbook.title, url: `${baseUrl}/playbooks/${playbook.slug.current}` },
+        ])}
+      />
+
       <article className="bg-white py-12 dark:bg-zinc-950">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-          {/* Breadcrumb */}
           <nav className="mb-8 text-sm text-zinc-500">
             <Link
               href="/playbooks"

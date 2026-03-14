@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { GoogleTagManager } from "@/components/analytics";
 import "../globals.css";
 
 const geistSans = Geist({
@@ -14,17 +15,40 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadstore.com";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(baseUrl),
   title: {
     default: "Aged Lead Store – Sales Training & Aged Lead Strategies",
     template: "%s | Aged Lead Store",
   },
   description:
     "Learn how to grow your sales business with aged leads. Training, playbooks, and strategies for insurance agents, mortgage brokers, and sales professionals.",
+  alternates: {
+    canonical: baseUrl,
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
     siteName: "Aged Lead Store",
+    url: baseUrl,
+    images: [
+      {
+        url: `/api/og?title=${encodeURIComponent("Aged Lead Store – Sales Training & Aged Lead Strategies")}`,
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GSC_VERIFICATION || undefined,
+    other: process.env.NEXT_PUBLIC_BING_VERIFICATION
+      ? { "msvalidate.01": process.env.NEXT_PUBLIC_BING_VERIFICATION }
+      : undefined,
   },
 };
 
@@ -38,6 +62,7 @@ export default function SiteLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <GoogleTagManager />
         <div className="flex min-h-screen flex-col">
           <Header />
           <main className="flex-1">{children}</main>

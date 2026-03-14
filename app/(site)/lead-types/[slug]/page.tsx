@@ -8,6 +8,9 @@ import { PortableText } from "@/components/portable-text";
 import { PostCard } from "@/components/post-card";
 import { PlaybookCard } from "@/components/playbook-card";
 import { CtaBanner } from "@/components/cta-banner";
+import { JsonLd, breadcrumbJsonLd } from "@/components/json-ld";
+
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadstore.com";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -83,9 +86,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!leadType && !fallback) return {};
 
-  const title = leadType?.seoTitle || leadType?.title || fallback?.title || "";
+  const title = leadType?.seo?.metaTitle || leadType?.title || fallback?.title || "";
   const description =
-    leadType?.seoDescription ||
+    leadType?.seo?.metaDescription ||
     leadType?.shortDescription ||
     fallback?.description ||
     "";
@@ -93,9 +96,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `Aged ${title} – Strategies & Training`,
     description,
+    alternates: { canonical: `${baseUrl}/lead-types/${slug}` },
     openGraph: {
       title: `Aged ${title} – Strategies & Training`,
       description,
+      url: `${baseUrl}/lead-types/${slug}`,
+      images: [
+        {
+          url: `${baseUrl}/api/og?title=${encodeURIComponent(`Aged ${title}`)}&type=lead-type`,
+        },
+      ],
     },
   };
 }
@@ -119,6 +129,14 @@ export default async function LeadTypePage({ params }: Props) {
 
   return (
     <>
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Home", url: baseUrl },
+          { name: "Lead Types", url: `${baseUrl}/lead-types` },
+          { name: title, url: `${baseUrl}/lead-types/${slug}` },
+        ])}
+      />
+
       {/* Hero */}
       <section className="bg-gradient-to-br from-zinc-900 to-blue-950 py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

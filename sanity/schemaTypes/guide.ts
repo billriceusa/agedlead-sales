@@ -1,8 +1,8 @@
 import { defineField, defineType } from "sanity";
 
-export const leadTypeSchema = defineType({
-  name: "leadType",
-  title: "Lead Type",
+export const guideType = defineType({
+  name: "guide",
+  title: "Guide",
   type: "document",
   groups: [
     { name: "content", title: "Content", default: true },
@@ -15,7 +15,6 @@ export const leadTypeSchema = defineType({
       title: "Title",
       type: "string",
       group: "content",
-      description: 'e.g. "Mortgage Leads", "Final Expense Leads"',
       validation: (rule) => rule.required(),
     }),
     defineField({
@@ -27,12 +26,12 @@ export const leadTypeSchema = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: "shortDescription",
-      title: "Short Description",
+      name: "excerpt",
+      title: "Excerpt",
       type: "text",
       rows: 3,
       group: "content",
-      description: "Brief description for cards and listings",
+      description: "Brief summary for listings and SEO",
       validation: (rule) => [
         rule.required(),
         rule.max(200).warning("Keep under 200 characters for best SEO"),
@@ -44,17 +43,17 @@ export const leadTypeSchema = defineType({
       type: "image",
       group: "content",
       options: { hotspot: true },
-    }),
-    defineField({
-      name: "icon",
-      title: "Icon Emoji",
-      type: "string",
-      group: "content",
-      description: "An emoji to represent this lead type (e.g. 🏠, 🛡️, ⚖️)",
+      fields: [
+        {
+          name: "alt",
+          type: "string",
+          title: "Alt Text",
+        },
+      ],
     }),
     defineField({
       name: "body",
-      title: "Body Content",
+      title: "Body",
       type: "array",
       group: "content",
       of: [
@@ -70,34 +69,40 @@ export const leadTypeSchema = defineType({
       ],
     }),
     defineField({
-      name: "affiliateUrl",
-      title: "Affiliate URL",
-      type: "url",
-      group: "meta",
-      description:
-        "Link to AgedLeadStore.com for this lead type",
-    }),
-    defineField({
-      name: "averageCostPerLead",
-      title: "Average Cost Per Lead",
-      type: "string",
-      group: "meta",
-      description: 'e.g. "$0.50 - $2.00"',
-    }),
-    defineField({
-      name: "industries",
-      title: "Related Industries",
+      name: "leadTypes",
+      title: "Related Lead Types",
       type: "array",
       group: "meta",
-      of: [{ type: "string" }],
-      options: { layout: "tags" },
+      of: [{ type: "reference", to: [{ type: "leadType" }] }],
     }),
     defineField({
-      name: "order",
-      title: "Display Order",
-      type: "number",
+      name: "author",
+      title: "Author",
+      type: "reference",
       group: "meta",
-      description: "Lower numbers appear first",
+      to: [{ type: "author" }],
+    }),
+    defineField({
+      name: "publishedAt",
+      title: "Published At",
+      type: "datetime",
+      group: "meta",
+      initialValue: () => new Date().toISOString(),
+    }),
+    defineField({
+      name: "estimatedTime",
+      title: "Estimated Read Time",
+      type: "string",
+      group: "meta",
+      description: 'e.g. "20 min read"',
+    }),
+    defineField({
+      name: "isGated",
+      title: "Gated Content",
+      type: "boolean",
+      group: "meta",
+      description: "Require email signup to access full content",
+      initialValue: false,
     }),
     defineField({
       name: "seo",
@@ -127,15 +132,12 @@ export const leadTypeSchema = defineType({
   preview: {
     select: {
       title: "title",
-      subtitle: "shortDescription",
+      author: "author.name",
       media: "mainImage",
     },
-  },
-  orderings: [
-    {
-      title: "Display Order",
-      name: "orderAsc",
-      by: [{ field: "order", direction: "asc" }],
+    prepare(selection) {
+      const { author } = selection;
+      return { ...selection, subtitle: author && `by ${author}` };
     },
-  ],
+  },
 });

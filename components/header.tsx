@@ -7,7 +7,9 @@ const navigation = [
   { name: "Lead Types", href: "/lead-types" },
   { name: "Blog", href: "/blog" },
   { name: "Playbooks", href: "/playbooks" },
-  { name: "About", href: "/about" },
+  { name: "Glossary", href: "/glossary" },
+  { name: "Calculators", href: "/calculators" },
+  { name: "Guides", href: "/guides" },
 ];
 
 export function Header() {

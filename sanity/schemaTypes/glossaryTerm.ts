@@ -1,18 +1,18 @@
 import { defineField, defineType } from "sanity";
 
-export const playbookType = defineType({
-  name: "playbook",
-  title: "Playbook",
+export const glossaryTermType = defineType({
+  name: "glossaryTerm",
+  title: "Glossary Term",
   type: "document",
   groups: [
     { name: "content", title: "Content", default: true },
-    { name: "meta", title: "Metadata" },
+    { name: "relations", title: "Relations" },
     { name: "seo", title: "SEO" },
   ],
   fields: [
     defineField({
-      name: "title",
-      title: "Title",
+      name: "term",
+      title: "Term",
       type: "string",
       group: "content",
       validation: (rule) => rule.required(),
@@ -22,40 +22,25 @@ export const playbookType = defineType({
       title: "Slug",
       type: "slug",
       group: "content",
-      options: { source: "title", maxLength: 96 },
+      options: { source: "term", maxLength: 96 },
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: "excerpt",
-      title: "Excerpt",
+      name: "definition",
+      title: "Short Definition",
       type: "text",
       rows: 3,
       group: "content",
-      description: "Brief summary for listings",
-      validation: (rule) => [
-        rule.required(),
-        rule.max(200).warning("Keep under 200 characters for best SEO"),
-      ],
-    }),
-    defineField({
-      name: "mainImage",
-      title: "Main Image",
-      type: "image",
-      group: "content",
-      options: { hotspot: true },
-      fields: [
-        {
-          name: "alt",
-          type: "string",
-          title: "Alt Text",
-        },
-      ],
+      description: "1-2 sentence definition shown on the glossary index and in cards",
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: "body",
-      title: "Body",
+      title: "Extended Content",
       type: "array",
       group: "content",
+      description:
+        "Optional expanded explanation (500-800 words). Leave empty for short-form terms.",
       of: [
         { type: "block" },
         {
@@ -69,45 +54,38 @@ export const playbookType = defineType({
       ],
     }),
     defineField({
-      name: "difficulty",
-      title: "Difficulty Level",
+      name: "category",
+      title: "Category",
       type: "string",
-      group: "meta",
+      group: "content",
       options: {
         list: [
-          { title: "Beginner", value: "beginner" },
-          { title: "Intermediate", value: "intermediate" },
-          { title: "Advanced", value: "advanced" },
+          { title: "General", value: "general" },
+          { title: "Insurance", value: "insurance" },
+          { title: "Mortgage", value: "mortgage" },
+          { title: "Legal", value: "legal" },
+          { title: "Sales", value: "sales" },
+          { title: "Marketing", value: "marketing" },
+          { title: "Compliance", value: "compliance" },
+          { title: "Lead Generation", value: "lead-generation" },
+          { title: "Finance", value: "finance" },
         ],
       },
     }),
     defineField({
-      name: "estimatedTime",
-      title: "Estimated Time",
-      type: "string",
-      group: "meta",
-      description: 'e.g. "15 min read", "1 hour"',
+      name: "relatedTerms",
+      title: "Related Terms",
+      type: "array",
+      group: "relations",
+      of: [{ type: "reference", to: [{ type: "glossaryTerm" }] }],
+      description: "Cross-reference related glossary terms",
     }),
     defineField({
-      name: "leadTypes",
+      name: "relatedLeadTypes",
       title: "Related Lead Types",
       type: "array",
-      group: "meta",
+      group: "relations",
       of: [{ type: "reference", to: [{ type: "leadType" }] }],
-    }),
-    defineField({
-      name: "author",
-      title: "Author",
-      type: "reference",
-      group: "meta",
-      to: [{ type: "author" }],
-    }),
-    defineField({
-      name: "publishedAt",
-      title: "Published At",
-      type: "datetime",
-      group: "meta",
-      initialValue: () => new Date().toISOString(),
     }),
     defineField({
       name: "seo",
@@ -136,9 +114,15 @@ export const playbookType = defineType({
   ],
   preview: {
     select: {
-      title: "title",
-      subtitle: "difficulty",
-      media: "mainImage",
+      title: "term",
+      subtitle: "category",
     },
   },
+  orderings: [
+    {
+      title: "Term A-Z",
+      name: "termAsc",
+      by: [{ field: "term", direction: "asc" }],
+    },
+  ],
 });
