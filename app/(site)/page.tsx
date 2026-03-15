@@ -6,6 +6,7 @@ import { PostCard } from "@/components/post-card";
 import { PlaybookCard } from "@/components/playbook-card";
 import { CtaBanner } from "@/components/cta-banner";
 import { JsonLd, websiteJsonLd, organizationJsonLd } from "@/components/json-ld";
+import { affiliateUrl } from "@/lib/affiliate";
 
 const LEAD_TYPE_DEFAULTS = [
   {
@@ -97,7 +98,7 @@ export default async function HomePage() {
             </p>
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
               <a
-                href="https://agedleadstore.com"
+                href={affiliateUrl({ campaign: "homepage", content: "hero-cta" })}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="rounded-lg bg-blue-600 px-8 py-3.5 text-center text-base font-semibold text-white shadow-lg transition-colors hover:bg-blue-700"

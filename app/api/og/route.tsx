@@ -5,7 +5,7 @@ export const runtime = "edge";
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
-  const title = searchParams.get("title") || "Aged Lead Store";
+  const title = searchParams.get("title") || "Aged Lead Sales";
   const category = searchParams.get("category") || "";
   const type = searchParams.get("type") || "default";
 
@@ -115,7 +115,7 @@ export async function GET(request: NextRequest) {
                 color: "#e2e8f0",
               }}
             >
-              Aged Lead Store
+              Aged Lead Sales
             </span>
           </div>
           <span
@@ -124,7 +124,7 @@ export async function GET(request: NextRequest) {
               color: "#94a3b8",
             }}
           >
-            agedleadstore.com
+            agedleadsales.com
           </span>
         </div>
       </div>

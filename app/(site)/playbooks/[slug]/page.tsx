@@ -9,7 +9,7 @@ import { PlaybookCard } from "@/components/playbook-card";
 import { CtaBanner } from "@/components/cta-banner";
 import { JsonLd, breadcrumbJsonLd } from "@/components/json-ld";
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadstore.com";
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
 interface Props {
   params: Promise<{ slug: string }>;

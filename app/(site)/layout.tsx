@@ -15,13 +15,13 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadstore.com";
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "Aged Lead Store – Sales Training & Aged Lead Strategies",
-    template: "%s | Aged Lead Store",
+    default: "Aged Lead Sales – Sales Training & Aged Lead Strategies",
+    template: "%s | Aged Lead Sales",
   },
   description:
     "Learn how to grow your sales business with aged leads. Training, playbooks, and strategies for insurance agents, mortgage brokers, and sales professionals.",
@@ -31,11 +31,11 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    siteName: "Aged Lead Store",
+    siteName: "Aged Lead Sales",
     url: baseUrl,
     images: [
       {
-        url: `/api/og?title=${encodeURIComponent("Aged Lead Store – Sales Training & Aged Lead Strategies")}`,
+        url: `/api/og?title=${encodeURIComponent("Aged Lead Sales – Sales Training & Aged Lead Strategies")}`,
         width: 1200,
         height: 630,
       },

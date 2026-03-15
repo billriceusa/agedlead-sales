@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Aged Lead Store – Studio",
+  title: "Aged Lead Sales – Studio",
   description: "Content management studio",
 };
 

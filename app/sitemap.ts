@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { sanityFetch } from "@/sanity/lib/fetch";
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadstore.com";
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
 const sitemapContentQuery = `{
   "posts": *[_type == "post"] | order(publishedAt desc) {

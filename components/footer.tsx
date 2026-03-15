@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { affiliateUrl, affiliateRegisterUrl } from "@/lib/affiliate";
 import { NewsletterSignup } from "./newsletter-signup";
 
 const footerLinks = {
@@ -17,19 +18,18 @@ const footerLinks = {
     { name: "Calculators", href: "/calculators" },
     { name: "About", href: "/about" },
   ],
-  "Aged Lead Store": [
-    {
-      name: "Browse Leads",
-      href: "https://agedleadstore.com",
-      external: true,
-    },
-    {
-      name: "Create Free Account",
-      href: "https://agedleadstore.com/register",
-      external: true,
-    },
-  ],
 };
+
+const affiliateLinks = [
+  {
+    name: "Browse Leads",
+    href: affiliateUrl({ campaign: "footer", content: "browse-leads" }),
+  },
+  {
+    name: "Create Free Account",
+    href: affiliateRegisterUrl("footer", "create-account"),
+  },
+];
 
 export function Footer() {
   return (
@@ -42,7 +42,7 @@ export function Footer() {
               href="/"
               className="text-lg font-bold text-zinc-900 dark:text-white"
             >
-              Aged Lead Store
+              Aged Lead Sales
             </Link>
             <p className="mt-3 text-sm text-zinc-600 dark:text-zinc-400">
               Learn how to grow your sales business with aged leads. Training,
@@ -58,7 +58,7 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Link columns */}
+          {/* Internal link columns */}
           {Object.entries(footerLinks).map(([heading, links]) => (
             <div key={heading}>
               <h3 className="text-sm font-semibold uppercase tracking-wider text-zinc-900 dark:text-white">
@@ -67,33 +67,43 @@ export function Footer() {
               <ul className="mt-3 space-y-2">
                 {links.map((link) => (
                   <li key={link.name}>
-                    {"external" in link && link.external ? (
-                      <a
-                        href={link.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-sm text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-                      >
-                        {link.name} ↗
-                      </a>
-                    ) : (
-                      <Link
-                        href={link.href}
-                        className="text-sm text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-                      >
-                        {link.name}
-                      </Link>
-                    )}
+                    <Link
+                      href={link.href}
+                      className="text-sm text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+                    >
+                      {link.name}
+                    </Link>
                   </li>
                 ))}
               </ul>
             </div>
           ))}
+
+          {/* Affiliate links column */}
+          <div>
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-zinc-900 dark:text-white">
+              AgedLeadStore.com
+            </h3>
+            <ul className="mt-3 space-y-2">
+              {affiliateLinks.map((link) => (
+                <li key={link.name}>
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+                  >
+                    {link.name} ↗
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         <div className="mt-12 border-t border-zinc-200 pt-8 dark:border-zinc-800">
           <p className="text-center text-sm text-zinc-500 dark:text-zinc-500">
-            &copy; {new Date().getFullYear()} Aged Lead Store. All rights
+            &copy; {new Date().getFullYear()} Aged Lead Sales. All rights
             reserved.
           </p>
         </div>

@@ -1,4 +1,4 @@
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadstore.com";
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
 interface JsonLdProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -18,7 +18,7 @@ export function websiteJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "Aged Lead Store",
+    name: "Aged Lead Sales",
     url: baseUrl,
     description:
       "Learn how to grow your sales business with aged leads. Training, playbooks, and strategies for insurance agents, mortgage brokers, and sales professionals.",
@@ -37,11 +37,10 @@ export function organizationJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "Aged Lead Store",
+    name: "Aged Lead Sales",
     url: baseUrl,
-    sameAs: ["https://agedleadstore.com"],
     description:
-      "Sales training platform and aged lead marketplace for insurance agents, mortgage brokers, and sales professionals.",
+      "Sales training platform and aged lead strategies for insurance agents, mortgage brokers, and sales professionals.",
   };
 }
 
@@ -76,7 +75,7 @@ export function articleJsonLd({
     ...(imageUrl && { image: imageUrl }),
     publisher: {
       "@type": "Organization",
-      name: "Aged Lead Store",
+      name: "Aged Lead Sales",
       url: baseUrl,
     },
   };
@@ -131,7 +130,7 @@ export function glossaryTermJsonLd({
     url: `${baseUrl}/glossary/${slug}`,
     inDefinedTermSet: {
       "@type": "DefinedTermSet",
-      name: "Aged Lead Store Glossary",
+      name: "Aged Lead Sales Glossary",
       url: `${baseUrl}/glossary`,
     },
   };

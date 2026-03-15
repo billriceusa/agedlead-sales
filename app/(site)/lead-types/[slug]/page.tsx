@@ -9,8 +9,9 @@ import { PostCard } from "@/components/post-card";
 import { PlaybookCard } from "@/components/playbook-card";
 import { CtaBanner } from "@/components/cta-banner";
 import { JsonLd, breadcrumbJsonLd } from "@/components/json-ld";
+import { affiliateUrl as buildAffiliateUrl } from "@/lib/affiliate";
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadstore.com";
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -18,63 +19,55 @@ interface Props {
 
 const LEAD_TYPE_FALLBACKS: Record<
   string,
-  { title: string; icon: string; description: string; affiliateUrl: string }
+  { title: string; icon: string; description: string }
 > = {
   "mortgage-leads": {
     title: "Mortgage Leads",
     icon: "🏠",
     description:
       "Aged mortgage leads are consumer records from individuals who previously expressed interest in home loans, refinancing, or mortgage-related products. These leads offer mortgage brokers and loan officers a cost-effective way to build a high-volume pipeline.",
-    affiliateUrl: "https://agedleadstore.com",
   },
   "insurance-leads": {
     title: "Insurance Leads",
     icon: "🛡️",
     description:
       "Aged insurance leads include consumers who requested quotes for auto, home, health, or life insurance. Insurance agents can use these records to fill their pipeline at a fraction of the cost of real-time leads.",
-    affiliateUrl: "https://agedleadstore.com",
   },
   "final-expense-leads": {
     title: "Final Expense Leads",
     icon: "⚰️",
     description:
       "Aged final expense leads connect you with individuals who previously explored burial insurance and end-of-life planning. This is one of the highest-converting verticals for aged lead campaigns.",
-    affiliateUrl: "https://agedleadstore.com",
   },
   "iul-leads": {
     title: "IUL Leads",
     icon: "📈",
     description:
       "Aged IUL (Indexed Universal Life) leads come from consumers who explored cash-value life insurance, wealth-building strategies, and tax-advantaged retirement options.",
-    affiliateUrl: "https://agedleadstore.com",
   },
   "ssdi-leads": {
     title: "SSDI Leads",
     icon: "⚖️",
     description:
       "Aged SSDI leads are from individuals who previously sought assistance with Social Security Disability Insurance claims. Ideal for disability law firms and advocacy services.",
-    affiliateUrl: "https://agedleadstore.com",
   },
   "mva-leads": {
     title: "MVA Leads",
     icon: "🚗",
     description:
       "Aged MVA (Motor Vehicle Accident) leads connect personal injury attorneys and legal services with individuals who were previously involved in auto accidents and sought legal representation.",
-    affiliateUrl: "https://agedleadstore.com",
   },
   "solar-leads": {
     title: "Solar Leads",
     icon: "☀️",
     description:
       "Aged solar leads are from homeowners who explored solar panel installation and renewable energy savings. Solar companies can use these leads to fill their sales pipeline efficiently.",
-    affiliateUrl: "https://agedleadstore.com",
   },
   "medicare-leads": {
     title: "Medicare Leads",
     icon: "🏥",
     description:
       "Aged Medicare leads connect you with seniors who explored Medicare supplement plans, Medicare Advantage, and Part D options. A growing market with consistent demand.",
-    affiliateUrl: "https://agedleadstore.com",
   },
 };
 
@@ -122,7 +115,9 @@ export default async function LeadTypePage({ params }: Props) {
   const icon = leadType?.icon || fallback?.icon || "";
   const description =
     leadType?.shortDescription || fallback?.description || "";
-  const affiliateUrl = leadType?.affiliateUrl || fallback?.affiliateUrl || "https://agedleadstore.com";
+  const affiliateHref = leadType?.affiliateUrl
+    ? `${leadType.affiliateUrl}${leadType.affiliateUrl.includes("?") ? "&" : "?"}utm_source=agedleadsales&utm_medium=affiliate&utm_campaign=${slug}&utm_content=lead-type-hero`
+    : buildAffiliateUrl({ campaign: slug, content: "lead-type-hero" });
   const imageUrl = leadType?.mainImage
     ? urlForImage(leadType.mainImage)?.width(1200).url()
     : undefined;
@@ -166,7 +161,7 @@ export default async function LeadTypePage({ params }: Props) {
               )}
               <div className="mt-8 flex flex-col gap-4 sm:flex-row">
                 <a
-                  href={affiliateUrl}
+                  href={affiliateHref}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="rounded-lg bg-blue-600 px-8 py-3 text-center font-semibold text-white transition-colors hover:bg-blue-700"
@@ -230,7 +225,7 @@ export default async function LeadTypePage({ params }: Props) {
                 headline={`Ready to Buy ${title}?`}
                 description={`Browse aged ${title.toLowerCase()} at AgedLeadStore.com — starting at just pennies per lead.`}
                 buttonText={`Buy ${title}`}
-                buttonHref={affiliateUrl}
+                buttonHref={affiliateHref}
               />
             </div>
           </div>
@@ -308,7 +303,8 @@ export default async function LeadTypePage({ params }: Props) {
       <CtaBanner
         headline={`Start Prospecting with Aged ${title}`}
         description={`Create your free account at AgedLeadStore.com and browse ${title.toLowerCase()} inventory in your area.`}
-        buttonHref={affiliateUrl}
+        buttonHref={affiliateHref}
+        campaign={slug}
       />
     </>
   );

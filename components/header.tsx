@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { affiliateUrl } from "@/lib/affiliate";
 
 const navigation = [
   { name: "Lead Types", href: "/lead-types" },
@@ -20,7 +21,7 @@ export function Header() {
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center gap-2">
           <span className="text-xl font-bold tracking-tight text-zinc-900 dark:text-white">
-            Aged Lead Store
+            Aged Lead Sales
           </span>
         </Link>
 
@@ -36,7 +37,7 @@ export function Header() {
             </Link>
           ))}
           <a
-            href="https://agedleadstore.com"
+            href={affiliateUrl({ campaign: "nav", content: "browse-leads-button" })}
             target="_blank"
             rel="noopener noreferrer"
             className="ml-3 rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
@@ -79,7 +80,7 @@ export function Header() {
               </Link>
             ))}
             <a
-              href="https://agedleadstore.com"
+              href={affiliateUrl({ campaign: "nav", content: "browse-leads-mobile" })}
               target="_blank"
               rel="noopener noreferrer"
               className="mt-2 block rounded-lg bg-blue-600 px-4 py-2 text-center text-base font-semibold text-white transition-colors hover:bg-blue-700"

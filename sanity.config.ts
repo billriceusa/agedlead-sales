@@ -7,8 +7,8 @@ import { schemaTypes } from "./sanity/schemaTypes";
 import { apiVersion, dataset, projectId } from "./sanity/env";
 
 export default defineConfig({
-  name: "aged-lead-store",
-  title: "Aged Lead Store",
+  name: "aged-lead-sales",
+  title: "Aged Lead Sales",
   projectId,
   dataset,
   plugins: [structureTool(), visionTool({ defaultApiVersion: apiVersion })],
