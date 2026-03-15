@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { postsQuery } from "@/sanity/lib/queries";
 import { PostCard } from "@/components/post-card";
@@ -57,16 +56,6 @@ export default async function BlogPage() {
               <p className="text-lg text-zinc-600 dark:text-zinc-400">
                 No blog posts yet. Check back soon for sales tips, strategies,
                 and industry insights.
-              </p>
-              <p className="mt-2 text-sm text-zinc-500">
-                Content is managed via the{" "}
-                <Link
-                  href="/studio"
-                  className="text-blue-600 underline hover:text-blue-700 dark:text-blue-400"
-                >
-                  Sanity Studio
-                </Link>
-                .
               </p>
             </div>
           )}

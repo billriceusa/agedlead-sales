@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { playbooksQuery } from "@/sanity/lib/queries";
 import { PlaybookCard } from "@/components/playbook-card";
@@ -57,16 +56,6 @@ export default async function PlaybooksPage() {
               <p className="text-lg text-zinc-600 dark:text-zinc-400">
                 Playbooks are coming soon. Check back for step-by-step guides
                 on aged lead prospecting strategies.
-              </p>
-              <p className="mt-2 text-sm text-zinc-500">
-                Content is managed via the{" "}
-                <Link
-                  href="/studio"
-                  className="text-blue-600 underline hover:text-blue-700 dark:text-blue-400"
-                >
-                  Sanity Studio
-                </Link>
-                .
               </p>
             </div>
           )}
