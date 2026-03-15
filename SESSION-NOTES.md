@@ -1,4 +1,4 @@
-# Session Notes — March 14-15, 2026 (Updated March 15)
+# Session Notes — March 14-15, 2026 (updated March 15)
 
 ## What We Built
 
@@ -9,7 +9,7 @@ Transformed `agedlead-sales` from a simple Next.js slide-deck viewer into a full
 - **Framework:** Next.js 16 (App Router) with route groups `(site)` and `(studio)`
 - **CMS:** Sanity.io (project ID: `p7rbtajg`, dataset: `production`)
 - **Styling:** Tailwind CSS v4
-- **Analytics:** Google Tag Manager (`GTM-W9MDT8F2`) + GA4
+- **Analytics:** GA4 (`G-KMDYLG0QMC`) via direct gtag.js + Google Tag Manager (`GTM-W9MDT8F2`)
 - **Deployment:** Vercel (auto-deploys from `main` branch)
 - **Domain:** `agedleadsales.com`
 
@@ -58,6 +58,7 @@ Transformed `agedlead-sales` from a simple Next.js slide-deck viewer into a full
 - **Author authority** — Bill Rice with Person schema, `sameAs` links to Kaleidico/HowToWorkLeads/Medium, `knowsAbout` topics
 - **Affiliate disclosure** — Site-wide above footer
 - **Affiliate link rel** — `rel="nofollow sponsored noopener noreferrer"` on all affiliate links
+- **GA4** — Direct `gtag.js` tag via `GoogleAnalyticsTag` component (fixes GA4 tag detection)
 - **GTM** — `components/analytics.tsx` with `gtag()` event tracking
 
 ## Affiliate Link System
@@ -69,16 +70,34 @@ All affiliate links flow through `lib/affiliate.ts`:
 
 ## Environment Variables (Vercel)
 
-| Variable | Status |
-|----------|--------|
-| `NEXT_PUBLIC_SANITY_PROJECT_ID` | ✅ Set (`p7rbtajg`) |
-| `NEXT_PUBLIC_SANITY_DATASET` | ✅ Set (`production`) |
-| `NEXT_PUBLIC_GTM_ID` | ✅ Set (`GTM-W9MDT8F2`) |
-| `NEXT_PUBLIC_SITE_URL` | ⚠️ Needs to be set to `https://agedleadsales.com` |
-| `NEXT_PUBLIC_SANITY_API_VERSION` | Optional (defaults to `2026-03-14`) |
-| `NEXT_PUBLIC_GSC_VERIFICATION` | Not yet set |
-| `NEXT_PUBLIC_BING_VERIFICATION` | Not yet set |
-| `RESEND_API_KEY` | Not yet set |
+### Already Set
+| Variable | Value |
+|----------|-------|
+| `NEXT_PUBLIC_SANITY_PROJECT_ID` | `p7rbtajg` |
+| `NEXT_PUBLIC_SANITY_DATASET` | `production` |
+| `NEXT_PUBLIC_GTM_ID` | `GTM-W9MDT8F2` |
+| `NEXT_PUBLIC_GA4_MEASUREMENT_ID` | `G-KMDYLG0QMC` |
+
+### Need to Set (for cron jobs to work)
+
+Set these via Vercel Dashboard or Vercel CLI when available:
+
+| Variable | Purpose | Where to get it |
+|----------|---------|-----------------|
+| `NEXT_PUBLIC_SITE_URL` | Sitemaps, canonical URLs | `https://agedleadsales.com` |
+| `CRON_SECRET` | Secures cron endpoints | Generate any random string |
+| `OPENAI_API_KEY` | AI content generation + analysis | [platform.openai.com](https://platform.openai.com) |
+| `SANITY_API_TOKEN` | CMS publishing from cron jobs | [sanity.io/manage](https://www.sanity.io/manage) > API > Tokens |
+| `RESEND_API_KEY` | Email sending (reports + newsletter) | [resend.com](https://resend.com) |
+| `RESEND_FROM_EMAIL` | Sender address for emails | Your verified Resend domain |
+| `RESEND_AUDIENCE_ID` | Newsletter broadcast audience | Resend dashboard > Audiences |
+| `GITHUB_TOKEN` | Commits reports/backlog to repo | GitHub PAT with `contents:write` scope |
+| `GITHUB_REPO` | Target repository | `billriceusa/agedlead-sales` |
+| `GITHUB_BRANCH` | Branch for report commits | `main` |
+| `GOOGLE_CLIENT_EMAIL` | GA4/GSC API access | Google Cloud service account |
+| `GOOGLE_PRIVATE_KEY` | GA4/GSC API auth | Service account JSON key file |
+| `GA4_PROPERTY_ID` | Daily performance report | GA4 Admin > Property details (numeric ID) |
+| `GSC_SITE_URL` | Search Console data | `https://agedleadsales.com` |
 
 ## Sanity API Token
 
@@ -104,6 +123,65 @@ Full calendar with briefs in `data/editorial-calendar.ts`. Cadence: 3 posts/week
 **Briefs ready (Weeks 3-12, 30 posts):**
 See `data/editorial-calendar.ts` for full details.
 
+## Automated Cron Jobs (added March 15, 2026)
+
+Four Vercel cron jobs that automate the content, newsletter, SEO, and analytics workflows.
+
+### Schedule
+
+| Cron | Schedule | Endpoint |
+|------|----------|----------|
+| Weekly Content | Sunday 6 AM UTC | `/api/cron/weekly-content` |
+| Weekly Newsletter | Sunday 8 AM UTC | `/api/cron/weekly-newsletter` |
+| SEO Audit | Wednesday 10 AM UTC | `/api/cron/seo-audit` |
+| Daily Performance | Daily 12 PM UTC (8 AM ET) | `/api/cron/daily-performance` |
+
+### 1. Weekly Content (Sunday)
+Reviews the SEO strategy, does competitive research on the keyword marketplace, reviews the editorial calendar, writes 3 blog posts (Mon/Wed/Fri) using GPT-4o, publishes them to Sanity CMS, commits a weekly report to GitHub, and emails a summary to bill@billricestrategy.com.
+
+### 2. Weekly Newsletter (Sunday)
+Checks the newsletter content calendar (`data/newsletter-calendar.ts`) for a planned theme or has AI research one. Generates a complete newsletter with personal intro, featured article, 3 exclusive tips, industry insight, and blog digest. Builds a responsive HTML email, sends a preview to Bill for review, and schedules the broadcast to subscribers for Tuesday 9 AM ET via Resend.
+
+### 3. SEO Audit (Wednesday)
+Researches latest Google algorithm updates (Core, Helpful Content, Spam, etc.). Builds a site snapshot from Sanity CMS. Runs a comprehensive audit across 10 categories (technical SEO, content quality, structured data, E-E-A-T, affiliate compliance, etc.). Maintains a living backlog at `data/seo-backlog.json` — new issues added, resolved issues auto-closed. Emails a full audit report with score, findings, and recommendations.
+
+### 4. Daily Performance (Daily)
+Fetches 7-day and 90-day data from GA4 (sessions, users, page views, bounce rate, top pages, traffic sources) and GSC (clicks, impressions, CTR, position, top queries, device breakdown). Calculates daily averages and uses GPT-4o to compare periods, identify trends, and generate recommendations. Emails a performance report with trend arrows and action items. Gracefully handles missing data sources.
+
+### Cron Job Files
+
+| File | Purpose |
+|------|---------|
+| `app/api/cron/weekly-content/route.ts` | Content strategy + article writing |
+| `app/api/cron/weekly-newsletter/route.ts` | Newsletter generation + scheduling |
+| `app/api/cron/seo-audit/route.ts` | Google updates research + site audit |
+| `app/api/cron/daily-performance/route.ts` | GA4/GSC performance report |
+| `lib/cron/ai-content.ts` | AI content planning + article writing |
+| `lib/cron/sanity-publish.ts` | Sanity CMS write client |
+| `lib/cron/newsletter-ai.ts` | AI newsletter content generation |
+| `lib/cron/newsletter-email.ts` | Responsive HTML newsletter template |
+| `lib/cron/seo-audit.ts` | Google update research + site auditing |
+| `lib/cron/performance-ai.ts` | AI performance analysis |
+| `lib/cron/ga4-data.ts` | GA4 Data API client (REST) |
+| `lib/cron/gsc-data.ts` | GSC API client (REST) |
+| `lib/cron/google-auth.ts` | Google service account auth |
+| `lib/cron/git-commit.ts` | GitHub API for committing files |
+| `lib/cron/notify.ts` | Email report sending (Resend) |
+| `lib/cron/types.ts` | Shared TypeScript types |
+| `data/newsletter-calendar.ts` | 12-week newsletter theme plan |
+| `data/editorial-calendar.ts` | 12-week blog content plan |
+
+### Design Principles
+- **Lazy initialization** — API clients (OpenAI, Sanity, Google) are created at request time, not module load time, so builds succeed without env vars
+- **Graceful degradation** — Each data source is optional; reports work with partial data and clearly indicate what's missing
+- **Lightweight API clients** — GA4 and GSC use direct REST calls + `google-auth-library` instead of the heavyweight `googleapis` package
+- **Parallel execution** — Independent API calls (fetching data, writing articles) run concurrently to stay within the 300s function timeout
+- **Idempotent publishing** — Sanity posts check for existing documents by ID before creating, preventing duplicates on retry
+
+## GA4 Tag Fix (March 15, 2026)
+
+GA4 reported "Your Google tag wasn't detected on agedleadsales.com" because the site only loaded GTM without the direct `gtag.js` snippet. Fixed by adding a `GoogleAnalyticsTag` component that loads `gtag.js` with the measurement ID `G-KMDYLG0QMC` directly. GA4 needs this to verify tag installation; GTM alone isn't sufficient for detection.
+
 ## Key Files Reference
 
 | File | Purpose |
@@ -112,30 +190,22 @@ See `data/editorial-calendar.ts` for full details.
 | `data/lead-types.ts` | Rich SEO content for 8 lead type landing pages |
 | `data/glossary-terms.ts` | Static fallback for 77 glossary terms |
 | `data/editorial-calendar.ts` | 12-week content plan with briefs |
+| `data/newsletter-calendar.ts` | 12-week newsletter theme plan |
 | `components/json-ld.tsx` | All structured data generators |
-| `components/analytics.tsx` | GTM + event tracking |
+| `components/analytics.tsx` | GA4 gtag.js + GTM + event tracking |
 | `components/affiliate-disclosure.tsx` | Site-wide FTC disclosure |
-| `scripts/seed-sanity.mjs` | Seeds categories, lead types, glossary terms |
-| `scripts/seed-author.mjs` | Creates/updates Bill Rice author |
-| `scripts/seed-blog-post.mjs` | Original pillar post (now replaced) |
-| `scripts/seed-cluster-posts.mjs` | 5 differentiated vertical posts |
-| `scripts/seed-glossary-crosslinks.mjs` | Links glossary terms → lead types |
-| `scripts/seed-glossary-expansion.mjs` | 20 new terms + 5 enriched |
-| `scripts/dedup-and-reposition.mjs` | Deleted overlapping content, published differentiated posts |
-| `scripts/seed-week1-2-posts.mjs` | Week 1-2 editorial calendar posts |
 
 ## Next Session Priorities
 
-1. **Write and publish Weeks 3-4 posts** (6 posts, briefs ready in editorial calendar)
-2. **Set `NEXT_PUBLIC_SITE_URL`** on Vercel if not done yet
-3. **Check GSC indexing** — verify pages are being crawled and indexed
-4. **Set up Resend** for newsletter — configure API key, create welcome email
-5. **Build the Outreach Cadence Planner** calculator (4th tool)
-6. **Add images** to blog posts and lead type pages via Sanity
-7. **Monitor analytics** — verify GTM is firing, check GA4 for traffic
-8. **Continue Weeks 5-12** content production
-9. **Enrich more glossary terms** with extended body content
-10. **Consider adding a newsletter signup welcome email** via Resend
+1. **Set remaining Vercel env vars** — see table above; needed for cron jobs to function
+2. **Set up Google Cloud service account** — for GA4/GSC API access in daily performance reports
+3. **Set up Resend** — API key, verified domain, audience for newsletter broadcasts
+4. **Generate a `CRON_SECRET`** — any random string to secure cron endpoints
+5. **Create a GitHub PAT** — with `contents:write` scope for report commits
+6. **Verify GA4 tag** — hit Retest in GA4 after deploy with `NEXT_PUBLIC_GA4_MEASUREMENT_ID` set
+7. **Build the Outreach Cadence Planner** calculator (4th tool)
+8. **Add images** to blog posts and lead type pages via Sanity
+9. **Monitor first cron runs** — check logs after env vars are configured
 
 ## Google Algorithm Compliance Notes
 
@@ -150,75 +220,3 @@ Based on research of Dec 2025 Helpful Content Update and Aug 2025 Spam Update:
 - ✅ Each post has a unique competitive angle not covered elsewhere
 - ✅ Interactive tools providing genuine user utility
 - ✅ FAQPage schema on applicable pages
-
-## Updated Content Inventory (end of session 2)
-
-| Content Type | Count | Location |
-|-------------|-------|----------|
-| Blog posts | 11 | Sanity CMS |
-| Playbooks | 4 | Sanity CMS |
-| Lead type landing pages | 8 | Static + CMS |
-| Glossary terms | 77 | Sanity CMS + static fallback |
-| Interactive calculators | 3 | Static pages |
-| Categories | 6 | Sanity CMS |
-| Author | 1 (Bill Rice) | Sanity CMS |
-| Static pages | ~10 | Code |
-| **Total indexable pages** | **~113** | |
-| **Editorial briefs ready** | 30 more posts | `data/editorial-calendar.ts` |
-
-## Lessons Learned
-
-### 1. Centralize affiliate links from day one
-We initially hardcoded `agedleadstore.com` URLs across dozens of files. When the destination changed to `/all-lead-types/`, we had to hunt through every component and page. The centralized `lib/affiliate.ts` utility fixed this — one file controls every affiliate link on the site. **Lesson: any URL that might change should flow through a single utility.**
-
-### 2. Don't leak internal tools to the public site
-The blog and playbooks empty states had "Content is managed via the Sanity Studio" with a link to `/studio`. This is internal infrastructure that visitors shouldn't see. **Lesson: always review empty/fallback states from a visitor's perspective before deploying.**
-
-### 3. Content differentiation across owned properties is critical
-We initially published 6 blog posts that directly overlapped with content on AgedLeadStore.com and HowToWorkLeads.com — same topics, same keywords, same author. Google's Dec 2025 Helpful Content Update specifically penalizes this pattern. We had to delete all 6 and rewrite from scratch with differentiated angles. **Lesson: audit competitor content (including your own other sites) before writing a single post. Define clear content lanes upfront.**
-
-### 4. HTML entities don't always work in JSX
-`&nearr;` rendered as literal text in React/JSX rather than the ↗ arrow character. Use Unicode characters directly (↗) instead of HTML entities in JSX. `&rarr;` works but `&nearr;` doesn't consistently. **Lesson: use Unicode characters in JSX, not HTML entities.**
-
-### 5. Static data with CMS override is the fastest path to content
-Building content as static TypeScript data files (`data/lead-types.ts`, `data/glossary-terms.ts`) with CMS override when Sanity has data gives the best of both worlds: instant indexable pages at build time, plus editorial flexibility through the Studio. **Lesson: don't wait for CMS content to ship pages — build static fallbacks and let CMS content supersede them.**
-
-### 6. The Sanity client needs graceful null handling
-When `NEXT_PUBLIC_SANITY_PROJECT_ID` is empty, `createClient` throws. We wrapped the client in a null check so the site builds and renders fallback content even without Sanity configured. Similarly, the sitemap needed a try/catch around the CMS fetch. **Lesson: every CMS call should fail gracefully.**
-
-### 7. `rel="nofollow sponsored"` on affiliate links is non-negotiable
-Google's Aug 2025 Spam Update and affiliate site guidelines require explicit `rel="nofollow sponsored"` on all paid/commission links. We initially had only `rel="noopener noreferrer"`. **Lesson: add affiliate rel attributes from the first commit, not as a fix later.**
-
-### 8. Author authority requires a dedicated page and schema
-The Dec 2025 Helpful Content Update evaluates author credibility beyond bios. A named author page (`/about/bill-rice`) with Person JSON-LD including `sameAs`, `knowsAbout`, and `worksFor` links allows Google to verify expertise across the web. **Lesson: build the author page and schema before publishing content, not after.**
-
-### 9. Seeding scripts are essential for Sanity-powered sites
-Writing content directly in Sanity Studio is slow for bulk content. Seeding scripts (`scripts/seed-*.mjs`) let us publish dozens of documents programmatically with consistent formatting, proper references, and SEO fields. Keep the token out of git and pass via env var. **Lesson: invest in seeding scripts early — they pay back immediately.**
-
-### 10. GSC sitemap "Couldn't fetch" is usually a build-time error
-Our first sitemap submission failed because the Sanity fetch was throwing during the Vercel build (no try/catch). The sitemap XML never generated. Adding error handling fixed it immediately. **Lesson: always wrap external API calls in try/catch for statically generated routes.**
-
-## Scripts Reference (run with SANITY_API_TOKEN env var)
-
-```bash
-# Seed all base content (categories, lead types, glossary)
-SANITY_API_TOKEN=xxx node scripts/seed-sanity.mjs
-
-# Update author to Bill Rice
-SANITY_API_TOKEN=xxx node scripts/seed-author.mjs
-
-# Publish differentiated blog posts
-SANITY_API_TOKEN=xxx node scripts/dedup-and-reposition.mjs
-
-# Publish Week 1-2 editorial calendar posts
-SANITY_API_TOKEN=xxx node scripts/seed-week1-2-posts.mjs
-
-# Publish playbooks
-SANITY_API_TOKEN=xxx node scripts/seed-playbooks.mjs
-
-# Add glossary cross-references
-SANITY_API_TOKEN=xxx node scripts/seed-glossary-crosslinks.mjs
-
-# Add new glossary terms + enrich existing
-SANITY_API_TOKEN=xxx node scripts/seed-glossary-expansion.mjs
-```
