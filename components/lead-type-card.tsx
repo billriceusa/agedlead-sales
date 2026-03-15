@@ -8,7 +8,6 @@ interface LeadTypeCardProps {
   slug: string;
   shortDescription: string;
   icon?: string;
-  affiliateUrl?: string;
 }
 
 export function LeadTypeCard({
@@ -16,11 +15,8 @@ export function LeadTypeCard({
   slug,
   shortDescription,
   icon,
-  affiliateUrl,
 }: LeadTypeCardProps) {
-  const trackedAffiliateUrl = affiliateUrl
-    ? `${affiliateUrl}${affiliateUrl.includes("?") ? "&" : "?"}utm_source=agedleadsales&utm_medium=affiliate&utm_campaign=${slug}&utm_content=lead-type-card`
-    : buildAffiliateUrl({ campaign: slug, content: "lead-type-card" });
+  const trackedAffiliateUrl = buildAffiliateUrl({ campaign: slug, content: "lead-type-card" });
 
   return (
     <div className="group relative flex flex-col rounded-xl border border-zinc-200 bg-white p-6 transition-all hover:border-blue-300 hover:shadow-lg dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-blue-700">

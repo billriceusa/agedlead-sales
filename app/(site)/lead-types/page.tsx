@@ -98,7 +98,6 @@ export default async function LeadTypesPage() {
                 slug: string | { current: string };
                 shortDescription: string;
                 icon?: string;
-                affiliateUrl?: string;
               }) => (
                 <LeadTypeCard
                   key={lt._id || lt.title}
@@ -108,7 +107,6 @@ export default async function LeadTypesPage() {
                   }
                   shortDescription={lt.shortDescription}
                   icon={lt.icon}
-                  affiliateUrl={lt.affiliateUrl}
                 />
               )
             )}

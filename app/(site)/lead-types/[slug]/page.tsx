@@ -11,6 +11,7 @@ import { CtaBanner } from "@/components/cta-banner";
 import { JsonLd, breadcrumbJsonLd, faqJsonLd } from "@/components/json-ld";
 import { NewsletterSignup } from "@/components/newsletter-signup";
 import { LEAD_TYPES } from "@/data/lead-types";
+import { affiliateUrl as buildAffiliateUrl } from "@/lib/affiliate";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
@@ -62,7 +63,7 @@ export default async function LeadTypePage({ params }: Props) {
     leadType?.shortDescription || data?.heroDescription || "";
   const affiliateHref = data
     ? data.getAffiliateUrl("lead-type-hero")
-    : `https://agedleadstore.com?utm_source=agedleadsales&utm_medium=affiliate&utm_campaign=${slug}&utm_content=lead-type-hero`;
+    : buildAffiliateUrl({ campaign: slug, content: "lead-type-hero" });
   const imageUrl = leadType?.mainImage
     ? urlForImage(leadType.mainImage)?.width(1200).url()
     : undefined;

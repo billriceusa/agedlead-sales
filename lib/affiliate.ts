@@ -8,8 +8,8 @@ interface AffiliateLink {
   content: string;
 }
 
-export function affiliateUrl({ path = "", campaign, content }: AffiliateLink): string {
-  const base = path ? `${AFFILIATE_BASE_URL}${path}` : AFFILIATE_BASE_URL;
+export function affiliateUrl({ path = "/all-lead-types/", campaign, content }: AffiliateLink): string {
+  const base = `${AFFILIATE_BASE_URL}${path}`;
   const params = new URLSearchParams({
     utm_source: UTM_SOURCE,
     utm_medium: UTM_MEDIUM,
