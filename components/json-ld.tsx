@@ -22,6 +22,7 @@ export function websiteJsonLd() {
     url: baseUrl,
     description:
       "Learn how to grow your sales business with aged leads. Training, playbooks, and strategies for insurance agents, mortgage brokers, and sales professionals.",
+    publisher: personJsonLdData(),
     potentialAction: {
       "@type": "SearchAction",
       target: {
@@ -39,8 +40,54 @@ export function organizationJsonLd() {
     "@type": "Organization",
     name: "Aged Lead Sales",
     url: baseUrl,
+    founder: personJsonLdData(),
     description:
       "Sales training platform and aged lead strategies for insurance agents, mortgage brokers, and sales professionals.",
+  };
+}
+
+export function personJsonLdData() {
+  return {
+    "@type": "Person",
+    "@id": `${baseUrl}/about/bill-rice#person`,
+    name: "Bill Rice",
+    url: `${baseUrl}/about/bill-rice`,
+    jobTitle: "Founder & Lead Conversion Expert",
+    description:
+      "20+ years building lead conversion systems across insurance, mortgage, solar, and home improvement. Founder of Kaleidico. Marketing director for Aged Lead Store.",
+    knowsAbout: [
+      "Aged Leads",
+      "Lead Generation",
+      "Lead Conversion",
+      "Insurance Sales",
+      "Mortgage Sales",
+      "Sales Training",
+      "Digital Marketing",
+    ],
+    sameAs: [
+      "https://www.howtoworkleads.com/resources/about",
+      "https://kaleidico.com/bill-rice/",
+      "https://medium.com/@billrice",
+    ],
+    worksFor: [
+      {
+        "@type": "Organization",
+        name: "Aged Lead Sales",
+        url: baseUrl,
+      },
+      {
+        "@type": "Organization",
+        name: "Kaleidico",
+        url: "https://kaleidico.com",
+      },
+    ],
+  };
+}
+
+export function personPageJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    ...personJsonLdData(),
   };
 }
 
@@ -61,6 +108,8 @@ export function articleJsonLd({
   authorName?: string;
   imageUrl?: string;
 }) {
+  const isKnownAuthor = authorName === "Bill Rice";
+
   return {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -69,9 +118,11 @@ export function articleJsonLd({
     url: `${baseUrl}/blog/${slug}`,
     ...(publishedAt && { datePublished: publishedAt }),
     ...(modifiedAt && { dateModified: modifiedAt }),
-    ...(authorName && {
-      author: { "@type": "Person", name: authorName },
-    }),
+    author: isKnownAuthor
+      ? personJsonLdData()
+      : authorName
+        ? { "@type": "Person", name: authorName }
+        : personJsonLdData(),
     ...(imageUrl && { image: imageUrl }),
     publisher: {
       "@type": "Organization",
@@ -81,9 +132,7 @@ export function articleJsonLd({
   };
 }
 
-export function breadcrumbJsonLd(
-  items: { name: string; url: string }[]
-) {
+export function breadcrumbJsonLd(items: { name: string; url: string }[]) {
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -96,9 +145,7 @@ export function breadcrumbJsonLd(
   };
 }
 
-export function faqJsonLd(
-  questions: { question: string; answer: string }[]
-) {
+export function faqJsonLd(questions: { question: string; answer: string }[]) {
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",

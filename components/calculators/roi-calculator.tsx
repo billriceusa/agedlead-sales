@@ -177,7 +177,7 @@ export function RoiCalculator() {
         <a
           href={affiliateUrl({ campaign: "roi-calculator", content: "results-cta" })}
           target="_blank"
-          rel="noopener noreferrer"
+          rel="nofollow sponsored noopener noreferrer"
           className="inline-block rounded-lg bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
         >
           Browse Aged Leads at AgedLeadStore.com

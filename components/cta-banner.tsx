@@ -35,7 +35,7 @@ export function CtaBanner({
           <a
             href={href}
             target="_blank"
-            rel="noopener noreferrer"
+            rel="nofollow sponsored noopener noreferrer"
             className="shrink-0 rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
           >
             {buttonText}
@@ -58,7 +58,7 @@ export function CtaBanner({
           <a
             href={href}
             target="_blank"
-            rel="noopener noreferrer"
+            rel="nofollow sponsored noopener noreferrer"
             className="rounded-lg bg-white px-8 py-3 text-base font-semibold text-blue-700 shadow-lg transition-colors hover:bg-blue-50"
           >
             {buttonText}
@@ -66,7 +66,7 @@ export function CtaBanner({
           <a
             href={registerHref}
             target="_blank"
-            rel="noopener noreferrer"
+            rel="nofollow sponsored noopener noreferrer"
             className="rounded-lg border-2 border-white/30 px-8 py-3 text-base font-semibold text-white transition-colors hover:bg-white/10"
           >
             Create Free Account

@@ -100,7 +100,7 @@ export default async function HomePage() {
               <a
                 href={affiliateUrl({ campaign: "homepage", content: "hero-cta" })}
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="nofollow sponsored noopener noreferrer"
                 className="rounded-lg bg-blue-600 px-8 py-3.5 text-center text-base font-semibold text-white shadow-lg transition-colors hover:bg-blue-700"
               >
                 Browse Leads at AgedLeadStore.com

@@ -39,7 +39,7 @@ export function Header() {
           <a
             href={affiliateUrl({ campaign: "nav", content: "browse-leads-button" })}
             target="_blank"
-            rel="noopener noreferrer"
+            rel="nofollow sponsored noopener noreferrer"
             className="ml-3 rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
           >
             Browse Leads
@@ -82,7 +82,7 @@ export function Header() {
             <a
               href={affiliateUrl({ campaign: "nav", content: "browse-leads-mobile" })}
               target="_blank"
-              rel="noopener noreferrer"
+              rel="nofollow sponsored noopener noreferrer"
               className="mt-2 block rounded-lg bg-blue-600 px-4 py-2 text-center text-base font-semibold text-white transition-colors hover:bg-blue-700"
             >
               Browse Leads

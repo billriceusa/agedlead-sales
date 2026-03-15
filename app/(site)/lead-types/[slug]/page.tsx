@@ -109,7 +109,7 @@ export default async function LeadTypePage({ params }: Props) {
                 <a
                   href={affiliateHref}
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="nofollow sponsored noopener noreferrer"
                   className="rounded-lg bg-blue-600 px-8 py-3 text-center font-semibold text-white transition-colors hover:bg-blue-700"
                 >
                   Buy {title} at AgedLeadStore.com

@@ -90,7 +90,7 @@ export function Footer() {
                   <a
                     href={link.href}
                     target="_blank"
-                    rel="noopener noreferrer"
+                    rel="nofollow sponsored noopener noreferrer"
                     className="text-sm text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
                   >
                     {link.name} ↗
