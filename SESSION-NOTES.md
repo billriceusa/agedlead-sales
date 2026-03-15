@@ -1,4 +1,4 @@
-# Session Notes — March 14-15, 2026
+# Session Notes — March 14-15, 2026 (Updated March 15)
 
 ## What We Built
 
@@ -150,3 +150,75 @@ Based on research of Dec 2025 Helpful Content Update and Aug 2025 Spam Update:
 - ✅ Each post has a unique competitive angle not covered elsewhere
 - ✅ Interactive tools providing genuine user utility
 - ✅ FAQPage schema on applicable pages
+
+## Updated Content Inventory (end of session 2)
+
+| Content Type | Count | Location |
+|-------------|-------|----------|
+| Blog posts | 11 | Sanity CMS |
+| Playbooks | 4 | Sanity CMS |
+| Lead type landing pages | 8 | Static + CMS |
+| Glossary terms | 77 | Sanity CMS + static fallback |
+| Interactive calculators | 3 | Static pages |
+| Categories | 6 | Sanity CMS |
+| Author | 1 (Bill Rice) | Sanity CMS |
+| Static pages | ~10 | Code |
+| **Total indexable pages** | **~113** | |
+| **Editorial briefs ready** | 30 more posts | `data/editorial-calendar.ts` |
+
+## Lessons Learned
+
+### 1. Centralize affiliate links from day one
+We initially hardcoded `agedleadstore.com` URLs across dozens of files. When the destination changed to `/all-lead-types/`, we had to hunt through every component and page. The centralized `lib/affiliate.ts` utility fixed this — one file controls every affiliate link on the site. **Lesson: any URL that might change should flow through a single utility.**
+
+### 2. Don't leak internal tools to the public site
+The blog and playbooks empty states had "Content is managed via the Sanity Studio" with a link to `/studio`. This is internal infrastructure that visitors shouldn't see. **Lesson: always review empty/fallback states from a visitor's perspective before deploying.**
+
+### 3. Content differentiation across owned properties is critical
+We initially published 6 blog posts that directly overlapped with content on AgedLeadStore.com and HowToWorkLeads.com — same topics, same keywords, same author. Google's Dec 2025 Helpful Content Update specifically penalizes this pattern. We had to delete all 6 and rewrite from scratch with differentiated angles. **Lesson: audit competitor content (including your own other sites) before writing a single post. Define clear content lanes upfront.**
+
+### 4. HTML entities don't always work in JSX
+`&nearr;` rendered as literal text in React/JSX rather than the ↗ arrow character. Use Unicode characters directly (↗) instead of HTML entities in JSX. `&rarr;` works but `&nearr;` doesn't consistently. **Lesson: use Unicode characters in JSX, not HTML entities.**
+
+### 5. Static data with CMS override is the fastest path to content
+Building content as static TypeScript data files (`data/lead-types.ts`, `data/glossary-terms.ts`) with CMS override when Sanity has data gives the best of both worlds: instant indexable pages at build time, plus editorial flexibility through the Studio. **Lesson: don't wait for CMS content to ship pages — build static fallbacks and let CMS content supersede them.**
+
+### 6. The Sanity client needs graceful null handling
+When `NEXT_PUBLIC_SANITY_PROJECT_ID` is empty, `createClient` throws. We wrapped the client in a null check so the site builds and renders fallback content even without Sanity configured. Similarly, the sitemap needed a try/catch around the CMS fetch. **Lesson: every CMS call should fail gracefully.**
+
+### 7. `rel="nofollow sponsored"` on affiliate links is non-negotiable
+Google's Aug 2025 Spam Update and affiliate site guidelines require explicit `rel="nofollow sponsored"` on all paid/commission links. We initially had only `rel="noopener noreferrer"`. **Lesson: add affiliate rel attributes from the first commit, not as a fix later.**
+
+### 8. Author authority requires a dedicated page and schema
+The Dec 2025 Helpful Content Update evaluates author credibility beyond bios. A named author page (`/about/bill-rice`) with Person JSON-LD including `sameAs`, `knowsAbout`, and `worksFor` links allows Google to verify expertise across the web. **Lesson: build the author page and schema before publishing content, not after.**
+
+### 9. Seeding scripts are essential for Sanity-powered sites
+Writing content directly in Sanity Studio is slow for bulk content. Seeding scripts (`scripts/seed-*.mjs`) let us publish dozens of documents programmatically with consistent formatting, proper references, and SEO fields. Keep the token out of git and pass via env var. **Lesson: invest in seeding scripts early — they pay back immediately.**
+
+### 10. GSC sitemap "Couldn't fetch" is usually a build-time error
+Our first sitemap submission failed because the Sanity fetch was throwing during the Vercel build (no try/catch). The sitemap XML never generated. Adding error handling fixed it immediately. **Lesson: always wrap external API calls in try/catch for statically generated routes.**
+
+## Scripts Reference (run with SANITY_API_TOKEN env var)
+
+```bash
+# Seed all base content (categories, lead types, glossary)
+SANITY_API_TOKEN=xxx node scripts/seed-sanity.mjs
+
+# Update author to Bill Rice
+SANITY_API_TOKEN=xxx node scripts/seed-author.mjs
+
+# Publish differentiated blog posts
+SANITY_API_TOKEN=xxx node scripts/dedup-and-reposition.mjs
+
+# Publish Week 1-2 editorial calendar posts
+SANITY_API_TOKEN=xxx node scripts/seed-week1-2-posts.mjs
+
+# Publish playbooks
+SANITY_API_TOKEN=xxx node scripts/seed-playbooks.mjs
+
+# Add glossary cross-references
+SANITY_API_TOKEN=xxx node scripts/seed-glossary-crosslinks.mjs
+
+# Add new glossary terms + enrich existing
+SANITY_API_TOKEN=xxx node scripts/seed-glossary-expansion.mjs
+```
