@@ -30,35 +30,28 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   );
 }
 
-type DataLayerEvent = {
-  event: string;
-  [key: string]: unknown;
-};
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type GtagArgs = [string, ...any[]];
 
-export function trackEvent(eventData: DataLayerEvent) {
+function gtag(...args: GtagArgs) {
   if (typeof window !== "undefined" && "dataLayer" in window) {
-    (window as unknown as { dataLayer: DataLayerEvent[] }).dataLayer.push(
-      eventData
-    );
+    (window as unknown as { dataLayer: GtagArgs[] }).dataLayer.push(args);
   }
 }
 
+export function trackEvent(name: string, params?: Record<string, string>) {
+  gtag("event", name, params);
+}
+
 export function trackNewsletterSignup(location: string, email: string) {
-  trackEvent({
-    event: "newsletter_signup",
+  trackEvent("newsletter_signup", {
     signup_location: location,
     email_domain: email.split("@")[1],
   });
 }
 
-export function trackCtaClick(
-  type: "affiliate" | "lead_magnet" | "cta",
-  id: string,
-  location: string
-) {
-  trackEvent({
-    event: "cta_click",
-    cta_type: type,
+export function trackCtaClick(id: string, location: string) {
+  trackEvent("cta_click", {
     cta_id: id,
     cta_location: location,
   });

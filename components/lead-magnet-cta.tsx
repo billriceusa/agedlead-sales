@@ -42,7 +42,7 @@ export function LeadMagnetCta({
         setStatus("success");
         setMessage("Check your email! Your download is on the way.");
         trackNewsletterSignup(context, email);
-        trackCtaClick("lead_magnet", leadMagnetId, context);
+        trackCtaClick(leadMagnetId, context);
         setEmail("");
       } else {
         const data = await res.json();
