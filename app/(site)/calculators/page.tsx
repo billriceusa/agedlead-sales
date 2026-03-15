@@ -23,7 +23,7 @@ const CALCULATORS = [
     description:
       "Calculate your true cost per acquisition when factoring in lead cost, contact rate, and conversion rate.",
     icon: "💰",
-    status: "coming-soon" as const,
+    status: "live" as const,
   },
   {
     title: "Pipeline Volume Calculator",
@@ -31,7 +31,7 @@ const CALCULATORS = [
     description:
       "Determine how many leads you need to hit your income goals based on your close rate and average deal size.",
     icon: "📈",
-    status: "coming-soon" as const,
+    status: "live" as const,
   },
   {
     title: "Outreach Cadence Planner",
