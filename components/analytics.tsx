@@ -1,6 +1,30 @@
 import Script from "next/script";
 
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
+const GA4_ID = process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID;
+
+export function GoogleAnalyticsTag() {
+  if (!GA4_ID) return null;
+
+  return (
+    <>
+      <Script
+        src={`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`}
+        strategy="afterInteractive"
+      />
+      <Script
+        id="ga4-config"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${GA4_ID}');`,
+        }}
+      />
+    </>
+  );
+}
 
 export function GoogleTagManager() {
   if (!GTM_ID) return null;

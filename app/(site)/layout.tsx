@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { AffiliateDisclosure } from "@/components/affiliate-disclosure";
-import { GoogleTagManager } from "@/components/analytics";
+import { GoogleAnalyticsTag, GoogleTagManager } from "@/components/analytics";
 import "../globals.css";
 
 const geistSans = Geist({
@@ -63,6 +63,7 @@ export default function SiteLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <GoogleAnalyticsTag />
         <GoogleTagManager />
         <div className="flex min-h-screen flex-col">
           <Header />
