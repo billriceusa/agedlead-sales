@@ -49,7 +49,7 @@ export function LeadTypeCard({
         className="relative z-10 mt-3 inline-flex items-center justify-center rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
         onClick={(e) => e.stopPropagation()}
       >
-        Buy {title} &nearr;
+        Buy {title} ↗
       </a>
     </div>
   );
