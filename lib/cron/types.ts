@@ -56,3 +56,72 @@ export interface WeeklyReport {
   nextWeekPlan: string;
   errors: string[];
 }
+
+// ── SEO Audit Types ──────────────────────────────────────────
+
+export interface GoogleUpdateSummary {
+  updateName: string;
+  dateRange: string;
+  impactSummary: string;
+  relevanceToUs: string;
+  actionRequired: boolean;
+}
+
+export type AuditSeverity = "critical" | "high" | "medium" | "low" | "info";
+export type AuditCategory =
+  | "technical-seo"
+  | "content-quality"
+  | "structured-data"
+  | "eeat"
+  | "affiliate-compliance"
+  | "core-web-vitals"
+  | "indexing"
+  | "internal-linking"
+  | "mobile"
+  | "security";
+
+export interface AuditFinding {
+  id: string;
+  category: AuditCategory;
+  severity: AuditSeverity;
+  title: string;
+  description: string;
+  currentState: string;
+  recommendation: string;
+  effort: "trivial" | "small" | "medium" | "large";
+  affectedPages?: string[];
+}
+
+export interface BacklogItem {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  status: "open" | "in-progress" | "completed" | "dismissed";
+  priority: number;
+  category: AuditCategory;
+  severity: AuditSeverity;
+  title: string;
+  description: string;
+  recommendation: string;
+  effort: "trivial" | "small" | "medium" | "large";
+  affectedPages?: string[];
+  sourceAudit: string;
+  notes?: string;
+}
+
+export interface SEOAuditReport {
+  runDate: string;
+  googleUpdates: GoogleUpdateSummary[];
+  overallScore: number;
+  findings: AuditFinding[];
+  strategyRecommendations: string[];
+  contentStrategyUpdates: string[];
+  backlogItemsCreated: number;
+  backlogItemsResolved: number;
+  summary: string;
+}
+
+export interface SEOBacklog {
+  lastUpdated: string;
+  items: BacklogItem[];
+}
