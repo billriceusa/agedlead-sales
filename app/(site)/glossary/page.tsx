@@ -3,6 +3,7 @@ import { sanityFetch } from "@/sanity/lib/fetch";
 import { glossaryTermsQuery } from "@/sanity/lib/queries";
 import { GlossarySearch } from "@/components/glossary-search";
 import { CtaBanner } from "@/components/cta-banner";
+import { GLOSSARY_TERMS } from "@/data/glossary-terms";
 
 export const metadata: Metadata = {
   title: "Sales & Lead Generation Glossary",
@@ -11,7 +12,18 @@ export const metadata: Metadata = {
 };
 
 export default async function GlossaryPage() {
-  const terms = (await sanityFetch(glossaryTermsQuery)) || [];
+  const cmsTerms = await sanityFetch(glossaryTermsQuery);
+
+  const terms =
+    Array.isArray(cmsTerms) && cmsTerms.length > 0
+      ? cmsTerms
+      : GLOSSARY_TERMS.map((t) => ({
+          _id: t.slug,
+          term: t.term,
+          slug: { current: t.slug },
+          definition: t.definition,
+          category: t.category,
+        }));
 
   return (
     <>
@@ -22,26 +34,17 @@ export default async function GlossaryPage() {
               Glossary
             </h1>
             <p className="mt-4 max-w-2xl text-lg text-zinc-600 dark:text-zinc-400">
-              Key terms and definitions for sales professionals, insurance
-              agents, mortgage brokers, and anyone working with aged leads.
+              {GLOSSARY_TERMS.length}+ terms covering sales, insurance,
+              mortgage, legal, and lead generation. Your reference guide for
+              working with aged leads.
             </p>
           </div>
 
-          {Array.isArray(terms) && terms.length > 0 ? (
-            <GlossarySearch terms={terms} />
-          ) : (
-            <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-12 text-center dark:border-zinc-800 dark:bg-zinc-900">
-              <p className="text-lg text-zinc-600 dark:text-zinc-400">
-                Glossary terms are being added. Check back soon for
-                comprehensive definitions of sales and lead generation
-                terminology.
-              </p>
-            </div>
-          )}
+          <GlossarySearch terms={terms} />
         </div>
       </section>
 
-      <CtaBanner />
+      <CtaBanner campaign="glossary" />
     </>
   );
 }

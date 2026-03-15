@@ -15,7 +15,7 @@ const CALCULATORS = [
     description:
       "Compare the ROI of aged leads vs. real-time leads. Input your budget, conversion rates, and deal values to see the difference.",
     icon: "📊",
-    status: "coming-soon" as const,
+    status: "live" as const,
   },
   {
     title: "Lead Cost Calculator",
