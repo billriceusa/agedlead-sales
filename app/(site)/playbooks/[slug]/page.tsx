@@ -193,7 +193,7 @@ export default async function PlaybookPage({ params }: Props) {
           {/* Body */}
           {playbook.body && (
             <div className="prose-wrapper">
-              <PortableText value={playbook.body} />
+              <PortableText value={playbook.body} campaign="playbook" />
             </div>
           )}
 

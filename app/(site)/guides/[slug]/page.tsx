@@ -145,7 +145,7 @@ export default async function GuidePage({ params }: Props) {
 
           {guide.body && (
             <div className="prose-wrapper">
-              <PortableText value={guide.body} />
+              <PortableText value={guide.body} campaign="guide" />
             </div>
           )}
 

@@ -216,7 +216,7 @@ export default async function BlogPostPage({ params }: Props) {
 
           {post.body && (
             <div className="prose-wrapper">
-              <PortableText value={post.body} />
+              <PortableText value={post.body} campaign="blog-post" />
             </div>
           )}
 
