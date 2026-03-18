@@ -3,6 +3,7 @@ import { sanityFetch } from "@/sanity/lib/fetch";
 import { postsQuery } from "@/sanity/lib/queries";
 import { PostCard } from "@/components/post-card";
 import { CtaBanner } from "@/components/cta-banner";
+import { NewsletterSignup } from "@/components/newsletter-signup";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -28,29 +29,61 @@ export default async function BlogPage() {
           </div>
 
           {posts.length > 0 ? (
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              {posts.map(
-                (post: {
-                  _id: string;
-                  title: string;
-                  slug: { current: string };
-                  excerpt: string;
-                  mainImage?: { asset?: { _ref: string }; alt?: string };
-                  publishedAt?: string;
-                  author?: { name: string };
-                }) => (
-                  <PostCard
-                    key={post._id}
-                    title={post.title}
-                    slug={post.slug.current}
-                    excerpt={post.excerpt}
-                    mainImage={post.mainImage}
-                    publishedAt={post.publishedAt}
-                    author={post.author}
-                  />
-                )
+            <>
+              <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                {posts.slice(0, 3).map(
+                  (post: {
+                    _id: string;
+                    title: string;
+                    slug: { current: string };
+                    excerpt: string;
+                    mainImage?: { asset?: { _ref: string }; alt?: string };
+                    publishedAt?: string;
+                    author?: { name: string };
+                  }) => (
+                    <PostCard
+                      key={post._id}
+                      title={post.title}
+                      slug={post.slug.current}
+                      excerpt={post.excerpt}
+                      mainImage={post.mainImage}
+                      publishedAt={post.publishedAt}
+                      author={post.author}
+                    />
+                  )
+                )}
+              </div>
+
+              <div className="my-12">
+                <NewsletterSignup variant="inline" context="blog-listing" />
+              </div>
+
+              {posts.length > 3 && (
+                <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                  {posts.slice(3).map(
+                    (post: {
+                      _id: string;
+                      title: string;
+                      slug: { current: string };
+                      excerpt: string;
+                      mainImage?: { asset?: { _ref: string }; alt?: string };
+                      publishedAt?: string;
+                      author?: { name: string };
+                    }) => (
+                      <PostCard
+                        key={post._id}
+                        title={post.title}
+                        slug={post.slug.current}
+                        excerpt={post.excerpt}
+                        mainImage={post.mainImage}
+                        publishedAt={post.publishedAt}
+                        author={post.author}
+                      />
+                    )
+                  )}
+                </div>
               )}
-            </div>
+            </>
           ) : (
             <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-12 text-center dark:border-zinc-800 dark:bg-zinc-900">
               <p className="text-lg text-zinc-600 dark:text-zinc-400">

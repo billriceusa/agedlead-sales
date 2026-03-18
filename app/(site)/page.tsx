@@ -5,6 +5,7 @@ import { LeadTypeCard } from "@/components/lead-type-card";
 import { PostCard } from "@/components/post-card";
 import { PlaybookCard } from "@/components/playbook-card";
 import { CtaBanner } from "@/components/cta-banner";
+import { NewsletterSignup } from "@/components/newsletter-signup";
 import { JsonLd, websiteJsonLd, organizationJsonLd } from "@/components/json-ld";
 import { affiliateUrl } from "@/lib/affiliate";
 
@@ -228,6 +229,9 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Newsletter Signup */}
+      <NewsletterSignup variant="banner" context="homepage" />
 
       {/* Recent Blog Posts */}
       {recentPosts.length > 0 && (

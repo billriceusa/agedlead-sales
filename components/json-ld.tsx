@@ -160,6 +160,29 @@ export function faqJsonLd(questions: { question: string; answer: string }[]) {
   };
 }
 
+export function howToJsonLd({
+  name,
+  description,
+  steps,
+}: {
+  name: string;
+  description: string;
+  steps: { name: string; text: string }[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name,
+    description,
+    step: steps.map((s, index) => ({
+      "@type": "HowToStep",
+      position: index + 1,
+      name: s.name,
+      text: s.text,
+    })),
+  };
+}
+
 export function glossaryTermJsonLd({
   term,
   definition,

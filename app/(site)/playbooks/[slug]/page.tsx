@@ -8,7 +8,7 @@ import { PortableText } from "@/components/portable-text";
 import { PlaybookCard } from "@/components/playbook-card";
 import { CtaBanner } from "@/components/cta-banner";
 import { InlineTextCta } from "@/components/inline-text-cta";
-import { JsonLd, breadcrumbJsonLd } from "@/components/json-ld";
+import { JsonLd, breadcrumbJsonLd, howToJsonLd } from "@/components/json-ld";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
@@ -63,6 +63,30 @@ export default async function PlaybookPage({ params }: Props) {
           { name: "Playbooks", url: `${baseUrl}/playbooks` },
           { name: playbook.title, url: `${baseUrl}/playbooks/${playbook.slug.current}` },
         ])}
+      />
+      <JsonLd
+        data={howToJsonLd({
+          name: playbook.title,
+          description: playbook.excerpt || "",
+          steps: [
+            {
+              name: "Understand the strategy",
+              text: `Read through the full ${playbook.title} playbook to understand the approach and why it works for aged leads.`,
+            },
+            {
+              name: "Gather your materials",
+              text: "Prepare your lead list, CRM, phone system, and any scripts or templates referenced in this playbook.",
+            },
+            {
+              name: "Follow the playbook step by step",
+              text: `Work through each section of the ${playbook.title} guide, applying the techniques to your aged lead inventory.`,
+            },
+            {
+              name: "Track and optimize your results",
+              text: "Measure your contact rate, conversion rate, and ROI. Adjust your approach based on what works best for your market.",
+            },
+          ],
+        })}
       />
 
       <article className="bg-white py-12 dark:bg-zinc-950">

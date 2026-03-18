@@ -5,6 +5,7 @@ import { useState } from "react";
 import { affiliateUrl } from "@/lib/affiliate";
 
 const navigation = [
+  { name: "Start Here", href: "/start-here" },
   { name: "Lead Types", href: "/lead-types" },
   { name: "Blog", href: "/blog" },
   { name: "Playbooks", href: "/playbooks" },

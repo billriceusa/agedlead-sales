@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CtaBanner } from "@/components/cta-banner";
+import { NewsletterSignup } from "@/components/newsletter-signup";
 
 export const metadata: Metadata = {
   title: "About — Bill Rice | 25+ Years in Lead Generation & Fintech Marketing",
@@ -524,6 +525,12 @@ export default function AboutPage() {
               — Bill Rice
             </p>
           </div>
+        </div>
+      </section>
+
+      <section className="bg-white py-12 dark:bg-zinc-950">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+          <NewsletterSignup variant="card" context="about" />
         </div>
       </section>
 
