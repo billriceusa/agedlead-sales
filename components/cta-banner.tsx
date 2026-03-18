@@ -1,4 +1,4 @@
-import { affiliateUrl, affiliateRegisterUrl } from "@/lib/affiliate";
+import { affiliateUrl } from "@/lib/affiliate";
 
 interface CtaBannerProps {
   headline?: string;
@@ -18,8 +18,6 @@ export function CtaBanner({
   variant = "default",
 }: CtaBannerProps) {
   const href = buttonHref || affiliateUrl({ campaign, content: "primary-cta" });
-  const registerHref = affiliateRegisterUrl(campaign, "create-account-cta");
-
   if (variant === "compact") {
     return (
       <div className="rounded-xl border border-blue-200 bg-blue-50 p-6 dark:border-blue-900 dark:bg-blue-950/50">
@@ -64,12 +62,10 @@ export function CtaBanner({
             {buttonText}
           </a>
           <a
-            href={registerHref}
-            target="_blank"
-            rel="nofollow sponsored noopener noreferrer"
+            href="/start-here"
             className="rounded-lg border-2 border-white/30 px-8 py-3 text-base font-semibold text-white transition-colors hover:bg-white/10"
           >
-            Create Free Account
+            Get Free Training
           </a>
         </div>
       </div>

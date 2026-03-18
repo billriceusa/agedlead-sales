@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { affiliateUrl, affiliateRegisterUrl } from "@/lib/affiliate";
+import { affiliateUrl } from "@/lib/affiliate";
 import { NewsletterSignup } from "./newsletter-signup";
 
 const footerLinks = {
@@ -26,8 +26,8 @@ const affiliateLinks = [
     href: affiliateUrl({ campaign: "footer", content: "browse-leads" }),
   },
   {
-    name: "Create Free Account",
-    href: affiliateRegisterUrl("footer", "create-account"),
+    name: "Free Training",
+    href: "/start-here",
   },
 ];
 
