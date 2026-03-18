@@ -3,9 +3,9 @@ import Link from "next/link";
 import { CtaBanner } from "@/components/cta-banner";
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "About — Bill Rice | 25+ Years in Lead Generation & Fintech Marketing",
   description:
-    "Aged Lead Sales is founded by Bill Rice, a lead conversion expert with 20+ years of experience. Free training and strategies for sales professionals working with aged leads.",
+    "Aged Lead Sales is built by Bill Rice — the expert who coined 'lead management,' built lead systems at Quicken Loans, and has personally worked millions of aged leads across insurance, mortgage, solar, and home improvement. Free training from someone who actually dials.",
 };
 
 export default function AboutPage() {
@@ -19,103 +19,393 @@ export default function AboutPage() {
 
           <div className="mt-8 space-y-6 text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
             <p>
+              I&apos;m{" "}
               <strong className="text-zinc-900 dark:text-white">
-                Aged Lead Sales
-              </strong>{" "}
-              is a training and strategy hub for sales professionals who want
-              to build profitable businesses using aged leads. We provide free
-              guides, playbooks, calculators, and scripts — all based on real
-              experience, not theory.
+                Bill Rice
+              </strong>
+              , and I built this site because I&apos;m tired of watching
+              salespeople fail with aged leads — not because aged leads
+              don&apos;t work, but because the advice they&apos;re following
+              comes from people who&apos;ve never actually dialed one.
             </p>
 
             <p>
-              The site is founded and authored by{" "}
-              <Link
-                href="/about/bill-rice"
-                className="text-blue-600 underline hover:text-blue-700 dark:text-blue-400"
-              >
-                Bill Rice
-              </Link>
-              , a lead conversion expert with 20+ years of hands-on experience
-              across insurance, mortgage, solar, and home improvement. Bill has
-              personally worked millions of leads and developed the systems
-              that help salespeople turn aged data into closed deals.
+              I&apos;ve spent 25+ years in lead generation and fintech
+              marketing. I&apos;ve personally worked millions of leads across
+              insurance, mortgage, solar, and home improvement. I coined the
+              term &ldquo;lead management&rdquo; — literally invented the
+              concept of systematically scoring, routing, and nurturing leads
+              before it had a name. And I built the first intelligent lead
+              scoring and distribution system for mortgage lending, back when
+              most companies were still handing out leads on index cards.
             </p>
+
+            <p>
+              Everything on this site — every guide, every script, every
+              calculator, every playbook — comes from that experience. Not
+              theory. Not something I read in a marketing blog. Actual results
+              from actual campaigns with actual money on the line.
+            </p>
+
+            {/* ── Career Arc ────────────────────────────────── */}
 
             <h2 className="pt-4 text-2xl font-bold text-zinc-900 dark:text-white">
-              Why This Site Exists
+              How I Got Here
+            </h2>
+
+            <h3 className="pt-2 text-xl font-semibold text-zinc-900 dark:text-white">
+              Air Force Intelligence
+            </h3>
+            <p>
+              My career started about as far from sales as you can get. I
+              graduated from the{" "}
+              <strong className="text-zinc-900 dark:text-white">
+                United States Air Force Academy
+              </strong>{" "}
+              in 1992 with a B.S. in Political Science and was commissioned as
+              an officer specializing in counterespionage operations. The Air
+              Force teaches you to think in systems — to break complex problems
+              into components, identify leverage points, and execute with
+              discipline. That analytical framework shaped everything I&apos;ve
+              done since.
+            </p>
+            <p>
+              After my active duty service, I worked as a Program Manager at
+              TASC Inc., supporting Information Warfare Centers, and served as
+              the Call Intercept System Security Manager at Iridium
+              Communications. Intelligence work trains you to find signal in
+              noise — a skill that turns out to be directly applicable to
+              finding the buyers hiding in a pile of aged leads.
+            </p>
+
+            <h3 className="pt-2 text-xl font-semibold text-zinc-900 dark:text-white">
+              Early Internet Banking &amp; the Birth of Online Lending
+            </h3>
+            <p>
+              I was{" "}
+              <strong className="text-zinc-900 dark:text-white">
+                Employee #7 at DeepGreen Bank
+              </strong>
+              , one of the first internet-only banks in the country. We launched
+              the first unconditional online Home Equity Line of Credit — no
+              branch visit required, no conditions, fully digital. This was
+              before most people trusted the internet with their money. We were
+              inventing the playbook for digital lending in real time, and that
+              experience gave me a front-row seat to how lead generation and
+              online conversion would reshape financial services.
+            </p>
+
+            <h3 className="pt-2 text-xl font-semibold text-zinc-900 dark:text-white">
+              Quicken Loans (Now Rocket Mortgage)
+            </h3>
+            <p>
+              From DeepGreen, I moved to{" "}
+              <strong className="text-zinc-900 dark:text-white">
+                Quicken Loans
+              </strong>{" "}
+              as Vice President of National Home Equity, where I built the
+              EquityOnline platform. Quicken Loans was already legendary for its
+              sales culture and lead conversion discipline. I learned what
+              world-class lead management looks like at scale — thousands of
+              loan officers, millions of leads, and a relentless focus on speed
+              to contact, follow-up cadence, and conversion optimization.
+            </p>
+            <p>
+              This is where I developed the first intelligent lead scoring and
+              distribution system for mortgage lending. Instead of round-robin
+              or random assignment, we built algorithms that matched lead
+              characteristics to loan officer strengths. The conversion rate
+              improvements were massive. And the principles behind that system
+              — scoring leads on recency, intent signals, data quality, and
+              contact probability — are exactly what I teach on this site for
+              aged lead prospecting.
+            </p>
+
+            <h3 className="pt-2 text-xl font-semibold text-zinc-900 dark:text-white">
+              Founding Kaleidico
+            </h3>
+            <p>
+              I founded{" "}
+              <strong className="text-zinc-900 dark:text-white">
+                Kaleidico
+              </strong>
+              , a demand generation agency that serves mortgage lenders, law
+              firms, and senior living communities. Kaleidico became one of the
+              top marketing agencies in the mortgage industry, known for
+              building lead generation systems that actually convert — not just
+              drive traffic. I later sold 90% of the company and retained a 10%
+              stake, continuing to serve as Chief Revenue Officer.
+            </p>
+            <p>
+              Through Kaleidico, I&apos;ve worked with companies at every stage
+              — from solo loan officers buying their first batch of aged leads
+              to enterprise lenders running multi-million-dollar lead
+              acquisition budgets. That range of experience is what makes the
+              training on this site practical for everyone, whether you&apos;re
+              a one-person shop or managing a call center.
+            </p>
+
+            <h3 className="pt-2 text-xl font-semibold text-zinc-900 dark:text-white">
+              Strategic Advisory &amp; Consulting
+            </h3>
+            <p>
+              Today I run{" "}
+              <strong className="text-zinc-900 dark:text-white">
+                Bill Rice Consulting
+              </strong>{" "}
+              (Bill Rice Strategy Group), where I work directly with fintech
+              companies, lenders, and lead-dependent businesses on conversion
+              strategy. I serve as marketing director for Aged Lead Store and
+              have been a strategic advisor to companies including{" "}
+              <strong className="text-zinc-900 dark:text-white">
+                Quizzle
+              </strong>{" "}
+              (acquired by Bankrate),{" "}
+              <strong className="text-zinc-900 dark:text-white">
+                SpringEQ
+              </strong>
+              ,{" "}
+              <strong className="text-zinc-900 dark:text-white">ProPair</strong>
+              , and{" "}
+              <strong className="text-zinc-900 dark:text-white">Figure</strong>{" "}
+              (a leading HELOC lender). My current client work spans mortgage,
+              fintech, insurance, and lead technology.
+            </p>
+
+            <h3 className="pt-2 text-xl font-semibold text-zinc-900 dark:text-white">
+              Education
+            </h3>
+            <ul className="list-disc space-y-2 pl-6">
+              <li>
+                <strong className="text-zinc-900 dark:text-white">
+                  B.S. Political Science
+                </strong>{" "}
+                — United States Air Force Academy (1992)
+              </li>
+              <li>
+                <strong className="text-zinc-900 dark:text-white">
+                  MBA in Marketing
+                </strong>{" "}
+                — University of Phoenix (2003)
+              </li>
+            </ul>
+
+            {/* ── Why This Site Exists ───────────────────────── */}
+
+            <h2 className="pt-4 text-2xl font-bold text-zinc-900 dark:text-white">
+              Why I Built This Site
             </h2>
             <p>
-              Most sales training is written by people who&apos;ve never
-              actually dialed a lead. The advice is generic, theoretical, and
-              doesn&apos;t account for the unique economics of aged leads. Bill
-              built Aged Lead Sales to fix that — providing specific, tested
-              strategies that come from decades of doing the work himself.
+              Here&apos;s the problem I keep seeing: a salesperson buys a batch
+              of aged leads, works them for a week using the same approach
+              they&apos;d use on a fresh lead, gets frustrated by the lower
+              contact rates, and declares that aged leads don&apos;t work. Then
+              they go back to paying 10x more for real-time leads that burn
+              through their budget in days.
             </p>
             <p>
-              Every guide, every script, and every playbook on this site is
-              grounded in real-world results. When we say a 2% conversion rate
-              on aged leads beats a 10% rate on real-time leads, that&apos;s
-              based on actual campaigns — not a spreadsheet exercise.
+              Aged leads absolutely work. But they require a fundamentally
+              different approach — different scripts, different cadences,
+              different expectations, different economics. A 2% conversion rate
+              on aged leads at $2 per lead crushes a 10% conversion rate on
+              real-time leads at $50 per lead. The math is overwhelmingly in
+              your favor. But only if you know how to work them correctly.
             </p>
+            <p>
+              The training that exists for aged leads is mostly terrible.
+              It&apos;s written by content marketers who&apos;ve never sat in a
+              dialing seat. It&apos;s generic advice — &ldquo;be persistent,&rdquo;
+              &ldquo;follow up quickly,&rdquo; &ldquo;build rapport&rdquo; —
+              that doesn&apos;t address the specific challenges of contacting
+              someone who filled out a form weeks or months ago and may not
+              remember doing it.
+            </p>
+            <p>
+              I built Aged Lead Sales to be the resource I wish existed when I
+              was training sales teams. Specific. Tactical. Based on data from
+              real campaigns. Every script on this site has been tested. Every
+              framework has been used in production. Every number I cite comes
+              from actual results, not industry averages.
+            </p>
+
+            {/* ── Thought Leadership ────────────────────────── */}
+
+            <h2 className="pt-4 text-2xl font-bold text-zinc-900 dark:text-white">
+              Thought Leadership &amp; Speaking
+            </h2>
+            <p>
+              Beyond this site, I stay active in the lead generation and sales
+              community through several channels:
+            </p>
+            <ul className="list-disc space-y-2 pl-6">
+              <li>
+                <strong className="text-zinc-900 dark:text-white">
+                  &ldquo;My Executive Brief&rdquo;
+                </strong>{" "}
+                — my weekly newsletter on Substack covering marketing strategy,
+                lead generation trends, and lessons from 25+ years in the
+                industry
+              </li>
+              <li>
+                <strong className="text-zinc-900 dark:text-white">
+                  Conference speaker
+                </strong>{" "}
+                — regular presenter at Lead Generation World and fintech
+                industry events
+              </li>
+              <li>
+                <strong className="text-zinc-900 dark:text-white">
+                  Podcast guest
+                </strong>{" "}
+                — featured on 30+ marketing and business podcasts discussing
+                lead conversion, sales systems, and building revenue engines
+              </li>
+              <li>
+                <strong className="text-zinc-900 dark:text-white">
+                  LinkedIn
+                </strong>{" "}
+                (@billrice) — where I share daily insights on lead management,
+                sales strategy, and marketing for founders
+              </li>
+              <li>
+                <strong className="text-zinc-900 dark:text-white">
+                  YouTube
+                </strong>{" "}
+                (Bill Rice Strategy) — video breakdowns of sales frameworks,
+                lead generation tactics, and marketing strategy
+              </li>
+              <li>
+                <strong className="text-zinc-900 dark:text-white">
+                  Upcoming book
+                </strong>{" "}
+                — &ldquo;Sales and Marketing for Founders,&rdquo; drawing on
+                decades of building revenue systems for startups and
+                growth-stage companies
+              </li>
+            </ul>
+
+            {/* ── What You'll Find Here ──────────────────────── */}
 
             <h2 className="pt-4 text-2xl font-bold text-zinc-900 dark:text-white">
               What You&apos;ll Find Here
             </h2>
-            <ul className="list-disc space-y-2 pl-6">
+            <p>
+              Every piece of content on Aged Lead Sales is designed to be
+              immediately actionable. Here&apos;s how the site is organized:
+            </p>
+            <ul className="list-disc space-y-3 pl-6">
               <li>
-                <Link href="/lead-types" className="text-blue-600 hover:text-blue-700 dark:text-blue-400">
+                <Link
+                  href="/lead-types"
+                  className="font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400"
+                >
                   Lead Type Guides
                 </Link>{" "}
-                — Deep dives into each vertical with industry-specific
-                scripts, cost data, and strategies
+                — Deep dives into each vertical (insurance, mortgage, solar,
+                home improvement) with industry-specific scripts, realistic cost
+                data, and conversion strategies tailored to how buyers behave in
+                that market
               </li>
               <li>
-                <Link href="/playbooks" className="text-blue-600 hover:text-blue-700 dark:text-blue-400">
+                <Link
+                  href="/playbooks"
+                  className="font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400"
+                >
                   Sales Playbooks
                 </Link>{" "}
-                — Step-by-step frameworks for working aged leads effectively
+                — Step-by-step frameworks for working aged leads, from first
+                contact to close. These are the same systems I&apos;ve deployed
+                at scale for mortgage lenders and insurance agencies
               </li>
               <li>
-                <Link href="/blog" className="text-blue-600 hover:text-blue-700 dark:text-blue-400">
+                <Link
+                  href="/guides"
+                  className="font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400"
+                >
+                  Guides
+                </Link>{" "}
+                — In-depth training content covering speed to lead, objection
+                handling, multi-touch campaigns, and the psychology of
+                re-engaging a prospect who filled out a form weeks ago
+              </li>
+              <li>
+                <Link
+                  href="/blog"
+                  className="font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400"
+                >
                   Blog
                 </Link>{" "}
-                — Tips, case studies, and industry analysis
+                — Analysis, case studies, and tactical tips — updated regularly
+                with insights from my ongoing client work and industry
+                observations
               </li>
               <li>
-                <Link href="/calculators" className="text-blue-600 hover:text-blue-700 dark:text-blue-400">
+                <Link
+                  href="/calculators"
+                  className="font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400"
+                >
                   Free Calculators
                 </Link>{" "}
-                — ROI tools, pipeline planners, and lead cost calculators
+                — ROI calculators, pipeline planners, and lead cost tools so you
+                can model your economics before you spend a dollar
               </li>
               <li>
-                <Link href="/glossary" className="text-blue-600 hover:text-blue-700 dark:text-blue-400">
+                <Link
+                  href="/glossary"
+                  className="font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400"
+                >
                   Glossary
                 </Link>{" "}
-                — 50+ definitions covering sales, insurance, mortgage, and
-                lead generation terminology
+                — 50+ definitions covering sales, insurance, mortgage, and lead
+                generation terminology — the language you need to navigate this
+                industry confidently
               </li>
             </ul>
 
+            {/* ── ALS Relationship ───────────────────────────── */}
+
             <h2 className="pt-4 text-2xl font-bold text-zinc-900 dark:text-white">
-              Our Relationship with AgedLeadStore.com
+              My Relationship with AgedLeadStore.com
             </h2>
             <p>
-              We partner with{" "}
+              Full transparency: I serve as the marketing director for{" "}
               <strong className="text-zinc-900 dark:text-white">
                 AgedLeadStore.com
-              </strong>{" "}
-              — one of the most trusted aged lead providers in the industry,
-              operating since 2001 with an A+ BBB rating. When we link to
-              AgedLeadStore.com, we earn a commission if you purchase leads.
-              This is how we fund the free training and tools on this site.
+              </strong>
+              , and this site is an affiliate partner. When you click a link to
+              AgedLeadStore.com and purchase leads, I earn a commission. That
+              commission is how I fund the free training, tools, and calculators
+              on this site.
             </p>
             <p>
-              Our editorial content is independent. We recommend
-              AgedLeadStore.com because Bill has worked with them directly and
-              trusts their data quality, validation processes, and replacement
-              guarantees — not because of the commission.
+              But here&apos;s why that relationship actually makes the content
+              better, not worse: I work directly with the AgedLeadStore.com team.
+              I see the data. I know how their validation systems work. I
+              understand their lead sourcing, their replacement policies, and
+              their quality benchmarks from the inside. When I write about lead
+              quality, data freshness, or what to expect from aged leads,
+              I&apos;m not guessing — I&apos;m drawing on firsthand operational
+              knowledge.
             </p>
+            <p>
+              That said, the editorial content on this site is independent. I
+              don&apos;t sugarcoat the challenges of working aged leads. I
+              don&apos;t pretend every lead will convert. I give you realistic
+              numbers, realistic expectations, and realistic frameworks because
+              that&apos;s the only way you&apos;ll actually succeed. If I sent
+              you in with inflated expectations, you&apos;d fail, blame the
+              leads, and never come back. That serves nobody.
+            </p>
+            <p>
+              I recommend AgedLeadStore.com because I genuinely trust their
+              operation — 24+ years in business, A+ BBB rating, and a data
+              validation system (Evergreen Lead Optimization) that keeps contact
+              information fresh in a way most providers don&apos;t bother with.
+              If I didn&apos;t believe in their product, I wouldn&apos;t attach
+              my name to it.
+            </p>
+
+            {/* ── Trust Signals Grid ─────────────────────────── */}
 
             <h2 className="pt-4 text-2xl font-bold text-zinc-900 dark:text-white">
               Why AgedLeadStore.com?
@@ -124,19 +414,23 @@ export default function AboutPage() {
               {[
                 {
                   title: "24+ Years in Business",
-                  description: "Operating since 2001 with a proven track record",
+                  description:
+                    "Operating since 2001 — one of the longest-running aged lead providers in the industry with a proven track record across insurance, mortgage, and solar",
                 },
                 {
                   title: "A+ BBB Rating",
-                  description: "Trusted by thousands of sales professionals",
+                  description:
+                    "Trusted by thousands of sales professionals with a Better Business Bureau rating that reflects consistent quality and customer service",
                 },
                 {
-                  title: "Proprietary Validation",
-                  description: "Evergreen Lead Optimization keeps contact data fresh",
+                  title: "Evergreen Lead Optimization",
+                  description:
+                    "Proprietary validation system that continuously refreshes contact data — phone numbers, emails, and addresses are re-verified so you reach real people",
                 },
                 {
                   title: "Replacement Guarantee",
-                  description: "Self-service dashboard to replace bad data instantly",
+                  description:
+                    "Self-service dashboard lets you replace bad data instantly — no support tickets, no waiting, no hassle. You control your lead quality",
                 },
               ].map((item) => (
                 <div
@@ -153,29 +447,82 @@ export default function AboutPage() {
               ))}
             </div>
 
+            {/* ── My Approach ────────────────────────────────── */}
+
             <h2 className="pt-4 text-2xl font-bold text-zinc-900 dark:text-white">
-              Meet the Author
+              My Approach to Training
             </h2>
-            <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-6 dark:border-zinc-800 dark:bg-zinc-900">
-              <h3 className="text-xl font-bold text-zinc-900 dark:text-white">
-                Bill Rice
-              </h3>
-              <p className="mt-1 text-sm text-blue-600 dark:text-blue-400">
-                Founder & Lead Conversion Expert
-              </p>
-              <p className="mt-3 text-zinc-600 dark:text-zinc-400">
-                20+ years building lead conversion systems. Former Air Force
-                intelligence officer. Founder of Kaleidico. Marketing director
-                for Aged Lead Store. Has personally worked millions of leads
-                across insurance, mortgage, solar, and home improvement.
-              </p>
+            <p>
+              My intelligence background shaped how I think about sales. In
+              counterespionage, you don&apos;t have the luxury of guessing.
+              You analyze the data, identify patterns, build a thesis, test it,
+              and refine. That&apos;s exactly how I approach lead conversion.
+            </p>
+            <p>
+              When I train someone to work aged leads, I don&apos;t give them a
+              motivational speech and a phone. I give them a system: what to say
+              on the first call (and the seventh), how to handle the
+              &ldquo;I don&apos;t remember filling that out&rdquo; objection,
+              when to text versus call versus email, how to calculate their
+              break-even point, and how to build a sustainable pipeline that
+              produces predictable revenue month after month.
+            </p>
+            <p>
+              I value frameworks over theory. I&apos;d rather give you a
+              five-step process that works 80% of the time than a
+              philosophical treatise on &ldquo;the art of persuasion.&rdquo;
+              You&apos;re busy. You need to close deals. The content on this
+              site respects your time by being specific, actionable, and honest
+              about what works and what doesn&apos;t.
+            </p>
+
+            {/* ── Closing ────────────────────────────────────── */}
+
+            <h2 className="pt-4 text-2xl font-bold text-zinc-900 dark:text-white">
+              Let&apos;s Get to Work
+            </h2>
+            <p>
+              If you&apos;re new to aged leads, start with the{" "}
               <Link
-                href="/about/bill-rice"
-                className="mt-4 inline-block text-sm font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400"
+                href="/lead-types"
+                className="font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400"
               >
-                Full bio →
-              </Link>
-            </div>
+                Lead Type Guides
+              </Link>{" "}
+              for your industry and the{" "}
+              <Link
+                href="/calculators/roi-calculator"
+                className="font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400"
+              >
+                ROI Calculator
+              </Link>{" "}
+              to model your economics. If you&apos;re already working aged
+              leads and want to improve, the{" "}
+              <Link
+                href="/playbooks"
+                className="font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400"
+              >
+                Sales Playbooks
+              </Link>{" "}
+              will give you the frameworks to tighten your process.
+            </p>
+            <p>
+              I&apos;ve been doing this for 25 years. I&apos;ve watched the
+              lead industry evolve from fax-back forms to real-time bidding
+              platforms. Through all of that change, one thing has stayed
+              constant: the salespeople who win are the ones who treat lead
+              conversion as a system, not a lottery. That&apos;s what this site
+              teaches.
+            </p>
+            <p>
+              You can also find me on LinkedIn (@billrice), where I post daily
+              on lead management and sales strategy, and on the Bill Rice
+              Strategy YouTube channel, where I break down frameworks in video
+              format.
+            </p>
+            <p className="font-medium text-zinc-900 dark:text-white">
+              — Bill Rice
+            </p>
           </div>
         </div>
       </section>

@@ -10,7 +10,6 @@ const navigation = [
   { name: "Playbooks", href: "/playbooks" },
   { name: "Glossary", href: "/glossary" },
   { name: "Calculators", href: "/calculators" },
-  { name: "Guides", href: "/guides" },
 ];
 
 export function Header() {
