@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CtaBanner } from "@/components/cta-banner";
+import { LeadMagnetCta } from "@/components/lead-magnet-cta";
 import { affiliateUrl } from "@/lib/affiliate";
 
 export const metadata: Metadata = {
@@ -429,6 +430,35 @@ export default function StartHerePage() {
             <p className="font-medium text-zinc-900 dark:text-white">
               — Bill Rice
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Lead Magnet Downloads */}
+      <section className="border-t border-zinc-200 bg-white py-16 dark:border-zinc-800 dark:bg-zinc-950">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+          <h2 className="mb-8 text-2xl font-bold text-zinc-900 dark:text-white">
+            Free Downloads
+          </h2>
+          <div className="grid gap-6 sm:grid-cols-2">
+            <LeadMagnetCta
+              variant="card"
+              heading="7-Day Follow-Up Cadence"
+              description="Printable cheat sheet with day-by-day scripts for mail, phone, email, and door knocking."
+              buttonText="Get the Cheat Sheet"
+              leadMagnetId="7-day-cadence"
+              downloadUrl="/downloads/7-day-follow-up-cadence.pdf"
+              context="start-here"
+            />
+            <LeadMagnetCta
+              variant="card"
+              heading="Lead Buying Checklist"
+              description="One-page vendor evaluation checklist — what to ask, red flags, and first-order guidance."
+              buttonText="Get the Checklist"
+              leadMagnetId="lead-buying-checklist"
+              downloadUrl="/downloads/lead-buying-checklist.pdf"
+              context="start-here"
+            />
           </div>
         </div>
       </section>

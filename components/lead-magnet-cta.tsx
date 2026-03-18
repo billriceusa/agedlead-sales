@@ -11,6 +11,7 @@ interface LeadMagnetCtaProps {
   leadMagnetId?: string;
   features?: string[];
   context?: string;
+  downloadUrl?: string;
 }
 
 export function LeadMagnetCta({
@@ -21,6 +22,7 @@ export function LeadMagnetCta({
   leadMagnetId = "prospecting-checklist",
   features,
   context = "default",
+  downloadUrl,
 }: LeadMagnetCtaProps) {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -40,7 +42,7 @@ export function LeadMagnetCta({
 
       if (res.ok) {
         setStatus("success");
-        setMessage("Check your email! Your download is on the way.");
+        setMessage(downloadUrl ? "Your download is ready!" : "Check your email! Your download is on the way.");
         trackNewsletterSignup(context, email);
         trackCtaClick(leadMagnetId, context);
         setEmail("");
@@ -61,7 +63,14 @@ export function LeadMagnetCta({
         <p className="font-medium text-zinc-900 dark:text-white">{heading}</p>
         <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">{description}</p>
         {status === "success" ? (
-          <p className="mt-3 text-sm font-medium text-green-600 dark:text-green-400">{message}</p>
+          <div className="mt-3">
+            <p className="text-sm font-medium text-green-600 dark:text-green-400">{message}</p>
+            {downloadUrl && (
+              <a href={downloadUrl} download className="mt-2 inline-block rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700">
+                Download PDF
+              </a>
+            )}
+          </div>
         ) : (
           <form onSubmit={handleSubmit} className="mt-3 flex gap-2">
             <input
@@ -103,7 +112,14 @@ export function LeadMagnetCta({
             </ul>
           )}
           {status === "success" ? (
-            <p className="mt-8 text-lg font-medium text-white">{message}</p>
+            <div className="mt-8">
+              <p className="text-lg font-medium text-white">{message}</p>
+              {downloadUrl && (
+                <a href={downloadUrl} download className="mt-4 inline-block rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-700">
+                  Download PDF
+                </a>
+              )}
+            </div>
           ) : (
             <form
               onSubmit={handleSubmit}
@@ -153,7 +169,14 @@ export function LeadMagnetCta({
         </ul>
       )}
       {status === "success" ? (
-        <p className="mt-4 text-sm font-medium text-green-600 dark:text-green-400">{message}</p>
+        <div className="mt-4">
+          <p className="text-sm font-medium text-green-600 dark:text-green-400">{message}</p>
+          {downloadUrl && (
+            <a href={downloadUrl} download className="mt-3 inline-block rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-blue-700">
+              Download PDF
+            </a>
+          )}
+        </div>
       ) : (
         <form onSubmit={handleSubmit} className="mt-4 flex flex-col gap-3 sm:flex-row">
           <input

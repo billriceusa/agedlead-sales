@@ -221,6 +221,33 @@ export default async function PlaybookPage({ params }: Props) {
             </div>
           )}
 
+          {/* Free Tools */}
+          <div className="mt-10 rounded-xl border border-zinc-200 bg-zinc-50 p-6 dark:border-zinc-800 dark:bg-zinc-900">
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-zinc-500">
+              Free Tools
+            </h3>
+            <div className="grid gap-3 sm:grid-cols-3">
+              <Link
+                href="/calculators/roi-calculator"
+                className="rounded-lg border border-zinc-200 bg-white p-3 text-sm font-medium text-zinc-900 transition-colors hover:border-blue-300 hover:bg-blue-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-white dark:hover:border-blue-700"
+              >
+                ROI Calculator
+              </Link>
+              <Link
+                href="/calculators/lead-cost-calculator"
+                className="rounded-lg border border-zinc-200 bg-white p-3 text-sm font-medium text-zinc-900 transition-colors hover:border-blue-300 hover:bg-blue-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-white dark:hover:border-blue-700"
+              >
+                Lead Cost Calculator
+              </Link>
+              <Link
+                href="/calculators/pipeline-calculator"
+                className="rounded-lg border border-zinc-200 bg-white p-3 text-sm font-medium text-zinc-900 transition-colors hover:border-blue-300 hover:bg-blue-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-white dark:hover:border-blue-700"
+              >
+                Pipeline Calculator
+              </Link>
+            </div>
+          </div>
+
           {/* Inline CTA */}
           <div className="mt-12">
             <CtaBanner variant="compact" />

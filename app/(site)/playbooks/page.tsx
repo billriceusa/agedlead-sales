@@ -3,6 +3,7 @@ import { sanityFetch } from "@/sanity/lib/fetch";
 import { playbooksQuery } from "@/sanity/lib/queries";
 import { PlaybookCard } from "@/components/playbook-card";
 import { CtaBanner } from "@/components/cta-banner";
+import { LeadMagnetCta } from "@/components/lead-magnet-cta";
 
 export const metadata: Metadata = {
   title: "Sales Playbooks",
@@ -59,6 +60,27 @@ export default async function PlaybooksPage() {
               </p>
             </div>
           )}
+        </div>
+      </section>
+
+      <section className="border-t border-zinc-200 bg-zinc-50 py-12 dark:border-zinc-800 dark:bg-zinc-900">
+        <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
+          <LeadMagnetCta
+            variant="card"
+            heading="Free: Aged Lead Scripts Bundle"
+            description="Download 15+ ready-to-use scripts — phone openers, voicemail scripts, email templates, objection handlers, and door-knocking scripts."
+            buttonText="Get the Scripts Bundle"
+            leadMagnetId="scripts-bundle"
+            downloadUrl="/downloads/aged-lead-scripts-bundle.pdf"
+            features={[
+              "3 phone opening scripts",
+              "2 voicemail scripts",
+              "2 email templates",
+              "5 objection handlers",
+              "Door-knocking script",
+            ]}
+            context="playbooks-listing"
+          />
         </div>
       </section>
 
