@@ -7,6 +7,7 @@ import { urlForImage } from "@/sanity/lib/image";
 import { PortableText } from "@/components/portable-text";
 import { PostCard } from "@/components/post-card";
 import { CtaBanner } from "@/components/cta-banner";
+import { InlineTextCta } from "@/components/inline-text-cta";
 import { JsonLd, articleJsonLd, breadcrumbJsonLd } from "@/components/json-ld";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
@@ -207,6 +208,11 @@ export default async function BlogPostPage({ params }: Props) {
               )}
             </div>
           )}
+
+          <InlineTextCta
+            campaign="blog-post"
+            leadType={post.leadTypes?.[0]?.title}
+          />
 
           {post.body && (
             <div className="prose-wrapper">

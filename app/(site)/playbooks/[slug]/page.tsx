@@ -7,6 +7,7 @@ import { urlForImage } from "@/sanity/lib/image";
 import { PortableText } from "@/components/portable-text";
 import { PlaybookCard } from "@/components/playbook-card";
 import { CtaBanner } from "@/components/cta-banner";
+import { InlineTextCta } from "@/components/inline-text-cta";
 import { JsonLd, breadcrumbJsonLd } from "@/components/json-ld";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
@@ -182,6 +183,12 @@ export default async function PlaybookPage({ params }: Props) {
               )}
             </div>
           )}
+
+          {/* Inline Text CTA */}
+          <InlineTextCta
+            campaign="playbook"
+            leadType={playbook.leadTypes?.[0]?.title}
+          />
 
           {/* Body */}
           {playbook.body && (

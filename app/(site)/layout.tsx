@@ -45,6 +45,13 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
   },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "16x16 32x32" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    apple: "/apple-icon",
+  },
   verification: {
     google: process.env.NEXT_PUBLIC_GSC_VERIFICATION || undefined,
     other: process.env.NEXT_PUBLIC_BING_VERIFICATION

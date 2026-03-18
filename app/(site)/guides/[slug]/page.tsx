@@ -6,6 +6,7 @@ import { guideBySlugQuery } from "@/sanity/lib/queries";
 import { urlForImage } from "@/sanity/lib/image";
 import { PortableText } from "@/components/portable-text";
 import { CtaBanner } from "@/components/cta-banner";
+import { InlineTextCta } from "@/components/inline-text-cta";
 import { JsonLd, breadcrumbJsonLd } from "@/components/json-ld";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
@@ -136,6 +137,11 @@ export default async function GuidePage({ params }: Props) {
               )}
             </div>
           )}
+
+          <InlineTextCta
+            campaign="guide"
+            leadType={guide.leadTypes?.[0]?.title}
+          />
 
           {guide.body && (
             <div className="prose-wrapper">
