@@ -155,9 +155,9 @@ export function LeadMagnetCta({
   }
 
   return (
-    <div className="rounded-xl border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-white p-6 dark:border-blue-900 dark:from-blue-950/50 dark:to-zinc-900">
+    <div className="flex h-full flex-col rounded-xl border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-white p-6 dark:border-blue-900 dark:from-blue-950/50 dark:to-zinc-900">
       <h3 className="text-lg font-bold text-zinc-900 dark:text-white">{heading}</h3>
-      <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">{description}</p>
+      <p className="mt-2 flex-1 text-sm text-zinc-600 dark:text-zinc-400">{description}</p>
       {features && (
         <ul className="mt-4 space-y-1.5">
           {features.map((f) => (
@@ -178,20 +178,20 @@ export function LeadMagnetCta({
           )}
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="mt-4 flex flex-col gap-3 sm:flex-row">
+        <form onSubmit={handleSubmit} className="mt-4 flex flex-col gap-3">
           <input
             type="email"
             placeholder="Enter your email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            className="flex-1 rounded-lg border border-zinc-300 bg-white px-4 py-2.5 text-sm dark:border-zinc-700 dark:bg-zinc-800 dark:text-white"
+            className="w-full rounded-lg border border-zinc-300 bg-white px-4 py-2.5 text-sm dark:border-zinc-700 dark:bg-zinc-800 dark:text-white"
             disabled={status === "loading"}
           />
           <button
             type="submit"
             disabled={status === "loading"}
-            className="rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-blue-700 disabled:opacity-50"
+            className="w-full rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-blue-700 disabled:opacity-50"
           >
             {status === "loading" ? "Sending..." : buttonText}
           </button>
