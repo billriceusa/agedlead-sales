@@ -417,8 +417,8 @@ async function main() {
       // Search Unsplash
       let photo = await searchUnsplash(searchQuery);
       if (!photo) {
-        console.log(`    No results, trying fallback "business people sales office"...`);
-        photo = await searchUnsplash("business people sales office professional");
+        console.log(`    No results, trying fallback "people in an office setting"...`);
+        photo = await searchUnsplash("people in an office setting professional");
         if (!photo) {
           console.log(`    FAILED: No image found, skipping\n`);
           failed++;
