@@ -1,12 +1,12 @@
-import OpenAI from "openai";
+import Anthropic from "@anthropic-ai/sdk";
 import type { NewsletterPlan } from "@/data/newsletter-calendar";
 
-function getOpenAIClient(): OpenAI {
-  const apiKey = process.env.OPENAI_API_KEY;
+function getAnthropicClient(): Anthropic {
+  const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) {
-    throw new Error("OPENAI_API_KEY environment variable is not set");
+    throw new Error("ANTHROPIC_API_KEY environment variable is not set");
   }
-  return new OpenAI({ apiKey });
+  return new Anthropic({ apiKey });
 }
 
 export interface RecentPost {
@@ -44,7 +44,7 @@ export interface NewsletterContent {
   ctaUrl: string;
 }
 
-const NEWSLETTER_SYSTEM = `You are Bill Rice, a 20+ year veteran of the aged lead industry and the author of the Aged Lead Sales weekly newsletter. You write with authority, warmth, and specificity — like a successful mentor sharing hard-won lessons over coffee.
+const NEWSLETTER_SYSTEM = `You are Bill Rice, a 25+ year veteran of the aged lead industry and the author of the Aged Lead Sales weekly newsletter. You write with authority, warmth, and specificity — like a successful mentor sharing hard-won lessons over coffee.
 
 Newsletter Context:
 - Audience: insurance agents, mortgage brokers, financial advisors, PI attorneys, solar reps, and other sales professionals who buy and work aged consumer leads
@@ -59,7 +59,7 @@ export async function generateNewsletterContent(
   siteUrl: string,
   weekLabel: string
 ): Promise<NewsletterContent> {
-  const client = getOpenAIClient();
+  const client = getAnthropicClient();
 
   const postsContext = recentPosts
     .map(
@@ -105,7 +105,7 @@ ${weekLabel}
 8. Closing note: 1-2 sentence personal sign-off
 9. CTA: text for the main call-to-action button (drives to AgedLeadStore.com)
 
-Respond with valid JSON:
+Respond with ONLY valid JSON (no markdown fences, no commentary):
 {
   "subject": "Subject line here",
   "previewText": "Preview text here",
@@ -132,18 +132,23 @@ Respond with valid JSON:
   "ctaUrl": "https://agedleadstore.com/all-lead-types/?utm_source=agedleadsales&utm_medium=email&utm_campaign=weekly-newsletter&utm_content=${weekLabel}"
 }`;
 
-  const response = await client.chat.completions.create({
-    model: "gpt-4o",
-    messages: [
-      { role: "system", content: NEWSLETTER_SYSTEM },
-      { role: "user", content: prompt },
-    ],
-    temperature: 0.8,
-    response_format: { type: "json_object" },
+  const response = await client.messages.create({
+    model: "claude-sonnet-4-20250514",
+    max_tokens: 4096,
+    system: NEWSLETTER_SYSTEM,
+    messages: [{ role: "user", content: prompt }],
   });
 
-  const content = response.choices[0]?.message?.content;
-  if (!content) throw new Error("No response from AI for newsletter generation");
+  const textBlock = response.content.find((b) => b.type === "text");
+  if (!textBlock || textBlock.type !== "text") {
+    throw new Error("No text response from AI for newsletter generation");
+  }
 
-  return JSON.parse(content) as NewsletterContent;
+  // Extract JSON — handle potential markdown fences
+  let jsonStr = textBlock.text.trim();
+  if (jsonStr.startsWith("```")) {
+    jsonStr = jsonStr.replace(/^```(?:json)?\n?/, "").replace(/\n?```$/, "");
+  }
+
+  return JSON.parse(jsonStr) as NewsletterContent;
 }

@@ -131,7 +131,7 @@ export async function POST(request: Request) {
                 <a href="https://www.agedleadsales.com/calculators" style="color: #6b7280; text-decoration: none;">Calculators</a>
               </p>
               <p style="margin: 0; color: #9ca3af; font-size: 12px;">
-                <a href="{{{RESEND_UNSUBSCRIBE_URL}}}" style="color: #9ca3af; text-decoration: underline;">Unsubscribe</a>
+                <a href="https://www.agedleadsales.com/api/newsletter/unsubscribe?email=${encodeURIComponent(email)}" style="color: #9ca3af; text-decoration: underline;">Unsubscribe</a>
               </p>
             </td>
           </tr>

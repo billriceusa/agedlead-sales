@@ -142,32 +142,53 @@ async function scheduleBroadcast(
     return { success: false, error: "RESEND_API_KEY not set" };
   }
 
-  const res = await fetch("https://api.resend.com/broadcasts", {
+  const headers = {
+    Authorization: `Bearer ${apiKey}`,
+    "Content-Type": "application/json",
+  };
+
+  // Step 1: Create the broadcast
+  const createRes = await fetch("https://api.resend.com/broadcasts", {
     method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
+    headers,
     body: JSON.stringify({
       audience_id: audienceId,
       from: fromEmail,
       subject,
       html,
-      send: true,
-      scheduled_at: scheduledAt,
+      name: `Weekly Newsletter — ${new Date().toISOString().split("T")[0]}`,
     }),
   });
 
-  if (!res.ok) {
-    const body = await res.text();
+  if (!createRes.ok) {
+    const body = await createRes.text();
     return {
       success: false,
-      error: `Broadcast API returned ${res.status}: ${body}`,
+      error: `Create broadcast: ${createRes.status}: ${body}`,
     };
   }
 
-  const data = (await res.json()) as { id?: string };
-  return { success: true, broadcastId: data.id };
+  const { id: broadcastId } = (await createRes.json()) as { id: string };
+
+  // Step 2: Schedule the broadcast
+  const sendRes = await fetch(
+    `https://api.resend.com/broadcasts/${broadcastId}/send`,
+    {
+      method: "POST",
+      headers,
+      body: JSON.stringify({ scheduled_at: scheduledAt }),
+    }
+  );
+
+  if (!sendRes.ok) {
+    const body = await sendRes.text();
+    return {
+      success: false,
+      error: `Schedule broadcast: ${sendRes.status}: ${body}`,
+    };
+  }
+
+  return { success: true, broadcastId };
 }
 
 export async function GET(request: Request) {
