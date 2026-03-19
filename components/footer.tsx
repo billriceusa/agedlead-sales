@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { affiliateUrl } from "@/lib/affiliate";
 import { NewsletterSignup } from "./newsletter-signup";
+import { TrackedAffiliateLink } from "./tracked-affiliate-link";
 
 const footerLinks = {
   "Lead Types": [
@@ -16,6 +17,7 @@ const footerLinks = {
     { name: "Glossary", href: "/glossary" },
     { name: "Guides", href: "/guides" },
     { name: "Calculators", href: "/calculators" },
+    { name: "Newsletter", href: "/newsletter" },
     { name: "About", href: "/about" },
   ],
 };
@@ -87,14 +89,23 @@ export function Footer() {
             <ul className="mt-3 space-y-2">
               {affiliateLinks.map((link) => (
                 <li key={link.name}>
-                  <a
-                    href={link.href}
-                    target="_blank"
-                    rel="nofollow sponsored noopener noreferrer"
-                    className="text-sm text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-                  >
-                    {link.name} ↗
-                  </a>
+                  {link.href.startsWith("http") ? (
+                    <TrackedAffiliateLink
+                      href={link.href}
+                      ctaId={link.name.toLowerCase().replace(/\s+/g, "-")}
+                      ctaLocation="footer"
+                      className="text-sm text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+                    >
+                      {link.name} ↗
+                    </TrackedAffiliateLink>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      className="text-sm text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+                    >
+                      {link.name}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>

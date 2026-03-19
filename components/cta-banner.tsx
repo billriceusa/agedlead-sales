@@ -1,4 +1,5 @@
 import { affiliateUrl } from "@/lib/affiliate";
+import { TrackedAffiliateLink } from "./tracked-affiliate-link";
 
 interface CtaBannerProps {
   headline?: string;
@@ -30,14 +31,14 @@ export function CtaBanner({
               {description}
             </p>
           </div>
-          <a
+          <TrackedAffiliateLink
             href={href}
-            target="_blank"
-            rel="nofollow sponsored noopener noreferrer"
+            ctaId={campaign}
+            ctaLocation="compact-cta"
             className="shrink-0 rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
           >
             {buttonText}
-          </a>
+          </TrackedAffiliateLink>
         </div>
       </div>
     );
@@ -53,14 +54,14 @@ export function CtaBanner({
           {description}
         </p>
         <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-          <a
+          <TrackedAffiliateLink
             href={href}
-            target="_blank"
-            rel="nofollow sponsored noopener noreferrer"
+            ctaId={campaign}
+            ctaLocation="primary-cta"
             className="rounded-lg bg-white px-8 py-3 text-base font-semibold text-blue-700 shadow-lg transition-colors hover:bg-blue-50"
           >
             {buttonText}
-          </a>
+          </TrackedAffiliateLink>
           <a
             href="/start-here"
             className="rounded-lg border-2 border-white/30 px-8 py-3 text-base font-semibold text-white transition-colors hover:bg-white/10"
