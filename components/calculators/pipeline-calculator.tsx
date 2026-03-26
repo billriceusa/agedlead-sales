@@ -1,14 +1,48 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { affiliateUrl } from "@/lib/affiliate";
 
 export function PipelineCalculator() {
-  const [monthlyIncome, setMonthlyIncome] = useState(10000);
-  const [dealValue, setDealValue] = useState(1000);
-  const [contactRate, setContactRate] = useState(12);
-  const [closeRate, setCloseRate] = useState(2);
-  const [leadCost, setLeadCost] = useState(1);
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const [monthlyIncome, setMonthlyIncome] = useState(() => Number(searchParams.get("income")) || 10000);
+  const [dealValue, setDealValue] = useState(() => Number(searchParams.get("deal")) || 1000);
+  const [contactRate, setContactRate] = useState(() => Number(searchParams.get("contact")) || 12);
+  const [closeRate, setCloseRate] = useState(() => Number(searchParams.get("close")) || 2);
+  const [leadCost, setLeadCost] = useState(() => Number(searchParams.get("cost")) || 1);
+  const [copied, setCopied] = useState(false);
+
+  const buildShareUrl = useCallback(() => {
+    const params = new URLSearchParams();
+    if (monthlyIncome !== 10000) params.set("income", String(monthlyIncome));
+    if (dealValue !== 1000) params.set("deal", String(dealValue));
+    if (contactRate !== 12) params.set("contact", String(contactRate));
+    if (closeRate !== 2) params.set("close", String(closeRate));
+    if (leadCost !== 1) params.set("cost", String(leadCost));
+    const qs = params.toString();
+    return `${window.location.origin}${pathname}${qs ? `?${qs}` : ""}`;
+  }, [monthlyIncome, dealValue, contactRate, closeRate, leadCost, pathname]);
+
+  useEffect(() => {
+    const params = new URLSearchParams();
+    if (monthlyIncome !== 10000) params.set("income", String(monthlyIncome));
+    if (dealValue !== 1000) params.set("deal", String(dealValue));
+    if (contactRate !== 12) params.set("contact", String(contactRate));
+    if (closeRate !== 2) params.set("close", String(closeRate));
+    if (leadCost !== 1) params.set("cost", String(leadCost));
+    const qs = params.toString();
+    router.replace(`${pathname}${qs ? `?${qs}` : ""}`, { scroll: false });
+  }, [monthlyIncome, dealValue, contactRate, closeRate, leadCost, pathname, router]);
+
+  const handleCopyLink = () => {
+    navigator.clipboard.writeText(buildShareUrl());
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   const dealsNeeded = dealValue > 0 ? Math.ceil(monthlyIncome / dealValue) : 0;
   const contactsNeeded = closeRate > 0 ? Math.ceil(dealsNeeded / (closeRate / 100)) : 0;
@@ -96,6 +130,26 @@ export function PipelineCalculator() {
             <p className="mt-1 text-2xl font-bold text-zinc-900 dark:text-white">{r.value}</p>
           </div>
         ))}
+      </div>
+
+      {/* Share Link */}
+      <div className="mt-6 flex justify-center">
+        <button
+          onClick={handleCopyLink}
+          className="inline-flex items-center gap-2 rounded-lg border border-zinc-300 bg-white px-4 py-2 text-sm font-medium text-zinc-700 transition-colors hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700"
+        >
+          {copied ? (
+            <>
+              <svg className="h-4 w-4 text-green-600" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+              Link Copied!
+            </>
+          ) : (
+            <>
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m9.86-2.702a4.5 4.5 0 00-1.242-7.244l-4.5-4.5a4.5 4.5 0 00-6.364 6.364L4.34 8.374" /></svg>
+              Share These Results
+            </>
+          )}
+        </button>
       </div>
 
       {/* CTA */}

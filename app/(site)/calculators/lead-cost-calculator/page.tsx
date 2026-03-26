@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { LeadCostCalculator } from "@/components/calculators/lead-cost-calculator";
@@ -47,7 +48,9 @@ export default function LeadCostCalculatorPage() {
             Your cost per lead is just the starting point. This calculator shows your true cost per acquisition — factoring in contact rate, close rate, and deal value. Find your break-even point and see your real ROI.
           </p>
 
-          <LeadCostCalculator />
+          <Suspense fallback={<div className="h-96 animate-pulse rounded-2xl bg-zinc-100 dark:bg-zinc-800" />}>
+            <LeadCostCalculator />
+          </Suspense>
 
           <div className="mt-16 space-y-8">
             <h2 className="text-2xl font-bold text-zinc-900 dark:text-white">Understanding Your Numbers</h2>

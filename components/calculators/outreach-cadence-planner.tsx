@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { affiliateUrl } from "@/lib/affiliate";
 
 type Channel = "phone" | "email" | "mail" | "doorKnock" | "sms";
@@ -50,11 +51,56 @@ function buildCadence(days: 7 | 14 | 21, channels: Channel[]): { day: number; ch
 }
 
 export function OutreachCadencePlanner() {
-  const [numLeads, setNumLeads] = useState(100);
-  const [cadenceLength, setCadenceLength] = useState<7 | 14 | 21>(7);
-  const [channels, setChannels] = useState<Set<Channel>>(new Set(ALL_CHANNELS));
-  const [callsPerDay, setCallsPerDay] = useState(80);
-  const [workingDays, setWorkingDays] = useState(5);
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const [numLeads, setNumLeads] = useState(() => Number(searchParams.get("leads")) || 100);
+  const [cadenceLength, setCadenceLength] = useState<7 | 14 | 21>(() => {
+    const v = Number(searchParams.get("days"));
+    return v === 7 || v === 14 || v === 21 ? v : 7;
+  });
+  const [channels, setChannels] = useState<Set<Channel>>(() => {
+    const raw = searchParams.get("channels");
+    if (raw) {
+      const parsed = raw.split(",").filter((c): c is Channel => ALL_CHANNELS.includes(c as Channel));
+      return parsed.length > 0 ? new Set(parsed) : new Set(ALL_CHANNELS);
+    }
+    return new Set(ALL_CHANNELS);
+  });
+  const [callsPerDay, setCallsPerDay] = useState(() => Number(searchParams.get("calls")) || 80);
+  const [workingDays, setWorkingDays] = useState(() => Number(searchParams.get("workDays")) || 5);
+  const [copied, setCopied] = useState(false);
+
+  const buildShareUrl = useCallback(() => {
+    const params = new URLSearchParams();
+    if (numLeads !== 100) params.set("leads", String(numLeads));
+    if (cadenceLength !== 7) params.set("days", String(cadenceLength));
+    if (callsPerDay !== 80) params.set("calls", String(callsPerDay));
+    if (workingDays !== 5) params.set("workDays", String(workingDays));
+    const activeArr = ALL_CHANNELS.filter((c) => channels.has(c));
+    if (activeArr.length !== ALL_CHANNELS.length) params.set("channels", activeArr.join(","));
+    const qs = params.toString();
+    return `${window.location.origin}${pathname}${qs ? `?${qs}` : ""}`;
+  }, [numLeads, cadenceLength, callsPerDay, workingDays, channels, pathname]);
+
+  useEffect(() => {
+    const params = new URLSearchParams();
+    if (numLeads !== 100) params.set("leads", String(numLeads));
+    if (cadenceLength !== 7) params.set("days", String(cadenceLength));
+    if (callsPerDay !== 80) params.set("calls", String(callsPerDay));
+    if (workingDays !== 5) params.set("workDays", String(workingDays));
+    const activeArr = ALL_CHANNELS.filter((c) => channels.has(c));
+    if (activeArr.length !== ALL_CHANNELS.length) params.set("channels", activeArr.join(","));
+    const qs = params.toString();
+    router.replace(`${pathname}${qs ? `?${qs}` : ""}`, { scroll: false });
+  }, [numLeads, cadenceLength, callsPerDay, workingDays, channels, pathname, router]);
+
+  const handleCopyLink = () => {
+    navigator.clipboard.writeText(buildShareUrl());
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   const toggleChannel = (ch: Channel) => {
     const next = new Set(channels);
@@ -216,6 +262,26 @@ export function OutreachCadencePlanner() {
             </div>
           ))}
         </div>
+      </div>
+
+      {/* Share Link */}
+      <div className="mt-6 flex justify-center">
+        <button
+          onClick={handleCopyLink}
+          className="inline-flex items-center gap-2 rounded-lg border border-zinc-300 bg-white px-4 py-2 text-sm font-medium text-zinc-700 transition-colors hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700"
+        >
+          {copied ? (
+            <>
+              <svg className="h-4 w-4 text-green-600" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+              Link Copied!
+            </>
+          ) : (
+            <>
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m9.86-2.702a4.5 4.5 0 00-1.242-7.244l-4.5-4.5a4.5 4.5 0 00-6.364 6.364L4.34 8.374" /></svg>
+              Share These Results
+            </>
+          )}
+        </button>
       </div>
 
       {/* CTA */}
