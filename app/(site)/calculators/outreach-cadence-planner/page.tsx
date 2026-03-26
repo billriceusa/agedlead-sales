@@ -12,6 +12,12 @@ export const metadata: Metadata = {
   description:
     "Plan your multi-channel outreach cadence for aged leads. Map phone calls, emails, direct mail, texts, and door knocks across a 7, 14, or 21-day follow-up sequence.",
   alternates: { canonical: `${baseUrl}/calculators/outreach-cadence-planner` },
+  openGraph: {
+    title: "Outreach Cadence Planner | Free Multi-Channel Follow-Up Tool",
+    description: "Plan your multi-channel outreach cadence for aged leads. Free — no sign-up required.",
+    url: `${baseUrl}/calculators/outreach-cadence-planner`,
+    images: [{ url: `${baseUrl}/api/og?title=${encodeURIComponent("Outreach Cadence Planner")}&category=Free Tool&type=calculator` }],
+  },
 };
 
 const faqs = [

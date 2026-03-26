@@ -12,6 +12,12 @@ export const metadata: Metadata = {
   description:
     "Figure out exactly how many aged leads you need to hit your income goals. Free pipeline calculator — enter your target income, close rate, and deal value.",
   alternates: { canonical: `${baseUrl}/calculators/pipeline-calculator` },
+  openGraph: {
+    title: "Pipeline Volume Calculator | Free Sales Pipeline Planner",
+    description: "Figure out how many aged leads you need to hit your income goals. Free — no sign-up required.",
+    url: `${baseUrl}/calculators/pipeline-calculator`,
+    images: [{ url: `${baseUrl}/api/og?title=${encodeURIComponent("Pipeline Volume Calculator")}&category=Free Tool&type=calculator` }],
+  },
 };
 
 const faqs = [

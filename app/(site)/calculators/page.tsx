@@ -1,11 +1,26 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CtaBanner } from "@/components/cta-banner";
+import { JsonLd, breadcrumbJsonLd } from "@/components/json-ld";
+
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
 export const metadata: Metadata = {
   title: "Free Sales Calculators & Tools",
   description:
     "Free calculators and interactive tools for sales professionals. ROI calculators, lead cost analysis, and prospecting tools — no sign-up required.",
+  alternates: { canonical: `${baseUrl}/calculators` },
+  openGraph: {
+    title: "Free Sales Calculators & Tools | Aged Lead Sales",
+    description:
+      "4 free interactive tools: ROI calculator, lead cost calculator, pipeline planner, and outreach cadence planner. No sign-up required.",
+    url: `${baseUrl}/calculators`,
+    images: [
+      {
+        url: `${baseUrl}/api/og?title=${encodeURIComponent("Free Sales Calculators & Tools")}&category=Free Tools&type=calculator`,
+      },
+    ],
+  },
 };
 
 const CALCULATORS = [
@@ -46,6 +61,28 @@ const CALCULATORS = [
 export default function CalculatorsPage() {
   return (
     <>
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Home", url: baseUrl },
+          { name: "Calculators", url: `${baseUrl}/calculators` },
+        ])}
+      />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          name: "Free Sales Calculators",
+          description:
+            "Interactive tools for sales professionals to calculate ROI, lead costs, pipeline volume, and outreach cadences.",
+          numberOfItems: CALCULATORS.length,
+          itemListElement: CALCULATORS.map((calc, i) => ({
+            "@type": "ListItem",
+            position: i + 1,
+            name: calc.title,
+            url: `${baseUrl}/calculators/${calc.slug}`,
+          })),
+        }}
+      />
       <section className="bg-white py-16 dark:bg-zinc-950">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-12">

@@ -12,6 +12,12 @@ export const metadata: Metadata = {
   description:
     "Calculate your true cost per acquisition, break-even close rate, and ROI from aged leads. Free calculator for insurance agents, mortgage brokers, and sales professionals.",
   alternates: { canonical: `${baseUrl}/calculators/lead-cost-calculator` },
+  openGraph: {
+    title: "Lead Cost Calculator | Free Cost Per Acquisition Tool",
+    description: "Calculate your true cost per acquisition from aged leads. Free — no sign-up required.",
+    url: `${baseUrl}/calculators/lead-cost-calculator`,
+    images: [{ url: `${baseUrl}/api/og?title=${encodeURIComponent("Lead Cost Calculator")}&category=Free Tool&type=calculator` }],
+  },
 };
 
 const faqs = [

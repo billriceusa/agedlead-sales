@@ -1,15 +1,51 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { affiliateUrl } from "@/lib/affiliate";
 
 export function RoiCalculator() {
-  const [budget, setBudget] = useState(500);
-  const [realTimeCost, setRealTimeCost] = useState(30);
-  const [agedCost, setAgedCost] = useState(1);
-  const [realTimeConversion, setRealTimeConversion] = useState(8);
-  const [agedConversion, setAgedConversion] = useState(2);
-  const [dealValue, setDealValue] = useState(1000);
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const [budget, setBudget] = useState(() => Number(searchParams.get("budget")) || 500);
+  const [realTimeCost, setRealTimeCost] = useState(() => Number(searchParams.get("rtCost")) || 30);
+  const [agedCost, setAgedCost] = useState(() => Number(searchParams.get("agCost")) || 1);
+  const [realTimeConversion, setRealTimeConversion] = useState(() => Number(searchParams.get("rtConv")) || 8);
+  const [agedConversion, setAgedConversion] = useState(() => Number(searchParams.get("agConv")) || 2);
+  const [dealValue, setDealValue] = useState(() => Number(searchParams.get("deal")) || 1000);
+  const [copied, setCopied] = useState(false);
+
+  const buildShareUrl = useCallback(() => {
+    const params = new URLSearchParams();
+    if (budget !== 500) params.set("budget", String(budget));
+    if (realTimeCost !== 30) params.set("rtCost", String(realTimeCost));
+    if (agedCost !== 1) params.set("agCost", String(agedCost));
+    if (realTimeConversion !== 8) params.set("rtConv", String(realTimeConversion));
+    if (agedConversion !== 2) params.set("agConv", String(agedConversion));
+    if (dealValue !== 1000) params.set("deal", String(dealValue));
+    const qs = params.toString();
+    return `${window.location.origin}${pathname}${qs ? `?${qs}` : ""}`;
+  }, [budget, realTimeCost, agedCost, realTimeConversion, agedConversion, dealValue, pathname]);
+
+  useEffect(() => {
+    const params = new URLSearchParams();
+    if (budget !== 500) params.set("budget", String(budget));
+    if (realTimeCost !== 30) params.set("rtCost", String(realTimeCost));
+    if (agedCost !== 1) params.set("agCost", String(agedCost));
+    if (realTimeConversion !== 8) params.set("rtConv", String(realTimeConversion));
+    if (agedConversion !== 2) params.set("agConv", String(agedConversion));
+    if (dealValue !== 1000) params.set("deal", String(dealValue));
+    const qs = params.toString();
+    router.replace(`${pathname}${qs ? `?${qs}` : ""}`, { scroll: false });
+  }, [budget, realTimeCost, agedCost, realTimeConversion, agedConversion, dealValue, pathname, router]);
+
+  const handleCopyLink = () => {
+    navigator.clipboard.writeText(buildShareUrl());
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   const realTimeLeads = Math.floor(budget / realTimeCost);
   const agedLeads = Math.floor(budget / agedCost);
@@ -168,6 +204,26 @@ export function RoiCalculator() {
           </p>
         </div>
       )}
+
+      {/* Share Link */}
+      <div className="mt-6 flex justify-center">
+        <button
+          onClick={handleCopyLink}
+          className="inline-flex items-center gap-2 rounded-lg border border-zinc-300 bg-white px-4 py-2 text-sm font-medium text-zinc-700 transition-colors hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700"
+        >
+          {copied ? (
+            <>
+              <svg className="h-4 w-4 text-green-600" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+              Link Copied!
+            </>
+          ) : (
+            <>
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m9.86-2.702a4.5 4.5 0 00-1.242-7.244l-4.5-4.5a4.5 4.5 0 00-6.364 6.364L4.34 8.374" /></svg>
+              Share These Results
+            </>
+          )}
+        </button>
+      </div>
 
       {/* CTA */}
       <div className="mt-8 rounded-xl border border-blue-200 bg-blue-50 p-5 text-center dark:border-blue-900 dark:bg-blue-950/50">
