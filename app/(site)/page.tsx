@@ -7,7 +7,6 @@ import { PlaybookCard } from "@/components/playbook-card";
 import { CtaBanner } from "@/components/cta-banner";
 import { NewsletterSignup } from "@/components/newsletter-signup";
 import { JsonLd, websiteJsonLd, organizationJsonLd } from "@/components/json-ld";
-import { affiliateUrl } from "@/lib/affiliate";
 
 const LEAD_TYPE_DEFAULTS = [
   {
@@ -98,19 +97,17 @@ export default async function HomePage() {
               training, playbooks, and proven strategies for every industry.
             </p>
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-              <a
-                href={affiliateUrl({ campaign: "homepage", content: "hero-cta" })}
-                target="_blank"
-                rel="nofollow sponsored noopener noreferrer"
+              <Link
+                href="/providers"
                 className="rounded-lg bg-blue-600 px-8 py-3.5 text-center text-base font-semibold text-white shadow-lg transition-colors hover:bg-blue-700"
               >
-                Browse Leads at AgedLeadStore.com
-              </a>
+                Compare Lead Providers
+              </Link>
               <Link
-                href="/playbooks"
+                href="/price-index"
                 className="rounded-lg border border-zinc-600 px-8 py-3.5 text-center text-base font-semibold text-white transition-colors hover:bg-zinc-800"
               >
-                View Playbooks
+                Lead Price Index
               </Link>
             </div>
           </div>

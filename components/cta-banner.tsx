@@ -1,24 +1,25 @@
-import { affiliateUrl } from "@/lib/affiliate";
-import { TrackedAffiliateLink } from "./tracked-affiliate-link";
+import Link from "next/link";
 
 interface CtaBannerProps {
   headline?: string;
   description?: string;
   buttonText?: string;
   buttonHref?: string;
+  secondaryText?: string;
+  secondaryHref?: string;
   campaign?: string;
   variant?: "default" | "compact";
 }
 
 export function CtaBanner({
-  headline = "Ready to Fill Your Pipeline?",
-  description = "Browse thousands of aged leads at a fraction of the cost of real-time leads. Create your free account — no credit card required.",
-  buttonText = "Browse Leads at AgedLeadStore.com",
-  buttonHref,
-  campaign = "cta-banner",
+  headline = "Find the Right Lead Provider",
+  description = "Compare providers, check fair market pricing, and calculate your ROI — all with our free tools.",
+  buttonText = "Compare Providers",
+  buttonHref = "/providers",
+  secondaryText = "Check Pricing",
+  secondaryHref = "/price-index",
   variant = "default",
 }: CtaBannerProps) {
-  const href = buttonHref || affiliateUrl({ campaign, content: "primary-cta" });
   if (variant === "compact") {
     return (
       <div className="rounded-xl border border-blue-200 bg-blue-50 p-6 dark:border-blue-900 dark:bg-blue-950/50">
@@ -31,14 +32,12 @@ export function CtaBanner({
               {description}
             </p>
           </div>
-          <TrackedAffiliateLink
-            href={href}
-            ctaId={campaign}
-            ctaLocation="compact-cta"
+          <Link
+            href={buttonHref}
             className="shrink-0 rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
           >
             {buttonText}
-          </TrackedAffiliateLink>
+          </Link>
         </div>
       </div>
     );
@@ -54,20 +53,18 @@ export function CtaBanner({
           {description}
         </p>
         <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-          <TrackedAffiliateLink
-            href={href}
-            ctaId={campaign}
-            ctaLocation="primary-cta"
+          <Link
+            href={buttonHref}
             className="rounded-lg bg-white px-8 py-3 text-base font-semibold text-blue-700 shadow-lg transition-colors hover:bg-blue-50"
           >
             {buttonText}
-          </TrackedAffiliateLink>
-          <a
-            href="/start-here"
+          </Link>
+          <Link
+            href={secondaryHref}
             className="rounded-lg border-2 border-white/30 px-8 py-3 text-base font-semibold text-white transition-colors hover:bg-white/10"
           >
-            Get Free Training
-          </a>
+            {secondaryText}
+          </Link>
         </div>
       </div>
     </section>

@@ -156,8 +156,9 @@ export default function NewsletterPage() {
               the first intelligent lead scoring system at Quicken Loans, and
               has personally worked millions of aged leads across insurance,
               mortgage, solar, and home improvement. He founded Kaleidico, one
-              of the top marketing agencies in the mortgage industry, and serves
-              as marketing director for AgedLeadStore.com.
+              of the top marketing agencies in the mortgage industry, and
+              founded Aged Lead Sales as an independent lead buying
+              intelligence platform.
             </p>
             <Link
               href="/about"

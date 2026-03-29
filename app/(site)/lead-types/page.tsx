@@ -7,7 +7,7 @@ import { CtaBanner } from "@/components/cta-banner";
 export const metadata: Metadata = {
   title: "Aged Lead Types",
   description:
-    "Browse aged leads by industry — mortgage, insurance, final expense, IUL, SSDI, MVA, solar, Medicare, and more. Learn strategies and buy leads at AgedLeadStore.com.",
+    "Browse aged leads by industry — mortgage, insurance, final expense, IUL, SSDI, MVA, solar, Medicare, and more. Compare providers, learn strategies, and find the right leads for your business.",
 };
 
 const LEAD_TYPE_DEFAULTS = [

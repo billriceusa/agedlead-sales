@@ -4,32 +4,30 @@ import {
 } from "@portabletext/react";
 import type { PortableTextBlock } from "sanity";
 import { urlForImage } from "@/sanity/lib/image";
-import { affiliateUrl } from "@/lib/affiliate";
 
 const MID_ARTICLE_CTAS = [
   {
-    text: "Need aged leads?",
-    link: "Shop aged leads at AgedLeadStore.com",
-    suffix: "— starting under $1 per lead with no minimums.",
-    content: "mid-article-1",
+    text: "Looking for leads?",
+    link: "Compare top providers for your vertical",
+    href: "/providers",
+    suffix: "— independent ratings across 15+ verticals.",
   },
   {
-    text: "Ready to put this into practice?",
-    link: "Browse leads by type at AgedLeadStore.com",
-    suffix: "— insurance, mortgage, solar, Medicare, and more.",
-    content: "mid-article-2",
+    text: "What should you pay?",
+    link: "Check our Lead Price Index",
+    href: "/price-index",
+    suffix: "— fair market benchmarks updated monthly.",
   },
   {
-    text: "Want to test this approach?",
-    link: "Grab a starter batch at AgedLeadStore.com",
-    suffix: "— no contracts, no commitments.",
-    content: "mid-article-3",
+    text: "Want to calculate your ROI?",
+    link: "Try our free CPL calculator",
+    href: "/calculators/know-your-cpl",
+    suffix: "— compare aged vs. real-time leads for your business.",
   },
 ];
 
-function MidArticleCta({ index, campaign }: { index: number; campaign: string }) {
+function MidArticleCta({ index }: { index: number }) {
   const cta = MID_ARTICLE_CTAS[index % MID_ARTICLE_CTAS.length];
-  const href = affiliateUrl({ campaign, content: cta.content });
 
   return (
     <p className="my-8 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
@@ -37,9 +35,7 @@ function MidArticleCta({ index, campaign }: { index: number; campaign: string })
         {cta.text}
       </strong>{" "}
       <a
-        href={href}
-        target="_blank"
-        rel="nofollow sponsored noopener noreferrer"
+        href={cta.href}
         className="font-medium text-blue-600 underline decoration-blue-600/30 hover:text-blue-700 hover:decoration-blue-700/50 dark:text-blue-400"
       >
         {cta.link}
@@ -194,7 +190,7 @@ export function PortableText({ value, campaign = "article" }: PortableTextProps)
     <>
       {chunks.map((chunk, i) => (
         <div key={i}>
-          {i > 0 && <MidArticleCta index={i - 1} campaign={campaign} />}
+          {i > 0 && <MidArticleCta index={i - 1} />}
           <PortableTextComponent components={components} value={chunk} />
         </div>
       ))}

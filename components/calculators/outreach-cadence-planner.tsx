@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
-import { affiliateUrl } from "@/lib/affiliate";
+import Link from "next/link";
 
 type Channel = "phone" | "email" | "mail" | "doorKnock" | "sms";
 
@@ -289,11 +289,10 @@ export function OutreachCadencePlanner() {
         <p className="mb-3 font-semibold text-zinc-900 dark:text-white">
           Need leads to fill your cadence?
         </p>
-        <a href={affiliateUrl({ campaign: "cadence-planner", content: "results-cta" })} target="_blank"
-          rel="nofollow sponsored noopener noreferrer"
+        <Link href="/providers"
           className="inline-block rounded-lg bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-blue-700">
-          Browse Aged Leads at AgedLeadStore.com
-        </a>
+          Compare Lead Providers
+        </Link>
       </div>
     </div>
   );

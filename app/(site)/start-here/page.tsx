@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { CtaBanner } from "@/components/cta-banner";
 import { LeadMagnetCta } from "@/components/lead-magnet-cta";
-import { affiliateUrl } from "@/lib/affiliate";
 
 export const metadata: Metadata = {
   title: "Start Here — Your Complete Guide to Working Aged Leads | Aged Lead Sales",
@@ -407,20 +406,23 @@ export default function StartHerePage() {
             </ol>
 
             <p>
-              When you&apos;re ready to buy your first batch, I recommend{" "}
-              <a
-                href={affiliateUrl({ campaign: "start-here", content: "first-batch-link" })}
-                target="_blank"
-                rel="nofollow sponsored noopener noreferrer"
+              When you&apos;re ready to buy your first batch, use our{" "}
+              <Link
+                href="/providers"
                 className="font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400"
               >
-                AgedLeadStore.com
-              </a>
-              . They&apos;ve been in business 24+ years, their data validation
-              system (Evergreen Lead Optimization) keeps contact info fresh,
-              and they offer a self-service replacement guarantee. I&apos;ve
-              worked with their team for years and trust their operation.
-              Creating an account is free — you only pay when you buy leads.
+                provider directory
+              </Link>{" "}
+              to compare options across your vertical. We independently rate
+              providers on pricing transparency, data quality, compliance,
+              and flexibility so you can make an informed choice. Check our{" "}
+              <Link
+                href="/price-index"
+                className="font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400"
+              >
+                price index
+              </Link>{" "}
+              to know what you should be paying before you buy.
             </p>
 
             <p className="font-medium text-zinc-900 dark:text-white">

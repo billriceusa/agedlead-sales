@@ -1,7 +1,5 @@
 import Link from "next/link";
-import { affiliateUrl } from "@/lib/affiliate";
 import { NewsletterSignup } from "./newsletter-signup";
-import { TrackedAffiliateLink } from "./tracked-affiliate-link";
 
 const footerLinks = {
   "Lead Types": [
@@ -20,18 +18,13 @@ const footerLinks = {
     { name: "Newsletter", href: "/newsletter" },
     { name: "About", href: "/about" },
   ],
+  "Lead Marketwatch": [
+    { name: "Provider Directory", href: "/providers" },
+    { name: "Price Index", href: "/price-index" },
+    { name: "Know Your CPL", href: "/calculators/know-your-cpl" },
+    { name: "Our Methodology", href: "/methodology" },
+  ],
 };
-
-const affiliateLinks = [
-  {
-    name: "Browse Leads",
-    href: affiliateUrl({ campaign: "footer", content: "browse-leads" }),
-  },
-  {
-    name: "Free Training",
-    href: "/start-here",
-  },
-];
 
 export function Footer() {
   return (
@@ -47,9 +40,9 @@ export function Footer() {
               Aged Lead Sales
             </Link>
             <p className="mt-3 text-sm text-zinc-600 dark:text-zinc-400">
-              Learn how to grow your sales business with aged leads. Training,
-              playbooks, and strategies for insurance agents, mortgage brokers,
-              and sales professionals.
+              The independent lead buying intelligence platform. Compare
+              providers, benchmark pricing, and make informed decisions about
+              your lead spend.
             </p>
             <div className="mt-6">
               <NewsletterSignup
@@ -60,7 +53,7 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Internal link columns */}
+          {/* Link columns */}
           {Object.entries(footerLinks).map(([heading, links]) => (
             <div key={heading}>
               <h3 className="text-sm font-semibold uppercase tracking-wider text-zinc-900 dark:text-white">
@@ -80,36 +73,6 @@ export function Footer() {
               </ul>
             </div>
           ))}
-
-          {/* Affiliate links column */}
-          <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-zinc-900 dark:text-white">
-              AgedLeadStore.com
-            </h3>
-            <ul className="mt-3 space-y-2">
-              {affiliateLinks.map((link) => (
-                <li key={link.name}>
-                  {link.href.startsWith("http") ? (
-                    <TrackedAffiliateLink
-                      href={link.href}
-                      ctaId={link.name.toLowerCase().replace(/\s+/g, "-")}
-                      ctaLocation="footer"
-                      className="text-sm text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-                    >
-                      {link.name} ↗
-                    </TrackedAffiliateLink>
-                  ) : (
-                    <Link
-                      href={link.href}
-                      className="text-sm text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-                    >
-                      {link.name}
-                    </Link>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
         </div>
 
         <div className="mt-12 border-t border-zinc-200 pt-8 dark:border-zinc-800">

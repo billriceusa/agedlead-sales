@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { affiliateUrl } from "@/lib/affiliate";
 
 const navigation = [
   { name: "Start Here", href: "/start-here" },
@@ -37,14 +36,12 @@ export function Header() {
               {item.name}
             </Link>
           ))}
-          <a
-            href={affiliateUrl({ campaign: "nav", content: "browse-leads-button" })}
-            target="_blank"
-            rel="nofollow sponsored noopener noreferrer"
+          <Link
+            href="/providers"
             className="ml-3 rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
           >
-            Browse Leads
-          </a>
+            Find Providers
+          </Link>
         </div>
 
         {/* Mobile menu button */}
@@ -80,14 +77,13 @@ export function Header() {
                 {item.name}
               </Link>
             ))}
-            <a
-              href={affiliateUrl({ campaign: "nav", content: "browse-leads-mobile" })}
-              target="_blank"
-              rel="nofollow sponsored noopener noreferrer"
+            <Link
+              href="/providers"
               className="mt-2 block rounded-lg bg-blue-600 px-4 py-2 text-center text-base font-semibold text-white transition-colors hover:bg-blue-700"
+              onClick={() => setMobileMenuOpen(false)}
             >
-              Browse Leads
-            </a>
+              Find Providers
+            </Link>
           </div>
         </div>
       )}

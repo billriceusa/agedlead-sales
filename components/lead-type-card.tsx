@@ -1,7 +1,4 @@
-"use client";
-
 import Link from "next/link";
-import { affiliateUrl as buildAffiliateUrl } from "@/lib/affiliate";
 
 interface LeadTypeCardProps {
   title: string;
@@ -16,8 +13,6 @@ export function LeadTypeCard({
   shortDescription,
   icon,
 }: LeadTypeCardProps) {
-  const trackedAffiliateUrl = buildAffiliateUrl({ campaign: slug, content: "lead-type-card" });
-
   return (
     <div className="group relative flex flex-col rounded-xl border border-zinc-200 bg-white p-6 transition-all hover:border-blue-300 hover:shadow-lg dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-blue-700">
       {icon && (
@@ -38,15 +33,6 @@ export function LeadTypeCard({
           Learn more &rarr;
         </span>
       </div>
-      <a
-        href={trackedAffiliateUrl}
-        target="_blank"
-        rel="nofollow sponsored noopener noreferrer"
-        className="relative z-10 mt-3 inline-flex items-center justify-center rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
-        onClick={(e) => e.stopPropagation()}
-      >
-        Buy {title} ↗
-      </a>
     </div>
   );
 }

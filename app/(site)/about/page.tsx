@@ -363,90 +363,49 @@ export default function AboutPage() {
               </li>
             </ul>
 
-            {/* ── ALS Relationship ───────────────────────────── */}
+            {/* ── Affiliate Relationships ─────────────────────── */}
 
             <h2 className="pt-4 text-2xl font-bold text-zinc-900 dark:text-white">
-              My Relationship with AgedLeadStore.com
+              Affiliate Relationships &amp; Editorial Independence
             </h2>
             <p>
-              Full transparency: I serve as the marketing director for{" "}
+              Full transparency: I serve as the marketing director for
+              AgedLeadStore.com, which is one of the providers reviewed in our{" "}
+              <a
+                href="/providers"
+                className="font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400"
+              >
+                provider directory
+              </a>
+              . I also maintain affiliate relationships with other providers.
+              When you visit a provider through our tracked links and make a
+              purchase, I may earn a commission. That revenue funds the free
+              tools, training, and research on this site.
+            </p>
+            <p>
+              These relationships are always disclosed and{" "}
               <strong className="text-zinc-900 dark:text-white">
-                AgedLeadStore.com
+                never influence our ratings or recommendations
               </strong>
-              , and this site is an affiliate partner. When you click a link to
-              AgedLeadStore.com and purchase leads, I earn a commission. That
-              commission is how I fund the free training, tools, and calculators
-              on this site.
+              . Every provider — including AgedLeadStore — is evaluated using
+              the same{" "}
+              <a
+                href="/methodology"
+                className="font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400"
+              >
+                published methodology
+              </a>
+              . We score on six weighted dimensions, publish honest
+              assessments including what each provider is <em>not</em> ideal
+              for, and date every review so you know how fresh the data is.
             </p>
             <p>
-              But here&apos;s why that relationship actually makes the content
-              better, not worse: I work directly with the AgedLeadStore.com team.
-              I see the data. I know how their validation systems work. I
-              understand their lead sourcing, their replacement policies, and
-              their quality benchmarks from the inside. When I write about lead
-              quality, data freshness, or what to expect from aged leads,
-              I&apos;m not guessing — I&apos;m drawing on firsthand operational
-              knowledge.
+              I don&apos;t sugarcoat the challenges of working aged leads. I
+              give you realistic numbers, realistic expectations, and realistic
+              frameworks because that&apos;s the only way you&apos;ll actually
+              succeed. The goal of this site is to help you make informed lead
+              buying decisions — not to push you toward any single provider.
             </p>
-            <p>
-              That said, the editorial content on this site is independent. I
-              don&apos;t sugarcoat the challenges of working aged leads. I
-              don&apos;t pretend every lead will convert. I give you realistic
-              numbers, realistic expectations, and realistic frameworks because
-              that&apos;s the only way you&apos;ll actually succeed. If I sent
-              you in with inflated expectations, you&apos;d fail, blame the
-              leads, and never come back. That serves nobody.
-            </p>
-            <p>
-              I recommend AgedLeadStore.com because I genuinely trust their
-              operation — 24+ years in business, A+ BBB rating, and a data
-              validation system (Evergreen Lead Optimization) that keeps contact
-              information fresh in a way most providers don&apos;t bother with.
-              If I didn&apos;t believe in their product, I wouldn&apos;t attach
-              my name to it.
-            </p>
-
-            {/* ── Trust Signals Grid ─────────────────────────── */}
-
-            <h2 className="pt-4 text-2xl font-bold text-zinc-900 dark:text-white">
-              Why AgedLeadStore.com?
-            </h2>
-            <div className="grid gap-4 sm:grid-cols-2">
-              {[
-                {
-                  title: "24+ Years in Business",
-                  description:
-                    "Operating since 2001 — one of the longest-running aged lead providers in the industry with a proven track record across insurance, mortgage, and solar",
-                },
-                {
-                  title: "A+ BBB Rating",
-                  description:
-                    "Trusted by thousands of sales professionals with a Better Business Bureau rating that reflects consistent quality and customer service",
-                },
-                {
-                  title: "Evergreen Lead Optimization",
-                  description:
-                    "Proprietary validation system that continuously refreshes contact data — phone numbers, emails, and addresses are re-verified so you reach real people",
-                },
-                {
-                  title: "Replacement Guarantee",
-                  description:
-                    "Self-service dashboard lets you replace bad data instantly — no support tickets, no waiting, no hassle. You control your lead quality",
-                },
-              ].map((item) => (
-                <div
-                  key={item.title}
-                  className="rounded-lg border border-zinc-200 p-4 dark:border-zinc-800"
-                >
-                  <h3 className="font-semibold text-zinc-900 dark:text-white">
-                    {item.title}
-                  </h3>
-                  <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
-                    {item.description}
-                  </p>
-                </div>
-              ))}
-            </div>
 
             {/* ── My Approach ────────────────────────────────── */}
 

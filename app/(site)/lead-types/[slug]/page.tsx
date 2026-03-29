@@ -11,7 +11,6 @@ import { CtaBanner } from "@/components/cta-banner";
 import { JsonLd, breadcrumbJsonLd, faqJsonLd } from "@/components/json-ld";
 import { NewsletterSignup } from "@/components/newsletter-signup";
 import { LEAD_TYPES } from "@/data/lead-types";
-import { affiliateUrl as buildAffiliateUrl } from "@/lib/affiliate";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
@@ -61,9 +60,9 @@ export default async function LeadTypePage({ params }: Props) {
   const icon = leadType?.icon || data?.icon || "";
   const description =
     leadType?.shortDescription || data?.heroDescription || "";
-  const affiliateHref = data
-    ? data.getAffiliateUrl("lead-type-hero")
-    : buildAffiliateUrl({ campaign: slug, content: "lead-type-hero" });
+  // Link to provider comparison for this vertical
+  const verticalSlug = slug.replace(/-leads$/, "");
+  const compareHref = `/providers/best/${verticalSlug}`;
   const imageUrl = leadType?.mainImage
     ? urlForImage(leadType.mainImage)?.width(1200).url()
     : undefined;
@@ -107,14 +106,18 @@ export default async function LeadTypePage({ params }: Props) {
                 </p>
               )}
               <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-                <a
-                  href={affiliateHref}
-                  target="_blank"
-                  rel="nofollow sponsored noopener noreferrer"
+                <Link
+                  href={compareHref}
                   className="rounded-lg bg-blue-600 px-8 py-3 text-center font-semibold text-white transition-colors hover:bg-blue-700"
                 >
-                  Buy {title} at AgedLeadStore.com
-                </a>
+                  Compare {title} Providers
+                </Link>
+                <Link
+                  href={`/price-index/${verticalSlug}`}
+                  className="rounded-lg border border-zinc-600 px-8 py-3 text-center font-semibold text-white transition-colors hover:bg-zinc-800"
+                >
+                  {title} Pricing
+                </Link>
               </div>
             </div>
             {imageUrl && (
@@ -247,11 +250,10 @@ export default async function LeadTypePage({ params }: Props) {
           {/* Mid-page CTA */}
           <CtaBanner
             variant="compact"
-            headline={`Ready to Buy Aged ${title}?`}
-            description={`Browse aged ${title.toLowerCase()} at AgedLeadStore.com — starting at just ${data.costRange} per lead.`}
-            buttonText={`Buy ${title}`}
-            buttonHref={data.getAffiliateUrl("mid-page-cta")}
-            campaign={slug}
+            headline={`Compare ${title} Providers`}
+            description={`See which providers offer the best aged ${title.toLowerCase()} — with independent ratings and fair market pricing from ${data.costRange} per lead.`}
+            buttonText="Compare Providers"
+            buttonHref={compareHref}
           />
 
           {/* How to Work Section */}
@@ -409,12 +411,7 @@ export default async function LeadTypePage({ params }: Props) {
       )}
 
       {/* Bottom CTA */}
-      <CtaBanner
-        headline={`Start Prospecting with Aged ${title}`}
-        description={`Create your free account at AgedLeadStore.com and browse ${title.toLowerCase()} inventory in your area.`}
-        buttonHref={data ? data.getAffiliateUrl("bottom-cta") : affiliateHref}
-        campaign={slug}
-      />
+      <CtaBanner />
     </>
   );
 }

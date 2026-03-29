@@ -11,7 +11,6 @@ interface ProviderCardProps {
   pricingModel: string;
   leadTypes: string[];
   verticals: { name: string; slug: string; icon?: string }[];
-  isFeatured?: boolean;
 }
 
 const LEAD_TYPE_LABELS: Record<string, string> = {
@@ -38,22 +37,9 @@ export function ProviderCard({
   pricingModel,
   leadTypes,
   verticals,
-  isFeatured,
 }: ProviderCardProps) {
   return (
-    <div
-      className={`group relative flex flex-col rounded-xl border bg-white p-6 transition-all hover:shadow-lg dark:bg-zinc-900 ${
-        isFeatured
-          ? "border-blue-300 dark:border-blue-700"
-          : "border-zinc-200 hover:border-blue-300 dark:border-zinc-800 dark:hover:border-blue-700"
-      }`}
-    >
-      {isFeatured && (
-        <span className="absolute -top-2.5 left-4 rounded-full bg-blue-600 px-2.5 py-0.5 text-xs font-semibold text-white">
-          Featured
-        </span>
-      )}
-
+    <div className="group relative flex flex-col rounded-xl border border-zinc-200 bg-white p-6 transition-all hover:border-blue-300 hover:shadow-lg dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-blue-700">
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0 flex-1">
           <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">

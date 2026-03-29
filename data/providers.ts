@@ -76,11 +76,11 @@ const rawProviders: Omit<ProviderData, "overallRating">[] = [
     ratingTransparency: 10,
     ratingValue: 8,
     ratingCompliance: 7,
-    ratingFlexibility: 10,
-    ratingPlatform: 9,
+    ratingFlexibility: 9,
+    ratingPlatform: 8,
     ratingReputation: 9,
     ratingNotes:
-      "Market leader in aged leads. Fully self-service e-commerce with published per-lead pricing. 25+ years in business, A+ BBB. No minimums, no contracts. Up to 20% return cap. Advanced filtering by state, zip, phone type, lead age. The benchmark other aged lead providers are measured against.",
+      "Market leader in aged leads. Fully self-service e-commerce with published per-lead pricing. 25+ years in business, A+ BBB. No minimums, no contracts. Up to 20% return cap. Advanced filtering by state, zip, phone type, lead age. Flexibility dinged slightly for aged-only (no real-time, live transfer, or API options). Platform strong but lacks CRM integration or API delivery.",
     lastVerified: "2026-03-15",
     verticals: [
       "mortgage",
@@ -104,7 +104,7 @@ const rawProviders: Omit<ProviderData, "overallRating">[] = [
     returnPolicy: "Up to 20% return cap for wrong/disconnected numbers",
     deliveryMethods: ["instant-download", "email"],
     complianceFeatures: ["tcpa-docs", "dnc-scrubbing"],
-    isFeatured: true,
+    isFeatured: false,
     editorialReview:
       "Aged Lead Store is the clear market leader in aged internet leads. With 25+ years in business and an A+ BBB rating, they've served over 40,000 agents. Their biggest strength is complete transparency — every lead type has a published per-lead price, you can buy as few or as many as you want, and there are zero contracts or commitments. The self-service platform offers advanced filtering by geography, phone type, and lead age. Their return policy allows up to 20% credits for wrong numbers, which is generous by industry standards. The main limitation is that they only sell aged leads — no real-time leads, live transfers, or trigger data. If you need fresh leads or call transfers, you'll need a different provider. But for aged lead buying, this is the benchmark.",
   },

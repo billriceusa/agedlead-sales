@@ -52,7 +52,6 @@ export default async function ProvidersPage() {
                 icon: v.icon,
               })
             ) || [],
-          isFeatured: p.isFeatured as boolean,
         }))
       : PROVIDERS.map((p) => ({
           name: p.name,
@@ -67,7 +66,6 @@ export default async function ProvidersPage() {
             slug: vSlug,
             icon: undefined,
           })),
-          isFeatured: p.isFeatured,
         }));
 
   return (
@@ -157,7 +155,6 @@ export default async function ProvidersPage() {
                   slug: string;
                   icon?: string;
                 }[];
-                isFeatured: boolean;
               }) => (
                 <ProviderCard
                   key={p.slug}
@@ -169,7 +166,6 @@ export default async function ProvidersPage() {
                   pricingModel={p.pricingModel}
                   leadTypes={p.leadTypes}
                   verticals={p.verticals}
-                  isFeatured={p.isFeatured}
                 />
               )
             )}

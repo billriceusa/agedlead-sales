@@ -121,7 +121,6 @@ export default async function BestByVerticalPage({
                         name: vSlug,
                         slug: vSlug,
                       }))}
-                      isFeatured={p.isFeatured}
                     />
                   </div>
                 </div>

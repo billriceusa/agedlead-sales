@@ -1,5 +1,3 @@
-import { affiliateUrl } from "@/lib/affiliate";
-
 export interface LeadTypeData {
   slug: string;
   title: string;
@@ -21,7 +19,7 @@ export interface LeadTypeData {
     bestPractices: string[];
   };
   faqs: { question: string; answer: string }[];
-  getAffiliateUrl: (content: string) => string;
+  getCompareUrl: () => string;
 }
 
 export const LEAD_TYPES: Record<string, LeadTypeData> = {
@@ -116,8 +114,8 @@ export const LEAD_TYPES: Record<string, LeadTypeData> = {
           "The most effective approach is a multi-channel cadence: start with a personal phone call using a non-pushy script, follow up with a plain-text email, and consider direct mail for local leads. Space your touches over 7-14 days.",
       },
     ],
-    getAffiliateUrl: (content: string) =>
-      affiliateUrl({ campaign: "mortgage-leads", content }),
+    getCompareUrl: () =>
+      `/providers/best/mortgage`,
   },
 
   "insurance-leads": {
@@ -211,8 +209,8 @@ export const LEAD_TYPES: Record<string, LeadTypeData> = {
           "Aged insurance leads are typically 30-180 days old, with some providers offering leads up to 360 days old. Fresher aged leads (30-60 days) generally have higher contact and conversion rates, while older leads cost less per record.",
       },
     ],
-    getAffiliateUrl: (content: string) =>
-      affiliateUrl({ campaign: "insurance-leads", content }),
+    getCompareUrl: () =>
+      `/providers/best/insurance`,
   },
 
   "final-expense-leads": {
@@ -306,8 +304,8 @@ export const LEAD_TYPES: Record<string, LeadTypeData> = {
           "Yes — door knocking is one of the most effective channels for final expense aged leads, especially for local leads. Seniors are often more receptive to in-person visits than phone calls, and conversion rates are significantly higher.",
       },
     ],
-    getAffiliateUrl: (content: string) =>
-      affiliateUrl({ campaign: "final-expense-leads", content }),
+    getCompareUrl: () =>
+      `/providers/best/final-expense`,
   },
 
   "iul-leads": {
@@ -396,8 +394,8 @@ export const LEAD_TYPES: Record<string, LeadTypeData> = {
           "IUL requires education-first selling. These consumers are financially aware and want to understand the product before committing. Use illustrations, comparisons to other retirement vehicles, and focus on their financial goals rather than the insurance product itself.",
       },
     ],
-    getAffiliateUrl: (content: string) =>
-      affiliateUrl({ campaign: "iul-leads", content }),
+    getCompareUrl: () =>
+      `/providers/best/iul`,
   },
 
   "ssdi-leads": {
@@ -481,8 +479,8 @@ export const LEAD_TYPES: Record<string, LeadTypeData> = {
           "Lead with empathy and education. Ask about their claim status, explain the appeal process clearly, and emphasize that legal representation is typically on a contingency basis — no upfront cost. Focus on denied applicants who need help with appeals.",
       },
     ],
-    getAffiliateUrl: (content: string) =>
-      affiliateUrl({ campaign: "ssdi-leads", content }),
+    getCompareUrl: () =>
+      `/providers/best/ssdi`,
   },
 
   "mva-leads": {
@@ -566,8 +564,8 @@ export const LEAD_TYPES: Record<string, LeadTypeData> = {
           "Aged MVA leads typically cost $1-$5 per record, compared to $50-$200+ for real-time personal injury leads. This represents a 90-97% cost savings.",
       },
     ],
-    getAffiliateUrl: (content: string) =>
-      affiliateUrl({ campaign: "mva-leads", content }),
+    getCompareUrl: () =>
+      `/providers/best/mva`,
   },
 
   "solar-leads": {
@@ -651,8 +649,8 @@ export const LEAD_TYPES: Record<string, LeadTypeData> = {
           "Aged solar leads typically convert at 1-3% with consistent follow-up. The key is leading with updated incentive information and personalized savings estimates based on their electricity costs and location.",
       },
     ],
-    getAffiliateUrl: (content: string) =>
-      affiliateUrl({ campaign: "solar-leads", content }),
+    getCompareUrl: () =>
+      `/providers/best/solar`,
   },
 
   "medicare-leads": {
@@ -736,7 +734,7 @@ export const LEAD_TYPES: Record<string, LeadTypeData> = {
           "Medicare marketing is regulated by CMS (Centers for Medicare & Medicaid Services). You must follow specific guidelines around scope of appointment, plan comparisons, and marketing materials. Consult your compliance team and follow CMS guidelines for all Medicare outreach.",
       },
     ],
-    getAffiliateUrl: (content: string) =>
-      affiliateUrl({ campaign: "medicare-leads", content }),
+    getCompareUrl: () =>
+      `/providers/best/medicare`,
   },
 };
