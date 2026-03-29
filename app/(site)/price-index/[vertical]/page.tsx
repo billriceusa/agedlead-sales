@@ -9,7 +9,13 @@ import {
   getBenchmarksByVertical,
   EXCLUSIVITY_LABELS,
   LEAD_TYPE_LABELS,
+  type PriceBenchmarkData,
 } from "@/data/price-benchmarks";
+import {
+  fillBenchmarkGaps,
+  getDecayProfile,
+  getDecayLabel,
+} from "@/lib/pricing-model";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
@@ -55,7 +61,34 @@ export default async function VerticalPriceIndexPage({
   const vertical = getVertical(verticalSlug);
   if (!vertical) return notFound();
 
-  const benchmarks = getBenchmarksByVertical(verticalSlug);
+  const rawBenchmarks = getBenchmarksByVertical(verticalSlug);
+
+  // Use the pricing model to fill gaps in age brackets
+  const latestMonth = rawBenchmarks[0]?.month || "2026-03";
+  const computedGaps = fillBenchmarkGaps(verticalSlug, rawBenchmarks, latestMonth);
+
+  // Merge real + computed benchmarks
+  const allBenchmarks: PriceBenchmarkData[] = [
+    ...rawBenchmarks,
+    ...computedGaps.map((g) => ({
+      vertical: g.vertical,
+      leadAgeBracket: g.leadAgeBracket,
+      exclusivity: g.exclusivity,
+      leadType: g.leadType,
+      month: g.month,
+      priceLow: g.priceLow,
+      priceMedian: g.priceMedian,
+      priceHigh: g.priceHigh,
+      providersSampled: g.providersSampled,
+      confidence: g.confidence,
+      notes: g.notes,
+    })),
+  ];
+
+  const benchmarks = allBenchmarks;
+  const observedCount = rawBenchmarks.length;
+  const computedCount = computedGaps.length;
+  const profile = getDecayProfile(verticalSlug);
 
   // Group benchmarks by exclusivity × leadType
   const groups: {
@@ -76,8 +109,6 @@ export default async function VerticalPriceIndexPage({
       });
     }
   }
-
-  const latestMonth = benchmarks[0]?.month || "2026-03";
   const monthLabel = new Date(latestMonth + "-01").toLocaleDateString("en-US", {
     month: "long",
     year: "numeric",
@@ -119,7 +150,11 @@ export default async function VerticalPriceIndexPage({
             </p>
             <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400">
               Last updated: {monthLabel} &middot;{" "}
-              {benchmarks.length} data points
+              {observedCount} observed data points
+              {computedCount > 0 && (
+                <> &middot; {computedCount} model-estimated &middot;{" "}
+                  {getDecayLabel(profile.lambda)}</>
+              )}
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Link

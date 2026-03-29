@@ -95,20 +95,25 @@ export function PriceBenchmarkTable({
             >
               <td className="px-4 py-3 font-medium text-zinc-700 dark:text-zinc-300">
                 {AGE_BRACKET_LABELS[b.leadAgeBracket] || b.leadAgeBracket}
+                {b.providersSampled === 0 && (
+                  <span className="ml-1.5 text-[10px] font-normal text-zinc-400 dark:text-zinc-500" title="Estimated by our pricing model">
+                    est.
+                  </span>
+                )}
               </td>
-              <td className="px-4 py-3 text-right text-zinc-600 dark:text-zinc-400">
+              <td className={`px-4 py-3 text-right ${b.providersSampled === 0 ? "text-zinc-400 dark:text-zinc-500 italic" : "text-zinc-600 dark:text-zinc-400"}`}>
                 {formatPrice(b.priceLow)}
               </td>
-              <td className="px-4 py-3 text-right font-semibold text-zinc-900 dark:text-white">
+              <td className={`px-4 py-3 text-right font-semibold ${b.providersSampled === 0 ? "text-zinc-500 dark:text-zinc-400 italic" : "text-zinc-900 dark:text-white"}`}>
                 {formatPrice(b.priceMedian)}
               </td>
-              <td className="px-4 py-3 text-right text-zinc-600 dark:text-zinc-400">
+              <td className={`px-4 py-3 text-right ${b.providersSampled === 0 ? "text-zinc-400 dark:text-zinc-500 italic" : "text-zinc-600 dark:text-zinc-400"}`}>
                 {formatPrice(b.priceHigh)}
               </td>
               <td className="hidden px-4 py-3 text-right sm:table-cell">
                 <span className="inline-flex items-center gap-1.5 text-xs text-zinc-500 dark:text-zinc-400">
                   <ConfidenceDot level={b.confidence} />
-                  {b.confidence}
+                  {b.providersSampled === 0 ? "modeled" : b.confidence}
                 </span>
               </td>
             </tr>

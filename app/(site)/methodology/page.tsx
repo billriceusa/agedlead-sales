@@ -184,6 +184,39 @@ export default function MethodologyPage() {
               </li>
             </ul>
 
+            <h2>Our Pricing Model</h2>
+            <p>
+              Where we have limited direct pricing data for specific age brackets,
+              we use a mathematical model to estimate fair market values. The model
+              is based on an empirically observed pattern: <strong>lead value follows
+              an exponential decay curve over time</strong>, and the rate of decay
+              correlates with the average deal value in each vertical.
+            </p>
+            <p>
+              The core formula is: <code>aged_price = real_time_price &times; e<sup>-&lambda;t</sup> &times; exclusivity_multiplier</code>
+            </p>
+            <p>
+              Where &lambda; (lambda) is a decay rate constant calibrated per vertical
+              from our observed data, t is the lead age in days, and the exclusivity
+              multiplier ranges from 1.0x (shared) to 2.2x (exclusive) — a ratio
+              that holds remarkably consistent across all verticals.
+            </p>
+            <p>
+              Key findings from our analysis across 10+ verticals:
+            </p>
+            <ul>
+              <li>Aged (31-85 day) leads cost <strong>88-98% less</strong> than real-time leads</li>
+              <li><strong>High-value verticals</strong> (legal, mortgage) have slower decay — even stale leads are worth pursuing</li>
+              <li><strong>Low-ticket verticals</strong> (auto insurance) have the fastest decay</li>
+              <li>The <strong>exclusive premium is 2.0-2.5x</strong> across all verticals</li>
+            </ul>
+            <p>
+              Model-estimated prices are labeled <em>&quot;est.&quot;</em> in our
+              pricing tables and marked as &quot;modeled&quot; confidence. As we
+              gather more direct data, modeled estimates are replaced with observed
+              benchmarks.
+            </p>
+
             <h2>Update Frequency</h2>
             <p>
               We review and update provider profiles and pricing benchmarks on a
