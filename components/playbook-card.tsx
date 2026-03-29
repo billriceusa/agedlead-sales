@@ -29,7 +29,7 @@ export function PlaybookCard({
   difficulty,
   estimatedTime,
 }: PlaybookCardProps) {
-  const imageUrl = mainImage?.asset?._ref
+  const imageUrl = mainImage
     ? urlForImage(mainImage)?.width(600).height(340).url()
     : undefined;
 

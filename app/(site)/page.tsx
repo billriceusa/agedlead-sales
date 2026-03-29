@@ -115,13 +115,13 @@ export default async function HomePage() {
             </div>
           </div>
 
-          {/* Stats */}
+          {/* Stats — about aged leads as a strategy, NOT about us as a company */}
           <div className="mt-16 grid grid-cols-2 gap-8 sm:grid-cols-4">
             {[
-              { value: "24+", label: "Years in Business" },
-              { value: "A+", label: "BBB Rating" },
-              { value: "$0.50", label: "Per Lead Starting" },
-              { value: "1000+", label: "Leads per Order" },
+              { value: "10-50x", label: "Lower Cost Per Lead" },
+              { value: "15+", label: "Verticals Covered" },
+              { value: "50+", label: "Providers Reviewed" },
+              { value: "Free", label: "Tools & Calculators" },
             ].map((stat) => (
               <div key={stat.label}>
                 <div className="text-3xl font-bold text-blue-400">

@@ -97,37 +97,49 @@ export default async function ProvidersPage() {
         }}
       />
 
+      {/* Hero */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-zinc-900 via-zinc-900 to-blue-950">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-600/10 via-transparent to-transparent" />
+        <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+          <span className="mb-4 inline-block rounded-full bg-blue-500/20 px-3 py-1 text-xs font-semibold text-blue-300">
+            Lead Marketwatch
+          </span>
+          <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
+            Lead Provider Directory
+          </h1>
+          <p className="mt-4 max-w-2xl text-lg leading-relaxed text-zinc-300">
+            Independent ratings and reviews of lead providers across mortgage,
+            insurance, solar, and more. Every provider is scored on 6
+            dimensions with a transparent, published methodology. Updated
+            monthly.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link
+              href="/price-index"
+              className="inline-flex items-center rounded-lg bg-white/10 px-4 py-2.5 text-sm font-medium text-white backdrop-blur-sm transition-colors hover:bg-white/20"
+            >
+              Lead Price Index &rarr;
+            </Link>
+            <Link
+              href="/methodology"
+              className="inline-flex items-center rounded-lg bg-white/10 px-4 py-2.5 text-sm font-medium text-white backdrop-blur-sm transition-colors hover:bg-white/20"
+            >
+              Our Methodology &rarr;
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Provider Grid */}
       <section className="bg-white py-16 dark:bg-zinc-950">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-12">
-            <div className="mb-4 flex items-center gap-2">
-              <span className="rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-700 dark:bg-blue-900/50 dark:text-blue-300">
-                Lead Marketwatch
-              </span>
-            </div>
-            <h1 className="text-4xl font-bold text-zinc-900 dark:text-white">
-              Lead Provider Directory
-            </h1>
-            <p className="mt-4 max-w-3xl text-lg text-zinc-600 dark:text-zinc-400">
-              Independent ratings and reviews of lead providers across mortgage,
-              insurance, solar, and more. Every provider is scored on 6
-              dimensions with a transparent, published methodology. Updated
-              monthly.
+          <div className="mb-8">
+            <h2 className="text-2xl font-bold text-zinc-900 dark:text-white">
+              All Providers
+            </h2>
+            <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400">
+              {providers.length} providers rated &middot; Sorted by overall score
             </p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Link
-                href="/price-index"
-                className="inline-flex items-center rounded-lg border border-zinc-300 px-4 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800"
-              >
-                Lead Price Index &rarr;
-              </Link>
-              <Link
-                href="/methodology"
-                className="inline-flex items-center rounded-lg border border-zinc-300 px-4 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800"
-              >
-                Our Methodology &rarr;
-              </Link>
-            </div>
           </div>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

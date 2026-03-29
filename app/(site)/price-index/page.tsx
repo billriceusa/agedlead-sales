@@ -92,39 +92,52 @@ export default function PriceIndexPage() {
       />
 
       {/* Hero */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-zinc-900 via-zinc-900 to-blue-950">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-600/10 via-transparent to-transparent" />
+        <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+          <div className="flex items-center gap-3">
+            <span className="inline-block rounded-full bg-blue-500/20 px-3 py-1 text-xs font-semibold text-blue-300">
+              Lead Marketwatch
+            </span>
+            <span className="text-xs text-zinc-400">
+              Updated {monthLabel}
+            </span>
+          </div>
+          <h1 className="mt-4 text-4xl font-bold tracking-tight text-white sm:text-5xl">
+            Lead Price Index
+          </h1>
+          <p className="mt-4 max-w-2xl text-lg leading-relaxed text-zinc-300">
+            What should you pay for leads? Our monthly benchmarks track fair
+            market pricing across 15 verticals and every lead type — aged,
+            real-time, live transfers, and more.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link
+              href="/calculators/know-your-cpl"
+              className="inline-flex items-center rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-600/25 transition-colors hover:bg-blue-700"
+            >
+              Calculate Your CPL &rarr;
+            </Link>
+            <Link
+              href="/providers"
+              className="inline-flex items-center rounded-lg bg-white/10 px-4 py-2.5 text-sm font-medium text-white backdrop-blur-sm transition-colors hover:bg-white/20"
+            >
+              Compare Providers &rarr;
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Vertical Cards */}
       <section className="bg-white py-16 dark:bg-zinc-950">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-12">
-            <div className="mb-4 flex items-center gap-2">
-              <span className="rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-700 dark:bg-blue-900/50 dark:text-blue-300">
-                Lead Marketwatch
-              </span>
-              <span className="text-xs text-zinc-500 dark:text-zinc-400">
-                Updated {monthLabel}
-              </span>
-            </div>
-            <h1 className="text-4xl font-bold text-zinc-900 dark:text-white">
-              Lead Price Index
-            </h1>
-            <p className="mt-4 max-w-3xl text-lg text-zinc-600 dark:text-zinc-400">
-              What should you pay for leads? Our monthly benchmarks track fair
-              market pricing across 15 verticals and every lead type — aged,
-              real-time, live transfers, and more.
+          <div className="mb-8">
+            <h2 className="text-2xl font-bold text-zinc-900 dark:text-white">
+              Pricing by Vertical
+            </h2>
+            <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400">
+              Click any vertical to see full pricing breakdowns by age, exclusivity, and lead type.
             </p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Link
-                href="/calculators/know-your-cpl"
-                className="inline-flex items-center rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700"
-              >
-                Calculate Your CPL &rarr;
-              </Link>
-              <Link
-                href="/providers"
-                className="inline-flex items-center rounded-lg border border-zinc-300 px-4 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800"
-              >
-                Compare Providers &rarr;
-              </Link>
-            </div>
           </div>
 
           {/* Vertical Cards Grid */}

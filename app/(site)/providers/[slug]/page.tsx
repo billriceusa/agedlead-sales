@@ -12,6 +12,7 @@ import { FreshnessIndicator } from "@/components/freshness-indicator";
 import { CtaBanner } from "@/components/cta-banner";
 import { JsonLd, breadcrumbJsonLd } from "@/components/json-ld";
 import { getProvider, PROVIDERS } from "@/data/providers";
+import { ProviderCompareSelector } from "@/components/provider-compare-selector";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
@@ -136,54 +137,72 @@ export default async function ProviderProfilePage({
       />
 
       {/* Hero */}
-      <section className="bg-white py-12 dark:bg-zinc-950">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
+      <section className="relative overflow-hidden bg-gradient-to-br from-zinc-900 via-zinc-900 to-blue-950">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-600/10 via-transparent to-transparent" />
+        <div className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+          <div className="mb-4 flex items-center gap-2 text-sm text-zinc-400">
+            <Link
+              href="/providers"
+              className="hover:text-blue-400"
+            >
+              Providers
+            </Link>
+            <span className="text-zinc-600">/</span>
+            <span className="text-zinc-300">{p.name}</span>
+          </div>
+          <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
             <div>
-              <div className="mb-3 flex items-center gap-2 text-sm text-zinc-500 dark:text-zinc-400">
-                <Link
-                  href="/providers"
-                  className="hover:text-blue-600 dark:hover:text-blue-400"
-                >
-                  Providers
-                </Link>
-                <span>/</span>
-                <span>{p.name}</span>
-              </div>
-              <h1 className="text-4xl font-bold text-zinc-900 dark:text-white">
+              <h1 className="text-4xl font-bold text-white">
                 {p.name}
               </h1>
-              <div className="mt-3 flex flex-wrap items-center gap-4 text-sm text-zinc-600 dark:text-zinc-400">
-                {p.foundedYear && <span>Est. {p.foundedYear}</span>}
-                {p.bbbRating && p.bbbRating !== "NR" && (
-                  <span>BBB: {p.bbbRating}</span>
+              <div className="mt-3 flex flex-wrap items-center gap-3 text-sm">
+                {p.foundedYear && (
+                  <span className="rounded-full bg-zinc-800 px-3 py-1 text-zinc-300">
+                    Est. {p.foundedYear}
+                  </span>
                 )}
-                {p.headquartersState && <span>{p.headquartersState}</span>}
+                {p.bbbRating && p.bbbRating !== "NR" && (
+                  <span className="rounded-full bg-zinc-800 px-3 py-1 text-zinc-300">
+                    BBB: {p.bbbRating}
+                  </span>
+                )}
+                {p.headquartersState && (
+                  <span className="rounded-full bg-zinc-800 px-3 py-1 text-zinc-300">
+                    {p.headquartersState}
+                  </span>
+                )}
                 <FreshnessIndicator lastVerified={p.lastVerified} />
               </div>
-              <p className="mt-4 max-w-2xl text-lg text-zinc-600 dark:text-zinc-400">
+              <p className="mt-5 max-w-2xl text-lg leading-relaxed text-zinc-300">
                 {p.shortDescription}
               </p>
-              <div className="mt-6 flex flex-wrap gap-3">
+              <div className="mt-8 flex flex-wrap items-center gap-3">
                 {p.website && (
                   <a
                     href={p.website}
                     target="_blank"
                     rel="noopener noreferrer nofollow"
-                    className="inline-flex items-center rounded-lg border border-zinc-300 px-4 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800"
+                    className="inline-flex items-center gap-1.5 rounded-lg bg-white/10 px-4 py-2.5 text-sm font-medium text-white backdrop-blur-sm transition-colors hover:bg-white/20"
                   >
-                    Visit Website &nearr;
+                    Visit Website
+                    <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" /></svg>
                   </a>
                 )}
-                <Link
-                  href="/providers"
-                  className="inline-flex items-center rounded-lg border border-zinc-300 px-4 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800"
-                >
-                  Compare with Another Provider
-                </Link>
+                <ProviderCompareSelector
+                  currentSlug={p.slug}
+                  providers={PROVIDERS.map((prov) => ({
+                    name: prov.name,
+                    slug: prov.slug,
+                  }))}
+                />
               </div>
             </div>
-            <ProviderRatingBadge score={p.overallRating} size="lg" />
+            <div className="flex flex-col items-center gap-2">
+              <ProviderRatingBadge score={p.overallRating} size="lg" />
+              <span className="text-xs font-medium text-zinc-400">
+                Overall Score
+              </span>
+            </div>
           </div>
         </div>
       </section>

@@ -23,7 +23,7 @@ export function PostCard({
   publishedAt,
   author,
 }: PostCardProps) {
-  const imageUrl = mainImage?.asset?._ref
+  const imageUrl = mainImage
     ? urlForImage(mainImage)?.width(600).height(340).url()
     : undefined;
 
