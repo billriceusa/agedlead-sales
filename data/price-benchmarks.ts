@@ -356,6 +356,21 @@ export const PRICE_BENCHMARKS: PriceBenchmarkData[] = [
     confidence: "medium",
   },
 
+  // Medicare aged benchmarks
+  {
+    vertical: "medicare",
+    leadAgeBracket: "31-85-days",
+    exclusivity: "shared",
+    leadType: "internet-form",
+    month: "2026-03",
+    priceLow: 1.5,
+    priceMedian: 4,
+    priceHigh: 8,
+    providersSampled: 3,
+    confidence: "medium",
+    notes: "Limited aged Medicare data — most providers focus on AEP/OEP real-time leads",
+  },
+
   // ═══════════════════════════════════════════════════════════
   // SOLAR
   // ═══════════════════════════════════════════════════════════
@@ -394,6 +409,21 @@ export const PRICE_BENCHMARKS: PriceBenchmarkData[] = [
     priceHigh: 120,
     providersSampled: 3,
     confidence: "medium",
+  },
+
+  // Solar aged benchmarks
+  {
+    vertical: "solar",
+    leadAgeBracket: "31-85-days",
+    exclusivity: "shared",
+    leadType: "internet-form",
+    month: "2026-03",
+    priceLow: 3,
+    priceMedian: 8,
+    priceHigh: 15,
+    providersSampled: 3,
+    confidence: "medium",
+    notes: "Aged solar leads less common than real-time — fewer providers offer them",
   },
 
   // ═══════════════════════════════════════════════════════════
@@ -481,6 +511,21 @@ export const PRICE_BENCHMARKS: PriceBenchmarkData[] = [
     confidence: "medium",
   },
 
+  // MCA aged internet-form benchmark
+  {
+    vertical: "mca-business-loans",
+    leadAgeBracket: "31-85-days",
+    exclusivity: "shared",
+    leadType: "internet-form",
+    month: "2026-03",
+    priceLow: 0.5,
+    priceMedian: 2,
+    priceHigh: 5,
+    providersSampled: 3,
+    confidence: "medium",
+    notes: "Internet form opt-in aged MCA leads (higher quality than raw data lists)",
+  },
+
   // ═══════════════════════════════════════════════════════════
   // LEGAL (Personal Injury)
   // ═══════════════════════════════════════════════════════════
@@ -520,6 +565,20 @@ export const PRICE_BENCHMARKS: PriceBenchmarkData[] = [
     priceHigh: 200,
     providersSampled: 2,
     confidence: "low",
+  },
+  // Legal aged benchmark
+  {
+    vertical: "legal",
+    leadAgeBracket: "31-85-days",
+    exclusivity: "shared",
+    leadType: "internet-form",
+    month: "2026-03",
+    priceLow: 15,
+    priceMedian: 50,
+    priceHigh: 100,
+    providersSampled: 2,
+    confidence: "low",
+    notes: "Aged PI/mass tort leads — highly variable by case type. Limited providers.",
   },
 ];
 

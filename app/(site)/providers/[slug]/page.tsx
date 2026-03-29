@@ -13,6 +13,8 @@ import { CtaBanner } from "@/components/cta-banner";
 import { JsonLd, breadcrumbJsonLd } from "@/components/json-ld";
 import { getProvider, PROVIDERS } from "@/data/providers";
 import { ProviderCompareSelector } from "@/components/provider-compare-selector";
+import { TrackedOutboundLink } from "@/components/tracked-outbound-link";
+import { providerWebsiteUrl, isAffiliateProvider } from "@/lib/provider-links";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
@@ -178,15 +180,19 @@ export default async function ProviderProfilePage({
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-3">
                 {p.website && (
-                  <a
-                    href={p.website}
-                    target="_blank"
-                    rel="noopener noreferrer nofollow"
+                  <TrackedOutboundLink
+                    href={providerWebsiteUrl(p.website, {
+                      campaign: `provider-${p.slug}`,
+                      content: "visit-website-hero",
+                    })}
+                    ctaId={`visit-${p.slug}`}
+                    ctaLocation="provider-profile-hero"
+                    isAffiliate={isAffiliateProvider(p.slug)}
                     className="inline-flex items-center gap-1.5 rounded-lg bg-white/10 px-4 py-2.5 text-sm font-medium text-white backdrop-blur-sm transition-colors hover:bg-white/20"
                   >
                     Visit Website
                     <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" /></svg>
-                  </a>
+                  </TrackedOutboundLink>
                 )}
                 <ProviderCompareSelector
                   currentSlug={p.slug}
