@@ -60,8 +60,18 @@ export default async function LeadTypePage({ params }: Props) {
   const icon = leadType?.icon || data?.icon || "";
   const description =
     leadType?.shortDescription || data?.heroDescription || "";
-  // Link to provider comparison for this vertical
-  const verticalSlug = slug.replace(/-leads$/, "");
+  // Map lead type slugs to vertical slugs (they don't always match)
+  const LEAD_TYPE_TO_VERTICAL: Record<string, string> = {
+    "mortgage-leads": "mortgage",
+    "insurance-leads": "auto-insurance",
+    "final-expense-leads": "final-expense",
+    "iul-leads": "annuity-iul",
+    "ssdi-leads": "life-insurance",
+    "mva-leads": "legal",
+    "solar-leads": "solar",
+    "medicare-leads": "medicare",
+  };
+  const verticalSlug = LEAD_TYPE_TO_VERTICAL[slug] || slug.replace(/-leads$/, "");
   const compareHref = `/providers/best/${verticalSlug}`;
   const imageUrl = leadType?.mainImage
     ? urlForImage(leadType.mainImage)?.width(1200).url()

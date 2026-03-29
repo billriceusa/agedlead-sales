@@ -210,7 +210,7 @@ export const LEAD_TYPES: Record<string, LeadTypeData> = {
       },
     ],
     getCompareUrl: () =>
-      `/providers/best/insurance`,
+      `/providers/best/auto-insurance`,
   },
 
   "final-expense-leads": {
@@ -395,7 +395,7 @@ export const LEAD_TYPES: Record<string, LeadTypeData> = {
       },
     ],
     getCompareUrl: () =>
-      `/providers/best/iul`,
+      `/providers/best/annuity-iul`,
   },
 
   "ssdi-leads": {
@@ -480,7 +480,7 @@ export const LEAD_TYPES: Record<string, LeadTypeData> = {
       },
     ],
     getCompareUrl: () =>
-      `/providers/best/ssdi`,
+      `/providers/best/life-insurance`,
   },
 
   "mva-leads": {
@@ -565,7 +565,7 @@ export const LEAD_TYPES: Record<string, LeadTypeData> = {
       },
     ],
     getCompareUrl: () =>
-      `/providers/best/mva`,
+      `/providers/best/legal`,
   },
 
   "solar-leads": {
