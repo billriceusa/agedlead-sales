@@ -20,6 +20,10 @@
     {
       "path": "/api/cron/daily-performance",
       "schedule": "0 12 * * *"
+    },
+    {
+      "path": "/api/cron/marketwatch",
+      "schedule": "0 6 1 * *"
     }
   ]
 }

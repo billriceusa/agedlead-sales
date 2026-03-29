@@ -25,6 +25,14 @@ export const metadata: Metadata = {
 
 const CALCULATORS = [
   {
+    title: "Know Your CPL",
+    slug: "know-your-cpl",
+    description:
+      "Calculate your maximum cost per lead based on your vertical, close rate, and deal value. Compare aged vs. real-time ROI side by side.",
+    icon: "🎯",
+    status: "live",
+  },
+  {
     title: "Aged Lead ROI Calculator",
     slug: "roi-calculator",
     description:

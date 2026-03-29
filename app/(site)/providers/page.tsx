@@ -1,0 +1,248 @@
+import type { Metadata } from "next";
+import { sanityFetch } from "@/sanity/lib/fetch";
+import { providersQuery } from "@/sanity/lib/queries";
+import { ProviderCard } from "@/components/provider-card";
+import { CtaBanner } from "@/components/cta-banner";
+import { JsonLd, breadcrumbJsonLd } from "@/components/json-ld";
+import { PROVIDERS } from "@/data/providers";
+import Link from "next/link";
+
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
+
+export const metadata: Metadata = {
+  title: "Lead Provider Directory — Compare & Rate Lead Providers",
+  description:
+    "Independent ratings and reviews of 15+ lead providers across mortgage, insurance, solar, and more. Transparent methodology. Updated monthly.",
+  alternates: { canonical: `${baseUrl}/providers` },
+  openGraph: {
+    title: "Lead Provider Directory | Aged Lead Sales",
+    description:
+      "Compare lead providers with our independent ratings. 6-dimension scoring, honest editorial reviews, and transparent methodology.",
+    url: `${baseUrl}/providers`,
+    images: [
+      {
+        url: `${baseUrl}/api/og?title=${encodeURIComponent("Lead Provider Directory")}&category=Lead Marketwatch&type=tool`,
+      },
+    ],
+  },
+};
+
+export default async function ProvidersPage() {
+  const sanityProviders = await sanityFetch(providersQuery);
+
+  // Map Sanity providers or fall back to static data
+  const providers =
+    sanityProviders && sanityProviders.length > 0
+      ? sanityProviders.map((p: Record<string, unknown>) => ({
+          name: p.name as string,
+          slug:
+            typeof p.slug === "string"
+              ? p.slug
+              : (p.slug as { current: string })?.current,
+          shortDescription: p.shortDescription as string,
+          overallRating: p.overallRating as number,
+          lastVerified: p.lastVerified as string,
+          pricingModel: p.pricingModel as string,
+          leadTypes: (p.leadTypes as string[]) || [],
+          verticals:
+            (p.verticals as { name: string; slug: { current: string }; icon?: string }[])?.map(
+              (v) => ({
+                name: v.name,
+                slug: typeof v.slug === "string" ? v.slug : v.slug?.current,
+                icon: v.icon,
+              })
+            ) || [],
+          isFeatured: p.isFeatured as boolean,
+        }))
+      : PROVIDERS.map((p) => ({
+          name: p.name,
+          slug: p.slug,
+          shortDescription: p.shortDescription,
+          overallRating: p.overallRating,
+          lastVerified: p.lastVerified,
+          pricingModel: p.pricingModel,
+          leadTypes: p.leadTypes,
+          verticals: p.verticals.map((vSlug) => ({
+            name: vSlug,
+            slug: vSlug,
+            icon: undefined,
+          })),
+          isFeatured: p.isFeatured,
+        }));
+
+  return (
+    <>
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Home", url: baseUrl },
+          { name: "Providers", url: `${baseUrl}/providers` },
+        ])}
+      />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          name: "Lead Provider Directory",
+          description:
+            "Independent ratings and reviews of lead providers across all major verticals.",
+          numberOfItems: providers.length,
+          itemListElement: providers.map(
+            (p: { name: string; slug: string }, i: number) => ({
+              "@type": "ListItem",
+              position: i + 1,
+              name: p.name,
+              url: `${baseUrl}/providers/${p.slug}`,
+            })
+          ),
+        }}
+      />
+
+      <section className="bg-white py-16 dark:bg-zinc-950">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-12">
+            <div className="mb-4 flex items-center gap-2">
+              <span className="rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-700 dark:bg-blue-900/50 dark:text-blue-300">
+                Lead Marketwatch
+              </span>
+            </div>
+            <h1 className="text-4xl font-bold text-zinc-900 dark:text-white">
+              Lead Provider Directory
+            </h1>
+            <p className="mt-4 max-w-3xl text-lg text-zinc-600 dark:text-zinc-400">
+              Independent ratings and reviews of lead providers across mortgage,
+              insurance, solar, and more. Every provider is scored on 6
+              dimensions with a transparent, published methodology. Updated
+              monthly.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link
+                href="/price-index"
+                className="inline-flex items-center rounded-lg border border-zinc-300 px-4 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800"
+              >
+                Lead Price Index &rarr;
+              </Link>
+              <Link
+                href="/methodology"
+                className="inline-flex items-center rounded-lg border border-zinc-300 px-4 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800"
+              >
+                Our Methodology &rarr;
+              </Link>
+            </div>
+          </div>
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {providers.map(
+              (p: {
+                name: string;
+                slug: string;
+                shortDescription: string;
+                overallRating: number;
+                lastVerified: string;
+                pricingModel: string;
+                leadTypes: string[];
+                verticals: {
+                  name: string;
+                  slug: string;
+                  icon?: string;
+                }[];
+                isFeatured: boolean;
+              }) => (
+                <ProviderCard
+                  key={p.slug}
+                  name={p.name}
+                  slug={p.slug}
+                  shortDescription={p.shortDescription}
+                  overallRating={p.overallRating}
+                  lastVerified={p.lastVerified}
+                  pricingModel={p.pricingModel}
+                  leadTypes={p.leadTypes}
+                  verticals={p.verticals}
+                  isFeatured={p.isFeatured}
+                />
+              )
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* Rating Methodology Summary */}
+      <section className="border-t border-zinc-200 bg-zinc-50 py-16 dark:border-zinc-800 dark:bg-zinc-900">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center">
+            <h2 className="text-2xl font-bold text-zinc-900 dark:text-white">
+              How We Rate Providers
+            </h2>
+            <p className="mt-4 text-zinc-600 dark:text-zinc-400">
+              Every provider is independently evaluated across six weighted
+              dimensions. We publish our methodology, date every review, and
+              include honest assessments — including what each provider is{" "}
+              <em>not</em> ideal for. Affiliate relationships never affect our
+              ratings.
+            </p>
+          </div>
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              {
+                label: "Pricing Transparency",
+                weight: "20%",
+                desc: "Published prices, self-service purchasing",
+              },
+              {
+                label: "Value",
+                weight: "20%",
+                desc: "Price relative to quality and contact rates",
+              },
+              {
+                label: "Data Quality & Compliance",
+                weight: "20%",
+                desc: "TCPA docs, consent verification, DNC scrubbing",
+              },
+              {
+                label: "Flexibility",
+                weight: "15%",
+                desc: "Minimums, contracts, return policies",
+              },
+              {
+                label: "Platform & Delivery",
+                weight: "15%",
+                desc: "Self-service portal, API, CRM integration",
+              },
+              {
+                label: "Reputation",
+                weight: "10%",
+                desc: "Years in business, BBB rating, industry presence",
+              },
+            ].map((dim) => (
+              <div
+                key={dim.label}
+                className="rounded-lg border border-zinc-200 bg-white p-4 dark:border-zinc-700 dark:bg-zinc-800"
+              >
+                <div className="flex items-baseline justify-between">
+                  <span className="text-sm font-semibold text-zinc-900 dark:text-white">
+                    {dim.label}
+                  </span>
+                  <span className="text-xs font-medium text-blue-600 dark:text-blue-400">
+                    {dim.weight}
+                  </span>
+                </div>
+                <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">
+                  {dim.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-8 text-center">
+            <Link
+              href="/methodology"
+              className="text-sm font-semibold text-blue-600 hover:text-blue-700 dark:text-blue-400"
+            >
+              Read our full methodology &rarr;
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <CtaBanner />
+    </>
+  );
+}

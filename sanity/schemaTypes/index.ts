@@ -3,8 +3,11 @@ import { categoryType } from "./category";
 import { glossaryTermType } from "./glossaryTerm";
 import { guideType } from "./guide";
 import { leadTypeSchema } from "./leadType";
+import { leadProviderType } from "./leadProvider";
 import { playbookType } from "./playbook";
 import { postType } from "./post";
+import { priceBenchmarkType } from "./priceBenchmark";
+import { verticalType } from "./vertical";
 
 export const schemaTypes = [
   authorType,
@@ -12,6 +15,9 @@ export const schemaTypes = [
   glossaryTermType,
   guideType,
   leadTypeSchema,
+  leadProviderType,
   playbookType,
   postType,
+  priceBenchmarkType,
+  verticalType,
 ];

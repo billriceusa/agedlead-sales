@@ -1,5 +1,7 @@
 import type { MetadataRoute } from "next";
 import { sanityFetch } from "@/sanity/lib/fetch";
+import { PROVIDERS, getProviderPairs } from "@/data/providers";
+import { VERTICALS } from "@/data/verticals";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
@@ -37,8 +39,48 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${baseUrl}/glossary`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/guides`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/calculators`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${baseUrl}/providers`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
+    { url: `${baseUrl}/price-index`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
+    { url: `${baseUrl}/methodology`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
+    { url: `${baseUrl}/calculators/know-your-cpl`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/about`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.5 },
   ];
+
+  // Provider profiles
+  for (const provider of PROVIDERS) {
+    entries.push({
+      url: `${baseUrl}/providers/${provider.slug}`,
+      lastModified: new Date(provider.lastVerified),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    });
+  }
+
+  // Best-of-vertical pages
+  for (const vertical of VERTICALS) {
+    entries.push({
+      url: `${baseUrl}/providers/best/${vertical.slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    });
+    entries.push({
+      url: `${baseUrl}/price-index/${vertical.slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    });
+  }
+
+  // Comparison pages
+  for (const [a, b] of getProviderPairs()) {
+    entries.push({
+      url: `${baseUrl}/compare/${a}-vs-${b}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.6,
+    });
+  }
 
   if (data) {
     for (const post of data.posts || []) {

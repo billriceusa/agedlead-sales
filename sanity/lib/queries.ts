@@ -234,6 +234,250 @@ export const categoriesQuery = defineQuery(
   }`
 );
 
+// ── Verticals ──────────────────────────────────────────────
+export const verticalsQuery = defineQuery(
+  `*[_type == "vertical"] | order(tier asc, order asc) {
+    _id,
+    name,
+    slug,
+    icon,
+    description,
+    tier,
+    order
+  }`
+);
+
+export const verticalBySlugQuery = defineQuery(
+  `*[_type == "vertical" && slug.current == $slug][0] {
+    _id,
+    name,
+    slug,
+    icon,
+    description,
+    tier
+  }`
+);
+
+// ── Lead Providers ─────────────────────────────────────────
+export const providersQuery = defineQuery(
+  `*[_type == "leadProvider"] {
+    _id,
+    name,
+    slug,
+    shortDescription,
+    logo,
+    website,
+    foundedYear,
+    bbbRating,
+    bestFor,
+    notIdealFor,
+    ratingTransparency,
+    ratingValue,
+    ratingCompliance,
+    ratingFlexibility,
+    ratingPlatform,
+    ratingReputation,
+    "overallRating": round(
+      ratingTransparency * 0.20 +
+      ratingValue * 0.20 +
+      ratingCompliance * 0.20 +
+      ratingFlexibility * 0.15 +
+      ratingPlatform * 0.15 +
+      ratingReputation * 0.10
+    , 1),
+    lastVerified,
+    verticals[]->{name, slug, icon},
+    leadTypes,
+    pricingModel,
+    isFeatured
+  } | order(overallRating desc)`
+);
+
+export const providerBySlugQuery = defineQuery(
+  `*[_type == "leadProvider" && slug.current == $slug][0] {
+    _id,
+    name,
+    slug,
+    shortDescription,
+    logo,
+    website,
+    foundedYear,
+    bbbRating,
+    headquartersState,
+    body,
+    bestFor,
+    notIdealFor,
+    ratingTransparency,
+    ratingValue,
+    ratingCompliance,
+    ratingFlexibility,
+    ratingPlatform,
+    ratingReputation,
+    "overallRating": round(
+      ratingTransparency * 0.20 +
+      ratingValue * 0.20 +
+      ratingCompliance * 0.20 +
+      ratingFlexibility * 0.15 +
+      ratingPlatform * 0.15 +
+      ratingReputation * 0.10
+    , 1),
+    ratingNotes,
+    lastVerified,
+    verticals[]->{name, slug, icon},
+    leadTypes,
+    pricingModel,
+    hasMinimums,
+    minimumDescription,
+    contractRequired,
+    returnPolicy,
+    deliveryMethods,
+    complianceFeatures,
+    affiliateUrl,
+    isFeatured,
+    seo,
+    "relatedPosts": *[_type == "post"] | order(publishedAt desc)[0...3] {
+      _id,
+      title,
+      slug,
+      excerpt,
+      mainImage,
+      publishedAt
+    },
+    "relatedPlaybooks": *[_type == "playbook"] | order(publishedAt desc)[0...3] {
+      _id,
+      title,
+      slug,
+      excerpt,
+      mainImage,
+      difficulty,
+      estimatedTime
+    }
+  }`
+);
+
+export const providersByVerticalQuery = defineQuery(
+  `*[_type == "leadProvider" && $verticalId in verticals[]._ref] {
+    _id,
+    name,
+    slug,
+    shortDescription,
+    logo,
+    website,
+    foundedYear,
+    bbbRating,
+    bestFor,
+    ratingTransparency,
+    ratingValue,
+    ratingCompliance,
+    ratingFlexibility,
+    ratingPlatform,
+    ratingReputation,
+    "overallRating": round(
+      ratingTransparency * 0.20 +
+      ratingValue * 0.20 +
+      ratingCompliance * 0.20 +
+      ratingFlexibility * 0.15 +
+      ratingPlatform * 0.15 +
+      ratingReputation * 0.10
+    , 1),
+    lastVerified,
+    verticals[]->{name, slug, icon},
+    leadTypes,
+    pricingModel,
+    isFeatured
+  } | order(overallRating desc)`
+);
+
+export const providerPairQuery = defineQuery(
+  `*[_type == "leadProvider" && slug.current in [$slugA, $slugB]] {
+    _id,
+    name,
+    slug,
+    shortDescription,
+    logo,
+    website,
+    foundedYear,
+    bbbRating,
+    headquartersState,
+    bestFor,
+    notIdealFor,
+    ratingTransparency,
+    ratingValue,
+    ratingCompliance,
+    ratingFlexibility,
+    ratingPlatform,
+    ratingReputation,
+    "overallRating": round(
+      ratingTransparency * 0.20 +
+      ratingValue * 0.20 +
+      ratingCompliance * 0.20 +
+      ratingFlexibility * 0.15 +
+      ratingPlatform * 0.15 +
+      ratingReputation * 0.10
+    , 1),
+    lastVerified,
+    verticals[]->{name, slug, icon},
+    leadTypes,
+    pricingModel,
+    hasMinimums,
+    minimumDescription,
+    contractRequired,
+    returnPolicy,
+    deliveryMethods,
+    complianceFeatures,
+    affiliateUrl,
+    isFeatured
+  } | order(name asc)`
+);
+
+export const allProviderSlugsQuery = defineQuery(
+  `*[_type == "leadProvider"] { "slug": slug.current }`
+);
+
+// ── Price Benchmarks ───────────────────────────────────────
+export const priceBenchmarksByVerticalQuery = defineQuery(
+  `*[_type == "priceBenchmark" && vertical->slug.current == $verticalSlug] | order(month desc, leadAgeBracket asc) {
+    _id,
+    "verticalSlug": vertical->slug.current,
+    "verticalName": vertical->name,
+    leadAgeBracket,
+    exclusivity,
+    leadType,
+    month,
+    priceLow,
+    priceMedian,
+    priceHigh,
+    providersSampled,
+    confidence,
+    notes
+  }`
+);
+
+export const priceBenchmarkLatestQuery = defineQuery(
+  `{
+    "benchmarks": *[_type == "priceBenchmark"] | order(month desc) {
+      _id,
+      "verticalSlug": vertical->slug.current,
+      "verticalName": vertical->name,
+      "verticalIcon": vertical->icon,
+      leadAgeBracket,
+      exclusivity,
+      leadType,
+      month,
+      priceLow,
+      priceMedian,
+      priceHigh,
+      providersSampled,
+      confidence
+    },
+    "latestMonth": *[_type == "priceBenchmark"] | order(month desc)[0].month
+  }`
+);
+
+export const allBenchmarkVerticalsQuery = defineQuery(
+  `array::unique(*[_type == "priceBenchmark"].vertical->slug.current)`
+);
+
 // ── Homepage ────────────────────────────────────────────────
 export const homepageDataQuery = defineQuery(
   `{

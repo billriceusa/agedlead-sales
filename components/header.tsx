@@ -7,9 +7,10 @@ import { affiliateUrl } from "@/lib/affiliate";
 const navigation = [
   { name: "Start Here", href: "/start-here" },
   { name: "Lead Types", href: "/lead-types" },
+  { name: "Providers", href: "/providers" },
+  { name: "Price Index", href: "/price-index" },
   { name: "Blog", href: "/blog" },
   { name: "Playbooks", href: "/playbooks" },
-  { name: "Glossary", href: "/glossary" },
   { name: "Calculators", href: "/calculators" },
 ];
 
