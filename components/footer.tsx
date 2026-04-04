@@ -76,6 +76,32 @@ export function Footer() {
         </div>
 
         <div className="mt-12 border-t border-zinc-200 pt-8 dark:border-zinc-800">
+          <div className="mb-4 flex flex-wrap justify-center gap-x-6 gap-y-2">
+            <Link
+              href="/editorial-process"
+              className="text-sm text-zinc-500 transition-colors hover:text-zinc-700 dark:hover:text-zinc-300"
+            >
+              Editorial Process
+            </Link>
+            <Link
+              href="/affiliate-disclosure"
+              className="text-sm text-zinc-500 transition-colors hover:text-zinc-700 dark:hover:text-zinc-300"
+            >
+              Affiliate Disclosure
+            </Link>
+            <Link
+              href="/privacy"
+              className="text-sm text-zinc-500 transition-colors hover:text-zinc-700 dark:hover:text-zinc-300"
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              href="/terms"
+              className="text-sm text-zinc-500 transition-colors hover:text-zinc-700 dark:hover:text-zinc-300"
+            >
+              Terms of Service
+            </Link>
+          </div>
           <p className="text-center text-sm text-zinc-500 dark:text-zinc-500">
             &copy; {new Date().getFullYear()} Aged Lead Sales. All rights
             reserved.

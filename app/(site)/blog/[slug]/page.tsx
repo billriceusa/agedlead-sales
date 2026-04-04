@@ -9,6 +9,8 @@ import { PostCard } from "@/components/post-card";
 import { CtaBanner } from "@/components/cta-banner";
 import { InlineTextCta } from "@/components/inline-text-cta";
 import { JsonLd, articleJsonLd, breadcrumbJsonLd } from "@/components/json-ld";
+import { Breadcrumbs } from "@/components/breadcrumbs";
+import { ScrollProgressBar } from "@/components/scroll-progress-bar";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
@@ -74,15 +76,16 @@ export default async function BlogPostPage({ params }: Props) {
         ])}
       />
 
+      <ScrollProgressBar />
+
       <article className="bg-white py-12 dark:bg-zinc-950">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-          <nav className="mb-8 text-sm text-zinc-500">
-            <Link href="/blog" className="hover:text-zinc-700 dark:hover:text-zinc-300">
-              Blog
-            </Link>
-            <span className="mx-2">/</span>
-            <span className="text-zinc-900 dark:text-white">{post.title}</span>
-          </nav>
+          <Breadcrumbs
+            items={[
+              { label: "Blog", href: "/blog" },
+              { label: post.title },
+            ]}
+          />
 
           <header className="mb-10">
             {post.categories && post.categories.length > 0 && (
@@ -245,6 +248,26 @@ export default async function BlogPostPage({ params }: Props) {
                 Pipeline Calculator
               </Link>
             </div>
+          </div>
+
+          <div className="mt-10 border-t border-zinc-200 pt-6 dark:border-zinc-800">
+            <p className="text-sm text-zinc-500">
+              Our content follows a rigorous{" "}
+              <Link
+                href="/editorial-process"
+                className="text-blue-600 hover:text-blue-700 dark:text-blue-400"
+              >
+                editorial process
+              </Link>
+              . Found an error?{" "}
+              <a
+                href="mailto:bill@agedleadsales.com"
+                className="text-blue-600 hover:text-blue-700 dark:text-blue-400"
+              >
+                Let us know
+              </a>
+              .
+            </p>
           </div>
 
           <div className="mt-12">

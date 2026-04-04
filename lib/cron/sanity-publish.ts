@@ -1,6 +1,7 @@
 import { createClient } from "next-sanity";
 import type { GeneratedArticle } from "./types";
 import { sectionsToPortableText } from "./ai-content";
+import { notifyIndexNow } from "@/lib/indexnow";
 
 function getSanityWriteClient() {
   const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
@@ -120,6 +121,10 @@ export async function publishArticle(
 
   await client.createOrReplace(doc);
   console.log(`Published: ${article.brief.title}`);
+
+  const siteUrl =
+    process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
+  await notifyIndexNow(`${siteUrl}/blog/${article.brief.slug}`);
 
   return { id: postId, slug: article.brief.slug };
 }
