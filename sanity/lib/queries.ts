@@ -185,6 +185,38 @@ export const glossaryTermBySlugQuery = defineQuery(
   }`
 );
 
+// ── Glossary (lightweight for tooltips) ────────────────────
+export const glossaryTooltipQuery = defineQuery(
+  `*[_type == "glossaryTerm"] {
+    "term": term,
+    "slug": slug.current,
+    definition
+  }`
+);
+
+// ── Categories (with post counts) ─────────────────────────
+export const categoryBySlugQuery = defineQuery(
+  `*[_type == "category" && slug.current == $slug][0] {
+    _id,
+    title,
+    slug,
+    description
+  }`
+);
+
+export const postsByCategoryQuery = defineQuery(
+  `*[_type == "post" && $categoryId in categories[]._ref] | order(publishedAt desc) {
+    _id,
+    title,
+    slug,
+    excerpt,
+    mainImage,
+    publishedAt,
+    author->{name, slug, image},
+    categories[]->{title, slug}
+  }`
+);
+
 // ── Guides ──────────────────────────────────────────────────
 export const guidesQuery = defineQuery(
   `*[_type == "guide"] | order(publishedAt desc) {

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { sanityFetch } from "@/sanity/lib/fetch";
-import { postBySlugQuery } from "@/sanity/lib/queries";
+import { postBySlugQuery, glossaryTooltipQuery } from "@/sanity/lib/queries";
 import { urlForImage } from "@/sanity/lib/image";
 import { PortableText } from "@/components/portable-text";
 import { PostCard } from "@/components/post-card";
@@ -48,7 +48,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const post: any = await sanityFetch(postBySlugQuery, { slug });
+  const [post, glossary]: [any, any] = await Promise.all([
+    sanityFetch(postBySlugQuery, { slug }),
+    sanityFetch(glossaryTooltipQuery),
+  ]);
   if (!post) notFound();
 
   const imageUrl = post.mainImage
@@ -92,12 +95,13 @@ export default async function BlogPostPage({ params }: Props) {
               <div className="mb-4 flex flex-wrap gap-2">
                 {post.categories.map(
                   (cat: { title: string; slug: { current: string } }) => (
-                    <span
+                    <Link
                       key={cat.slug.current}
-                      className="rounded-full bg-blue-100 px-3 py-1 text-xs font-medium text-blue-800 dark:bg-blue-900/30 dark:text-blue-400"
+                      href={`/blog/category/${cat.slug.current}`}
+                      className="rounded-full bg-blue-100 px-3 py-1 text-xs font-medium text-blue-800 transition-colors hover:bg-blue-200 dark:bg-blue-900/30 dark:text-blue-400 dark:hover:bg-blue-900/50"
                     >
                       {cat.title}
-                    </span>
+                    </Link>
                   )
                 )}
               </div>
@@ -219,7 +223,11 @@ export default async function BlogPostPage({ params }: Props) {
 
           {post.body && (
             <div className="prose-wrapper">
-              <PortableText value={post.body} campaign="blog-post" />
+              <PortableText
+                value={post.body}
+                campaign="blog-post"
+                glossary={glossary || []}
+              />
             </div>
           )}
 

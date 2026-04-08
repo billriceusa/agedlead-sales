@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { sanityFetch } from "@/sanity/lib/fetch";
-import { playbookBySlugQuery } from "@/sanity/lib/queries";
+import { playbookBySlugQuery, glossaryTooltipQuery } from "@/sanity/lib/queries";
 import { urlForImage } from "@/sanity/lib/image";
 import { PortableText } from "@/components/portable-text";
 import { PlaybookCard } from "@/components/playbook-card";
@@ -44,7 +44,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function PlaybookPage({ params }: Props) {
   const { slug } = await params;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const playbook: any = await sanityFetch(playbookBySlugQuery, { slug });
+  const [playbook, glossary]: [any, any] = await Promise.all([
+    sanityFetch(playbookBySlugQuery, { slug }),
+    sanityFetch(glossaryTooltipQuery),
+  ]);
   if (!playbook) notFound();
 
   const imageUrl = playbook.mainImage
@@ -217,7 +220,7 @@ export default async function PlaybookPage({ params }: Props) {
           {/* Body */}
           {playbook.body && (
             <div className="prose-wrapper">
-              <PortableText value={playbook.body} campaign="playbook" />
+              <PortableText value={playbook.body} campaign="playbook" glossary={glossary || []} />
             </div>
           )}
 

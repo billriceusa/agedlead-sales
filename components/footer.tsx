@@ -17,6 +17,7 @@ const footerLinks = {
     { name: "Calculators", href: "/calculators" },
     { name: "Newsletter", href: "/newsletter" },
     { name: "About", href: "/about" },
+    { name: "Contact", href: "/contact" },
   ],
   "Lead Marketwatch": [
     { name: "Provider Directory", href: "/providers" },

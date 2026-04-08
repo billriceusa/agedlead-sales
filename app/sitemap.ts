@@ -15,12 +15,14 @@ async function fetchCmsContent() {
       playbooks: ContentItem[];
       glossaryTerms: ContentItem[];
       guides: ContentItem[];
+      categories: { slug: string }[];
     }>(`{
       "posts": *[_type == "post"]{ "slug": slug.current, "lastModified": _updatedAt },
       "leadTypes": *[_type == "leadType"]{ "slug": slug.current, "lastModified": _updatedAt },
       "playbooks": *[_type == "playbook"]{ "slug": slug.current, "lastModified": _updatedAt },
       "glossaryTerms": *[_type == "glossaryTerm"]{ "slug": slug.current, "lastModified": _updatedAt },
-      "guides": *[_type == "guide"]{ "slug": slug.current, "lastModified": _updatedAt }
+      "guides": *[_type == "guide"]{ "slug": slug.current, "lastModified": _updatedAt },
+      "categories": *[_type == "category"]{ "slug": slug.current }
     }`);
     return data;
   } catch {
@@ -44,6 +46,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${baseUrl}/methodology`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
     { url: `${baseUrl}/calculators/know-your-cpl`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/about`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.5 },
+    { url: `${baseUrl}/contact`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.5 },
     { url: `${baseUrl}/editorial-process`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.5 },
     { url: `${baseUrl}/affiliate-disclosure`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.5 },
     { url: `${baseUrl}/privacy`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.3 },
@@ -101,6 +104,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
     for (const guide of data.guides || []) {
       entries.push({ url: `${baseUrl}/guides/${guide.slug}`, lastModified: new Date(guide.lastModified), priority: 0.7 });
+    }
+    for (const cat of data.categories || []) {
+      entries.push({ url: `${baseUrl}/blog/category/${cat.slug}`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.7 });
     }
   }
 

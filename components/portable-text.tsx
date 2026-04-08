@@ -4,6 +4,11 @@ import {
 } from "@portabletext/react";
 import type { PortableTextBlock } from "sanity";
 import { urlForImage } from "@/sanity/lib/image";
+import { GlossaryTooltip } from "./glossary-tooltip";
+import {
+  injectGlossaryLinks,
+  type GlossaryEntry,
+} from "@/lib/glossary-linker";
 
 const MID_ARTICLE_CTAS = [
   {
@@ -116,6 +121,15 @@ const components: PortableTextComponents = {
         {children}
       </a>
     ),
+    glossaryTerm: ({ children, value }) => (
+      <GlossaryTooltip
+        term={value?.term || ""}
+        definition={value?.definition || ""}
+        slug={value?.slug || ""}
+      >
+        {children}
+      </GlossaryTooltip>
+    ),
   },
   types: {
     image: ({ value }) => {
@@ -150,17 +164,24 @@ const MIN_BLOCKS_FOR_CTAS = 25;
 interface PortableTextProps {
   value: PortableTextBlock[];
   campaign?: string;
+  glossary?: GlossaryEntry[];
 }
 
-export function PortableText({ value, campaign = "article" }: PortableTextProps) {
-  if (!value || value.length < MIN_BLOCKS_FOR_CTAS) {
-    return <PortableTextComponent components={components} value={value} />;
+export function PortableText({ value, campaign = "article", glossary }: PortableTextProps) {
+  // Pre-process blocks to inject glossary tooltip annotations
+  const processedValue =
+    glossary && glossary.length > 0
+      ? injectGlossaryLinks(value, glossary)
+      : value;
+
+  if (!processedValue || processedValue.length < MIN_BLOCKS_FOR_CTAS) {
+    return <PortableTextComponent components={components} value={processedValue} />;
   }
 
   // Find h2 positions to insert CTAs between sections
   const h2Indices: number[] = [];
-  for (let i = 0; i < value.length; i++) {
-    const block = value[i] as { _type?: string; style?: string };
+  for (let i = 0; i < processedValue.length; i++) {
+    const block = processedValue[i] as { _type?: string; style?: string };
     if (block._type === "block" && block.style === "h2") {
       h2Indices.push(i);
     }
@@ -168,7 +189,7 @@ export function PortableText({ value, campaign = "article" }: PortableTextProps)
 
   // Not enough sections for mid-article CTAs
   if (h2Indices.length < CTA_EVERY_N_SECTIONS + 1) {
-    return <PortableTextComponent components={components} value={value} />;
+    return <PortableTextComponent components={components} value={processedValue} />;
   }
 
   // Determine split points: after every Nth h2 (insert CTA before the next h2)
@@ -181,10 +202,10 @@ export function PortableText({ value, campaign = "article" }: PortableTextProps)
   const chunks: PortableTextBlock[][] = [];
   let start = 0;
   for (const splitAt of splitPoints) {
-    chunks.push(value.slice(start, splitAt));
+    chunks.push(processedValue.slice(start, splitAt));
     start = splitAt;
   }
-  chunks.push(value.slice(start));
+  chunks.push(processedValue.slice(start));
 
   return (
     <>
