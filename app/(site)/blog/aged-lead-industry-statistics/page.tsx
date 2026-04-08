@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { StatCard } from "@/components/stat-card";
+import { CopyableStatCard } from "@/components/copyable-stat-card";
+import { ShareableQuote } from "@/components/shareable-quote";
 import { CiteThisButton } from "@/components/cite-this-button";
 import { ExpandableDeepDive } from "@/components/expandable-deep-dive";
 import { JsonLd, breadcrumbJsonLd } from "@/components/json-ld";
@@ -91,35 +93,31 @@ export default function StatisticsPage() {
             </p>
           </header>
 
-          {/* Key Stats Row */}
+          {/* Key Stats Row — copyable with attribution */}
           <section className="mb-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <StatCard
+            <CopyableStatCard
               value={`${market.providerCount}+`}
-              label="Providers Rated"
-              context="Independently reviewed with 6-dimension scoring"
-              sourceLabel="Provider Directory"
-              sourceHref="/providers"
+              label="Providers independently rated"
+              source="Aged Lead Sales Provider Directory"
+              sourceUrl={`${baseUrl}/providers`}
             />
-            <StatCard
+            <CopyableStatCard
               value={`${market.verticalCount}`}
-              label="Verticals Covered"
-              context="From mortgage and insurance to solar and legal"
-              sourceLabel="Vertical Index"
-              sourceHref="/lead-types"
+              label="Verticals with pricing benchmarks"
+              source="Aged Lead Sales Price Index"
+              sourceUrl={`${baseUrl}/price-index`}
             />
-            <StatCard
+            <CopyableStatCard
               value={`$${market.minDealValue}-$${market.maxDealValue.toLocaleString()}`}
-              label="Deal Value Range"
-              context="Average deal value across all tracked verticals"
-              sourceLabel="Price Index"
-              sourceHref="/price-index"
+              label="Deal value range across verticals"
+              source="Aged Lead Sales"
+              sourceUrl={pageUrl}
             />
-            <StatCard
+            <CopyableStatCard
               value={`${market.benchmarkDataPoints}+`}
-              label="Price Data Points"
-              context="Monthly benchmarks across age, exclusivity, and lead type"
-              sourceLabel="Price Benchmarks"
-              sourceHref="/price-index"
+              label="Monthly price data points tracked"
+              source="Aged Lead Sales Price Index"
+              sourceUrl={`${baseUrl}/price-index`}
             />
           </section>
 
@@ -202,6 +200,12 @@ export default function StatisticsPage() {
                 citation={`According to Aged Lead Sales, aged leads (31-85 days) cost ${pricing.verticalPricing[0]?.savingsPercent || 70}-${pricing.verticalPricing[pricing.verticalPricing.length - 1]?.savingsPercent || 90}% less than real-time leads across ${pricing.verticalPricing.length} verticals. Source: ${pageUrl} (Updated ${lastUpdated})`}
               />
             </div>
+
+            <ShareableQuote
+              quote={`Aged leads cost 70-90% less than real-time leads, but require a fundamentally different approach. A 2% conversion rate on $2 leads crushes a 10% rate on $50 leads. The math is overwhelmingly in your favor.`}
+              attribution="Bill Rice, Aged Lead Sales"
+              pageUrl={pageUrl}
+            />
           </section>
 
           {/* Provider Landscape */}
@@ -396,6 +400,12 @@ export default function StatisticsPage() {
                 citation={`The average contact rate on aged leads (31-85 days) is ${economics.avgAgedContactRate}% across ${market.verticalCount} verticals, with an average close rate of ${economics.avgAgedCloseRate}%. Source: Aged Lead Sales, ${pageUrl} (Updated ${lastUpdated})`}
               />
             </div>
+
+            <ShareableQuote
+              quote={`The salespeople who win with aged leads are the ones who treat lead conversion as a system, not a lottery. Different scripts, different cadences, different expectations, different economics.`}
+              attribution="Bill Rice, Aged Lead Sales"
+              pageUrl={pageUrl}
+            />
           </section>
 
           {/* Methodology */}

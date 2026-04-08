@@ -32,6 +32,8 @@
 - [x] **Answer-First Paragraphs** (2026-04-08) — Content cron prompt updated to generate 40-60 word direct answers after every H2
 - [x] **Calculator Embed Codes** (2026-04-08) — Embed routes at /calculators/[name]/embed (no site chrome), EmbedCode component with copy-to-clipboard on all 5 calculator pages, UTM-tracked attribution links
 - [x] **Article Credibility Enhancements** (2026-04-08) — CredibilityBadges component with updated date, "Human-reviewed" badge, "Reviewed by" line on blog + playbook pages
+- [x] **CopyableStatCard + ShareableQuote** (2026-04-08) — Copyable stat cards with rich clipboard + attribution, shareable quotes with LinkedIn/X/copy buttons, deployed on statistics page
+- [x] **Resources Hub Page** (2026-04-08) — `/resources` with all 5 lead magnet PDFs, email-gated downloads, calculator links, added to footer + sitemap
 
 ---
 
@@ -69,12 +71,6 @@ Bookmark icon on articles that prompts for email to save to reading list.
 - Weekly digest of saved + recommended articles
 - **Impact:** Lead capture, return visits, email list growth
 
-### Shareable/Copyable Content Elements
-- `CopyableStatCard` — data point card with copy-to-clipboard (formatted stat + attribution link)
-- `ShareableQuote` — styled blockquote with "Share this" button for LinkedIn/X
-- Especially valuable on price-index and provider comparison pages
-- **Impact:** Social sharing, passive backlinks
-
 ### Content Series with Email Drip
 Structure cornerstone content as 3-5 part series. Gate parts 2+ behind email. Each drip drives a return visit.
 - **Impact:** Email list growth, return visits, Google quality signal
@@ -86,9 +82,6 @@ On price-index pages, provider comparisons, and statistics content — pre-forma
 ---
 
 ## P2 — Information Architecture
-
-### `/resources` Hub Page
-Centralized page for all lead magnets and downloadable resources. As more are added beyond the prospecting checklist, they need a browsable hub.
 
 ### Author Hub Page (`/authors`)
 Currently `/about/bill-rice` exists. Create `/authors` as a hub for future contributors, and ensure the author page has: list of all articles, LinkedIn link, and all credentials.

@@ -16,6 +16,7 @@ const footerLinks = {
     { name: "Guides", href: "/guides" },
     { name: "Industry Statistics", href: "/blog/aged-lead-industry-statistics" },
     { name: "Calculators", href: "/calculators" },
+    { name: "Free Downloads", href: "/resources" },
     { name: "Newsletter", href: "/newsletter" },
     { name: "About", href: "/about" },
     { name: "Contact", href: "/contact" },
@@ -107,6 +108,16 @@ export function Footer() {
           <p className="text-center text-sm text-zinc-500 dark:text-zinc-500">
             &copy; {new Date().getFullYear()} Aged Lead Sales. All rights
             reserved.
+          </p>
+          <p className="mt-2 text-center text-sm text-zinc-500 dark:text-zinc-500">
+            A{" "}
+            <a
+              href="https://billrice.com/about"
+              className="underline transition-colors hover:text-zinc-700 dark:hover:text-zinc-300"
+            >
+              Bill Rice
+            </a>{" "}
+            project.
           </p>
         </div>
       </div>
