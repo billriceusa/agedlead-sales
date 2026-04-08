@@ -7,7 +7,7 @@ const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 export const metadata: Metadata = {
   title: "Bill Rice – Founder & Lead Conversion Expert",
   description:
-    "Bill Rice has 20+ years building lead conversion systems across insurance, mortgage, and solar. Founder of Kaleidico. Marketing director for Aged Lead Store.",
+    "Bill Rice has 30+ years building lead conversion systems across insurance, mortgage, and solar. Founder of Kaleidico. Marketing director for Aged Lead Store.",
   alternates: { canonical: `${baseUrl}/about/bill-rice` },
 };
 
@@ -55,9 +55,10 @@ export default function BillRicePage() {
               Background
             </h2>
             <p>
-              Bill started his career in{" "}
+              Bill started his career as a{" "}
               <strong className="text-zinc-900 dark:text-white">
-                Air Force intelligence operations
+                U.S. Air Force Office of Special Investigations (AFOSI) Special
+                Agent and case officer
               </strong>
               , where he developed the systematic thinking and process
               discipline that would later define his approach to lead
@@ -132,6 +133,16 @@ export default function BillRicePage() {
               Connect
             </h2>
             <ul className="space-y-2">
+              <li>
+                <a
+                  href="https://billrice.com/about"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 underline hover:text-blue-700 dark:text-blue-400"
+                >
+                  Full Career Profile ↗
+                </a>
+              </li>
               <li>
                 <a
                   href="https://kaleidico.com/bill-rice/"

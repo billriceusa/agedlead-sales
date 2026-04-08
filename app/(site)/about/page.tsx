@@ -4,7 +4,7 @@ import { CtaBanner } from "@/components/cta-banner";
 import { NewsletterSignup } from "@/components/newsletter-signup";
 
 export const metadata: Metadata = {
-  title: "About — Bill Rice | 25+ Years in Lead Generation & Fintech Marketing",
+  title: "About — Bill Rice | 30+ Years in Lead Generation & Fintech Marketing",
   description:
     "Aged Lead Sales is built by Bill Rice — the expert who coined 'lead management,' built lead systems at Quicken Loans, and has personally worked millions of aged leads across insurance, mortgage, solar, and home improvement. Free training from someone who actually dials.",
 };
@@ -31,7 +31,7 @@ export default function AboutPage() {
             </p>
 
             <p>
-              I&apos;ve spent 25+ years in lead generation and fintech
+              I&apos;ve spent 30+ years in lead generation and fintech
               marketing. I&apos;ve personally worked millions of leads across
               insurance, mortgage, solar, and home improvement. I coined the
               term &ldquo;lead management&rdquo; — literally invented the
@@ -55,7 +55,7 @@ export default function AboutPage() {
             </h2>
 
             <h3 className="pt-2 text-xl font-semibold text-zinc-900 dark:text-white">
-              Air Force Intelligence
+              U.S. Air Force Office of Special Investigations (AFOSI)
             </h3>
             <p>
               My career started about as far from sales as you can get. I
@@ -64,7 +64,8 @@ export default function AboutPage() {
                 United States Air Force Academy
               </strong>{" "}
               in 1992 with a B.S. in Political Science and was commissioned as
-              an officer specializing in counterespionage operations. The Air
+              a U.S. Air Force Office of Special Investigations (AFOSI) Special
+              Agent and case officer specializing in counterespionage operations. The Air
               Force teaches you to think in systems — to break complex problems
               into components, identify leverage points, and execute with
               discipline. That analytical framework shaped everything I&apos;ve
@@ -241,10 +242,10 @@ export default function AboutPage() {
             <ul className="list-disc space-y-2 pl-6">
               <li>
                 <strong className="text-zinc-900 dark:text-white">
-                  &ldquo;My Executive Brief&rdquo;
+                  &ldquo;The Lead Brief&rdquo;
                 </strong>{" "}
-                — my weekly newsletter on Substack covering marketing strategy,
-                lead generation trends, and lessons from 25+ years in the
+                — my weekly newsletter covering marketing strategy,
+                lead generation trends, and lessons from 30+ years in the
                 industry
               </li>
               <li>
@@ -467,7 +468,7 @@ export default function AboutPage() {
               will give you the frameworks to tighten your process.
             </p>
             <p>
-              I&apos;ve been doing this for 25 years. I&apos;ve watched the
+              I&apos;ve been doing this for 30 years. I&apos;ve watched the
               lead industry evolve from fax-back forms to real-time bidding
               platforms. Through all of that change, one thing has stayed
               constant: the salespeople who win are the ones who treat lead
@@ -479,6 +480,16 @@ export default function AboutPage() {
               on lead management and sales strategy, and on the Bill Rice
               Strategy YouTube channel, where I break down frameworks in video
               format.
+            </p>
+            <p>
+              For my full career profile, visit{" "}
+              <a
+                href="https://billrice.com/about"
+                className="font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400"
+              >
+                billrice.com/about
+              </a>
+              .
             </p>
             <p className="font-medium text-zinc-900 dark:text-white">
               — Bill Rice
