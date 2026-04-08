@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { KnowYourCplCalculator } from "@/components/calculators/know-your-cpl-calculator";
 import { CtaBanner } from "@/components/cta-banner";
+import { EmbedCode } from "@/components/embed-code";
 import { JsonLd, breadcrumbJsonLd } from "@/components/json-ld";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
@@ -56,6 +58,8 @@ export default function KnowYourCplPage() {
 
       <section className="bg-white py-16 dark:bg-zinc-950">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          <Breadcrumbs items={[{ label: "Calculators", href: "/calculators" }, { label: "Know Your CPL" }]} />
+
           <div className="mb-8">
             <div className="mb-4 flex items-center gap-2">
               <span className="rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-700 dark:bg-blue-900/50 dark:text-blue-300">
@@ -84,6 +88,9 @@ export default function KnowYourCplPage() {
         </div>
       </section>
 
+      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <EmbedCode calculatorName="Know Your CPL Calculator" calculatorSlug="know-your-cpl" />
+      </div>
       <CtaBanner />
     </>
   );

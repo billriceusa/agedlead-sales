@@ -9,6 +9,7 @@ import { PostCard } from "@/components/post-card";
 import { PlaybookCard } from "@/components/playbook-card";
 import { CtaBanner } from "@/components/cta-banner";
 import { JsonLd, breadcrumbJsonLd, faqJsonLd } from "@/components/json-ld";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { NewsletterSignup } from "@/components/newsletter-signup";
 import { LEAD_TYPES } from "@/data/lead-types";
 
@@ -91,13 +92,13 @@ export default async function LeadTypePage({ params }: Props) {
       {/* Hero */}
       <section className="bg-gradient-to-br from-zinc-900 to-blue-950 py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <nav className="mb-8 text-sm text-zinc-400">
-            <Link href="/lead-types" className="hover:text-white">
-              Lead Types
-            </Link>
-            <span className="mx-2">/</span>
-            <span className="text-white">{title}</span>
-          </nav>
+          <Breadcrumbs
+            variant="dark"
+            items={[
+              { label: "Lead Types", href: "/lead-types" },
+              { label: title },
+            ]}
+          />
 
           <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
             <div className="max-w-2xl">

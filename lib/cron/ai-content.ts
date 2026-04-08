@@ -171,6 +171,7 @@ export async function writeArticle(
 - Reference internal links naturally within the content (mention the topic, readers can find the link)
 - Include practical templates, scripts, checklists, or frameworks the reader can use immediately
 - Tone: authoritative, direct, conversational — like an experienced mentor
+- Answer-first format: after every H2 heading, the FIRST paragraph MUST be a direct, concise 40-60 word answer to the section topic. Lead with the key fact or recommendation. This paragraph should work as a standalone answer for voice search and featured snippets. Follow it with supporting detail, examples, and frameworks
 
 Respond with valid JSON matching this structure:
 {

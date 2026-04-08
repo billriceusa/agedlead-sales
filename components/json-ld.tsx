@@ -129,6 +129,10 @@ export function articleJsonLd({
       name: "Aged Lead Sales",
       url: baseUrl,
     },
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: [".key-takeaway-box", ".prose-wrapper h2 + p"],
+    },
   };
 }
 

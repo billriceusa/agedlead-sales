@@ -12,6 +12,7 @@ import { InlineTextCta } from "@/components/inline-text-cta";
 import { JsonLd, articleJsonLd, breadcrumbJsonLd } from "@/components/json-ld";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ScrollProgressBar } from "@/components/scroll-progress-bar";
+import { CredibilityBadges } from "@/components/credibility-badges";
 import { StickyToc } from "@/components/sticky-toc";
 import { NextReadBar } from "@/components/next-read-bar";
 
@@ -158,6 +159,13 @@ export default async function BlogPostPage({ params }: Props) {
                 </time>
               )}
             </div>
+
+            <CredibilityBadges
+              publishedAt={post.publishedAt}
+              updatedAt={post._updatedAt}
+              authorName={post.author?.name}
+              authorRole={post.author?.role}
+            />
           </header>
 
           {imageUrl && (

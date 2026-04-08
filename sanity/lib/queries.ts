@@ -137,6 +137,7 @@ export const playbookBySlugQuery = defineQuery(
     difficulty,
     estimatedTime,
     publishedAt,
+    _updatedAt,
     author->{name, slug, image, bio, role},
     leadTypes[]->{title, slug, icon},
     seo,

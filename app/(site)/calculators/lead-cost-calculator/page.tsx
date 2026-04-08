@@ -3,8 +3,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { LeadCostCalculator } from "@/components/calculators/lead-cost-calculator";
 import { CtaBanner } from "@/components/cta-banner";
+import { EmbedCode } from "@/components/embed-code";
 import { NewsletterSignup } from "@/components/newsletter-signup";
 import { JsonLd, breadcrumbJsonLd, faqJsonLd, webApplicationJsonLd } from "@/components/json-ld";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
@@ -37,11 +39,7 @@ export default function LeadCostCalculatorPage() {
 
       <section className="bg-white py-12 dark:bg-zinc-950">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-          <nav className="mb-8 text-sm text-zinc-500">
-            <Link href="/calculators" className="hover:text-zinc-700 dark:hover:text-zinc-300">Calculators</Link>
-            <span className="mx-2">/</span>
-            <span className="text-zinc-900 dark:text-white">Lead Cost Calculator</span>
-          </nav>
+          <Breadcrumbs items={[{ label: "Calculators", href: "/calculators" }, { label: "Lead Cost Calculator" }]} />
 
           <h1 className="mb-4 text-3xl font-bold text-zinc-900 dark:text-white sm:text-4xl">Lead Cost Calculator</h1>
           <p className="mb-10 text-lg text-zinc-600 dark:text-zinc-400">
@@ -115,6 +113,9 @@ export default function LeadCostCalculatorPage() {
           </div>
         </div>
       </section>
+      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <EmbedCode calculatorName="Lead Cost Calculator" calculatorSlug="lead-cost-calculator" />
+      </div>
       <CtaBanner campaign="lead-cost-calculator" />
     </>
   );

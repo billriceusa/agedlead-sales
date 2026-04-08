@@ -11,6 +11,7 @@ import { ProviderRatingBar } from "@/components/provider-rating-bar";
 import { FreshnessIndicator } from "@/components/freshness-indicator";
 import { CtaBanner } from "@/components/cta-banner";
 import { JsonLd, breadcrumbJsonLd } from "@/components/json-ld";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { getProvider, PROVIDERS } from "@/data/providers";
 import { ProviderCompareSelector } from "@/components/provider-compare-selector";
 import { TrackedOutboundLink } from "@/components/tracked-outbound-link";
@@ -142,16 +143,13 @@ export default async function ProviderProfilePage({
       <section className="relative overflow-hidden bg-gradient-to-br from-zinc-900 via-zinc-900 to-blue-950">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-600/10 via-transparent to-transparent" />
         <div className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-          <div className="mb-4 flex items-center gap-2 text-sm text-zinc-400">
-            <Link
-              href="/providers"
-              className="hover:text-blue-400"
-            >
-              Providers
-            </Link>
-            <span className="text-zinc-600">/</span>
-            <span className="text-zinc-300">{p.name}</span>
-          </div>
+          <Breadcrumbs
+            variant="dark"
+            items={[
+              { label: "Providers", href: "/providers" },
+              { label: p.name },
+            ]}
+          />
           <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
             <div>
               <h1 className="text-4xl font-bold text-white">

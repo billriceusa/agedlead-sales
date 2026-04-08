@@ -8,6 +8,7 @@ import { PortableText } from "@/components/portable-text";
 import { CtaBanner } from "@/components/cta-banner";
 import { InlineTextCta } from "@/components/inline-text-cta";
 import { JsonLd, breadcrumbJsonLd } from "@/components/json-ld";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
@@ -65,13 +66,12 @@ export default async function GuidePage({ params }: Props) {
 
       <article className="bg-white py-12 dark:bg-zinc-950">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-          <nav className="mb-8 text-sm text-zinc-500">
-            <Link href="/guides" className="hover:text-zinc-700 dark:hover:text-zinc-300">
-              Guides
-            </Link>
-            <span className="mx-2">/</span>
-            <span className="text-zinc-900 dark:text-white">{guide.title}</span>
-          </nav>
+          <Breadcrumbs
+            items={[
+              { label: "Guides", href: "/guides" },
+              { label: guide.title },
+            ]}
+          />
 
           <header className="mb-10">
             {guide.estimatedTime && (

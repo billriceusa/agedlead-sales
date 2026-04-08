@@ -11,6 +11,7 @@ import {
   glossaryTermJsonLd,
   breadcrumbJsonLd,
 } from "@/components/json-ld";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { GLOSSARY_TERMS } from "@/data/glossary-terms";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
@@ -84,13 +85,12 @@ export default async function GlossaryTermPage({ params }: Props) {
 
       <article className="bg-white py-12 dark:bg-zinc-950">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-          <nav className="mb-8 text-sm text-zinc-500">
-            <Link href="/glossary" className="hover:text-zinc-700 dark:hover:text-zinc-300">
-              Glossary
-            </Link>
-            <span className="mx-2">/</span>
-            <span className="text-zinc-900 dark:text-white">{name}</span>
-          </nav>
+          <Breadcrumbs
+            items={[
+              { label: "Glossary", href: "/glossary" },
+              { label: name },
+            ]}
+          />
 
           <header className="mb-10">
             {category && (

@@ -10,6 +10,8 @@ import { PlaybookCard } from "@/components/playbook-card";
 import { CtaBanner } from "@/components/cta-banner";
 import { InlineTextCta } from "@/components/inline-text-cta";
 import { JsonLd, breadcrumbJsonLd, howToJsonLd } from "@/components/json-ld";
+import { Breadcrumbs } from "@/components/breadcrumbs";
+import { CredibilityBadges } from "@/components/credibility-badges";
 import { StickyToc } from "@/components/sticky-toc";
 import { NextReadBar } from "@/components/next-read-bar";
 
@@ -102,18 +104,12 @@ export default async function PlaybookPage({ params }: Props) {
         <div className="relative mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           {headings.length >= 3 && <StickyToc headings={headings} />}
 
-          <nav className="mb-8 text-sm text-zinc-500">
-            <Link
-              href="/playbooks"
-              className="hover:text-zinc-700 dark:hover:text-zinc-300"
-            >
-              Playbooks
-            </Link>
-            <span className="mx-2">/</span>
-            <span className="text-zinc-900 dark:text-white">
-              {playbook.title}
-            </span>
-          </nav>
+          <Breadcrumbs
+            items={[
+              { label: "Playbooks", href: "/playbooks" },
+              { label: playbook.title },
+            ]}
+          />
 
           {/* Header */}
           <header className="mb-10">
@@ -174,6 +170,13 @@ export default async function PlaybookPage({ params }: Props) {
                 </div>
               </div>
             )}
+
+            <CredibilityBadges
+              publishedAt={playbook.publishedAt}
+              updatedAt={playbook._updatedAt}
+              authorName={playbook.author?.name}
+              authorRole={playbook.author?.role}
+            />
           </header>
 
           {/* Featured Image */}

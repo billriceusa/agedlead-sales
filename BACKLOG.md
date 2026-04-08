@@ -27,17 +27,15 @@
 - [x] **ExpandableDeepDive** (2026-04-08) — styled details/summary component
 - [x] **Statistics/Data Page** (2026-04-08) — `/blog/aged-lead-industry-statistics` link-magnet with pricing tables, provider landscape, lead economics, Cite This buttons, Dataset JSON-LD
 
+- [x] **Breadcrumbs on all sub-pages** (2026-04-08) — Breadcrumbs component with dark variant, deployed on playbooks, lead-types, guides, glossary, providers, and all 5 calculator pages
+- [x] **Speakable Schema** (2026-04-08) — SpeakableSpecification in Article JSON-LD targeting key-takeaway-box and first paragraph after H2s
+- [x] **Answer-First Paragraphs** (2026-04-08) — Content cron prompt updated to generate 40-60 word direct answers after every H2
+- [x] **Calculator Embed Codes** (2026-04-08) — Embed routes at /calculators/[name]/embed (no site chrome), EmbedCode component with copy-to-clipboard on all 5 calculator pages, UTM-tracked attribution links
+- [x] **Article Credibility Enhancements** (2026-04-08) — CredibilityBadges component with updated date, "Human-reviewed" badge, "Reviewed by" line on blog + playbook pages
+
 ---
 
 ## P1 — High Value Engagement & Traffic
-
-### Article Credibility Enhancements
-Trust signals missing from blog posts per playbook Section 9:
-- [ ] Fact-checked date — separate from "Updated" date
-- [ ] "Reviewed by" line — visible reviewer credit linked to profile
-- [ ] Source citations — verify every article has sourced claims with hyperlinks
-- [ ] "Human-reviewed content" label
-- **Impact:** E-E-A-T, YMYL trust, content credibility
 
 ### Homepage Social Proof & Trust Indicators
 Homepage has stat cards but is missing:
@@ -50,18 +48,6 @@ Homepage has stat cards but is missing:
 ---
 
 ## P1 — SEO & Visibility
-
-### Speakable Schema
-Add `speakable` property to Article JSON-LD on key content pages. Flags the most citable passage for AI synthesis.
-- **Impact:** AI Overview citation, voice search
-
-### Calculator Embed Codes
-5 calculators exist but none offer embed snippets. Add "Embed this calculator" button with pre-built iframe code + attribution link.
-- **Impact:** Passive backlinks from sites that embed the tools
-
-### Answer-First Paragraph Structure
-Playbook Section 16: "Place a 40-60 word direct answer immediately after each H2 heading." Audit existing articles and update content cron to generate answer-first structure.
-- **Impact:** AI Overview citation, featured snippets
 
 ### Entity SEO — Wikidata Entry
 Create/claim a Wikidata entry for "Aged Lead Sales" with proper classification. Entity-recognized brands see 3.4x more AI-sourced traffic.
@@ -103,17 +89,6 @@ On price-index pages, provider comparisons, and statistics content — pre-forma
 
 ### `/resources` Hub Page
 Centralized page for all lead magnets and downloadable resources. As more are added beyond the prospecting checklist, they need a browsable hub.
-
-### Breadcrumbs on All Sub-Pages
-Breadcrumbs component is built and deployed on blog posts. Extend to:
-- [ ] Lead type detail pages
-- [ ] Playbook detail pages
-- [ ] Guide detail pages
-- [ ] Glossary term detail pages
-- [ ] Calculator pages
-- [ ] Provider detail pages
-- [ ] Price index vertical pages
-- [ ] Comparison pages
 
 ### Author Hub Page (`/authors`)
 Currently `/about/bill-rice` exists. Create `/authors` as a hub for future contributors, and ensure the author page has: list of all articles, LinkedIn link, and all credentials.

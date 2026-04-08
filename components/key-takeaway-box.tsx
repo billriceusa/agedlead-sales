@@ -18,7 +18,7 @@ export function KeyTakeawayBox({ excerpt, firstHeadingId }: KeyTakeawayBoxProps)
   const useBullets = sentences.length >= 2;
 
   return (
-    <div className="mb-8 rounded-lg border-l-4 border-blue-500 bg-blue-50 p-5 dark:bg-blue-950/30">
+    <div className="key-takeaway-box mb-8 rounded-lg border-l-4 border-blue-500 bg-blue-50 p-5 dark:bg-blue-950/30">
       <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-blue-700 dark:text-blue-400">
         Key Takeaways
       </p>
