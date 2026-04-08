@@ -4,13 +4,16 @@ import { notFound } from "next/navigation";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { postBySlugQuery, glossaryTooltipQuery } from "@/sanity/lib/queries";
 import { urlForImage } from "@/sanity/lib/image";
-import { PortableText } from "@/components/portable-text";
+import { PortableText, extractHeadings, buildHeadingIdMap } from "@/components/portable-text";
+import { KeyTakeawayBox } from "@/components/key-takeaway-box";
 import { PostCard } from "@/components/post-card";
 import { CtaBanner } from "@/components/cta-banner";
 import { InlineTextCta } from "@/components/inline-text-cta";
 import { JsonLd, articleJsonLd, breadcrumbJsonLd } from "@/components/json-ld";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ScrollProgressBar } from "@/components/scroll-progress-bar";
+import { StickyToc } from "@/components/sticky-toc";
+import { NextReadBar } from "@/components/next-read-bar";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
@@ -54,6 +57,9 @@ export default async function BlogPostPage({ params }: Props) {
   ]);
   if (!post) notFound();
 
+  const headings = post.body ? extractHeadings(post.body) : [];
+  const headingIds = post.body ? buildHeadingIdMap(post.body) : new Map<string, string>();
+
   const imageUrl = post.mainImage
     ? urlForImage(post.mainImage)?.width(1200).url()
     : undefined;
@@ -82,7 +88,9 @@ export default async function BlogPostPage({ params }: Props) {
       <ScrollProgressBar />
 
       <article className="bg-white py-12 dark:bg-zinc-950">
-        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <div className="relative mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+          {headings.length >= 3 && <StickyToc headings={headings} />}
+
           <Breadcrumbs
             items={[
               { label: "Blog", href: "/blog" },
@@ -221,12 +229,20 @@ export default async function BlogPostPage({ params }: Props) {
             leadType={post.leadTypes?.[0]?.title}
           />
 
+          {post.excerpt && (
+            <KeyTakeawayBox
+              excerpt={post.excerpt}
+              firstHeadingId={headings[0]?.id}
+            />
+          )}
+
           {post.body && (
             <div className="prose-wrapper">
               <PortableText
                 value={post.body}
                 campaign="blog-post"
                 glossary={glossary || []}
+                headingIds={headingIds}
               />
             </div>
           )}
@@ -283,6 +299,13 @@ export default async function BlogPostPage({ params }: Props) {
           </div>
         </div>
       </article>
+
+      {post.relatedPosts?.[0] && (
+        <NextReadBar
+          title={post.relatedPosts[0].title}
+          slug={post.relatedPosts[0].slug.current}
+        />
+      )}
 
       {post.relatedPosts && post.relatedPosts.length > 0 && (
         <section className="border-t border-zinc-200 bg-zinc-50 py-16 dark:border-zinc-800 dark:bg-zinc-900">

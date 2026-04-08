@@ -14,6 +14,7 @@ const footerLinks = {
     { name: "Playbooks", href: "/playbooks" },
     { name: "Glossary", href: "/glossary" },
     { name: "Guides", href: "/guides" },
+    { name: "Industry Statistics", href: "/blog/aged-lead-industry-statistics" },
     { name: "Calculators", href: "/calculators" },
     { name: "Newsletter", href: "/newsletter" },
     { name: "About", href: "/about" },

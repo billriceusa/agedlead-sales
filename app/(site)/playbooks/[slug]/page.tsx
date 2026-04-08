@@ -4,11 +4,14 @@ import { notFound } from "next/navigation";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { playbookBySlugQuery, glossaryTooltipQuery } from "@/sanity/lib/queries";
 import { urlForImage } from "@/sanity/lib/image";
-import { PortableText } from "@/components/portable-text";
+import { PortableText, extractHeadings, buildHeadingIdMap } from "@/components/portable-text";
+import { KeyTakeawayBox } from "@/components/key-takeaway-box";
 import { PlaybookCard } from "@/components/playbook-card";
 import { CtaBanner } from "@/components/cta-banner";
 import { InlineTextCta } from "@/components/inline-text-cta";
 import { JsonLd, breadcrumbJsonLd, howToJsonLd } from "@/components/json-ld";
+import { StickyToc } from "@/components/sticky-toc";
+import { NextReadBar } from "@/components/next-read-bar";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
@@ -49,6 +52,9 @@ export default async function PlaybookPage({ params }: Props) {
     sanityFetch(glossaryTooltipQuery),
   ]);
   if (!playbook) notFound();
+
+  const headings = playbook.body ? extractHeadings(playbook.body) : [];
+  const headingIds = playbook.body ? buildHeadingIdMap(playbook.body) : new Map<string, string>();
 
   const imageUrl = playbook.mainImage
     ? urlForImage(playbook.mainImage)?.width(1200).url()
@@ -93,7 +99,9 @@ export default async function PlaybookPage({ params }: Props) {
       />
 
       <article className="bg-white py-12 dark:bg-zinc-950">
-        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <div className="relative mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+          {headings.length >= 3 && <StickyToc headings={headings} />}
+
           <nav className="mb-8 text-sm text-zinc-500">
             <Link
               href="/playbooks"
@@ -217,10 +225,22 @@ export default async function PlaybookPage({ params }: Props) {
             leadType={playbook.leadTypes?.[0]?.title}
           />
 
+          {playbook.excerpt && (
+            <KeyTakeawayBox
+              excerpt={playbook.excerpt}
+              firstHeadingId={headings[0]?.id}
+            />
+          )}
+
           {/* Body */}
           {playbook.body && (
             <div className="prose-wrapper">
-              <PortableText value={playbook.body} campaign="playbook" glossary={glossary || []} />
+              <PortableText
+                value={playbook.body}
+                campaign="playbook"
+                glossary={glossary || []}
+                headingIds={headingIds}
+              />
             </div>
           )}
 
@@ -257,6 +277,14 @@ export default async function PlaybookPage({ params }: Props) {
           </div>
         </div>
       </article>
+
+      {playbook.relatedPlaybooks?.[0] && (
+        <NextReadBar
+          title={playbook.relatedPlaybooks[0].title}
+          slug={playbook.relatedPlaybooks[0].slug.current}
+          basePath="/playbooks"
+        />
+      )}
 
       {/* Related Playbooks */}
       {playbook.relatedPlaybooks && playbook.relatedPlaybooks.length > 0 && (

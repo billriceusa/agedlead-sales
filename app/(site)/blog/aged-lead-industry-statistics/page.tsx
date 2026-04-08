@@ -1,0 +1,516 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { StatCard } from "@/components/stat-card";
+import { CiteThisButton } from "@/components/cite-this-button";
+import { ExpandableDeepDive } from "@/components/expandable-deep-dive";
+import { JsonLd, breadcrumbJsonLd } from "@/components/json-ld";
+import {
+  getMarketOverviewStats,
+  getPricingDistributionStats,
+  getProviderLandscapeStats,
+  getLeadEconomicsStats,
+} from "@/lib/statistics";
+
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
+const lastUpdated = "2026-04-08";
+const pageUrl = `${baseUrl}/blog/aged-lead-industry-statistics`;
+
+export const metadata: Metadata = {
+  title:
+    "Aged Lead Industry Statistics [2026] — Pricing, Contact Rates & Market Data",
+  description:
+    "Comprehensive aged lead industry statistics for 2026: pricing benchmarks across 14 verticals, provider landscape data, contact rates, close rates, and ROI analysis. Updated quarterly.",
+  alternates: { canonical: pageUrl },
+  openGraph: {
+    title: "Aged Lead Industry Statistics [2026]",
+    description:
+      "Pricing benchmarks, contact rates, and market data across 14 verticals and 18+ providers. The most comprehensive aged lead data on the web.",
+    url: pageUrl,
+  },
+};
+
+export default function StatisticsPage() {
+  const market = getMarketOverviewStats();
+  const pricing = getPricingDistributionStats();
+  const providers = getProviderLandscapeStats();
+  const economics = getLeadEconomicsStats();
+
+  return (
+    <>
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Home", url: baseUrl },
+          { name: "Blog", url: `${baseUrl}/blog` },
+          { name: "Aged Lead Industry Statistics", url: pageUrl },
+        ])}
+      />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Dataset",
+          name: "Aged Lead Industry Pricing & Performance Benchmarks",
+          description:
+            "Quarterly benchmarks for aged lead pricing, contact rates, and provider ratings across 14 verticals.",
+          url: pageUrl,
+          dateModified: lastUpdated,
+          creator: {
+            "@type": "Person",
+            name: "Bill Rice",
+            url: `${baseUrl}/about`,
+          },
+          license: "https://creativecommons.org/licenses/by/4.0/",
+        }}
+      />
+
+      <article className="bg-white py-16 dark:bg-zinc-950">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          {/* Hero */}
+          <header className="mb-12">
+            <p className="mb-3 text-sm font-medium text-blue-600 dark:text-blue-400">
+              Updated quarterly &middot; Last updated{" "}
+              {new Date(lastUpdated).toLocaleDateString("en-US", {
+                month: "long",
+                day: "numeric",
+                year: "numeric",
+              })}
+            </p>
+            <h1 className="text-3xl font-bold text-zinc-900 dark:text-white sm:text-4xl lg:text-5xl">
+              Aged Lead Industry Statistics [2026]
+            </h1>
+            <p className="mt-4 max-w-2xl text-lg text-zinc-600 dark:text-zinc-400">
+              Pricing benchmarks, contact rates, close rates, and provider
+              landscape data across {market.verticalCount} verticals and{" "}
+              {market.providerCount}+ rated providers. Sourced from our{" "}
+              <Link
+                href="/methodology"
+                className="text-blue-600 hover:text-blue-700 dark:text-blue-400"
+              >
+                published methodology
+              </Link>
+              .
+            </p>
+          </header>
+
+          {/* Key Stats Row */}
+          <section className="mb-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <StatCard
+              value={`${market.providerCount}+`}
+              label="Providers Rated"
+              context="Independently reviewed with 6-dimension scoring"
+              sourceLabel="Provider Directory"
+              sourceHref="/providers"
+            />
+            <StatCard
+              value={`${market.verticalCount}`}
+              label="Verticals Covered"
+              context="From mortgage and insurance to solar and legal"
+              sourceLabel="Vertical Index"
+              sourceHref="/lead-types"
+            />
+            <StatCard
+              value={`$${market.minDealValue}-$${market.maxDealValue.toLocaleString()}`}
+              label="Deal Value Range"
+              context="Average deal value across all tracked verticals"
+              sourceLabel="Price Index"
+              sourceHref="/price-index"
+            />
+            <StatCard
+              value={`${market.benchmarkDataPoints}+`}
+              label="Price Data Points"
+              context="Monthly benchmarks across age, exclusivity, and lead type"
+              sourceLabel="Price Benchmarks"
+              sourceHref="/price-index"
+            />
+          </section>
+
+          {/* Pricing by Vertical */}
+          <section className="mb-16">
+            <h2 className="mb-2 text-2xl font-bold text-zinc-900 dark:text-white">
+              Pricing: Real-Time vs. Aged Leads by Vertical
+            </h2>
+            <p className="mb-6 text-sm text-zinc-600 dark:text-zinc-400">
+              Median cost per shared internet lead. Aged leads use the 31-85 day
+              bracket.{" "}
+              <Link
+                href="/price-index"
+                className="text-blue-600 hover:text-blue-700 dark:text-blue-400"
+              >
+                See full price index &rarr;
+              </Link>
+            </p>
+
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-zinc-200 dark:border-zinc-800">
+                    <th className="py-3 pr-4 text-left font-semibold text-zinc-900 dark:text-white">
+                      Vertical
+                    </th>
+                    <th className="px-4 py-3 text-right font-semibold text-zinc-900 dark:text-white">
+                      Real-Time
+                    </th>
+                    <th className="px-4 py-3 text-right font-semibold text-zinc-900 dark:text-white">
+                      Aged (31-85d)
+                    </th>
+                    <th className="py-3 pl-4 text-right font-semibold text-zinc-900 dark:text-white">
+                      Savings
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {pricing.verticalPricing.map((v) => (
+                    <tr
+                      key={v.slug}
+                      className="border-b border-zinc-100 dark:border-zinc-800/50"
+                    >
+                      <td className="py-3 pr-4 text-zinc-700 dark:text-zinc-300">
+                        <Link
+                          href={`/price-index/${v.slug}`}
+                          className="hover:text-blue-600 dark:hover:text-blue-400"
+                        >
+                          {v.icon} {v.vertical}
+                        </Link>
+                      </td>
+                      <td className="px-4 py-3 text-right text-zinc-700 dark:text-zinc-300">
+                        ${v.realTimeMedian}
+                      </td>
+                      <td className="px-4 py-3 text-right font-medium text-blue-600 dark:text-blue-400">
+                        ${v.agedMedian}
+                      </td>
+                      <td className="py-3 pl-4 text-right font-medium text-green-600 dark:text-green-400">
+                        {v.savingsPercent}% less
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {pricing.avgExclusivityPremium && (
+              <p className="mt-4 text-sm text-zinc-500 dark:text-zinc-400">
+                <strong className="text-zinc-700 dark:text-zinc-300">
+                  Exclusivity premium:
+                </strong>{" "}
+                Exclusive leads cost an average of{" "}
+                {pricing.avgExclusivityPremium}x more than shared leads across
+                all verticals.
+              </p>
+            )}
+
+            <div className="mt-4">
+              <CiteThisButton
+                citation={`According to Aged Lead Sales, aged leads (31-85 days) cost ${pricing.verticalPricing[0]?.savingsPercent || 70}-${pricing.verticalPricing[pricing.verticalPricing.length - 1]?.savingsPercent || 90}% less than real-time leads across ${pricing.verticalPricing.length} verticals. Source: ${pageUrl} (Updated ${lastUpdated})`}
+              />
+            </div>
+          </section>
+
+          {/* Provider Landscape */}
+          <section className="mb-16">
+            <h2 className="mb-2 text-2xl font-bold text-zinc-900 dark:text-white">
+              Provider Landscape
+            </h2>
+            <p className="mb-6 text-sm text-zinc-600 dark:text-zinc-400">
+              How {market.providerCount} rated providers compare on
+              transparency, accreditation, and business practices.
+            </p>
+
+            <div className="grid gap-4 sm:grid-cols-3">
+              <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-5 dark:border-zinc-800 dark:bg-zinc-900">
+                <p className="text-xs font-semibold uppercase tracking-wider text-zinc-400">
+                  Pricing Transparency
+                </p>
+                <div className="mt-3 space-y-2">
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-zinc-700 dark:text-zinc-300">
+                      Fully transparent
+                    </span>
+                    <span className="font-semibold text-green-600">
+                      {providers.transparencyBreakdown.transparent}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-zinc-700 dark:text-zinc-300">
+                      Semi-transparent
+                    </span>
+                    <span className="font-semibold text-yellow-600">
+                      {providers.transparencyBreakdown.semiTransparent}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-zinc-700 dark:text-zinc-300">
+                      Sales required
+                    </span>
+                    <span className="font-semibold text-red-600">
+                      {providers.transparencyBreakdown.salesRequired}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-5 dark:border-zinc-800 dark:bg-zinc-900">
+                <p className="text-xs font-semibold uppercase tracking-wider text-zinc-400">
+                  BBB Ratings
+                </p>
+                <div className="mt-3 space-y-2">
+                  {Object.entries(providers.bbbBreakdown)
+                    .sort(([a], [b]) => a.localeCompare(b))
+                    .map(([grade, count]) => (
+                      <div
+                        key={grade}
+                        className="flex items-center justify-between text-sm"
+                      >
+                        <span className="text-zinc-700 dark:text-zinc-300">
+                          {grade}
+                        </span>
+                        <span className="font-semibold text-zinc-900 dark:text-white">
+                          {count}
+                        </span>
+                      </div>
+                    ))}
+                </div>
+              </div>
+
+              <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-5 dark:border-zinc-800 dark:bg-zinc-900">
+                <p className="text-xs font-semibold uppercase tracking-wider text-zinc-400">
+                  Business Practices
+                </p>
+                <div className="mt-3 space-y-2 text-sm">
+                  <div className="flex items-center justify-between">
+                    <span className="text-zinc-700 dark:text-zinc-300">
+                      Avg. overall rating
+                    </span>
+                    <span className="font-semibold text-zinc-900 dark:text-white">
+                      {providers.avgOverallRating}/10
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-zinc-700 dark:text-zinc-300">
+                      Require minimums
+                    </span>
+                    <span className="font-semibold text-zinc-900 dark:text-white">
+                      {providers.withMinimums}/{market.providerCount}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-zinc-700 dark:text-zinc-300">
+                      Require contracts
+                    </span>
+                    <span className="font-semibold text-zinc-900 dark:text-white">
+                      {providers.withContracts}/{market.providerCount}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-4">
+              <CiteThisButton
+                citation={`Of ${market.providerCount} aged lead providers reviewed by Aged Lead Sales, only ${providers.transparencyBreakdown.transparent} (${Math.round((providers.transparencyBreakdown.transparent / market.providerCount) * 100)}%) offer fully transparent pricing. Source: ${pageUrl} (Updated ${lastUpdated})`}
+              />
+            </div>
+          </section>
+
+          {/* Lead Economics */}
+          <section className="mb-16">
+            <h2 className="mb-2 text-2xl font-bold text-zinc-900 dark:text-white">
+              Lead Economics by Vertical
+            </h2>
+            <p className="mb-6 text-sm text-zinc-600 dark:text-zinc-400">
+              Contact rates, close rates, and average deal values. Aged lead
+              rates represent the 31-85 day bracket.
+            </p>
+
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-zinc-200 dark:border-zinc-800">
+                    <th className="py-3 pr-4 text-left font-semibold text-zinc-900 dark:text-white">
+                      Vertical
+                    </th>
+                    <th className="px-3 py-3 text-right font-semibold text-zinc-900 dark:text-white">
+                      Contact (RT)
+                    </th>
+                    <th className="px-3 py-3 text-right font-semibold text-zinc-900 dark:text-white">
+                      Contact (Aged)
+                    </th>
+                    <th className="px-3 py-3 text-right font-semibold text-zinc-900 dark:text-white">
+                      Close (RT)
+                    </th>
+                    <th className="px-3 py-3 text-right font-semibold text-zinc-900 dark:text-white">
+                      Close (Aged)
+                    </th>
+                    <th className="py-3 pl-3 text-right font-semibold text-zinc-900 dark:text-white">
+                      Avg Deal
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {economics.verticalEconomics
+                    .sort((a, b) => a.tier - b.tier)
+                    .map((v) => (
+                      <tr
+                        key={v.name}
+                        className="border-b border-zinc-100 dark:border-zinc-800/50"
+                      >
+                        <td className="py-3 pr-4 text-zinc-700 dark:text-zinc-300">
+                          {v.icon} {v.name}
+                        </td>
+                        <td className="px-3 py-3 text-right text-zinc-500">
+                          {v.realTimeContactRate}%
+                        </td>
+                        <td className="px-3 py-3 text-right font-medium text-blue-600 dark:text-blue-400">
+                          {v.agedContactRate}%
+                        </td>
+                        <td className="px-3 py-3 text-right text-zinc-500">
+                          {v.realTimeCloseRate}%
+                        </td>
+                        <td className="px-3 py-3 text-right font-medium text-blue-600 dark:text-blue-400">
+                          {v.agedCloseRate}%
+                        </td>
+                        <td className="py-3 pl-3 text-right text-zinc-700 dark:text-zinc-300">
+                          ${v.avgDealValue.toLocaleString()}
+                        </td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            </div>
+
+            <div className="mt-4 flex flex-wrap gap-4 text-sm text-zinc-500">
+              <span>
+                Avg. aged contact rate:{" "}
+                <strong className="text-zinc-900 dark:text-white">
+                  {economics.avgAgedContactRate}%
+                </strong>
+              </span>
+              <span>
+                Avg. aged close rate:{" "}
+                <strong className="text-zinc-900 dark:text-white">
+                  {economics.avgAgedCloseRate}%
+                </strong>
+              </span>
+            </div>
+
+            <div className="mt-4">
+              <CiteThisButton
+                citation={`The average contact rate on aged leads (31-85 days) is ${economics.avgAgedContactRate}% across ${market.verticalCount} verticals, with an average close rate of ${economics.avgAgedCloseRate}%. Source: Aged Lead Sales, ${pageUrl} (Updated ${lastUpdated})`}
+              />
+            </div>
+          </section>
+
+          {/* Methodology */}
+          <section className="mb-16">
+            <h2 className="mb-4 text-2xl font-bold text-zinc-900 dark:text-white">
+              Methodology & Data Sources
+            </h2>
+
+            <ExpandableDeepDive title="How we collect and verify this data">
+              <div className="space-y-3">
+                <p>
+                  All provider ratings use our{" "}
+                  <Link
+                    href="/methodology"
+                    className="text-blue-600 hover:text-blue-700 dark:text-blue-400"
+                  >
+                    published 6-dimension methodology
+                  </Link>
+                  , scoring each provider on Transparency, Value, Compliance,
+                  Flexibility, Platform, and Reputation with weighted scoring
+                  (20/20/20/15/15/10).
+                </p>
+                <p>
+                  Price benchmarks are sourced from published provider pricing,
+                  direct quote requests, and market analysis. Each data point
+                  includes a confidence rating (high, medium, or low) and the
+                  number of providers sampled.
+                </p>
+                <p>
+                  Contact and close rates represent industry benchmarks from
+                  published case studies, provider-reported data, and our
+                  independent analysis. All figures are verified quarterly.
+                </p>
+                <p>
+                  <strong>Update cadence:</strong> This page is updated quarterly.
+                  Price benchmarks are refreshed monthly. Provider ratings are
+                  re-verified every 90 days.
+                </p>
+              </div>
+            </ExpandableDeepDive>
+          </section>
+
+          {/* Cite This Section */}
+          <section className="rounded-xl border border-zinc-200 bg-zinc-50 p-6 dark:border-zinc-800 dark:bg-zinc-900">
+            <h2 className="mb-4 text-lg font-bold text-zinc-900 dark:text-white">
+              Cite This Page
+            </h2>
+            <p className="mb-4 text-sm text-zinc-600 dark:text-zinc-400">
+              You are welcome to reference these statistics with attribution.
+              Use one of the pre-formatted citations below.
+            </p>
+
+            <div className="space-y-4">
+              <div className="rounded-lg border border-zinc-200 bg-white p-4 dark:border-zinc-700 dark:bg-zinc-800">
+                <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-zinc-400">
+                  Inline Citation
+                </p>
+                <p className="text-sm text-zinc-700 dark:text-zinc-300">
+                  According to{" "}
+                  <em>Aged Lead Sales&apos; 2026 Industry Statistics</em>,
+                  aged leads cost 70-90% less than real-time leads across 14
+                  verticals.
+                </p>
+                <div className="mt-2">
+                  <CiteThisButton
+                    citation={`According to Aged Lead Sales' 2026 Industry Statistics, aged leads cost 70-90% less than real-time leads across 14 verticals. (Source: ${pageUrl})`}
+                  />
+                </div>
+              </div>
+
+              <div className="rounded-lg border border-zinc-200 bg-white p-4 dark:border-zinc-700 dark:bg-zinc-800">
+                <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-zinc-400">
+                  HTML Attribution
+                </p>
+                <code className="block text-xs text-zinc-600 dark:text-zinc-400">
+                  {`<a href="${pageUrl}">Aged Lead Industry Statistics 2026</a> — Aged Lead Sales`}
+                </code>
+                <div className="mt-2">
+                  <CiteThisButton
+                    citation={`<a href="${pageUrl}">Aged Lead Industry Statistics 2026</a> — Aged Lead Sales`}
+                  />
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Editorial footer */}
+          <div className="mt-10 border-t border-zinc-200 pt-6 dark:border-zinc-800">
+            <p className="text-sm text-zinc-500">
+              Data compiled by{" "}
+              <Link
+                href="/about"
+                className="text-blue-600 hover:text-blue-700 dark:text-blue-400"
+              >
+                Bill Rice
+              </Link>{" "}
+              using our{" "}
+              <Link
+                href="/methodology"
+                className="text-blue-600 hover:text-blue-700 dark:text-blue-400"
+              >
+                published methodology
+              </Link>
+              . Last verified {lastUpdated}. Found an error?{" "}
+              <Link
+                href="/contact"
+                className="text-blue-600 hover:text-blue-700 dark:text-blue-400"
+              >
+                Let us know
+              </Link>
+              .
+            </p>
+          </div>
+        </div>
+      </article>
+    </>
+  );
+}

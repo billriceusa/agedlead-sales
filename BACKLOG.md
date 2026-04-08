@@ -6,7 +6,7 @@
 
 ---
 
-## Done (2026-04-04)
+## Done
 
 - [x] **Privacy Policy page** (`/privacy`) — legal requirement, trust signal
 - [x] **Terms of Service page** (`/terms`) — legal requirement
@@ -17,54 +17,19 @@
 - [x] **IndexNow integration** — API key hosted, utility created, fires on content publish
 - [x] **Footer legal links** — Privacy, Terms, Affiliate Disclosure, Editorial Process added
 - [x] **Sitemap updated** — new pages included with correct priorities
+- [x] **Glossary Tooltip Integration** (2026-04-08) — auto-links first occurrence of 77 glossary terms in blog + playbook articles with hover tooltips
+- [x] **Blog Category Hub Pages** (2026-04-08) — `/blog/category/[slug]` with filtered posts, breadcrumbs, JSON-LD, sitemap
+- [x] **Contact Page** (2026-04-08) — `/contact` with Resend-powered form, added to footer + sitemap
+- [x] **StickyTOC** (2026-04-08) — floating desktop sidebar with IntersectionObserver active-section highlighting, h2 IDs on all articles
+- [x] **KeyTakeawayBox** (2026-04-08) — TL;DR summary card from excerpt, deployed on blog + playbook pages
+- [x] **ContentCheckpoint** (2026-04-08) — stat callout cards interleaved with mid-article CTAs in PortableText
+- [x] **NextReadBar** (2026-04-08) — sticky bottom bar at 60% scroll with related article, dismissible
+- [x] **ExpandableDeepDive** (2026-04-08) — styled details/summary component
+- [x] **Statistics/Data Page** (2026-04-08) — `/blog/aged-lead-industry-statistics` link-magnet with pricing tables, provider landscape, lead economics, Cite This buttons, Dataset JSON-LD
 
 ---
 
-## P0 — Critical Gaps
-
-### Glossary Tooltip Integration in Article Body
-77 glossary terms exist but are not linked inline within blog post body text. The playbook requires: "First occurrence of a glossary term in any article gets a tooltip link."
-- Build a `GlossaryTooltip` component (hover/tap shows definition)
-- Integrate into the `PortableText` renderer as a custom mark or auto-detect
-- Auto-link first occurrence of known terms in article body
-- **Impact:** Internal linking, dwell time, user education, SEO
-
-### Blog Category Hub Pages (`/blog/category/[slug]`)
-Categories exist in Sanity schema and on posts, but no dedicated category pages exist.
-- Create `/blog/category/[slug]` route with filtered post listing
-- Add pagination and category description
-- Link from blog index category badges
-- Add to sitemap
-- **Impact:** Topical authority, internal link equity, hub-and-spoke architecture
-
-### Contact Page (`/contact`)
-The playbook Trust Stack requires About + Contact + Editorial Independence. No contact page exists. For YMYL sites, "thin contact pages destroy credibility."
-- Name, email, expected response time
-- Optional lightweight contact form (Resend)
-- **Impact:** E-E-A-T trust signal, YMYL compliance
-
----
-
-## P1 — High Value Conversion & Engagement
-
-### Multi-Step Lead Qualification Quiz
-Zero multi-step forms exist. The playbook's primary lead funnel is survey-style, one-question-at-a-time.
-- Step 1: "What type of leads are you looking for?" (lead type cards)
-- Step 2: "How many leads do you need per month?" (volume qualifier)
-- Step 3: "What's your experience with aged leads?" (skill level)
-- Step 4: "What's your budget per lead?" (price qualifier)
-- Step 5: Contact info (name, email) + newsletter subscribe
-- Output: Personalized provider/resource recommendation
-- **Impact:** Primary conversion mechanism, lead capture, qualification data
-
-### Engagement Components (Dwell Time / NavBoost)
-Section 14 of the playbook is entirely unimplemented:
-- [ ] `StickyTOC` / `TableOfContents` — floating TOC highlighting current section on long articles
-- [ ] `KeyTakeawayBox` — TL;DR summary card at top of long articles with "Read full analysis" anchor
-- [ ] `ContentCheckpoint` — visual break elements (pull quote, stat card, callout) every 300-400 words
-- [ ] `NextReadBar` — slim sticky bottom bar appearing at 60% scroll with ONE recommended next article
-- [ ] `ExpandableDeepDive` — `<details>/<summary>` for advanced sub-topics within articles
-- **Impact:** Time-on-page, scroll depth, pages-per-session, NavBoost ranking signal
+## P1 — High Value Engagement & Traffic
 
 ### Article Credibility Enhancements
 Trust signals missing from blog posts per playbook Section 9:
@@ -81,15 +46,6 @@ Homepage has stat cards but is missing:
 - [ ] Clear positioning statement per the playbook formula
 - [ ] Testimonial cards (when available)
 - **Impact:** Conversion rate, trust, first-impression authority
-
-### Statistics/Data Page (Link Magnet)
-The playbook ranks this as the #1 natural link earner. Create:
-- `/blog/aged-lead-industry-statistics` or dedicated route
-- Bold key stats, cite sources, "Cite This" snippets with copy buttons
-- "Last updated" / "Last verified" header
-- Include original data from existing price-index data
-- Update quarterly
-- **Impact:** Passive backlinks, authority, journalist citations
 
 ---
 
@@ -172,6 +128,10 @@ Only 1 active lead magnet (prospecting checklist). Playbook says 1-2 per site mi
 ---
 
 ## P3 — Future Growth
+
+### Multi-Step Lead Qualification Quiz
+Survey-style funnel: lead type, volume, experience, budget, email. Outputs personalized provider recommendation. Deferred until traffic supports monetization (10K+ uniques/month).
+- **Impact:** Primary conversion mechanism, lead capture, qualification data
 
 ### Programmatic Geo Pages
 `/lead-types/[type]/[state]` style pages adding hundreds of rankable pages.
