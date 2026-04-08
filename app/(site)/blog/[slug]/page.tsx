@@ -15,6 +15,7 @@ import { ScrollProgressBar } from "@/components/scroll-progress-bar";
 import { CredibilityBadges } from "@/components/credibility-badges";
 import { StickyToc } from "@/components/sticky-toc";
 import { NextReadBar } from "@/components/next-read-bar";
+import { ReactionButtons } from "@/components/reaction-buttons";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
@@ -301,6 +302,8 @@ export default async function BlogPostPage({ params }: Props) {
               .
             </p>
           </div>
+
+          <ReactionButtons slug={post.slug.current} contentType="blog" />
 
           <div className="mt-12">
             <CtaBanner variant="compact" />

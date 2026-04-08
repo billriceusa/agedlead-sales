@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CtaBanner } from "@/components/cta-banner";
+import { CiteThisButton } from "@/components/cite-this-button";
 import { JsonLd, breadcrumbJsonLd } from "@/components/json-ld";
 import { VERTICALS } from "@/data/verticals";
 import {
@@ -244,6 +245,17 @@ export default function PriceIndexPage() {
           >
             Read our full methodology &rarr;
           </Link>
+        </div>
+      </section>
+
+      <section className="border-t border-zinc-200 bg-white py-8 dark:border-zinc-800 dark:bg-zinc-950">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="text-sm text-zinc-500">Reference this data:</span>
+            <CiteThisButton
+              citation={`Lead pricing benchmarks from the Aged Lead Sales Lead Price Index, covering ${VERTICALS.length} verticals with monthly updates. Source: ${baseUrl}/price-index`}
+            />
+          </div>
         </div>
       </section>
 

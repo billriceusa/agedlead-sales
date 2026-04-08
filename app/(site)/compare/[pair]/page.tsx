@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ComparisonTable } from "@/components/comparison-table";
 import { CtaBanner } from "@/components/cta-banner";
+import { CiteThisButton } from "@/components/cite-this-button";
 import { JsonLd, breadcrumbJsonLd } from "@/components/json-ld";
 import { getProvider, getProviderPairs } from "@/data/providers";
 
@@ -185,6 +186,17 @@ export default async function ComparePage({
                 Read our methodology
               </Link>
             </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-zinc-200 bg-white py-8 dark:border-zinc-800 dark:bg-zinc-950">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="text-sm text-zinc-500">Reference this comparison:</span>
+            <CiteThisButton
+              citation={`${providerA.name} vs ${providerB.name} comparison from Aged Lead Sales independent provider directory. Source: ${baseUrl}/compare/${pair}`}
+            />
           </div>
         </div>
       </section>

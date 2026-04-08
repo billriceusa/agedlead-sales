@@ -19,6 +19,7 @@ const footerLinks = {
     { name: "Free Downloads", href: "/resources" },
     { name: "Newsletter", href: "/newsletter" },
     { name: "About", href: "/about" },
+    { name: "Authors", href: "/authors" },
     { name: "Contact", href: "/contact" },
   ],
   "Lead Marketwatch": [

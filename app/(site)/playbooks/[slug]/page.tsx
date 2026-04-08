@@ -14,6 +14,7 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 import { CredibilityBadges } from "@/components/credibility-badges";
 import { StickyToc } from "@/components/sticky-toc";
 import { NextReadBar } from "@/components/next-read-bar";
+import { ReactionButtons } from "@/components/reaction-buttons";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
@@ -273,6 +274,8 @@ export default async function PlaybookPage({ params }: Props) {
               </Link>
             </div>
           </div>
+
+          <ReactionButtons slug={playbook.slug.current} contentType="playbook" />
 
           {/* Inline CTA */}
           <div className="mt-12">

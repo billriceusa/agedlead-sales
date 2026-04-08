@@ -34,6 +34,9 @@
 - [x] **Article Credibility Enhancements** (2026-04-08) — CredibilityBadges component with updated date, "Human-reviewed" badge, "Reviewed by" line on blog + playbook pages
 - [x] **CopyableStatCard + ShareableQuote** (2026-04-08) — Copyable stat cards with rich clipboard + attribution, shareable quotes with LinkedIn/X/copy buttons, deployed on statistics page
 - [x] **Resources Hub Page** (2026-04-08) — `/resources` with all 5 lead magnet PDFs, email-gated downloads, calculator links, added to footer + sitemap
+- [x] **Cite This on price-index + comparisons** (2026-04-08) — CiteThisButton deployed on price-index overview, vertical detail, and comparison pages
+- [x] **Author Hub Page** (2026-04-08) — `/authors` with Bill Rice profile, article/playbook counts, credentials, LinkedIn link
+- [x] **Reaction Buttons** (2026-04-08) — "Helpful / Surprising / Need More Detail" on blog + playbook pages, tracked via GTM events
 
 ---
 
@@ -59,13 +62,6 @@ Create/claim a Wikidata entry for "Aged Lead Sales" with proper classification. 
 
 ## P2 — Engagement & Retention
 
-### Reaction Buttons
-Lightweight engagement at article bottom: "Helpful / Surprising / Need More Detail"
-- Zero moderation required
-- Track as GTM events
-- Feed into content quality scoring
-- **Impact:** Engagement signal, content feedback loop
-
 ### Save for Later (Email-Gated)
 Bookmark icon on articles that prompts for email to save to reading list.
 - Weekly digest of saved + recommended articles
@@ -75,16 +71,9 @@ Bookmark icon on articles that prompts for email to save to reading list.
 Structure cornerstone content as 3-5 part series. Gate parts 2+ behind email. Each drip drives a return visit.
 - **Impact:** Email list growth, return visits, Google quality signal
 
-### "Cite This" Blocks
-On price-index pages, provider comparisons, and statistics content — pre-formatted citation HTML with copy button.
-- **Impact:** Passive backlinks from content writers
-
 ---
 
 ## P2 — Information Architecture
-
-### Author Hub Page (`/authors`)
-Currently `/about/bill-rice` exists. Create `/authors` as a hub for future contributors, and ensure the author page has: list of all articles, LinkedIn link, and all credentials.
 
 ### Additional Lead Magnets
 Only 1 active lead magnet (prospecting checklist). Playbook says 1-2 per site minimum:
