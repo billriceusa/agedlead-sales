@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "build:pdfs": "tsx scripts/build-flagship-pdfs.ts"
+    "build:pdfs": "tsx scripts/build-flagship-pdfs.ts",
+    "flagship:check": "tsx scripts/check-flagship-pdfs.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.80.0",
