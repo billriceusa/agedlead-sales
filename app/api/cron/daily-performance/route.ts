@@ -12,6 +12,7 @@ import {
   serializeBacklog,
 } from "@/lib/cron/performance-backlog";
 import { commitFilesToGitHub } from "@/lib/cron/git-commit";
+import { recordCronRun } from "@/lib/cron/heartbeat";
 
 export const maxDuration = 300;
 export const dynamic = "force-dynamic";
@@ -57,6 +58,12 @@ export async function GET(request: Request) {
   } catch (err) {
     const msg = `Data fetch failed: ${err instanceof Error ? err.message : err}`;
     console.error(msg);
+    await recordCronRun({
+      name: "daily-performance",
+      status: "failed",
+      detail: msg,
+      durationMs: Date.now() - startTime,
+    });
     return NextResponse.json(
       { success: false, error: msg, duration: Date.now() - startTime },
       { status: 500 }
@@ -67,6 +74,12 @@ export async function GET(request: Request) {
     const msg =
       "Neither GA4 nor GSC data available. Configure GOOGLE_CLIENT_EMAIL, GOOGLE_PRIVATE_KEY, GA4_PROPERTY_ID, and/or GSC_SITE_URL.";
     console.error(msg);
+    await recordCronRun({
+      name: "daily-performance",
+      status: "failed",
+      detail: msg,
+      durationMs: Date.now() - startTime,
+    });
     return NextResponse.json(
       { success: false, error: msg, errors, duration: Date.now() - startTime },
       { status: 500 }
@@ -164,6 +177,16 @@ export async function GET(request: Request) {
   console.log(
     `[Performance] Completed in ${(duration / 1000).toFixed(1)}s — ${errors.length} errors`
   );
+
+  await recordCronRun({
+    name: "daily-performance",
+    status: errors.length === 0 ? "ok" : "partial",
+    detail:
+      errors.length > 0
+        ? errors.join("; ")
+        : `ga4=${ga4.available ? "ok" : "n/a"} gsc=${gsc.available ? "ok" : "n/a"} insights=${analysis.insights.length} backlogOpen=${backlogItemCount}`,
+    durationMs: duration,
+  });
 
   return NextResponse.json({
     success: errors.length === 0,

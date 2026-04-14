@@ -14,6 +14,7 @@ import {
   getExistingBenchmarks,
 } from "@/lib/cron/marketwatch-publish";
 import { commitFilesToGitHub } from "@/lib/cron/git-commit";
+import { recordCronRun } from "@/lib/cron/heartbeat";
 
 export const maxDuration = 300;
 export const dynamic = "force-dynamic";
@@ -45,6 +46,12 @@ export async function GET(request: Request) {
 
     // If Sanity fails entirely, we can't do anything useful
     if (providers.length === 0) {
+      await recordCronRun({
+        name: "marketwatch",
+        status: "failed",
+        detail: `No providers found: ${errors.join("; ")}`,
+        durationMs: Date.now() - startTime,
+      });
       return NextResponse.json(
         { success: false, error: "No providers found", errors },
         { status: 500 }
@@ -227,6 +234,16 @@ export async function GET(request: Request) {
   console.log(
     `[Marketwatch] Completed in ${(duration / 1000).toFixed(1)}s — ${report.providersScanned} scanned, ${benchmarksPublished} benchmarks published, ${errors.length} errors`
   );
+
+  await recordCronRun({
+    name: "marketwatch",
+    status: errors.length === 0 ? "ok" : "partial",
+    detail:
+      errors.length > 0
+        ? errors.join("; ")
+        : `scanned=${report.providersScanned} changed=${report.providersWithChanges} benchmarks=${benchmarksPublished}`,
+    durationMs: duration,
+  });
 
   return NextResponse.json({
     success: errors.length === 0,

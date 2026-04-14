@@ -58,32 +58,32 @@ CRITICAL CONTENT INTEGRITY RULES — NEVER VIOLATE THESE:
 - Making up stories and presenting them as real experiences is LYING — it destroys credibility`;
 
 export async function analyzeAndPlan(
-  existingPostSlugs: string[],
+  existingPosts: { slug: string; title: string }[],
   editorialCalendar: ContentBrief[],
   glossaryTermSlugs: string[],
   leadTypeSlugs: string[],
   weekDates: { monday: string; wednesday: string; friday: string }
 ): Promise<ContentPlan> {
+  const existingSlugs = new Set(existingPosts.map((p) => p.slug));
   const unpublishedBriefs = editorialCalendar.filter(
-    (b) =>
-      b.status !== "published" && !existingPostSlugs.includes(b.slug)
+    (b) => b.status !== "published" && !existingSlugs.has(b.slug)
   );
 
   const publishedSlugs = editorialCalendar
-    .filter(
-      (b) =>
-        b.status === "published" || existingPostSlugs.includes(b.slug)
-    )
+    .filter((b) => b.status === "published" || existingSlugs.has(b.slug))
     .map((b) => b.slug);
 
   const prompt = `Analyze the current state of our content strategy and create a plan for this week.
 
 ## Current Content State
-- Published posts (${existingPostSlugs.length} total): ${existingPostSlugs.slice(0, 30).join(", ")}
+- Published posts (${existingPosts.length} total). Recent titles: ${existingPosts.slice(-40).map((p) => `"${p.title}"`).join("; ")}
 - Editorial calendar briefs not yet published (${unpublishedBriefs.length}): ${unpublishedBriefs.map((b) => `"${b.title}" [${b.pillar}]`).join("; ")}
 - Available glossary terms for linking: ${glossaryTermSlugs.slice(0, 40).join(", ")}
 - Available lead type pages for linking: ${leadTypeSlugs.join(", ")}
 - Already published from calendar: ${publishedSlugs.join(", ")}
+
+## CRITICAL: Avoid Duplicate Content
+You MUST NOT propose any brief whose title substantially overlaps with an existing post above. "Substantial overlap" means covering the same primary topic, even with different wording. If your first instinct is a topic near a published one, pick a different angle, a sub-topic, or a narrower case study. Published posts listed above are OFF-LIMITS as topics.
 
 ## This Week's Publishing Dates
 - Monday: ${weekDates.monday}

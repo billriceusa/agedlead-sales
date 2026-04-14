@@ -41,20 +41,36 @@ export interface GeneratedArticle {
   contentType: "pillar" | "cluster";
 }
 
+export interface PublishedArticle {
+  title: string;
+  slug: string;
+  publishDate: string;
+  primaryKeyword: string;
+  pillar: string;
+}
+
+export interface SkippedArticle {
+  title: string;
+  slug: string;
+  reason: string;
+}
+
+export interface FailedArticle {
+  title: string;
+  reason: string;
+}
+
 export interface WeeklyReport {
   runDate: string;
   weekStartDate: string;
-  analysis: SEOAnalysis;
-  articlesPublished: {
-    title: string;
-    slug: string;
-    publishDate: string;
-    primaryKeyword: string;
-    pillar: string;
-  }[];
+  analysis: SEOAnalysis | null;
+  articlesCreated: PublishedArticle[];
+  articlesSkipped: SkippedArticle[];
+  articlesFailed: FailedArticle[];
   newBriefs: WeeklyBrief[];
   nextWeekPlan: string;
   errors: string[];
+  fatalError?: string;
 }
 
 // ── SEO Audit Types ──────────────────────────────────────────

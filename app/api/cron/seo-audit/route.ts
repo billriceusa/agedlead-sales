@@ -8,6 +8,7 @@ import {
   type SiteSnapshot,
 } from "@/lib/cron/seo-audit";
 import { commitFilesToGitHub } from "@/lib/cron/git-commit";
+import { recordCronRun } from "@/lib/cron/heartbeat";
 import type {
   SEOAuditReport,
   SEOBacklog,
@@ -182,6 +183,12 @@ export async function GET(request: Request) {
   } catch (err) {
     const msg = `Failed to build site snapshot: ${err instanceof Error ? err.message : err}`;
     console.error(msg);
+    await recordCronRun({
+      name: "seo-audit",
+      status: "failed",
+      detail: msg,
+      durationMs: Date.now() - startTime,
+    });
     return NextResponse.json(
       { success: false, error: msg, duration: Date.now() - startTime },
       { status: 500 }
@@ -332,6 +339,16 @@ export async function GET(request: Request) {
   console.log(
     `[SEO Audit] Completed in ${(duration / 1000).toFixed(1)}s — Score: ${overallScore}/100, ${errors.length} errors`
   );
+
+  await recordCronRun({
+    name: "seo-audit",
+    status: errors.length === 0 ? "ok" : "partial",
+    detail:
+      errors.length > 0
+        ? errors.join("; ")
+        : `score=${overallScore} findings=${findings.length} new=${newItems.length} resolved=${resolvedItems.length}`,
+    durationMs: duration,
+  });
 
   return NextResponse.json({
     success: errors.length === 0,

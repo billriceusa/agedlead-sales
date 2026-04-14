@@ -9,6 +9,7 @@ import {
 } from "@/lib/cron/newsletter-ai";
 import { buildNewsletterHtml } from "@/lib/cron/newsletter-email";
 import { commitFilesToGitHub } from "@/lib/cron/git-commit";
+import { recordCronRun } from "@/lib/cron/heartbeat";
 
 export const maxDuration = 300;
 export const dynamic = "force-dynamic";
@@ -235,6 +236,12 @@ export async function GET(request: Request) {
   } catch (err) {
     const msg = `Newsletter content generation failed: ${err instanceof Error ? err.message : err}`;
     console.error(msg);
+    await recordCronRun({
+      name: "weekly-newsletter",
+      status: "failed",
+      detail: msg,
+      durationMs: Date.now() - startTime,
+    });
     return NextResponse.json(
       { success: false, error: msg, duration: Date.now() - startTime },
       { status: 500 }
@@ -381,6 +388,16 @@ export async function GET(request: Request) {
   console.log(
     `[Newsletter] Completed in ${(duration / 1000).toFixed(1)}s — ${errors.length} errors`
   );
+
+  await recordCronRun({
+    name: "weekly-newsletter",
+    status: errors.length === 0 ? "ok" : "partial",
+    detail:
+      errors.length > 0
+        ? errors.join("; ")
+        : `subject="${content.subject}" broadcastId=${broadcastId ?? "n/a"}`,
+    durationMs: duration,
+  });
 
   return NextResponse.json({
     success: errors.length === 0,

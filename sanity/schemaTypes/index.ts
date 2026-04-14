@@ -8,6 +8,7 @@ import { playbookType } from "./playbook";
 import { postType } from "./post";
 import { priceBenchmarkType } from "./priceBenchmark";
 import { verticalType } from "./vertical";
+import { cronHeartbeatType } from "./cronHeartbeat";
 
 export const schemaTypes = [
   authorType,
@@ -20,4 +21,5 @@ export const schemaTypes = [
   postType,
   priceBenchmarkType,
   verticalType,
+  cronHeartbeatType,
 ];
