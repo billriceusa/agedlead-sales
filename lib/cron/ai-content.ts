@@ -1,4 +1,4 @@
-import OpenAI from "openai";
+import Anthropic from "@anthropic-ai/sdk";
 import type { ContentBrief } from "@/data/editorial-calendar";
 import type {
   ContentPlan,
@@ -6,13 +6,14 @@ import type {
   GeneratedArticle,
   ArticleSection,
 } from "./types";
+import { parseJsonResponse } from "./parse-json";
 
-function getOpenAIClient(): OpenAI {
-  const apiKey = process.env.OPENAI_API_KEY;
+function getAnthropicClient(): Anthropic {
+  const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) {
-    throw new Error("OPENAI_API_KEY environment variable is not set");
+    throw new Error("ANTHROPIC_API_KEY environment variable is not set");
   }
-  return new OpenAI({ apiKey });
+  return new Anthropic({ apiKey });
 }
 
 const SYSTEM_CONTEXT = `You are the AI content strategist for Aged Lead Sales (agedleadsales.com), an SEO-driven affiliate site that educates sales professionals on how to buy and work aged leads effectively. The site promotes AgedLeadStore.com via affiliate links.
@@ -124,21 +125,21 @@ Respond with valid JSON matching this structure exactly:
   "calendarNotes": "Summary of calendar decisions and reasoning"
 }`;
 
-  const client = getOpenAIClient();
-  const response = await client.chat.completions.create({
-    model: "gpt-4o",
+  const client = getAnthropicClient();
+  const response = await client.messages.create({
+    model: "claude-sonnet-4-20250514",
+    max_tokens: 4096,
+    system: SYSTEM_CONTEXT,
     messages: [
-      { role: "system", content: SYSTEM_CONTEXT },
-      { role: "user", content: prompt },
+      { role: "user", content: prompt + "\n\nRespond ONLY with valid JSON, no other text." },
     ],
     temperature: 0.7,
-    response_format: { type: "json_object" },
   });
 
-  const content = response.choices[0]?.message?.content;
+  const content = response.content[0]?.type === "text" ? response.content[0].text : null;
   if (!content) throw new Error("No response from AI for content planning");
 
-  return JSON.parse(content) as ContentPlan;
+  return parseJsonResponse<ContentPlan>(content);
 }
 
 export async function writeArticle(
@@ -190,31 +191,27 @@ Respond with valid JSON matching this structure:
 
 Write the FULL article with all sections. Each "sections" entry is one paragraph or heading. Use "h2" for main sections, "h3" for subsections, and "normal" for body paragraphs. Include at least 15-25 sections for a complete article.`;
 
-  const client = getOpenAIClient();
-  const response = await client.chat.completions.create({
-    model: "gpt-4o",
+  const client = getAnthropicClient();
+  const response = await client.messages.create({
+    model: "claude-sonnet-4-20250514",
+    max_tokens: 8192,
+    system: `${SYSTEM_CONTEXT}\n\nYou are now writing as Bill Rice. Write with authority and specificity. Use clearly hypothetical examples, publicly sourced data with citations, and actionable frameworks. Never fabricate personal experiences or case studies. Every paragraph should teach something actionable.`,
     messages: [
-      {
-        role: "system",
-        content: `${SYSTEM_CONTEXT}\n\nYou are now writing as Bill Rice. Write with authority and specificity. Use clearly hypothetical examples, publicly sourced data with citations, and actionable frameworks. Never fabricate personal experiences or case studies. Every paragraph should teach something actionable.`,
-      },
-      { role: "user", content: prompt },
+      { role: "user", content: prompt + "\n\nRespond ONLY with valid JSON, no other text." },
     ],
     temperature: 0.8,
-    max_tokens: 8000,
-    response_format: { type: "json_object" },
   });
 
-  const content = response.choices[0]?.message?.content;
+  const content = response.content[0]?.type === "text" ? response.content[0].text : null;
   if (!content) throw new Error(`No response from AI for article: ${brief.title}`);
 
-  const parsed = JSON.parse(content) as {
+  const parsed = parseJsonResponse<{
     excerpt: string;
     seoTitle: string;
     seoDescription: string;
     contentType: "pillar" | "cluster";
     sections: ArticleSection[];
-  };
+  }>(content);
 
   return {
     brief,
