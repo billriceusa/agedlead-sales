@@ -112,6 +112,67 @@ export default function ResourcesPage() {
             </p>
           </div>
 
+          <div className="mb-16 overflow-hidden rounded-2xl border-2 border-blue-600 bg-gradient-to-br from-zinc-950 via-blue-950 to-zinc-900 text-white shadow-xl">
+            <div className="grid gap-8 p-8 sm:p-10 md:grid-cols-[1.5fr_1fr] md:items-center">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wider text-blue-300">
+                  Flagship · Playbook + Workbook + 10-day Email Course
+                </p>
+                <h2 className="mt-2 text-2xl font-bold sm:text-3xl">
+                  The Aged Lead Operator&apos;s System
+                </h2>
+                <p className="mt-3 text-sm text-zinc-300 sm:text-base">
+                  The complete operator&apos;s manual for turning aged leads into
+                  closed deals. Scripts, unit economics, 14-day cadence,
+                  infinity nurture, Fresh-Consent Ladder, and current 2026
+                  TCPA compliance — tuned to your vertical.
+                </p>
+                <ul className="mt-4 grid gap-1.5 text-sm text-zinc-300 sm:grid-cols-2">
+                  <li className="flex items-start gap-2"><span className="mt-1 text-blue-400">✓</span> 47+ page playbook PDF</li>
+                  <li className="flex items-start gap-2"><span className="mt-1 text-blue-400">✓</span> 26-page fillable workbook</li>
+                  <li className="flex items-start gap-2"><span className="mt-1 text-blue-400">✓</span> 5-email 10-day course</li>
+                  <li className="flex items-start gap-2"><span className="mt-1 text-blue-400">✓</span> Mortgage / Insurance / Home Services</li>
+                </ul>
+              </div>
+              <div className="flex flex-col gap-2">
+                <Link
+                  href="/playbook"
+                  className="inline-flex items-center justify-center rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow transition hover:bg-blue-500"
+                >
+                  Choose your vertical →
+                </Link>
+                <Link
+                  href="/playbook/mortgage"
+                  className="inline-flex items-center justify-center rounded-lg border border-white/20 bg-white/5 px-6 py-3 text-sm font-medium text-white backdrop-blur transition hover:bg-white/10"
+                >
+                  Mortgage edition
+                </Link>
+                <Link
+                  href="/playbook/insurance"
+                  className="inline-flex items-center justify-center rounded-lg border border-white/20 bg-white/5 px-6 py-3 text-sm font-medium text-white backdrop-blur transition hover:bg-white/10"
+                >
+                  Insurance edition
+                </Link>
+                <Link
+                  href="/playbook/home-services"
+                  className="inline-flex items-center justify-center rounded-lg border border-white/20 bg-white/5 px-6 py-3 text-sm font-medium text-white backdrop-blur transition hover:bg-white/10"
+                >
+                  Home Services edition
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          <div className="mb-8">
+            <h2 className="text-2xl font-bold text-zinc-900 dark:text-white">
+              Bonus downloads
+            </h2>
+            <p className="mt-2 max-w-2xl text-sm text-zinc-600 dark:text-zinc-400">
+              Older single-topic cheat sheets. The flagship playbook above
+              replaces most of these — keep them as supplementary references.
+            </p>
+          </div>
+
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {resources.map((resource) => (
               <div key={resource.id} className="flex">

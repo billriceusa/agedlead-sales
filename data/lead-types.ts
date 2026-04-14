@@ -737,4 +737,97 @@ export const LEAD_TYPES: Record<string, LeadTypeData> = {
     getCompareUrl: () =>
       `/providers/best/medicare`,
   },
+
+  "home-services-leads": {
+    slug: "home-services-leads",
+    title: "Home Services Leads",
+    icon: "🔨",
+    heroDescription:
+      "Aged home services leads connect you with homeowners who requested quotes on roofing, solar, windows, HVAC, remodel, pest, and foundation projects — all at a fraction of real-time lead prices.",
+    metaTitle: "Aged Home Services Leads – Buy Affordable Home Services Leads",
+    metaDescription:
+      "Buy aged home services leads for roofing, solar, windows, HVAC, remodels, and more. 80-95% cheaper than real-time leads, with documented consent records.",
+    primaryKeyword: "aged home services leads",
+    secondaryKeywords: [
+      "aged roofing leads",
+      "aged solar leads",
+      "aged HVAC leads",
+      "aged remodel leads",
+      "contractor leads",
+      "home improvement leads",
+    ],
+    costRange: "$0.75 – $10.00",
+    whoItsFor: [
+      "Roofing contractors and crews",
+      "Solar installers and EPCs",
+      "Window and door replacement companies",
+      "HVAC installers",
+      "Kitchen and bath remodelers",
+      "Pest control companies",
+      "Foundation repair contractors",
+    ],
+    whatYouGet: [
+      "Homeowner name and contact information",
+      "Property address for field routing",
+      "Project type and approximate scope",
+      "Timing indicators (immediate, this quarter, this year)",
+      "Geographic targeting by zip code",
+    ],
+    sections: {
+      whatAre:
+        "Aged home services leads are consumer records from homeowners who previously requested quotes or information on a home improvement, repair, or installation project — typically 30 to 180 days ago. These projects include roofing replacement, solar installation, window and door replacement, HVAC upgrades, kitchen and bath remodels, pest control, and foundation work. The prospect filled out a form, got contacted by one or two contractors, and then either stalled, delayed, or never moved forward. Because the underlying problem — an aging roof, rising utility bill, failing HVAC — doesn't go away on its own, these prospects remain high-intent long after the original inquiry.",
+      whyUse:
+        "Real-time home services leads routinely run $30-$150 per record, and multiple contractors call within minutes. Aged home services leads cost $0.75-$10 and the prospect is usually past the initial frenzy — easier to have a real conversation, easier to book a clean estimate, easier to win on service rather than price. Average revenue per closed job is high ($2,500 for windows, $4,500 for roofing, $15,000+ for remodels), so even modest contact and close rates produce strong ROI. This is one of the most economically forgiving verticals for aged-lead operations.",
+      howToWork:
+        "Home services works on a two-step funnel: contact → estimate → sold. Your outbound goal is always booking the estimate, not closing on the phone. Load your leads by zip code so field reps aren't crossing paths. Run a 14-day multi-channel opener cadence (phone + SMS + email) that drives to a scheduled estimate. Field rep closes on the driveway. The 'neighborhood' play — soft outreach to every aged lead in a zip when you complete a nearby job — is unique to home services and produces outstanding nurture conversion.",
+      script: {
+        opener:
+          '"Hey [Name], this is [Your Name] with [Company]. A couple months back you looked at quotes for [roofing / solar / windows / HVAC]. Just checking in — did you get it handled, or is it still on your list?"',
+        whyItWorks: [
+          "Names the specific project type — shows you're not cold-calling at random",
+          "Opens with a neutral question, not a pitch",
+          '"Still on your list" gives permission to say yes without commitment',
+          "Natural lead-in to booking a no-pressure estimate",
+        ],
+      },
+      costComparison: {
+        realTime: "$30–$150 per lead",
+        aged: "$0.75–$10 per lead",
+        savings: "Save 85-95% per lead",
+      },
+      bestPractices: [
+        "Book estimates, don't close on the phone — home services is a two-step funnel",
+        "Load leads by zip to keep field reps efficient",
+        "Send appointment reminders (SMS + email) — no-show rate drops from 25% to 8%",
+        "Run the 'neighborhood' play — touch every aged lead in a zip when you complete a nearby job",
+        "Check state storm moratoriums (FL, TX, LA) before post-storm outreach",
+        "Use 'free estimate' not 'free inspection' — the word 'inspection' triggers solicitation rules in some states",
+        "Financing disclosures require Regulation Z-compliant script language",
+      ],
+    },
+    faqs: [
+      {
+        question: "What types of aged home services leads are available?",
+        answer:
+          "Aged home services leads cover roofing, solar, windows and doors, HVAC, kitchen and bath remodels, pest control, foundation repair, landscaping, and other home improvement categories. You can filter by project type and geographic area.",
+      },
+      {
+        question: "What's the best way to work aged home services leads?",
+        answer:
+          "Book the estimate — don't try to close on the phone. Run a 14-day multi-channel cadence (phone, SMS, email) designed to land an in-home or virtual estimate. Your field rep closes on the driveway. Pair aged-lead calling with zip-based field routing so your estimators stay efficient.",
+      },
+      {
+        question: "What about storm-chasing and contractor solicitation rules?",
+        answer:
+          "Several states restrict roofing and related solicitation for a window after declared disasters (Florida, Texas, Louisiana are the most active). Many states also have specific contractor-board rules on marketing language and incentives. Confirm your state's rules before outreach — consult counsel if unsure.",
+      },
+      {
+        question: "Which sub-verticals have the best aged-lead economics?",
+        answer:
+          "Roofing, HVAC install, pest control, and foundation tend to have the fastest decision cycles and strongest close rates. Solar and remodel leads have longer cycles but higher revenue per close — they reward patient, well-designed nurture sequences.",
+      },
+    ],
+    getCompareUrl: () =>
+      `/providers/best/home-improvement`,
+  },
 };

@@ -96,10 +96,16 @@ export default async function HomePage() {
               high-volume, high-profit sales operation using aged leads — with
               training, playbooks, and proven strategies for every industry.
             </p>
-            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+            <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
+              <Link
+                href="/playbook"
+                className="rounded-lg bg-blue-600 px-8 py-3.5 text-center text-base font-semibold text-white shadow-lg transition-colors hover:bg-blue-700"
+              >
+                Get the Free Playbook
+              </Link>
               <Link
                 href="/providers"
-                className="rounded-lg bg-blue-600 px-8 py-3.5 text-center text-base font-semibold text-white shadow-lg transition-colors hover:bg-blue-700"
+                className="rounded-lg border border-zinc-600 px-8 py-3.5 text-center text-base font-semibold text-white transition-colors hover:bg-zinc-800"
               >
                 Compare Lead Providers
               </Link>
@@ -127,6 +133,47 @@ export default async function HomePage() {
                 <div className="mt-1 text-sm text-zinc-400">{stat.label}</div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Flagship Magnet Strip */}
+      <section className="border-b border-zinc-200 bg-white py-12 dark:border-zinc-800 dark:bg-zinc-950 sm:py-16">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="overflow-hidden rounded-2xl border-2 border-blue-600 bg-gradient-to-br from-zinc-950 via-blue-950 to-zinc-900 p-8 text-white shadow-xl sm:p-10">
+            <div className="grid gap-6 md:grid-cols-[1.5fr_1fr] md:items-center">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wider text-blue-300">
+                  Free · Playbook + Workbook + 10-day Email Course
+                </p>
+                <h2 className="mt-2 text-2xl font-bold tracking-tight sm:text-3xl">
+                  The Aged Lead Operator&apos;s System
+                </h2>
+                <p className="mt-3 max-w-2xl text-sm text-zinc-300 sm:text-base">
+                  The complete operator&apos;s manual for turning aged leads into closed deals — scripts, unit economics, 14-day cadence, infinity nurture, and current 2026 TCPA compliance. Tuned to your vertical.
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-2 md:flex-col">
+                <Link
+                  href="/playbook/mortgage"
+                  className="flex-1 rounded-lg border border-white/20 bg-white/10 px-4 py-2.5 text-center text-sm font-medium backdrop-blur transition hover:bg-white/20 md:flex-none"
+                >
+                  🏠 Mortgage →
+                </Link>
+                <Link
+                  href="/playbook/insurance"
+                  className="flex-1 rounded-lg border border-white/20 bg-white/10 px-4 py-2.5 text-center text-sm font-medium backdrop-blur transition hover:bg-white/20 md:flex-none"
+                >
+                  🛡️ Insurance →
+                </Link>
+                <Link
+                  href="/playbook/home-services"
+                  className="flex-1 rounded-lg border border-white/20 bg-white/10 px-4 py-2.5 text-center text-sm font-medium backdrop-blur transition hover:bg-white/20 md:flex-none"
+                >
+                  🔨 Home Services →
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>

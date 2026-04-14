@@ -11,7 +11,7 @@ const footerLinks = {
   ],
   Resources: [
     { name: "Blog", href: "/blog" },
-    { name: "Playbooks", href: "/playbooks" },
+    { name: "Playbook", href: "/playbook" },
     { name: "Glossary", href: "/glossary" },
     { name: "Guides", href: "/guides" },
     { name: "Industry Statistics", href: "/blog/aged-lead-industry-statistics" },

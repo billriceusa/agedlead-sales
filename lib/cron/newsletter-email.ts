@@ -155,6 +155,28 @@ export function buildNewsletterHtml(
               : ""
           }
 
+          <!-- Flagship Playbook Strip (persistent) -->
+          <tr>
+            <td style="padding: 0 32px 32px;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background: linear-gradient(135deg, #0f1e33 0%, #1e3a5f 60%, #2463c9 100%); border-radius: 10px; overflow: hidden;">
+                <tr>
+                  <td style="padding: 24px 24px 20px 24px;">
+                    <p style="margin: 0 0 4px 0; color: #93c5fd; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px;">Free · Playbook + Workbook + Email Course</p>
+                    <p style="margin: 0 0 8px 0; color: #ffffff; font-size: 19px; font-weight: 700;">The Aged Lead Operator&rsquo;s System</p>
+                    <p style="margin: 0 0 16px 0; color: rgba(255,255,255,0.85); font-size: 14px; line-height: 1.55;">Haven&rsquo;t grabbed it yet? The full operator&rsquo;s manual &mdash; scripts, unit economics, cadence, nurture, and 2026 TCPA compliance &mdash; tuned to your vertical.</p>
+                    <table role="presentation" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td style="padding-right: 6px;"><a href="${siteUrl}/playbook/mortgage" style="display: inline-block; background-color: rgba(255,255,255,0.12); color: #ffffff; padding: 8px 14px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 13px; border: 1px solid rgba(255,255,255,0.25);">Mortgage &rarr;</a></td>
+                        <td style="padding-right: 6px;"><a href="${siteUrl}/playbook/insurance" style="display: inline-block; background-color: rgba(255,255,255,0.12); color: #ffffff; padding: 8px 14px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 13px; border: 1px solid rgba(255,255,255,0.25);">Insurance &rarr;</a></td>
+                        <td><a href="${siteUrl}/playbook/home-services" style="display: inline-block; background-color: rgba(255,255,255,0.12); color: #ffffff; padding: 8px 14px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 13px; border: 1px solid rgba(255,255,255,0.25);">Home Services &rarr;</a></td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
           <!-- CTA -->
           <tr>
             <td style="padding: 0 32px 32px;">
@@ -187,7 +209,7 @@ export function buildNewsletterHtml(
                     <p style="margin: 0 0 8px 0; color: #6b7280; font-size: 13px;">
                       <a href="${siteUrl}" style="color: #1e40af; text-decoration: none; font-weight: 600;">Aged Lead Sales</a> &nbsp;|&nbsp;
                       <a href="${siteUrl}/blog" style="color: #6b7280; text-decoration: none;">Blog</a> &nbsp;|&nbsp;
-                      <a href="${siteUrl}/playbooks" style="color: #6b7280; text-decoration: none;">Playbooks</a> &nbsp;|&nbsp;
+                      <a href="${siteUrl}/playbook" style="color: #6b7280; text-decoration: none;">Playbook</a> &nbsp;|&nbsp;
                       <a href="${siteUrl}/glossary" style="color: #6b7280; text-decoration: none;">Glossary</a> &nbsp;|&nbsp;
                       <a href="${siteUrl}/calculators" style="color: #6b7280; text-decoration: none;">Calculators</a>
                     </p>

@@ -235,14 +235,14 @@ export default function StartHerePage() {
               <ul className="mt-4 space-y-2.5">
                 <li>
                   <Link
-                    href="/playbooks/7-day-follow-up-cadence"
+                    href="/playbook"
                     className="font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400"
                   >
-                    7-Day Follow-Up Cadence
+                    The Aged Lead Operator&apos;s System
                   </Link>{" "}
                   <span className="text-sm text-zinc-500 dark:text-zinc-500">
-                    — The exact contact sequence that maximizes aged lead
-                    conversion
+                    — The complete playbook, workbook, and 10-day email course
+                    covering cadence, scripts, nurture, and compliance
                   </span>
                 </li>
                 <li>
@@ -259,14 +259,14 @@ export default function StartHerePage() {
                 </li>
                 <li>
                   <Link
-                    href="/playbooks/roi-metrics"
+                    href="/calculators/roi-calculator"
                     className="font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400"
                   >
-                    ROI Metrics Playbook
+                    ROI Calculator
                   </Link>{" "}
                   <span className="text-sm text-zinc-500 dark:text-zinc-500">
-                    — The numbers you must track weekly to know if your system
-                    is working
+                    — Plug in your numbers to see your max viable CPL and
+                    expected cost-per-close
                   </span>
                 </li>
                 <li>
@@ -372,14 +372,14 @@ export default function StartHerePage() {
               </li>
               <li>
                 <strong className="text-zinc-900 dark:text-white">
-                  Work the full 7-day cadence.
+                  Work the full 14-day cadence.
                 </strong>{" "}
-                Don&apos;t call twice and give up. Follow the{" "}
+                Don&apos;t call twice and give up. Follow the cadence in{" "}
                 <Link
-                  href="/playbooks/7-day-follow-up-cadence"
+                  href="/playbook"
                   className="font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400"
                 >
-                  7-Day Follow-Up Cadence
+                  The Aged Lead Operator&apos;s System
                 </Link>
                 {" "}exactly as written — calls, texts, emails, in the right
                 order at the right intervals. Most conversions happen on

@@ -37,7 +37,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: baseUrl, lastModified: new Date(), changeFrequency: "weekly", priority: 1.0 },
     { url: `${baseUrl}/blog`, lastModified: new Date(), changeFrequency: "daily", priority: 0.9 },
     { url: `${baseUrl}/lead-types`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
-    { url: `${baseUrl}/playbooks`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
+    { url: `${baseUrl}/playbook`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.95 },
+    { url: `${baseUrl}/playbook/mortgage`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
+    { url: `${baseUrl}/playbook/insurance`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
+    { url: `${baseUrl}/playbook/home-services`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
     { url: `${baseUrl}/glossary`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/guides`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/calculators`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
@@ -99,9 +102,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     for (const lt of data.leadTypes || []) {
       entries.push({ url: `${baseUrl}/lead-types/${lt.slug}`, lastModified: new Date(lt.lastModified), priority: 0.8 });
     }
-    for (const pb of data.playbooks || []) {
-      entries.push({ url: `${baseUrl}/playbooks/${pb.slug}`, lastModified: new Date(pb.lastModified), priority: 0.7 });
-    }
+    // Deprecated: the 4 Sanity playbooks now 301 to /playbook (flagship master).
+    // Omitted from sitemap to avoid crawling redirected URLs.
     for (const term of data.glossaryTerms || []) {
       entries.push({ url: `${baseUrl}/glossary/${term.slug}`, lastModified: new Date(term.lastModified), priority: 0.6 });
     }

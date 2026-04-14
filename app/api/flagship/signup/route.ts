@@ -1,0 +1,120 @@
+import { NextResponse } from "next/server";
+import { Resend } from "resend";
+import { scheduleCourse } from "@/lib/email-course/schedule";
+import type { Vertical } from "@/lib/email-course/types";
+
+const VALID_VERTICALS: Vertical[] = ["mortgage", "insurance", "home-services"];
+
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.agedleadsales.com";
+
+function isVertical(v: unknown): v is Vertical {
+  return typeof v === "string" && (VALID_VERTICALS as string[]).includes(v);
+}
+
+function pdfUrls(vertical: Vertical): { playbookUrl: string; workbookUrl: string } {
+  return {
+    playbookUrl: `${SITE_URL}/downloads/aged-lead-operators-system-${vertical}.pdf`,
+    workbookUrl: `${SITE_URL}/downloads/aged-lead-operators-workbook-${vertical}.pdf`,
+  };
+}
+
+export async function POST(request: Request) {
+  try {
+    const body = await request.json();
+    const { email, vertical, firstName } = body as {
+      email?: string;
+      vertical?: string;
+      firstName?: string;
+    };
+
+    if (!email || typeof email !== "string") {
+      return NextResponse.json(
+        { error: "Email is required" },
+        { status: 400 }
+      );
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return NextResponse.json(
+        { error: "Please enter a valid email address" },
+        { status: 400 }
+      );
+    }
+
+    if (!isVertical(vertical)) {
+      return NextResponse.json(
+        { error: "Invalid vertical — choose mortgage, insurance, or home-services" },
+        { status: 400 }
+      );
+    }
+
+    const apiKey = process.env.RESEND_API_KEY;
+    const audienceId = process.env.RESEND_AUDIENCE_ID;
+
+    const { playbookUrl, workbookUrl } = pdfUrls(vertical);
+    const unsubscribeUrl = `${SITE_URL}/api/flagship/unsubscribe?email=${encodeURIComponent(email)}`;
+
+    if (!apiKey) {
+      console.warn("[Flagship] RESEND_API_KEY not set — signup accepted, no email sent");
+      return NextResponse.json({
+        success: true,
+        message: "Subscribed! Your downloads are ready.",
+        playbookUrl,
+        workbookUrl,
+      });
+    }
+
+    const resend = new Resend(apiKey);
+
+    if (audienceId) {
+      try {
+        await resend.contacts.create({
+          email,
+          audienceId,
+          unsubscribed: false,
+          ...(firstName ? { firstName } : {}),
+        });
+      } catch (err) {
+        // Contact may already exist — not an error
+        console.log(
+          `[Flagship] Contact create: ${err instanceof Error ? err.message : "unknown"}`
+        );
+      }
+    }
+
+    const result = await scheduleCourse(vertical, {
+      recipientEmail: email,
+      firstName: firstName?.trim() || undefined,
+      playbookUrl,
+      workbookUrl,
+      unsubscribeUrl,
+      vertical,
+    });
+
+    console.log(
+      `[Flagship] Signup: ${email} (vertical=${vertical}) sent=${result.sentImmediately} scheduled=${result.scheduled} errors=${result.errors.length}`
+    );
+    if (result.errors.length) {
+      console.error("[Flagship] Schedule errors:", result.errors);
+    }
+
+    return NextResponse.json({
+      success: true,
+      message: "You're in. Your downloads are ready.",
+      playbookUrl,
+      workbookUrl,
+      courseSummary: {
+        sentImmediately: result.sentImmediately,
+        scheduled: result.scheduled,
+      },
+    });
+  } catch (err) {
+    console.error("[Flagship] Signup error:", err);
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 }
+    );
+  }
+}
