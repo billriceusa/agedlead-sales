@@ -1,0 +1,60 @@
+{
+  "lastUpdated": "2026-04-14T17:45:05.243Z",
+  "items": [
+    {
+      "id": "ae65c17929e7",
+      "title": "Emergency Technical Audit",
+      "description": "Immediately investigate Google Analytics tracking code, server logs, and site functionality. Check for broken tracking implementation, server errors, or CDN issues preventing proper data collection and user access.",
+      "expectedImpact": "Restore traffic visibility and identify root cause of 100% traffic loss",
+      "priority": "high",
+      "firstSeen": "2026-04-14",
+      "lastSeen": "2026-04-14",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "ec69a8bab532",
+      "title": "Capitalize on Search Momentum",
+      "description": "With impressions up 127.6%, create targeted landing pages for high-impression, low-click queries like 'aged mortgage leads' (5 impressions, pos 42.8) and 'insurance leads cost' (6 impressions, pos 42.7).",
+      "expectedImpact": "Convert increased visibility into actual traffic and clicks",
+      "priority": "high",
+      "firstSeen": "2026-04-14",
+      "lastSeen": "2026-04-14",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "9b3dd1d6670f",
+      "title": "Optimize High-Ranking Low-CTR Pages",
+      "description": "Focus on pages ranking in positions 8-17 with zero clicks: aged-lead-industry-statistics (pos 9.0), aged-lead-store provider page (pos 11.7), and 7-day follow-up cadence (pos 8.1). Improve titles and meta descriptions.",
+      "expectedImpact": "Increase CTR from current 0.44% to 1-2% for top-ranking pages",
+      "priority": "medium",
+      "firstSeen": "2026-04-14",
+      "lastSeen": "2026-04-14",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "b9acf266e5d4",
+      "title": "Mobile Experience Enhancement",
+      "description": "With mobile generating the only click (1 click from 21 mobile impressions vs 0 clicks from 207 desktop impressions), optimize mobile user experience and page speed for the /providers page.",
+      "expectedImpact": "Improve mobile conversion rates and expand mobile traffic capture",
+      "priority": "medium",
+      "firstSeen": "2026-04-14",
+      "lastSeen": "2026-04-14",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "6bb79e498c01",
+      "title": "Content Gap Analysis",
+      "description": "Develop content targeting queries showing in positions 60-90+ like 'how much do insurance leads cost' (pos 73) and 'cpl calculator' (pos 88) to capture long-tail search volume.",
+      "expectedImpact": "Expand search footprint and capture additional qualified traffic",
+      "priority": "low",
+      "firstSeen": "2026-04-14",
+      "lastSeen": "2026-04-14",
+      "timesRepeated": 1,
+      "status": "open"
+    }
+  ]
+}
