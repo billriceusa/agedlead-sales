@@ -43,20 +43,27 @@ export async function GET(request: Request) {
     const msg = `Failed to fetch providers from Sanity: ${err instanceof Error ? err.message : err}`;
     console.error(msg);
     errors.push(msg);
+  }
 
-    // If Sanity fails entirely, we can't do anything useful
-    if (providers.length === 0) {
-      await recordCronRun({
-        name: "marketwatch",
-        status: "failed",
-        detail: `No providers found: ${errors.join("; ")}`,
-        durationMs: Date.now() - startTime,
-      });
-      return NextResponse.json(
-        { success: false, error: "No providers found", errors },
-        { status: 500 }
-      );
-    }
+  // Guard: zero providers is a silent-no-op failure mode. Either Sanity errored
+  // (caught above) or the dataset has no leadProvider docs seeded yet. Either
+  // way, marking this ok misleads the health-check. Record failed + return.
+  if (providers.length === 0) {
+    const msg =
+      errors.length > 0
+        ? `No providers fetched: ${errors.join("; ")}`
+        : "No leadProvider docs exist in Sanity — cron has nothing to scan. Seed providers to activate marketwatch.";
+    console.error(`[Marketwatch] ${msg}`);
+    await recordCronRun({
+      name: "marketwatch",
+      status: "failed",
+      detail: msg,
+      durationMs: Date.now() - startTime,
+    });
+    return NextResponse.json(
+      { success: false, error: msg, providersScanned: 0, errors },
+      { status: 500 }
+    );
   }
 
   // ── Step 2: Scrape each provider's website ───────────────────
