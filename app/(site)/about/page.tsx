@@ -310,10 +310,10 @@ export default function AboutPage() {
               </li>
               <li>
                 <Link
-                  href="/playbooks"
+                  href="/playbook"
                   className="font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400"
                 >
-                  Sales Playbooks
+                  The Operator&apos;s Playbook
                 </Link>{" "}
                 — Step-by-step frameworks for working aged leads, from first
                 contact to close. These are the same systems I&apos;ve deployed
@@ -460,10 +460,10 @@ export default function AboutPage() {
               to model your economics. If you&apos;re already working aged
               leads and want to improve, the{" "}
               <Link
-                href="/playbooks"
+                href="/playbook"
                 className="font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400"
               >
-                Sales Playbooks
+                The Operator&apos;s Playbook
               </Link>{" "}
               will give you the frameworks to tighten your process.
             </p>

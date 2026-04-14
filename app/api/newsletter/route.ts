@@ -127,7 +127,7 @@ export async function POST(request: Request) {
             <td style="background-color: #f9fafb; padding: 20px 32px; border-top: 1px solid #e5e7eb; text-align: center;">
               <p style="margin: 0 0 8px 0; color: #6b7280; font-size: 13px;">
                 <a href="https://www.agedleadsales.com" style="color: #2563eb; text-decoration: none; font-weight: 600;">Aged Lead Sales</a> &nbsp;|&nbsp;
-                <a href="https://www.agedleadsales.com/playbooks" style="color: #6b7280; text-decoration: none;">Playbooks</a> &nbsp;|&nbsp;
+                <a href="https://www.agedleadsales.com/playbook" style="color: #6b7280; text-decoration: none;">Playbook</a> &nbsp;|&nbsp;
                 <a href="https://www.agedleadsales.com/calculators" style="color: #6b7280; text-decoration: none;">Calculators</a>
               </p>
               <p style="margin: 0; color: #9ca3af; font-size: 12px;">

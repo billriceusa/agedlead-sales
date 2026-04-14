@@ -348,10 +348,10 @@ export default async function HomePage() {
                 </p>
               </div>
               <Link
-                href="/playbooks"
+                href="/playbook"
                 className="hidden text-base font-semibold text-blue-600 hover:text-blue-700 dark:text-blue-400 sm:block"
               >
-                View all playbooks &rarr;
+                Get the Free Playbook &rarr;
               </Link>
             </div>
             <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
