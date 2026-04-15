@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-14T17:45:05.243Z",
+  "lastUpdated": "2026-04-15T12:00:53.910Z",
   "items": [
     {
       "id": "ae65c17929e7",
@@ -8,8 +8,8 @@
       "expectedImpact": "Restore traffic visibility and identify root cause of 100% traffic loss",
       "priority": "high",
       "firstSeen": "2026-04-14",
-      "lastSeen": "2026-04-14",
-      "timesRepeated": 1,
+      "lastSeen": "2026-04-15",
+      "timesRepeated": 2,
       "status": "open"
     },
     {
@@ -24,6 +24,39 @@
       "status": "open"
     },
     {
+      "id": "e780bfff40a9",
+      "title": "Search Console Deep Dive",
+      "description": "Review Coverage report for indexing issues, check for crawl errors, and examine any security issues or manual actions. Verify robots.txt and sitemap functionality.",
+      "expectedImpact": "Identify and resolve search engine access barriers",
+      "priority": "high",
+      "firstSeen": "2026-04-15",
+      "lastSeen": "2026-04-15",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "02380b7481fe",
+      "title": "SERP Snippet Optimization",
+      "description": "Review and optimize title tags and meta descriptions for top-ranking pages, especially 'aged lead store' and insurance-related terms. Ensure compelling CTAs that differentiate from competitors.",
+      "expectedImpact": "Improve CTR from current 0% to historical 0.23% or higher",
+      "priority": "high",
+      "firstSeen": "2026-04-15",
+      "lastSeen": "2026-04-15",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "b9acf266e5d4",
+      "title": "Mobile Experience Enhancement",
+      "description": "With mobile generating the only click (1 click from 21 mobile impressions vs 0 clicks from 207 desktop impressions), optimize mobile user experience and page speed for the /providers page.",
+      "expectedImpact": "Improve mobile conversion rates and expand mobile traffic capture",
+      "priority": "medium",
+      "firstSeen": "2026-04-14",
+      "lastSeen": "2026-04-15",
+      "timesRepeated": 2,
+      "status": "open"
+    },
+    {
       "id": "9b3dd1d6670f",
       "title": "Optimize High-Ranking Low-CTR Pages",
       "description": "Focus on pages ranking in positions 8-17 with zero clicks: aged-lead-industry-statistics (pos 9.0), aged-lead-store provider page (pos 11.7), and 7-day follow-up cadence (pos 8.1). Improve titles and meta descriptions.",
@@ -35,13 +68,13 @@
       "status": "open"
     },
     {
-      "id": "b9acf266e5d4",
-      "title": "Mobile Experience Enhancement",
-      "description": "With mobile generating the only click (1 click from 21 mobile impressions vs 0 clicks from 207 desktop impressions), optimize mobile user experience and page speed for the /providers page.",
-      "expectedImpact": "Improve mobile conversion rates and expand mobile traffic capture",
+      "id": "9c795d72d2d7",
+      "title": "Content Freshness Initiative",
+      "description": "Update top-performing pages like 'aged-lead-industry-statistics' and 'economics-of-aged-leads' with recent data and insights. Add current market trends and pricing information.",
+      "expectedImpact": "Improve search rankings and user engagement once technical issues are resolved",
       "priority": "medium",
-      "firstSeen": "2026-04-14",
-      "lastSeen": "2026-04-14",
+      "firstSeen": "2026-04-15",
+      "lastSeen": "2026-04-15",
       "timesRepeated": 1,
       "status": "open"
     },
@@ -53,6 +86,17 @@
       "priority": "low",
       "firstSeen": "2026-04-14",
       "lastSeen": "2026-04-14",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "cc192c120d5f",
+      "title": "Long-tail Keyword Expansion",
+      "description": "Target specific queries like 'how much do mortgage trigger leads cost' (pos 56.8) and 'auto insurance lead cost' (pos 23.0) with dedicated content pieces.",
+      "expectedImpact": "Increase impressions and capture more qualified traffic for affiliate conversions",
+      "priority": "low",
+      "firstSeen": "2026-04-15",
+      "lastSeen": "2026-04-15",
       "timesRepeated": 1,
       "status": "open"
     }
