@@ -84,17 +84,20 @@ export default function AboutPage() {
               Early Internet Banking &amp; the Birth of Online Lending
             </h3>
             <p>
-              I was{" "}
+              In 2000 I joined as{" "}
               <strong className="text-zinc-900 dark:text-white">
                 Employee #7 at DeepGreen Bank
               </strong>
-              , one of the first internet-only banks in the country. We launched
-              the first unconditional online Home Equity Line of Credit — no
-              branch visit required, no conditions, fully digital. This was
-              before most people trusted the internet with their money. We were
-              inventing the playbook for digital lending in real time, and that
-              experience gave me a front-row seat to how lead generation and
-              online conversion would reshape financial services.
+              , one of the first internet-only banks in the country. We grew
+              to about 80 people running what functionally behaved like a
+              billion-dollar bank — still small by industry standards, still
+              punching several weight classes up. We launched the first
+              unconditional online Home Equity Line of Credit — no branch visit
+              required, no conditions, fully digital — before most people
+              trusted the internet with their money. DeepGreen was sold to
+              LightYear Capital in 2004. That experience gave me a front-row
+              seat to how lead generation and online conversion would reshape
+              financial services.
             </p>
 
             <h3 className="pt-2 text-xl font-semibold text-zinc-900 dark:text-white">
@@ -105,12 +108,15 @@ export default function AboutPage() {
               <strong className="text-zinc-900 dark:text-white">
                 Quicken Loans
               </strong>{" "}
-              as Vice President of National Home Equity, where I built the
-              EquityOnline platform. Quicken Loans was already legendary for its
-              sales culture and lead conversion discipline. I learned what
-              world-class lead management looks like at scale — thousands of
-              loan officers, millions of leads, and a relentless focus on speed
-              to contact, follow-up cadence, and conversion optimization.
+              in 2004, initially as COO of the Rock Bank project — a federally
+              chartered bank initiative — and then pivoted to Vice President of
+              National Home Equity, where I built the EquityOnline platform,
+              Quicken Loans&apos; first true online lending and offer platform.
+              Quicken Loans was already legendary for its sales culture and
+              lead conversion discipline. I learned what world-class lead
+              management looks like at scale — thousands of loan officers,
+              millions of leads, and a relentless focus on speed to contact,
+              follow-up cadence, and conversion optimization.
             </p>
             <p>
               This is where I developed the first intelligent lead scoring and
@@ -127,16 +133,23 @@ export default function AboutPage() {
               Founding Kaleidico
             </h3>
             <p>
-              I founded{" "}
+              In 2005 I founded{" "}
               <strong className="text-zinc-900 dark:text-white">
                 Kaleidico
               </strong>
-              , a demand generation agency that serves mortgage lenders, law
-              firms, and senior living communities. Kaleidico became one of the
-              top marketing agencies in the mortgage industry, known for
-              building lead generation systems that actually convert — not just
-              drive traffic. I later sold 90% of the company and retained a 10%
-              stake, continuing to serve as Chief Revenue Officer.
+              , originally as a lead management software company (I built
+              icoSales and coined &ldquo;lead management&rdquo; as an industry
+              category — authoring the original Wikipedia page). After the 2008
+              mortgage meltdown destroyed the call-center lender client base, I
+              pivoted Kaleidico into the demand generation agency it is today,
+              serving mortgage lenders, law firms, and senior living
+              communities. Kaleidico became one of the top marketing agencies
+              in the mortgage industry, known for building lead generation
+              systems that actually convert — not just drive traffic. Following
+              the agency&apos;s acquisition and liquidity event, I retained 10%
+              ownership and transitioned into the Chief Revenue Officer role,
+              where I continue to lead business development, sales, and
+              marketing strategy and execution.
             </p>
             <p>
               Through Kaleidico, I&apos;ve worked with companies at every stage
@@ -145,6 +158,69 @@ export default function AboutPage() {
               acquisition budgets. That range of experience is what makes the
               training on this site practical for everyone, whether you&apos;re
               a one-person shop or managing a call center.
+            </p>
+
+            <h3 className="pt-2 text-xl font-semibold text-zinc-900 dark:text-white">
+              Velocity Lending &amp; the Aged Lead Proof-of-Concept
+            </h3>
+            <p>
+              From 2016 to 2018, I owned and operated{" "}
+              <strong className="text-zinc-900 dark:text-white">
+                Velocity Lending
+              </strong>
+              , a consumer direct (DTC) mortgage lender, alongside Kaleidico.
+              Velocity was a live proof-of-concept for the Kaleidico playbook
+              — that a small lender could compete alongside the biggest names
+              in the business with first-party lead generation. Most
+              importantly for this site, it validated that{" "}
+              <em>aged leads, worked correctly, can quickly build a large
+              database marketing operation</em>
+              . That discovery is the foundation of the training, playbooks,
+              and scripts you&apos;ll find at Aged Lead Sales.
+            </p>
+
+            <h3 className="pt-2 text-xl font-semibold text-zinc-900 dark:text-white">
+              Today: Three Companies and a Book
+            </h3>
+            <p>
+              Today I run three companies.{" "}
+              <a
+                href="https://kaleidico.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 underline hover:text-blue-700 dark:text-blue-400"
+              >
+                Kaleidico
+              </a>
+              , as CRO.{" "}
+              <a
+                href="https://billricestrategy.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 underline hover:text-blue-700 dark:text-blue-400"
+              >
+                Bill Rice Strategy Group
+              </a>
+              , my B2B strategic agency for fintech companies. And{" "}
+              <a
+                href="https://verifiedvector.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 underline hover:text-blue-700 dark:text-blue-400"
+              >
+                Verified Vector
+              </a>
+              , my AI-first agency — no employees, just AI agents and me, with
+              every deliverable produced in code. In 2025 I published{" "}
+              <a
+                href="https://www.leadbuyerplaybook.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 underline hover:text-blue-700 dark:text-blue-400"
+              >
+                The Lead Buyer&apos;s Playbook
+              </a>
+              , the enterprise guide to buying and converting leads profitably.
             </p>
 
             <h3 className="pt-2 text-xl font-semibold text-zinc-900 dark:text-white">

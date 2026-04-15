@@ -8,7 +8,7 @@ const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 export const metadata: Metadata = {
   title: "Bill Rice – Founder & Lead Conversion Expert",
   description:
-    "Bill Rice has 30+ years building lead conversion systems across insurance, mortgage, and solar. Founder of Kaleidico. Marketing director for Aged Lead Store.",
+    "Bill Rice has 30+ years building lead conversion systems across insurance, mortgage, and solar. Founder of Kaleidico (CRO), Bill Rice Strategy Group, and Verified Vector. Marketing director for Aged Lead Store. Author of The Lead Buyer's Playbook.",
   alternates: { canonical: `${baseUrl}/about/bill-rice` },
 };
 
@@ -44,7 +44,7 @@ export default function BillRicePage() {
 
           <div className="space-y-6 text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
             <p>
-              Bill Rice has spent over 20 years building lead conversion systems
+              Bill Rice has spent 30+ years building lead conversion systems
               that work — across insurance, mortgage, solar, and home
               improvement industries. He&apos;s personally worked millions of
               leads and developed the training frameworks that help sales
@@ -60,12 +60,42 @@ export default function BillRicePage() {
                 U.S. Air Force Office of Special Investigations (AFOSI) Special
                 Agent and case officer
               </strong>
-              , where he developed the systematic thinking and process
-              discipline that would later define his approach to lead
-              conversion. After the military, he spent decades designing and
-              building consumer-direct banking and lending platforms — working
-              with institutions like Quicken Loans and building mortgage
-              companies from the ground up.
+              , running counterespionage operations, where he developed the
+              systematic thinking and process discipline that would later define
+              his approach to lead conversion. In 2000 he joined{" "}
+              <strong className="text-zinc-900 dark:text-white">
+                DeepGreen Bank as Employee #7
+              </strong>{" "}
+              — one of the first internet-only banks, which grew to about 80
+              people running what functionally behaved like a billion-dollar
+              bank before its sale to LightYear Capital in 2004. He then moved
+              to Quicken Loans (now Rocket Mortgage), initially as COO of the
+              Rock Bank project and then as VP of National Home Equity, where
+              he built EquityOnline — their first true online lending platform.
+            </p>
+            <p>
+              In 2005 Bill founded{" "}
+              <a
+                href="https://kaleidico.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 underline hover:text-blue-700 dark:text-blue-400"
+              >
+                Kaleidico
+              </a>
+              {" "}as a lead management software company (he coined &ldquo;lead
+              management&rdquo; as an industry category and authored the original
+              Wikipedia page). After the 2008 mortgage meltdown destroyed the
+              call-center lender client base, he pivoted Kaleidico into the
+              demand generation agency it is today. From 2016 to 2018, Bill
+              also owned and operated{" "}
+              <strong className="text-zinc-900 dark:text-white">
+                Velocity Lending
+              </strong>
+              , a DTC mortgage lender that served as his live proof-of-concept
+              for the Kaleidico playbook — and for how aged leads, worked
+              correctly, can build a startup lender&apos;s database foundation
+              fast.
             </p>
             <p>
               Through that work, Bill discovered a fundamental problem: the
@@ -84,7 +114,10 @@ export default function BillRicePage() {
               volume they need to build predictable income. But volume alone
               isn&apos;t enough. Bill developed complete systems for working aged
               leads: outreach cadences, scripts, compliance frameworks, and ROI
-              tracking methodologies that turn raw data into revenue.
+              tracking methodologies that turn raw data into revenue. At Velocity
+              Lending he ran this playbook himself — validating that aged leads,
+              handled correctly, can be the operational foundation of a startup
+              lender&apos;s growth strategy.
             </p>
             <p>
               As{" "}
@@ -101,7 +134,7 @@ export default function BillRicePage() {
               Current Work
             </h2>
             <p>
-              Bill is the founder and CEO of{" "}
+              Bill runs three companies today.{" "}
               <a
                 href="https://kaleidico.com"
                 target="_blank"
@@ -110,8 +143,29 @@ export default function BillRicePage() {
               >
                 Kaleidico
               </a>
-              , a digital agency specializing in lead generation systems for
-              mortgage, legal, and financial services companies. He also runs{" "}
+              , where he serves as CRO following the agency&apos;s acquisition
+              and liquidity event (he retained 10% and continues to lead
+              business development, sales, and marketing strategy and execution).{" "}
+              <a
+                href="https://billricestrategy.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 underline hover:text-blue-700 dark:text-blue-400"
+              >
+                Bill Rice Strategy Group
+              </a>
+              , his B2B strategic agency for fintech companies. And{" "}
+              <a
+                href="https://verifiedvector.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 underline hover:text-blue-700 dark:text-blue-400"
+              >
+                Verified Vector
+              </a>
+              , his AI-first agency with no employees — just AI agents and
+              Bill, delivering strategy, content, presentations, sales, and
+              marketing in code. He also runs{" "}
               <a
                 href="https://www.howtoworkleads.com"
                 target="_blank"
@@ -120,13 +174,24 @@ export default function BillRicePage() {
               >
                 How To Work Leads
               </a>
-              , an educational platform for lead conversion best practices.
+              , an educational platform for lead conversion best practices, and
+              is the author of{" "}
+              <a
+                href="https://www.leadbuyerplaybook.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 underline hover:text-blue-700 dark:text-blue-400"
+              >
+                The Lead Buyer&apos;s Playbook
+              </a>
+              {" "}(2025).
             </p>
             <p>
               At Aged Lead Sales, Bill writes the guides, playbooks, and
               training content based on his direct experience — not theory. When
               he writes about calling scripts, conversion rates, or outreach
-              cadences, it comes from decades of doing it himself.
+              cadences, it comes from decades of doing it himself — including
+              running Velocity Lending as owner and operator from 2016 to 2018.
             </p>
 
             <h2 className="pt-4 text-2xl font-bold text-zinc-900 dark:text-white">

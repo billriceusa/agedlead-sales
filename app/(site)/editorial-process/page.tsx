@@ -40,13 +40,15 @@ export default function EditorialProcessPage() {
             <h2>Who Writes Our Content</h2>
             <p>
               All content on Aged Lead Sales is written and reviewed by{" "}
-              <Link href="/about/bill-rice">Bill Rice</Link>, who brings 25+
+              <Link href="/about/bill-rice">Bill Rice</Link>, who brings 30+
               years of direct experience in lead generation, mortgage lending,
-              insurance sales, and fintech marketing. Bill coined the term
-              &quot;lead management,&quot; built the first intelligent lead
-              scoring and distribution system for mortgage lending at Quicken
-              Loans, and has personally managed millions of leads across multiple
-              industries.
+              insurance sales, and fintech marketing. Bill was Employee #7 at
+              DeepGreen Bank, built EquityOnline at Quicken Loans, founded
+              Kaleidico in 2005 (where he coined the term &quot;lead
+              management&quot; and built icoSales, the first intelligent lead
+              scoring and distribution platform for mortgage lead buyers),
+              owned and operated Velocity Lending from 2016 to 2018, and has
+              personally managed millions of leads across multiple industries.
             </p>
             <p>
               This is not a content farm. Every article, guide, playbook, and

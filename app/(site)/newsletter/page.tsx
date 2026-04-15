@@ -151,14 +151,16 @@ export default function NewsletterPage() {
               About Bill Rice
             </h2>
             <p className="mt-3 text-zinc-600 dark:text-zinc-400">
-              Bill Rice has spent 25+ years in lead generation and fintech
-              marketing. He coined the term &ldquo;lead management,&rdquo; built
-              the first intelligent lead scoring system at Quicken Loans, and
-              has personally worked millions of aged leads across insurance,
-              mortgage, solar, and home improvement. He founded Kaleidico, one
-              of the top marketing agencies in the mortgage industry, and
-              founded Aged Lead Sales as an independent lead buying
-              intelligence platform.
+              Bill Rice has spent 30+ years in lead generation and fintech
+              marketing. He was Employee #7 at DeepGreen Bank and built
+              EquityOnline at Quicken Loans. In 2005 he founded Kaleidico,
+              where he coined the term &ldquo;lead management&rdquo; and built
+              icoSales — the first intelligent lead scoring and distribution
+              platform for mortgage lead buyers. He owned and operated Velocity
+              Lending (DTC mortgage lender, 2016-2018) and has personally
+              worked millions of aged leads across insurance, mortgage, solar,
+              and home improvement. He founded Aged Lead Sales as an
+              independent lead buying intelligence platform.
             </p>
             <Link
               href="/about"

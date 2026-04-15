@@ -11,7 +11,7 @@ const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 export const metadata: Metadata = {
   title: "Authors — Aged Lead Sales",
   description:
-    "Meet the experts behind Aged Lead Sales. Bill Rice brings 25+ years of lead generation and fintech marketing experience to every article, playbook, and tool.",
+    "Meet the experts behind Aged Lead Sales. Bill Rice brings 30+ years of lead generation and fintech marketing experience to every article, playbook, and tool.",
   alternates: { canonical: `${baseUrl}/authors` },
 };
 
@@ -72,11 +72,16 @@ export default async function AuthorsPage() {
                   Founder &amp; Lead Conversion Expert
                 </p>
                 <p className="mt-4 text-zinc-600 dark:text-zinc-400">
-                  25+ years in lead generation and fintech marketing. Coined the
-                  term &ldquo;lead management.&rdquo; Built the first
-                  intelligent lead scoring system for mortgage lending at Quicken
-                  Loans. Founded Kaleidico. Has personally worked millions of
-                  leads across insurance, mortgage, solar, and home improvement.
+                  30+ years in lead generation and fintech marketing. Employee
+                  #7 at DeepGreen Bank; built EquityOnline at Quicken Loans.
+                  Founded Kaleidico in 2005 as a lead management software
+                  company and coined &ldquo;lead management&rdquo; as an
+                  industry category — built icoSales, the first intelligent
+                  lead scoring and distribution platform for mortgage lead
+                  buyers. Owned and operated Velocity Lending (DTC mortgage
+                  lender, 2016-2018). Has personally worked millions of leads
+                  across insurance, mortgage, solar, and home improvement.
+                  Author of The Lead Buyer&apos;s Playbook (2025).
                 </p>
 
                 <div className="mt-4 flex flex-wrap gap-2">
