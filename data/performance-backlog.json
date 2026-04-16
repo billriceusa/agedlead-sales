@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-15T12:00:53.910Z",
+  "lastUpdated": "2026-04-16T12:01:29.302Z",
   "items": [
     {
       "id": "ae65c17929e7",
@@ -46,6 +46,39 @@
       "status": "open"
     },
     {
+      "id": "2b9e6a3796da",
+      "title": "Emergency Technical Audit and Site Recovery",
+      "description": "Immediately check for site downtime, server errors, robots.txt blocks, or Google penalties. Verify site accessibility, SSL certificates, and core web vitals. Check Google Search Console for crawl errors, manual actions, or security issues.",
+      "expectedImpact": "Restore basic site functionality and traffic within 24-48 hours",
+      "priority": "high",
+      "firstSeen": "2026-04-16",
+      "lastSeen": "2026-04-16",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "15601019dda4",
+      "title": "Optimize Meta Descriptions for High-Impression Queries",
+      "description": "Rewrite meta descriptions for pages ranking for 'aged lead store' (pos 17.3), 'aged insurance leads' (pos 33), and cost-related queries. Focus on compelling CTAs like 'Compare Prices', 'Free Calculator', or 'Exclusive Reviews'.",
+      "expectedImpact": "Increase CTR from 0% to 2-5% within 2 weeks",
+      "priority": "high",
+      "firstSeen": "2026-04-16",
+      "lastSeen": "2026-04-16",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "9d767b13ce4c",
+      "title": "Create Dedicated Cost Comparison Landing Pages",
+      "description": "Build targeted pages for high-impression cost queries: 'auto insurance leads cost', 'cost of insurance leads', 'how much do life insurance leads cost'. Include pricing tables, calculators, and affiliate links to AgedLeadStore.com.",
+      "expectedImpact": "Capture 10-15 additional clicks weekly from cost-focused searches",
+      "priority": "high",
+      "firstSeen": "2026-04-16",
+      "lastSeen": "2026-04-16",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "b9acf266e5d4",
       "title": "Mobile Experience Enhancement",
       "description": "With mobile generating the only click (1 click from 21 mobile impressions vs 0 clicks from 207 desktop impressions), optimize mobile user experience and page speed for the /providers page.",
@@ -75,6 +108,28 @@
       "priority": "medium",
       "firstSeen": "2026-04-15",
       "lastSeen": "2026-04-15",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "627164ad7650",
+      "title": "Enhance Calculator Tool Visibility",
+      "description": "Improve rankings for CPL calculator (pos 87-95) by adding more detailed explanations, industry benchmarks, and related tools. Create supporting content around lead cost calculations.",
+      "expectedImpact": "Move calculator pages to positions 20-30, increasing impressions by 50%",
+      "priority": "medium",
+      "firstSeen": "2026-04-16",
+      "lastSeen": "2026-04-16",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "d656ea34d0bb",
+      "title": "Expand Aged Lead Store Review Content",
+      "description": "Leverage strong position 11-12 rankings for 'aged lead store reviews' by adding more detailed comparison content, user testimonials, and pricing analysis to drive affiliate conversions.",
+      "expectedImpact": "Increase affiliate click-through rate and improve rankings to position 5-8",
+      "priority": "medium",
+      "firstSeen": "2026-04-16",
+      "lastSeen": "2026-04-16",
       "timesRepeated": 1,
       "status": "open"
     },
