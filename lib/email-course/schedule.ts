@@ -50,6 +50,9 @@ export async function scheduleCourse(
   const resend = new Resend(apiKey);
   const course = getCourse(vertical);
   const now = Date.now();
+  // Day 0 is delayed by 15 min so a post-signup spam check can cancel scheduled
+  // emails before they go out. Day 2/4/7/10 use day offsets from now.
+  const DAY_0_DELAY_MS = 15 * 60 * 1000;
 
   for (const email of course.emails) {
     try {
@@ -68,20 +71,17 @@ export async function scheduleCourse(
         },
       };
 
-      if (email.day === 0) {
-        await resend.emails.send(basePayload);
-        result.sentImmediately += 1;
-      } else {
-        const scheduledAt = new Date(
-          now + email.day * 24 * 60 * 60 * 1000
-        ).toISOString();
+      const delayMs =
+        email.day === 0
+          ? DAY_0_DELAY_MS
+          : email.day * 24 * 60 * 60 * 1000;
+      const scheduledAt = new Date(now + delayMs).toISOString();
 
-        await resend.emails.send({
-          ...basePayload,
-          scheduledAt,
-        });
-        result.scheduled += 1;
-      }
+      await resend.emails.send({
+        ...basePayload,
+        scheduledAt,
+      });
+      result.scheduled += 1;
     } catch (err) {
       const msg = err instanceof Error ? err.message : "unknown";
       result.errors.push(`Day ${email.day}: ${msg}`);

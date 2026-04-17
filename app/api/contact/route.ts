@@ -1,10 +1,29 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import {
+  isGibberishName,
+  isGoodOrigin,
+  isHoneypotFilled,
+} from "@/lib/anti-spam";
 
 export async function POST(request: Request) {
   try {
+    if (!isGoodOrigin(request)) {
+      return NextResponse.json({ success: true });
+    }
+
     const body = await request.json();
+
+    if (isHoneypotFilled(body)) {
+      return NextResponse.json({ success: true });
+    }
+
     const { name, email, message } = body;
+
+    if (isGibberishName(name)) {
+      console.warn(`[Contact] Rejected gibberish name: "${name}" email=${email}`);
+      return NextResponse.json({ success: true });
+    }
 
     if (!name || typeof name !== "string" || name.trim().length < 2) {
       return NextResponse.json(

@@ -1,11 +1,13 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { HoneypotInput } from "@/components/honeypot-input";
 
 export function ContactForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [website, setWebsite] = useState("");
   const [status, setStatus] = useState<
     "idle" | "loading" | "success" | "error"
   >("idle");
@@ -24,6 +26,7 @@ export function ContactForm() {
           name: name.trim(),
           email: email.trim(),
           message: message.trim(),
+          website,
         }),
       });
 
@@ -66,6 +69,7 @@ export function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
+      <HoneypotInput value={website} onChange={setWebsite} />
       <div>
         <label
           htmlFor="name"

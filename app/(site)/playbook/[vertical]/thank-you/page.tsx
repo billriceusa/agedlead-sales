@@ -126,7 +126,7 @@ export default async function FlagshipThankYouPage({ params }: PageProps) {
                     Check your inbox.
                   </p>
                   <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
-                    The Day 0 email is on its way. If you don&apos;t see it in 10 minutes, check promotions/spam and mark it safe.
+                    The Day 0 email arrives within 15–20 minutes. If you don&apos;t see it, check promotions/spam and mark it safe.
                   </p>
                 </div>
               </li>

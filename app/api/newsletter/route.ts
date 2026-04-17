@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import { isGoodOrigin, isHoneypotFilled } from "@/lib/anti-spam";
 
 const LEAD_MAGNET_DOWNLOADS: Record<string, { name: string; url: string }> = {
   "7-day-cadence": {
@@ -26,7 +27,16 @@ const LEAD_MAGNET_DOWNLOADS: Record<string, { name: string; url: string }> = {
 
 export async function POST(request: Request) {
   try {
+    if (!isGoodOrigin(request)) {
+      return NextResponse.json({ success: true });
+    }
+
     const body = await request.json();
+
+    if (isHoneypotFilled(body)) {
+      return NextResponse.json({ success: true });
+    }
+
     const { email, leadMagnet } = body;
 
     if (!email || typeof email !== "string") {

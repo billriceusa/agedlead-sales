@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { trackNewsletterSignup, trackCtaClick } from "@/components/analytics";
+import { HoneypotInput } from "@/components/honeypot-input";
 import type { Vertical } from "@/lib/email-course/types";
 
 interface FlagshipSignupFormProps {
@@ -19,6 +20,7 @@ export function FlagshipSignupForm({
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
+  const [website, setWebsite] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "error">("idle");
   const [message, setMessage] = useState("");
 
@@ -33,7 +35,12 @@ export function FlagshipSignupForm({
       const res = await fetch("/api/flagship/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, vertical, firstName: firstName.trim() || undefined }),
+        body: JSON.stringify({
+          email,
+          vertical,
+          firstName: firstName.trim() || undefined,
+          website,
+        }),
       });
 
       if (res.ok) {
@@ -53,6 +60,7 @@ export function FlagshipSignupForm({
 
   return (
     <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-3">
+      <HoneypotInput value={website} onChange={setWebsite} />
       <div className="flex flex-col gap-3 sm:flex-row">
         <input
           type="text"

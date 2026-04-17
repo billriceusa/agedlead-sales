@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { trackNewsletterSignup } from "./analytics";
+import { HoneypotInput } from "./honeypot-input";
 
 interface NewsletterSignupProps {
   variant?: "inline" | "card" | "banner";
@@ -19,6 +20,7 @@ export function NewsletterSignup({
   context = "default",
 }: NewsletterSignupProps) {
   const [email, setEmail] = useState("");
+  const [website, setWebsite] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
 
@@ -31,7 +33,7 @@ export function NewsletterSignup({
       const res = await fetch("/api/newsletter", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, website }),
       });
 
       if (res.ok) {
@@ -53,6 +55,7 @@ export function NewsletterSignup({
   if (variant === "inline") {
     return (
       <form onSubmit={handleSubmit} className="flex items-center gap-2">
+        <HoneypotInput value={website} onChange={setWebsite} />
         <input
           type="email"
           placeholder="Your email"
@@ -86,6 +89,7 @@ export function NewsletterSignup({
               onSubmit={handleSubmit}
               className="mx-auto mt-6 flex max-w-md flex-col gap-3 sm:flex-row"
             >
+              <HoneypotInput value={website} onChange={setWebsite} />
               <input
                 type="email"
                 placeholder="Enter your email"
@@ -126,6 +130,7 @@ export function NewsletterSignup({
         </p>
       ) : (
         <form onSubmit={handleSubmit} className="mt-4 flex flex-col gap-3 sm:flex-row">
+          <HoneypotInput value={website} onChange={setWebsite} />
           <input
             type="email"
             placeholder="Enter your email"

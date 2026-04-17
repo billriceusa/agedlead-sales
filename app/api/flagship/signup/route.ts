@@ -2,6 +2,11 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { scheduleCourse } from "@/lib/email-course/schedule";
 import type { Vertical } from "@/lib/email-course/types";
+import {
+  isGibberishName,
+  isGoodOrigin,
+  isHoneypotFilled,
+} from "@/lib/anti-spam";
 
 const VALID_VERTICALS: Vertical[] = ["mortgage", "insurance", "home-services"];
 
@@ -21,12 +26,26 @@ function pdfUrls(vertical: Vertical): { playbookUrl: string; workbookUrl: string
 
 export async function POST(request: Request) {
   try {
+    if (!isGoodOrigin(request)) {
+      return NextResponse.json({ success: true });
+    }
+
     const body = await request.json();
+
+    if (isHoneypotFilled(body)) {
+      return NextResponse.json({ success: true });
+    }
+
     const { email, vertical, firstName } = body as {
       email?: string;
       vertical?: string;
       firstName?: string;
     };
+
+    if (isGibberishName(firstName)) {
+      console.warn(`[Flagship] Rejected gibberish firstName: "${firstName}" email=${email}`);
+      return NextResponse.json({ success: true });
+    }
 
     if (!email || typeof email !== "string") {
       return NextResponse.json(
