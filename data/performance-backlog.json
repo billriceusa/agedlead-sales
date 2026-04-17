@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-16T12:01:29.302Z",
+  "lastUpdated": "2026-04-17T12:01:12.357Z",
   "items": [
     {
       "id": "ae65c17929e7",
@@ -8,7 +8,18 @@
       "expectedImpact": "Restore traffic visibility and identify root cause of 100% traffic loss",
       "priority": "high",
       "firstSeen": "2026-04-14",
-      "lastSeen": "2026-04-15",
+      "lastSeen": "2026-04-17",
+      "timesRepeated": 3,
+      "status": "open"
+    },
+    {
+      "id": "02380b7481fe",
+      "title": "SERP Snippet Optimization",
+      "description": "Review and optimize title tags and meta descriptions for top-ranking pages, especially 'aged lead store' and insurance-related terms. Ensure compelling CTAs that differentiate from competitors.",
+      "expectedImpact": "Improve CTR from current 0% to historical 0.23% or higher",
+      "priority": "high",
+      "firstSeen": "2026-04-15",
+      "lastSeen": "2026-04-17",
       "timesRepeated": 2,
       "status": "open"
     },
@@ -28,17 +39,6 @@
       "title": "Search Console Deep Dive",
       "description": "Review Coverage report for indexing issues, check for crawl errors, and examine any security issues or manual actions. Verify robots.txt and sitemap functionality.",
       "expectedImpact": "Identify and resolve search engine access barriers",
-      "priority": "high",
-      "firstSeen": "2026-04-15",
-      "lastSeen": "2026-04-15",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "02380b7481fe",
-      "title": "SERP Snippet Optimization",
-      "description": "Review and optimize title tags and meta descriptions for top-ranking pages, especially 'aged lead store' and insurance-related terms. Ensure compelling CTAs that differentiate from competitors.",
-      "expectedImpact": "Improve CTR from current 0% to historical 0.23% or higher",
       "priority": "high",
       "firstSeen": "2026-04-15",
       "lastSeen": "2026-04-15",
@@ -75,6 +75,17 @@
       "priority": "high",
       "firstSeen": "2026-04-16",
       "lastSeen": "2026-04-16",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "c2711e0c1965",
+      "title": "Content Freshness Campaign",
+      "description": "Update the aged lead industry statistics page and economics of aged leads content with 2024 data, new case studies, and current market insights to improve rankings and relevance.",
+      "expectedImpact": "Improve average position from 30.3 to 20-25 range",
+      "priority": "high",
+      "firstSeen": "2026-04-17",
+      "lastSeen": "2026-04-17",
       "timesRepeated": 1,
       "status": "open"
     },
@@ -130,6 +141,28 @@
       "priority": "medium",
       "firstSeen": "2026-04-16",
       "lastSeen": "2026-04-16",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "d9390f6018c6",
+      "title": "Calculator Tool Enhancement",
+      "description": "Optimize the CPL calculator page (currently pos 91.3) with better UX, mobile responsiveness, and additional lead cost scenarios for different verticals to capture more long-tail queries.",
+      "expectedImpact": "Move calculator pages into top 30 positions, increase impressions by 50%",
+      "priority": "medium",
+      "firstSeen": "2026-04-17",
+      "lastSeen": "2026-04-17",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "3e89b068a733",
+      "title": "Comparison Content Expansion",
+      "description": "Create more detailed comparison pages for lead providers, building on the existing 'badass insurance leads vs ileads' content that ranks at position 14.6.",
+      "expectedImpact": "Capture more commercial intent queries and improve affiliate conversions",
+      "priority": "medium",
+      "firstSeen": "2026-04-17",
+      "lastSeen": "2026-04-17",
       "timesRepeated": 1,
       "status": "open"
     },
