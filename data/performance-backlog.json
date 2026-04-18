@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-17T12:01:12.357Z",
+  "lastUpdated": "2026-04-18T12:00:50.231Z",
   "items": [
     {
       "id": "ae65c17929e7",
@@ -8,8 +8,8 @@
       "expectedImpact": "Restore traffic visibility and identify root cause of 100% traffic loss",
       "priority": "high",
       "firstSeen": "2026-04-14",
-      "lastSeen": "2026-04-17",
-      "timesRepeated": 3,
+      "lastSeen": "2026-04-18",
+      "timesRepeated": 4,
       "status": "open"
     },
     {
@@ -24,6 +24,17 @@
       "status": "open"
     },
     {
+      "id": "e780bfff40a9",
+      "title": "Search Console Deep Dive",
+      "description": "Review Coverage report for indexing issues, check for crawl errors, and examine any security issues or manual actions. Verify robots.txt and sitemap functionality.",
+      "expectedImpact": "Identify and resolve search engine access barriers",
+      "priority": "high",
+      "firstSeen": "2026-04-15",
+      "lastSeen": "2026-04-18",
+      "timesRepeated": 2,
+      "status": "open"
+    },
+    {
       "id": "ec69a8bab532",
       "title": "Capitalize on Search Momentum",
       "description": "With impressions up 127.6%, create targeted landing pages for high-impression, low-click queries like 'aged mortgage leads' (5 impressions, pos 42.8) and 'insurance leads cost' (6 impressions, pos 42.7).",
@@ -31,17 +42,6 @@
       "priority": "high",
       "firstSeen": "2026-04-14",
       "lastSeen": "2026-04-14",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "e780bfff40a9",
-      "title": "Search Console Deep Dive",
-      "description": "Review Coverage report for indexing issues, check for crawl errors, and examine any security issues or manual actions. Verify robots.txt and sitemap functionality.",
-      "expectedImpact": "Identify and resolve search engine access barriers",
-      "priority": "high",
-      "firstSeen": "2026-04-15",
-      "lastSeen": "2026-04-15",
       "timesRepeated": 1,
       "status": "open"
     },
@@ -86,6 +86,17 @@
       "priority": "high",
       "firstSeen": "2026-04-17",
       "lastSeen": "2026-04-17",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "8b7d0f14387f",
+      "title": "Title Tag and Meta Description Optimization",
+      "description": "Rewrite title tags and meta descriptions for pages ranking positions 11-30 to improve CTR. Focus on 'aged lead store reviews' (pos 11.7) and 'auto insurance lead cost' (pos 12.7) pages first.",
+      "expectedImpact": "Increase CTR by 2-5x for existing impressions, potentially driving 10-20 daily clicks",
+      "priority": "high",
+      "firstSeen": "2026-04-18",
+      "lastSeen": "2026-04-18",
       "timesRepeated": 1,
       "status": "open"
     },
@@ -167,6 +178,28 @@
       "status": "open"
     },
     {
+      "id": "31aa4d6c7de3",
+      "title": "Content Expansion for High-Impression Queries",
+      "description": "Create dedicated landing pages or expand existing content for 'aged mortgage leads' (9 impressions, pos 44.2) and 'auto insurance leads cost' (6 impressions, pos 23.0) to capture more search volume.",
+      "expectedImpact": "Improve positions by 10-15 spots and increase impression volume by 50%",
+      "priority": "medium",
+      "firstSeen": "2026-04-18",
+      "lastSeen": "2026-04-18",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "bbe0bc736767",
+      "title": "Internal Linking Strategy",
+      "description": "Implement strategic internal linking between high-performing pages like 'aged-lead-industry-statistics' (pos 3.0) and conversion-focused pages to distribute link equity and improve rankings.",
+      "expectedImpact": "Boost average positions by 5-10 spots across target pages",
+      "priority": "medium",
+      "firstSeen": "2026-04-18",
+      "lastSeen": "2026-04-18",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "6bb79e498c01",
       "title": "Content Gap Analysis",
       "description": "Develop content targeting queries showing in positions 60-90+ like 'how much do insurance leads cost' (pos 73) and 'cpl calculator' (pos 88) to capture long-tail search volume.",
@@ -185,6 +218,17 @@
       "priority": "low",
       "firstSeen": "2026-04-15",
       "lastSeen": "2026-04-15",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "8c8b79cd31d6",
+      "title": "Mobile Experience Optimization",
+      "description": "Despite low mobile impressions (21 vs 252 desktop), optimize mobile page speed and user experience as mobile traffic typically converts better for local service queries.",
+      "expectedImpact": "Improve mobile rankings and capture additional 15-20% traffic when issues are resolved",
+      "priority": "low",
+      "firstSeen": "2026-04-18",
+      "lastSeen": "2026-04-18",
       "timesRepeated": 1,
       "status": "open"
     }
