@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-18T12:00:50.231Z",
+  "lastUpdated": "2026-04-19T12:01:35.376Z",
   "items": [
     {
       "id": "ae65c17929e7",
@@ -97,6 +97,28 @@
       "priority": "high",
       "firstSeen": "2026-04-18",
       "lastSeen": "2026-04-18",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "431dc6d1174e",
+      "title": "Emergency Site Audit and Recovery",
+      "description": "Immediately check site accessibility, server status, DNS resolution, and Google Analytics tracking code. Verify robots.txt, check for manual penalties in Search Console, and test site loading across devices. If tracking is broken, implement backup measurement while fixing primary GA4.",
+      "expectedImpact": "Restore traffic visibility and identify root cause of 100% traffic loss",
+      "priority": "high",
+      "firstSeen": "2026-04-19",
+      "lastSeen": "2026-04-19",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "5ee54d258dd2",
+      "title": "Capitalize on Cost-Query Momentum",
+      "description": "Create dedicated landing pages for high-impression cost queries: 'auto insurance lead cost', 'cost of insurance leads', and 'how much do insurance leads cost'. Build comprehensive cost calculators and comparison tools with affiliate links to AgedLeadStore.",
+      "expectedImpact": "Convert 10+ daily impressions into clicks and potential affiliate commissions",
+      "priority": "high",
+      "firstSeen": "2026-04-19",
+      "lastSeen": "2026-04-19",
       "timesRepeated": 1,
       "status": "open"
     },
@@ -200,6 +222,39 @@
       "status": "open"
     },
     {
+      "id": "58864bb6ed70",
+      "title": "Optimize Branded Query Conversion",
+      "description": "Enhance the /providers/aged-lead-store page with more compelling CTAs, customer testimonials, and direct affiliate links. Add schema markup for reviews and pricing to improve SERP appearance for 'aged lead store reviews' queries.",
+      "expectedImpact": "Improve conversion of 6+ daily branded impressions into clicks",
+      "priority": "medium",
+      "firstSeen": "2026-04-19",
+      "lastSeen": "2026-04-19",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "162c71a0068d",
+      "title": "Content Gap Analysis for Mortgage Leads",
+      "description": "Develop comprehensive content targeting 'aged mortgage leads' (10 daily impressions, position 43.7) and 'aged mortgage protection leads'. Create case studies, ROI calculators, and comparison guides to capture this high-value vertical.",
+      "expectedImpact": "Capture additional 10+ daily impressions in mortgage lead space",
+      "priority": "medium",
+      "firstSeen": "2026-04-19",
+      "lastSeen": "2026-04-19",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "8c8b79cd31d6",
+      "title": "Mobile Experience Optimization",
+      "description": "Despite low mobile impressions (21 vs 252 desktop), optimize mobile page speed and user experience as mobile traffic typically converts better for local service queries.",
+      "expectedImpact": "Improve mobile rankings and capture additional 15-20% traffic when issues are resolved",
+      "priority": "low",
+      "firstSeen": "2026-04-18",
+      "lastSeen": "2026-04-19",
+      "timesRepeated": 2,
+      "status": "open"
+    },
+    {
       "id": "6bb79e498c01",
       "title": "Content Gap Analysis",
       "description": "Develop content targeting queries showing in positions 60-90+ like 'how much do insurance leads cost' (pos 73) and 'cpl calculator' (pos 88) to capture long-tail search volume.",
@@ -218,17 +273,6 @@
       "priority": "low",
       "firstSeen": "2026-04-15",
       "lastSeen": "2026-04-15",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "8c8b79cd31d6",
-      "title": "Mobile Experience Optimization",
-      "description": "Despite low mobile impressions (21 vs 252 desktop), optimize mobile page speed and user experience as mobile traffic typically converts better for local service queries.",
-      "expectedImpact": "Improve mobile rankings and capture additional 15-20% traffic when issues are resolved",
-      "priority": "low",
-      "firstSeen": "2026-04-18",
-      "lastSeen": "2026-04-18",
       "timesRepeated": 1,
       "status": "open"
     }
