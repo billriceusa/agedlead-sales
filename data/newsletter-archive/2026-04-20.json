@@ -1,0 +1,24 @@
+{
+  "runDate": "2026-04-19T08:00:59.213Z",
+  "weekOf": "2026-04-20",
+  "sendDate": "2026-04-21",
+  "theme": "Compliance Corner",
+  "focusVertical": "General",
+  "subject": "The DNC scrub that saves $500 per violation",
+  "previewText": "Plus: manual vs power dial compliance + your 5-step checklist",
+  "broadcastId": null,
+  "featuredArticle": {
+    "title": "The Weekly Numbers Review: How to Track and Improve Your Aged Lead Performance",
+    "slug": "weekly-numbers-review-track-improve-aged-lead-performance",
+    "spotlight": "Most agents track calls and conversions, then wonder why performance stays flat. This post breaks down the 7 KPIs that actually move the needle—including the two metrics that predict next month's revenue better than anything else."
+  },
+  "quickTips": [
+    "The DNC Scrub Step Most Agents Skip",
+    "Manual Dial vs Power Dial: The Compliance Difference",
+    "Your 5-Record Compliance Checklist"
+  ],
+  "industryInsight": "FTC Ramping Up Lead Gen Enforcement",
+  "errors": [
+    "Broadcast scheduling failed: Schedule broadcast: 422: {\"statusCode\":422,\"message\":\"The audience you are sending has no contacts. Before sending the Broadcast, add contacts to the audience\",\"name\":\"validation_error\"}"
+  ]
+}
