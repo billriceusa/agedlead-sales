@@ -1,0 +1,53 @@
+{
+  "lastRun": "2026-04-19T06:02:31.227Z",
+  "weekOf": "2026-04-20",
+  "analysis": {
+    "strategyReview": "Our content strategy shows strong coverage across all five pillars with 41 published posts, demonstrating consistent execution of vertical-specific playbooks and channel tactics. We've established authority in high-value verticals like insurance, mortgage, and solar while covering essential foundational topics like compliance and CRM setup. However, there are notable gaps in advanced operational content for scaling teams and sophisticated metrics/optimization strategies that would serve our more experienced audience segments. The current content heavily favors individual practitioners over team leaders and agency owners who represent higher-value prospects.",
+    "competitiveInsights": "Analysis of competitor content reveals opportunities in three key areas: 1) Advanced team management and scaling operations (HowToWorkLeads focuses on individual tactics, not team systems), 2) Industry-specific compliance deep-dives beyond basic TCPA coverage (AgedLeadStore mentions compliance but doesn't provide actionable frameworks), and 3) Data-driven optimization content with specific KPIs and benchmarks (competitors provide general advice without measurable frameworks). There's particularly strong search volume around 'insurance agency management aged leads' and 'mortgage team aged lead processes' that neither competitor adequately addresses.",
+    "newOpportunities": [
+      "Advanced team scaling content for agency owners",
+      "Industry-specific KPI benchmarking content",
+      "Seasonal campaign optimization strategies",
+      "Cross-vertical lead arbitrage opportunities",
+      "Advanced CRM automation workflows"
+    ],
+    "trendingTopics": [
+      "AI and automation in lead management",
+      "Economic uncertainty driving aged lead adoption",
+      "Compliance updates for 2026",
+      "Team productivity optimization",
+      "Multi-channel attribution tracking"
+    ],
+    "recommendedUpdates": [
+      "Prioritize team/management focused content for Q2",
+      "Develop more advanced metrics content for experienced users",
+      "Create seasonal optimization content aligned with industry cycles"
+    ]
+  },
+  "articlesCreated": [
+    {
+      "title": "Scaling Your Aged Lead Operation: From Solo Agent to Team",
+      "slug": "scaling-aged-lead-operation-solo-agent-to-team",
+      "publishDate": "2026-04-20",
+      "primaryKeyword": "scaling aged lead operation",
+      "pillar": "Role Guides"
+    },
+    {
+      "title": "The Weekly Numbers Review: How to Track and Improve Your Aged Lead Performance",
+      "slug": "weekly-numbers-review-track-improve-aged-lead-performance",
+      "publishDate": "2026-04-22",
+      "primaryKeyword": "aged lead performance tracking",
+      "pillar": "Metrics & Optimization"
+    },
+    {
+      "title": "Auto Insurance Aged Leads: The Cross-Sell Strategy That Doubles Revenue",
+      "slug": "auto-insurance-aged-leads-cross-sell-strategy-double-revenue",
+      "publishDate": "2026-04-24",
+      "primaryKeyword": "auto insurance aged leads",
+      "pillar": "Vertical Playbooks"
+    }
+  ],
+  "articlesSkipped": [],
+  "articlesFailed": [],
+  "briefsForNextWeek": "Selected three high-impact briefs from existing calendar that address current content gaps: team scaling (Role Guides), performance optimization (Metrics), and revenue maximization (Vertical Playbooks). These topics align with trending searches around operational efficiency and revenue growth while maintaining pillar rotation. All three target our core insurance/mortgage audience with actionable frameworks not covered by competitors."
+}
