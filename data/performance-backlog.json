@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-19T12:01:35.376Z",
+  "lastUpdated": "2026-04-20T12:01:21.217Z",
   "items": [
     {
       "id": "ae65c17929e7",
@@ -8,8 +8,19 @@
       "expectedImpact": "Restore traffic visibility and identify root cause of 100% traffic loss",
       "priority": "high",
       "firstSeen": "2026-04-14",
-      "lastSeen": "2026-04-18",
-      "timesRepeated": 4,
+      "lastSeen": "2026-04-20",
+      "timesRepeated": 5,
+      "status": "open"
+    },
+    {
+      "id": "ec69a8bab532",
+      "title": "Capitalize on Search Momentum",
+      "description": "With impressions up 127.6%, create targeted landing pages for high-impression, low-click queries like 'aged mortgage leads' (5 impressions, pos 42.8) and 'insurance leads cost' (6 impressions, pos 42.7).",
+      "expectedImpact": "Convert increased visibility into actual traffic and clicks",
+      "priority": "high",
+      "firstSeen": "2026-04-14",
+      "lastSeen": "2026-04-20",
+      "timesRepeated": 2,
       "status": "open"
     },
     {
@@ -32,17 +43,6 @@
       "firstSeen": "2026-04-15",
       "lastSeen": "2026-04-18",
       "timesRepeated": 2,
-      "status": "open"
-    },
-    {
-      "id": "ec69a8bab532",
-      "title": "Capitalize on Search Momentum",
-      "description": "With impressions up 127.6%, create targeted landing pages for high-impression, low-click queries like 'aged mortgage leads' (5 impressions, pos 42.8) and 'insurance leads cost' (6 impressions, pos 42.7).",
-      "expectedImpact": "Convert increased visibility into actual traffic and clicks",
-      "priority": "high",
-      "firstSeen": "2026-04-14",
-      "lastSeen": "2026-04-14",
-      "timesRepeated": 1,
       "status": "open"
     },
     {
@@ -244,6 +244,39 @@
       "status": "open"
     },
     {
+      "id": "31090069484c",
+      "title": "Mobile-First Optimization",
+      "description": "Only 1 click from mobile despite 20 mobile impressions suggests poor mobile UX. Audit mobile page speed, layout, and affiliate link accessibility. Implement AMP or optimize Core Web Vitals for mobile.",
+      "expectedImpact": "Improve mobile CTR from current low performance to match desktop engagement",
+      "priority": "medium",
+      "firstSeen": "2026-04-20",
+      "lastSeen": "2026-04-20",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "7ccc0143faa5",
+      "title": "Content Gap Analysis for Mortgage Vertical",
+      "description": "With 9 impressions for 'aged mortgage leads' at position 43.7, create comprehensive mortgage lead buying guides, cost calculators, and provider comparisons to capture this high-value vertical traffic.",
+      "expectedImpact": "Move mortgage-related queries into top 20 positions and increase vertical-specific affiliate revenue",
+      "priority": "medium",
+      "firstSeen": "2026-04-20",
+      "lastSeen": "2026-04-20",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "cc192c120d5f",
+      "title": "Long-tail Keyword Expansion",
+      "description": "Target specific queries like 'how much do mortgage trigger leads cost' (pos 56.8) and 'auto insurance lead cost' (pos 23.0) with dedicated content pieces.",
+      "expectedImpact": "Increase impressions and capture more qualified traffic for affiliate conversions",
+      "priority": "low",
+      "firstSeen": "2026-04-15",
+      "lastSeen": "2026-04-20",
+      "timesRepeated": 2,
+      "status": "open"
+    },
+    {
       "id": "8c8b79cd31d6",
       "title": "Mobile Experience Optimization",
       "description": "Despite low mobile impressions (21 vs 252 desktop), optimize mobile page speed and user experience as mobile traffic typically converts better for local service queries.",
@@ -262,17 +295,6 @@
       "priority": "low",
       "firstSeen": "2026-04-14",
       "lastSeen": "2026-04-14",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "cc192c120d5f",
-      "title": "Long-tail Keyword Expansion",
-      "description": "Target specific queries like 'how much do mortgage trigger leads cost' (pos 56.8) and 'auto insurance lead cost' (pos 23.0) with dedicated content pieces.",
-      "expectedImpact": "Increase impressions and capture more qualified traffic for affiliate conversions",
-      "priority": "low",
-      "firstSeen": "2026-04-15",
-      "lastSeen": "2026-04-15",
       "timesRepeated": 1,
       "status": "open"
     }
