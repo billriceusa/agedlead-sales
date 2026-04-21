@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-20T12:01:21.217Z",
+  "lastUpdated": "2026-04-21T12:01:00.897Z",
   "items": [
     {
       "id": "ae65c17929e7",
@@ -8,8 +8,8 @@
       "expectedImpact": "Restore traffic visibility and identify root cause of 100% traffic loss",
       "priority": "high",
       "firstSeen": "2026-04-14",
-      "lastSeen": "2026-04-20",
-      "timesRepeated": 5,
+      "lastSeen": "2026-04-21",
+      "timesRepeated": 6,
       "status": "open"
     },
     {
@@ -123,6 +123,28 @@
       "status": "open"
     },
     {
+      "id": "4f55e5160362",
+      "title": "Capitalize on Search Visibility Gains",
+      "description": "With impressions up 171.6%, optimize title tags and meta descriptions for top-performing queries like 'aged lead store reviews' and 'auto insurance lead cost'. Add structured data markup for review pages and cost calculator tools to enhance SERP features.",
+      "expectedImpact": "Convert improved impressions into actual clicks, potentially 2-3x current CTR",
+      "priority": "high",
+      "firstSeen": "2026-04-21",
+      "lastSeen": "2026-04-21",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "8c8b79cd31d6",
+      "title": "Mobile Experience Optimization",
+      "description": "Despite low mobile impressions (21 vs 252 desktop), optimize mobile page speed and user experience as mobile traffic typically converts better for local service queries.",
+      "expectedImpact": "Improve mobile rankings and capture additional 15-20% traffic when issues are resolved",
+      "priority": "medium",
+      "firstSeen": "2026-04-18",
+      "lastSeen": "2026-04-21",
+      "timesRepeated": 3,
+      "status": "open"
+    },
+    {
       "id": "b9acf266e5d4",
       "title": "Mobile Experience Enhancement",
       "description": "With mobile generating the only click (1 click from 21 mobile impressions vs 0 clicks from 207 desktop impressions), optimize mobile user experience and page speed for the /providers page.",
@@ -130,6 +152,28 @@
       "priority": "medium",
       "firstSeen": "2026-04-14",
       "lastSeen": "2026-04-15",
+      "timesRepeated": 2,
+      "status": "open"
+    },
+    {
+      "id": "31aa4d6c7de3",
+      "title": "Content Expansion for High-Impression Queries",
+      "description": "Create dedicated landing pages or expand existing content for 'aged mortgage leads' (9 impressions, pos 44.2) and 'auto insurance leads cost' (6 impressions, pos 23.0) to capture more search volume.",
+      "expectedImpact": "Improve positions by 10-15 spots and increase impression volume by 50%",
+      "priority": "medium",
+      "firstSeen": "2026-04-18",
+      "lastSeen": "2026-04-21",
+      "timesRepeated": 2,
+      "status": "open"
+    },
+    {
+      "id": "bbe0bc736767",
+      "title": "Internal Linking Strategy",
+      "description": "Implement strategic internal linking between high-performing pages like 'aged-lead-industry-statistics' (pos 3.0) and conversion-focused pages to distribute link equity and improve rankings.",
+      "expectedImpact": "Boost average positions by 5-10 spots across target pages",
+      "priority": "medium",
+      "firstSeen": "2026-04-18",
+      "lastSeen": "2026-04-21",
       "timesRepeated": 2,
       "status": "open"
     },
@@ -200,28 +244,6 @@
       "status": "open"
     },
     {
-      "id": "31aa4d6c7de3",
-      "title": "Content Expansion for High-Impression Queries",
-      "description": "Create dedicated landing pages or expand existing content for 'aged mortgage leads' (9 impressions, pos 44.2) and 'auto insurance leads cost' (6 impressions, pos 23.0) to capture more search volume.",
-      "expectedImpact": "Improve positions by 10-15 spots and increase impression volume by 50%",
-      "priority": "medium",
-      "firstSeen": "2026-04-18",
-      "lastSeen": "2026-04-18",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "bbe0bc736767",
-      "title": "Internal Linking Strategy",
-      "description": "Implement strategic internal linking between high-performing pages like 'aged-lead-industry-statistics' (pos 3.0) and conversion-focused pages to distribute link equity and improve rankings.",
-      "expectedImpact": "Boost average positions by 5-10 spots across target pages",
-      "priority": "medium",
-      "firstSeen": "2026-04-18",
-      "lastSeen": "2026-04-18",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
       "id": "58864bb6ed70",
       "title": "Optimize Branded Query Conversion",
       "description": "Enhance the /providers/aged-lead-store page with more compelling CTAs, customer testimonials, and direct affiliate links. Add schema markup for reviews and pricing to improve SERP appearance for 'aged lead store reviews' queries.",
@@ -273,17 +295,6 @@
       "priority": "low",
       "firstSeen": "2026-04-15",
       "lastSeen": "2026-04-20",
-      "timesRepeated": 2,
-      "status": "open"
-    },
-    {
-      "id": "8c8b79cd31d6",
-      "title": "Mobile Experience Optimization",
-      "description": "Despite low mobile impressions (21 vs 252 desktop), optimize mobile page speed and user experience as mobile traffic typically converts better for local service queries.",
-      "expectedImpact": "Improve mobile rankings and capture additional 15-20% traffic when issues are resolved",
-      "priority": "low",
-      "firstSeen": "2026-04-18",
-      "lastSeen": "2026-04-19",
       "timesRepeated": 2,
       "status": "open"
     },
