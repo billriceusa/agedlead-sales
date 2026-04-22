@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-21T12:01:00.897Z",
+  "lastUpdated": "2026-04-22T12:01:09.680Z",
   "items": [
     {
       "id": "ae65c17929e7",
@@ -134,14 +134,36 @@
       "status": "open"
     },
     {
+      "id": "63abe5c55d57",
+      "title": "Emergency Technical Audit and Fix",
+      "description": "Immediately investigate Google Analytics tracking, server uptime, and site accessibility. Check for broken redirects, server errors, or GA4 configuration issues preventing traffic measurement. Verify site is loading properly across all devices and browsers.",
+      "expectedImpact": "Restore traffic visibility and identify root cause of disconnect between search performance and site visits",
+      "priority": "high",
+      "firstSeen": "2026-04-22",
+      "lastSeen": "2026-04-22",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "2f2eff49ad10",
+      "title": "Optimize High-Impression, Low-Click Pages",
+      "description": "Rewrite meta descriptions and titles for pages ranking well but not getting clicks, particularly the providers page (position 23.3) and aged lead store review content (position 13.3). Focus on compelling CTAs and value propositions.",
+      "expectedImpact": "Increase CTR from current 0.27% to 1-2% within 30 days",
+      "priority": "high",
+      "firstSeen": "2026-04-22",
+      "lastSeen": "2026-04-22",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "8c8b79cd31d6",
       "title": "Mobile Experience Optimization",
       "description": "Despite low mobile impressions (21 vs 252 desktop), optimize mobile page speed and user experience as mobile traffic typically converts better for local service queries.",
       "expectedImpact": "Improve mobile rankings and capture additional 15-20% traffic when issues are resolved",
       "priority": "medium",
       "firstSeen": "2026-04-18",
-      "lastSeen": "2026-04-21",
-      "timesRepeated": 3,
+      "lastSeen": "2026-04-22",
+      "timesRepeated": 4,
       "status": "open"
     },
     {
@@ -284,6 +306,28 @@
       "priority": "medium",
       "firstSeen": "2026-04-20",
       "lastSeen": "2026-04-20",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "6b00ce2de3b9",
+      "title": "Capitalize on Brand Query Momentum",
+      "description": "Create dedicated landing pages for 'aged lead store reviews' and 'aged lead store' queries that are showing strong impression volume. Include comparison tables, testimonials, and clear affiliate links to AgedLeadStore.com.",
+      "expectedImpact": "Capture 20-30% of the 17 daily brand-related impressions as actual clicks",
+      "priority": "medium",
+      "firstSeen": "2026-04-22",
+      "lastSeen": "2026-04-22",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "30f76b94728d",
+      "title": "Expand High-Performing Content Clusters",
+      "description": "Build more content around 'auto insurance lead cost' (ranking position 12) and 'aged mortgage leads' topics. Create comprehensive guides, cost calculators, and comparison content to capture the growing search volume.",
+      "expectedImpact": "Increase impressions by 50% in insurance and mortgage lead cost queries",
+      "priority": "medium",
+      "firstSeen": "2026-04-22",
+      "lastSeen": "2026-04-22",
       "timesRepeated": 1,
       "status": "open"
     },
