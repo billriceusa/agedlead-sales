@@ -1,11 +1,213 @@
 {
-  "lastUpdated": "2026-04-15T10:01:31.672Z",
+  "lastUpdated": "2026-04-22T10:01:40.033Z",
   "items": [
     {
       "id": "finding-001",
-      "createdAt": "2026-04-15T10:01:31.672Z",
-      "updatedAt": "2026-04-15T10:01:31.672Z",
+      "createdAt": "2026-04-22T10:01:40.033Z",
+      "updatedAt": "2026-04-22T10:01:40.033Z",
       "status": "open",
+      "priority": 2,
+      "category": "content-quality",
+      "severity": "high",
+      "title": "21 blog posts missing featured images impact E-E-A-T signals",
+      "description": "Featured images are critical for E-E-A-T signals, social sharing, and user engagement. Missing images on recent posts like 'auto-insurance-aged-leads-cross-sell-strategy-double-revenue' and 'best-aged-lead-providers-compared-where-to-buy-aged-leads-2026' reduce content quality perception and may impact rankings under the March 2024 Core Update's focus on content quality.",
+      "recommendation": "Create custom featured images for all posts within 2 weeks. Use data visualizations for posts with statistics, process diagrams for strategy posts, and comparison charts for provider reviews. Implement WebP format with proper alt text and structured data ImageObject markup.",
+      "effort": "medium",
+      "affectedPages": [
+        "/blog/auto-insurance-aged-leads-cross-sell-strategy-double-revenue",
+        "/blog/best-aged-lead-providers-compared-where-to-buy-aged-leads-2026",
+        "/blog/scaling-aged-lead-operation-solo-agent-to-team"
+      ],
+      "sourceAudit": "2026-04-22"
+    },
+    {
+      "id": "finding-002",
+      "createdAt": "2026-04-22T10:01:40.033Z",
+      "updatedAt": "2026-04-22T10:01:40.033Z",
+      "status": "open",
+      "priority": 2,
+      "category": "e-e-a-t",
+      "severity": "high",
+      "title": "Author expertise needs stronger YMYL demonstration",
+      "description": "With November 2024 Search Quality Guidelines emphasizing E-E-A-T for YMYL-adjacent financial content, Bill Rice's expertise needs more prominent display. Current Person schema lacks sufficient credentials for insurance/mortgage content authority.",
+      "recommendation": "Enhance Bill Rice's author bio with specific insurance industry credentials, years of experience, client testimonials, and speaking engagements. Add 'hasCredential' schema property, create dedicated author page with portfolio, and include author bylines with expertise indicators on all YMYL content.",
+      "effort": "medium",
+      "affectedPages": [
+        "/about",
+        "/blog/*",
+        "/glossary/*"
+      ],
+      "sourceAudit": "2026-04-22"
+    },
+    {
+      "id": "finding-003",
+      "createdAt": "2026-04-22T10:01:40.033Z",
+      "updatedAt": "2026-04-22T10:01:40.033Z",
+      "status": "open",
+      "priority": 2,
+      "category": "structured-data",
+      "severity": "high",
+      "title": "Missing Product schema for lead type pages reduces rich results",
+      "description": "Lead type pages lack Product schema markup, missing opportunities for rich results and failing to signal content value to Google's algorithm updates focused on helpful, structured content.",
+      "recommendation": "Implement Product schema for all lead type pages with aggregateRating, offers (price ranges), and review properties. Include 'category' and 'audience' properties to signal relevance for specific professional verticals.",
+      "effort": "small",
+      "affectedPages": [
+        "/lead-types/auto-insurance-leads",
+        "/lead-types/mortgage-leads",
+        "/lead-types/health-insurance-leads"
+      ],
+      "sourceAudit": "2026-04-22"
+    },
+    {
+      "id": "finding-004",
+      "createdAt": "2026-04-22T10:01:40.033Z",
+      "updatedAt": "2026-04-22T10:01:40.033Z",
+      "status": "open",
+      "priority": 3,
+      "category": "technical-seo",
+      "severity": "medium",
+      "title": "Core Web Vitals INP optimization needed for May 2024 thresholds",
+      "description": "With May 2024 Core Web Vitals update setting INP threshold under 200ms and mobile performance weighted more heavily, current interactive elements may not meet new standards.",
+      "recommendation": "Audit INP performance using Chrome DevTools and PageSpeed Insights. Optimize affiliate link tracking in lib/affiliate.ts to use passive event listeners, implement code splitting for non-critical JavaScript, and preload critical Sanity.io queries. Target INP under 150ms for safety margin.",
+      "effort": "medium",
+      "affectedPages": [
+        "site-wide"
+      ],
+      "sourceAudit": "2026-04-22"
+    },
+    {
+      "id": "finding-005",
+      "createdAt": "2026-04-22T10:01:40.033Z",
+      "updatedAt": "2026-04-22T10:01:40.033Z",
+      "status": "open",
+      "priority": 3,
+      "category": "affiliate-compliance",
+      "severity": "medium",
+      "title": "Affiliate disclosure prominence needs enhancement for FTC compliance",
+      "description": "December 2023 Helpful Content Update specifically scrutinized affiliate sites for disclosure prominence. Current site-wide disclosure may not meet FTC's 'clear and conspicuous' standard for all content types.",
+      "recommendation": "Add per-post affiliate disclosures above the fold on all content with affiliate links. Include disclosure in email newsletters and social media posts. Create dedicated disclosure page linked from footer and implement disclosure schema markup using 'hasPart' property.",
+      "effort": "small",
+      "affectedPages": [
+        "/blog/*",
+        "/lead-types/*",
+        "/disclosure"
+      ],
+      "sourceAudit": "2026-04-22"
+    },
+    {
+      "id": "finding-006",
+      "createdAt": "2026-04-22T10:01:40.033Z",
+      "updatedAt": "2026-04-22T10:01:40.033Z",
+      "status": "open",
+      "priority": 3,
+      "category": "content-quality",
+      "severity": "medium",
+      "title": "Content pillar gaps in promised deliverables impact authority",
+      "description": "Content pillars show 0 playbooks and 0 guides despite being core content types. This gap may signal incomplete expertise coverage to Google's Helpful Content system, which now better detects comprehensive topic coverage.",
+      "recommendation": "Create 3-5 comprehensive playbooks for top verticals (insurance agents, mortgage brokers, PI attorneys) and 5-8 tactical guides covering lead nurturing, CRM setup, and compliance. Use pillar-cluster architecture linking related blog posts to establish topical authority.",
+      "effort": "large",
+      "affectedPages": [
+        "/playbooks/*",
+        "/guides/*"
+      ],
+      "sourceAudit": "2026-04-22"
+    },
+    {
+      "id": "finding-007",
+      "createdAt": "2026-04-15T10:01:31.672Z",
+      "updatedAt": "2026-04-22T10:01:40.033Z",
+      "status": "open",
+      "priority": 3,
+      "category": "internal-linking",
+      "severity": "medium",
+      "title": "Glossary cross-linking underutilized for topic authority",
+      "description": "77 glossary terms represent significant topical authority potential, but cross-linking to blog content appears limited. This misses opportunities to demonstrate comprehensive topic coverage valued by recent algorithm updates.",
+      "recommendation": "Implement automated glossary linking in blog posts using contextual keyword matching. Create glossary hub pages for related terms (e.g., 'Insurance Lead Types', 'CRM Terminology') and add 'isPartOf' schema relationships. Link 3-5 relevant glossary terms per blog post.",
+      "effort": "medium",
+      "affectedPages": [
+        "/glossary/*",
+        "/blog/*"
+      ],
+      "sourceAudit": "2026-04-15",
+      "notes": "Re-identified in audit 2026-04-22"
+    },
+    {
+      "id": "finding-008",
+      "createdAt": "2026-04-15T10:01:31.672Z",
+      "updatedAt": "2026-04-22T10:01:40.033Z",
+      "status": "open",
+      "priority": 3,
+      "category": "content-quality",
+      "severity": "medium",
+      "title": "Content freshness strategy needed for competitive topics",
+      "description": "Posts on competitive topics like 'Best Aged Lead Providers 2026' need regular updates to maintain relevance. Google's algorithm updates favor fresh, current information for time-sensitive queries.",
+      "recommendation": "Implement quarterly content refresh schedule for comparison posts, annual updates for 'best of' lists, and monthly data updates for statistics-heavy content. Add 'dateModified' schema and update timestamps. Create content calendar tracking refresh needs.",
+      "effort": "medium",
+      "affectedPages": [
+        "/blog/best-aged-lead-providers-compared-where-to-buy-aged-leads-2026",
+        "/blog/aged-leads-pricing-2026-complete-industry-guide"
+      ],
+      "sourceAudit": "2026-04-15",
+      "notes": "Re-identified in audit 2026-04-22"
+    },
+    {
+      "id": "finding-009",
+      "createdAt": "2026-04-22T10:01:40.033Z",
+      "updatedAt": "2026-04-22T10:01:40.033Z",
+      "status": "open",
+      "priority": 4,
+      "category": "e-e-a-t",
+      "severity": "low",
+      "title": "Case studies need stronger sourcing for credibility",
+      "description": "Posts like 'Aged Lead Call Recording Analysis: 500 Conversations Reveal' make data claims without clear sourcing methodology, which may not meet E-E-A-T standards for experience evidence.",
+      "recommendation": "Add methodology sections to data-driven posts explaining data collection, sample sizes, and analysis methods. Include disclaimers about data limitations and create 'about our research' page explaining data standards. Consider third-party validation for major claims.",
+      "effort": "small",
+      "affectedPages": [
+        "/blog/aged-lead-call-recording-analysis-500-conversations-reveal",
+        "/blog/aged-lead-conversion-rates-by-industry-data-benchmarks"
+      ],
+      "sourceAudit": "2026-04-22"
+    },
+    {
+      "id": "finding-010",
+      "createdAt": "2026-04-15T10:01:31.672Z",
+      "updatedAt": "2026-04-22T10:01:40.033Z",
+      "status": "open",
+      "priority": 4,
+      "category": "technical-seo",
+      "severity": "low",
+      "title": "Sitemap optimization for content hierarchy",
+      "description": "137 sitemap entries may not optimally represent content hierarchy and priority signals to search engines, particularly for the glossary and lead type pages that should have higher priority.",
+      "recommendation": "Implement sitemap index with separate sitemaps for content types (blog, glossary, lead-types). Add priority values (0.8 for lead types, 0.6 for recent blog posts, 0.4 for glossary) and appropriate changefreq values. Exclude low-value pages like tag archives.",
+      "effort": "small",
+      "affectedPages": [
+        "/sitemap.xml"
+      ],
+      "sourceAudit": "2026-04-15",
+      "notes": "Re-identified in audit 2026-04-22"
+    },
+    {
+      "id": "finding-011",
+      "createdAt": "2026-04-22T10:01:40.033Z",
+      "updatedAt": "2026-04-22T10:01:40.033Z",
+      "status": "open",
+      "priority": 4,
+      "category": "structured-data",
+      "severity": "low",
+      "title": "FAQ schema opportunities on glossary pages",
+      "description": "Glossary pages with DefinedTerm schema could benefit from FAQ schema for common questions about each term, potentially earning rich results and demonstrating comprehensive expertise.",
+      "recommendation": "Add FAQ schema to glossary terms with common questions like 'How does [term] work?', 'What are the benefits of [term]?', 'How much does [term] cost?'. Focus on high-volume terms first and ensure answers demonstrate expertise.",
+      "effort": "medium",
+      "affectedPages": [
+        "/glossary/*"
+      ],
+      "sourceAudit": "2026-04-22"
+    },
+    {
+      "id": "finding-001",
+      "createdAt": "2026-04-15T10:01:31.672Z",
+      "updatedAt": "2026-04-22T10:01:40.033Z",
+      "status": "completed",
       "priority": 2,
       "category": "content-quality",
       "severity": "high",
@@ -18,13 +220,14 @@
         "/blog/best-aged-lead-providers-compared-where-to-buy-aged-leads-2026",
         "/blog/aged-lead-conversion-rates-by-industry-data-benchmarks"
       ],
-      "sourceAudit": "2026-04-15"
+      "sourceAudit": "2026-04-15",
+      "notes": "Not found in audit 2026-04-22 — appears resolved"
     },
     {
       "id": "finding-002",
       "createdAt": "2026-04-15T10:01:31.672Z",
-      "updatedAt": "2026-04-15T10:01:31.672Z",
-      "status": "open",
+      "updatedAt": "2026-04-22T10:01:40.033Z",
+      "status": "completed",
       "priority": 2,
       "category": "e-e-a-t",
       "severity": "high",
@@ -36,13 +239,14 @@
         "/blog/*",
         "/author/bill-rice"
       ],
-      "sourceAudit": "2026-04-15"
+      "sourceAudit": "2026-04-15",
+      "notes": "Not found in audit 2026-04-22 — appears resolved"
     },
     {
       "id": "finding-003",
       "createdAt": "2026-04-15T10:01:31.672Z",
-      "updatedAt": "2026-04-15T10:01:31.672Z",
-      "status": "open",
+      "updatedAt": "2026-04-22T10:01:40.033Z",
+      "status": "completed",
       "priority": 3,
       "category": "content-quality",
       "severity": "medium",
@@ -55,13 +259,14 @@
         "/guides",
         "/"
       ],
-      "sourceAudit": "2026-04-15"
+      "sourceAudit": "2026-04-15",
+      "notes": "Not found in audit 2026-04-22 — appears resolved"
     },
     {
       "id": "finding-004",
       "createdAt": "2026-04-15T10:01:31.672Z",
-      "updatedAt": "2026-04-15T10:01:31.672Z",
-      "status": "open",
+      "updatedAt": "2026-04-22T10:01:40.033Z",
+      "status": "completed",
       "priority": 3,
       "category": "technical-seo",
       "severity": "medium",
@@ -74,13 +279,14 @@
         "/glossary/*",
         "/lead-types/*"
       ],
-      "sourceAudit": "2026-04-15"
+      "sourceAudit": "2026-04-15",
+      "notes": "Not found in audit 2026-04-22 — appears resolved"
     },
     {
       "id": "finding-005",
       "createdAt": "2026-04-15T10:01:31.672Z",
-      "updatedAt": "2026-04-15T10:01:31.672Z",
-      "status": "open",
+      "updatedAt": "2026-04-22T10:01:40.033Z",
+      "status": "completed",
       "priority": 3,
       "category": "structured-data",
       "severity": "medium",
@@ -91,13 +297,14 @@
       "affectedPages": [
         "/lead-types/*"
       ],
-      "sourceAudit": "2026-04-15"
+      "sourceAudit": "2026-04-15",
+      "notes": "Not found in audit 2026-04-22 — appears resolved"
     },
     {
       "id": "finding-006",
       "createdAt": "2026-04-15T10:01:31.672Z",
-      "updatedAt": "2026-04-15T10:01:31.672Z",
-      "status": "open",
+      "updatedAt": "2026-04-22T10:01:40.033Z",
+      "status": "completed",
       "priority": 3,
       "category": "affiliate-compliance",
       "severity": "medium",
@@ -109,49 +316,14 @@
         "/blog/*",
         "/lead-types/*"
       ],
-      "sourceAudit": "2026-04-15"
-    },
-    {
-      "id": "finding-007",
-      "createdAt": "2026-04-15T10:01:31.672Z",
-      "updatedAt": "2026-04-15T10:01:31.672Z",
-      "status": "open",
-      "priority": 3,
-      "category": "internal-linking",
-      "severity": "medium",
-      "title": "Glossary cross-linking underutilized for topic authority",
-      "description": "With 77 glossary terms, there's significant opportunity to build topic authority through strategic internal linking between blog posts and glossary definitions, especially for financial services terminology.",
-      "recommendation": "Implement automated or manual linking from blog posts to relevant glossary terms. Create topic clusters around key concepts like 'aged leads', 'conversion rates', and 'lead nurturing' with glossary terms as supporting content.",
-      "effort": "medium",
-      "affectedPages": [
-        "/blog/*",
-        "/glossary/*"
-      ],
-      "sourceAudit": "2026-04-15"
-    },
-    {
-      "id": "finding-008",
-      "createdAt": "2026-04-15T10:01:31.672Z",
-      "updatedAt": "2026-04-15T10:01:31.672Z",
-      "status": "open",
-      "priority": 3,
-      "category": "content-quality",
-      "severity": "medium",
-      "title": "Content freshness strategy needed for competitive topics",
-      "description": "Topics like 'Best Aged Lead Providers 2026' and pricing guides require regular updates to maintain relevance and authority, especially given Google's emphasis on content freshness for commercial queries.",
-      "recommendation": "Establish quarterly review schedule for commercial comparison content. Add 'Last Updated' dates to articles and implement systematic fact-checking for pricing, provider information, and industry statistics.",
-      "effort": "medium",
-      "affectedPages": [
-        "/blog/best-aged-lead-providers-compared-where-to-buy-aged-leads-2026",
-        "/blog/aged-leads-pricing-2026-complete-industry-guide"
-      ],
-      "sourceAudit": "2026-04-15"
+      "sourceAudit": "2026-04-15",
+      "notes": "Not found in audit 2026-04-22 — appears resolved"
     },
     {
       "id": "finding-009",
       "createdAt": "2026-04-15T10:01:31.672Z",
-      "updatedAt": "2026-04-15T10:01:31.672Z",
-      "status": "open",
+      "updatedAt": "2026-04-22T10:01:40.033Z",
+      "status": "completed",
       "priority": 4,
       "category": "e-e-a-t",
       "severity": "low",
@@ -163,24 +335,8 @@
         "/blog/aged-lead-call-recording-analysis-500-conversations-reveal",
         "/blog/aged-lead-conversion-rates-by-industry-data-benchmarks"
       ],
-      "sourceAudit": "2026-04-15"
-    },
-    {
-      "id": "finding-010",
-      "createdAt": "2026-04-15T10:01:31.672Z",
-      "updatedAt": "2026-04-15T10:01:31.672Z",
-      "status": "open",
-      "priority": 4,
-      "category": "technical-seo",
-      "severity": "low",
-      "title": "Sitemap optimization for content hierarchy",
-      "description": "With 134 sitemap entries across multiple content types, there's opportunity to optimize sitemap structure and priority signals to help Google understand content importance and relationships.",
-      "recommendation": "Implement priority tags in sitemap with higher values for money pages (lead types, key comparison posts) and lower values for supporting content (glossary terms). Consider separate sitemaps for different content types.",
-      "effort": "small",
-      "affectedPages": [
-        "/sitemap.xml"
-      ],
-      "sourceAudit": "2026-04-15"
+      "sourceAudit": "2026-04-15",
+      "notes": "Not found in audit 2026-04-22 — appears resolved"
     }
   ]
 }
