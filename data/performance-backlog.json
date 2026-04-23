@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-22T12:01:09.680Z",
+  "lastUpdated": "2026-04-23T12:00:55.312Z",
   "items": [
     {
       "id": "ae65c17929e7",
@@ -8,8 +8,19 @@
       "expectedImpact": "Restore traffic visibility and identify root cause of 100% traffic loss",
       "priority": "high",
       "firstSeen": "2026-04-14",
-      "lastSeen": "2026-04-21",
-      "timesRepeated": 6,
+      "lastSeen": "2026-04-23",
+      "timesRepeated": 7,
+      "status": "open"
+    },
+    {
+      "id": "8c8b79cd31d6",
+      "title": "Mobile Experience Optimization",
+      "description": "Despite low mobile impressions (21 vs 252 desktop), optimize mobile page speed and user experience as mobile traffic typically converts better for local service queries.",
+      "expectedImpact": "Improve mobile rankings and capture additional 15-20% traffic when issues are resolved",
+      "priority": "high",
+      "firstSeen": "2026-04-18",
+      "lastSeen": "2026-04-23",
+      "timesRepeated": 5,
       "status": "open"
     },
     {
@@ -156,14 +167,14 @@
       "status": "open"
     },
     {
-      "id": "8c8b79cd31d6",
-      "title": "Mobile Experience Optimization",
-      "description": "Despite low mobile impressions (21 vs 252 desktop), optimize mobile page speed and user experience as mobile traffic typically converts better for local service queries.",
-      "expectedImpact": "Improve mobile rankings and capture additional 15-20% traffic when issues are resolved",
-      "priority": "medium",
-      "firstSeen": "2026-04-18",
-      "lastSeen": "2026-04-22",
-      "timesRepeated": 4,
+      "id": "7486f73eea9b",
+      "title": "Capitalize on Search Position Gains",
+      "description": "With average position at 18.7 and strong impressions growth, optimize title tags and meta descriptions for top-performing queries like 'aged lead store reviews' (pos 13.3) and 'auto insurance lead cost' (pos 12.0) to break into top 10 results.",
+      "expectedImpact": "Increase CTR from 0.27% to 1-2% and capture 10-20 additional clicks daily",
+      "priority": "high",
+      "firstSeen": "2026-04-23",
+      "lastSeen": "2026-04-23",
+      "timesRepeated": 1,
       "status": "open"
     },
     {
@@ -332,6 +343,28 @@
       "status": "open"
     },
     {
+      "id": "2eafcd31d7cb",
+      "title": "Content Gap Analysis for High-Intent Queries",
+      "description": "Create dedicated landing pages for queries showing strong impressions but poor positions: 'aged solar leads' (pos 87), 'best insurance lead company' (pos 50), and 'cpl calculator' (pos 89). Focus on commercial intent keywords with buying signals.",
+      "expectedImpact": "Capture 15-25 additional impressions daily and improve average position to 15-20",
+      "priority": "medium",
+      "firstSeen": "2026-04-23",
+      "lastSeen": "2026-04-23",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "79ad0d6cda4b",
+      "title": "Provider Page Expansion Strategy",
+      "description": "The /providers page generated the only click at position 22.2. Create individual provider comparison pages, add user reviews, pricing comparisons, and affiliate link optimization to capitalize on commercial search intent.",
+      "expectedImpact": "Increase provider-related clicks from 1 to 5-8 daily and improve conversion rates",
+      "priority": "medium",
+      "firstSeen": "2026-04-23",
+      "lastSeen": "2026-04-23",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "cc192c120d5f",
       "title": "Long-tail Keyword Expansion",
       "description": "Target specific queries like 'how much do mortgage trigger leads cost' (pos 56.8) and 'auto insurance lead cost' (pos 23.0) with dedicated content pieces.",
@@ -350,6 +383,17 @@
       "priority": "low",
       "firstSeen": "2026-04-14",
       "lastSeen": "2026-04-14",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "6ec75f69c7d7",
+      "title": "Long-tail Keyword Content Development",
+      "description": "Develop content targeting specific cost-related queries showing good positions: 'how much do auto insurance leads cost' (pos 19) and 'auto insurance leads cost' (pos 14). Create comprehensive cost analysis and ROI calculators.",
+      "expectedImpact": "Capture 3-5 additional clicks from cost-conscious prospects with higher conversion intent",
+      "priority": "low",
+      "firstSeen": "2026-04-23",
+      "lastSeen": "2026-04-23",
       "timesRepeated": 1,
       "status": "open"
     }
