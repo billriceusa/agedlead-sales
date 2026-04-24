@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-23T12:00:55.312Z",
+  "lastUpdated": "2026-04-24T12:01:16.014Z",
   "items": [
     {
       "id": "ae65c17929e7",
@@ -174,6 +174,39 @@
       "priority": "high",
       "firstSeen": "2026-04-23",
       "lastSeen": "2026-04-23",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "efea041f4c10",
+      "title": "Emergency Site Accessibility Audit",
+      "description": "Immediately check for server issues, DNS problems, or Google Analytics tracking failures. Verify the site loads properly across devices and browsers. Check Google Search Console for crawl errors or manual actions.",
+      "expectedImpact": "Restore traffic flow and identify root cause of 100% traffic loss",
+      "priority": "high",
+      "firstSeen": "2026-04-24",
+      "lastSeen": "2026-04-24",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "6489d0d1a7c4",
+      "title": "Capitalize on 'Aged Lead Store Reviews' Opportunity",
+      "description": "Create comprehensive review content for position 13.0 ranking on 'aged lead store reviews' with 11 daily impressions. Add detailed AgedLeadStore.com review with pros/cons, pricing, and affiliate CTAs.",
+      "expectedImpact": "Convert 11 daily impressions into 2-3 daily clicks with optimized review content",
+      "priority": "high",
+      "firstSeen": "2026-04-24",
+      "lastSeen": "2026-04-24",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "5a807f34a14a",
+      "title": "Optimize Provider Page for Conversion",
+      "description": "Since /providers generated the only click, enhance this page with better affiliate link placement, comparison tables, and clear CTAs. Add more provider reviews and comparison content.",
+      "expectedImpact": "Increase conversion rate from the single traffic source currently working",
+      "priority": "high",
+      "firstSeen": "2026-04-24",
+      "lastSeen": "2026-04-24",
       "timesRepeated": 1,
       "status": "open"
     },
@@ -365,6 +398,28 @@
       "status": "open"
     },
     {
+      "id": "73521981661f",
+      "title": "Target High-Impression, Low-Position Keywords",
+      "description": "Focus on 'aged mortgage leads' (8 impressions, position 42.9) and 'lead providers' (6 impressions, position 48.7) with dedicated landing pages and internal linking strategies.",
+      "expectedImpact": "Move these keywords into top 20 positions to generate 2-4 additional daily clicks",
+      "priority": "medium",
+      "firstSeen": "2026-04-24",
+      "lastSeen": "2026-04-24",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "7707f3dc2f98",
+      "title": "Mobile-First Content Optimization",
+      "description": "Since mobile generated the only click, optimize all content for mobile-first indexing with faster loading, better mobile UX, and mobile-specific CTAs.",
+      "expectedImpact": "Increase mobile click-through rates and capitalize on mobile search preference",
+      "priority": "medium",
+      "firstSeen": "2026-04-24",
+      "lastSeen": "2026-04-24",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "cc192c120d5f",
       "title": "Long-tail Keyword Expansion",
       "description": "Target specific queries like 'how much do mortgage trigger leads cost' (pos 56.8) and 'auto insurance lead cost' (pos 23.0) with dedicated content pieces.",
@@ -394,6 +449,17 @@
       "priority": "low",
       "firstSeen": "2026-04-23",
       "lastSeen": "2026-04-23",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "d15b81ba6d8c",
+      "title": "Blog Content Click-Through Optimization",
+      "description": "Rewrite meta descriptions for blog posts showing good positions but zero clicks, focusing on benefit-driven copy that appeals to insurance agents and mortgage brokers.",
+      "expectedImpact": "Convert existing search visibility into 3-5 additional daily clicks from blog content",
+      "priority": "low",
+      "firstSeen": "2026-04-24",
+      "lastSeen": "2026-04-24",
       "timesRepeated": 1,
       "status": "open"
     }
