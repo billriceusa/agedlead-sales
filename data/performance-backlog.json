@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-24T12:01:16.014Z",
+  "lastUpdated": "2026-04-25T12:01:27.235Z",
   "items": [
     {
       "id": "ae65c17929e7",
@@ -30,8 +30,8 @@
       "expectedImpact": "Convert increased visibility into actual traffic and clicks",
       "priority": "high",
       "firstSeen": "2026-04-14",
-      "lastSeen": "2026-04-20",
-      "timesRepeated": 2,
+      "lastSeen": "2026-04-25",
+      "timesRepeated": 3,
       "status": "open"
     },
     {
@@ -211,6 +211,17 @@
       "status": "open"
     },
     {
+      "id": "4dfdd0531d60",
+      "title": "Emergency Analytics Audit",
+      "description": "Immediately audit Google Analytics 4 implementation including tracking code placement, consent management, and data stream configuration. Check for recent changes to GTM, cookie policies, or site architecture that could block data collection.",
+      "expectedImpact": "Restore traffic visibility and enable data-driven optimization decisions",
+      "priority": "high",
+      "firstSeen": "2026-04-25",
+      "lastSeen": "2026-04-25",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "b9acf266e5d4",
       "title": "Mobile Experience Enhancement",
       "description": "With mobile generating the only click (1 click from 21 mobile impressions vs 0 clicks from 207 desktop impressions), optimize mobile user experience and page speed for the /providers page.",
@@ -218,6 +229,17 @@
       "priority": "medium",
       "firstSeen": "2026-04-14",
       "lastSeen": "2026-04-15",
+      "timesRepeated": 2,
+      "status": "open"
+    },
+    {
+      "id": "d9390f6018c6",
+      "title": "Calculator Tool Enhancement",
+      "description": "Optimize the CPL calculator page (currently pos 91.3) with better UX, mobile responsiveness, and additional lead cost scenarios for different verticals to capture more long-tail queries.",
+      "expectedImpact": "Move calculator pages into top 30 positions, increase impressions by 50%",
+      "priority": "medium",
+      "firstSeen": "2026-04-17",
+      "lastSeen": "2026-04-25",
       "timesRepeated": 2,
       "status": "open"
     },
@@ -240,6 +262,17 @@
       "priority": "medium",
       "firstSeen": "2026-04-18",
       "lastSeen": "2026-04-21",
+      "timesRepeated": 2,
+      "status": "open"
+    },
+    {
+      "id": "162c71a0068d",
+      "title": "Content Gap Analysis for Mortgage Leads",
+      "description": "Develop comprehensive content targeting 'aged mortgage leads' (10 daily impressions, position 43.7) and 'aged mortgage protection leads'. Create case studies, ROI calculators, and comparison guides to capture this high-value vertical.",
+      "expectedImpact": "Capture additional 10+ daily impressions in mortgage lead space",
+      "priority": "medium",
+      "firstSeen": "2026-04-19",
+      "lastSeen": "2026-04-25",
       "timesRepeated": 2,
       "status": "open"
     },
@@ -288,17 +321,6 @@
       "status": "open"
     },
     {
-      "id": "d9390f6018c6",
-      "title": "Calculator Tool Enhancement",
-      "description": "Optimize the CPL calculator page (currently pos 91.3) with better UX, mobile responsiveness, and additional lead cost scenarios for different verticals to capture more long-tail queries.",
-      "expectedImpact": "Move calculator pages into top 30 positions, increase impressions by 50%",
-      "priority": "medium",
-      "firstSeen": "2026-04-17",
-      "lastSeen": "2026-04-17",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
       "id": "3e89b068a733",
       "title": "Comparison Content Expansion",
       "description": "Create more detailed comparison pages for lead providers, building on the existing 'badass insurance leads vs ileads' content that ranks at position 14.6.",
@@ -314,17 +336,6 @@
       "title": "Optimize Branded Query Conversion",
       "description": "Enhance the /providers/aged-lead-store page with more compelling CTAs, customer testimonials, and direct affiliate links. Add schema markup for reviews and pricing to improve SERP appearance for 'aged lead store reviews' queries.",
       "expectedImpact": "Improve conversion of 6+ daily branded impressions into clicks",
-      "priority": "medium",
-      "firstSeen": "2026-04-19",
-      "lastSeen": "2026-04-19",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "162c71a0068d",
-      "title": "Content Gap Analysis for Mortgage Leads",
-      "description": "Develop comprehensive content targeting 'aged mortgage leads' (10 daily impressions, position 43.7) and 'aged mortgage protection leads'. Create case studies, ROI calculators, and comparison guides to capture this high-value vertical.",
-      "expectedImpact": "Capture additional 10+ daily impressions in mortgage lead space",
       "priority": "medium",
       "firstSeen": "2026-04-19",
       "lastSeen": "2026-04-19",
@@ -416,6 +427,17 @@
       "priority": "medium",
       "firstSeen": "2026-04-24",
       "lastSeen": "2026-04-24",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "3b2bf4da9e3c",
+      "title": "Mobile Search Optimization",
+      "description": "The single click came from mobile despite desktop having 285 impressions. Optimize mobile page speed, implement AMP, and ensure mobile-first indexing compliance for better mobile CTR.",
+      "expectedImpact": "Increase mobile CTR from current levels to 0.5-1.0%",
+      "priority": "medium",
+      "firstSeen": "2026-04-25",
+      "lastSeen": "2026-04-25",
       "timesRepeated": 1,
       "status": "open"
     },
