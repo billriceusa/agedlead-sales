@@ -1,0 +1,24 @@
+{
+  "runDate": "2026-04-26T08:00:58.701Z",
+  "weekOf": "2026-04-27",
+  "sendDate": "2026-04-28",
+  "theme": "Scaling Up",
+  "focusVertical": "Insurance",
+  "subject": "The economics of your first hire (cheaper than you think)",
+  "previewText": "Plus: lead distribution systems and the one metric that reveals if you're ready to scale",
+  "broadcastId": null,
+  "featuredArticle": {
+    "title": "Scaling Your Aged Lead Operation: From Solo Agent to Team",
+    "slug": "scaling-aged-lead-operation-solo-agent-to-team",
+    "spotlight": "This comprehensive guide covers the exact frameworks top producers use to build scalable aged lead teams. From distribution systems to hiring criteria, it's everything you need to go from working IN your business to working ON it."
+  },
+  "quickTips": [
+    "The Economics of Your First Hire",
+    "Lead Distribution: Round-Robin vs Cherry-Pick",
+    "The One Metric That Reveals Scale-Readiness"
+  ],
+  "industryInsight": "Home Improvement Spending Surge Continues",
+  "errors": [
+    "Broadcast scheduling failed: Schedule broadcast: 422: {\"statusCode\":422,\"message\":\"The audience you are sending has no contacts. Before sending the Broadcast, add contacts to the audience\",\"name\":\"validation_error\"}"
+  ]
+}
