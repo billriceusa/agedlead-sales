@@ -1,0 +1,176 @@
+{
+  "runDate": "2026-04-26T06:02:58.342Z",
+  "weekStartDate": "2026-04-27",
+  "analysis": {
+    "strategyReview": "Our content strategy shows strong vertical coverage across insurance, mortgage, solar, and legal verticals with 44 published posts. We've established authority in foundational topics like TCPA compliance, CRM setup, and industry-specific playbooks. However, we have gaps in advanced operational content for scaling teams, seasonal/timing strategies beyond Medicare AEP, and emerging compliance issues. Our metrics pillar is underrepresented compared to vertical playbooks, creating an opportunity to differentiate with more data-driven content that competitors lack.",
+    "competitiveInsights": "AgedLeadStore.com focuses heavily on product features and basic lead working tips, while HowToWorkLeads.com provides generic advice without vertical specialization. We can dominate by creating content around emerging regulatory changes (like new TCPA interpretations), advanced team management for aged lead operations, and seasonal optimization strategies. There's a significant gap in content addressing economic pressures on lead costs and conversion optimization during market downturns. Our competitors also lack depth in cross-vertical strategies and advanced nurturing beyond basic follow-up sequences.",
+    "newOpportunities": [
+      "Economic downturn lead optimization strategies",
+      "Advanced team scaling for aged lead operations",
+      "Cross-vertical lead arbitrage opportunities",
+      "AI and automation integration for aged lead workflows",
+      "Seasonal timing optimization beyond traditional cycles"
+    ],
+    "trendingTopics": [
+      "Rising lead costs forcing efficiency optimization",
+      "TCPA enforcement increases requiring better compliance",
+      "Economic uncertainty driving budget reallocation",
+      "AI integration in sales processes",
+      "Multi-channel attribution and ROI tracking"
+    ],
+    "recommendedUpdates": [
+      "Expand metrics pillar content to match vertical coverage",
+      "Create more role-specific content for managers and team leaders",
+      "Develop seasonal content calendar beyond Medicare AEP",
+      "Add more compliance updates as regulations evolve"
+    ]
+  },
+  "articlesCreated": [
+    {
+      "title": "Email Outreach for Aged Leads: 5 Templates That Get Replies",
+      "slug": "email-outreach-aged-leads-templates",
+      "publishDate": "2026-04-27",
+      "primaryKeyword": "aged lead email templates",
+      "pillar": "Channel Tactics"
+    },
+    {
+      "title": "How to Allocate Your Aged Lead Budget: By Vertical, Age & Channel",
+      "slug": "aged-lead-budget-allocation-strategy",
+      "publishDate": "2026-04-29",
+      "primaryKeyword": "aged lead budget allocation",
+      "pillar": "Metrics & Optimization"
+    },
+    {
+      "title": "Aged Home Improvement Leads: Roofing, Windows, HVAC & Bathroom Remodel",
+      "slug": "aged-home-improvement-leads-playbook",
+      "publishDate": "2026-05-01",
+      "primaryKeyword": "aged home improvement leads",
+      "pillar": "Vertical Playbooks"
+    }
+  ],
+  "articlesSkipped": [],
+  "articlesFailed": [],
+  "newBriefs": [
+    {
+      "day": "Mon",
+      "publishDate": "2026-04-27",
+      "slug": "email-outreach-aged-leads-templates",
+      "title": "Email Outreach for Aged Leads: 5 Templates That Get Replies",
+      "pillar": "Channel Tactics",
+      "primaryKeyword": "aged lead email templates",
+      "secondaryKeywords": [
+        "aged lead email outreach",
+        "insurance lead emails",
+        "mortgage lead email scripts",
+        "aged lead follow up emails"
+      ],
+      "targetLeadTypes": [
+        "insurance-leads",
+        "mortgage-leads",
+        "solar-leads"
+      ],
+      "wordCount": "2,500-3,000",
+      "competitiveAngle": "Specific email templates with open/reply rate benchmarks by industry, unlike competitors' generic email advice",
+      "outline": [
+        "Why Email Works for Aged Leads (Timing & Psychology)",
+        "Template 1: The Soft Touch Reintroduction",
+        "Template 2: The Value-First Educational Email",
+        "Template 3: The Urgency-Based Market Update",
+        "Template 4: The Social Proof Success Story",
+        "Template 5: The Final Attempt Breakup Email",
+        "Subject Line Formulas That Beat Industry Averages",
+        "Email Timing and Frequency for Maximum Response",
+        "Compliance Considerations for Email Outreach",
+        "Tracking and Optimizing Email Performance"
+      ],
+      "internalLinks": [
+        "/glossary/aged-lead",
+        "/glossary/follow-up-cadence",
+        "/glossary/conversion-rate",
+        "/lead-types/insurance-leads",
+        "/lead-types/mortgage-leads"
+      ]
+    },
+    {
+      "day": "Wed",
+      "publishDate": "2026-04-29",
+      "slug": "aged-lead-budget-allocation-strategy",
+      "title": "How to Allocate Your Aged Lead Budget: By Vertical, Age & Channel",
+      "pillar": "Metrics & Optimization",
+      "primaryKeyword": "aged lead budget allocation",
+      "secondaryKeywords": [
+        "aged lead ROI by vertical",
+        "lead budget optimization",
+        "aged lead cost analysis",
+        "lead spend allocation strategy"
+      ],
+      "targetLeadTypes": [
+        "insurance-leads",
+        "mortgage-leads",
+        "solar-leads",
+        "mva-leads"
+      ],
+      "wordCount": "3,000-3,500",
+      "competitiveAngle": "Data-driven budget allocation framework with ROI calculations by vertical and lead age, not covered by competitors",
+      "outline": [
+        "The Budget Allocation Framework: ROI-First Approach",
+        "Vertical Performance Analysis: Insurance vs. Mortgage vs. Solar vs. Legal",
+        "Lead Age Sweet Spots: When 30-Day Leads Beat 90-Day Leads",
+        "Channel Mix Optimization: Phone vs. Email vs. Direct Mail Budget Split",
+        "Seasonal Budget Adjustments: Q4 Insurance vs. Q1 Solar",
+        "Portfolio Theory for Lead Buying: Risk vs. Reward Balance",
+        "Testing Budget: How Much to Allocate for New Verticals",
+        "Budget Scaling Strategies: From $1K to $10K Monthly Spend",
+        "ROI Tracking and Budget Reallocation Triggers",
+        "Common Budget Allocation Mistakes and How to Avoid Them"
+      ],
+      "internalLinks": [
+        "/glossary/cost-per-lead",
+        "/glossary/conversion-rate",
+        "/glossary/lead-age",
+        "/calculators/aged-lead-roi",
+        "/lead-types/insurance-leads"
+      ]
+    },
+    {
+      "day": "Fri",
+      "publishDate": "2026-05-01",
+      "slug": "aged-home-improvement-leads-playbook",
+      "title": "Aged Home Improvement Leads: Roofing, Windows, HVAC & Bathroom Remodel",
+      "pillar": "Vertical Playbooks",
+      "primaryKeyword": "aged home improvement leads",
+      "secondaryKeywords": [
+        "aged roofing leads",
+        "aged HVAC leads",
+        "home remodel lead conversion",
+        "aged contractor leads"
+      ],
+      "targetLeadTypes": [
+        "home-improvement-leads"
+      ],
+      "wordCount": "3,000-3,500",
+      "competitiveAngle": "First comprehensive guide to home improvement aged leads with project-specific scripts and seasonal strategies",
+      "outline": [
+        "Why Home Improvement Aged Leads Are Undervalued",
+        "Roofing Leads: Storm Season Follow-Up and Insurance Claims",
+        "HVAC Leads: Seasonal Urgency and Energy Efficiency Angles",
+        "Window Replacement: Energy Savings and Financing Options",
+        "Bathroom Remodel: Luxury vs. Necessity Positioning",
+        "Kitchen Remodel: Timeline and Budget Expectation Management",
+        "Multi-Project Cross-Selling: From Windows to Full Exterior",
+        "Financing Presentation for High-Ticket Home Improvements",
+        "Handling Price Objections in Home Improvement Sales",
+        "Building Long-Term Relationships for Future Projects"
+      ],
+      "internalLinks": [
+        "/glossary/aged-lead",
+        "/glossary/close-rate",
+        "/glossary/follow-up-cadence",
+        "/lead-types/home-improvement-leads",
+        "/calculators/home-improvement-roi"
+      ]
+    }
+  ],
+  "nextWeekPlan": "Selected Email Outreach (Channel Tactics) for Monday to balance recent vertical content, Budget Allocation (Metrics) for Wednesday to strengthen underrepresented pillar, and Home Improvement Playbook (Vertical) for Friday to expand into new vertical not heavily covered. This rotation avoids consecutive same-pillar posts and addresses identified content gaps while leveraging existing calendar briefs.",
+  "errors": []
+}
