@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-25T12:01:27.235Z",
+  "lastUpdated": "2026-04-26T12:01:20.786Z",
   "items": [
     {
       "id": "ae65c17929e7",
@@ -63,8 +63,8 @@
       "expectedImpact": "Restore basic site functionality and traffic within 24-48 hours",
       "priority": "high",
       "firstSeen": "2026-04-16",
-      "lastSeen": "2026-04-16",
-      "timesRepeated": 1,
+      "lastSeen": "2026-04-26",
+      "timesRepeated": 2,
       "status": "open"
     },
     {
@@ -222,6 +222,39 @@
       "status": "open"
     },
     {
+      "id": "48dcc3f489a7",
+      "title": "Implement Click-Through Rate Recovery Strategy",
+      "description": "Optimize title tags and meta descriptions for top-ranking pages, especially those at positions 1.6-18.0. Focus on compelling CTAs like 'Compare Aged Lead Prices' or 'Free Lead ROI Calculator' to capitalize on improved rankings.",
+      "expectedImpact": "Convert improved search positions into actual traffic and restore 0.22%+ CTR",
+      "priority": "high",
+      "firstSeen": "2026-04-26",
+      "lastSeen": "2026-04-26",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "0d7c32cc8c1b",
+      "title": "Mobile Search Optimization Initiative",
+      "description": "Investigate why mobile impressions are only 7.5% of total. Check mobile-first indexing status, page speed, and mobile usability issues. Optimize for mobile-specific aged lead searches.",
+      "expectedImpact": "Increase mobile impression share from 7.5% to 30%+ industry standard",
+      "priority": "high",
+      "firstSeen": "2026-04-26",
+      "lastSeen": "2026-04-26",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "31aa4d6c7de3",
+      "title": "Content Expansion for High-Impression Queries",
+      "description": "Create dedicated landing pages or expand existing content for 'aged mortgage leads' (9 impressions, pos 44.2) and 'auto insurance leads cost' (6 impressions, pos 23.0) to capture more search volume.",
+      "expectedImpact": "Improve positions by 10-15 spots and increase impression volume by 50%",
+      "priority": "medium",
+      "firstSeen": "2026-04-18",
+      "lastSeen": "2026-04-26",
+      "timesRepeated": 3,
+      "status": "open"
+    },
+    {
       "id": "b9acf266e5d4",
       "title": "Mobile Experience Enhancement",
       "description": "With mobile generating the only click (1 click from 21 mobile impressions vs 0 clicks from 207 desktop impressions), optimize mobile user experience and page speed for the /providers page.",
@@ -240,17 +273,6 @@
       "priority": "medium",
       "firstSeen": "2026-04-17",
       "lastSeen": "2026-04-25",
-      "timesRepeated": 2,
-      "status": "open"
-    },
-    {
-      "id": "31aa4d6c7de3",
-      "title": "Content Expansion for High-Impression Queries",
-      "description": "Create dedicated landing pages or expand existing content for 'aged mortgage leads' (9 impressions, pos 44.2) and 'auto insurance leads cost' (6 impressions, pos 23.0) to capture more search volume.",
-      "expectedImpact": "Improve positions by 10-15 spots and increase impression volume by 50%",
-      "priority": "medium",
-      "firstSeen": "2026-04-18",
-      "lastSeen": "2026-04-21",
       "timesRepeated": 2,
       "status": "open"
     },
@@ -438,6 +460,17 @@
       "priority": "medium",
       "firstSeen": "2026-04-25",
       "lastSeen": "2026-04-25",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "d2a4cf10e094",
+      "title": "Capitalize on Ranking Improvements for Lead Generation",
+      "description": "Create targeted landing pages for queries ranking 13-18 positions like 'aged lead store' and 'aged mortgage leads'. Add clear affiliate link placements and lead magnet offers to convert improved visibility.",
+      "expectedImpact": "Convert ranking improvements into affiliate commissions and email subscribers",
+      "priority": "medium",
+      "firstSeen": "2026-04-26",
+      "lastSeen": "2026-04-26",
       "timesRepeated": 1,
       "status": "open"
     },
