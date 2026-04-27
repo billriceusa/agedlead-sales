@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-26T12:01:20.786Z",
+  "lastUpdated": "2026-04-27T12:01:20.357Z",
   "items": [
     {
       "id": "ae65c17929e7",
@@ -8,8 +8,8 @@
       "expectedImpact": "Restore traffic visibility and identify root cause of 100% traffic loss",
       "priority": "high",
       "firstSeen": "2026-04-14",
-      "lastSeen": "2026-04-23",
-      "timesRepeated": 7,
+      "lastSeen": "2026-04-27",
+      "timesRepeated": 8,
       "status": "open"
     },
     {
@@ -19,8 +19,8 @@
       "expectedImpact": "Improve mobile rankings and capture additional 15-20% traffic when issues are resolved",
       "priority": "high",
       "firstSeen": "2026-04-18",
-      "lastSeen": "2026-04-23",
-      "timesRepeated": 5,
+      "lastSeen": "2026-04-27",
+      "timesRepeated": 6,
       "status": "open"
     },
     {
@@ -240,6 +240,28 @@
       "priority": "high",
       "firstSeen": "2026-04-26",
       "lastSeen": "2026-04-26",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "ce8a436c333d",
+      "title": "Search Result Optimization",
+      "description": "Rewrite meta titles and descriptions for top-ranking pages, especially 'aged lead store reviews' and branded queries. Focus on compelling CTAs and value propositions to convert impressions to clicks.",
+      "expectedImpact": "Increase CTR from 0% to 2-5% based on improved search visibility",
+      "priority": "high",
+      "firstSeen": "2026-04-27",
+      "lastSeen": "2026-04-27",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "3945f5f43bc4",
+      "title": "Index Status Verification",
+      "description": "Use site:agedleadsales.com search to verify indexing status. Submit updated sitemap and request re-indexing for key pages. Check for robots.txt issues or noindex tags accidentally implemented.",
+      "expectedImpact": "Ensure all content remains searchable and accessible",
+      "priority": "high",
+      "firstSeen": "2026-04-27",
+      "lastSeen": "2026-04-27",
       "timesRepeated": 1,
       "status": "open"
     },
@@ -471,6 +493,17 @@
       "priority": "medium",
       "firstSeen": "2026-04-26",
       "lastSeen": "2026-04-26",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "ddf75d660142",
+      "title": "Commercial Query Content Expansion",
+      "description": "Create dedicated landing pages for high-impression queries like 'aged insurance leads' (position 33) and 'aged mortgage leads' (position 41.5) with clear affiliate link placement and conversion optimization.",
+      "expectedImpact": "Capture clicks from 7+ commercial queries currently generating impressions",
+      "priority": "medium",
+      "firstSeen": "2026-04-27",
+      "lastSeen": "2026-04-27",
       "timesRepeated": 1,
       "status": "open"
     },
