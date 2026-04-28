@@ -41,12 +41,21 @@ function buildSearchQuery(title: string): string {
 }
 
 interface UnsplashPhoto {
+  id: string;
   urls: { raw: string };
   links: { download_location: string };
   user: { name: string };
   description?: string;
   alt_description?: string;
   tags?: { title: string }[];
+}
+
+class UnsplashRateLimitError extends Error {
+  status: number;
+  constructor(status: number) {
+    super(`Unsplash rate limited (HTTP ${status})`);
+    this.status = status;
+  }
 }
 
 function scorePhoto(photo: UnsplashPhoto): number {
@@ -90,7 +99,24 @@ function scorePhoto(photo: UnsplashPhoto): number {
   return score;
 }
 
-async function searchUnsplash(query: string, accessKey: string): Promise<UnsplashPhoto | null> {
+/**
+ * Search Unsplash for a single best photo.
+ *
+ * Throws UnsplashRateLimitError on 403/429 so callers can distinguish
+ * rate-limiting from genuine empty results.
+ *
+ * Returns null only when the API responded successfully but no photos
+ * matched the query.
+ *
+ * The optional excludePhotoIds set lets callers running a batch (e.g.
+ * the weekly cron publishing 3 articles) avoid having every post in the
+ * batch get the same photo.
+ */
+async function searchUnsplash(
+  query: string,
+  accessKey: string,
+  excludePhotoIds: Set<string> = new Set()
+): Promise<UnsplashPhoto | null> {
   const url = new URL("https://api.unsplash.com/search/photos");
   url.searchParams.set("query", query);
   url.searchParams.set("per_page", "20");
@@ -100,21 +126,59 @@ async function searchUnsplash(query: string, accessKey: string): Promise<Unsplas
   const res = await fetch(url.toString(), {
     headers: { Authorization: `Client-ID ${accessKey}` },
   });
+
+  if (res.status === 403 || res.status === 429) {
+    throw new UnsplashRateLimitError(res.status);
+  }
   if (!res.ok) return null;
 
   const data = await res.json();
   const photos: UnsplashPhoto[] = data.results || [];
   if (photos.length === 0) return null;
 
-  const scored = photos.map((photo) => ({ photo, score: scorePhoto(photo) }));
+  const eligible = photos.filter((p) => !excludePhotoIds.has(p.id));
+  // If everything in the result set is already used, fall back to the
+  // full set (better to repeat than to ship with no image).
+  const candidates = eligible.length > 0 ? eligible : photos;
+
+  const scored = candidates.map((photo) => ({ photo, score: scorePhoto(photo) }));
   scored.sort((a, b) => b.score - a.score);
   const best = scored[0].photo;
 
+  // Trigger Unsplash download tracking (per their API attribution rules)
   fetch(best.links.download_location, {
     headers: { Authorization: `Client-ID ${accessKey}` },
   }).catch(() => {});
 
   return best;
+}
+
+/**
+ * One-retry wrapper. Retries once after `delayMs` on transient failures
+ * (rate limits, 5xx, network). Does not retry on auth failures or
+ * permanent errors.
+ */
+async function withRetry<T>(
+  fn: () => Promise<T>,
+  delayMs = 2000
+): Promise<T> {
+  try {
+    return await fn();
+  } catch (e: unknown) {
+    const err = e as Error & { status?: number };
+    const isTransient =
+      err instanceof UnsplashRateLimitError ||
+      err.status === 429 ||
+      (typeof err.status === "number" && err.status >= 500) ||
+      err.name === "FetchError" ||
+      err.message?.includes("ECONNRESET") ||
+      err.message?.includes("ETIMEDOUT") ||
+      err.message?.includes("network");
+
+    if (!isTransient) throw e;
+    await new Promise((r) => setTimeout(r, delayMs));
+    return await fn();
+  }
 }
 
 function blueGradientSvg(width: number, height: number): Buffer {
@@ -194,7 +258,11 @@ function titleOverlaySvg(width: number, height: number, title: string): Buffer {
 async function buildBrandedJpeg(photo: UnsplashPhoto, title: string): Promise<Buffer> {
   const downloadUrl = `${photo.urls.raw}&w=${IMAGE_WIDTH}&h=${IMAGE_HEIGHT}&fit=crop&crop=faces,center&q=80`;
   const res = await fetch(downloadUrl);
-  if (!res.ok) throw new Error(`Unsplash download failed: ${res.status}`);
+  if (!res.ok) {
+    const err = new Error(`Unsplash download failed: ${res.status}`) as Error & { status?: number };
+    err.status = res.status;
+    throw err;
+  }
   const rawBuffer = Buffer.from(await res.arrayBuffer());
 
   return sharp(rawBuffer)
@@ -216,51 +284,126 @@ function slugify(text: string): string {
     .slice(0, 60);
 }
 
+/**
+ * Discriminated outcome type. Callers can branch on `status` and, for
+ * skips, on `reason`. The `photoId` returned with `created` lets a batch
+ * caller add it to its dedup set so the next post in the batch picks a
+ * different photo.
+ */
 export type FeaturedImageOutcome =
-  | { status: "created"; postId: string; assetId: string; photographer: string }
-  | { status: "skipped"; postId: string; reason: string };
+  | {
+      status: "created";
+      postId: string;
+      assetId: string;
+      photoId: string;
+      photographer: string;
+    }
+  | {
+      status: "skipped";
+      postId: string;
+      reason: "no-key" | "no-results" | "rate-limited" | "upload-failed";
+      detail?: string;
+    };
+
+export interface GenerateOptions {
+  /** Photos already used in this batch — will be excluded from selection. */
+  excludePhotoIds?: Set<string>;
+}
 
 export async function generateAndAttachFeaturedImage(
   postId: string,
-  title: string
+  title: string,
+  options: GenerateOptions = {}
 ): Promise<FeaturedImageOutcome> {
   const accessKey = process.env.UNSPLASH_ACCESS_KEY;
   if (!accessKey) {
-    return { status: "skipped", postId, reason: "UNSPLASH_ACCESS_KEY not set" };
+    return { status: "skipped", postId, reason: "no-key" };
   }
 
-  const query = buildSearchQuery(title);
-  let photo = await searchUnsplash(query, accessKey);
-  if (!photo) {
-    photo = await searchUnsplash("people in an office setting professional", accessKey);
-  }
-  if (!photo) {
-    return { status: "skipped", postId, reason: "No Unsplash results" };
+  const exclude = options.excludePhotoIds || new Set<string>();
+
+  // Try the title-derived query first, with one retry on transient errors,
+  // then a generic fallback.
+  let photo: UnsplashPhoto | null = null;
+  try {
+    const primaryQuery = buildSearchQuery(title);
+    photo = await withRetry(() => searchUnsplash(primaryQuery, accessKey, exclude));
+    if (!photo) {
+      photo = await withRetry(() =>
+        searchUnsplash("people in an office setting professional", accessKey, exclude)
+      );
+    }
+  } catch (e: unknown) {
+    if (e instanceof UnsplashRateLimitError) {
+      return {
+        status: "skipped",
+        postId,
+        reason: "rate-limited",
+        detail: e.message,
+      };
+    }
+    return {
+      status: "skipped",
+      postId,
+      reason: "upload-failed",
+      detail: (e as Error).message,
+    };
   }
 
-  const buffer = await buildBrandedJpeg(photo, title);
+  if (!photo) {
+    return { status: "skipped", postId, reason: "no-results" };
+  }
+
+  let buffer: Buffer;
+  try {
+    buffer = await withRetry(() => buildBrandedJpeg(photo!, title));
+  } catch (e: unknown) {
+    return {
+      status: "skipped",
+      postId,
+      reason: "upload-failed",
+      detail: (e as Error).message,
+    };
+  }
+
   const client = getSanityWriteClient();
 
-  const asset = await client.assets.upload("image", buffer, {
-    filename: `featured-${slugify(title)}.jpg`,
-    contentType: "image/jpeg",
-  });
+  let assetId: string;
+  try {
+    const asset = await withRetry(() =>
+      client.assets.upload("image", buffer, {
+        filename: `featured-${slugify(title)}.jpg`,
+        contentType: "image/jpeg",
+      })
+    );
+    assetId = asset._id;
 
-  await client
-    .patch(postId)
-    .set({
-      mainImage: {
-        _type: "image",
-        alt: title,
-        asset: { _type: "reference", _ref: asset._id },
-      },
-    })
-    .commit();
+    await withRetry(() =>
+      client
+        .patch(postId)
+        .set({
+          mainImage: {
+            _type: "image",
+            alt: title,
+            asset: { _type: "reference", _ref: asset._id },
+          },
+        })
+        .commit()
+    );
+  } catch (e: unknown) {
+    return {
+      status: "skipped",
+      postId,
+      reason: "upload-failed",
+      detail: (e as Error).message,
+    };
+  }
 
   return {
     status: "created",
     postId,
-    assetId: asset._id,
+    assetId,
+    photoId: photo.id,
     photographer: photo.user.name,
   };
 }

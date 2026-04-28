@@ -91,6 +91,34 @@ function buildReportEmail(report: WeeklyReport): string {
     </div>`
       : "";
 
+  const imageHtml =
+    report.imageOutcomes && report.imageOutcomes.length > 0
+      ? (() => {
+          const created = report.imageOutcomes!.filter((o) => o.status === "created");
+          const issues = report.imageOutcomes!.filter((o) => o.status !== "created");
+          const issueColor =
+            issues.some((o) => o.status === "rate-limited") ? "#b45309" :
+            issues.some((o) => o.status === "upload-failed") ? "#dc2626" :
+            "#6b7280";
+          return `
+    <h2 style="font-size: 16px; color: #166534; border-bottom: 2px solid #bbf7d0; padding-bottom: 6px; margin-top: 24px;">Featured images (${created.length}/${report.imageOutcomes!.length})</h2>
+    <ul style="line-height: 1.5; padding-left: 20px;">
+      ${created
+        .map(
+          (o) =>
+            `<li>${escape(o.title)} <span style="color: #6b7280; font-size: 13px;">— photo by ${escape(o.photographer || "Unsplash")}</span></li>`
+        )
+        .join("")}
+      ${issues
+        .map(
+          (o) =>
+            `<li style="color: ${issueColor};">${escape(o.title)} <span style="font-size: 13px;">— ${escape(o.status)}${o.detail ? `: ${escape(o.detail)}` : ""}</span></li>`
+        )
+        .join("")}
+    </ul>`;
+        })()
+      : "";
+
   const fatalHtml = report.fatalError
     ? `
     <div style="background: #fef2f2; border: 2px solid #dc2626; border-radius: 8px; padding: 16px; margin: 20px 0;">
@@ -167,6 +195,7 @@ function buildReportEmail(report: WeeklyReport): string {
     <tbody>${createdHtml}</tbody>
   </table>
 
+  ${imageHtml}
   ${skippedHtml}
   ${failedHtml}
   ${analysisHtml}
