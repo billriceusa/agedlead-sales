@@ -9,6 +9,8 @@ import { postType } from "./post";
 import { priceBenchmarkType } from "./priceBenchmark";
 import { verticalType } from "./vertical";
 import { cronHeartbeatType } from "./cronHeartbeat";
+import { tableType, tableRowType } from "./objects/table";
+import { codeBlockType } from "./objects/codeBlock";
 
 export const schemaTypes = [
   authorType,
@@ -22,4 +24,7 @@ export const schemaTypes = [
   priceBenchmarkType,
   verticalType,
   cronHeartbeatType,
+  tableType,
+  tableRowType,
+  codeBlockType,
 ];

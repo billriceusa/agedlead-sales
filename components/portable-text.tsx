@@ -263,6 +263,76 @@ function buildComponents(headingIds?: Map<string, string>): PortableTextComponen
           </figure>
         );
       },
+      table: ({ value }) => {
+        const rows = (value?.rows as { cells?: string[] }[] | undefined) || [];
+        if (rows.length === 0) return null;
+        const [headerRow, ...bodyRows] = rows;
+        const caption = value?.caption as string | undefined;
+
+        return (
+          <figure className="my-8">
+            {caption && (
+              <figcaption className="mb-2 text-sm font-medium text-zinc-700 dark:text-zinc-300">
+                {caption}
+              </figcaption>
+            )}
+            <div className="overflow-x-auto rounded-lg border border-zinc-200 dark:border-zinc-800">
+              <table className="w-full border-collapse text-sm">
+                {headerRow?.cells && (
+                  <thead className="bg-zinc-50 dark:bg-zinc-900">
+                    <tr>
+                      {headerRow.cells.map((cell, i) => (
+                        <th
+                          key={i}
+                          className="border-b border-zinc-200 px-4 py-3 text-left font-semibold text-zinc-900 dark:border-zinc-800 dark:text-white"
+                        >
+                          {cell}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                )}
+                <tbody>
+                  {bodyRows.map((row, ri) => (
+                    <tr
+                      key={ri}
+                      className="border-b border-zinc-100 last:border-0 dark:border-zinc-900"
+                    >
+                      {(row.cells || []).map((cell, ci) => (
+                        <td
+                          key={ci}
+                          className="px-4 py-3 align-top text-zinc-700 dark:text-zinc-300"
+                        >
+                          {cell}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </figure>
+        );
+      },
+      codeBlock: ({ value }) => {
+        const code = (value?.code as string) || "";
+        const language = value?.language as string | undefined;
+        const filename = value?.filename as string | undefined;
+        const label = filename || language;
+
+        return (
+          <figure className="my-6 overflow-hidden rounded-lg border border-zinc-200 bg-zinc-900 dark:border-zinc-800">
+            {label && (
+              <figcaption className="border-b border-zinc-800 bg-zinc-950 px-4 py-2 font-mono text-xs text-zinc-400">
+                {label}
+              </figcaption>
+            )}
+            <pre className="overflow-x-auto p-4 text-sm leading-relaxed">
+              <code className="font-mono text-zinc-100">{code}</code>
+            </pre>
+          </figure>
+        );
+      },
     },
   };
 }
