@@ -569,6 +569,22 @@ export const latestStaticShapedBenchmarksQuery = defineQuery(
   }`
 );
 
+// Recent published posts in any of the supplied category slugs. Used by
+// the /playbook and /price-index pillar pages to surface their topical
+// cluster — strategies+scripts+compliance for the operations playbook,
+// roi-analytics for the price index.
+export const postsByCategorySlugsQuery = defineQuery(
+  `*[_type == "post" && count(categories[@->slug.current in $slugs]) > 0]
+    | order(publishedAt desc)[0...8] {
+      _id,
+      title,
+      slug,
+      excerpt,
+      mainImage,
+      publishedAt
+    }`
+);
+
 export const staticShapedBenchmarksByVerticalQuery = defineQuery(
   `*[_type == "priceBenchmark" && vertical->slug.current == $vertical] | order(month desc) {
     "vertical": vertical->slug.current,

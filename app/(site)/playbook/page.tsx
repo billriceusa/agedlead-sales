@@ -3,8 +3,20 @@ import Link from "next/link";
 import { allFlagshipVerticals } from "@/data/flagship-verticals";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { JsonLd, breadcrumbJsonLd } from "@/components/json-ld";
+import { PostCard } from "@/components/post-card";
+import { sanityFetch } from "@/sanity/lib/fetch";
+import { postsByCategorySlugsQuery } from "@/sanity/lib/queries";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
+
+// Operations cluster: tactics that turn the playbook into daily reps —
+// scripts/outreach, strategies, compliance, getting-started.
+const PLAYBOOK_CLUSTER_CATEGORIES = [
+  "strategies",
+  "scripts-outreach",
+  "compliance",
+  "getting-started",
+];
 
 export const metadata: Metadata = {
   title: "The Aged Lead Operator's System — Free Playbook",
@@ -13,8 +25,21 @@ export const metadata: Metadata = {
   alternates: { canonical: `${baseUrl}/playbook` },
 };
 
-export default function PlaybookIndexPage() {
+interface ClusterPost {
+  _id: string;
+  title: string;
+  slug: { current: string };
+  excerpt?: string;
+  mainImage?: { asset?: { _ref: string }; alt?: string };
+  publishedAt?: string;
+}
+
+export default async function PlaybookIndexPage() {
   const verticals = allFlagshipVerticals();
+  const clusterPosts =
+    ((await sanityFetch(postsByCategorySlugsQuery, {
+      slugs: PLAYBOOK_CLUSTER_CATEGORIES,
+    })) as ClusterPost[] | null) || [];
 
   return (
     <>
@@ -105,6 +130,42 @@ export default function PlaybookIndexPage() {
           </div>
         </div>
       </section>
+
+      {clusterPosts.length > 0 && (
+        <section className="border-t border-zinc-200 bg-zinc-50 py-16 dark:border-zinc-800 dark:bg-zinc-950/50">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+            <div className="max-w-2xl">
+              <h2 className="text-2xl font-bold text-zinc-900 dark:text-white">
+                Operator deep-dives
+              </h2>
+              <p className="mt-2 text-zinc-600 dark:text-zinc-400">
+                Tactical articles that pair with the playbook — scripts that
+                close, follow-up cadence, compliance, and unit-economics math.
+              </p>
+            </div>
+            <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {clusterPosts.slice(0, 6).map((p) => (
+                <PostCard
+                  key={p._id}
+                  title={p.title}
+                  slug={p.slug.current}
+                  excerpt={p.excerpt || ""}
+                  mainImage={p.mainImage}
+                  publishedAt={p.publishedAt}
+                />
+              ))}
+            </div>
+            <div className="mt-8">
+              <Link
+                href="/blog"
+                className="text-sm font-semibold text-blue-600 hover:text-blue-700 dark:text-blue-400"
+              >
+                Browse all articles &rarr;
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
     </>
   );
 }

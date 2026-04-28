@@ -40,10 +40,17 @@ export async function generateMetadata({
   if (!pA || !pB) return {};
 
   const title = `${pA.name} vs ${pB.name} — Lead Provider Comparison`;
+  // Only the 14 pairings involving Aged Lead Store carry meaningful commercial
+  // search intent; the other 91 are programmatic filler that dilutes topical
+  // authority. Noindex them but keep follow=true so internal links still pass
+  // equity. Reversible — flip the rule any time.
+  const involvesAls =
+    slugA === "aged-lead-store" || slugB === "aged-lead-store";
   return {
     title,
     description: `Side-by-side comparison of ${pA.name} (${pA.overallRating}/10) vs ${pB.name} (${pB.overallRating}/10). Ratings, features, pricing models, and which is right for you.`,
     alternates: { canonical: `${baseUrl}/compare/${slugA}-vs-${slugB}` },
+    robots: involvesAls ? undefined : { index: false, follow: true },
     openGraph: {
       title: `${pA.name} vs ${pB.name} | Aged Lead Sales`,
       description: `Head-to-head comparison across 6 dimensions: pricing transparency, value, compliance, flexibility, platform, and reputation.`,

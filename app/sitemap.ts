@@ -85,8 +85,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     });
   }
 
-  // Comparison pages
+  // Comparison pages — only the pairings involving Aged Lead Store are
+  // listed in the sitemap. The other 91 pairs render but are noindexed
+  // (see app/(site)/compare/[pair]/page.tsx) so they shouldn't be advertised
+  // to Google. Mirror the same rule here.
   for (const [a, b] of getProviderPairs()) {
+    if (a !== "aged-lead-store" && b !== "aged-lead-store") continue;
     entries.push({
       url: `${baseUrl}/compare/${a}-vs-${b}`,
       lastModified: new Date(),

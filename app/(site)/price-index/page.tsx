@@ -11,7 +11,23 @@ import {
   type PriceBenchmarkData,
 } from "@/data/price-benchmarks";
 import { sanityFetch } from "@/sanity/lib/fetch";
-import { latestStaticShapedBenchmarksQuery } from "@/sanity/lib/queries";
+import {
+  latestStaticShapedBenchmarksQuery,
+  postsByCategorySlugsQuery,
+} from "@/sanity/lib/queries";
+import { PostCard } from "@/components/post-card";
+
+// Pricing & buying-economics cluster: posts that argue/explain numbers.
+const PRICE_INDEX_CLUSTER_CATEGORIES = ["roi-analytics"];
+
+interface ClusterPost {
+  _id: string;
+  title: string;
+  slug: { current: string };
+  excerpt?: string;
+  mainImage?: { asset?: { _ref: string }; alt?: string };
+  publishedAt?: string;
+}
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
@@ -62,9 +78,15 @@ function getVerticalSummary(
 export default async function PriceIndexPage() {
   // Prefer Sanity (kept fresh by the marketwatch cron) and fall back to the
   // static seed when Sanity is empty or unreachable.
-  const sanityBenchmarks = (await sanityFetch(
-    latestStaticShapedBenchmarksQuery
-  )) as PriceBenchmarkData[] | null;
+  const [sanityBenchmarks, clusterPostsRaw] = await Promise.all([
+    sanityFetch(latestStaticShapedBenchmarksQuery) as Promise<
+      PriceBenchmarkData[] | null
+    >,
+    sanityFetch(postsByCategorySlugsQuery, {
+      slugs: PRICE_INDEX_CLUSTER_CATEGORIES,
+    }) as Promise<ClusterPost[] | null>,
+  ]);
+  const clusterPosts: ClusterPost[] = clusterPostsRaw || [];
   const benchmarks: PriceBenchmarkData[] =
     sanityBenchmarks && sanityBenchmarks.length > 0
       ? sanityBenchmarks
@@ -273,6 +295,42 @@ export default async function PriceIndexPage() {
           </div>
         </div>
       </section>
+
+      {clusterPosts.length > 0 && (
+        <section className="border-t border-zinc-200 bg-zinc-50 py-16 dark:border-zinc-800 dark:bg-zinc-950/50">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+            <div className="max-w-2xl">
+              <h2 className="text-2xl font-bold text-zinc-900 dark:text-white">
+                Pricing &amp; ROI deep-dives
+              </h2>
+              <p className="mt-2 text-zinc-600 dark:text-zinc-400">
+                What the numbers mean for your buying strategy — conversion
+                math, lead-age tradeoffs, and where the margin actually lives.
+              </p>
+            </div>
+            <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {clusterPosts.slice(0, 6).map((p) => (
+                <PostCard
+                  key={p._id}
+                  title={p.title}
+                  slug={p.slug.current}
+                  excerpt={p.excerpt || ""}
+                  mainImage={p.mainImage}
+                  publishedAt={p.publishedAt}
+                />
+              ))}
+            </div>
+            <div className="mt-8">
+              <Link
+                href="/blog/category/roi-analytics"
+                className="text-sm font-semibold text-blue-600 hover:text-blue-700 dark:text-blue-400"
+              >
+                More ROI &amp; analytics articles &rarr;
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
 
       <CtaBanner />
     </>
