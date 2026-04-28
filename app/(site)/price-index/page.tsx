@@ -8,8 +8,10 @@ import {
   PRICE_BENCHMARKS,
   formatPrice,
   formatPriceRange,
-  getBenchmarksByVertical,
+  type PriceBenchmarkData,
 } from "@/data/price-benchmarks";
+import { sanityFetch } from "@/sanity/lib/fetch";
+import { latestStaticShapedBenchmarksQuery } from "@/sanity/lib/queries";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
@@ -31,8 +33,11 @@ export const metadata: Metadata = {
   },
 };
 
-function getVerticalSummary(verticalSlug: string) {
-  const benchmarks = getBenchmarksByVertical(verticalSlug);
+function getVerticalSummary(
+  verticalSlug: string,
+  benchmarkSource: PriceBenchmarkData[]
+) {
+  const benchmarks = benchmarkSource.filter((b) => b.vertical === verticalSlug);
   if (benchmarks.length === 0) return null;
 
   // Find the most common aged benchmark (31-85 days, shared, internet-form)
@@ -54,8 +59,18 @@ function getVerticalSummary(verticalSlug: string) {
   return { aged, realTime, totalBenchmarks: benchmarks.length };
 }
 
-export default function PriceIndexPage() {
-  const latestMonth = PRICE_BENCHMARKS[0]?.month || "2026-03";
+export default async function PriceIndexPage() {
+  // Prefer Sanity (kept fresh by the marketwatch cron) and fall back to the
+  // static seed when Sanity is empty or unreachable.
+  const sanityBenchmarks = (await sanityFetch(
+    latestStaticShapedBenchmarksQuery
+  )) as PriceBenchmarkData[] | null;
+  const benchmarks: PriceBenchmarkData[] =
+    sanityBenchmarks && sanityBenchmarks.length > 0
+      ? sanityBenchmarks
+      : PRICE_BENCHMARKS;
+
+  const latestMonth = benchmarks[0]?.month || "2026-03";
   const monthLabel = new Date(latestMonth + "-01").toLocaleDateString("en-US", {
     month: "long",
     year: "numeric",
@@ -64,7 +79,7 @@ export default function PriceIndexPage() {
   // Build vertical cards with summary data
   const verticalCards = VERTICALS.filter((v) => v.tier <= 2).map((v) => ({
     ...v,
-    summary: getVerticalSummary(v.slug),
+    summary: getVerticalSummary(v.slug, benchmarks),
   }));
 
   return (

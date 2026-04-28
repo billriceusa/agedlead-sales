@@ -12,6 +12,7 @@ import {
   upsertPriceBenchmarks,
   findStaleProviders,
   getExistingBenchmarks,
+  updateProviderVerifiedDate,
 } from "@/lib/cron/marketwatch-publish";
 import { commitFilesToGitHub } from "@/lib/cron/git-commit";
 import { recordCronRun } from "@/lib/cron/heartbeat";
@@ -134,6 +135,17 @@ export async function GET(request: Request) {
           result.value.policyChanges.length;
         if (changes > 0) {
           console.log(`[Extract] ${provider.name}: ${changes} changes found`);
+        }
+        // Stamp lastVerified on success — even when no changes were found,
+        // a successful scan is a verification event. Without this, the
+        // "Verified" freshness indicator on the public site never advances.
+        try {
+          await updateProviderVerifiedDate(provider.slug);
+        } catch (err) {
+          console.warn(
+            `[Verify] Could not update lastVerified for ${provider.slug}:`,
+            err
+          );
         }
       } else {
         const msg = `Failed to process ${provider.name}: ${result.reason}`;

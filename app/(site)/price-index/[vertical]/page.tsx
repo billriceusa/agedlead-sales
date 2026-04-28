@@ -17,6 +17,8 @@ import {
   getDecayProfile,
   getDecayLabel,
 } from "@/lib/pricing-model";
+import { sanityFetch } from "@/sanity/lib/fetch";
+import { staticShapedBenchmarksByVerticalQuery } from "@/sanity/lib/queries";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
@@ -62,7 +64,17 @@ export default async function VerticalPriceIndexPage({
   const vertical = getVertical(verticalSlug);
   if (!vertical) return notFound();
 
-  const rawBenchmarks = getBenchmarksByVertical(verticalSlug);
+  // Prefer Sanity benchmarks (kept fresh by the marketwatch cron); fall back
+  // to the static seed when Sanity is empty or unreachable.
+  const sanityBenchmarks = (await sanityFetch(
+    staticShapedBenchmarksByVerticalQuery,
+    { vertical: verticalSlug }
+  )) as PriceBenchmarkData[] | null;
+  const staticBenchmarks = getBenchmarksByVertical(verticalSlug);
+  const rawBenchmarks: PriceBenchmarkData[] =
+    sanityBenchmarks && sanityBenchmarks.length > 0
+      ? sanityBenchmarks
+      : staticBenchmarks;
 
   // Use the pricing model to fill gaps in age brackets
   const latestMonth = rawBenchmarks[0]?.month || "2026-03";

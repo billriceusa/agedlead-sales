@@ -81,7 +81,7 @@ const rawProviders: Omit<ProviderData, "overallRating">[] = [
     ratingReputation: 9,
     ratingNotes:
       "Market leader in aged leads. Fully self-service e-commerce with published per-lead pricing. 25+ years in business, A+ BBB. No minimums, no contracts. Up to 20% return cap. Advanced filtering by state, zip, phone type, lead age. Flexibility dinged slightly for aged-only (no real-time, live transfer, or API options). Platform strong but lacks CRM integration or API delivery.",
-    lastVerified: "2026-03-15",
+    lastVerified: "2026-04-28",
     verticals: [
       "mortgage",
       "auto-insurance",
@@ -135,7 +135,7 @@ const rawProviders: Omit<ProviderData, "overallRating">[] = [
     ratingReputation: 8,
     ratingNotes:
       "Wide product range including aged, real-time, call transfer, direct mail, and cold call lists. 20+ years in business. Major downside: pricing is not published — you must contact sales. This makes comparison shopping difficult and suggests higher margins on quotes.",
-    lastVerified: "2026-03-15",
+    lastVerified: "2026-04-28",
     verticals: [
       "mortgage",
       "auto-insurance",
@@ -190,7 +190,7 @@ const rawProviders: Omit<ProviderData, "overallRating">[] = [
     ratingReputation: 9,
     ratingNotes:
       "Premium data provider owned by CoreLogic. Proprietary homeowner database covers 99.8% of US households with 271+ data points. Excellent for mortgage and insurance verticals. Enterprise-grade compliance. Pricing is sales-driven and premium.",
-    lastVerified: "2026-03-15",
+    lastVerified: "2026-04-28",
     verticals: ["mortgage", "auto-insurance", "life-insurance", "health-insurance"],
     leadTypes: ["real-time", "trigger", "data-list"],
     pricingModel: "sales-required",
@@ -238,7 +238,7 @@ const rawProviders: Omit<ProviderData, "overallRating">[] = [
     ratingReputation: 9,
     ratingNotes:
       "Longest-running provider on our list (since 1982). Specializes exclusively in senior insurance via direct mail. 100% exclusive leads with 90-day exclusivity on mailed areas. Premium but high quality. Limited to a narrow niche.",
-    lastVerified: "2026-03-15",
+    lastVerified: "2026-04-28",
     verticals: ["final-expense", "medicare", "long-term-care", "life-insurance"],
     leadTypes: ["direct-mail"],
     pricingModel: "semi-transparent",
@@ -279,7 +279,7 @@ const rawProviders: Omit<ProviderData, "overallRating">[] = [
     ratingReputation: 7,
     ratingNotes:
       "Solid mortgage-focused provider with both aged and real-time options. Zip-code level filtering is useful for LOs. Limited to mortgage vertical.",
-    lastVerified: "2026-03-15",
+    lastVerified: "2026-04-28",
     verticals: ["mortgage"],
     leadTypes: ["aged", "real-time"],
     pricingModel: "semi-transparent",
@@ -319,7 +319,7 @@ const rawProviders: Omit<ProviderData, "overallRating">[] = [
     ratingReputation: 6,
     ratingNotes:
       "Boutique operation with good value pricing. Known for personal service and responsive support. Limited scale and platform sophistication. No BBB rating. 5 insurance verticals.",
-    lastVerified: "2026-03-15",
+    lastVerified: "2026-04-28",
     verticals: [
       "auto-insurance",
       "life-insurance",
@@ -366,7 +366,7 @@ const rawProviders: Omit<ProviderData, "overallRating">[] = [
     ratingReputation: 7,
     ratingNotes:
       "Niche player focused on mortgage and insurance with consumer data capabilities. Data overlay is a differentiator. Limited vertical coverage.",
-    lastVerified: "2026-03-15",
+    lastVerified: "2026-04-28",
     verticals: ["mortgage", "auto-insurance", "life-insurance", "health-insurance"],
     leadTypes: ["real-time", "aged", "data-list"],
     pricingModel: "semi-transparent",
@@ -407,7 +407,7 @@ const rawProviders: Omit<ProviderData, "overallRating">[] = [
     ratingReputation: 5,
     ratingNotes:
       "Marketplace model with massive data scale (335M+ records). Very low CPL (from $0.001). Quality varies significantly depending on data source and age. Compliance documentation less rigorous than dedicated lead providers.",
-    lastVerified: "2026-03-15",
+    lastVerified: "2026-04-28",
     verticals: [
       "mortgage",
       "auto-insurance",
@@ -457,7 +457,7 @@ const rawProviders: Omit<ProviderData, "overallRating">[] = [
     ratingReputation: 4,
     ratingNotes:
       "Newer marketplace with good transparency and self-service UX. TCPA compliance messaging is strong. Limited track record as a younger company.",
-    lastVerified: "2026-03-15",
+    lastVerified: "2026-04-28",
     verticals: [
       "auto-insurance",
       "life-insurance",
@@ -505,7 +505,7 @@ const rawProviders: Omit<ProviderData, "overallRating">[] = [
     ratingReputation: 7,
     ratingNotes:
       "Solid insurance-focused provider with clear pricing tiers. Fresh exclusive leads are premium priced. Aged leads are in the $6-12 range which is higher than some competitors. Good reputation in insurance agent communities.",
-    lastVerified: "2026-03-15",
+    lastVerified: "2026-04-28",
     verticals: ["life-insurance", "final-expense", "medicare"],
     leadTypes: ["aged", "real-time"],
     pricingModel: "transparent",
@@ -546,7 +546,7 @@ const rawProviders: Omit<ProviderData, "overallRating">[] = [
     ratingReputation: 5,
     ratingNotes:
       "Very competitive pricing in the MCA/business loan niche. Published pricing is a plus. Data quality at the $0.01-$0.05 tier is raw bulk data. Higher tiers (appointments, live transfers) offer better quality. Limited track record.",
-    lastVerified: "2026-03-15",
+    lastVerified: "2026-04-28",
     verticals: ["mca-business-loans"],
     leadTypes: ["aged", "live-transfer", "data-list"],
     pricingModel: "transparent",
@@ -587,7 +587,7 @@ const rawProviders: Omit<ProviderData, "overallRating">[] = [
     ratingReputation: 4,
     ratingNotes:
       "Newer multi-vertical aged lead provider. Competitive pricing and simple ordering. Limited track record and less robust compliance documentation than established providers.",
-    lastVerified: "2026-03-15",
+    lastVerified: "2026-04-28",
     verticals: [
       "auto-insurance",
       "life-insurance",
@@ -634,7 +634,7 @@ const rawProviders: Omit<ProviderData, "overallRating">[] = [
     ratingReputation: 5,
     ratingNotes:
       "Niche MCA/business loan provider. Mix of online and offline sourced leads is interesting but raises compliance questions on offline-sourced data.",
-    lastVerified: "2026-03-15",
+    lastVerified: "2026-04-28",
     verticals: ["mca-business-loans"],
     leadTypes: ["aged", "data-list"],
     pricingModel: "semi-transparent",
@@ -676,7 +676,7 @@ const rawProviders: Omit<ProviderData, "overallRating">[] = [
     ratingReputation: 8,
     ratingNotes:
       "Backed by LendingTree, so strong brand and compliance infrastructure. Leads are shared among multiple agents (typically 3-5), which means speed-to-contact is critical. Higher CPL than aged leads. Good for agents with dialing capacity and budget.",
-    lastVerified: "2026-03-15",
+    lastVerified: "2026-04-28",
     verticals: [
       "auto-insurance",
       "life-insurance",
@@ -729,7 +729,7 @@ const rawProviders: Omit<ProviderData, "overallRating">[] = [
     ratingReputation: 7,
     ratingNotes:
       "Modern platform with AI lead matching. Good technology and compliance. Pricing is sales-driven. Leads are shared. Best for agents with the tech setup to capitalize on real-time delivery.",
-    lastVerified: "2026-03-15",
+    lastVerified: "2026-04-28",
     verticals: [
       "auto-insurance",
       "life-insurance",

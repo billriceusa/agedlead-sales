@@ -92,13 +92,19 @@ export default async function ProviderProfilePage({
   const { slug } = await params;
 
   // Try Sanity first, fall back to static data
-  const sanityProvider = await sanityFetch(providerBySlugQuery, { slug });
+  const sanityProvider = (await sanityFetch(providerBySlugQuery, { slug })) as
+    | { lastVerified?: string }
+    | null;
   const staticProvider = getProvider(slug);
 
   if (!sanityProvider && !staticProvider) return notFound();
 
-  // Use static data for now (Sanity will take over once populated)
-  const p = staticProvider!;
+  // Static data carries the editorial review; Sanity overrides time-sensitive
+  // fields like lastVerified that the marketwatch cron keeps fresh.
+  const p = {
+    ...staticProvider!,
+    lastVerified: sanityProvider?.lastVerified || staticProvider!.lastVerified,
+  };
 
   const ratings = [
     { label: "Pricing Transparency", score: p.ratingTransparency, weight: "20%" },

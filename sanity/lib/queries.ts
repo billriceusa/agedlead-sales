@@ -549,3 +549,39 @@ export const homepageDataQuery = defineQuery(
     }
   }`
 );
+
+// Returns benchmarks for the latest month in the shape of
+// data/price-benchmarks.ts PriceBenchmarkData (uses `vertical` slug, not the
+// `verticalSlug` projection used by the listing/index queries above).
+export const latestStaticShapedBenchmarksQuery = defineQuery(
+  `*[_type == "priceBenchmark" && month == *[_type == "priceBenchmark"] | order(month desc)[0].month] {
+    "vertical": vertical->slug.current,
+    leadAgeBracket,
+    exclusivity,
+    leadType,
+    month,
+    priceLow,
+    priceMedian,
+    priceHigh,
+    providersSampled,
+    confidence,
+    notes
+  }`
+);
+
+export const staticShapedBenchmarksByVerticalQuery = defineQuery(
+  `*[_type == "priceBenchmark" && vertical->slug.current == $vertical] | order(month desc) {
+    "vertical": vertical->slug.current,
+    leadAgeBracket,
+    exclusivity,
+    leadType,
+    month,
+    priceLow,
+    priceMedian,
+    priceHigh,
+    providersSampled,
+    confidence,
+    notes
+  }`
+);
+
