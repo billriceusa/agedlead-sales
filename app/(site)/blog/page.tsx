@@ -55,7 +55,12 @@ export default async function BlogPage() {
               </div>
 
               <div className="my-12">
-                <NewsletterSignup variant="inline" context="blog-listing" />
+                <NewsletterSignup
+                  variant="card"
+                  context="blog-listing"
+                  heading="Get the Aged Lead Operator's Edge"
+                  description="Every Tuesday — exclusive tactics, scripts, and benchmarks from 25+ years working aged leads. Tips not published on the blog. Free, unsubscribe anytime."
+                />
               </div>
 
               {posts.length > 3 && (

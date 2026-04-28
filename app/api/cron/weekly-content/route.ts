@@ -8,6 +8,7 @@ import {
   getLeadTypeSlugs,
   publishArticle,
 } from "@/lib/cron/sanity-publish";
+import { generateAndAttachFeaturedImage } from "@/lib/cron/featured-image";
 import { commitFilesToGitHub } from "@/lib/cron/git-commit";
 import { recordCronRun } from "@/lib/cron/heartbeat";
 import { sendWeeklyReport } from "@/lib/cron/notify";
@@ -156,6 +157,27 @@ export async function GET(request: Request) {
               title: article.brief.title,
             });
             console.log(`[Publish] Created: ${article.brief.title}`);
+
+            try {
+              const imgOutcome = await generateAndAttachFeaturedImage(
+                outcome.id,
+                article.brief.title
+              );
+              if (imgOutcome.status === "created") {
+                console.log(
+                  `[Image] Attached to ${article.brief.title} (photo by ${imgOutcome.photographer})`
+                );
+              } else {
+                console.warn(
+                  `[Image] Skipped for ${article.brief.title}: ${imgOutcome.reason}`
+                );
+              }
+            } catch (imgErr) {
+              console.error(
+                `[Image] Failed for ${article.brief.title}:`,
+                imgErr
+              );
+            }
           } else {
             articlesSkipped.push({
               title: article.brief.title,
