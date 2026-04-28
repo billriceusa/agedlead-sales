@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-27T12:01:20.357Z",
+  "lastUpdated": "2026-04-28T12:01:31.394Z",
   "items": [
     {
       "id": "ae65c17929e7",
@@ -64,6 +64,17 @@
       "priority": "high",
       "firstSeen": "2026-04-16",
       "lastSeen": "2026-04-26",
+      "timesRepeated": 2,
+      "status": "open"
+    },
+    {
+      "id": "efea041f4c10",
+      "title": "Emergency Site Accessibility Audit",
+      "description": "Immediately check for server issues, DNS problems, or Google Analytics tracking failures. Verify the site loads properly across devices and browsers. Check Google Search Console for crawl errors or manual actions.",
+      "expectedImpact": "Restore traffic flow and identify root cause of 100% traffic loss",
+      "priority": "high",
+      "firstSeen": "2026-04-24",
+      "lastSeen": "2026-04-28",
       "timesRepeated": 2,
       "status": "open"
     },
@@ -178,17 +189,6 @@
       "status": "open"
     },
     {
-      "id": "efea041f4c10",
-      "title": "Emergency Site Accessibility Audit",
-      "description": "Immediately check for server issues, DNS problems, or Google Analytics tracking failures. Verify the site loads properly across devices and browsers. Check Google Search Console for crawl errors or manual actions.",
-      "expectedImpact": "Restore traffic flow and identify root cause of 100% traffic loss",
-      "priority": "high",
-      "firstSeen": "2026-04-24",
-      "lastSeen": "2026-04-24",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
       "id": "6489d0d1a7c4",
       "title": "Capitalize on 'Aged Lead Store Reviews' Opportunity",
       "description": "Create comprehensive review content for position 13.0 ranking on 'aged lead store reviews' with 11 daily impressions. Add detailed AgedLeadStore.com review with pros/cons, pricing, and affiliate CTAs.",
@@ -266,6 +266,17 @@
       "status": "open"
     },
     {
+      "id": "92e527ae80b3",
+      "title": "Capitalize on Improved Rankings",
+      "description": "Once site is accessible, optimize meta titles and descriptions for top-ranking pages (industry statistics, compliance content) to improve the 0% CTR. Focus on compelling value propositions for aged lead queries.",
+      "expectedImpact": "Convert improved rankings into 2-5% CTR improvement",
+      "priority": "high",
+      "firstSeen": "2026-04-28",
+      "lastSeen": "2026-04-28",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "31aa4d6c7de3",
       "title": "Content Expansion for High-Impression Queries",
       "description": "Create dedicated landing pages or expand existing content for 'aged mortgage leads' (9 impressions, pos 44.2) and 'auto insurance leads cost' (6 impressions, pos 23.0) to capture more search volume.",
@@ -317,6 +328,17 @@
       "priority": "medium",
       "firstSeen": "2026-04-19",
       "lastSeen": "2026-04-25",
+      "timesRepeated": 2,
+      "status": "open"
+    },
+    {
+      "id": "3b2bf4da9e3c",
+      "title": "Mobile Search Optimization",
+      "description": "The single click came from mobile despite desktop having 285 impressions. Optimize mobile page speed, implement AMP, and ensure mobile-first indexing compliance for better mobile CTR.",
+      "expectedImpact": "Increase mobile CTR from current levels to 0.5-1.0%",
+      "priority": "medium",
+      "firstSeen": "2026-04-25",
+      "lastSeen": "2026-04-28",
       "timesRepeated": 2,
       "status": "open"
     },
@@ -475,17 +497,6 @@
       "status": "open"
     },
     {
-      "id": "3b2bf4da9e3c",
-      "title": "Mobile Search Optimization",
-      "description": "The single click came from mobile despite desktop having 285 impressions. Optimize mobile page speed, implement AMP, and ensure mobile-first indexing compliance for better mobile CTR.",
-      "expectedImpact": "Increase mobile CTR from current levels to 0.5-1.0%",
-      "priority": "medium",
-      "firstSeen": "2026-04-25",
-      "lastSeen": "2026-04-25",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
       "id": "d2a4cf10e094",
       "title": "Capitalize on Ranking Improvements for Lead Generation",
       "description": "Create targeted landing pages for queries ranking 13-18 positions like 'aged lead store' and 'aged mortgage leads'. Add clear affiliate link placements and lead magnet offers to convert improved visibility.",
@@ -504,6 +515,28 @@
       "priority": "medium",
       "firstSeen": "2026-04-27",
       "lastSeen": "2026-04-27",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "061288a91d8e",
+      "title": "Expand Mortgage Lead Content",
+      "description": "Create dedicated landing pages for 'aged mortgage leads' and 'aged refinance leads' queries that are gaining visibility (positions 28.5-46.5). Include mortgage broker success stories and ROI calculators.",
+      "expectedImpact": "Capture 20-30% of mortgage lead search volume",
+      "priority": "medium",
+      "firstSeen": "2026-04-28",
+      "lastSeen": "2026-04-28",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "9fb594bd9ad4",
+      "title": "Optimize Brand Review Content",
+      "description": "Enhance the Aged Lead Store reviews page ranking at position 10.3 with more detailed reviews, comparison tables, and affiliate conversion elements to capitalize on high commercial intent.",
+      "expectedImpact": "Increase affiliate conversions by 15-25%",
+      "priority": "medium",
+      "firstSeen": "2026-04-28",
+      "lastSeen": "2026-04-28",
       "timesRepeated": 1,
       "status": "open"
     },
