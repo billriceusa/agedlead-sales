@@ -60,8 +60,8 @@ export const postsQuery = defineQuery(
     contentType,
     isFeatured,
     author->{name, slug, image},
-    categories[]->{title, slug},
-    leadTypes[]->{title, slug}
+    categories[defined(@->)]->{title, slug},
+    leadTypes[defined(@->)]->{title, slug}
   }`
 );
 
@@ -77,8 +77,8 @@ export const postBySlugQuery = defineQuery(
     _updatedAt,
     contentType,
     author->{name, slug, image, bio, role},
-    categories[]->{title, slug},
-    leadTypes[]->{title, slug, icon},
+    categories[defined(@->)]->{title, slug},
+    leadTypes[defined(@->)]->{title, slug, icon},
     pillarPost->{title, slug},
     seo,
     "clusterPosts": *[_type == "post" && pillarPost._ref == ^._id] | order(publishedAt desc) {
@@ -107,7 +107,7 @@ export const recentPostsQuery = defineQuery(
     mainImage,
     publishedAt,
     author->{name, slug, image},
-    categories[]->{title, slug}
+    categories[defined(@->)]->{title, slug}
   }`
 );
 
@@ -122,7 +122,7 @@ export const playbooksQuery = defineQuery(
     difficulty,
     estimatedTime,
     author->{name, slug, image},
-    leadTypes[]->{title, slug}
+    leadTypes[defined(@->)]->{title, slug}
   }`
 );
 
@@ -139,7 +139,7 @@ export const playbookBySlugQuery = defineQuery(
     publishedAt,
     _updatedAt,
     author->{name, slug, image, bio, role},
-    leadTypes[]->{title, slug, icon},
+    leadTypes[defined(@->)]->{title, slug, icon},
     seo,
     "relatedPlaybooks": *[_type == "playbook" && slug.current != $slug] | order(publishedAt desc)[0...3] {
       _id,
@@ -173,8 +173,8 @@ export const glossaryTermBySlugQuery = defineQuery(
     body,
     category,
     seo,
-    relatedTerms[]->{term, slug, definition},
-    relatedLeadTypes[]->{title, slug, icon, affiliateUrl},
+    relatedTerms[defined(@->)]->{term, slug, definition},
+    relatedLeadTypes[defined(@->)]->{title, slug, icon, affiliateUrl},
     "relatedPosts": *[_type == "post" && references(^._id)] | order(publishedAt desc)[0...3] {
       _id,
       title,
@@ -214,7 +214,7 @@ export const postsByCategoryQuery = defineQuery(
     mainImage,
     publishedAt,
     author->{name, slug, image},
-    categories[]->{title, slug}
+    categories[defined(@->)]->{title, slug}
   }`
 );
 
@@ -228,7 +228,7 @@ export const guidesQuery = defineQuery(
     mainImage,
     estimatedTime,
     author->{name, slug, image},
-    leadTypes[]->{title, slug}
+    leadTypes[defined(@->)]->{title, slug}
   }`
 );
 
@@ -244,7 +244,7 @@ export const guideBySlugQuery = defineQuery(
     isGated,
     publishedAt,
     author->{name, slug, image, bio, role},
-    leadTypes[]->{title, slug, icon},
+    leadTypes[defined(@->)]->{title, slug, icon},
     seo,
     "relatedGuides": *[_type == "guide" && slug.current != $slug] | order(publishedAt desc)[0...3] {
       _id,
@@ -319,7 +319,7 @@ export const providersQuery = defineQuery(
       ratingReputation * 0.10
     , 1),
     lastVerified,
-    verticals[]->{name, slug, icon},
+    verticals[defined(@->)]->{name, slug, icon},
     leadTypes,
     pricingModel,
     isFeatured
@@ -356,7 +356,7 @@ export const providerBySlugQuery = defineQuery(
     , 1),
     ratingNotes,
     lastVerified,
-    verticals[]->{name, slug, icon},
+    verticals[defined(@->)]->{name, slug, icon},
     leadTypes,
     pricingModel,
     hasMinimums,
@@ -414,7 +414,7 @@ export const providersByVerticalQuery = defineQuery(
       ratingReputation * 0.10
     , 1),
     lastVerified,
-    verticals[]->{name, slug, icon},
+    verticals[defined(@->)]->{name, slug, icon},
     leadTypes,
     pricingModel,
     isFeatured
@@ -449,7 +449,7 @@ export const providerPairQuery = defineQuery(
       ratingReputation * 0.10
     , 1),
     lastVerified,
-    verticals[]->{name, slug, icon},
+    verticals[defined(@->)]->{name, slug, icon},
     leadTypes,
     pricingModel,
     hasMinimums,
