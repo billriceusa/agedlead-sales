@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-28T12:01:31.394Z",
+  "lastUpdated": "2026-04-29T12:00:52.303Z",
   "items": [
     {
       "id": "ae65c17929e7",
@@ -277,6 +277,28 @@
       "status": "open"
     },
     {
+      "id": "4daeacc2e10f",
+      "title": "Implement Landing Page Optimization for Referral Traffic",
+      "description": "Create dedicated landing pages for AgedLeadStore.com referral traffic with clear value propositions, prominent CTAs to affiliate links, and streamlined navigation. Add exit-intent popups with lead magnets to capture bouncing visitors.",
+      "expectedImpact": "Reduce bounce rate from 90% to 60-70% and increase affiliate click-through rates by 40-50%",
+      "priority": "high",
+      "firstSeen": "2026-04-29",
+      "lastSeen": "2026-04-29",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "2e4efe9c0aa9",
+      "title": "Expand and Optimize Calculator Tools",
+      "description": "Build additional calculators (ROI calculator, lead volume planner, conversion rate optimizer) and create dedicated landing pages with clear paths to AgedLeadStore.com. Add lead capture forms before calculator results.",
+      "expectedImpact": "Increase organic traffic by 30% and generate 20-30 qualified leads per month",
+      "priority": "high",
+      "firstSeen": "2026-04-29",
+      "lastSeen": "2026-04-29",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "31aa4d6c7de3",
       "title": "Content Expansion for High-Impression Queries",
       "description": "Create dedicated landing pages or expand existing content for 'aged mortgage leads' (9 impressions, pos 44.2) and 'auto insurance leads cost' (6 impressions, pos 23.0) to capture more search volume.",
@@ -541,6 +563,28 @@
       "status": "open"
     },
     {
+      "id": "0c528609d3eb",
+      "title": "Target 'Aged Lead Store Reviews' Query Aggressively",
+      "description": "Create comprehensive review content for AgedLeadStore.com, optimize existing provider page with user testimonials, comparison tables, and detailed pros/cons. Target position 5-7 for this high-intent query.",
+      "expectedImpact": "Capture 5-10 additional clicks per week from high-converting review searches",
+      "priority": "medium",
+      "firstSeen": "2026-04-29",
+      "lastSeen": "2026-04-29",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "fc1963d9ad5a",
+      "title": "Develop Mobile-First Content Strategy",
+      "description": "Optimize for mobile users who represent growing search volume. Create mobile-friendly comparison charts, simplified navigation, and thumb-friendly CTA buttons for affiliate links.",
+      "expectedImpact": "Increase mobile engagement rate by 25% and capture additional mobile search traffic",
+      "priority": "medium",
+      "firstSeen": "2026-04-29",
+      "lastSeen": "2026-04-29",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "cc192c120d5f",
       "title": "Long-tail Keyword Expansion",
       "description": "Target specific queries like 'how much do mortgage trigger leads cost' (pos 56.8) and 'auto insurance lead cost' (pos 23.0) with dedicated content pieces.",
@@ -581,6 +625,17 @@
       "priority": "low",
       "firstSeen": "2026-04-24",
       "lastSeen": "2026-04-24",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "e048233d4130",
+      "title": "Create Industry-Specific Landing Pages",
+      "description": "Build dedicated pages for 'aged mortgage leads,' 'aged insurance leads,' and 'aged refinance leads' queries where you're ranking 27-46. Include industry-specific calculators and AgedLeadStore.com affiliate links.",
+      "expectedImpact": "Improve rankings to positions 15-20 and increase targeted organic traffic by 15%",
+      "priority": "low",
+      "firstSeen": "2026-04-29",
+      "lastSeen": "2026-04-29",
       "timesRepeated": 1,
       "status": "open"
     }
