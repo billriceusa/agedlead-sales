@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-29T12:00:52.303Z",
+  "lastUpdated": "2026-04-30T12:01:32.247Z",
   "items": [
     {
       "id": "ae65c17929e7",
@@ -299,6 +299,28 @@
       "status": "open"
     },
     {
+      "id": "c2cb00365d11",
+      "title": "Optimize High-Ranking Pages for Click-Through",
+      "description": "Rewrite title tags and meta descriptions for pages ranking in positions 6-11 (auto insurance price index, industry statistics, economics blog posts) to include compelling CTAs and benefit-driven language targeting insurance agents and brokers.",
+      "expectedImpact": "Could increase organic clicks by 200-300% based on improved CTR from current 0.40%",
+      "priority": "high",
+      "firstSeen": "2026-04-30",
+      "lastSeen": "2026-04-30",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "573b8aec1d76",
+      "title": "Scale Successful Calculator Content Strategy",
+      "description": "The CPL calculator is the top-performing page with 19 views. Create additional calculators for ROI, lead volume planning, and cost-per-acquisition across insurance, mortgage, and solar verticals with embedded affiliate links.",
+      "expectedImpact": "Potential to double page views and create more conversion touchpoints",
+      "priority": "high",
+      "firstSeen": "2026-04-30",
+      "lastSeen": "2026-04-30",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "31aa4d6c7de3",
       "title": "Content Expansion for High-Impression Queries",
       "description": "Create dedicated landing pages or expand existing content for 'aged mortgage leads' (9 impressions, pos 44.2) and 'auto insurance leads cost' (6 impressions, pos 23.0) to capture more search volume.",
@@ -585,6 +607,28 @@
       "status": "open"
     },
     {
+      "id": "69b7a9e3aef1",
+      "title": "Expand Content Around Winning Search Queries",
+      "description": "Create comprehensive guides targeting 'aged lead store reviews', 'aged mortgage leads', and 'lead providers' queries where the site shows ranking momentum. Focus on comparison content and buyer guides.",
+      "expectedImpact": "Could capture 50-100 additional monthly clicks from expanding keyword coverage",
+      "priority": "medium",
+      "firstSeen": "2026-04-30",
+      "lastSeen": "2026-04-30",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "2356990db7f1",
+      "title": "Implement Internal Linking Strategy from High-Traffic Pages",
+      "description": "The homepage, providers page, and playbook pages are receiving consistent traffic. Add contextual internal links to affiliate-focused content and lead type pages to distribute link equity and guide user journey.",
+      "expectedImpact": "Improve page authority distribution and increase affiliate link exposure by 40-60%",
+      "priority": "medium",
+      "firstSeen": "2026-04-30",
+      "lastSeen": "2026-04-30",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "cc192c120d5f",
       "title": "Long-tail Keyword Expansion",
       "description": "Target specific queries like 'how much do mortgage trigger leads cost' (pos 56.8) and 'auto insurance lead cost' (pos 23.0) with dedicated content pieces.",
@@ -636,6 +680,17 @@
       "priority": "low",
       "firstSeen": "2026-04-29",
       "lastSeen": "2026-04-29",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "e43316599362",
+      "title": "Optimize for Mobile Search Performance",
+      "description": "With only 27 mobile impressions vs 224 desktop, ensure mobile page speed and user experience are optimized, especially for calculator and comparison tools that drive conversions.",
+      "expectedImpact": "Potential 30-50% increase in mobile search visibility and engagement",
+      "priority": "low",
+      "firstSeen": "2026-04-30",
+      "lastSeen": "2026-04-30",
       "timesRepeated": 1,
       "status": "open"
     }
