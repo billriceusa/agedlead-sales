@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-02T12:01:01.131Z",
+  "lastUpdated": "2026-05-03T12:00:55.960Z",
   "items": [
     {
       "id": "ae65c17929e7",
@@ -354,6 +354,28 @@
       "status": "open"
     },
     {
+      "id": "da9e76f534a7",
+      "title": "Optimize High-Impression, Low-Click Search Queries",
+      "description": "Focus on 'aged lead store reviews' (22 impressions, pos 12.7) and 'aged leads' (8 impressions, pos 27.0) by creating dedicated review comparison pages and optimizing existing content with better title tags and meta descriptions to improve CTR from current 0.84%.",
+      "expectedImpact": "Could double organic traffic within 30 days by capturing existing search demand",
+      "priority": "high",
+      "firstSeen": "2026-05-03",
+      "lastSeen": "2026-05-03",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "315529ae275b",
+      "title": "Scale ROI Calculator Success with Additional Tools",
+      "description": "The ROI calculator's 14 views per user indicates exceptional engagement. Create complementary calculators for CPL analysis, lead aging value, and conversion rate optimization. Add clear AgedLeadStore.com CTAs within calculator results.",
+      "expectedImpact": "Increase affiliate conversions by 25-40% and extend session duration further",
+      "priority": "high",
+      "firstSeen": "2026-05-03",
+      "lastSeen": "2026-05-03",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "31aa4d6c7de3",
       "title": "Content Expansion for High-Impression Queries",
       "description": "Create dedicated landing pages or expand existing content for 'aged mortgage leads' (9 impressions, pos 44.2) and 'auto insurance leads cost' (6 impressions, pos 23.0) to capture more search volume.",
@@ -416,6 +438,17 @@
       "priority": "medium",
       "firstSeen": "2026-04-25",
       "lastSeen": "2026-04-28",
+      "timesRepeated": 2,
+      "status": "open"
+    },
+    {
+      "id": "088660111850",
+      "title": "Optimize Mobile Search Experience",
+      "description": "Mobile accounts for only 29 of 249 total impressions. Improve mobile page speed, create mobile-specific calculator interfaces, and ensure all affiliate links are mobile-optimized for the insurance agent audience.",
+      "expectedImpact": "Could increase mobile impressions by 100-200% and improve overall CTR",
+      "priority": "medium",
+      "firstSeen": "2026-05-02",
+      "lastSeen": "2026-05-03",
       "timesRepeated": 2,
       "status": "open"
     },
@@ -706,13 +739,24 @@
       "status": "open"
     },
     {
-      "id": "088660111850",
-      "title": "Optimize Mobile Search Experience",
-      "description": "Mobile accounts for only 29 of 249 total impressions. Improve mobile page speed, create mobile-specific calculator interfaces, and ensure all affiliate links are mobile-optimized for the insurance agent audience.",
-      "expectedImpact": "Could increase mobile impressions by 100-200% and improve overall CTR",
+      "id": "df9028d9c9c5",
+      "title": "Expand Email Newsletter Content Distribution",
+      "description": "With 12 sessions from email driving quality traffic, increase newsletter frequency and create email-exclusive content previews that drive traffic to high-converting pages like calculators and playbooks.",
+      "expectedImpact": "Increase email-driven sessions by 50% and improve overall engagement metrics",
       "priority": "medium",
-      "firstSeen": "2026-05-02",
-      "lastSeen": "2026-05-02",
+      "firstSeen": "2026-05-03",
+      "lastSeen": "2026-05-03",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "3d575d41a9ec",
+      "title": "Create Aged Lead Store Review and Comparison Content",
+      "description": "Search data shows strong demand for 'aged lead store reviews' with good positioning. Create comprehensive review pages, comparison charts, and case studies featuring AgedLeadStore.com to capture this search traffic.",
+      "expectedImpact": "Capture 15-20 additional organic sessions monthly from review-focused queries",
+      "priority": "medium",
+      "firstSeen": "2026-05-03",
+      "lastSeen": "2026-05-03",
       "timesRepeated": 1,
       "status": "open"
     },
