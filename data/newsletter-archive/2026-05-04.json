@@ -1,0 +1,22 @@
+{
+  "runDate": "2026-05-03T08:01:00.031Z",
+  "weekOf": "2026-05-04",
+  "sendDate": "2026-05-05",
+  "theme": "Tech & Tools",
+  "focusVertical": "Multi-vertical",
+  "subject": "The AI scoring model that doubles your contact rate",
+  "previewText": "Plus: Free CRM vs paid — the real cost breakdown most agents get wrong",
+  "broadcastId": "395bf848-47db-493d-a537-e3d93607f3d7",
+  "featuredArticle": {
+    "title": "AI Lead Scoring for Aged Lists: Rank Your Buy List Before You Dial",
+    "slug": "ai-lead-scoring-aged-leads",
+    "spotlight": "Most operations dial aged leads in the order they arrived — the slowest possible path to revenue. This weighted scoring model, augmented with AI for messier signals, can double your contact-to-conversion rate by prioritizing your highest-probability records first."
+  },
+  "quickTips": [
+    "Free CRM vs Paid: The Real Cost Breakdown",
+    "Triple Your Daily Contact Volume with This Dialer Setup",
+    "3 Chrome Extensions Every Lead Caller Needs"
+  ],
+  "industryInsight": "Medicare Advantage Lead Prices Up 40% Post-TPMO",
+  "errors": []
+}
