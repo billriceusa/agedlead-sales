@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-03T12:00:55.960Z",
+  "lastUpdated": "2026-05-04T12:01:27.735Z",
   "items": [
     {
       "id": "ae65c17929e7",
@@ -31,6 +31,17 @@
       "priority": "high",
       "firstSeen": "2026-04-14",
       "lastSeen": "2026-04-25",
+      "timesRepeated": 3,
+      "status": "open"
+    },
+    {
+      "id": "6e9dd965e5be",
+      "title": "Optimize ROI Calculator for Lead Capture",
+      "description": "Add email capture to the ROI calculator before showing results, create follow-up email sequences, and add clear CTAs to AgedLeadStore. Consider creating calculator-specific landing pages for different verticals (insurance, mortgage, solar).",
+      "expectedImpact": "Convert high-engagement calculator users into qualified leads, potentially 20-30% conversion rate",
+      "priority": "high",
+      "firstSeen": "2026-05-01",
+      "lastSeen": "2026-05-04",
       "timesRepeated": 3,
       "status": "open"
     },
@@ -75,17 +86,6 @@
       "priority": "high",
       "firstSeen": "2026-04-24",
       "lastSeen": "2026-04-28",
-      "timesRepeated": 2,
-      "status": "open"
-    },
-    {
-      "id": "6e9dd965e5be",
-      "title": "Optimize ROI Calculator for Lead Capture",
-      "description": "Add email capture to the ROI calculator before showing results, create follow-up email sequences, and add clear CTAs to AgedLeadStore. Consider creating calculator-specific landing pages for different verticals (insurance, mortgage, solar).",
-      "expectedImpact": "Convert high-engagement calculator users into qualified leads, potentially 20-30% conversion rate",
-      "priority": "high",
-      "firstSeen": "2026-05-01",
-      "lastSeen": "2026-05-02",
       "timesRepeated": 2,
       "status": "open"
     },
@@ -372,6 +372,17 @@
       "priority": "high",
       "firstSeen": "2026-05-03",
       "lastSeen": "2026-05-03",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "55ab8fe6fb5f",
+      "title": "Scale Direct Traffic Campaign That's Working",
+      "description": "Analyze the source of the 79 direct sessions surge. If from email marketing, increase frequency. If from partnerships, expand similar relationships. Document and replicate the successful tactics driving this traffic spike.",
+      "expectedImpact": "Sustain current traffic levels and potentially double direct traffic within 30 days",
+      "priority": "high",
+      "firstSeen": "2026-05-04",
+      "lastSeen": "2026-05-04",
       "timesRepeated": 1,
       "status": "open"
     },
@@ -761,6 +772,39 @@
       "status": "open"
     },
     {
+      "id": "89e9b92e6cfd",
+      "title": "Create Comprehensive 'Aged Lead Store Reviews' Content",
+      "description": "Develop in-depth review content targeting the 'aged lead store reviews' query (currently ranking #12.5). Include comparison charts, pricing analysis, user testimonials, and pros/cons to capture the 23 monthly impressions converting to clicks.",
+      "expectedImpact": "Increase CTR from 0% to 15-20% for this high-intent query, adding 3-5 qualified visitors monthly",
+      "priority": "medium",
+      "firstSeen": "2026-05-04",
+      "lastSeen": "2026-05-04",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "c64a376d9244",
+      "title": "Expand Calculator Suite Based on Success",
+      "description": "Create additional calculators: Cost Per Lead Calculator, Lead Conversion Rate Calculator, and Monthly Lead Budget Calculator. Cross-link them and create a dedicated calculators landing page to capture more tool-seeking traffic.",
+      "expectedImpact": "Increase tool-based traffic by 200-300% and create multiple lead capture opportunities",
+      "priority": "medium",
+      "firstSeen": "2026-05-04",
+      "lastSeen": "2026-05-04",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "de59c17483d2",
+      "title": "Optimize TCPA Compliance Content for Featured Snippets",
+      "description": "The TCPA compliance page earned 1 click at position 15.2. Restructure content with FAQ format, bullet points, and step-by-step compliance checklists to target position 0 for compliance-related queries.",
+      "expectedImpact": "Capture featured snippet position, potentially increasing clicks by 300-400%",
+      "priority": "medium",
+      "firstSeen": "2026-05-04",
+      "lastSeen": "2026-05-04",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "cc192c120d5f",
       "title": "Long-tail Keyword Expansion",
       "description": "Target specific queries like 'how much do mortgage trigger leads cost' (pos 56.8) and 'auto insurance lead cost' (pos 23.0) with dedicated content pieces.",
@@ -845,6 +889,17 @@
       "priority": "low",
       "firstSeen": "2026-05-02",
       "lastSeen": "2026-05-02",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "e5837806021a",
+      "title": "Improve Mobile Search Performance",
+      "description": "With only 27 mobile impressions vs 223 desktop, optimize mobile page speed and user experience. Focus on calculator and form functionality on mobile devices.",
+      "expectedImpact": "Increase mobile search visibility by 50-100% and improve mobile conversion rates",
+      "priority": "low",
+      "firstSeen": "2026-05-04",
+      "lastSeen": "2026-05-04",
       "timesRepeated": 1,
       "status": "open"
     }
