@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-04T12:01:27.735Z",
+  "lastUpdated": "2026-05-05T12:01:40.137Z",
   "items": [
     {
       "id": "ae65c17929e7",
@@ -387,6 +387,28 @@
       "status": "open"
     },
     {
+      "id": "e94c3cbceba8",
+      "title": "Optimize ROI Calculator for Conversions",
+      "description": "The ROI calculator is your highest-engagement content. Add clear AgedLeadStore.com affiliate CTAs within the calculator results, create email capture for detailed reports, and build similar calculators for CPL and lead quality scoring. Track conversion rates from this page specifically.",
+      "expectedImpact": "20-30% increase in affiliate conversions from current high-engagement traffic",
+      "priority": "high",
+      "firstSeen": "2026-05-05",
+      "lastSeen": "2026-05-05",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "5637f0f43033",
+      "title": "Scale Successful Traffic Sources",
+      "description": "With 96 direct sessions and 24 AgedLeadStore referrals driving growth, double down on whatever campaigns are generating this traffic. Analyze the source of direct traffic (email campaigns, social media, ads) and increase investment in those channels.",
+      "expectedImpact": "Maintain current growth trajectory and reduce dependency on single traffic sources",
+      "priority": "high",
+      "firstSeen": "2026-05-05",
+      "lastSeen": "2026-05-05",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "31aa4d6c7de3",
       "title": "Content Expansion for High-Impression Queries",
       "description": "Create dedicated landing pages or expand existing content for 'aged mortgage leads' (9 impressions, pos 44.2) and 'auto insurance leads cost' (6 impressions, pos 23.0) to capture more search volume.",
@@ -460,6 +482,17 @@
       "priority": "medium",
       "firstSeen": "2026-05-02",
       "lastSeen": "2026-05-03",
+      "timesRepeated": 2,
+      "status": "open"
+    },
+    {
+      "id": "e5837806021a",
+      "title": "Improve Mobile Search Performance",
+      "description": "With only 27 mobile impressions vs 223 desktop, optimize mobile page speed and user experience. Focus on calculator and form functionality on mobile devices.",
+      "expectedImpact": "Increase mobile search visibility by 50-100% and improve mobile conversion rates",
+      "priority": "medium",
+      "firstSeen": "2026-05-04",
+      "lastSeen": "2026-05-05",
       "timesRepeated": 2,
       "status": "open"
     },
@@ -805,6 +838,17 @@
       "status": "open"
     },
     {
+      "id": "a0497e67e536",
+      "title": "Target Long-Tail Aged Lead Keywords",
+      "description": "Create content targeting specific queries like 'aged mortgage leads pricing', 'aged life insurance leads reviews', and 'TCPA compliant aged leads'. Your TCPA compliance page already ranks well (position 15.2) - build more content around compliance topics.",
+      "expectedImpact": "50-100% increase in organic search clicks within 60 days",
+      "priority": "medium",
+      "firstSeen": "2026-05-05",
+      "lastSeen": "2026-05-05",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "cc192c120d5f",
       "title": "Long-tail Keyword Expansion",
       "description": "Target specific queries like 'how much do mortgage trigger leads cost' (pos 56.8) and 'auto insurance lead cost' (pos 23.0) with dedicated content pieces.",
@@ -893,13 +937,13 @@
       "status": "open"
     },
     {
-      "id": "e5837806021a",
-      "title": "Improve Mobile Search Performance",
-      "description": "With only 27 mobile impressions vs 223 desktop, optimize mobile page speed and user experience. Focus on calculator and form functionality on mobile devices.",
-      "expectedImpact": "Increase mobile search visibility by 50-100% and improve mobile conversion rates",
+      "id": "5c5025782110",
+      "title": "Expand Newsletter Content Strategy",
+      "description": "The newsletter page shows strong engagement (45 views, 47 users). Create lead magnets around aged lead best practices, pricing guides, and industry reports to capture emails from your growing traffic.",
+      "expectedImpact": "Build email list for sustained traffic and reduce reliance on external referrals",
       "priority": "low",
-      "firstSeen": "2026-05-04",
-      "lastSeen": "2026-05-04",
+      "firstSeen": "2026-05-05",
+      "lastSeen": "2026-05-05",
       "timesRepeated": 1,
       "status": "open"
     }
