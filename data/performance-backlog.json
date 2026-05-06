@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-05T12:01:40.137Z",
+  "lastUpdated": "2026-05-06T12:01:14.170Z",
   "items": [
     {
       "id": "ae65c17929e7",
@@ -409,6 +409,28 @@
       "status": "open"
     },
     {
+      "id": "26c6057e27f6",
+      "title": "Implement Conversion Tracking and Optimize High-Traffic Pages",
+      "description": "Set up enhanced conversion tracking for the ROI calculator (76 views, 8 users) and providers page (54 views, 50 users). Add clear AgedLeadStore affiliate CTAs and lead magnets to capture the 50.33% bounce rate traffic. A/B test different CTA placements and messaging.",
+      "expectedImpact": "15-25% improvement in conversion rate and 10-15% reduction in bounce rate",
+      "priority": "high",
+      "firstSeen": "2026-05-06",
+      "lastSeen": "2026-05-06",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "896ca1a0dce8",
+      "title": "Capitalize on Search Ranking Improvements",
+      "description": "Focus content creation on queries where you're ranking 6-15 positions: 'aged lead industry statistics' (pos 6.7), 'scaling aged lead operation' (pos 3.0), and brand terms. Create comprehensive guides targeting these improving rankings with internal links to affiliate pages.",
+      "expectedImpact": "2-3x increase in organic clicks within 30 days",
+      "priority": "high",
+      "firstSeen": "2026-05-06",
+      "lastSeen": "2026-05-06",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "31aa4d6c7de3",
       "title": "Content Expansion for High-Impression Queries",
       "description": "Create dedicated landing pages or expand existing content for 'aged mortgage leads' (9 impressions, pos 44.2) and 'auto insurance leads cost' (6 impressions, pos 23.0) to capture more search volume.",
@@ -416,6 +438,17 @@
       "priority": "medium",
       "firstSeen": "2026-04-18",
       "lastSeen": "2026-04-26",
+      "timesRepeated": 3,
+      "status": "open"
+    },
+    {
+      "id": "e5837806021a",
+      "title": "Improve Mobile Search Performance",
+      "description": "With only 27 mobile impressions vs 223 desktop, optimize mobile page speed and user experience. Focus on calculator and form functionality on mobile devices.",
+      "expectedImpact": "Increase mobile search visibility by 50-100% and improve mobile conversion rates",
+      "priority": "medium",
+      "firstSeen": "2026-05-04",
+      "lastSeen": "2026-05-06",
       "timesRepeated": 3,
       "status": "open"
     },
@@ -482,17 +515,6 @@
       "priority": "medium",
       "firstSeen": "2026-05-02",
       "lastSeen": "2026-05-03",
-      "timesRepeated": 2,
-      "status": "open"
-    },
-    {
-      "id": "e5837806021a",
-      "title": "Improve Mobile Search Performance",
-      "description": "With only 27 mobile impressions vs 223 desktop, optimize mobile page speed and user experience. Focus on calculator and form functionality on mobile devices.",
-      "expectedImpact": "Increase mobile search visibility by 50-100% and improve mobile conversion rates",
-      "priority": "medium",
-      "firstSeen": "2026-05-04",
-      "lastSeen": "2026-05-05",
       "timesRepeated": 2,
       "status": "open"
     },
@@ -845,6 +867,28 @@
       "priority": "medium",
       "firstSeen": "2026-05-05",
       "lastSeen": "2026-05-05",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "b7d4d8c1e881",
+      "title": "Optimize Calculator User Experience",
+      "description": "The ROI calculator shows 9.5 pages per user - add progressive disclosure to capture emails mid-calculation, implement exit-intent popups, and create follow-up email sequences for calculator users to nurture them toward AgedLeadStore.",
+      "expectedImpact": "20-30% increase in email captures from calculator traffic",
+      "priority": "medium",
+      "firstSeen": "2026-05-06",
+      "lastSeen": "2026-05-06",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "7c62a30e091d",
+      "title": "Expand Content Around High-Impression Queries",
+      "description": "Target 'aged lead store reviews' (22 impressions, pos 12.7) and 'aged leads' (7 impressions, pos 26.3) with dedicated comparison content, case studies, and FAQ pages. These show search demand with improving positions.",
+      "expectedImpact": "50-100% increase in organic impressions within 60 days",
+      "priority": "medium",
+      "firstSeen": "2026-05-06",
+      "lastSeen": "2026-05-06",
       "timesRepeated": 1,
       "status": "open"
     },
