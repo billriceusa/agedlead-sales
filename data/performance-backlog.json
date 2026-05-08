@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-06T12:01:14.170Z",
+  "lastUpdated": "2026-05-08T12:01:16.419Z",
   "items": [
     {
       "id": "ae65c17929e7",
@@ -431,6 +431,28 @@
       "status": "open"
     },
     {
+      "id": "e091ced74a33",
+      "title": "Optimize Landing Page Experience for New Traffic Surge",
+      "description": "Immediately audit the homepage and top entry pages to reduce bounce rate. Add clear value propositions, improve page load speed, and ensure mobile optimization since 84% of traffic is direct visits expecting specific content.",
+      "expectedImpact": "Reduce bounce rate by 10-15% and increase session duration to 120+ seconds",
+      "priority": "high",
+      "firstSeen": "2026-05-08",
+      "lastSeen": "2026-05-08",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "becf5966a5bb",
+      "title": "Capitalize on 'Aged Lead Store Reviews' Ranking Success",
+      "description": "Create dedicated review comparison content targeting position 8.6 ranking for 'aged lead store reviews'. Develop comprehensive review pages comparing AgedLeadStore with competitors to capture the 13 weekly impressions.",
+      "expectedImpact": "Increase clicks from 0 to 3-5 weekly for this high-intent query",
+      "priority": "high",
+      "firstSeen": "2026-05-08",
+      "lastSeen": "2026-05-08",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "31aa4d6c7de3",
       "title": "Content Expansion for High-Impression Queries",
       "description": "Create dedicated landing pages or expand existing content for 'aged mortgage leads' (9 impressions, pos 44.2) and 'auto insurance leads cost' (6 impressions, pos 23.0) to capture more search volume.",
@@ -515,6 +537,17 @@
       "priority": "medium",
       "firstSeen": "2026-05-02",
       "lastSeen": "2026-05-03",
+      "timesRepeated": 2,
+      "status": "open"
+    },
+    {
+      "id": "e2b7f9ab4203",
+      "title": "Develop Long-tail Insurance Lead Content",
+      "description": "Target specific queries like 'aged mortgage insurance leads' (position 46.5) and 'aged refinance leads' (position 28.5) with dedicated landing pages and comparison tools.",
+      "expectedImpact": "Could capture 10-15 additional targeted clicks per month",
+      "priority": "medium",
+      "firstSeen": "2026-05-02",
+      "lastSeen": "2026-05-08",
       "timesRepeated": 2,
       "status": "open"
     },
@@ -893,6 +926,17 @@
       "status": "open"
     },
     {
+      "id": "8901972cc809",
+      "title": "Expand Calculator Tool Content Strategy",
+      "description": "The /calculators/know-your-cpl page shows 2x engagement (36 views, 18 users). Create additional calculators for ROI, lead cost comparison, and conversion rate tools to replicate this success pattern.",
+      "expectedImpact": "Generate 5-10 additional high-engagement pages with 1.5+ views per user",
+      "priority": "medium",
+      "firstSeen": "2026-05-08",
+      "lastSeen": "2026-05-08",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "cc192c120d5f",
       "title": "Long-tail Keyword Expansion",
       "description": "Target specific queries like 'how much do mortgage trigger leads cost' (pos 56.8) and 'auto insurance lead cost' (pos 23.0) with dedicated content pieces.",
@@ -970,17 +1014,6 @@
       "status": "open"
     },
     {
-      "id": "e2b7f9ab4203",
-      "title": "Develop Long-tail Insurance Lead Content",
-      "description": "Target specific queries like 'aged mortgage insurance leads' (position 46.5) and 'aged refinance leads' (position 28.5) with dedicated landing pages and comparison tools.",
-      "expectedImpact": "Could capture 10-15 additional targeted clicks per month",
-      "priority": "low",
-      "firstSeen": "2026-05-02",
-      "lastSeen": "2026-05-02",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
       "id": "5c5025782110",
       "title": "Expand Newsletter Content Strategy",
       "description": "The newsletter page shows strong engagement (45 views, 47 users). Create lead magnets around aged lead best practices, pricing guides, and industry reports to capture emails from your growing traffic.",
@@ -988,6 +1021,17 @@
       "priority": "low",
       "firstSeen": "2026-05-05",
       "lastSeen": "2026-05-05",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "4d82b27dc6a2",
+      "title": "Strengthen Email Newsletter Conversion Path",
+      "description": "With 9 sessions from email and /newsletter getting 36 views, optimize the newsletter signup process and create email-exclusive content to nurture the growing subscriber base.",
+      "expectedImpact": "Increase email-driven sessions by 50% and improve subscriber engagement",
+      "priority": "low",
+      "firstSeen": "2026-05-08",
+      "lastSeen": "2026-05-08",
       "timesRepeated": 1,
       "status": "open"
     }
