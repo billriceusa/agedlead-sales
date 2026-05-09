@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-08T12:01:16.419Z",
+  "lastUpdated": "2026-05-09T12:01:17.067Z",
   "items": [
     {
       "id": "ae65c17929e7",
@@ -449,6 +449,28 @@
       "priority": "high",
       "firstSeen": "2026-05-08",
       "lastSeen": "2026-05-08",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "c039e366c35b",
+      "title": "Implement User Retention Optimization",
+      "description": "Add internal linking widgets, related content suggestions, and clear CTAs on high-bounce pages. Focus on /providers and homepage with sticky navigation to calculators and playbooks. Test exit-intent popups with lead magnets.",
+      "expectedImpact": "Reduce bounce rate by 15-20% and increase session duration to 90+ seconds",
+      "priority": "high",
+      "firstSeen": "2026-05-09",
+      "lastSeen": "2026-05-09",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "59cf2ee5c3ed",
+      "title": "Capitalize on Brand Query Rankings",
+      "description": "Create dedicated landing pages for 'aged lead store reviews' and 'aged lead store' queries. Optimize existing /providers/aged-lead-store page with comparison tables, testimonials, and FAQ sections targeting these high-intent searches.",
+      "expectedImpact": "Capture 3-5 additional daily clicks from brand queries within 30 days",
+      "priority": "high",
+      "firstSeen": "2026-05-09",
+      "lastSeen": "2026-05-09",
       "timesRepeated": 1,
       "status": "open"
     },
@@ -937,6 +959,28 @@
       "status": "open"
     },
     {
+      "id": "132d5757919f",
+      "title": "Expand Calculator Content Strategy",
+      "description": "The CPL calculator shows strong user engagement (18 users, 36 views). Create additional calculators for ROI, lead volume planning, and cost comparison. Add lead capture forms to calculator results pages.",
+      "expectedImpact": "Increase engaged sessions by 25% and generate 5-10 email leads weekly",
+      "priority": "medium",
+      "firstSeen": "2026-05-09",
+      "lastSeen": "2026-05-09",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "eb2c3b77d19f",
+      "title": "Optimize for Long-tail Insurance Queries",
+      "description": "Target ranking improvements for 'aged health insurance leads' (pos 30), 'aged life insurance leads' (pos 46), and 'aged mortgage leads' (pos 39.5) by creating dedicated comparison pages with pricing data and provider reviews.",
+      "expectedImpact": "Achieve top 20 rankings for 3-5 long-tail queries within 60 days",
+      "priority": "medium",
+      "firstSeen": "2026-05-09",
+      "lastSeen": "2026-05-09",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "cc192c120d5f",
       "title": "Long-tail Keyword Expansion",
       "description": "Target specific queries like 'how much do mortgage trigger leads cost' (pos 56.8) and 'auto insurance lead cost' (pos 23.0) with dedicated content pieces.",
@@ -1032,6 +1076,17 @@
       "priority": "low",
       "firstSeen": "2026-05-08",
       "lastSeen": "2026-05-08",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "88a2ad4c0dc8",
+      "title": "Investigate Direct Traffic Source",
+      "description": "Analyze the 183 direct sessions spike - identify if from email campaign, social media, or referral source. Set up proper UTM tracking for future campaigns to measure attribution accurately.",
+      "expectedImpact": "Better campaign attribution and ability to replicate successful traffic sources",
+      "priority": "low",
+      "firstSeen": "2026-05-09",
+      "lastSeen": "2026-05-09",
       "timesRepeated": 1,
       "status": "open"
     }
