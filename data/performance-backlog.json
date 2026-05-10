@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-09T12:01:17.067Z",
+  "lastUpdated": "2026-05-10T12:00:52.328Z",
   "items": [
     {
       "id": "ae65c17929e7",
@@ -86,6 +86,17 @@
       "priority": "high",
       "firstSeen": "2026-04-24",
       "lastSeen": "2026-04-28",
+      "timesRepeated": 2,
+      "status": "open"
+    },
+    {
+      "id": "89e9b92e6cfd",
+      "title": "Create Comprehensive 'Aged Lead Store Reviews' Content",
+      "description": "Develop in-depth review content targeting the 'aged lead store reviews' query (currently ranking #12.5). Include comparison charts, pricing analysis, user testimonials, and pros/cons to capture the 23 monthly impressions converting to clicks.",
+      "expectedImpact": "Increase CTR from 0% to 15-20% for this high-intent query, adding 3-5 qualified visitors monthly",
+      "priority": "high",
+      "firstSeen": "2026-05-04",
+      "lastSeen": "2026-05-10",
       "timesRepeated": 2,
       "status": "open"
     },
@@ -475,6 +486,17 @@
       "status": "open"
     },
     {
+      "id": "8a41d3df7926",
+      "title": "Optimize Landing Page Experience for Direct Traffic",
+      "description": "With 239 direct sessions and 78.75% bounce rate, immediately audit the homepage and key landing pages. Add clear value propositions, reduce page load time, and implement exit-intent popups with lead magnets. Test different headlines and CTAs specifically for direct traffic.",
+      "expectedImpact": "Reduce bounce rate by 15-20% and increase session duration by 30-45 seconds",
+      "priority": "high",
+      "firstSeen": "2026-05-10",
+      "lastSeen": "2026-05-10",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "31aa4d6c7de3",
       "title": "Content Expansion for High-Impression Queries",
       "description": "Create dedicated landing pages or expand existing content for 'aged mortgage leads' (9 impressions, pos 44.2) and 'auto insurance leads cost' (6 impressions, pos 23.0) to capture more search volume.",
@@ -570,6 +592,17 @@
       "priority": "medium",
       "firstSeen": "2026-05-02",
       "lastSeen": "2026-05-08",
+      "timesRepeated": 2,
+      "status": "open"
+    },
+    {
+      "id": "b7d4d8c1e881",
+      "title": "Optimize Calculator User Experience",
+      "description": "The ROI calculator shows 9.5 pages per user - add progressive disclosure to capture emails mid-calculation, implement exit-intent popups, and create follow-up email sequences for calculator users to nurture them toward AgedLeadStore.",
+      "expectedImpact": "20-30% increase in email captures from calculator traffic",
+      "priority": "medium",
+      "firstSeen": "2026-05-06",
+      "lastSeen": "2026-05-10",
       "timesRepeated": 2,
       "status": "open"
     },
@@ -882,17 +915,6 @@
       "status": "open"
     },
     {
-      "id": "89e9b92e6cfd",
-      "title": "Create Comprehensive 'Aged Lead Store Reviews' Content",
-      "description": "Develop in-depth review content targeting the 'aged lead store reviews' query (currently ranking #12.5). Include comparison charts, pricing analysis, user testimonials, and pros/cons to capture the 23 monthly impressions converting to clicks.",
-      "expectedImpact": "Increase CTR from 0% to 15-20% for this high-intent query, adding 3-5 qualified visitors monthly",
-      "priority": "medium",
-      "firstSeen": "2026-05-04",
-      "lastSeen": "2026-05-04",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
       "id": "c64a376d9244",
       "title": "Expand Calculator Suite Based on Success",
       "description": "Create additional calculators: Cost Per Lead Calculator, Lead Conversion Rate Calculator, and Monthly Lead Budget Calculator. Cross-link them and create a dedicated calculators landing page to capture more tool-seeking traffic.",
@@ -922,17 +944,6 @@
       "priority": "medium",
       "firstSeen": "2026-05-05",
       "lastSeen": "2026-05-05",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "b7d4d8c1e881",
-      "title": "Optimize Calculator User Experience",
-      "description": "The ROI calculator shows 9.5 pages per user - add progressive disclosure to capture emails mid-calculation, implement exit-intent popups, and create follow-up email sequences for calculator users to nurture them toward AgedLeadStore.",
-      "expectedImpact": "20-30% increase in email captures from calculator traffic",
-      "priority": "medium",
-      "firstSeen": "2026-05-06",
-      "lastSeen": "2026-05-06",
       "timesRepeated": 1,
       "status": "open"
     },
@@ -977,6 +988,28 @@
       "priority": "medium",
       "firstSeen": "2026-05-09",
       "lastSeen": "2026-05-09",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "0bb38d1a0d46",
+      "title": "Implement Progressive Engagement Strategy",
+      "description": "Since session duration dropped to 38.6s, implement progressive disclosure with content teasers, related article suggestions, and internal linking optimization. Add 'Quick Start' guides and interactive elements to key pages like /providers and /playbook.",
+      "expectedImpact": "Increase average session duration to 60-75 seconds and reduce bounce rate by 10-15%",
+      "priority": "medium",
+      "firstSeen": "2026-05-10",
+      "lastSeen": "2026-05-10",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "b922e6802b3f",
+      "title": "Expand Long-tail Insurance Lead Content",
+      "description": "Target specific queries showing in search console like 'aged health insurance leads', 'aged life insurance leads', and 'aged mortgage leads'. Create dedicated landing pages for each vertical with pricing, conversion tips, and provider comparisons.",
+      "expectedImpact": "Capture 50-100 additional monthly organic clicks and improve positions by 10-15 ranks",
+      "priority": "medium",
+      "firstSeen": "2026-05-10",
+      "lastSeen": "2026-05-10",
       "timesRepeated": 1,
       "status": "open"
     },
