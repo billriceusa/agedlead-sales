@@ -1,0 +1,175 @@
+{
+  "runDate": "2026-05-10T06:03:59.909Z",
+  "weekStartDate": "2026-05-11",
+  "analysis": {
+    "strategyReview": "Our content strategy shows strong coverage across all five pillars with 57 published posts, demonstrating comprehensive expertise in aged lead management. We've established authority in core topics like CRM setup, compliance, pricing guides, and industry-specific playbooks. However, gaps exist in advanced operational topics like team management, advanced analytics, and emerging technology integration. Our Role Guides pillar is underrepresented compared to Vertical Playbooks, which could limit our ability to capture searches from specific job functions within organizations.",
+    "competitiveInsights": "Competitors are focusing heavily on basic 'how to buy leads' content, while we've moved beyond that to sophisticated operational guidance. There's a significant opportunity in Q2 2026 around AI integration, as most competitors haven't addressed how AI tools specifically apply to aged lead workflows. Additionally, economic uncertainty is driving searches for 'recession-proof' sales strategies and cost optimization - topics where our depth gives us a competitive advantage. The compliance landscape is also shifting with new TCPA interpretations, creating opportunities for authoritative guidance.",
+    "newOpportunities": [
+      "AI-powered lead scoring and prioritization",
+      "Economic downturn lead strategies",
+      "Multi-generational sales approaches for aged leads",
+      "Integration with modern sales tech stacks",
+      "Advanced attribution modeling for aged lead ROI"
+    ],
+    "trendingTopics": [
+      "AI sales tools integration",
+      "Economic uncertainty sales strategies",
+      "Gen Z insurance buying behavior",
+      "Advanced CRM automation",
+      "Multi-channel attribution"
+    ],
+    "recommendedUpdates": [
+      "Expand Role Guides content for team leaders and managers",
+      "Create more advanced Metrics & Optimization content for experienced users",
+      "Develop seasonal content calendar around insurance enrollment periods"
+    ]
+  },
+  "articlesCreated": [
+    {
+      "title": "Running an Aged Lead Call Center: Operations Playbook for Managers",
+      "slug": "running-aged-lead-call-center-operations-playbook",
+      "publishDate": "2026-05-11",
+      "primaryKeyword": "aged lead call center",
+      "pillar": "Role Guides"
+    },
+    {
+      "title": "Door Knocking Aged Solar Leads: The In-Person Approach That Closes Deals",
+      "slug": "door-knocking-aged-solar-leads-in-person-approach",
+      "publishDate": "2026-05-15",
+      "primaryKeyword": "door knocking solar leads",
+      "pillar": "Vertical Playbooks"
+    }
+  ],
+  "articlesSkipped": [
+    {
+      "title": "AI Lead Scoring for Aged Lists: Rank Your Buy List Before You Dial",
+      "slug": "ai-lead-scoring-aged-lists-rank-before-dial",
+      "reason": "Title too similar to existing post \"AI Lead Scoring for Aged Lists: Rank Your Buy List Before You Dial\" (ai-lead-scoring-aged-leads)"
+    }
+  ],
+  "articlesFailed": [],
+  "imageOutcomes": [
+    {
+      "title": "Running an Aged Lead Call Center: Operations Playbook for Managers",
+      "status": "created",
+      "photographer": "Vitaly Gariev"
+    },
+    {
+      "title": "Door Knocking Aged Solar Leads: The In-Person Approach That Closes Deals",
+      "status": "created",
+      "photographer": "Vitaly Gariev"
+    }
+  ],
+  "newBriefs": [
+    {
+      "day": "Mon",
+      "publishDate": "2026-05-11",
+      "slug": "running-aged-lead-call-center-operations-playbook",
+      "title": "Running an Aged Lead Call Center: Operations Playbook for Managers",
+      "pillar": "Role Guides",
+      "primaryKeyword": "aged lead call center",
+      "secondaryKeywords": [
+        "call center management",
+        "lead operations",
+        "sales team management"
+      ],
+      "targetLeadTypes": [
+        "lt-insurance",
+        "lt-mortgage",
+        "lt-solar"
+      ],
+      "wordCount": "3,000-3,500",
+      "competitiveAngle": "First comprehensive operational guide for call center managers working aged leads - competitors focus on individual agent tactics, not management systems",
+      "outline": [
+        "Call Center Infrastructure for Aged Leads",
+        "Hiring and Training Call Center Agents",
+        "Performance Metrics and KPI Dashboards",
+        "Quality Assurance Programs",
+        "Technology Stack and Dialer Setup",
+        "Compliance Management at Scale",
+        "Compensation and Incentive Structures",
+        "Scaling Operations and Capacity Planning"
+      ],
+      "internalLinks": [
+        "/glossary/dialer",
+        "/glossary/contact-rate",
+        "/glossary/conversion-rate",
+        "/calculators/roi",
+        "/lead-types/insurance-leads"
+      ]
+    },
+    {
+      "day": "Wed",
+      "publishDate": "2026-05-13",
+      "slug": "ai-lead-scoring-aged-lists-rank-before-dial",
+      "title": "AI Lead Scoring for Aged Lists: Rank Your Buy List Before You Dial",
+      "pillar": "Metrics & Optimization",
+      "primaryKeyword": "AI lead scoring",
+      "secondaryKeywords": [
+        "lead prioritization",
+        "predictive analytics",
+        "aged lead ranking"
+      ],
+      "targetLeadTypes": [
+        "lt-insurance",
+        "lt-mortgage",
+        "lt-iul"
+      ],
+      "wordCount": "2,500-3,000",
+      "competitiveAngle": "First guide specifically for AI scoring of aged leads - competitors haven't addressed how AI applies to aged vs real-time lead evaluation",
+      "outline": [
+        "Understanding AI Lead Scoring Fundamentals",
+        "Data Points That Predict Aged Lead Success",
+        "Setting Up Scoring Models by Industry",
+        "Free and Paid AI Scoring Tools",
+        "Integrating Scores with Your Dialer",
+        "Testing and Refining Your Scoring Model",
+        "ROI Analysis of AI-Scored vs Random Calling"
+      ],
+      "internalLinks": [
+        "/glossary/lead-validation",
+        "/glossary/conversion-rate",
+        "/glossary/data-hygiene",
+        "/calculators/lead-roi",
+        "/lead-types/mortgage-leads"
+      ]
+    },
+    {
+      "day": "Fri",
+      "publishDate": "2026-05-15",
+      "slug": "door-knocking-aged-solar-leads-in-person-approach",
+      "title": "Door Knocking Aged Solar Leads: The In-Person Approach That Closes Deals",
+      "pillar": "Vertical Playbooks",
+      "primaryKeyword": "door knocking solar leads",
+      "secondaryKeywords": [
+        "solar door to door",
+        "aged solar leads",
+        "solar canvassing"
+      ],
+      "targetLeadTypes": [
+        "lt-solar"
+      ],
+      "wordCount": "2,800-3,200",
+      "competitiveAngle": "Only comprehensive guide for door knocking specifically aged solar leads - competitors cover general door knocking or fresh solar leads, not the unique dynamics of aged solar prospects",
+      "outline": [
+        "Why Door Knocking Works Better for Aged Solar Leads",
+        "Pre-Knock Research and Lead Preparation",
+        "The Solar Door Knock Script Framework",
+        "Handling Common Solar Objections at the Door",
+        "Visual Aids and Materials for Door Knocking",
+        "Safety and Legal Considerations",
+        "Tracking and Following Up Door Knock Results",
+        "Converting Door Conversations to Kitchen Table Appointments"
+      ],
+      "internalLinks": [
+        "/glossary/door-knocking",
+        "/glossary/kitchen-table-presentation",
+        "/glossary/aged-lead",
+        "/calculators/solar-roi",
+        "/lead-types/solar-leads"
+      ]
+    }
+  ],
+  "nextWeekPlan": "Selected one existing Role Guides brief (call center operations) to address underrepresented pillar, one new Metrics & Optimization brief on trending AI topic, and one existing Vertical Playbooks brief for solar door knocking. This maintains pillar rotation while capitalizing on current AI trends and addressing content gaps in management-level guidance.",
+  "errors": []
+}

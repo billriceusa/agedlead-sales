@@ -1,53 +1,52 @@
 {
-  "lastRun": "2026-05-03T06:02:54.302Z",
-  "weekOf": "2026-05-04",
+  "lastRun": "2026-05-10T06:03:59.909Z",
+  "weekOf": "2026-05-11",
   "analysis": {
-    "strategyReview": "Our content strategy shows strong coverage across all five pillars with 54 published posts, demonstrating comprehensive vertical expertise and tactical depth. We've established authority in key verticals (insurance, mortgage, solar, legal) and covered essential fundamentals like CRM setup, compliance, and lead sourcing. However, we have significant gaps in advanced operational topics like team management, quality assurance processes, and sophisticated performance optimization that would appeal to established agencies and brokerages looking to scale.",
-    "competitiveInsights": "Competitors remain focused on basic lead working tactics and product features, leaving opportunities in advanced operational content. AgedLeadStore.com still emphasizes product benefits over strategic implementation, while HowToWorkLeads.com lacks industry-specific depth. We can dominate searches around 'aged lead quality control,' 'aged lead team training,' and 'aged lead performance benchmarks' - topics that experienced buyers are actively researching but finding limited authoritative content on.",
+    "strategyReview": "Our content strategy shows strong coverage across all five pillars with 57 published posts, demonstrating comprehensive expertise in aged lead management. We've established authority in core topics like CRM setup, compliance, pricing guides, and industry-specific playbooks. However, gaps exist in advanced operational topics like team management, advanced analytics, and emerging technology integration. Our Role Guides pillar is underrepresented compared to Vertical Playbooks, which could limit our ability to capture searches from specific job functions within organizations.",
+    "competitiveInsights": "Competitors are focusing heavily on basic 'how to buy leads' content, while we've moved beyond that to sophisticated operational guidance. There's a significant opportunity in Q2 2026 around AI integration, as most competitors haven't addressed how AI tools specifically apply to aged lead workflows. Additionally, economic uncertainty is driving searches for 'recession-proof' sales strategies and cost optimization - topics where our depth gives us a competitive advantage. The compliance landscape is also shifting with new TCPA interpretations, creating opportunities for authoritative guidance.",
     "newOpportunities": [
-      "Quality assurance processes for aged lead operations",
-      "Team training and onboarding for aged lead specialists",
-      "Advanced performance benchmarking and KPI tracking",
-      "Aged lead vendor evaluation frameworks",
-      "Cross-vertical lead sharing strategies"
+      "AI-powered lead scoring and prioritization",
+      "Economic downturn lead strategies",
+      "Multi-generational sales approaches for aged leads",
+      "Integration with modern sales tech stacks",
+      "Advanced attribution modeling for aged lead ROI"
     ],
     "trendingTopics": [
-      "AI integration in lead management",
-      "Economic uncertainty driving aged lead adoption",
-      "Compliance automation tools",
-      "Multi-channel attribution for aged leads",
-      "Performance coaching for aged lead teams"
+      "AI sales tools integration",
+      "Economic uncertainty sales strategies",
+      "Gen Z insurance buying behavior",
+      "Advanced CRM automation",
+      "Multi-channel attribution"
     ],
     "recommendedUpdates": [
-      "Focus more on management and scaling content for Q2",
-      "Develop advanced metrics content for established operators",
-      "Create vendor evaluation content as market matures"
+      "Expand Role Guides content for team leaders and managers",
+      "Create more advanced Metrics & Optimization content for experienced users",
+      "Develop seasonal content calendar around insurance enrollment periods"
     ]
   },
   "articlesCreated": [
     {
-      "title": "Aged Lead Quality Control: The 12-Point Checklist Before You Buy",
-      "slug": "aged-lead-quality-control-checklist",
-      "publishDate": "2026-05-04",
-      "primaryKeyword": "aged lead quality control",
-      "pillar": "Metrics & Optimization"
-    },
-    {
-      "title": "Training Your Sales Team on Aged Leads: The 30-Day Onboarding Program",
-      "slug": "training-aged-lead-sales-team",
-      "publishDate": "2026-05-06",
-      "primaryKeyword": "aged lead training",
+      "title": "Running an Aged Lead Call Center: Operations Playbook for Managers",
+      "slug": "running-aged-lead-call-center-operations-playbook",
+      "publishDate": "2026-05-11",
+      "primaryKeyword": "aged lead call center",
       "pillar": "Role Guides"
     },
     {
-      "title": "The Aged Lead Vendor Scorecard: 15 Metrics That Predict Success",
-      "slug": "aged-lead-vendor-scorecard-evaluation",
-      "publishDate": "2026-05-08",
-      "primaryKeyword": "aged lead vendor evaluation",
-      "pillar": "Metrics & Optimization"
+      "title": "Door Knocking Aged Solar Leads: The In-Person Approach That Closes Deals",
+      "slug": "door-knocking-aged-solar-leads-in-person-approach",
+      "publishDate": "2026-05-15",
+      "primaryKeyword": "door knocking solar leads",
+      "pillar": "Vertical Playbooks"
     }
   ],
-  "articlesSkipped": [],
+  "articlesSkipped": [
+    {
+      "title": "AI Lead Scoring for Aged Lists: Rank Your Buy List Before You Dial",
+      "slug": "ai-lead-scoring-aged-lists-rank-before-dial",
+      "reason": "Title too similar to existing post \"AI Lead Scoring for Aged Lists: Rank Your Buy List Before You Dial\" (ai-lead-scoring-aged-leads)"
+    }
+  ],
   "articlesFailed": [],
-  "briefsForNextWeek": "Selected three new high-value topics that fill strategic gaps in our content. Monday focuses on quality control (a critical operational need), Wednesday addresses team training (scaling opportunity), and Friday covers vendor evaluation (market maturation topic). These complement our existing tactical content with advanced operational guidance that established buyers are seeking but not finding elsewhere."
+  "briefsForNextWeek": "Selected one existing Role Guides brief (call center operations) to address underrepresented pillar, one new Metrics & Optimization brief on trending AI topic, and one existing Vertical Playbooks brief for solar door knocking. This maintains pillar rotation while capitalizing on current AI trends and addressing content gaps in management-level guidance."
 }
