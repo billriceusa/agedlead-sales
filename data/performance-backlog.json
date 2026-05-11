@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-10T12:00:52.328Z",
+  "lastUpdated": "2026-05-11T12:01:20.150Z",
   "items": [
     {
       "id": "ae65c17929e7",
@@ -497,6 +497,28 @@
       "status": "open"
     },
     {
+      "id": "9dfad29d4721",
+      "title": "Implement Engagement Optimization for High-Traffic Pages",
+      "description": "Add interactive elements, internal linking, and clear CTAs to the /providers page (37 views) and homepage (30 views). Create sticky navigation with calculator shortcuts and implement exit-intent popups with lead magnets to reduce the 81.5% bounce rate.",
+      "expectedImpact": "Reduce bounce rate by 15-20% and increase session duration to 60+ seconds",
+      "priority": "high",
+      "firstSeen": "2026-05-11",
+      "lastSeen": "2026-05-11",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "3db0adb2287a",
+      "title": "Scale Calculator Content Strategy",
+      "description": "The CPL and ROI calculators are top performers. Create additional calculators for conversion rate, lead lifetime value, and cost-per-acquisition. Add lead capture forms to calculator results pages and create follow-up email sequences.",
+      "expectedImpact": "Increase page views by 40% and generate 10-15 new email subscribers weekly",
+      "priority": "high",
+      "firstSeen": "2026-05-11",
+      "lastSeen": "2026-05-11",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "31aa4d6c7de3",
       "title": "Content Expansion for High-Impression Queries",
       "description": "Create dedicated landing pages or expand existing content for 'aged mortgage leads' (9 impressions, pos 44.2) and 'auto insurance leads cost' (6 impressions, pos 23.0) to capture more search volume.",
@@ -603,6 +625,17 @@
       "priority": "medium",
       "firstSeen": "2026-05-06",
       "lastSeen": "2026-05-10",
+      "timesRepeated": 2,
+      "status": "open"
+    },
+    {
+      "id": "b922e6802b3f",
+      "title": "Expand Long-tail Insurance Lead Content",
+      "description": "Target specific queries showing in search console like 'aged health insurance leads', 'aged life insurance leads', and 'aged mortgage leads'. Create dedicated landing pages for each vertical with pricing, conversion tips, and provider comparisons.",
+      "expectedImpact": "Capture 50-100 additional monthly organic clicks and improve positions by 10-15 ranks",
+      "priority": "medium",
+      "firstSeen": "2026-05-10",
+      "lastSeen": "2026-05-11",
       "timesRepeated": 2,
       "status": "open"
     },
@@ -1003,13 +1036,13 @@
       "status": "open"
     },
     {
-      "id": "b922e6802b3f",
-      "title": "Expand Long-tail Insurance Lead Content",
-      "description": "Target specific queries showing in search console like 'aged health insurance leads', 'aged life insurance leads', and 'aged mortgage leads'. Create dedicated landing pages for each vertical with pricing, conversion tips, and provider comparisons.",
-      "expectedImpact": "Capture 50-100 additional monthly organic clicks and improve positions by 10-15 ranks",
+      "id": "dc9e3b0689e8",
+      "title": "Optimize for 'Aged Lead Store Reviews' Search Intent",
+      "description": "Currently ranking #8.3 for 'aged lead store reviews' with 11 impressions. Create comprehensive review comparison content, add customer testimonials, and build dedicated review landing pages to capture this high-intent traffic.",
+      "expectedImpact": "Increase clicks by 200% for review-related queries and improve affiliate conversion rates",
       "priority": "medium",
-      "firstSeen": "2026-05-10",
-      "lastSeen": "2026-05-10",
+      "firstSeen": "2026-05-11",
+      "lastSeen": "2026-05-11",
       "timesRepeated": 1,
       "status": "open"
     },
@@ -1120,6 +1153,17 @@
       "priority": "low",
       "firstSeen": "2026-05-09",
       "lastSeen": "2026-05-09",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "c2ee0d265682",
+      "title": "Leverage Direct Traffic with Retargeting",
+      "description": "With 224 direct sessions, implement Facebook Pixel and Google Analytics Enhanced Ecommerce to retarget visitors who didn't convert. Create lookalike audiences based on high-engagement users.",
+      "expectedImpact": "Increase return visitor rate by 25% and improve overall conversion tracking",
+      "priority": "low",
+      "firstSeen": "2026-05-11",
+      "lastSeen": "2026-05-11",
       "timesRepeated": 1,
       "status": "open"
     }
