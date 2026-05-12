@@ -37,7 +37,7 @@ Home services can tolerate higher CPLs than most verticals because ARPCs are hig
 >
 > AgedLeadStore offers aged roofing, solar, windows, HVAC, remodel, and pest leads — filterable by geography and project type, with consent records included.
 >
-> [Shop aged home services leads →](https://agedleadstore.com/all-lead-types/?utm_source=agedleadsales&utm_medium=playbook&utm_campaign=flagship-home-services&utm_content=cta-early)
+> [Shop aged home services leads →](https://agedleadstore.com/all-lead-types/?utm_source=agedleadsales&utm_medium=affiliate&utm_campaign=flagship-home-services&utm_content=cta-early)
 
 ---
 
@@ -243,7 +243,7 @@ Soft tone. Remodel prospects are almost always deliberating, and an aggressive o
 >
 > The scripts above are built around booking estimates, not closing on the phone. To keep your field reps busy, most home-services operators rotate through 250–750 aged leads per rep per month.
 >
-> [Browse home services leads by type →](https://agedleadstore.com/all-lead-types/?utm_source=agedleadsales&utm_medium=playbook&utm_campaign=flagship-home-services&utm_content=cta-mid)
+> [Browse home services leads by type →](https://agedleadstore.com/all-lead-types/?utm_source=agedleadsales&utm_medium=affiliate&utm_campaign=flagship-home-services&utm_content=cta-mid)
 
 ## Compliance notes specific to home services
 
@@ -347,4 +347,4 @@ You're ready. Go.
 >
 > Start with a tight geographic radius — one or two zip-code clusters — so your field reps aren't driving past each other. 250–500 aged leads per rep per month is usually the right opening volume.
 >
-> [Browse aged home services leads →](https://agedleadstore.com/all-lead-types/?utm_source=agedleadsales&utm_medium=playbook&utm_campaign=flagship-home-services&utm_content=cta-end)
+> [Browse aged home services leads →](https://agedleadstore.com/all-lead-types/?utm_source=agedleadsales&utm_medium=affiliate&utm_campaign=flagship-home-services&utm_content=cta-end)

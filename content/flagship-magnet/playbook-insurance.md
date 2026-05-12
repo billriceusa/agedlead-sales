@@ -32,7 +32,7 @@ This overlay covers aged auto, home, life, final expense, Medicare, and health l
 >
 > AgedLeadStore offers aged auto, home, term life, final expense, Medicare, and health leads — filterable by geography, age bucket, and sub-vertical, with consent documentation included.
 >
-> [Shop aged insurance leads →](https://agedleadstore.com/all-lead-types/?utm_source=agedleadsales&utm_medium=playbook&utm_campaign=flagship-insurance&utm_content=cta-early)
+> [Shop aged insurance leads →](https://agedleadstore.com/all-lead-types/?utm_source=agedleadsales&utm_medium=affiliate&utm_campaign=flagship-insurance&utm_content=cta-early)
 
 ---
 
@@ -227,7 +227,7 @@ Final expense SMS should always be softer, shorter, and lower-frequency. 1 SMS p
 >
 > AgedLeadStore sells small-batch test lots — 100–500 leads — in every sub-vertical above, so you can validate your script + cadence before committing bigger spend.
 >
-> [Browse by sub-vertical →](https://agedleadstore.com/all-lead-types/?utm_source=agedleadsales&utm_medium=playbook&utm_campaign=flagship-insurance&utm_content=cta-mid)
+> [Browse by sub-vertical →](https://agedleadstore.com/all-lead-types/?utm_source=agedleadsales&utm_medium=affiliate&utm_campaign=flagship-insurance&utm_content=cta-mid)
 
 ## Compliance notes specific to insurance
 
@@ -324,4 +324,4 @@ Go run it.
 >
 > For auto/home/life, 500–1,000 aged leads is a good test lot. For Medicare, build a list 60 days before AEP and nurture in. For final expense, smaller batches (250–500) are typically enough to validate your soft-script cadence.
 >
-> [Browse aged insurance leads →](https://agedleadstore.com/all-lead-types/?utm_source=agedleadsales&utm_medium=playbook&utm_campaign=flagship-insurance&utm_content=cta-end)
+> [Browse aged insurance leads →](https://agedleadstore.com/all-lead-types/?utm_source=agedleadsales&utm_medium=affiliate&utm_campaign=flagship-insurance&utm_content=cta-end)

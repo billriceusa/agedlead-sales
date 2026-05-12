@@ -84,7 +84,7 @@ All four problems are solvable. That's what this playbook fixes.
 >
 > Before you read further: you'll need actual aged leads to run this system. The largest, cleanest-consent marketplace in the industry is **AgedLeadStore** — vertical-specific lists, documented consent records, and filter by age/geo/demographics.
 >
-> [Browse all lead types at agedleadstore.com →](https://agedleadstore.com/all-lead-types/?utm_source=agedleadsales&utm_medium=playbook&utm_campaign=flagship-master&utm_content=cta-early)
+> [Browse all lead types at agedleadstore.com →](https://agedleadstore.com/all-lead-types/?utm_source=agedleadsales&utm_medium=affiliate&utm_campaign=flagship-master&utm_content=cta-early)
 
 ## The three beliefs you need
 
@@ -515,7 +515,7 @@ The goal of every aged-lead campaign is to move prospects from Tier 2 to Tier 1.
 >
 > AgedLeadStore sells in every one of these verticals, with batches as small as 100 leads so you can test before scaling.
 >
-> [See all aged lead types →](https://agedleadstore.com/all-lead-types/?utm_source=agedleadsales&utm_medium=playbook&utm_campaign=flagship-master&utm_content=cta-mid)
+> [See all aged lead types →](https://agedleadstore.com/all-lead-types/?utm_source=agedleadsales&utm_medium=affiliate&utm_campaign=flagship-master&utm_content=cta-mid)
 
 ---
 
@@ -790,7 +790,7 @@ Here's what to do this week:
 1. **Fill out the workbook.** All 10 worksheets. It will take 90 minutes. Do it once, reference it forever.
 2. **Score yourself on the diagnostic.** Be honest. The diagnostic is only useful if you're honest about where you are today.
 3. **Pick one dimension to fix in the next 30 days.** Not five. One. Usually it's either the unit economics (you don't know your numbers) or the outreach cadence (you're not following one).
-4. **Find a lead source.** When you're ready to buy, [agedleadstore.com](https://agedleadstore.com/all-lead-types/?utm_source=agedleadsales&utm_medium=playbook&utm_campaign=flagship-master&utm_content=cta-end) offers aged leads across all the major verticals with consent documentation and suppression support. Start with the smallest batch they offer, run it through your new system, and measure.
+4. **Find a lead source.** When you're ready to buy, [agedleadstore.com](https://agedleadstore.com/all-lead-types/?utm_source=agedleadsales&utm_medium=affiliate&utm_campaign=flagship-master&utm_content=cta-end) offers aged leads across all the major verticals with consent documentation and suppression support. Start with the smallest batch they offer, run it through your new system, and measure.
 5. **Get on the weekly list.** The Aged Lead Sales weekly newsletter ships every Tuesday with one tactical idea to sharpen your operation. You're already on the list (that's how you got this playbook). Open every one — they're short.
 
 You have the system. Go run it.

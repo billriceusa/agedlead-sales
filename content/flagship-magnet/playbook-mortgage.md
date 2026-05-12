@@ -28,7 +28,7 @@ This overlay gives you mortgage-specific scripts, benchmarks, compliance notes, 
 >
 > AgedLeadStore offers aged refi, purchase, HELOC, and reverse-mortgage leads with documented TCPA consent — sortable by age, geography, and credit segment, with batches starting at 100 leads.
 >
-> [Shop aged mortgage leads →](https://agedleadstore.com/all-lead-types/?utm_source=agedleadsales&utm_medium=playbook&utm_campaign=flagship-mortgage&utm_content=cta-early)
+> [Shop aged mortgage leads →](https://agedleadstore.com/all-lead-types/?utm_source=agedleadsales&utm_medium=affiliate&utm_campaign=flagship-mortgage&utm_content=cta-early)
 
 ---
 
@@ -196,7 +196,7 @@ If the prospect closed on a home and isn't yet ready for a refi, this goes in Co
 >
 > AgedLeadStore mortgage lists include the consent record needed for SMS outreach under post-2023 FCC 1:1 consent rules.
 >
-> [See current mortgage lead inventory →](https://agedleadstore.com/all-lead-types/?utm_source=agedleadsales&utm_medium=playbook&utm_campaign=flagship-mortgage&utm_content=cta-mid)
+> [See current mortgage lead inventory →](https://agedleadstore.com/all-lead-types/?utm_source=agedleadsales&utm_medium=affiliate&utm_campaign=flagship-mortgage&utm_content=cta-mid)
 
 ## Compliance notes specific to mortgage
 
@@ -284,4 +284,4 @@ You're ready. Go.
 >
 > Start with 500–1,000 aged mortgage leads so you have enough volume to measure contact and conversion rates meaningfully. Don't buy your max-CPL — start at 50–70% of it to prove the system, then scale.
 >
-> [Browse aged mortgage leads →](https://agedleadstore.com/all-lead-types/?utm_source=agedleadsales&utm_medium=playbook&utm_campaign=flagship-mortgage&utm_content=cta-end)
+> [Browse aged mortgage leads →](https://agedleadstore.com/all-lead-types/?utm_source=agedleadsales&utm_medium=affiliate&utm_campaign=flagship-mortgage&utm_content=cta-end)

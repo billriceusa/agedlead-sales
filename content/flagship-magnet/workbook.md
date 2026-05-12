@@ -550,4 +550,4 @@ If you filled every worksheet in this book honestly, you know more about your ag
 *Return to the playbook whenever you need the scripts or the cadence. The workbook is your operating record.*
 
 > **Ready to buy your first batch (or your next batch)?**
-> [Browse aged leads at agedleadstore.com →](https://agedleadstore.com/all-lead-types/?utm_source=agedleadsales&utm_medium=workbook&utm_campaign=flagship-workbook&utm_content=cta-end)
+> [Browse aged leads at agedleadstore.com →](https://agedleadstore.com/all-lead-types/?utm_source=agedleadsales&utm_medium=affiliate&utm_campaign=flagship-workbook&utm_content=cta-end)
