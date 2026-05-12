@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-11T12:01:20.150Z",
+  "lastUpdated": "2026-05-12T12:00:58.047Z",
   "items": [
     {
       "id": "ae65c17929e7",
@@ -97,6 +97,17 @@
       "priority": "high",
       "firstSeen": "2026-05-04",
       "lastSeen": "2026-05-10",
+      "timesRepeated": 2,
+      "status": "open"
+    },
+    {
+      "id": "59cf2ee5c3ed",
+      "title": "Capitalize on Brand Query Rankings",
+      "description": "Create dedicated landing pages for 'aged lead store reviews' and 'aged lead store' queries. Optimize existing /providers/aged-lead-store page with comparison tables, testimonials, and FAQ sections targeting these high-intent searches.",
+      "expectedImpact": "Capture 3-5 additional daily clicks from brand queries within 30 days",
+      "priority": "high",
+      "firstSeen": "2026-05-09",
+      "lastSeen": "2026-05-12",
       "timesRepeated": 2,
       "status": "open"
     },
@@ -475,17 +486,6 @@
       "status": "open"
     },
     {
-      "id": "59cf2ee5c3ed",
-      "title": "Capitalize on Brand Query Rankings",
-      "description": "Create dedicated landing pages for 'aged lead store reviews' and 'aged lead store' queries. Optimize existing /providers/aged-lead-store page with comparison tables, testimonials, and FAQ sections targeting these high-intent searches.",
-      "expectedImpact": "Capture 3-5 additional daily clicks from brand queries within 30 days",
-      "priority": "high",
-      "firstSeen": "2026-05-09",
-      "lastSeen": "2026-05-09",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
       "id": "8a41d3df7926",
       "title": "Optimize Landing Page Experience for Direct Traffic",
       "description": "With 239 direct sessions and 78.75% bounce rate, immediately audit the homepage and key landing pages. Add clear value propositions, reduce page load time, and implement exit-intent popups with lead magnets. Test different headlines and CTAs specifically for direct traffic.",
@@ -519,6 +519,39 @@
       "status": "open"
     },
     {
+      "id": "7a933a1a495b",
+      "title": "Investigate Traffic Quality and Sources",
+      "description": "Immediately audit the 212 direct sessions to identify source quality. Check for bot traffic, referral campaigns, or marketing attribution issues. Implement UTM tracking for all external campaigns and set up bot filtering in GA4.",
+      "expectedImpact": "Accurate traffic measurement and improved engagement metrics by filtering low-quality visits",
+      "priority": "high",
+      "firstSeen": "2026-05-12",
+      "lastSeen": "2026-05-12",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "83c8777f824e",
+      "title": "Optimize High-Traffic Pages for Engagement",
+      "description": "Focus on /providers (24 views) and calculator pages by adding internal links, related content sections, and clear affiliate CTAs. Implement exit-intent popups and improve page load speed to reduce immediate bounces.",
+      "expectedImpact": "Reduce bounce rate by 15-20% and increase session duration to 45+ seconds",
+      "priority": "high",
+      "firstSeen": "2026-05-12",
+      "lastSeen": "2026-05-12",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "e5837806021a",
+      "title": "Improve Mobile Search Performance",
+      "description": "With only 27 mobile impressions vs 223 desktop, optimize mobile page speed and user experience. Focus on calculator and form functionality on mobile devices.",
+      "expectedImpact": "Increase mobile search visibility by 50-100% and improve mobile conversion rates",
+      "priority": "medium",
+      "firstSeen": "2026-05-04",
+      "lastSeen": "2026-05-12",
+      "timesRepeated": 4,
+      "status": "open"
+    },
+    {
       "id": "31aa4d6c7de3",
       "title": "Content Expansion for High-Impression Queries",
       "description": "Create dedicated landing pages or expand existing content for 'aged mortgage leads' (9 impressions, pos 44.2) and 'auto insurance leads cost' (6 impressions, pos 23.0) to capture more search volume.",
@@ -530,13 +563,13 @@
       "status": "open"
     },
     {
-      "id": "e5837806021a",
-      "title": "Improve Mobile Search Performance",
-      "description": "With only 27 mobile impressions vs 223 desktop, optimize mobile page speed and user experience. Focus on calculator and form functionality on mobile devices.",
-      "expectedImpact": "Increase mobile search visibility by 50-100% and improve mobile conversion rates",
+      "id": "b922e6802b3f",
+      "title": "Expand Long-tail Insurance Lead Content",
+      "description": "Target specific queries showing in search console like 'aged health insurance leads', 'aged life insurance leads', and 'aged mortgage leads'. Create dedicated landing pages for each vertical with pricing, conversion tips, and provider comparisons.",
+      "expectedImpact": "Capture 50-100 additional monthly organic clicks and improve positions by 10-15 ranks",
       "priority": "medium",
-      "firstSeen": "2026-05-04",
-      "lastSeen": "2026-05-06",
+      "firstSeen": "2026-05-10",
+      "lastSeen": "2026-05-12",
       "timesRepeated": 3,
       "status": "open"
     },
@@ -625,17 +658,6 @@
       "priority": "medium",
       "firstSeen": "2026-05-06",
       "lastSeen": "2026-05-10",
-      "timesRepeated": 2,
-      "status": "open"
-    },
-    {
-      "id": "b922e6802b3f",
-      "title": "Expand Long-tail Insurance Lead Content",
-      "description": "Target specific queries showing in search console like 'aged health insurance leads', 'aged life insurance leads', and 'aged mortgage leads'. Create dedicated landing pages for each vertical with pricing, conversion tips, and provider comparisons.",
-      "expectedImpact": "Capture 50-100 additional monthly organic clicks and improve positions by 10-15 ranks",
-      "priority": "medium",
-      "firstSeen": "2026-05-10",
-      "lastSeen": "2026-05-11",
       "timesRepeated": 2,
       "status": "open"
     },
