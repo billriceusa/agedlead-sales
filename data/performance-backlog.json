@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-12T12:00:58.047Z",
+  "lastUpdated": "2026-05-13T12:01:08.963Z",
   "items": [
     {
       "id": "ae65c17929e7",
@@ -541,6 +541,28 @@
       "status": "open"
     },
     {
+      "id": "a1fbb825d68e",
+      "title": "Implement Traffic Quality Filtering and User Intent Optimization",
+      "description": "Add exit-intent popups with lead magnets on high-bounce pages, implement scroll-depth tracking to identify content gaps, and create sticky navigation with clear value propositions. Focus on the 92.89% bounce rate by adding internal linking between calculator tools and relevant provider pages.",
+      "expectedImpact": "Reduce bounce rate by 15-20% and increase engagement rate to 15-20% within 30 days",
+      "priority": "high",
+      "firstSeen": "2026-05-13",
+      "lastSeen": "2026-05-13",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "97a6e5303ba6",
+      "title": "Optimize High-Performing Calculator Pages for Conversion",
+      "description": "Add AgedLeadStore.com affiliate CTAs directly within calculator results, create follow-up email sequences for calculator users, and implement lead capture forms offering personalized lead recommendations based on calculator inputs.",
+      "expectedImpact": "Increase affiliate click-through rate by 25-40% from calculator traffic",
+      "priority": "high",
+      "firstSeen": "2026-05-13",
+      "lastSeen": "2026-05-13",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "e5837806021a",
       "title": "Improve Mobile Search Performance",
       "description": "With only 27 mobile impressions vs 223 desktop, optimize mobile page speed and user experience. Focus on calculator and form functionality on mobile devices.",
@@ -614,6 +636,17 @@
       "priority": "medium",
       "firstSeen": "2026-04-19",
       "lastSeen": "2026-04-25",
+      "timesRepeated": 2,
+      "status": "open"
+    },
+    {
+      "id": "6b00ce2de3b9",
+      "title": "Capitalize on Brand Query Momentum",
+      "description": "Create dedicated landing pages for 'aged lead store reviews' and 'aged lead store' queries that are showing strong impression volume. Include comparison tables, testimonials, and clear affiliate links to AgedLeadStore.com.",
+      "expectedImpact": "Capture 20-30% of the 17 daily brand-related impressions as actual clicks",
+      "priority": "medium",
+      "firstSeen": "2026-04-22",
+      "lastSeen": "2026-05-13",
       "timesRepeated": 2,
       "status": "open"
     },
@@ -746,17 +779,6 @@
       "priority": "medium",
       "firstSeen": "2026-04-20",
       "lastSeen": "2026-04-20",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "6b00ce2de3b9",
-      "title": "Capitalize on Brand Query Momentum",
-      "description": "Create dedicated landing pages for 'aged lead store reviews' and 'aged lead store' queries that are showing strong impression volume. Include comparison tables, testimonials, and clear affiliate links to AgedLeadStore.com.",
-      "expectedImpact": "Capture 20-30% of the 17 daily brand-related impressions as actual clicks",
-      "priority": "medium",
-      "firstSeen": "2026-04-22",
-      "lastSeen": "2026-04-22",
       "timesRepeated": 1,
       "status": "open"
     },
@@ -1069,6 +1091,17 @@
       "status": "open"
     },
     {
+      "id": "911ae1a89f1c",
+      "title": "Expand Long-Tail Lead Type Content",
+      "description": "Target the 20+ motor vehicle accident lead queries showing in Search Console by creating state-specific landing pages, build content around 'aged [lead type] leads' patterns, and optimize existing lead-type pages for featured snippets.",
+      "expectedImpact": "Increase organic clicks by 50-75% within 60 days by capturing long-tail traffic",
+      "priority": "medium",
+      "firstSeen": "2026-05-13",
+      "lastSeen": "2026-05-13",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "cc192c120d5f",
       "title": "Long-tail Keyword Expansion",
       "description": "Target specific queries like 'how much do mortgage trigger leads cost' (pos 56.8) and 'auto insurance lead cost' (pos 23.0) with dedicated content pieces.",
@@ -1186,6 +1219,17 @@
       "priority": "low",
       "firstSeen": "2026-05-11",
       "lastSeen": "2026-05-11",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "c4af9a489d5e",
+      "title": "Investigate and Optimize Direct Traffic Sources",
+      "description": "Implement UTM tracking for all referral sources, analyze the 195 direct sessions for patterns, and create targeted landing pages for different traffic sources to improve relevance and reduce bounce rates.",
+      "expectedImpact": "Improve traffic quality metrics and identify scalable acquisition channels",
+      "priority": "low",
+      "firstSeen": "2026-05-13",
+      "lastSeen": "2026-05-13",
       "timesRepeated": 1,
       "status": "open"
     }
