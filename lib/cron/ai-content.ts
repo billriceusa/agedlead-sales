@@ -7,6 +7,7 @@ import type {
   ArticleSection,
 } from "./types";
 import { parseJsonResponse } from "./parse-json";
+import { OPUS_MODEL } from "./model-config";
 
 function getAnthropicClient(): Anthropic {
   const apiKey = process.env.ANTHROPIC_API_KEY;
@@ -127,7 +128,7 @@ Respond with valid JSON matching this structure exactly:
 
   const client = getAnthropicClient();
   const response = await client.messages.create({
-    model: "claude-sonnet-4-20250514",
+    model: OPUS_MODEL,
     max_tokens: 4096,
     system: SYSTEM_CONTEXT,
     messages: [
@@ -193,7 +194,7 @@ Write the FULL article with all sections. Each "sections" entry is one paragraph
 
   const client = getAnthropicClient();
   const response = await client.messages.create({
-    model: "claude-sonnet-4-20250514",
+    model: OPUS_MODEL,
     max_tokens: 8192,
     system: `${SYSTEM_CONTEXT}\n\nYou are now writing as Bill Rice. Write with authority and specificity. Use clearly hypothetical examples, publicly sourced data with citations, and actionable frameworks. Never fabricate personal experiences or case studies. Every paragraph should teach something actionable.`,
     messages: [
