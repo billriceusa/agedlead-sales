@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-13T12:01:08.963Z",
+  "lastUpdated": "2026-05-14T12:01:19.270Z",
   "items": [
     {
       "id": "ae65c17929e7",
@@ -108,6 +108,17 @@
       "priority": "high",
       "firstSeen": "2026-05-09",
       "lastSeen": "2026-05-12",
+      "timesRepeated": 2,
+      "status": "open"
+    },
+    {
+      "id": "a1fbb825d68e",
+      "title": "Implement Traffic Quality Filtering and User Intent Optimization",
+      "description": "Add exit-intent popups with lead magnets on high-bounce pages, implement scroll-depth tracking to identify content gaps, and create sticky navigation with clear value propositions. Focus on the 92.89% bounce rate by adding internal linking between calculator tools and relevant provider pages.",
+      "expectedImpact": "Reduce bounce rate by 15-20% and increase engagement rate to 15-20% within 30 days",
+      "priority": "high",
+      "firstSeen": "2026-05-13",
+      "lastSeen": "2026-05-14",
       "timesRepeated": 2,
       "status": "open"
     },
@@ -541,17 +552,6 @@
       "status": "open"
     },
     {
-      "id": "a1fbb825d68e",
-      "title": "Implement Traffic Quality Filtering and User Intent Optimization",
-      "description": "Add exit-intent popups with lead magnets on high-bounce pages, implement scroll-depth tracking to identify content gaps, and create sticky navigation with clear value propositions. Focus on the 92.89% bounce rate by adding internal linking between calculator tools and relevant provider pages.",
-      "expectedImpact": "Reduce bounce rate by 15-20% and increase engagement rate to 15-20% within 30 days",
-      "priority": "high",
-      "firstSeen": "2026-05-13",
-      "lastSeen": "2026-05-13",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
       "id": "97a6e5303ba6",
       "title": "Optimize High-Performing Calculator Pages for Conversion",
       "description": "Add AgedLeadStore.com affiliate CTAs directly within calculator results, create follow-up email sequences for calculator users, and implement lead capture forms offering personalized lead recommendations based on calculator inputs.",
@@ -559,6 +559,17 @@
       "priority": "high",
       "firstSeen": "2026-05-13",
       "lastSeen": "2026-05-13",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "889aee7501be",
+      "title": "Expand and optimize calculator tool suite",
+      "description": "Since calculators are top performers (ROI and CPL tools leading), create additional calculators for conversion rate optimization, lead lifetime value, and cost per acquisition. Add clear CTAs to AgedLeadStore.com from calculator results pages.",
+      "expectedImpact": "Increase time on site by 40-60 seconds and improve conversion rates by 25%",
+      "priority": "high",
+      "firstSeen": "2026-05-14",
+      "lastSeen": "2026-05-14",
       "timesRepeated": 1,
       "status": "open"
     },
@@ -658,6 +669,17 @@
       "priority": "medium",
       "firstSeen": "2026-04-25",
       "lastSeen": "2026-04-28",
+      "timesRepeated": 2,
+      "status": "open"
+    },
+    {
+      "id": "fc1963d9ad5a",
+      "title": "Develop Mobile-First Content Strategy",
+      "description": "Optimize for mobile users who represent growing search volume. Create mobile-friendly comparison charts, simplified navigation, and thumb-friendly CTA buttons for affiliate links.",
+      "expectedImpact": "Increase mobile engagement rate by 25% and capture additional mobile search traffic",
+      "priority": "medium",
+      "firstSeen": "2026-04-29",
+      "lastSeen": "2026-05-14",
       "timesRepeated": 2,
       "status": "open"
     },
@@ -893,17 +915,6 @@
       "status": "open"
     },
     {
-      "id": "fc1963d9ad5a",
-      "title": "Develop Mobile-First Content Strategy",
-      "description": "Optimize for mobile users who represent growing search volume. Create mobile-friendly comparison charts, simplified navigation, and thumb-friendly CTA buttons for affiliate links.",
-      "expectedImpact": "Increase mobile engagement rate by 25% and capture additional mobile search traffic",
-      "priority": "medium",
-      "firstSeen": "2026-04-29",
-      "lastSeen": "2026-04-29",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
       "id": "69b7a9e3aef1",
       "title": "Expand Content Around Winning Search Queries",
       "description": "Create comprehensive guides targeting 'aged lead store reviews', 'aged mortgage leads', and 'lead providers' queries where the site shows ranking momentum. Focus on comparison content and buyer guides.",
@@ -1102,6 +1113,17 @@
       "status": "open"
     },
     {
+      "id": "13acc3efb530",
+      "title": "Optimize for 'aged lead store reviews' search opportunity",
+      "description": "Create comprehensive review content targeting the 16 daily impressions at position 9.3 for 'aged lead store reviews'. Build dedicated review pages with comparison tables, testimonials, and detailed provider analysis.",
+      "expectedImpact": "Capture 2-4 additional daily clicks from this high-intent query",
+      "priority": "medium",
+      "firstSeen": "2026-05-14",
+      "lastSeen": "2026-05-14",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "cc192c120d5f",
       "title": "Long-tail Keyword Expansion",
       "description": "Target specific queries like 'how much do mortgage trigger leads cost' (pos 56.8) and 'auto insurance lead cost' (pos 23.0) with dedicated content pieces.",
@@ -1230,6 +1252,17 @@
       "priority": "low",
       "firstSeen": "2026-05-13",
       "lastSeen": "2026-05-13",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "47c93be66e97",
+      "title": "Create state-specific motor vehicle accident lead pages",
+      "description": "Target the multiple state-specific MVA lead queries showing in search console by creating location-specific landing pages for Arizona, California, Florida, Georgia, Illinois, New York, and Ohio.",
+      "expectedImpact": "Capture 5-10 additional monthly clicks from state-specific queries",
+      "priority": "low",
+      "firstSeen": "2026-05-14",
+      "lastSeen": "2026-05-14",
       "timesRepeated": 1,
       "status": "open"
     }
