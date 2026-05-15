@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-14T12:01:19.270Z",
+  "lastUpdated": "2026-05-15T12:01:15.760Z",
   "items": [
     {
       "id": "ae65c17929e7",
@@ -574,6 +574,28 @@
       "status": "open"
     },
     {
+      "id": "7bfba2b80121",
+      "title": "Audit Direct Traffic Sources Immediately",
+      "description": "Investigate the 199 direct sessions to identify source quality. Set up UTM tracking for all referral campaigns and analyze user flow patterns to determine if traffic is from legitimate marketing efforts or low-quality sources. Implement heat mapping tools to understand user behavior on landing pages.",
+      "expectedImpact": "Identify traffic quality issues and optimize for better engagement rates within 2 weeks",
+      "priority": "high",
+      "firstSeen": "2026-05-15",
+      "lastSeen": "2026-05-15",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "76aecf9a919b",
+      "title": "Optimize Landing Page Experience for High-Bounce Traffic",
+      "description": "Create dedicated landing pages for different traffic sources with clear value propositions. Add prominent internal linking to calculator tools (top performers) and implement exit-intent popups with lead magnets. Test different page layouts to reduce 92.64% bounce rate.",
+      "expectedImpact": "Reduce bounce rate by 20-30% and increase session duration to 45+ seconds",
+      "priority": "high",
+      "firstSeen": "2026-05-15",
+      "lastSeen": "2026-05-15",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "e5837806021a",
       "title": "Improve Mobile Search Performance",
       "description": "With only 27 mobile impressions vs 223 desktop, optimize mobile page speed and user experience. Focus on calculator and form functionality on mobile devices.",
@@ -702,6 +724,17 @@
       "priority": "medium",
       "firstSeen": "2026-05-02",
       "lastSeen": "2026-05-08",
+      "timesRepeated": 2,
+      "status": "open"
+    },
+    {
+      "id": "a0497e67e536",
+      "title": "Target Long-Tail Aged Lead Keywords",
+      "description": "Create content targeting specific queries like 'aged mortgage leads pricing', 'aged life insurance leads reviews', and 'TCPA compliant aged leads'. Your TCPA compliance page already ranks well (position 15.2) - build more content around compliance topics.",
+      "expectedImpact": "50-100% increase in organic search clicks within 60 days",
+      "priority": "medium",
+      "firstSeen": "2026-05-05",
+      "lastSeen": "2026-05-15",
       "timesRepeated": 2,
       "status": "open"
     },
@@ -1025,17 +1058,6 @@
       "status": "open"
     },
     {
-      "id": "a0497e67e536",
-      "title": "Target Long-Tail Aged Lead Keywords",
-      "description": "Create content targeting specific queries like 'aged mortgage leads pricing', 'aged life insurance leads reviews', and 'TCPA compliant aged leads'. Your TCPA compliance page already ranks well (position 15.2) - build more content around compliance topics.",
-      "expectedImpact": "50-100% increase in organic search clicks within 60 days",
-      "priority": "medium",
-      "firstSeen": "2026-05-05",
-      "lastSeen": "2026-05-05",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
       "id": "7c62a30e091d",
       "title": "Expand Content Around High-Impression Queries",
       "description": "Target 'aged lead store reviews' (22 impressions, pos 12.7) and 'aged leads' (7 impressions, pos 26.3) with dedicated comparison content, case studies, and FAQ pages. These show search demand with improving positions.",
@@ -1120,6 +1142,28 @@
       "priority": "medium",
       "firstSeen": "2026-05-14",
       "lastSeen": "2026-05-14",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "47484af65da3",
+      "title": "Scale Calculator Tool Content Strategy",
+      "description": "ROI and CPL calculators are top performers - create additional calculators for commission tracking, lead cost analysis, and conversion rate optimization. Build dedicated landing pages for each calculator with SEO-optimized content around related keywords.",
+      "expectedImpact": "Increase organic traffic by 40% and improve engagement rates through utility-focused content",
+      "priority": "medium",
+      "firstSeen": "2026-05-15",
+      "lastSeen": "2026-05-15",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "04153e8d0dad",
+      "title": "Implement Mobile-First CTR Optimization",
+      "description": "Mobile generates 4 clicks vs 0 desktop clicks despite lower impression volume. Optimize mobile meta descriptions and titles for aged lead queries, and ensure mobile page speed is under 2 seconds for better search performance.",
+      "expectedImpact": "Improve overall CTR from 0.69% to 1.2% by focusing on mobile optimization",
+      "priority": "medium",
+      "firstSeen": "2026-05-15",
+      "lastSeen": "2026-05-15",
       "timesRepeated": 1,
       "status": "open"
     },
@@ -1263,6 +1307,17 @@
       "priority": "low",
       "firstSeen": "2026-05-14",
       "lastSeen": "2026-05-14",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "d57489849b48",
+      "title": "Expand Insurance Playbook Content",
+      "description": "The /playbook/insurance page shows strong performance (12 views, 10 users). Create similar playbooks for mortgage, solar, and PI attorney verticals with downloadable resources to capture leads and improve engagement time.",
+      "expectedImpact": "Increase average session duration by 60% and generate 15-20 new leads monthly",
+      "priority": "low",
+      "firstSeen": "2026-05-15",
+      "lastSeen": "2026-05-15",
       "timesRepeated": 1,
       "status": "open"
     }
