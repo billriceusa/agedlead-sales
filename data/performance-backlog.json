@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-15T12:01:15.760Z",
+  "lastUpdated": "2026-05-16T12:01:33.435Z",
   "items": [
     {
       "id": "ae65c17929e7",
@@ -596,6 +596,28 @@
       "status": "open"
     },
     {
+      "id": "3b5f8f1d6e04",
+      "title": "Implement Immediate Bounce Rate Reduction Strategy",
+      "description": "Add internal linking widgets, related content suggestions, and clear CTAs on high-traffic pages. Focus on /calculators/know-your-cpl and /playbook/insurance with 'Next Steps' sections linking to relevant lead type pages and AgedLeadStore affiliate links.",
+      "expectedImpact": "Reduce bounce rate by 15-20% and increase pages per session",
+      "priority": "high",
+      "firstSeen": "2026-05-16",
+      "lastSeen": "2026-05-16",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "32e961ba9fc5",
+      "title": "Optimize for 'Aged Lead Store Reviews' Query Dominance",
+      "description": "Create comprehensive review comparison content targeting position 1-3 for this high-performing query. Add detailed AgedLeadStore review with pros/cons, alternatives comparison, and strong affiliate CTAs.",
+      "expectedImpact": "Capture 5-10 additional clicks monthly from this query alone",
+      "priority": "high",
+      "firstSeen": "2026-05-16",
+      "lastSeen": "2026-05-16",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "e5837806021a",
       "title": "Improve Mobile Search Performance",
       "description": "With only 27 mobile impressions vs 223 desktop, optimize mobile page speed and user experience. Focus on calculator and form functionality on mobile devices.",
@@ -1168,6 +1190,28 @@
       "status": "open"
     },
     {
+      "id": "7f811eba8476",
+      "title": "Expand Insurance Content Hub Strategy",
+      "description": "Build out insurance playbook series based on the strong performance of /playbook/insurance. Create state-specific insurance lead guides, cost calculators, and conversion templates linking to AgedLeadStore inventory.",
+      "expectedImpact": "Increase organic traffic by 30-40% within 60 days",
+      "priority": "medium",
+      "firstSeen": "2026-05-16",
+      "lastSeen": "2026-05-16",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "b83172299bdb",
+      "title": "Develop Mobile-First Content Experience",
+      "description": "Optimize page load speeds, implement AMP for key pages, and create mobile-specific lead calculators. Focus on the fact that mobile users are more likely to click (3 vs 0 desktop clicks).",
+      "expectedImpact": "Improve mobile CTR by 25% and reduce mobile bounce rate",
+      "priority": "medium",
+      "firstSeen": "2026-05-16",
+      "lastSeen": "2026-05-16",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "cc192c120d5f",
       "title": "Long-tail Keyword Expansion",
       "description": "Target specific queries like 'how much do mortgage trigger leads cost' (pos 56.8) and 'auto insurance lead cost' (pos 23.0) with dedicated content pieces.",
@@ -1318,6 +1362,17 @@
       "priority": "low",
       "firstSeen": "2026-05-15",
       "lastSeen": "2026-05-15",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "13e841bc62db",
+      "title": "Create Long-Tail Keyword Content Strategy",
+      "description": "Target specific queries like 'buy motor vehicle accident leads [state]' with dedicated landing pages. Current impressions show opportunity in PI attorney lead space.",
+      "expectedImpact": "Capture 20-30 additional monthly impressions per state-specific page",
+      "priority": "low",
+      "firstSeen": "2026-05-16",
+      "lastSeen": "2026-05-16",
       "timesRepeated": 1,
       "status": "open"
     }
