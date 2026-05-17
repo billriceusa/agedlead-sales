@@ -476,7 +476,7 @@ const rawProviders: Omit<ProviderData, "overallRating">[] = [
     complianceFeatures: ["tcpa-docs", "dnc-scrubbing", "consent-verification"],
     isFeatured: false,
     editorialReview:
-      "LeadsData positions itself as a modern, self-serve lead marketplace with transparent pricing and strong TCPA compliance messaging. The platform is clean and easy to use. They offer both aged data and real-time feeds across insurance and financial verticals. The main concern is limited track record — founded in 2019 with no BBB rating yet. For buyers who prioritize transparency and self-service, it's worth testing with a small batch. The compliance-first positioning is encouraging, but verify their consent documentation standards match your requirements.",
+      "LeadsData positions itself as a modern, self-serve lead marketplace with transparent pricing and strong TCPA compliance messaging. The platform is clean and easy to use. They offer both aged data and real-time feeds across insurance and financial verticals. The main concern is limited track record — founded in 2019 with no BBB rating yet. For buyers who prioritize transparency and self-service, it's worth testing with a small batch. The compliance-first positioning is encouraging, but verify their data verification, hygiene, and DNC-scrubbing standards match your requirements.",
   },
   {
     name: "Lead Heroes",
@@ -606,7 +606,7 @@ const rawProviders: Omit<ProviderData, "overallRating">[] = [
     complianceFeatures: ["tcpa-docs"],
     isFeatured: false,
     editorialReview:
-      "Aged Leads Depot is a newer entrant offering aged leads across multiple verticals with straightforward ordering. Pricing is competitive and transparent. The main concern is limited track record — no BBB rating and less robust compliance documentation compared to established providers. For budget buyers willing to test with small batches, it's worth a trial. But verify data quality carefully before scaling, and ensure the consent documentation meets your TCPA requirements.",
+      "Aged Leads Depot is a newer entrant offering aged leads across multiple verticals with straightforward ordering. Pricing is competitive and transparent. The main concern is limited track record — no BBB rating and less robust compliance documentation compared to established providers. For budget buyers willing to test with small batches, it's worth a trial. But verify data quality carefully before scaling, and confirm their data verification, hygiene, and DNC-scrubbing practices meet your compliance requirements.",
   },
   {
     name: "Lead Tycoons",

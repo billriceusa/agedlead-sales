@@ -36,6 +36,21 @@ export function PriceBenchmarkTable({
     return true;
   });
 
+  // Dedupe: the source query returns every monthly record, so a single
+  // exclusivity+leadType+ageBracket combo can appear multiple times (one row
+  // per month) and render as duplicate rows. Keep only the most-recent month
+  // per combo. Month is "YYYY-MM" which sorts lexically = chronologically, so
+  // this is robust regardless of incoming order.
+  const latestByCombo = new Map<string, PriceBenchmarkData>();
+  for (const b of filtered) {
+    const key = `${b.exclusivity}|${b.leadType}|${b.leadAgeBracket}`;
+    const existing = latestByCombo.get(key);
+    if (!existing || (b.month ?? "") > (existing.month ?? "")) {
+      latestByCombo.set(key, b);
+    }
+  }
+  const deduped = [...latestByCombo.values()];
+
   // Sort by age bracket order
   const ageBracketOrder = [
     "real-time",
@@ -45,7 +60,7 @@ export function PriceBenchmarkTable({
     "86-180-days",
     "181-365-days",
   ];
-  const sorted = [...filtered].sort(
+  const sorted = [...deduped].sort(
     (a, b) =>
       ageBracketOrder.indexOf(a.leadAgeBracket) -
       ageBracketOrder.indexOf(b.leadAgeBracket)

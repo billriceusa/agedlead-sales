@@ -39,7 +39,7 @@ export function CtaBanner({
   const finalDescription =
     description ??
     (useAffiliate
-      ? "Browse aged leads across mortgage, insurance, home services, and more — with consent documentation, suppression support, and fair-market pricing."
+      ? "Browse aged leads across mortgage, insurance, home services, and more — with data verification and hygiene, suppression support, and fair-market pricing."
       : "Compare providers, check fair market pricing, and calculate your ROI — all with our free tools.");
   const finalButtonText =
     buttonText ??

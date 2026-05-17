@@ -66,8 +66,8 @@ export function InlineTextCta({
       >
         {linkText}
       </TrackedAffiliateLink>{" "}
-      — exclusive and shared leads at a fraction of real-time cost, with consent
-      documentation included.{" "}
+      — exclusive and shared leads at a fraction of real-time cost, with
+      verified, hygiene-screened contact data.{" "}
       <Link
         href="/providers"
         className="text-zinc-600 underline decoration-zinc-400 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-200"

@@ -82,7 +82,7 @@ All four problems are solvable. That's what this playbook fixes.
 
 > **Where to buy the leads in this playbook.**
 >
-> Before you read further: you'll need actual aged leads to run this system. The largest, cleanest-consent marketplace in the industry is **AgedLeadStore** — vertical-specific lists, documented consent records, and filter by age/geo/demographics.
+> Before you read further: you'll need actual aged leads to run this system. One of the largest aged-data marketplaces in the industry is **AgedLeadStore** — vertical-specific lists, verified and hygiene-screened contact data, and filter by age/geo/demographics.
 >
 > [Browse all lead types at agedleadstore.com →](https://agedleadstore.com/all-lead-types/?utm_source=agedleadsales&utm_medium=affiliate&utm_campaign=flagship-master&utm_content=cta-early)
 
