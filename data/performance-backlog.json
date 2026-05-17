@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-16T12:01:33.435Z",
+  "lastUpdated": "2026-05-17T12:00:56.937Z",
   "items": [
     {
       "id": "ae65c17929e7",
@@ -618,6 +618,28 @@
       "status": "open"
     },
     {
+      "id": "daf45d614262",
+      "title": "Implement Engagement Optimization for High-Bounce Traffic",
+      "description": "Add exit-intent popups with lead magnets on high-traffic pages, implement internal linking suggestions after 30 seconds, and create sticky CTAs for AgedLeadStore.com affiliate links. Focus on /calculators/know-your-cpl and /playbook/insurance pages.",
+      "expectedImpact": "Reduce bounce rate by 10-15% and increase affiliate click-through rates",
+      "priority": "high",
+      "firstSeen": "2026-05-17",
+      "lastSeen": "2026-05-17",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "de4344ed5aad",
+      "title": "Optimize Search Snippets for CTR Improvement",
+      "description": "Rewrite meta descriptions for top-impression queries like 'aged leads' and 'aged lead store' to include compelling CTAs and unique value propositions. Add structured data markup for calculator tools and pricing information.",
+      "expectedImpact": "Increase CTR from 0.32% to 0.6%+ and improve click volume by 80%",
+      "priority": "high",
+      "firstSeen": "2026-05-17",
+      "lastSeen": "2026-05-17",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "e5837806021a",
       "title": "Improve Mobile Search Performance",
       "description": "With only 27 mobile impressions vs 223 desktop, optimize mobile page speed and user experience. Focus on calculator and form functionality on mobile devices.",
@@ -1212,6 +1234,39 @@
       "status": "open"
     },
     {
+      "id": "a69b1c4dc2ff",
+      "title": "Expand Calculator Tool Suite",
+      "description": "Create additional calculators for ROI calculation, lead conversion tracking, and cost-per-acquisition tools. Cross-link between calculator pages and add affiliate CTAs within results pages.",
+      "expectedImpact": "Increase utility-focused traffic by 50% and improve conversion rates",
+      "priority": "medium",
+      "firstSeen": "2026-05-17",
+      "lastSeen": "2026-05-17",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "ff9ffb17a67d",
+      "title": "Develop Bing SEO Strategy",
+      "description": "Optimize content specifically for Bing's algorithm preferences, submit sitemap to Bing Webmaster Tools, and create Bing-specific content targeting aged lead queries where Google competition is high.",
+      "expectedImpact": "Increase Bing organic traffic from 5 to 15+ sessions weekly",
+      "priority": "medium",
+      "firstSeen": "2026-05-17",
+      "lastSeen": "2026-05-17",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "7d3a59ee15b1",
+      "title": "Create State-Specific PI Attorney Lead Content",
+      "description": "Develop landing pages for motor vehicle accident lead queries by state (Arizona, California, Florida showing in search data) with local pricing and provider information.",
+      "expectedImpact": "Capture 20+ additional clicks monthly from geo-specific PI attorney searches",
+      "priority": "medium",
+      "firstSeen": "2026-05-17",
+      "lastSeen": "2026-05-17",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "cc192c120d5f",
       "title": "Long-tail Keyword Expansion",
       "description": "Target specific queries like 'how much do mortgage trigger leads cost' (pos 56.8) and 'auto insurance lead cost' (pos 23.0) with dedicated content pieces.",
@@ -1373,6 +1428,17 @@
       "priority": "low",
       "firstSeen": "2026-05-16",
       "lastSeen": "2026-05-16",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "ea418f0168c2",
+      "title": "Implement Mobile-First Content Optimization",
+      "description": "Since mobile shows 2 clicks vs 0 desktop clicks, optimize page loading speed, simplify navigation, and ensure affiliate links are prominently displayed on mobile devices.",
+      "expectedImpact": "Improve mobile conversion rates and reduce mobile bounce rate",
+      "priority": "low",
+      "firstSeen": "2026-05-17",
+      "lastSeen": "2026-05-17",
       "timesRepeated": 1,
       "status": "open"
     }
