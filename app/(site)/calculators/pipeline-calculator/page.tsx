@@ -13,27 +13,27 @@ const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 export const metadata: Metadata = {
   title: "Pipeline Volume Calculator | Free Sales Pipeline Planner",
   description:
-    "Figure out exactly how many aged leads you need to hit your income goals. Free pipeline calculator — enter your target income, close rate, and deal value.",
+    "Figure out exactly how many aged leads you need to hit your revenue goals. Free pipeline calculator — enter your target monthly revenue, close rate, and deal value.",
   alternates: { canonical: `${baseUrl}/calculators/pipeline-calculator` },
   openGraph: {
     title: "Pipeline Volume Calculator | Free Sales Pipeline Planner",
-    description: "Figure out how many aged leads you need to hit your income goals. Free — no sign-up required.",
+    description: "Figure out how many aged leads you need to hit your revenue goals. Free — no sign-up required.",
     url: `${baseUrl}/calculators/pipeline-calculator`,
     images: [{ url: `${baseUrl}/api/og?title=${encodeURIComponent("Pipeline Volume Calculator")}&category=Free Tool&type=calculator` }],
   },
 };
 
 const faqs = [
-  { question: "How many leads do I need per month?", answer: "It depends on your income goal, deal value, contact rate, and close rate. For example, if you want $10,000/month from $1,000 deals with a 12% contact rate and 2% close rate, you need about 4,167 leads. Use the calculator above with your specific numbers." },
+  { question: "How many leads do I need per month?", answer: "It depends on your revenue goal, deal value, contact rate, and close rate. For example, if you want $10,000/month in revenue from $1,000 deals with a 12% contact rate and 2% close rate, you need about 4,167 leads. Use the calculator above with your specific numbers." },
   { question: "How many dials per day is realistic?", answer: "For a solo agent manually dialing, 80-120 dials per day is sustainable for a full-time calling session. With a power dialer, 150-200+ dials per day is achievable. If the calculator shows you need more dials than you can make, consider buying fewer leads with higher contact rates (fresher aged leads) or improving your close rate." },
-  { question: "What if I can't afford enough leads to hit my income goal?", answer: "Start with what you can afford and reinvest profits. If you can only buy 200 leads, work them thoroughly with a multi-channel cadence. Use the revenue from those sales to buy your next batch. Most successful aged lead operations started small and scaled over 3-6 months." },
+  { question: "What if I can't afford enough leads to hit my revenue goal?", answer: "Start with what you can afford and reinvest profits. If you can only buy 200 leads, work them thoroughly with a multi-channel cadence. Use the revenue from those sales to buy your next batch. Most successful aged lead operations started small and scaled over 3-6 months." },
 ];
 
 export default function PipelineCalculatorPage() {
   return (
     <>
       <JsonLd data={breadcrumbJsonLd([{ name: "Home", url: baseUrl }, { name: "Calculators", url: `${baseUrl}/calculators` }, { name: "Pipeline Calculator", url: `${baseUrl}/calculators/pipeline-calculator` }])} />
-      <JsonLd data={webApplicationJsonLd({ name: "Pipeline Volume Calculator", description: "Calculate how many leads you need to hit your income goals.", slug: "pipeline-calculator" })} />
+      <JsonLd data={webApplicationJsonLd({ name: "Pipeline Volume Calculator", description: "Calculate how many leads you need to hit your revenue goals.", slug: "pipeline-calculator" })} />
       <JsonLd data={faqJsonLd(faqs)} />
 
       <section className="bg-white py-12 dark:bg-zinc-950">
@@ -42,7 +42,7 @@ export default function PipelineCalculatorPage() {
 
           <h1 className="mb-4 text-3xl font-bold text-zinc-900 dark:text-white sm:text-4xl">Pipeline Volume Calculator</h1>
           <p className="mb-10 text-lg text-zinc-600 dark:text-zinc-400">
-            Work backwards from your income goal. Enter your target monthly income, average deal value, and conversion metrics to see exactly how many leads you need to buy, how many dials you need to make, and what it will cost.
+            Work backwards from your revenue goal. Enter your target monthly revenue, average deal value, and conversion metrics to see exactly how many leads you need to buy, how many dials you need to make, and what it will cost.
           </p>
 
           <Suspense fallback={<div className="h-96 animate-pulse rounded-2xl bg-zinc-100 dark:bg-zinc-800" />}>
@@ -52,9 +52,9 @@ export default function PipelineCalculatorPage() {
           <div className="mt-16 space-y-8">
             <h2 className="text-2xl font-bold text-zinc-900 dark:text-white">How to Use This Calculator</h2>
             <div className="space-y-4 text-zinc-600 dark:text-zinc-400">
-              <p>Most sales professionals set income goals but don&apos;t reverse-engineer the activity required to hit them. This calculator bridges that gap — it tells you the exact volume of leads, contacts, and dials you need each month.</p>
+              <p>Most sales professionals set revenue goals but don&apos;t reverse-engineer the activity required to hit them. This calculator bridges that gap — it tells you the exact volume of leads, contacts, and dials you need each month.</p>
               <p>The <strong className="text-zinc-900 dark:text-white">funnel visualization</strong> shows your pipeline narrowing from leads purchased → contacts made → deals closed. Each stage is a lever you can optimize: buy more leads, improve your contact rate (better timing, multi-channel outreach), or improve your close rate (better scripts, faster follow-up).</p>
-              <p>The <strong className="text-zinc-900 dark:text-white">dials per day</strong> number is your daily activity target. If it feels unachievable, you have two options: reduce your income goal, or improve your conversion metrics so you need fewer leads to reach the same result. Most agents find that consistent daily activity (even 60-80 dials) compounds into significant results over a month.</p>
+              <p>The <strong className="text-zinc-900 dark:text-white">dials per day</strong> number is your daily activity target. If it feels unachievable, you have two options: reduce your revenue goal, or improve your conversion metrics so you need fewer leads to reach the same result. Most agents find that consistent daily activity (even 60-80 dials) compounds into significant results over a month.</p>
             </div>
 
             <h2 className="text-2xl font-bold text-zinc-900 dark:text-white">Pipeline Math by Industry</h2>

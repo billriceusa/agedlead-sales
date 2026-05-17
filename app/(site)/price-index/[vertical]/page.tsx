@@ -236,6 +236,24 @@ export default async function VerticalPriceIndexPage({
               </Link>
               .
             </p>
+            <p className="mt-3 text-sm text-zinc-600 dark:text-zinc-400">
+              <strong className="text-zinc-700 dark:text-zinc-300">
+                Volume basis:
+              </strong>{" "}
+              These ranges reflect typical small-to-mid order volumes. Bulk and
+              high-volume pricing is commonly negotiated lower than the ranges
+              shown here.
+            </p>
+            <p className="mt-3 text-sm text-zinc-600 dark:text-zinc-400">
+              <strong className="text-zinc-700 dark:text-zinc-300">
+                A note on exclusivity:
+              </strong>{" "}
+              Most aged leads are sold non-exclusively. Genuinely exclusive{" "}
+              <em>aged</em> inventory is rare and limited — the exclusive tier
+              shown here is most representative of real-time leads. Verify
+              exclusivity terms directly with any provider before assuming an
+              aged list is exclusive.
+            </p>
           </div>
         </div>
       </section>

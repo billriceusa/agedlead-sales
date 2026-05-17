@@ -53,6 +53,7 @@ export function PipelineCalculator() {
   const dialsPerDay = Math.ceil(totalDials / workingDays);
   const leadBudget = leadsNeeded * leadCost;
   const costPerDeal = dealsNeeded > 0 ? Math.round(leadBudget / dealsNeeded) : 0;
+  const grossProfit = monthlyIncome - leadBudget;
 
   return (
     <div className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-900 sm:p-8">
@@ -63,7 +64,7 @@ export function PipelineCalculator() {
       <div className="mb-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         <div>
           <label className="mb-1.5 block text-sm font-medium text-zinc-700 dark:text-zinc-300">
-            Target Monthly Income ($)
+            Target Monthly Revenue ($)
           </label>
           <input type="number" value={monthlyIncome} onChange={(e) => setMonthlyIncome(Number(e.target.value))} min={0}
             className="w-full rounded-lg border border-zinc-300 bg-white px-4 py-2.5 text-zinc-900 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:border-zinc-700 dark:bg-zinc-800 dark:text-white" />
@@ -130,6 +131,35 @@ export function PipelineCalculator() {
             <p className="mt-1 text-2xl font-bold text-zinc-900 dark:text-white">{r.value}</p>
           </div>
         ))}
+      </div>
+
+      {/* Dials assumption transparency */}
+      <p className="mt-3 text-xs text-zinc-500 dark:text-zinc-400">
+        <strong>How dials are derived:</strong> Total Dials/Month assumes{" "}
+        {dialsPer} dials per lead over a full follow-up cadence and{" "}
+        {workingDays} working days/month. Dials Per Day = Total Dials/Month ÷{" "}
+        {workingDays}.
+      </p>
+
+      {/* Estimated Gross Profit */}
+      <div className="mt-6 rounded-xl border border-green-200 bg-green-50 p-5 dark:border-green-900 dark:bg-green-950/40">
+        <p className="text-xs font-medium uppercase tracking-wider text-green-700 dark:text-green-400">
+          Estimated Monthly Gross Profit
+        </p>
+        <p
+          className={`mt-1 text-3xl font-bold ${
+            grossProfit >= 0
+              ? "text-green-700 dark:text-green-400"
+              : "text-red-600 dark:text-red-400"
+          }`}
+        >
+          ${grossProfit.toLocaleString()}
+        </p>
+        <p className="mt-1 text-xs text-zinc-600 dark:text-zinc-400">
+          Target Monthly Revenue (${monthlyIncome.toLocaleString()}) − Monthly
+          Lead Budget (${leadBudget.toLocaleString()}). Lead spend only — does
+          not account for labor, tools, or other overhead.
+        </p>
       </div>
 
       {/* Share Link */}

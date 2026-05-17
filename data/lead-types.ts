@@ -746,7 +746,7 @@ export const LEAD_TYPES: Record<string, LeadTypeData> = {
       "Aged home services leads connect you with homeowners who requested quotes on roofing, solar, windows, HVAC, remodel, pest, and foundation projects — all at a fraction of real-time lead prices.",
     metaTitle: "Aged Home Services Leads – Buy Affordable Home Services Leads",
     metaDescription:
-      "Buy aged home services leads for roofing, solar, windows, HVAC, remodels, and more. 80-95% cheaper than real-time leads, with documented consent records.",
+      "Buy aged home services leads for roofing, solar, windows, HVAC, remodels, and more. 80-95% cheaper than real-time leads, with verified, hygiene-screened contact data.",
     primaryKeyword: "aged home services leads",
     secondaryKeywords: [
       "aged roofing leads",

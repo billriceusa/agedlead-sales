@@ -239,6 +239,13 @@ export default async function ProvidersPage() {
               </div>
             ))}
           </div>
+          <p className="mx-auto mt-6 max-w-3xl text-center text-xs text-zinc-500 dark:text-zinc-400">
+            For aged inventory, the realistic Data Quality &amp; Compliance
+            expectation is provider data verification and hygiene (verified,
+            validated contact data plus DNC scrubbing) — not per-record consent
+            documentation, which applies to real-time providers using
+            TrustedForm or Jornaya.
+          </p>
           <div className="mt-8 text-center">
             <Link
               href="/methodology"

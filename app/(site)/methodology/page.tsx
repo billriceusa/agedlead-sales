@@ -118,6 +118,19 @@ export default function MethodologyPage() {
               </tbody>
             </table>
 
+            <p>
+              <strong>A note on consent for aged inventory:</strong> TCPA
+              consent documentation, TrustedForm, and Jornaya certificates are
+              meaningful signals for real-time lead providers. Aged leads are
+              non-consented brokered consumer data — for aged inventory the
+              realistic expectation is that the provider performs data
+              verification and hygiene (screening for and maintaining verified,
+              validated contact information and DNC scrubbing), not that
+              per-record consent documentation accompanies the leads. We weight
+              this dimension accordingly for each provider&apos;s actual
+              inventory type.
+            </p>
+
             <h3>Scoring Scale</h3>
             <ul>
               <li>
