@@ -1,0 +1,162 @@
+{
+  "runDate": "2026-05-17T06:02:55.982Z",
+  "weekStartDate": "2026-05-18",
+  "analysis": {
+    "strategyReview": "Our content strategy shows strong coverage across all five pillars with 60 published posts, demonstrating comprehensive market education. We've established authority in vertical-specific playbooks (insurance, mortgage, solar) and built solid foundations in compliance and channel tactics. However, analysis reveals gaps in advanced optimization content, particularly around data analytics, predictive modeling, and sophisticated CRM automation that enterprise-level operations need. We're also light on seasonal/timing-based strategies and cross-vertical lead arbitrage opportunities that experienced operators pursue.",
+    "competitiveInsights": "Competitive analysis reveals AgedLeadStore.com focuses heavily on product features but lacks strategic depth around lead scoring algorithms and multi-channel attribution modeling. HowToWorkLeads.com provides generic advice but misses industry-specific compliance nuances and vertical-specific conversion psychology. Key opportunity gaps include: AI-powered lead prioritization (high search volume, low competition), seasonal lead buying strategies by vertical, and advanced metrics like lead velocity scoring. Trending searches show increased interest in 'lead scoring software', 'aged lead ROI calculator', and 'insurance lead conversion rates by source'.",
+    "newOpportunities": [
+      "AI lead scoring and prioritization systems",
+      "Seasonal lead buying calendars by industry",
+      "Lead velocity scoring methodologies",
+      "Cross-vertical lead arbitrage strategies",
+      "Advanced CRM automation workflows"
+    ],
+    "trendingTopics": [
+      "AI in lead management",
+      "Predictive lead scoring",
+      "Multi-touch attribution",
+      "Seasonal buying patterns",
+      "Lead data enrichment"
+    ],
+    "recommendedUpdates": [
+      "Expand calculator suite with lead velocity scoring tool",
+      "Create seasonal buying calendar resources",
+      "Develop advanced metrics content series"
+    ]
+  },
+  "articlesCreated": [
+    {
+      "title": "Medicare Compliance for Aged Leads: CMS Rules Every Agent Must Follow",
+      "slug": "medicare-compliance-aged-leads-cms-rules",
+      "publishDate": "2026-05-20",
+      "primaryKeyword": "Medicare compliance",
+      "pillar": "Compliance"
+    }
+  ],
+  "articlesSkipped": [
+    {
+      "title": "AI Lead Scoring for Aged Lists: Rank Your Buy List Before You Dial",
+      "slug": "ai-lead-scoring-aged-lists-rank-buy-list",
+      "reason": "Title too similar to existing post \"AI Lead Scoring for Aged Lists: Rank Your Buy List Before You Dial\" (ai-lead-scoring-aged-leads)"
+    },
+    {
+      "title": "ACA Health Insurance Aged Leads: Open Enrollment and SEP Strategies",
+      "slug": "aca-health-insurance-aged-leads-open-enrollment-sep",
+      "reason": "Title too similar to existing post \"Aged Health Insurance Leads: Open Enrollment and SEP Strategies for 2026\" (aged-health-insurance-leads-open-enrollment-sep-strategies-2026)"
+    }
+  ],
+  "articlesFailed": [],
+  "imageOutcomes": [
+    {
+      "title": "Medicare Compliance for Aged Leads: CMS Rules Every Agent Must Follow",
+      "status": "created",
+      "photographer": "UK Black Tech"
+    }
+  ],
+  "newBriefs": [
+    {
+      "day": "Mon",
+      "publishDate": "2026-05-18",
+      "slug": "ai-lead-scoring-aged-lists-rank-buy-list",
+      "title": "AI Lead Scoring for Aged Lists: Rank Your Buy List Before You Dial",
+      "pillar": "Metrics & Optimization",
+      "primaryKeyword": "AI lead scoring",
+      "secondaryKeywords": [
+        "lead scoring software",
+        "aged lead ranking",
+        "predictive lead scoring",
+        "lead prioritization"
+      ],
+      "targetLeadTypes": [
+        "lt-insurance",
+        "lt-mortgage",
+        "lt-solar"
+      ],
+      "wordCount": "2,800-3,200",
+      "competitiveAngle": "First comprehensive guide to AI lead scoring specifically for aged leads, including specific algorithms and implementation steps",
+      "outline": [
+        "Why Traditional Lead Scoring Fails with Aged Data",
+        "The 8 Data Points That Predict Aged Lead Success",
+        "Building Your AI Scoring Algorithm",
+        "Lead Scoring Software Options and Costs",
+        "Implementation Timeline and ROI Expectations",
+        "Case Study: 40% Improvement in Contact Rates"
+      ],
+      "internalLinks": [
+        "/glossary/lead-age",
+        "/calculators/lead-roi-calculator",
+        "/lead-types/insurance-leads",
+        "/glossary/conversion-rate"
+      ]
+    },
+    {
+      "day": "Wed",
+      "publishDate": "2026-05-20",
+      "slug": "medicare-compliance-aged-leads-cms-rules",
+      "title": "Medicare Compliance for Aged Leads: CMS Rules Every Agent Must Follow",
+      "pillar": "Compliance",
+      "primaryKeyword": "Medicare compliance",
+      "secondaryKeywords": [
+        "CMS guidelines",
+        "Medicare aged leads",
+        "compliance violations",
+        "Medicare marketing rules"
+      ],
+      "targetLeadTypes": [
+        "lt-medicare",
+        "lt-insurance"
+      ],
+      "wordCount": "2,500-3,000",
+      "competitiveAngle": "Detailed CMS compliance guide specifically for aged Medicare leads, including recent rule changes and violation penalties",
+      "outline": [
+        "CMS Marketing Guidelines Overview",
+        "Aged Lead Specific Compliance Issues",
+        "Required Disclosures and Documentation",
+        "Call Recording and Consent Requirements",
+        "Common Violations and Penalties",
+        "Compliance Checklist for Aged Medicare Leads"
+      ],
+      "internalLinks": [
+        "/glossary/cms-guidelines",
+        "/glossary/annual-enrollment-period",
+        "/lead-types/medicare-leads",
+        "/glossary/tcpa-compliance"
+      ]
+    },
+    {
+      "day": "Fri",
+      "publishDate": "2026-05-22",
+      "slug": "aca-health-insurance-aged-leads-open-enrollment-sep",
+      "title": "ACA Health Insurance Aged Leads: Open Enrollment and SEP Strategies",
+      "pillar": "Vertical Playbooks",
+      "primaryKeyword": "ACA health insurance leads",
+      "secondaryKeywords": [
+        "health insurance aged leads",
+        "open enrollment strategy",
+        "special enrollment period",
+        "ACA lead conversion"
+      ],
+      "targetLeadTypes": [
+        "lt-insurance"
+      ],
+      "wordCount": "2,600-3,100",
+      "competitiveAngle": "Comprehensive ACA-specific aged lead strategy covering both OEP and SEP opportunities with timing and conversion tactics",
+      "outline": [
+        "ACA Market Landscape for Aged Leads",
+        "Open Enrollment Period Strategy",
+        "Special Enrollment Period Opportunities",
+        "Subsidy Qualification and Positioning",
+        "State Exchange vs Federal Marketplace Leads",
+        "Seasonal Buying and Conversion Patterns"
+      ],
+      "internalLinks": [
+        "/glossary/special-enrollment-period",
+        "/glossary/lead-age",
+        "/lead-types/insurance-leads",
+        "/calculators/health-insurance-roi"
+      ]
+    }
+  ],
+  "nextWeekPlan": "Selected AI lead scoring as Monday's metrics piece to capitalize on trending AI searches. Wednesday's Medicare compliance addresses critical regulatory needs with AEP season approaching. Friday's ACA strategy fills vertical gap and leverages seasonal relevance. All three briefs target high-value keywords with low competitive overlap.",
+  "errors": []
+}
