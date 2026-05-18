@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-17T12:00:56.937Z",
+  "lastUpdated": "2026-05-18T12:01:08.865Z",
   "items": [
     {
       "id": "ae65c17929e7",
@@ -640,6 +640,28 @@
       "status": "open"
     },
     {
+      "id": "d11afd44358a",
+      "title": "Optimize High-Impression, Low-CTR Keywords",
+      "description": "Target the 12 aged mortgage leads impressions (0 clicks) and 8 aged leads impressions (0 clicks) by creating dedicated landing pages with compelling meta descriptions and titles. Focus on position 22-39 keywords where small improvements can yield significant click gains.",
+      "expectedImpact": "Increase organic clicks by 200-300% within 30 days",
+      "priority": "high",
+      "firstSeen": "2026-05-18",
+      "lastSeen": "2026-05-18",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "3e13111db8b4",
+      "title": "Enhance Insurance Playbook Conversion Path",
+      "description": "Add clear AgedLeadStore.com affiliate CTAs within the top-performing insurance playbook content. Create exit-intent popups and inline affiliate links specifically for insurance lead purchasing decisions.",
+      "expectedImpact": "Improve conversion rate from 32.88% to 40%+ engagement",
+      "priority": "high",
+      "firstSeen": "2026-05-18",
+      "lastSeen": "2026-05-18",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "e5837806021a",
       "title": "Improve Mobile Search Performance",
       "description": "With only 27 mobile impressions vs 223 desktop, optimize mobile page speed and user experience. Focus on calculator and form functionality on mobile devices.",
@@ -658,6 +680,17 @@
       "priority": "medium",
       "firstSeen": "2026-04-18",
       "lastSeen": "2026-04-26",
+      "timesRepeated": 3,
+      "status": "open"
+    },
+    {
+      "id": "3b2bf4da9e3c",
+      "title": "Mobile Search Optimization",
+      "description": "The single click came from mobile despite desktop having 285 impressions. Optimize mobile page speed, implement AMP, and ensure mobile-first indexing compliance for better mobile CTR.",
+      "expectedImpact": "Increase mobile CTR from current levels to 0.5-1.0%",
+      "priority": "medium",
+      "firstSeen": "2026-04-25",
+      "lastSeen": "2026-05-18",
       "timesRepeated": 3,
       "status": "open"
     },
@@ -724,17 +757,6 @@
       "priority": "medium",
       "firstSeen": "2026-04-22",
       "lastSeen": "2026-05-13",
-      "timesRepeated": 2,
-      "status": "open"
-    },
-    {
-      "id": "3b2bf4da9e3c",
-      "title": "Mobile Search Optimization",
-      "description": "The single click came from mobile despite desktop having 285 impressions. Optimize mobile page speed, implement AMP, and ensure mobile-first indexing compliance for better mobile CTR.",
-      "expectedImpact": "Increase mobile CTR from current levels to 0.5-1.0%",
-      "priority": "medium",
-      "firstSeen": "2026-04-25",
-      "lastSeen": "2026-04-28",
       "timesRepeated": 2,
       "status": "open"
     },
@@ -1263,6 +1285,28 @@
       "priority": "medium",
       "firstSeen": "2026-05-17",
       "lastSeen": "2026-05-17",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "de53301f57e3",
+      "title": "Expand Calculator Tool Utilization",
+      "description": "The CPL calculator shows 15 views from only 4 users (3.75 pages per user), indicating high engagement. Create similar calculators for mortgage, solar, and PI attorney lead costs to capture more qualified traffic.",
+      "expectedImpact": "Increase average session duration by 25% and pages per session",
+      "priority": "medium",
+      "firstSeen": "2026-05-18",
+      "lastSeen": "2026-05-18",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "644c940e8a37",
+      "title": "Leverage AI Platform Discovery",
+      "description": "Optimize content for AI search queries by adding FAQ sections, structured data, and conversational content formats that perform well in ChatGPT and Copilot responses.",
+      "expectedImpact": "Capture 10-15 additional sessions monthly from AI platforms",
+      "priority": "medium",
+      "firstSeen": "2026-05-18",
+      "lastSeen": "2026-05-18",
       "timesRepeated": 1,
       "status": "open"
     },
