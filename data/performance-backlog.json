@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-18T12:01:08.865Z",
+  "lastUpdated": "2026-05-19T12:01:02.189Z",
   "items": [
     {
       "id": "ae65c17929e7",
@@ -662,6 +662,28 @@
       "status": "open"
     },
     {
+      "id": "231da8a68746",
+      "title": "Optimize high-impression, low-ranking pages for better positions",
+      "description": "Focus on pages ranking 20-50 for aged lead terms. Add more comprehensive content, internal linking, and target long-tail variations of 'aged mortgage leads' (15 impressions, pos 37.5) and 'aged solar leads' (6 impressions, pos 34.3). Create dedicated landing pages for each lead type with comparison tables and pricing information.",
+      "expectedImpact": "Improve average position by 10-15 spots, potentially doubling organic clicks within 30 days",
+      "priority": "high",
+      "firstSeen": "2026-05-19",
+      "lastSeen": "2026-05-19",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "fafe219b4f91",
+      "title": "Expand calculator functionality and promotion",
+      "description": "The CPL calculator is performing well (17 views). Create additional calculators for ROI estimation, lead volume planning, and cost comparison tools. Add schema markup for calculator pages and create dedicated blog posts explaining how to use each calculator effectively.",
+      "expectedImpact": "Increase calculator page views by 50% and improve time on site by targeting practical user needs",
+      "priority": "high",
+      "firstSeen": "2026-05-19",
+      "lastSeen": "2026-05-19",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "e5837806021a",
       "title": "Improve Mobile Search Performance",
       "description": "With only 27 mobile impressions vs 223 desktop, optimize mobile page speed and user experience. Focus on calculator and form functionality on mobile devices.",
@@ -1311,6 +1333,28 @@
       "status": "open"
     },
     {
+      "id": "98d039c5f3eb",
+      "title": "Develop content targeting mobile search behavior",
+      "description": "74 mobile impressions vs 685 desktop impressions, but 3 mobile clicks vs 0 desktop clicks suggests mobile users are more likely to convert. Create mobile-optimized content focusing on quick lead purchasing decisions and mobile-friendly comparison tools.",
+      "expectedImpact": "Improve mobile CTR from current levels and capture more mobile-driven conversions",
+      "priority": "medium",
+      "firstSeen": "2026-05-19",
+      "lastSeen": "2026-05-19",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "ff20531dc18b",
+      "title": "Create comprehensive aged lead comparison content",
+      "description": "Target queries like 'best place to buy mortgage leads' (pos 72) and 'aged insurance leads' (pos 46) with detailed comparison articles featuring AgedLeadStore.com prominently. Include pricing tables, quality metrics, and user testimonials.",
+      "expectedImpact": "Capture 20-30 additional organic clicks monthly from comparison-intent searches",
+      "priority": "medium",
+      "firstSeen": "2026-05-19",
+      "lastSeen": "2026-05-19",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "cc192c120d5f",
       "title": "Long-tail Keyword Expansion",
       "description": "Target specific queries like 'how much do mortgage trigger leads cost' (pos 56.8) and 'auto insurance lead cost' (pos 23.0) with dedicated content pieces.",
@@ -1483,6 +1527,17 @@
       "priority": "low",
       "firstSeen": "2026-05-17",
       "lastSeen": "2026-05-17",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "7995f14817c0",
+      "title": "Optimize internal linking structure for playbook pages",
+      "description": "The /playbook pages are performing well but could cross-link more effectively. Create a hub-and-spoke model linking the main playbook to industry-specific guides, and add related calculators to each playbook page.",
+      "expectedImpact": "Increase average pages per session by 15-20% and improve overall site authority",
+      "priority": "low",
+      "firstSeen": "2026-05-19",
+      "lastSeen": "2026-05-19",
       "timesRepeated": 1,
       "status": "open"
     }
