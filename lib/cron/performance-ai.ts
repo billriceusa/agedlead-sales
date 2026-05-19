@@ -2,6 +2,10 @@ import Anthropic from "@anthropic-ai/sdk";
 import type { GA4Report } from "./ga4-data";
 import type { GSCReport } from "./gsc-data";
 import { parseJsonResponse } from "./parse-json";
+import {
+  fetchContentInventory,
+  renderContentInventory,
+} from "./content-inventory";
 
 function getAnthropicClient(): Anthropic {
   const apiKey = process.env.ANTHROPIC_API_KEY;
@@ -57,6 +61,8 @@ export async function analyzePerformance(
 ): Promise<PerformanceAnalysis> {
   const client = getAnthropicClient();
 
+  const contentInventory = await fetchContentInventory();
+
   let dataContext = "## Performance Data (7-Day Rolling Average vs 90-Day Average)\n\n";
 
   if (ga4.available) {
@@ -110,6 +116,10 @@ ${gsc.ninetyDay.topQueries.slice(0, 10).map((q) => `- "${q.query}": ${q.clicks} 
     dataContext += `### Google Search Console\nNot available: ${gsc.error || "Not configured"}\n\n`;
   }
 
+  dataContext += `\n## Site Content Inventory\n\n${renderContentInventory(
+    contentInventory
+  )}\n`;
+
   const response = await client.messages.create({
     model: "claude-sonnet-4-20250514",
     max_tokens: 4096,
@@ -121,7 +131,33 @@ Analyze the 7-day rolling average vs 90-day average performance data and provide
 - Search visibility and ranking changes
 - User engagement quality
 - Conversion-oriented recommendations
-- Specific, data-backed suggestions (not generic advice)`,
+- Specific, data-backed suggestions (not generic advice)
+
+CRITICAL RECOMMENDATION RULES — these override the instinct to recommend new content:
+
+1. OPTIMIZE, DON'T CREATE. A "Site Content Inventory" of every published URL is
+   provided in the data. Before recommending any new page, scan that inventory.
+   If a query underperforms (low clicks, stuck on page 2, position 8-30) and a
+   relevant page ALREADY EXISTS in the inventory, the problem is a ranking/CTR
+   ceiling on that page — NOT a missing page. Recommend optimizing or
+   consolidating the SPECIFIC existing URL (name it), never "create a page."
+   Only recommend net-new content when NO inventory URL covers the topic.
+
+2. FLAG CANNIBALIZATION. If two or more inventory URLs target the same query or
+   cluster (e.g. a /blog review, a /blog comparison, and a /providers page all
+   about the same brand), a query stuck on page 2 is likely keyword
+   cannibalization. Recommend picking ONE canonical URL and consolidating
+   internal links + intent to it — do not recommend adding another page, which
+   makes cannibalization worse.
+
+3. AFFILIATE ALIGNMENT — AgedLeadStore.com is THIS SITE'S PAID AFFILIATE
+   PARTNER, not a competitor. For AgedLeadStore-branded queries ("aged lead
+   store", "aged lead store reviews", "is aged lead store legit", etc.) the
+   goal is to capture that branded research traffic and forward it through
+   affiliate links. Recommend "affirm-and-forward" optimization of the existing
+   review/provider page. NEVER recommend competitor-comparison, "position
+   against", or review-rebuttal framing aimed at AgedLeadStore — that would
+   divert revenue away from the partner the site monetizes through.`,
     messages: [
       {
         role: "user",
