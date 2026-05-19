@@ -31,6 +31,15 @@ export interface ProviderData {
   isFeatured: boolean;
   /** Editorial review paragraphs */
   editorialReview: string;
+  /**
+   * Slug of a dedicated in-depth blog review for this provider, if one exists.
+   * When set, this profile defers to that article as the SEO canonical for
+   * "{name} review" intent: the profile retargets to a directory framing,
+   * canonicalizes to the article, drops its duplicate rating schema, and
+   * surfaces a prominent link to it. Prevents the templated provider profile
+   * from cannibalizing the long-form review for branded review queries.
+   */
+  reviewArticleSlug?: string;
 }
 
 function computeOverall(p: {
@@ -55,6 +64,7 @@ const rawProviders: Omit<ProviderData, "overallRating">[] = [
   {
     name: "Aged Lead Store",
     slug: "aged-lead-store",
+    reviewArticleSlug: "aged-lead-store-review-2026",
     shortDescription:
       "The largest on-demand aged internet lead marketplace with fully transparent per-lead pricing across 15+ verticals.",
     website: "https://agedleadstore.com",

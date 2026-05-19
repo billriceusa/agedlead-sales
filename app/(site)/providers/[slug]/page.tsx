@@ -67,6 +67,30 @@ export async function generateMetadata({
   const staticProvider = getProvider(slug);
   const name = staticProvider?.name || slug;
 
+  // When a provider has a dedicated in-depth blog review, this profile defers
+  // to that article for "{name} review" search intent — it retargets to a
+  // directory framing and canonicalizes to the article so the two pages stop
+  // competing for the same branded query.
+  const reviewSlug = staticProvider?.reviewArticleSlug;
+
+  if (reviewSlug) {
+    return {
+      title: `${name}: Pricing, Ratings & Provider Profile`,
+      description: `${name} provider profile — pricing model, lead types, compliance, and our 6-dimension ratings. Read our full in-depth ${name} review for the complete assessment.`,
+      alternates: { canonical: `${baseUrl}/blog/${reviewSlug}` },
+      openGraph: {
+        title: `${name} — Provider Profile | Aged Lead Sales`,
+        description: `${name} at a glance: pricing model, lead types, compliance, and transparent 6-dimension ratings.`,
+        url: `${baseUrl}/providers/${slug}`,
+        images: [
+          {
+            url: `${baseUrl}/api/og?title=${encodeURIComponent(`${name} — Provider Profile`)}&category=Provider Profile&type=tool`,
+          },
+        ],
+      },
+    };
+  }
+
   return {
     title: `${name} Review — Lead Provider Rating & Analysis`,
     description: `Independent review and rating of ${name}. See our honest assessment, 6-dimension scores, and how they compare to other lead providers.`,
@@ -131,17 +155,25 @@ export default async function ProviderProfilePage({
           name: p.name,
           url: p.website,
           foundingDate: String(p.foundedYear),
-          aggregateRating: {
-            "@type": "AggregateRating",
-            ratingValue: p.overallRating,
-            bestRating: 10,
-            worstRating: 1,
-            ratingCount: 1,
-            author: {
-              "@type": "Organization",
-              name: "Aged Lead Sales",
-            },
-          },
+          // When a dedicated blog review exists, that article owns the
+          // Review/AggregateRating structured data. This profile canonicalizes
+          // to it, so emitting the rating here too would be a duplicate,
+          // conflicting signal for the same entity.
+          ...(p.reviewArticleSlug
+            ? {}
+            : {
+                aggregateRating: {
+                  "@type": "AggregateRating",
+                  ratingValue: p.overallRating,
+                  bestRating: 10,
+                  worstRating: 1,
+                  ratingCount: 1,
+                  author: {
+                    "@type": "Organization",
+                    name: "Aged Lead Sales",
+                  },
+                },
+              }),
         }}
       />
 
@@ -224,6 +256,21 @@ export default async function ProviderProfilePage({
             <h2 className="text-2xl font-bold text-zinc-900 dark:text-white">
               Our Take
             </h2>
+            {p.reviewArticleSlug && (
+              <Link
+                href={`/blog/${p.reviewArticleSlug}`}
+                className="mt-4 flex items-center justify-between gap-4 rounded-lg border border-blue-200 bg-blue-50 px-5 py-4 transition-colors hover:bg-blue-100 dark:border-blue-900 dark:bg-blue-950/40 dark:hover:bg-blue-950/70"
+              >
+                <span className="text-sm text-blue-900 dark:text-blue-200">
+                  This is a quick profile. Read our full in-depth{" "}
+                  <strong>{p.name} review</strong> — pricing tables, vertical
+                  breakdowns, weaknesses, and who it&rsquo;s actually right for.
+                </span>
+                <span className="shrink-0 text-sm font-semibold text-blue-700 dark:text-blue-300">
+                  Read review &rarr;
+                </span>
+              </Link>
+            )}
             <div className="mt-4 space-y-4 text-zinc-600 dark:text-zinc-400">
               {p.editorialReview.split("\n").map((paragraph, i) => (
                 <p key={i}>{paragraph}</p>
