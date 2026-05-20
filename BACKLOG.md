@@ -75,6 +75,16 @@ Structure cornerstone content as 3-5 part series. Gate parts 2+ behind email. Ea
 
 ## P2 — Information Architecture
 
+### Add `homeowners-insurance` vertical to taxonomy
+`data/verticals.ts` is missing a homeowners-insurance vertical. Aged Lead Store features "Home Insurance" as one of its 8 main aged-lead category cards; other multi-line insurance marketplaces likely sell it too. Adding it requires:
+- New entry in `VERTICALS` with slug, icon, description, tier, order, and `benchmarkDefaults` (real-time + aged contact/close rates, avg deal value)
+- Audit all 15 providers in `data/providers.ts` and add `homeowners-insurance` to whichever already sell it (start with aged-lead-store)
+- Verify the new vertical surfaces correctly on `/providers/best/homeowners-insurance` and the lead-types index
+- **Impact:** Completeness of provider directory; missing this vertical undercounts a major insurance category
+
+### Cross-provider vertical audit
+Aged Lead Store's verticals were corrected on 2026-05-20 after the original list overstated their offering (medicare, mca-business-loans, debt-settlement, auto-warranty all removed — they don't sell those). The other 14 providers in `data/providers.ts` likely have similar drift. A pass per provider against their live site (~5-10 min each) would tighten the directory's accuracy.
+
 ### Additional Lead Magnets
 Only 1 active lead magnet (prospecting checklist). Playbook says 1-2 per site minimum:
 - ROI analysis template (PDF)
