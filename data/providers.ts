@@ -114,7 +114,7 @@ const rawProviders: Omit<ProviderData, "overallRating">[] = [
     returnPolicy: "Up to 20% return cap for wrong/disconnected numbers",
     deliveryMethods: ["instant-download", "email"],
     complianceFeatures: ["tcpa-docs", "dnc-scrubbing"],
-    isFeatured: false,
+    isFeatured: true,
     editorialReview:
       "Aged Lead Store is the clear market leader in aged internet leads. With 25+ years in business and an A+ BBB rating, they've served over 40,000 agents. Their biggest strength is complete transparency — every lead type has a published per-lead price, you can buy as few or as many as you want, and there are zero contracts or commitments. The self-service platform offers advanced filtering by geography, phone type, and lead age. Their return policy allows up to 20% credits for wrong numbers, which is generous by industry standards. The main limitation is that they only sell aged leads — no real-time leads, live transfers, or trigger data. If you need fresh leads or call transfers, you'll need a different provider. But for aged lead buying, this is the benchmark.",
   },

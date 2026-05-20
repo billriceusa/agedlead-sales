@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { sanityFetch } from "@/sanity/lib/fetch";
-import { providersQuery } from "@/sanity/lib/queries";
+import { providersLastVerifiedQuery } from "@/sanity/lib/queries";
 import { ProviderCard } from "@/components/provider-card";
 import { CtaBanner } from "@/components/cta-banner";
 import { JsonLd, breadcrumbJsonLd } from "@/components/json-ld";
 import { PROVIDERS } from "@/data/providers";
+import { getVertical } from "@/data/verticals";
 import Link from "next/link";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
@@ -28,45 +29,37 @@ export const metadata: Metadata = {
 };
 
 export default async function ProvidersPage() {
-  const sanityProviders = await sanityFetch(providersQuery);
+  // Static data is the source of truth for editorial content (ratings,
+  // descriptions, lead types, pricing, featured status). Sanity contributes
+  // only the marketwatch-cron-managed lastVerified date per provider. This
+  // matches the data model on /providers/[slug] and avoids drift between the
+  // listing and the profile pages.
+  const sanityMeta = await sanityFetch(providersLastVerifiedQuery);
+  const lastVerifiedBySlug = new Map<string, string>();
+  if (sanityMeta) {
+    for (const m of sanityMeta) {
+      if (m.slug && m.lastVerified) {
+        lastVerifiedBySlug.set(m.slug, m.lastVerified);
+      }
+    }
+  }
 
-  // Map Sanity providers or fall back to static data
-  const providers =
-    sanityProviders && sanityProviders.length > 0
-      ? sanityProviders.map((p: Record<string, unknown>) => ({
-          name: p.name as string,
-          slug:
-            typeof p.slug === "string"
-              ? p.slug
-              : (p.slug as { current: string })?.current,
-          shortDescription: p.shortDescription as string,
-          overallRating: p.overallRating as number,
-          lastVerified: p.lastVerified as string,
-          pricingModel: p.pricingModel as string,
-          leadTypes: (p.leadTypes as string[]) || [],
-          verticals:
-            (p.verticals as { name: string; slug: { current: string }; icon?: string }[])?.map(
-              (v) => ({
-                name: v.name,
-                slug: typeof v.slug === "string" ? v.slug : v.slug?.current,
-                icon: v.icon,
-              })
-            ) || [],
-        }))
-      : PROVIDERS.map((p) => ({
-          name: p.name,
-          slug: p.slug,
-          shortDescription: p.shortDescription,
-          overallRating: p.overallRating,
-          lastVerified: p.lastVerified,
-          pricingModel: p.pricingModel,
-          leadTypes: p.leadTypes,
-          verticals: p.verticals.map((vSlug) => ({
-            name: vSlug,
-            slug: vSlug,
-            icon: undefined,
-          })),
-        }));
+  const providers = PROVIDERS.map((p) => ({
+    name: p.name,
+    slug: p.slug,
+    shortDescription: p.shortDescription,
+    overallRating: p.overallRating,
+    lastVerified: lastVerifiedBySlug.get(p.slug) ?? p.lastVerified,
+    pricingModel: p.pricingModel,
+    leadTypes: p.leadTypes,
+    isFeatured: p.isFeatured,
+    verticals: p.verticals.map((vSlug) => {
+      const vd = getVertical(vSlug);
+      return vd
+        ? { name: vd.name, slug: vd.slug, icon: vd.icon }
+        : { name: vSlug, slug: vSlug, icon: undefined };
+    }),
+  })).sort((a, b) => b.overallRating - a.overallRating);
 
   return (
     <>
@@ -142,20 +135,7 @@ export default async function ProvidersPage() {
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {providers.map(
-              (p: {
-                name: string;
-                slug: string;
-                shortDescription: string;
-                overallRating: number;
-                lastVerified: string;
-                pricingModel: string;
-                leadTypes: string[];
-                verticals: {
-                  name: string;
-                  slug: string;
-                  icon?: string;
-                }[];
-              }) => (
+              (p) => (
                 <ProviderCard
                   key={p.slug}
                   name={p.name}
@@ -166,6 +146,7 @@ export default async function ProvidersPage() {
                   pricingModel={p.pricingModel}
                   leadTypes={p.leadTypes}
                   verticals={p.verticals}
+                  isFeatured={p.isFeatured}
                 />
               )
             )}

@@ -467,6 +467,14 @@ export const allProviderSlugsQuery = defineQuery(
   `*[_type == "leadProvider"] { "slug": slug.current }`
 );
 
+// Lightweight query for the listing page: only the cron-managed lastVerified
+// field per provider, keyed by slug. Editorial content (ratings, descriptions,
+// lead types, pricing) is sourced from data/providers.ts — see the comment in
+// app/(site)/providers/page.tsx.
+export const providersLastVerifiedQuery = defineQuery(
+  `*[_type == "leadProvider"] { "slug": slug.current, lastVerified }`
+);
+
 // ── Price Benchmarks ───────────────────────────────────────
 export const priceBenchmarksByVerticalQuery = defineQuery(
   `*[_type == "priceBenchmark" && vertical->slug.current == $verticalSlug] | order(month desc, leadAgeBracket asc) {
