@@ -1,211 +1,215 @@
 {
-  "lastUpdated": "2026-05-13T10:01:23.622Z",
+  "lastUpdated": "2026-05-20T10:01:43.743Z",
   "items": [
     {
       "id": "finding-001",
       "createdAt": "2026-04-29T10:02:06.586Z",
-      "updatedAt": "2026-05-13T10:01:23.622Z",
+      "updatedAt": "2026-05-20T10:01:43.743Z",
       "status": "open",
       "priority": 2,
       "category": "content-quality",
       "severity": "high",
       "title": "Content depth insufficient for March 2024 Core Update standards",
-      "description": "Recent posts like 'Aged Lead Store Review (2026)' and 'Health Insurance Lead Pricing in 2026' lack the comprehensive analysis and original research required by Google's March 2024 Core Update. The update specifically targets affiliate content that doesn't provide substantial value beyond promotion.",
-      "recommendation": "Expand key posts to 2,500-4,000 words with original research, comparative analysis tables, methodology sections, and verifiable data sources. Add sections on implementation challenges, ROI calculations, and industry benchmarks for each topic",
+      "description": "Recent posts like 'smart-agents-buy-aged-leads-instead-facebook-ads' and 'life-insurance-aged-lead-roi' lack comprehensive analysis, data backing, and actionable insights expected by the March 2024 Core Update. Google now heavily favors content that demonstrates deep expertise through original research, case studies, and practical implementation guidance.",
+      "recommendation": "Expand key posts to 2000+ words with original research, industry data, expert quotes, detailed case studies, and step-by-step implementation guides. Add sections on common pitfalls, ROI calculations, and compliance considerations for each vertical.",
       "effort": "large",
       "affectedPages": [
-        "/blog/aged-lead-store-review-2026",
-        "/blog/health-insurance-lead-pricing-2026",
-        "/blog/life-insurance-leads-cost-2026"
+        "/blog/smart-agents-buy-aged-leads-instead-facebook-ads",
+        "/blog/life-insurance-aged-lead-roi",
+        "/blog/door-knocking-aged-solar-leads"
       ],
       "sourceAudit": "2026-04-29",
-      "notes": "Re-identified in audit 2026-05-13"
+      "notes": "Re-identified in audit 2026-05-20"
     },
     {
       "id": "finding-002",
       "createdAt": "2026-05-13T10:01:23.622Z",
-      "updatedAt": "2026-05-13T10:01:23.622Z",
+      "updatedAt": "2026-05-20T10:01:43.743Z",
       "status": "open",
       "priority": 2,
       "category": "e-e-a-t",
       "severity": "high",
       "title": "YMYL expertise demonstration needs strengthening for financial content",
-      "description": "As a financial services affiliate site, Google's enhanced E-E-A-T requirements demand stronger demonstration of Bill Rice's actual experience with aged leads and financial services. Current author bio lacks specific credentials and verifiable experience metrics.",
-      "recommendation": "Enhance author bio with specific credentials (insurance licenses, years in industry, client portfolio size), add testimonials section, create detailed 'About Bill Rice' page with case studies, and include author bylines with expertise context on each post",
+      "description": "Financial services content (insurance, mortgage, financial advisor topics) requires enhanced E-E-A-T signals under September 2024 YMYL guidelines. Bill Rice's credentials are present but not prominently displayed on financial content pages.",
+      "recommendation": "Add prominent author bio boxes to all financial content highlighting Bill Rice's specific industry experience, certifications, and track record. Include 'About the Author' sections with relevant credentials for each vertical. Add author byline photos and expand Person schema with financial industry qualifications.",
       "effort": "medium",
       "affectedPages": [
-        "/about",
-        "/blog/*"
+        "/blog/medicare-compliance-aged-leads",
+        "/blog/life-insurance-aged-lead-roi",
+        "/lead-types/insurance-leads"
       ],
-      "sourceAudit": "2026-05-13"
+      "sourceAudit": "2026-05-13",
+      "notes": "Re-identified in audit 2026-05-20"
     },
     {
       "id": "finding-003",
       "createdAt": "2026-04-29T10:02:06.586Z",
-      "updatedAt": "2026-05-13T10:01:23.622Z",
+      "updatedAt": "2026-05-20T10:01:43.743Z",
       "status": "open",
       "priority": 2,
       "category": "affiliate-compliance",
       "severity": "high",
       "title": "Affiliate disclosure prominence insufficient for FTC 2024 standards",
-      "description": "FTC's updated guidance requires affiliate disclosures to be more prominent and specific. Current site-wide disclosure may not meet the 'clear and conspicuous' standard, especially on mobile devices.",
-      "recommendation": "Add prominent affiliate disclosure box at the top of each post containing affiliate links, use clear language like 'We earn a commission when you purchase through our links to AgedLeadStore.com', and ensure mobile visibility with contrasting colors",
-      "effort": "small",
+      "description": "FTC guidelines updated in 2024 require affiliate disclosures to be more prominent and specific. Current site-wide disclosure may not meet 'clear and conspicuous' standards for individual product recommendations.",
+      "recommendation": "Add prominent affiliate disclosure boxes above the fold on all pages with affiliate links. Include specific language like 'We earn a commission if you purchase through our links to AgedLeadStore.com' near each affiliate recommendation. Ensure disclosures are visible on mobile without scrolling.",
+      "effort": "medium",
       "affectedPages": [
         "/blog/aged-lead-store-review-2026",
-        "/blog/*"
+        "/blog/aged-lead-vendor-scorecard",
+        "/lead-types/*"
       ],
       "sourceAudit": "2026-04-29",
-      "notes": "Re-identified in audit 2026-05-13"
+      "notes": "Re-identified in audit 2026-05-20"
+    },
+    {
+      "id": "finding-004",
+      "createdAt": "2026-05-20T10:01:43.743Z",
+      "updatedAt": "2026-05-20T10:01:43.743Z",
+      "status": "open",
+      "priority": 3,
+      "category": "technical-seo",
+      "severity": "medium",
+      "title": "Core Web Vitals INP optimization needed for March 2024 thresholds",
+      "description": "Interaction to Next Paint (INP) replaced First Input Delay as a Core Web Vital with new 200ms threshold. Affiliate link tracking and form interactions may exceed optimal INP scores.",
+      "recommendation": "Optimize affiliate link tracking in lib/affiliate.ts to use requestIdleCallback for non-critical tracking. Implement code splitting for heavy components. Add performance monitoring for INP specifically on pages with forms and affiliate links.",
+      "effort": "medium",
+      "affectedPages": [
+        "/blog/aged-lead-store-review-2026",
+        "/lead-types/*",
+        "/glossary/*"
+      ],
+      "sourceAudit": "2026-05-20"
     },
     {
       "id": "finding-004",
       "createdAt": "2026-05-13T10:01:23.622Z",
-      "updatedAt": "2026-05-13T10:01:23.622Z",
+      "updatedAt": "2026-05-20T10:01:43.743Z",
       "status": "open",
       "priority": 3,
       "category": "structured-data",
       "severity": "medium",
       "title": "Missing Product and Review schema reduces rich results eligibility",
-      "description": "Posts reviewing AgedLeadStore.com and discussing lead pricing lack Product and Review schema markup, missing opportunities for rich results and reduced visibility in product-related searches.",
-      "recommendation": "Implement Product schema for AgedLeadStore.com with aggregateRating, offers, and brand properties. Add Review schema to review posts with author, reviewRating, and reviewBody properties",
+      "description": "Product pages and review content lack Product and Review structured data, missing opportunities for rich results and enhanced SERP visibility for commercial queries.",
+      "recommendation": "Implement Product schema for lead type pages with pricing, availability, and aggregate ratings. Add Review schema to vendor assessment content with author, rating, and review body markup. Ensure compliance with Google's review snippet policies.",
       "effort": "medium",
       "affectedPages": [
+        "/lead-types/*",
         "/blog/aged-lead-store-review-2026",
-        "/lead-types/*"
+        "/blog/aged-lead-vendor-scorecard"
       ],
-      "sourceAudit": "2026-05-13"
+      "sourceAudit": "2026-05-13",
+      "notes": "Re-identified in audit 2026-05-20"
     },
     {
       "id": "finding-006",
-      "createdAt": "2026-04-29T10:02:06.586Z",
-      "updatedAt": "2026-05-13T10:01:23.622Z",
+      "createdAt": "2026-05-20T10:01:43.743Z",
+      "updatedAt": "2026-05-20T10:01:43.743Z",
       "status": "open",
       "priority": 3,
       "category": "content-quality",
       "severity": "medium",
-      "title": "Content pillar gaps undermine topical authority",
-      "description": "With 0 playbooks and 0 guides, the site lacks comprehensive pillar content to establish topical authority in aged leads. This impacts Google's assessment of expertise breadth.",
-      "recommendation": "Create 5-8 comprehensive pillar guides (3,000-5,000 words each): 'Complete Guide to Aged Leads', 'Insurance Agent's Playbook', 'Mortgage Broker's Guide', 'Solar Lead Conversion Playbook'. Link blog posts to relevant pillars",
-      "effort": "large",
+      "title": "Missing images impact user experience and engagement signals",
+      "description": "Posts 'smart-agents-buy-aged-leads-instead-facebook-ads' and 'life-insurance-aged-lead-roi' lack images, reducing user engagement and visual appeal that Google considers for content quality assessment.",
+      "recommendation": "Create custom graphics, charts, and infographics for posts missing images. Focus on data visualizations, process flowcharts, and comparison tables that add value beyond stock photos. Ensure all images have descriptive alt text and are optimized for Core Web Vitals.",
+      "effort": "small",
       "affectedPages": [
-        "new-pages",
-        "/blog/*"
+        "/blog/smart-agents-buy-aged-leads-instead-facebook-ads",
+        "/blog/life-insurance-aged-lead-roi"
       ],
-      "sourceAudit": "2026-04-29",
-      "notes": "Re-identified in audit 2026-05-13"
-    },
-    {
-      "id": "finding-004",
-      "createdAt": "2026-04-22T10:01:40.033Z",
-      "updatedAt": "2026-05-13T10:01:23.622Z",
-      "status": "open",
-      "priority": 3,
-      "category": "technical-seo",
-      "severity": "medium",
-      "title": "Core Web Vitals INP optimization needed for May 2024 thresholds",
-      "description": "Google's May 2024 Core Web Vitals update introduced stricter INP (Interaction to Next Paint) thresholds. Next.js sites often struggle with JavaScript bundle size affecting interaction responsiveness.",
-      "recommendation": "Implement code splitting for affiliate tracking lib, optimize JavaScript bundle size, add loading states for affiliate link clicks, and ensure tap targets meet 44px minimum on mobile",
-      "effort": "medium",
-      "affectedPages": [
-        "/blog/*",
-        "/lead-types/*"
-      ],
-      "sourceAudit": "2026-04-22",
-      "notes": "Re-identified in audit 2026-05-13"
+      "sourceAudit": "2026-05-20"
     },
     {
       "id": "finding-007",
-      "createdAt": "2026-04-15T10:01:31.672Z",
-      "updatedAt": "2026-05-13T10:01:23.622Z",
+      "createdAt": "2026-05-20T10:01:43.743Z",
+      "updatedAt": "2026-05-20T10:01:43.743Z",
       "status": "open",
       "priority": 3,
       "category": "internal-linking",
       "severity": "medium",
-      "title": "Glossary cross-linking underutilized for topic authority",
-      "description": "With 77 glossary terms, there's significant opportunity to strengthen internal linking and topic authority by cross-linking glossary terms within blog content and creating definition clusters.",
-      "recommendation": "Implement automatic glossary term linking within blog content, create 'Related Terms' sections on glossary pages, and build topic clusters around key terms like 'aged leads', 'lead scoring', 'conversion rates'",
+      "title": "Glossary cross-linking underutilized for topical authority",
+      "description": "With 77 glossary terms, there's significant opportunity to strengthen topical authority through strategic internal linking between blog posts and glossary definitions.",
+      "recommendation": "Implement automated internal linking to glossary terms within blog content. Create contextual links from glossary terms back to relevant blog posts. Add 'Related Terms' sections to glossary pages and 'Key Terms' sections to blog posts.",
       "effort": "medium",
       "affectedPages": [
         "/glossary/*",
         "/blog/*"
       ],
-      "sourceAudit": "2026-04-15",
-      "notes": "Re-identified in audit 2026-05-13"
+      "sourceAudit": "2026-05-20"
     },
     {
-      "id": "finding-008",
-      "createdAt": "2026-04-15T10:01:31.672Z",
-      "updatedAt": "2026-05-13T10:01:23.622Z",
+      "id": "finding-006",
+      "createdAt": "2026-04-29T10:02:06.586Z",
+      "updatedAt": "2026-05-20T10:01:43.743Z",
       "status": "open",
       "priority": 3,
       "category": "content-quality",
       "severity": "medium",
-      "title": "Content freshness strategy needed for competitive topics",
-      "description": "Topics like lead pricing and market trends require regular updates to maintain relevance. Google's Helpful Content system favors fresh, current information for time-sensitive queries.",
-      "recommendation": "Implement quarterly content refresh schedule for pricing posts, market analysis, and trend content. Add 'Last Updated' dates prominently and create content calendar for seasonal updates",
-      "effort": "small",
+      "title": "Content pillar gaps undermine topical authority",
+      "description": "Zero playbooks and guides published despite having defined content pillars including 'Vertical Playbooks' and 'Role Guides', creating gaps in comprehensive topic coverage.",
+      "recommendation": "Prioritize creating comprehensive playbooks for each vertical (insurance, mortgage, solar, PI, financial advisory) and role-specific guides. Each should be 3000+ words with actionable frameworks, templates, and industry-specific strategies.",
+      "effort": "large",
       "affectedPages": [
-        "/blog/health-insurance-lead-pricing-2026",
-        "/blog/life-insurance-leads-cost-2026"
+        "/playbooks/*",
+        "/guides/*"
       ],
-      "sourceAudit": "2026-04-15",
-      "notes": "Re-identified in audit 2026-05-13"
+      "sourceAudit": "2026-04-29",
+      "notes": "Re-identified in audit 2026-05-20"
     },
     {
       "id": "finding-011",
       "createdAt": "2026-05-06T10:01:31.937Z",
-      "updatedAt": "2026-05-13T10:01:23.622Z",
+      "updatedAt": "2026-05-20T10:01:43.743Z",
       "status": "open",
       "priority": 3,
       "category": "mobile",
       "severity": "low",
       "title": "Mobile affiliate link interaction optimization needed",
-      "description": "Affiliate links may not provide optimal mobile experience with proper touch targets and loading feedback, potentially affecting mobile conversion rates.",
-      "recommendation": "Ensure all affiliate links have minimum 44px touch targets, add loading states for affiliate redirects, and optimize button sizing for mobile interactions",
+      "description": "Affiliate links may not provide optimal mobile user experience with proper tap targets and clear interaction feedback, potentially affecting mobile engagement signals.",
+      "recommendation": "Ensure affiliate links have minimum 44px tap targets, clear hover/focus states, and loading indicators. Test affiliate link tracking on mobile devices to ensure proper UTM parameter handling.",
       "effort": "small",
       "affectedPages": [
         "/blog/*",
         "/lead-types/*"
       ],
       "sourceAudit": "2026-05-06",
-      "notes": "Re-identified in audit 2026-05-13"
+      "notes": "Re-identified in audit 2026-05-20"
     },
     {
       "id": "finding-009",
       "createdAt": "2026-04-29T10:02:06.586Z",
-      "updatedAt": "2026-05-13T10:01:23.622Z",
+      "updatedAt": "2026-05-20T10:01:43.743Z",
       "status": "open",
       "priority": 4,
       "category": "e-e-a-t",
       "severity": "low",
       "title": "Case studies lack verifiable sourcing for credibility",
-      "description": "Content mentions success stories and case studies but lacks verifiable sources, client testimonials, or data attribution that would strengthen E-E-A-T signals.",
-      "recommendation": "Add anonymized but specific case studies with verifiable metrics, client testimonials with permission, and data sources for all statistics and claims made in content",
+      "description": "Content references success stories and ROI examples but lacks verifiable sources or detailed attribution that would strengthen trust signals under enhanced E-E-A-T requirements.",
+      "recommendation": "Add detailed attribution to all case studies with anonymized but verifiable details (company size, industry, timeframe). Include methodology sections explaining how results were measured. Consider adding client testimonials with permission.",
       "effort": "medium",
       "affectedPages": [
-        "/blog/*"
+        "/blog/life-insurance-aged-lead-roi",
+        "/blog/aged-lead-store-review-2026"
       ],
       "sourceAudit": "2026-04-29",
-      "notes": "Re-identified in audit 2026-05-13"
+      "notes": "Re-identified in audit 2026-05-20"
     },
     {
       "id": "finding-011",
       "createdAt": "2026-04-22T10:01:40.033Z",
-      "updatedAt": "2026-05-13T10:01:23.622Z",
+      "updatedAt": "2026-05-20T10:01:43.743Z",
       "status": "open",
       "priority": 4,
       "category": "structured-data",
       "severity": "low",
       "title": "FAQ schema opportunities on glossary pages",
-      "description": "Glossary pages could benefit from FAQ schema to capture question-based queries and improve visibility for definition searches.",
-      "recommendation": "Add FAQ schema to glossary pages with common questions like 'What are aged leads?', 'How much do aged leads cost?', 'Are aged leads worth it?' for key terms",
+      "description": "Glossary pages could benefit from FAQ schema markup to capture question-based queries and improve SERP visibility for definitional searches.",
+      "recommendation": "Add FAQ schema to glossary pages with common questions like 'What is [term]?', 'How does [term] work?', and 'Why is [term] important?' Ensure answers provide comprehensive explanations beyond basic definitions.",
       "effort": "small",
       "affectedPages": [
         "/glossary/*"
       ],
       "sourceAudit": "2026-04-22",
-      "notes": "Re-identified in audit 2026-05-13"
+      "notes": "Re-identified in audit 2026-05-20"
     },
     {
       "id": "finding-002",
@@ -346,6 +350,63 @@
       ],
       "sourceAudit": "2026-04-15",
       "notes": "Not found in audit 2026-04-22 — appears resolved"
+    },
+    {
+      "id": "finding-004",
+      "createdAt": "2026-04-22T10:01:40.033Z",
+      "updatedAt": "2026-05-20T10:01:43.743Z",
+      "status": "completed",
+      "priority": 3,
+      "category": "technical-seo",
+      "severity": "medium",
+      "title": "Core Web Vitals INP optimization needed for May 2024 thresholds",
+      "description": "Google's May 2024 Core Web Vitals update introduced stricter INP (Interaction to Next Paint) thresholds. Next.js sites often struggle with JavaScript bundle size affecting interaction responsiveness.",
+      "recommendation": "Implement code splitting for affiliate tracking lib, optimize JavaScript bundle size, add loading states for affiliate link clicks, and ensure tap targets meet 44px minimum on mobile",
+      "effort": "medium",
+      "affectedPages": [
+        "/blog/*",
+        "/lead-types/*"
+      ],
+      "sourceAudit": "2026-04-22",
+      "notes": "Not found in audit 2026-05-20 — appears resolved"
+    },
+    {
+      "id": "finding-007",
+      "createdAt": "2026-04-15T10:01:31.672Z",
+      "updatedAt": "2026-05-20T10:01:43.743Z",
+      "status": "completed",
+      "priority": 3,
+      "category": "internal-linking",
+      "severity": "medium",
+      "title": "Glossary cross-linking underutilized for topic authority",
+      "description": "With 77 glossary terms, there's significant opportunity to strengthen internal linking and topic authority by cross-linking glossary terms within blog content and creating definition clusters.",
+      "recommendation": "Implement automatic glossary term linking within blog content, create 'Related Terms' sections on glossary pages, and build topic clusters around key terms like 'aged leads', 'lead scoring', 'conversion rates'",
+      "effort": "medium",
+      "affectedPages": [
+        "/glossary/*",
+        "/blog/*"
+      ],
+      "sourceAudit": "2026-04-15",
+      "notes": "Not found in audit 2026-05-20 — appears resolved"
+    },
+    {
+      "id": "finding-008",
+      "createdAt": "2026-04-15T10:01:31.672Z",
+      "updatedAt": "2026-05-20T10:01:43.743Z",
+      "status": "completed",
+      "priority": 3,
+      "category": "content-quality",
+      "severity": "medium",
+      "title": "Content freshness strategy needed for competitive topics",
+      "description": "Topics like lead pricing and market trends require regular updates to maintain relevance. Google's Helpful Content system favors fresh, current information for time-sensitive queries.",
+      "recommendation": "Implement quarterly content refresh schedule for pricing posts, market analysis, and trend content. Add 'Last Updated' dates prominently and create content calendar for seasonal updates",
+      "effort": "small",
+      "affectedPages": [
+        "/blog/health-insurance-lead-pricing-2026",
+        "/blog/life-insurance-leads-cost-2026"
+      ],
+      "sourceAudit": "2026-04-15",
+      "notes": "Not found in audit 2026-05-20 — appears resolved"
     },
     {
       "id": "finding-004",
