@@ -67,9 +67,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 type GtagArgs = [string, ...any[]];
 
 function gtag(...args: GtagArgs) {
-  if (typeof window !== "undefined" && "dataLayer" in window) {
-    (window as unknown as { dataLayer: GtagArgs[] }).dataLayer.push(args);
-  }
+  if (typeof window === "undefined") return;
+  const w = window as unknown as { dataLayer?: GtagArgs[] };
+  w.dataLayer = w.dataLayer || [];
+  w.dataLayer.push(args);
 }
 
 export function trackEvent(name: string, params?: Record<string, string>) {
@@ -88,4 +89,28 @@ export function trackCtaClick(id: string, location: string) {
     cta_id: id,
     cta_location: location,
   });
+}
+
+// Fires the GA4 event for a tracked outbound click. Event name is one of
+// affiliate_click | partner_click | outbound_click — see lib/outbound-classify.ts.
+// Mark "affiliate_click" as a Key Event in GA4 admin to count it as a conversion.
+export function trackOutboundClick(params: {
+  eventName: string;
+  partnerSlug?: string;
+  partnerName?: string;
+  linkUrl: string;
+  linkDomain: string;
+  linkText?: string;
+  linkLocation: string;
+}) {
+  const payload: Record<string, string> = {
+    link_url: params.linkUrl,
+    link_domain: params.linkDomain,
+    link_location: params.linkLocation,
+    outbound: "true",
+  };
+  if (params.partnerSlug) payload.partner_slug = params.partnerSlug;
+  if (params.partnerName) payload.partner_name = params.partnerName;
+  if (params.linkText) payload.link_text = params.linkText;
+  trackEvent(params.eventName, payload);
 }

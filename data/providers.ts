@@ -770,6 +770,25 @@ export const PROVIDERS: ProviderData[] = rawProviders.map((p) => ({
   overallRating: computeOverall(p),
 }));
 
+// Build-time drift check: PARTNER_HOSTS (the slim client-bundle mirror used by
+// lib/outbound-classify.ts) must list every provider here. The check runs at
+// module load on the server, so any production build that loads providers.ts
+// (sitemap, providers/[slug], etc.) will fail the build if the mirrors drift.
+if (typeof window === "undefined") {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const { PARTNER_HOSTS } = require("./partner-hosts") as {
+    PARTNER_HOSTS: { slug: string; hostname: string }[];
+  };
+  const partnerSlugs = new Set(PARTNER_HOSTS.map((p) => p.slug));
+  const missing = PROVIDERS.filter((p) => !partnerSlugs.has(p.slug)).map((p) => p.slug);
+  if (missing.length > 0) {
+    throw new Error(
+      `data/partner-hosts.ts is missing entries for: ${missing.join(", ")}. ` +
+        `Update partner-hosts.ts to mirror providers.ts.`
+    );
+  }
+}
+
 /** Lookup a provider by slug */
 export function getProvider(slug: string): ProviderData | undefined {
   return PROVIDERS.find((p) => p.slug === slug);

@@ -4,6 +4,7 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { AffiliateDisclosure } from "@/components/affiliate-disclosure";
 import { GoogleAnalyticsTag, GoogleTagManager } from "@/components/analytics";
+import { OutboundTracker } from "@/components/outbound-tracker";
 import "../globals.css";
 
 const geistSans = Geist({
@@ -74,6 +75,7 @@ export default function SiteLayout({
       >
         <GoogleAnalyticsTag />
         <GoogleTagManager />
+        <OutboundTracker />
         <div className="flex min-h-screen flex-col">
           <Header />
           <main className="flex-1">{children}</main>
