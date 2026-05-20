@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-19T15:21:41.570330Z",
+  "lastUpdated": "2026-05-20T12:01:30.882Z",
   "items": [
     {
       "id": "ae65c17929e7",
@@ -88,28 +88,6 @@
       "lastSeen": "2026-04-28",
       "timesRepeated": 2,
       "status": "open"
-    },
-    {
-      "id": "89e9b92e6cfd",
-      "title": "Create Comprehensive 'Aged Lead Store Reviews' Content",
-      "description": "Develop in-depth review content targeting the 'aged lead store reviews' query (currently ranking #12.5). Include comparison charts, pricing analysis, user testimonials, and pros/cons to capture the 23 monthly impressions converting to clicks.",
-      "expectedImpact": "Increase CTR from 0% to 15-20% for this high-intent query, adding 3-5 qualified visitors monthly",
-      "priority": "high",
-      "firstSeen": "2026-05-04",
-      "lastSeen": "2026-05-10",
-      "timesRepeated": 2,
-      "status": "ignored"
-    },
-    {
-      "id": "59cf2ee5c3ed",
-      "title": "Capitalize on Brand Query Rankings",
-      "description": "Create dedicated landing pages for 'aged lead store reviews' and 'aged lead store' queries. Optimize existing /providers/aged-lead-store page with comparison tables, testimonials, and FAQ sections targeting these high-intent searches.",
-      "expectedImpact": "Capture 3-5 additional daily clicks from brand queries within 30 days",
-      "priority": "high",
-      "firstSeen": "2026-05-09",
-      "lastSeen": "2026-05-12",
-      "timesRepeated": 2,
-      "status": "ignored"
     },
     {
       "id": "a1fbb825d68e",
@@ -231,17 +209,6 @@
       "lastSeen": "2026-04-23",
       "timesRepeated": 1,
       "status": "open"
-    },
-    {
-      "id": "6489d0d1a7c4",
-      "title": "Capitalize on 'Aged Lead Store Reviews' Opportunity",
-      "description": "Create comprehensive review content for position 13.0 ranking on 'aged lead store reviews' with 11 daily impressions. Add detailed AgedLeadStore.com review with pros/cons, pricing, and affiliate CTAs.",
-      "expectedImpact": "Convert 11 daily impressions into 2-3 daily clicks with optimized review content",
-      "priority": "high",
-      "firstSeen": "2026-04-24",
-      "lastSeen": "2026-04-24",
-      "timesRepeated": 1,
-      "status": "ignored"
     },
     {
       "id": "5a807f34a14a",
@@ -475,17 +442,6 @@
       "status": "open"
     },
     {
-      "id": "becf5966a5bb",
-      "title": "Capitalize on 'Aged Lead Store Reviews' Ranking Success",
-      "description": "Create dedicated review comparison content targeting position 8.6 ranking for 'aged lead store reviews'. Develop comprehensive review pages comparing AgedLeadStore with competitors to capture the 13 weekly impressions.",
-      "expectedImpact": "Increase clicks from 0 to 3-5 weekly for this high-intent query",
-      "priority": "high",
-      "firstSeen": "2026-05-08",
-      "lastSeen": "2026-05-08",
-      "timesRepeated": 1,
-      "status": "ignored"
-    },
-    {
       "id": "c039e366c35b",
       "title": "Implement User Retention Optimization",
       "description": "Add internal linking widgets, related content suggestions, and clear CTAs on high-bounce pages. Focus on /providers and homepage with sticky navigation to calculators and playbooks. Test exit-intent popups with lead magnets.",
@@ -607,17 +563,6 @@
       "status": "open"
     },
     {
-      "id": "32e961ba9fc5",
-      "title": "Optimize for 'Aged Lead Store Reviews' Query Dominance",
-      "description": "Create comprehensive review comparison content targeting position 1-3 for this high-performing query. Add detailed AgedLeadStore review with pros/cons, alternatives comparison, and strong affiliate CTAs.",
-      "expectedImpact": "Capture 5-10 additional clicks monthly from this query alone",
-      "priority": "high",
-      "firstSeen": "2026-05-16",
-      "lastSeen": "2026-05-16",
-      "timesRepeated": 1,
-      "status": "ignored"
-    },
-    {
       "id": "daf45d614262",
       "title": "Implement Engagement Optimization for High-Bounce Traffic",
       "description": "Add exit-intent popups with lead magnets on high-traffic pages, implement internal linking suggestions after 30 seconds, and create sticky CTAs for AgedLeadStore.com affiliate links. Focus on /calculators/know-your-cpl and /playbook/insurance pages.",
@@ -684,14 +629,36 @@
       "status": "open"
     },
     {
+      "id": "85907f185c8c",
+      "title": "Optimize AgedLeadStore Review Page for Branded Queries",
+      "description": "The /providers/aged-lead-store page ranks #7 for \"aged lead store reviews\" but only captures 7.1% CTR. Add compelling meta descriptions emphasizing \"honest review,\" \"pricing breakdown,\" and \"2026 analysis.\" Include FAQ schema for queries like \"is aged lead store legit\" and \"aged lead store complaints.\" Strengthen affiliate link placement with clear value propositions.",
+      "expectedImpact": "Increase CTR from 7.1% to 15%+ for branded queries, potentially doubling affiliate referral traffic",
+      "priority": "high",
+      "firstSeen": "2026-05-20",
+      "lastSeen": "2026-05-20",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "f551cd4a5920",
+      "title": "Consolidate Aged Mortgage Lead Content to Fix Cannibalization",
+      "description": "Query \"aged mortgage leads\" shows 21 impressions at position 36.7 with 0 clicks. Multiple pages compete: /lead-types/mortgage-leads, /blog/aged-mortgage-leads-2026-guide, and /blog/from-2-to-6-closings-per-month-with-aged-mortgage-leads. Consolidate internal links to /lead-types/mortgage-leads as the canonical page and add cross-links from blog posts.",
+      "expectedImpact": "Improve \"aged mortgage leads\" ranking from position 36.7 to top 20, increasing monthly clicks by 5-10",
+      "priority": "high",
+      "firstSeen": "2026-05-20",
+      "lastSeen": "2026-05-20",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "e5837806021a",
       "title": "Improve Mobile Search Performance",
       "description": "With only 27 mobile impressions vs 223 desktop, optimize mobile page speed and user experience. Focus on calculator and form functionality on mobile devices.",
       "expectedImpact": "Increase mobile search visibility by 50-100% and improve mobile conversion rates",
       "priority": "medium",
       "firstSeen": "2026-05-04",
-      "lastSeen": "2026-05-12",
-      "timesRepeated": 4,
+      "lastSeen": "2026-05-20",
+      "timesRepeated": 5,
       "status": "open"
     },
     {
@@ -770,17 +737,6 @@
       "lastSeen": "2026-04-25",
       "timesRepeated": 2,
       "status": "open"
-    },
-    {
-      "id": "6b00ce2de3b9",
-      "title": "Capitalize on Brand Query Momentum",
-      "description": "Create dedicated landing pages for 'aged lead store reviews' and 'aged lead store' queries that are showing strong impression volume. Include comparison tables, testimonials, and clear affiliate links to AgedLeadStore.com.",
-      "expectedImpact": "Capture 20-30% of the 17 daily brand-related impressions as actual clicks",
-      "priority": "medium",
-      "firstSeen": "2026-04-22",
-      "lastSeen": "2026-05-13",
-      "timesRepeated": 2,
-      "status": "ignored"
     },
     {
       "id": "fc1963d9ad5a",
@@ -1025,28 +981,6 @@
       "status": "open"
     },
     {
-      "id": "0c528609d3eb",
-      "title": "Target 'Aged Lead Store Reviews' Query Aggressively",
-      "description": "Create comprehensive review content for AgedLeadStore.com, optimize existing provider page with user testimonials, comparison tables, and detailed pros/cons. Target position 5-7 for this high-intent query.",
-      "expectedImpact": "Capture 5-10 additional clicks per week from high-converting review searches",
-      "priority": "medium",
-      "firstSeen": "2026-04-29",
-      "lastSeen": "2026-04-29",
-      "timesRepeated": 1,
-      "status": "ignored"
-    },
-    {
-      "id": "69b7a9e3aef1",
-      "title": "Expand Content Around Winning Search Queries",
-      "description": "Create comprehensive guides targeting 'aged lead store reviews', 'aged mortgage leads', and 'lead providers' queries where the site shows ranking momentum. Focus on comparison content and buyer guides.",
-      "expectedImpact": "Could capture 50-100 additional monthly clicks from expanding keyword coverage",
-      "priority": "medium",
-      "firstSeen": "2026-04-30",
-      "lastSeen": "2026-04-30",
-      "timesRepeated": 1,
-      "status": "ignored"
-    },
-    {
       "id": "2356990db7f1",
       "title": "Implement Internal Linking Strategy from High-Traffic Pages",
       "description": "The homepage, providers page, and playbook pages are receiving consistent traffic. Add contextual internal links to affiliate-focused content and lead type pages to distribute link equity and guide user journey.",
@@ -1091,17 +1025,6 @@
       "status": "open"
     },
     {
-      "id": "8c14f37220af",
-      "title": "Expand Aged Lead Store Brand Query Coverage",
-      "description": "Create dedicated pages for 'aged lead store reviews', 'aged lead store alternatives', and 'aged lead store pricing' to capture the 21+ daily impressions for review queries currently ranking at position 13.",
-      "expectedImpact": "Could improve CTR to 3-5% and capture 15-20 additional monthly clicks",
-      "priority": "medium",
-      "firstSeen": "2026-05-02",
-      "lastSeen": "2026-05-02",
-      "timesRepeated": 1,
-      "status": "ignored"
-    },
-    {
       "id": "df9028d9c9c5",
       "title": "Expand Email Newsletter Content Distribution",
       "description": "With 12 sessions from email driving quality traffic, increase newsletter frequency and create email-exclusive content previews that drive traffic to high-converting pages like calculators and playbooks.",
@@ -1111,17 +1034,6 @@
       "lastSeen": "2026-05-03",
       "timesRepeated": 1,
       "status": "open"
-    },
-    {
-      "id": "3d575d41a9ec",
-      "title": "Create Aged Lead Store Review and Comparison Content",
-      "description": "Search data shows strong demand for 'aged lead store reviews' with good positioning. Create comprehensive review pages, comparison charts, and case studies featuring AgedLeadStore.com to capture this search traffic.",
-      "expectedImpact": "Capture 15-20 additional organic sessions monthly from review-focused queries",
-      "priority": "medium",
-      "firstSeen": "2026-05-03",
-      "lastSeen": "2026-05-03",
-      "timesRepeated": 1,
-      "status": "ignored"
     },
     {
       "id": "c64a376d9244",
@@ -1201,17 +1113,6 @@
       "status": "open"
     },
     {
-      "id": "dc9e3b0689e8",
-      "title": "Optimize for 'Aged Lead Store Reviews' Search Intent",
-      "description": "Currently ranking #8.3 for 'aged lead store reviews' with 11 impressions. Create comprehensive review comparison content, add customer testimonials, and build dedicated review landing pages to capture this high-intent traffic.",
-      "expectedImpact": "Increase clicks by 200% for review-related queries and improve affiliate conversion rates",
-      "priority": "medium",
-      "firstSeen": "2026-05-11",
-      "lastSeen": "2026-05-11",
-      "timesRepeated": 1,
-      "status": "ignored"
-    },
-    {
       "id": "911ae1a89f1c",
       "title": "Expand Long-Tail Lead Type Content",
       "description": "Target the 20+ motor vehicle accident lead queries showing in Search Console by creating state-specific landing pages, build content around 'aged [lead type] leads' patterns, and optimize existing lead-type pages for featured snippets.",
@@ -1221,17 +1122,6 @@
       "lastSeen": "2026-05-13",
       "timesRepeated": 1,
       "status": "open"
-    },
-    {
-      "id": "13acc3efb530",
-      "title": "Optimize for 'aged lead store reviews' search opportunity",
-      "description": "Create comprehensive review content targeting the 16 daily impressions at position 9.3 for 'aged lead store reviews'. Build dedicated review pages with comparison tables, testimonials, and detailed provider analysis.",
-      "expectedImpact": "Capture 2-4 additional daily clicks from this high-intent query",
-      "priority": "medium",
-      "firstSeen": "2026-05-14",
-      "lastSeen": "2026-05-14",
-      "timesRepeated": 1,
-      "status": "ignored"
     },
     {
       "id": "47484af65da3",
@@ -1351,6 +1241,28 @@
       "priority": "medium",
       "firstSeen": "2026-05-19",
       "lastSeen": "2026-05-19",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "a529c748f33b",
+      "title": "Enhance Calculator Page SEO for Lead Generation Queries",
+      "description": "ROI calculator shows 3x engagement rate but lacks search visibility. Optimize /calculators/roi-calculator for queries like \"aged lead ROI calculator,\" \"insurance lead cost calculator,\" and \"lead generation ROI tool.\" Add schema markup for SoftwareApplication and optimize for featured snippets.",
+      "expectedImpact": "Capture 50+ monthly impressions for calculator-related queries, driving high-intent traffic",
+      "priority": "medium",
+      "firstSeen": "2026-05-20",
+      "lastSeen": "2026-05-20",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "c9d19c9cf605",
+      "title": "Optimize High-Impression, Zero-Click Queries",
+      "description": "\"Aged leads\" shows 10 impressions at position 23.0 with 0 clicks. The homepage ranks for this but needs better title tag and meta description. Change from generic to specific: \"Aged Leads for Insurance Agents - Pricing, Providers & ROI Guide 2026\" to capture more clicks.",
+      "expectedImpact": "Convert 2-3 daily impressions to clicks for high-volume aged lead queries",
+      "priority": "medium",
+      "firstSeen": "2026-05-20",
+      "lastSeen": "2026-05-20",
       "timesRepeated": 1,
       "status": "open"
     },
@@ -1540,6 +1452,149 @@
       "lastSeen": "2026-05-19",
       "timesRepeated": 1,
       "status": "open"
+    },
+    {
+      "id": "cd10769daa12",
+      "title": "Leverage Direct Traffic Growth for Email Capture",
+      "description": "With 52 direct sessions weekly, add exit-intent popups and content upgrades on high-traffic pages (/contact, /newsletter, /playbook) to capture emails. Create lead magnets like \"Aged Lead Buyer's Checklist\" or \"ROI Calculator Spreadsheet.\"",
+      "expectedImpact": "Convert 10-15% of direct traffic to email subscribers, building owned audience for affiliate promotions",
+      "priority": "low",
+      "firstSeen": "2026-05-20",
+      "lastSeen": "2026-05-20",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "89e9b92e6cfd",
+      "title": "Create Comprehensive 'Aged Lead Store Reviews' Content",
+      "description": "Develop in-depth review content targeting the 'aged lead store reviews' query (currently ranking #12.5). Include comparison charts, pricing analysis, user testimonials, and pros/cons to capture the 23 monthly impressions converting to clicks.",
+      "expectedImpact": "Increase CTR from 0% to 15-20% for this high-intent query, adding 3-5 qualified visitors monthly",
+      "priority": "high",
+      "firstSeen": "2026-05-04",
+      "lastSeen": "2026-05-10",
+      "timesRepeated": 2,
+      "status": "ignored"
+    },
+    {
+      "id": "59cf2ee5c3ed",
+      "title": "Capitalize on Brand Query Rankings",
+      "description": "Create dedicated landing pages for 'aged lead store reviews' and 'aged lead store' queries. Optimize existing /providers/aged-lead-store page with comparison tables, testimonials, and FAQ sections targeting these high-intent searches.",
+      "expectedImpact": "Capture 3-5 additional daily clicks from brand queries within 30 days",
+      "priority": "high",
+      "firstSeen": "2026-05-09",
+      "lastSeen": "2026-05-12",
+      "timesRepeated": 2,
+      "status": "ignored"
+    },
+    {
+      "id": "6489d0d1a7c4",
+      "title": "Capitalize on 'Aged Lead Store Reviews' Opportunity",
+      "description": "Create comprehensive review content for position 13.0 ranking on 'aged lead store reviews' with 11 daily impressions. Add detailed AgedLeadStore.com review with pros/cons, pricing, and affiliate CTAs.",
+      "expectedImpact": "Convert 11 daily impressions into 2-3 daily clicks with optimized review content",
+      "priority": "high",
+      "firstSeen": "2026-04-24",
+      "lastSeen": "2026-04-24",
+      "timesRepeated": 1,
+      "status": "ignored"
+    },
+    {
+      "id": "becf5966a5bb",
+      "title": "Capitalize on 'Aged Lead Store Reviews' Ranking Success",
+      "description": "Create dedicated review comparison content targeting position 8.6 ranking for 'aged lead store reviews'. Develop comprehensive review pages comparing AgedLeadStore with competitors to capture the 13 weekly impressions.",
+      "expectedImpact": "Increase clicks from 0 to 3-5 weekly for this high-intent query",
+      "priority": "high",
+      "firstSeen": "2026-05-08",
+      "lastSeen": "2026-05-08",
+      "timesRepeated": 1,
+      "status": "ignored"
+    },
+    {
+      "id": "32e961ba9fc5",
+      "title": "Optimize for 'Aged Lead Store Reviews' Query Dominance",
+      "description": "Create comprehensive review comparison content targeting position 1-3 for this high-performing query. Add detailed AgedLeadStore review with pros/cons, alternatives comparison, and strong affiliate CTAs.",
+      "expectedImpact": "Capture 5-10 additional clicks monthly from this query alone",
+      "priority": "high",
+      "firstSeen": "2026-05-16",
+      "lastSeen": "2026-05-16",
+      "timesRepeated": 1,
+      "status": "ignored"
+    },
+    {
+      "id": "6b00ce2de3b9",
+      "title": "Capitalize on Brand Query Momentum",
+      "description": "Create dedicated landing pages for 'aged lead store reviews' and 'aged lead store' queries that are showing strong impression volume. Include comparison tables, testimonials, and clear affiliate links to AgedLeadStore.com.",
+      "expectedImpact": "Capture 20-30% of the 17 daily brand-related impressions as actual clicks",
+      "priority": "medium",
+      "firstSeen": "2026-04-22",
+      "lastSeen": "2026-05-13",
+      "timesRepeated": 2,
+      "status": "ignored"
+    },
+    {
+      "id": "0c528609d3eb",
+      "title": "Target 'Aged Lead Store Reviews' Query Aggressively",
+      "description": "Create comprehensive review content for AgedLeadStore.com, optimize existing provider page with user testimonials, comparison tables, and detailed pros/cons. Target position 5-7 for this high-intent query.",
+      "expectedImpact": "Capture 5-10 additional clicks per week from high-converting review searches",
+      "priority": "medium",
+      "firstSeen": "2026-04-29",
+      "lastSeen": "2026-04-29",
+      "timesRepeated": 1,
+      "status": "ignored"
+    },
+    {
+      "id": "69b7a9e3aef1",
+      "title": "Expand Content Around Winning Search Queries",
+      "description": "Create comprehensive guides targeting 'aged lead store reviews', 'aged mortgage leads', and 'lead providers' queries where the site shows ranking momentum. Focus on comparison content and buyer guides.",
+      "expectedImpact": "Could capture 50-100 additional monthly clicks from expanding keyword coverage",
+      "priority": "medium",
+      "firstSeen": "2026-04-30",
+      "lastSeen": "2026-04-30",
+      "timesRepeated": 1,
+      "status": "ignored"
+    },
+    {
+      "id": "8c14f37220af",
+      "title": "Expand Aged Lead Store Brand Query Coverage",
+      "description": "Create dedicated pages for 'aged lead store reviews', 'aged lead store alternatives', and 'aged lead store pricing' to capture the 21+ daily impressions for review queries currently ranking at position 13.",
+      "expectedImpact": "Could improve CTR to 3-5% and capture 15-20 additional monthly clicks",
+      "priority": "medium",
+      "firstSeen": "2026-05-02",
+      "lastSeen": "2026-05-02",
+      "timesRepeated": 1,
+      "status": "ignored"
+    },
+    {
+      "id": "3d575d41a9ec",
+      "title": "Create Aged Lead Store Review and Comparison Content",
+      "description": "Search data shows strong demand for 'aged lead store reviews' with good positioning. Create comprehensive review pages, comparison charts, and case studies featuring AgedLeadStore.com to capture this search traffic.",
+      "expectedImpact": "Capture 15-20 additional organic sessions monthly from review-focused queries",
+      "priority": "medium",
+      "firstSeen": "2026-05-03",
+      "lastSeen": "2026-05-03",
+      "timesRepeated": 1,
+      "status": "ignored"
+    },
+    {
+      "id": "dc9e3b0689e8",
+      "title": "Optimize for 'Aged Lead Store Reviews' Search Intent",
+      "description": "Currently ranking #8.3 for 'aged lead store reviews' with 11 impressions. Create comprehensive review comparison content, add customer testimonials, and build dedicated review landing pages to capture this high-intent traffic.",
+      "expectedImpact": "Increase clicks by 200% for review-related queries and improve affiliate conversion rates",
+      "priority": "medium",
+      "firstSeen": "2026-05-11",
+      "lastSeen": "2026-05-11",
+      "timesRepeated": 1,
+      "status": "ignored"
+    },
+    {
+      "id": "13acc3efb530",
+      "title": "Optimize for 'aged lead store reviews' search opportunity",
+      "description": "Create comprehensive review content targeting the 16 daily impressions at position 9.3 for 'aged lead store reviews'. Build dedicated review pages with comparison tables, testimonials, and detailed provider analysis.",
+      "expectedImpact": "Capture 2-4 additional daily clicks from this high-intent query",
+      "priority": "medium",
+      "firstSeen": "2026-05-14",
+      "lastSeen": "2026-05-14",
+      "timesRepeated": 1,
+      "status": "ignored"
     }
   ]
 }
