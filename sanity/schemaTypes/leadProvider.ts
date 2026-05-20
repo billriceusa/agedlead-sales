@@ -142,7 +142,7 @@ export const leadProviderType = defineType({
       title: "Data Quality & Compliance (20%)",
       type: "number",
       group: "ratings",
-      description: "1-10: TCPA docs, TrustedForm, DNC scrubbing, consent verification",
+      description: "1-10: TCPA documentation handoff, DNC scrubbing, data verification and hygiene, operational discipline",
       validation: (rule) => rule.min(1).max(10),
     }),
     defineField({
@@ -278,11 +278,8 @@ export const leadProviderType = defineType({
       of: [{ type: "string" }],
       options: {
         list: [
-          { title: "TCPA Consent Documentation", value: "tcpa-docs" },
-          { title: "TrustedForm Certificates", value: "trustedform" },
-          { title: "Jornaya / LeadiD", value: "jornaya" },
+          { title: "TCPA Documentation Handoff", value: "tcpa-docs" },
           { title: "DNC Scrubbing", value: "dnc-scrubbing" },
-          { title: "Consent Verification", value: "consent-verification" },
         ],
       },
     }),

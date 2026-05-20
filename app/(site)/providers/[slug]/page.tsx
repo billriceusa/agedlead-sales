@@ -43,11 +43,8 @@ const DELIVERY_LABELS: Record<string, string> = {
 };
 
 const COMPLIANCE_LABELS: Record<string, string> = {
-  "tcpa-docs": "TCPA Consent Documentation",
-  trustedform: "TrustedForm Certificates",
-  jornaya: "Jornaya / LeadiD",
+  "tcpa-docs": "TCPA Documentation Handoff",
   "dnc-scrubbing": "DNC Scrubbing",
-  "consent-verification": "Consent Verification",
 };
 
 export async function generateStaticParams() {

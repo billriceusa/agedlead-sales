@@ -18,11 +18,8 @@ const LEAD_TYPE_LABELS: Record<string, string> = {
 };
 
 const COMPLIANCE_LABELS: Record<string, string> = {
-  "tcpa-docs": "TCPA Docs",
-  trustedform: "TrustedForm",
-  jornaya: "Jornaya",
+  "tcpa-docs": "TCPA Paperwork",
   "dnc-scrubbing": "DNC Scrub",
-  "consent-verification": "Consent Verification",
 };
 
 function WinnerDot({ a, b }: { a: number; b: number }) {

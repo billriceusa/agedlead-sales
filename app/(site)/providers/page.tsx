@@ -203,7 +203,7 @@ export default async function ProvidersPage() {
               {
                 label: "Data Quality & Compliance",
                 weight: "20%",
-                desc: "TCPA docs, consent verification, DNC scrubbing",
+                desc: "Verified data, DNC scrubbing, TCPA paperwork handoff",
               },
               {
                 label: "Flexibility",
@@ -240,11 +240,10 @@ export default async function ProvidersPage() {
             ))}
           </div>
           <p className="mx-auto mt-6 max-w-3xl text-center text-xs text-zinc-500 dark:text-zinc-400">
-            For aged inventory, the realistic Data Quality &amp; Compliance
-            expectation is provider data verification and hygiene (verified,
-            validated contact data plus DNC scrubbing) — not per-record consent
-            documentation, which applies to real-time providers using
-            TrustedForm or Jornaya.
+            Data Quality &amp; Compliance scores what providers actually deliver
+            to buyers: verified contact data, DNC scrubbing, and TCPA paperwork
+            handoff. All purchased lead inventory is brokered consumer data —
+            fresh consent before outreach is the buyer&apos;s responsibility.
           </p>
           <div className="mt-8 text-center">
             <Link

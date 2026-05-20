@@ -79,9 +79,9 @@ export default function MethodologyPage() {
                   </td>
                   <td>20%</td>
                   <td>
-                    TCPA consent documentation, TrustedForm or Jornaya
-                    certificates, DNC scrubbing, consent verification processes,
-                    and overall data accuracy.
+                    Verified, validated contact data, DNC scrubbing, TCPA
+                    paperwork handoff at delivery, and the operational
+                    discipline a buyer should expect from a credible provider.
                   </td>
                 </tr>
                 <tr>
@@ -119,16 +119,15 @@ export default function MethodologyPage() {
             </table>
 
             <p>
-              <strong>A note on consent for aged inventory:</strong> TCPA
-              consent documentation, TrustedForm, and Jornaya certificates are
-              meaningful signals for real-time lead providers. Aged leads are
-              non-consented brokered consumer data — for aged inventory the
-              realistic expectation is that the provider performs data
-              verification and hygiene (screening for and maintaining verified,
-              validated contact information and DNC scrubbing), not that
-              per-record consent documentation accompanies the leads. We weight
-              this dimension accordingly for each provider&apos;s actual
-              inventory type.
+              <strong>A note on consent:</strong> All purchased lead inventory
+              is brokered consumer data. The original consumer&apos;s consent
+              does not transfer to the buyer along with the data. Fresh
+              consent, scrubbed dialing windows, and current revocation
+              handling are the buyer&apos;s responsibility before any outreach
+              — regardless of what consent-capture infrastructure was used at
+              the original source. We score Data Quality &amp; Compliance on
+              what providers actually deliver to buyers: verified data, DNC
+              scrubbing, paperwork handoff, and operational discipline.
             </p>
 
             <h3>Scoring Scale</h3>
