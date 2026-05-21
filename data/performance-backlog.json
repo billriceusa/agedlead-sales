@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-20T12:01:30.882Z",
+  "lastUpdated": "2026-05-21T12:01:10.031Z",
   "items": [
     {
       "id": "ae65c17929e7",
@@ -651,6 +651,28 @@
       "status": "open"
     },
     {
+      "id": "30820b977c6b",
+      "title": "Optimize Aged Lead Store Provider Page for Position 7.3 Query",
+      "description": "The /providers/aged-lead-store page ranks at position 7.3 for 'aged lead store reviews' with 2 clicks. Optimize this existing page by adding more comprehensive review content, FAQ section, and stronger affiliate call-to-actions to push from position 7.3 to positions 3-5 for higher CTR.",
+      "expectedImpact": "Could increase clicks from 2 to 8-12 daily by improving position and CTR on this converting query",
+      "priority": "high",
+      "firstSeen": "2026-05-21",
+      "lastSeen": "2026-05-21",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "00f4f54d5a10",
+      "title": "Consolidate Aged Lead Generic Query Cannibalization",
+      "description": "Multiple pages compete for 'aged leads' queries (homepage, lead-types pages, blog posts). The homepage ranks at position 28.3 with 0 clicks. Consolidate internal linking to make /lead-types the canonical hub for 'aged leads' queries and optimize that page's title tag and H1 for better relevance.",
+      "expectedImpact": "Could capture 3-5 additional daily clicks from the 11 impressions for 'aged leads' queries",
+      "priority": "high",
+      "firstSeen": "2026-05-21",
+      "lastSeen": "2026-05-21",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "e5837806021a",
       "title": "Improve Mobile Search Performance",
       "description": "With only 27 mobile impressions vs 223 desktop, optimize mobile page speed and user experience. Focus on calculator and form functionality on mobile devices.",
@@ -680,6 +702,17 @@
       "priority": "medium",
       "firstSeen": "2026-04-25",
       "lastSeen": "2026-05-18",
+      "timesRepeated": 3,
+      "status": "open"
+    },
+    {
+      "id": "088660111850",
+      "title": "Optimize Mobile Search Experience",
+      "description": "Mobile accounts for only 29 of 249 total impressions. Improve mobile page speed, create mobile-specific calculator interfaces, and ensure all affiliate links are mobile-optimized for the insurance agent audience.",
+      "expectedImpact": "Could increase mobile impressions by 100-200% and improve overall CTR",
+      "priority": "medium",
+      "firstSeen": "2026-05-02",
+      "lastSeen": "2026-05-21",
       "timesRepeated": 3,
       "status": "open"
     },
@@ -746,17 +779,6 @@
       "priority": "medium",
       "firstSeen": "2026-04-29",
       "lastSeen": "2026-05-14",
-      "timesRepeated": 2,
-      "status": "open"
-    },
-    {
-      "id": "088660111850",
-      "title": "Optimize Mobile Search Experience",
-      "description": "Mobile accounts for only 29 of 249 total impressions. Improve mobile page speed, create mobile-specific calculator interfaces, and ensure all affiliate links are mobile-optimized for the insurance agent audience.",
-      "expectedImpact": "Could increase mobile impressions by 100-200% and improve overall CTR",
-      "priority": "medium",
-      "firstSeen": "2026-05-02",
-      "lastSeen": "2026-05-03",
       "timesRepeated": 2,
       "status": "open"
     },
@@ -1267,6 +1289,17 @@
       "status": "open"
     },
     {
+      "id": "fea07dd5eba1",
+      "title": "Enhance Lead Tycoons Provider Page CTR",
+      "description": "The /providers/lead-tycoons page ranks well (position 10.4) for branded queries but needs CTR optimization. Add compelling meta description highlighting key differentiators and pricing information to improve click-through from the 2 daily impressions.",
+      "expectedImpact": "Could improve CTR from current levels to capture 1-2 additional clicks daily",
+      "priority": "medium",
+      "firstSeen": "2026-05-21",
+      "lastSeen": "2026-05-21",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "cc192c120d5f",
       "title": "Long-tail Keyword Expansion",
       "description": "Target specific queries like 'how much do mortgage trigger leads cost' (pos 56.8) and 'auto insurance lead cost' (pos 23.0) with dedicated content pieces.",
@@ -1461,6 +1494,17 @@
       "priority": "low",
       "firstSeen": "2026-05-20",
       "lastSeen": "2026-05-20",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "5bba1a24c476",
+      "title": "Expand Calculator Tool Internal Linking",
+      "description": "The ROI calculator shows high engagement (25 views, 8 users) indicating repeat usage. Add internal links to this tool from relevant blog posts and lead-type pages to increase discovery and session depth.",
+      "expectedImpact": "Could increase calculator usage by 30-50% and improve overall session duration",
+      "priority": "low",
+      "firstSeen": "2026-05-21",
+      "lastSeen": "2026-05-21",
       "timesRepeated": 1,
       "status": "open"
     },
