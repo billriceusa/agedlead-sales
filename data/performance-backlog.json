@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-21T12:01:10.031Z",
+  "lastUpdated": "2026-05-22T12:01:29.606Z",
   "items": [
     {
       "id": "ae65c17929e7",
@@ -673,6 +673,28 @@
       "status": "open"
     },
     {
+      "id": "592b29bbe3df",
+      "title": "Optimize AgedLeadStore review page for position 7.4 query",
+      "description": "The existing /blog/aged-lead-store-review-2026 page ranks position 7.4 for 'aged lead store reviews' with 15 impressions but only 1 click. Add compelling title tag with year/credibility signals, optimize meta description for higher CTR, and strengthen affiliate-forward content to capture this branded traffic.",
+      "expectedImpact": "Increase CTR from 6.7% to 15%+ for this high-intent query, driving 2-3 additional daily clicks",
+      "priority": "high",
+      "firstSeen": "2026-05-22",
+      "lastSeen": "2026-05-22",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "a45fa35b131f",
+      "title": "Consolidate aged leads query targeting to prevent cannibalization",
+      "description": "Query 'aged leads' shows position 22.7 with multiple potential URLs competing (/lead-types/insurance-leads, homepage, /providers). Audit internal linking to establish /lead-types as the canonical aged leads hub and redirect link equity from competing pages.",
+      "expectedImpact": "Move 'aged leads' query from position 22.7 to page 1 (position 8-10), capturing 5-8 additional daily clicks",
+      "priority": "high",
+      "firstSeen": "2026-05-22",
+      "lastSeen": "2026-05-22",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "e5837806021a",
       "title": "Improve Mobile Search Performance",
       "description": "With only 27 mobile impressions vs 223 desktop, optimize mobile page speed and user experience. Focus on calculator and form functionality on mobile devices.",
@@ -1300,6 +1322,39 @@
       "status": "open"
     },
     {
+      "id": "d5e563e5d933",
+      "title": "Optimize provider comparison pages for competitor brand queries",
+      "description": "Existing /compare/aged-lead-store-vs-the-leads-warehouse ranks position 16.3 for 'the leads warehouse reviews'. Strengthen this page's E-A-T signals, add recent pricing data, and optimize for affiliate conversion while maintaining comparison credibility.",
+      "expectedImpact": "Capture competitor research traffic and convert 20-30% to AgedLeadStore affiliate clicks",
+      "priority": "medium",
+      "firstSeen": "2026-05-22",
+      "lastSeen": "2026-05-22",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "6bdbc0ce0827",
+      "title": "Scale referral traffic momentum with partner content",
+      "description": "AgedLeadStore referrals (23 sessions) are driving quality traffic. Create dedicated landing pages for referral traffic with affiliate-optimized content, clear CTAs, and conversion tracking to maximize partner channel ROI.",
+      "expectedImpact": "Increase referral traffic conversion rate by 25-40% through dedicated landing experiences",
+      "priority": "medium",
+      "firstSeen": "2026-05-22",
+      "lastSeen": "2026-05-22",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "2f2e315987fa",
+      "title": "Enhance calculator engagement for lead capture",
+      "description": "ROI calculator shows 25 views from 8 users indicating high engagement. Add email capture gate after calculation results, integrate with newsletter signup, and create follow-up sequences for calculator users.",
+      "expectedImpact": "Convert 15-25% of calculator users to email subscribers, building owned audience for affiliate promotions",
+      "priority": "medium",
+      "firstSeen": "2026-05-22",
+      "lastSeen": "2026-05-22",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "cc192c120d5f",
       "title": "Long-tail Keyword Expansion",
       "description": "Target specific queries like 'how much do mortgage trigger leads cost' (pos 56.8) and 'auto insurance lead cost' (pos 23.0) with dedicated content pieces.",
@@ -1505,6 +1560,17 @@
       "priority": "low",
       "firstSeen": "2026-05-21",
       "lastSeen": "2026-05-21",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "bc9cc02939e3",
+      "title": "Optimize mobile search experience for growing mobile impressions",
+      "description": "Mobile shows 115 impressions vs 942 desktop, but mobile-first indexing means mobile experience affects all rankings. Audit mobile page speed, CLS, and tap targets on key pages like /providers and /lead-types.",
+      "expectedImpact": "Improve overall search rankings by 2-3 positions through better mobile experience signals",
+      "priority": "low",
+      "firstSeen": "2026-05-22",
+      "lastSeen": "2026-05-22",
       "timesRepeated": 1,
       "status": "open"
     },
