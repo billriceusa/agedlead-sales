@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-22T12:01:29.606Z",
+  "lastUpdated": "2026-05-23T12:01:16.018Z",
   "items": [
     {
       "id": "ae65c17929e7",
@@ -695,6 +695,28 @@
       "status": "open"
     },
     {
+      "id": "3c62a8237c2e",
+      "title": "Optimize AgedLeadStore review page for branded search capture",
+      "description": "The existing /blog/aged-lead-store-review-2026 page ranks position 9.8 for branded queries but only captures 1 click from 15 impressions. Optimize title tag to 'Aged Lead Store Review 2026: Honest Analysis & Affiliate Experience', add FAQ schema for 'is aged lead store legit' queries, and strengthen the affirm-and-forward messaging to better capture branded research traffic.",
+      "expectedImpact": "Increase CTR from 6.7% to 12-15% for branded queries, potentially doubling branded traffic",
+      "priority": "high",
+      "firstSeen": "2026-05-23",
+      "lastSeen": "2026-05-23",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "f0a2b1e48b67",
+      "title": "Consolidate and optimize insurance leads content to break page 2 ceiling",
+      "description": "The /lead-types/insurance-leads page ranks position 40.8 and received 2 clicks, indicating a page 2 ranking ceiling. Review the content inventory for potential cannibalization with /blog/aged-life-insurance-leads-scripts-strategies-agents and other insurance-focused pages. Consolidate internal linking to the main /lead-types/insurance-leads page and optimize for 'aged insurance leads' cluster queries.",
+      "expectedImpact": "Move from page 2 to page 1 positions (15-25 range), potentially 3-5x organic clicks",
+      "priority": "high",
+      "firstSeen": "2026-05-23",
+      "lastSeen": "2026-05-23",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "e5837806021a",
       "title": "Improve Mobile Search Performance",
       "description": "With only 27 mobile impressions vs 223 desktop, optimize mobile page speed and user experience. Focus on calculator and form functionality on mobile devices.",
@@ -1355,6 +1377,28 @@
       "status": "open"
     },
     {
+      "id": "62bbd20c826d",
+      "title": "Implement schema markup for calculator tools",
+      "description": "The calculator pages (/calculators/roi-calculator, /calculators/know-your-cpl) show strong engagement but low user-to-view ratios. Add FAQ schema, calculator schema, and optimize for 'lead cost calculator' and 'insurance ROI calculator' queries to improve search visibility and click-through rates.",
+      "expectedImpact": "Increase calculator page organic visibility by 25-40% and improve user acquisition",
+      "priority": "medium",
+      "firstSeen": "2026-05-23",
+      "lastSeen": "2026-05-23",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "491ad3ed3125",
+      "title": "Optimize The Leads Warehouse comparison page for competitor capture",
+      "description": "The /compare/aged-lead-store-vs-the-leads-warehouse page ranks position 14.1 for 'the leads warehouse reviews' with 1 click from 5 impressions. Optimize the comparison to better capture competitor research traffic while maintaining affiliate-friendly positioning toward AgedLeadStore.",
+      "expectedImpact": "Capture 20-30% more competitor research traffic and funnel to AgedLeadStore affiliate links",
+      "priority": "medium",
+      "firstSeen": "2026-05-23",
+      "lastSeen": "2026-05-23",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "cc192c120d5f",
       "title": "Long-tail Keyword Expansion",
       "description": "Target specific queries like 'how much do mortgage trigger leads cost' (pos 56.8) and 'auto insurance lead cost' (pos 23.0) with dedicated content pieces.",
@@ -1571,6 +1615,17 @@
       "priority": "low",
       "firstSeen": "2026-05-22",
       "lastSeen": "2026-05-22",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "c2871bf99281",
+      "title": "Expand mobile optimization focus",
+      "description": "Mobile accounts for only 119 impressions vs 1,059 desktop impressions in search. Review mobile page speed, user experience, and ensure calculator tools are mobile-optimized since these show high engagement intent.",
+      "expectedImpact": "Increase mobile search visibility by 15-25% and improve overall user experience",
+      "priority": "low",
+      "firstSeen": "2026-05-23",
+      "lastSeen": "2026-05-23",
       "timesRepeated": 1,
       "status": "open"
     },
