@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-23T12:01:16.018Z",
+  "lastUpdated": "2026-05-24T12:01:08.475Z",
   "items": [
     {
       "id": "ae65c17929e7",
@@ -717,6 +717,28 @@
       "status": "open"
     },
     {
+      "id": "73ed4e514081",
+      "title": "Optimize AgedLeadStore Review Page for Position 7.6 Query",
+      "description": "The existing /blog/aged-lead-store-review-2026 page ranks position 7.6 for 'aged lead store reviews' with 7.7% CTR. Optimize title tag to include 'honest review' or 'comprehensive review', add FAQ schema for common questions, and strengthen the affiliate disclosure while maintaining affirm-and-forward positioning to push from page 1 bottom to top 5.",
+      "expectedImpact": "Move from position 7.6 to positions 3-5, potentially doubling CTR to 15%+ and increasing branded query traffic",
+      "priority": "high",
+      "firstSeen": "2026-05-24",
+      "lastSeen": "2026-05-24",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "d3daad6da143",
+      "title": "Consolidate Lead Provider Comparison Pages",
+      "description": "Multiple comparison pages exist (/compare/aged-lead-store-vs-the-leads-warehouse, /providers/the-leads-warehouse, etc.) that may be cannibalizing each other. Audit the 14 comparison pages and consolidate internal linking to focus authority on the highest-performing comparison URLs, particularly those involving AgedLeadStore as the recommended option.",
+      "expectedImpact": "Reduce keyword cannibalization and improve rankings for provider comparison queries currently stuck on page 2-3",
+      "priority": "high",
+      "firstSeen": "2026-05-24",
+      "lastSeen": "2026-05-24",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "e5837806021a",
       "title": "Improve Mobile Search Performance",
       "description": "With only 27 mobile impressions vs 223 desktop, optimize mobile page speed and user experience. Focus on calculator and form functionality on mobile devices.",
@@ -1399,6 +1421,28 @@
       "status": "open"
     },
     {
+      "id": "388a3d4a2df1",
+      "title": "Enhance Calculator Engagement Conversion",
+      "description": "The /calculators/know-your-cpl page shows strong engagement (33 views, 18 users = high time-on-page). Add exit-intent affiliate link overlays and 'next step' CTAs that guide users from cost calculation to AgedLeadStore.com browsing with affiliate tracking.",
+      "expectedImpact": "Convert high-engagement calculator traffic into affiliate referrals, potentially increasing conversion rate by 25%",
+      "priority": "medium",
+      "firstSeen": "2026-05-24",
+      "lastSeen": "2026-05-24",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "d77bcbd7ab09",
+      "title": "Optimize Insurance Lead Type Pages for Search",
+      "description": "The /lead-types/insurance-leads page received 2 search clicks but ranks at position 41.8. Review and optimize for primary 'aged insurance leads' queries by strengthening topical authority, adding comparison tables, and improving internal linking from related blog posts.",
+      "expectedImpact": "Move insurance lead queries from page 4-5 to page 2-3, potentially increasing organic clicks by 200%",
+      "priority": "medium",
+      "firstSeen": "2026-05-24",
+      "lastSeen": "2026-05-24",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "cc192c120d5f",
       "title": "Long-tail Keyword Expansion",
       "description": "Target specific queries like 'how much do mortgage trigger leads cost' (pos 56.8) and 'auto insurance lead cost' (pos 23.0) with dedicated content pieces.",
@@ -1626,6 +1670,17 @@
       "priority": "low",
       "firstSeen": "2026-05-23",
       "lastSeen": "2026-05-23",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "56c564f9e689",
+      "title": "Leverage Direct Traffic with Email Capture",
+      "description": "With 77 direct sessions showing strong brand awareness, add strategic lead magnets (like the existing /newsletter page) to capture emails from direct visitors who are already engaged with the brand.",
+      "expectedImpact": "Build email list for nurturing and reduce dependency on direct traffic volatility",
+      "priority": "low",
+      "firstSeen": "2026-05-24",
+      "lastSeen": "2026-05-24",
       "timesRepeated": 1,
       "status": "open"
     },
