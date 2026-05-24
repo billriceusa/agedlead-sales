@@ -1,0 +1,181 @@
+{
+  "runDate": "2026-05-24T06:02:49.751Z",
+  "weekStartDate": "2026-05-25",
+  "analysis": {
+    "strategyReview": "Our content strategy shows strong coverage across all five pillars with 63 published posts, demonstrating comprehensive expertise in aged lead strategies. We have particularly strong coverage in Channel Tactics (phone scripts, voicemail, email) and Vertical Playbooks (insurance, mortgage, solar, legal). However, we have gaps in advanced operational content like lead attribution modeling, multi-touch attribution for aged leads, and sophisticated data analysis techniques that larger operations need. We also lack content addressing the intersection of AI/automation with compliance requirements, which is becoming increasingly important as sales teams scale.",
+    "competitiveInsights": "Competitors are missing advanced operational content that bridges strategy with technology implementation. AgedLeadStore.com focuses on product features but doesn't address complex attribution challenges or advanced CRM integrations. HowToWorkLeads.com covers basic tactics but lacks industry-specific compliance nuances and advanced performance optimization strategies. There's a significant opportunity to own keywords around 'aged lead attribution,' 'multi-channel aged lead campaigns,' and 'aged lead performance benchmarking' - searches that indicate sophisticated buyers ready to invest in larger lead volumes.",
+    "newOpportunities": [
+      "Multi-touch attribution for aged lead campaigns",
+      "Advanced lead scoring algorithms for aged lists",
+      "Aged lead performance benchmarking by industry",
+      "Integration strategies for aged leads with marketing automation",
+      "Advanced compliance automation for scaled aged lead operations"
+    ],
+    "trendingTopics": [
+      "AI-powered lead prioritization",
+      "Multi-channel attribution modeling",
+      "Compliance automation tools",
+      "Performance benchmarking across verticals",
+      "Advanced CRM integration strategies"
+    ],
+    "recommendedUpdates": [
+      "Prioritize Metrics & Optimization content to address advanced operational needs",
+      "Create more Role Guides for specialized positions like lead managers and compliance officers",
+      "Develop content bridging technology implementation with compliance requirements"
+    ]
+  },
+  "articlesCreated": [
+    {
+      "title": "Multi-Touch Attribution for Aged Leads: Tracking ROI Across Channels and Campaigns",
+      "slug": "multi-touch-attribution-aged-leads",
+      "publishDate": "2026-05-25",
+      "primaryKeyword": "aged lead attribution",
+      "pillar": "Metrics & Optimization"
+    },
+    {
+      "title": "Aged Lead Performance Benchmarks 2026: Industry Standards for Contact, Appointment, and Close Rates",
+      "slug": "aged-lead-performance-benchmarks-2026",
+      "publishDate": "2026-05-27",
+      "primaryKeyword": "aged lead benchmarks",
+      "pillar": "Metrics & Optimization"
+    },
+    {
+      "title": "Aged Leads for Independent vs. Captive Agents: Different Playbooks for Different Business Models",
+      "slug": "aged-leads-independent-vs-captive-agents",
+      "publishDate": "2026-05-29",
+      "primaryKeyword": "independent agent aged leads",
+      "pillar": "Role Guides"
+    }
+  ],
+  "articlesSkipped": [],
+  "articlesFailed": [],
+  "imageOutcomes": [
+    {
+      "title": "Multi-Touch Attribution for Aged Leads: Tracking ROI Across Channels and Campaigns",
+      "status": "created",
+      "photographer": "Vitaly Gariev"
+    },
+    {
+      "title": "Aged Lead Performance Benchmarks 2026: Industry Standards for Contact, Appointment, and Close Rates",
+      "status": "created",
+      "photographer": "Vitaly Gariev"
+    },
+    {
+      "title": "Aged Leads for Independent vs. Captive Agents: Different Playbooks for Different Business Models",
+      "status": "created",
+      "photographer": "Vitaly Gariev"
+    }
+  ],
+  "newBriefs": [
+    {
+      "day": "Mon",
+      "publishDate": "2026-05-25",
+      "slug": "multi-touch-attribution-aged-leads",
+      "title": "Multi-Touch Attribution for Aged Leads: Tracking ROI Across Channels and Campaigns",
+      "pillar": "Metrics & Optimization",
+      "primaryKeyword": "aged lead attribution",
+      "secondaryKeywords": [
+        "multi-touch attribution",
+        "aged lead roi tracking",
+        "lead attribution modeling"
+      ],
+      "targetLeadTypes": [
+        "lt-insurance",
+        "lt-mortgage",
+        "lt-solar"
+      ],
+      "wordCount": "2,800-3,200",
+      "competitiveAngle": "First comprehensive guide to attribution modeling specifically for aged leads, addressing unique challenges like long sales cycles and multiple touchpoints across months",
+      "outline": [
+        "Why Standard Attribution Fails with Aged Leads",
+        "The Aged Lead Attribution Challenge: Time Decay and Multi-Channel Complexity",
+        "Setting Up First-Touch vs. Last-Touch vs. Multi-Touch Models",
+        "Attribution Tools and CRM Configurations for Aged Leads",
+        "Calculating True ROI When Leads Convert Months Later",
+        "Channel Attribution: Phone, Email, Direct Mail, and Door Knocking",
+        "Industry-Specific Attribution Models: Insurance vs. Mortgage vs. Solar",
+        "Advanced Attribution: Weighting Touchpoints by Lead Age and Quality"
+      ],
+      "internalLinks": [
+        "/glossary/conversion-rate",
+        "/glossary/cost-per-acquisition",
+        "/calculators/roi-calculator",
+        "/lead-types/insurance-leads"
+      ]
+    },
+    {
+      "day": "Wed",
+      "publishDate": "2026-05-27",
+      "slug": "aged-lead-performance-benchmarks-2026",
+      "title": "Aged Lead Performance Benchmarks 2026: Industry Standards for Contact, Appointment, and Close Rates",
+      "pillar": "Metrics & Optimization",
+      "primaryKeyword": "aged lead benchmarks",
+      "secondaryKeywords": [
+        "aged lead contact rates",
+        "aged lead close rates",
+        "lead performance standards"
+      ],
+      "targetLeadTypes": [
+        "lt-insurance",
+        "lt-mortgage",
+        "lt-solar",
+        "lt-mva"
+      ],
+      "wordCount": "3,000-3,500",
+      "competitiveAngle": "First comprehensive benchmark study comparing performance across industries, lead ages, and channels with specific metrics for self-assessment",
+      "outline": [
+        "The Benchmark Problem: Why Generic Lead Metrics Don't Apply to Aged Leads",
+        "Contact Rate Benchmarks by Industry and Lead Age",
+        "Appointment Set Rate Standards Across Verticals",
+        "Close Rate Benchmarks: What's Realistic vs. Exceptional",
+        "Channel Performance Comparison: Phone vs. Email vs. Direct Mail",
+        "Lead Age Impact on Performance Metrics",
+        "Geographic and Seasonal Benchmark Variations",
+        "Using Benchmarks to Identify Improvement Opportunities",
+        "When Your Numbers Don't Match Industry Standards"
+      ],
+      "internalLinks": [
+        "/glossary/contact-rate",
+        "/glossary/close-rate",
+        "/glossary/appointment-set-rate",
+        "/lead-types/medicare-leads"
+      ]
+    },
+    {
+      "day": "Fri",
+      "publishDate": "2026-05-29",
+      "slug": "aged-leads-independent-vs-captive-agents",
+      "title": "Aged Leads for Independent vs. Captive Agents: Different Playbooks for Different Business Models",
+      "pillar": "Role Guides",
+      "primaryKeyword": "independent agent aged leads",
+      "secondaryKeywords": [
+        "captive agent leads",
+        "independent vs captive insurance",
+        "agent lead strategies"
+      ],
+      "targetLeadTypes": [
+        "lt-insurance"
+      ],
+      "wordCount": "2,500-3,000",
+      "competitiveAngle": "First guide addressing the fundamental differences in how independent and captive agents should approach aged leads, including compliance, product positioning, and ROI calculations",
+      "outline": [
+        "Independent vs. Captive: Why Your Business Model Changes Everything",
+        "Lead Budget Allocation: Independent Flexibility vs. Captive Constraints",
+        "Product Positioning with Aged Leads: Multiple Carriers vs. Single Carrier",
+        "Compliance Differences: Independent Agent Responsibilities vs. Captive Support",
+        "ROI Calculations: Commission Structures and Lead Cost Justification",
+        "CRM and Lead Management: Independent Tools vs. Captive Systems",
+        "Cross-Selling Strategies: Independent Opportunities vs. Captive Limitations",
+        "Building Your Lead Pipeline: Independent Sourcing vs. Captive Programs"
+      ],
+      "internalLinks": [
+        "/glossary/book-of-business",
+        "/glossary/cross-selling",
+        "/glossary/cost-per-lead",
+        "/lead-types/insurance-leads"
+      ]
+    }
+  ],
+  "nextWeekPlan": "Selected two Metrics & Optimization pieces to address the gap in advanced operational content, focusing on attribution and benchmarking - topics competitors haven't covered comprehensively. The Friday Role Guide addresses a fundamental business model distinction that affects aged lead strategy but hasn't been explicitly covered. All three pieces target high-intent keywords with commercial value while avoiding overlap with existing content.",
+  "errors": []
+}
