@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-24T12:01:08.475Z",
+  "lastUpdated": "2026-05-25T12:01:35.434Z",
   "items": [
     {
       "id": "ae65c17929e7",
@@ -739,6 +739,28 @@
       "status": "open"
     },
     {
+      "id": "bc81210a7476",
+      "title": "Optimize AgedLeadStore Branded Query Performance",
+      "description": "The 'aged lead store reviews' query at position 8.1 with 13 impressions needs immediate optimization. Update the /blog/aged-lead-store-review-2026 page with fresh 2026 data, add more detailed feature comparisons, include recent customer testimonials, and strengthen the affiliate call-to-action. Also optimize the /providers/aged-lead-store page with complementary content to avoid cannibalization.",
+      "expectedImpact": "Move from position 8 to positions 3-5, potentially doubling clicks from 1 to 2-3 per week, directly increasing affiliate revenue",
+      "priority": "high",
+      "firstSeen": "2026-05-25",
+      "lastSeen": "2026-05-25",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "1bbd43438752",
+      "title": "Consolidate Lead Type Page Authority",
+      "description": "The /lead-types/insurance-leads page is generating search clicks but ranking at position 39.9. Audit internal linking from the homepage, /providers pages, and blog posts to funnel more authority to this converting page. Add more comprehensive content sections covering cost comparisons, provider recommendations, and success case studies.",
+      "expectedImpact": "Improve rankings from page 4 to page 2-3, potentially increasing weekly clicks from 2 to 5-8",
+      "priority": "high",
+      "firstSeen": "2026-05-25",
+      "lastSeen": "2026-05-25",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "e5837806021a",
       "title": "Improve Mobile Search Performance",
       "description": "With only 27 mobile impressions vs 223 desktop, optimize mobile page speed and user experience. Focus on calculator and form functionality on mobile devices.",
@@ -1443,6 +1465,28 @@
       "status": "open"
     },
     {
+      "id": "dcfdf59da21b",
+      "title": "Expand Calculator Tool Suite Based on Usage Patterns",
+      "description": "The ROI calculator shows 3.4 pages per user, indicating high engagement. Create additional calculators for 'Lead Cost Comparison', 'Break-Even Analysis', and 'Commission Projection' tools. Cross-link these from high-traffic lead-type pages to increase session value and time on site.",
+      "expectedImpact": "Increase average session duration from 128s to 150s+ and improve internal link equity distribution",
+      "priority": "medium",
+      "firstSeen": "2026-05-25",
+      "lastSeen": "2026-05-25",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "f63a8e1715cf",
+      "title": "Optimize The Leads Warehouse Comparison Content",
+      "description": "The query 'the leads warehouse reviews' generated 1 click at position 10.0. Optimize the /compare/aged-lead-store-vs-the-leads-warehouse page with more detailed feature comparisons, pricing analysis, and stronger affiliate positioning for AgedLeadStore. Add schema markup for comparison tables.",
+      "expectedImpact": "Move from position 10 to positions 5-7, increasing clicks and strengthening affiliate funnel",
+      "priority": "medium",
+      "firstSeen": "2026-05-25",
+      "lastSeen": "2026-05-25",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "cc192c120d5f",
       "title": "Long-tail Keyword Expansion",
       "description": "Target specific queries like 'how much do mortgage trigger leads cost' (pos 56.8) and 'auto insurance lead cost' (pos 23.0) with dedicated content pieces.",
@@ -1681,6 +1725,17 @@
       "priority": "low",
       "firstSeen": "2026-05-24",
       "lastSeen": "2026-05-24",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "dcb2de50f615",
+      "title": "Enhance Mobile Search Performance",
+      "description": "Mobile accounts for only 2 clicks vs 8 desktop clicks despite mobile-first indexing. Audit mobile page speed, improve mobile UX for key landing pages (/providers, /lead-types), and ensure affiliate CTAs are mobile-optimized.",
+      "expectedImpact": "Increase mobile click share from 20% to 35-40% of total search clicks",
+      "priority": "low",
+      "firstSeen": "2026-05-25",
+      "lastSeen": "2026-05-25",
       "timesRepeated": 1,
       "status": "open"
     },
