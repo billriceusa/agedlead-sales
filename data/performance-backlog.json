@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-25T12:01:35.434Z",
+  "lastUpdated": "2026-05-26T12:01:44.879Z",
   "items": [
     {
       "id": "ae65c17929e7",
@@ -761,6 +761,28 @@
       "status": "open"
     },
     {
+      "id": "4935d790977b",
+      "title": "Optimize existing AgedLeadStore review page for position 3-5 ranking",
+      "description": "The /blog/aged-lead-store-review-2026 page ranks position 8.1 for 'aged lead store reviews' with 15 impressions. Add 500+ words of 2026-specific updates, include recent customer testimonials, add FAQ schema markup, and build 3-5 internal links from related provider comparison pages. Target the 'affirm-and-forward' approach to capture branded research traffic.",
+      "expectedImpact": "Move from position 8 to position 3-5, potentially 3x click volume and affiliate conversions",
+      "priority": "high",
+      "firstSeen": "2026-05-26",
+      "lastSeen": "2026-05-26",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "70c8939afb6c",
+      "title": "Consolidate keyword cannibalization for AgedLeadStore queries",
+      "description": "Three URLs compete for AgedLeadStore branded terms: /blog/aged-lead-store-review-2026, /providers/aged-lead-store, and /compare/aged-lead-store-vs-the-leads-warehouse. Choose /blog/aged-lead-store-review-2026 as canonical, redirect internal links from the other two pages, and consolidate all AgedLeadStore-focused content and affiliate links to this single page.",
+      "expectedImpact": "Eliminate cannibalization, concentrate ranking signals, improve branded query performance by 40-60%",
+      "priority": "high",
+      "firstSeen": "2026-05-26",
+      "lastSeen": "2026-05-26",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "e5837806021a",
       "title": "Improve Mobile Search Performance",
       "description": "With only 27 mobile impressions vs 223 desktop, optimize mobile page speed and user experience. Focus on calculator and form functionality on mobile devices.",
@@ -1487,6 +1509,39 @@
       "status": "open"
     },
     {
+      "id": "a2715e720f63",
+      "title": "Enhance /lead-types/insurance-leads page for broader aged insurance queries",
+      "description": "This page receives 2 clicks at position 41.9 for insurance-related queries. Add comprehensive sections on aged auto insurance leads, aged health insurance leads, and aged insurance leads for agents. Include state-specific considerations, compliance requirements, and ROI calculators to capture the 12+ insurance lead queries currently ranking page 2-4.",
+      "expectedImpact": "Improve rankings for 8-10 insurance lead queries from page 2-4 to page 1, potentially 5x organic traffic",
+      "priority": "medium",
+      "firstSeen": "2026-05-26",
+      "lastSeen": "2026-05-26",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "0b7213471973",
+      "title": "Implement schema markup across top-performing pages",
+      "description": "Add FAQ schema to /providers pages, Review schema to comparison pages, and Article schema to blog posts. Focus on the top 15 pages by traffic: homepage, /providers, /lead-types, and key blog posts. Include aggregate rating schema for provider reviews to enhance SERP visibility.",
+      "expectedImpact": "Improve CTR by 15-25% through enhanced SERP features and rich snippets",
+      "priority": "medium",
+      "firstSeen": "2026-05-26",
+      "lastSeen": "2026-05-26",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "fb67a250b90c",
+      "title": "Optimize /providers/lead-tycoons for position 1 ranking",
+      "description": "Currently ranks position 23 for 'lead tycoons' with 1 click from 4 impressions. The www.agedleadsales.com version ranks position 1, indicating a canonical URL issue. Implement proper canonical tags, update the main page with fresh 2026 content, and build internal links from related mortgage and insurance lead type pages.",
+      "expectedImpact": "Capture position 1 ranking consistently, potentially 10x click volume for this branded query",
+      "priority": "medium",
+      "firstSeen": "2026-05-26",
+      "lastSeen": "2026-05-26",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "cc192c120d5f",
       "title": "Long-tail Keyword Expansion",
       "description": "Target specific queries like 'how much do mortgage trigger leads cost' (pos 56.8) and 'auto insurance lead cost' (pos 23.0) with dedicated content pieces.",
@@ -1736,6 +1791,17 @@
       "priority": "low",
       "firstSeen": "2026-05-25",
       "lastSeen": "2026-05-25",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "c862d36c4025",
+      "title": "Create internal linking strategy for calculator pages",
+      "description": "The /calculators/know-your-cpl page shows strong engagement (38 views, 20 users) indicating high utility. Build contextual internal links from all lead-type pages and relevant blog posts to drive more traffic to this conversion-focused tool. Add related calculators for ROI and lead volume planning.",
+      "expectedImpact": "Increase calculator usage by 50-75%, improve lead qualification and affiliate conversion rates",
+      "priority": "low",
+      "firstSeen": "2026-05-26",
+      "lastSeen": "2026-05-26",
       "timesRepeated": 1,
       "status": "open"
     },
