@@ -1,0 +1,236 @@
+{
+  "runDate": "2026-05-27T10:01:36.472Z",
+  "googleUpdates": [
+    {
+      "updateName": "March 2024 Core Update",
+      "dateRange": "March 5-28, 2024",
+      "impactSummary": "Major algorithm update focused on reducing unhelpful content in search results by 40%. Emphasized rewarding content that demonstrates first-hand experience and expertise, while demoting thin affiliate content and AI-generated material without human oversight.",
+      "relevanceToUs": "High relevance as affiliate sites were specifically targeted. Sites with named authors, original insights, and genuine expertise were rewarded, while thin affiliate content saw significant drops. Our named author approach and original content strategy aligns well with this update.",
+      "actionRequired": true
+    },
+    {
+      "updateName": "Helpful Content System Update",
+      "dateRange": "September 2023 - Ongoing",
+      "impactSummary": "Continuous system now runs in real-time rather than periodic updates. Focuses on content created primarily for people rather than search engines, emphasizing first-hand experience and avoiding content created solely for ranking purposes.",
+      "relevanceToUs": "Critical relevance as affiliate sites must demonstrate genuine value beyond just promoting products. Our focus on educating insurance agents and providing industry insights should align well, but we must ensure content serves users first, not just affiliate conversions.",
+      "actionRequired": true
+    },
+    {
+      "updateName": "December 2023 Spam Update",
+      "dateRange": "December 5-14, 2023",
+      "impactSummary": "Targeted scaled content abuse, site reputation abuse, and expired domain abuse. Focused on removing manipulative content practices and low-quality affiliate content that adds no unique value.",
+      "relevanceToUs": "Moderate relevance as properly disclosed affiliate content with original insights remains acceptable. Our transparent affiliate disclosures and named author content should protect us, but we must ensure each piece adds unique value beyond product promotion.",
+      "actionRequired": false
+    },
+    {
+      "updateName": "E-E-A-T Guidelines Enhancement",
+      "dateRange": "December 2022 - Ongoing",
+      "impactSummary": "Added 'Experience' to E-A-T framework, now emphasizing first-hand experience with products/services being discussed. Updated guidelines stress the importance of demonstrating practical experience, especially for YMYL topics like financial services.",
+      "relevanceToUs": "Very high relevance as we operate in financial services (insurance, mortgages) which are YMYL topics. Bill Rice's industry experience and credentials are crucial, but we need to better demonstrate first-hand experience with lead generation and the products we promote.",
+      "actionRequired": true
+    },
+    {
+      "updateName": "AI Content Guidelines Update",
+      "dateRange": "February 2023 - Ongoing",
+      "impactSummary": "Google clarified that AI-generated content isn't inherently against guidelines, but must meet the same quality standards as human content. Emphasized the need for human oversight, fact-checking, and adding unique value beyond what AI can generate.",
+      "relevanceToUs": "Moderate relevance if we use any AI assistance in content creation. Any AI-generated content must be thoroughly reviewed, fact-checked by Bill Rice, and enhanced with his industry expertise and original insights to meet quality standards.",
+      "actionRequired": false
+    },
+    {
+      "updateName": "Product Reviews Update",
+      "dateRange": "July 2023",
+      "impactSummary": "Expanded beyond traditional product reviews to include services and any content that evaluates or recommends products/services. Emphasized first-hand testing, comparative analysis, and detailed pros/cons rather than thin affiliate content.",
+      "relevanceToUs": "High relevance as our content often recommends lead generation services and tools. We need to ensure any service recommendations include detailed analysis, real testing results, and comparative insights rather than generic promotional content.",
+      "actionRequired": true
+    },
+    {
+      "updateName": "Core Web Vitals Thresholds Update",
+      "dateRange": "May 2024",
+      "impactSummary": "Updated thresholds for Interaction to Next Paint (INP) replacing First Input Delay (FID). Good INP is now under 200ms, needs improvement is 200-500ms, and poor is over 500ms. Emphasized mobile performance and user experience signals.",
+      "relevanceToUs": "Moderate relevance for technical SEO. Our Next.js/Vercel setup should handle this well, but we need to monitor INP scores especially on content-heavy pages and ensure affiliate link interactions don't cause delays.",
+      "actionRequired": false
+    },
+    {
+      "updateName": "Affiliate Content Guidelines Clarification",
+      "dateRange": "August 2023",
+      "impactSummary": "Google clarified that affiliate content can rank well if it provides substantial value beyond the affiliate relationship. Emphasized the need for original insights, personal experience, and content that would be valuable even without the affiliate links.",
+      "relevanceToUs": "Critical relevance as this directly addresses our business model. Our content must demonstrate clear value to insurance agents and other professionals beyond just promoting AgedLeadStore, requiring deeper industry insights and actionable advice.",
+      "actionRequired": true
+    }
+  ],
+  "overallScore": 78,
+  "findings": [
+    {
+      "id": "finding-001",
+      "category": "content-quality",
+      "severity": "high",
+      "title": "Content depth insufficient for March 2024 Core Update standards",
+      "description": "Recent posts like 'Why Smart Agents Buy Aged Leads Instead of Facebook Ads' and 'Life Insurance Aged Lead ROI' lack the comprehensive depth and first-hand experience details required by the March 2024 Core Update. Google now heavily penalizes thin affiliate content that doesn't provide substantial unique value.",
+      "currentState": "Blog posts average 1,200-1,500 words but lack detailed case studies, specific metrics, and first-hand testing results that demonstrate genuine expertise",
+      "recommendation": "Expand key posts to 2,500+ words with detailed case studies, specific ROI calculations, screenshots of actual campaigns, and step-by-step implementation guides. Add 'Author's Experience' sections detailing Bill Rice's direct work with these strategies.",
+      "effort": "large",
+      "affectedPages": [
+        "/blog/smart-agents-buy-aged-leads-instead-facebook-ads",
+        "/blog/life-insurance-aged-lead-roi",
+        "/blog/aged-lead-store-review-2026"
+      ]
+    },
+    {
+      "id": "finding-002",
+      "category": "e-e-a-t",
+      "severity": "high",
+      "title": "YMYL expertise demonstration needs strengthening for financial content",
+      "description": "Content covering insurance, mortgage, and financial advisor topics requires stronger E-E-A-T signals as these are Your Money or Your Life topics. Current author bio and credentials are present but not prominently featured within content.",
+      "currentState": "Bill Rice has Person schema and credentials listed, but individual posts don't prominently display his qualifications or industry experience within the content body",
+      "recommendation": "Add prominent author credential boxes to all YMYL content, include specific years of experience, client success metrics, and industry certifications. Create detailed 'About the Author' sections for each post highlighting relevant expertise for that specific topic.",
+      "effort": "medium",
+      "affectedPages": [
+        "/blog/medicare-compliance-aged-leads",
+        "/blog/life-insurance-aged-lead-roi",
+        "/blog/multi-touch-attribution-aged-leads"
+      ]
+    },
+    {
+      "id": "finding-003",
+      "category": "affiliate-compliance",
+      "severity": "high",
+      "title": "Affiliate disclosure prominence insufficient for 2024 FTC standards",
+      "description": "While affiliate disclosures exist site-wide, they may not meet the FTC's updated 2024 requirements for clear and conspicuous disclosure, especially on mobile devices where disclosures can be less visible.",
+      "currentState": "Site-wide affiliate disclosure present but may be buried in footer or not prominently displayed above the fold on all affiliate content",
+      "recommendation": "Add prominent affiliate disclosure boxes at the top of every post containing affiliate links, use clear language like 'We earn commissions from AgedLeadStore purchases', and ensure mobile visibility with proper styling and positioning.",
+      "effort": "small",
+      "affectedPages": [
+        "/blog/aged-lead-store-review-2026",
+        "/blog/door-knocking-aged-solar-leads",
+        "/blog/ai-lead-scoring-aged-lists"
+      ]
+    },
+    {
+      "id": "finding-004",
+      "category": "technical-seo",
+      "severity": "medium",
+      "title": "Core Web Vitals INP optimization needed for updated thresholds",
+      "description": "With Google's May 2024 update replacing FID with INP and setting new thresholds (good <200ms), affiliate link interactions and content-heavy pages may exceed optimal INP scores, especially on mobile.",
+      "currentState": "Next.js/Vercel setup provides good foundation but INP scores for affiliate link clicks and page interactions haven't been optimized for new thresholds",
+      "recommendation": "Implement INP monitoring, optimize affiliate link click handlers to be non-blocking, lazy load non-critical content below the fold, and ensure UTM tracking doesn't delay interactions. Use React.startTransition for heavy state updates.",
+      "effort": "medium",
+      "affectedPages": [
+        "/blog/*",
+        "/lead-types/*",
+        "/glossary/*"
+      ]
+    },
+    {
+      "id": "finding-005",
+      "category": "structured-data",
+      "severity": "medium",
+      "title": "Missing Product and Review schema reduces rich results eligibility",
+      "description": "Posts reviewing or recommending lead generation services lack Product and Review schema markup, missing opportunities for rich results and reduced visibility in product-related searches.",
+      "currentState": "Article schema present but no Product schema for AgedLeadStore or Review schema for service evaluations",
+      "recommendation": "Add Product schema for AgedLeadStore with aggregateRating, offers, and detailed descriptions. Implement Review schema for service evaluations with author ratings, pros/cons, and detailed review bodies.",
+      "effort": "medium",
+      "affectedPages": [
+        "/blog/aged-lead-store-review-2026",
+        "/blog/ai-lead-scoring-aged-lists"
+      ]
+    },
+    {
+      "id": "finding-006",
+      "category": "content-quality",
+      "severity": "medium",
+      "title": "Missing images impact user experience and engagement signals",
+      "description": "Two recent posts lack featured images, which impacts user engagement, social sharing, and Google's understanding of content quality and user experience signals.",
+      "currentState": "Posts 'smart-agents-buy-aged-leads-instead-facebook-ads' and 'life-insurance-aged-lead-roi' missing featured images",
+      "recommendation": "Create custom featured images for missing posts, ensure all images have descriptive alt text, and implement next/image optimization. Consider adding infographics and charts to support data-heavy content.",
+      "effort": "small",
+      "affectedPages": [
+        "/blog/smart-agents-buy-aged-leads-instead-facebook-ads",
+        "/blog/life-insurance-aged-lead-roi"
+      ]
+    },
+    {
+      "id": "finding-007",
+      "category": "internal-linking",
+      "severity": "medium",
+      "title": "Glossary cross-linking underutilized for topical authority",
+      "description": "With 77 glossary terms available, blog posts aren't maximizing internal linking opportunities to build topical authority and help Google understand content relationships and expertise depth.",
+      "currentState": "Glossary exists but systematic cross-linking between blog posts and relevant glossary terms is inconsistent",
+      "recommendation": "Implement automated internal linking to relevant glossary terms within blog content, create topic clusters linking related posts through glossary terms, and add 'Related Terms' sections to blog posts.",
+      "effort": "medium",
+      "affectedPages": [
+        "/blog/*",
+        "/glossary/*"
+      ]
+    },
+    {
+      "id": "finding-008",
+      "category": "content-quality",
+      "severity": "medium",
+      "title": "Content pillar gaps undermine topical authority",
+      "description": "With 0 playbooks and 0 guides, the content strategy is missing comprehensive pillar content that could establish stronger topical authority in lead generation and industry-specific guidance.",
+      "currentState": "Strong blog content (66 posts) and glossary (77 terms) but missing comprehensive guides and playbooks that could serve as authoritative pillar content",
+      "recommendation": "Create 3-5 comprehensive guides (5,000+ words each) covering core topics like 'Complete Guide to Aged Lead Conversion', 'Insurance Agent's Lead Generation Playbook', and industry-specific guides for each vertical.",
+      "effort": "large",
+      "affectedPages": [
+        "/guides/*",
+        "/playbooks/*"
+      ]
+    },
+    {
+      "id": "finding-009",
+      "category": "e-e-a-t",
+      "severity": "medium",
+      "title": "Case studies lack verifiable sourcing for credibility",
+      "description": "ROI claims and performance benchmarks in posts like 'Life Insurance Aged Lead ROI: $250 to $12K in 90 Days' need verifiable sources or disclaimers to maintain credibility and avoid misleading claims.",
+      "currentState": "Performance claims and case studies present but may lack proper attribution, disclaimers, or verifiable sources",
+      "recommendation": "Add proper disclaimers to all performance claims, cite data sources where possible, anonymize but verify case studies, and include 'results not typical' language where appropriate for compliance.",
+      "effort": "small",
+      "affectedPages": [
+        "/blog/life-insurance-aged-lead-roi",
+        "/blog/aged-lead-performance-benchmarks-2026"
+      ]
+    },
+    {
+      "id": "finding-010",
+      "category": "structured-data",
+      "severity": "low",
+      "title": "FAQ schema opportunities on glossary pages",
+      "description": "Glossary pages could benefit from FAQ schema markup to capture question-based searches and improve visibility for definition-related queries.",
+      "currentState": "DefinedTerm schema present on glossary but no FAQ schema for common questions about each term",
+      "recommendation": "Add FAQ schema to glossary pages with common questions like 'What is [term]?', 'How does [term] work?', and 'Why is [term] important?' to capture more question-based search traffic.",
+      "effort": "small",
+      "affectedPages": [
+        "/glossary/*"
+      ]
+    },
+    {
+      "id": "finding-011",
+      "category": "mobile",
+      "severity": "low",
+      "title": "Mobile affiliate link interaction optimization needed",
+      "description": "Affiliate links may not be optimized for mobile touch interactions, potentially impacting user experience and conversion tracking on mobile devices.",
+      "currentState": "Affiliate links present with proper attributes but mobile touch target optimization and interaction feedback may need improvement",
+      "recommendation": "Ensure affiliate links have minimum 44px touch targets, add visual feedback for touches, optimize UTM tracking for mobile, and test affiliate link interactions across devices for smooth user experience.",
+      "effort": "small",
+      "affectedPages": [
+        "/blog/*",
+        "/lead-types/*"
+      ]
+    }
+  ],
+  "strategyRecommendations": [
+    "Prioritize content depth and first-hand experience demonstration to align with March 2024 Core Update requirements, focusing on expanding thin content with detailed case studies and practical insights",
+    "Strengthen E-E-A-T signals across all YMYL content by prominently featuring Bill Rice's credentials and industry experience within individual posts, not just in author schema",
+    "Develop comprehensive pillar content strategy with detailed guides and playbooks to establish stronger topical authority and capture broader search intent",
+    "Implement systematic internal linking strategy leveraging the extensive glossary to build topic clusters and demonstrate content depth to Google's algorithms"
+  ],
+  "contentStrategyUpdates": [
+    "Shift focus from quantity to quality, expanding existing posts to 2,500+ words with detailed implementation guides, case studies, and first-hand experience sections",
+    "Create industry-specific content pillars with comprehensive guides for each vertical (insurance, mortgage, solar, etc.) to establish domain expertise",
+    "Implement regular content audits to ensure all affiliate recommendations include detailed testing results, comparative analysis, and genuine value beyond promotional content",
+    "Develop a content calendar that balances educational content with affiliate promotions, ensuring 70% educational value and 30% promotional to meet Helpful Content System requirements"
+  ],
+  "backlogItemsCreated": 2,
+  "backlogItemsResolved": 2,
+  "summary": "The site demonstrates strong technical foundations with proper structured data, affiliate compliance basics, and a solid content volume of 66 blog posts and 77 glossary terms. However, the March 2024 Core Update and ongoing Helpful Content System changes require significant content depth improvements and stronger E-E-A-T signals for YMYL topics. The primary risks include thin affiliate content that may not meet Google's new quality thresholds and insufficient demonstration of first-hand experience despite Bill Rice's strong credentials. Key opportunities include leveraging the extensive glossary for internal linking, developing comprehensive pillar content, and enhancing mobile user experience. The technical infrastructure on Next.js/Vercel provides a solid foundation, but Core Web Vitals optimization for the new INP thresholds and enhanced structured data implementation could improve search visibility. Immediate priorities should focus on content depth expansion, prominent E-E-A-T signal display, and affiliate disclosure enhancement to maintain compliance with evolving Google guidelines. With these improvements, the site is well-positioned to benefit from its strong domain focus and author expertise in the lead generation industry."
+}
