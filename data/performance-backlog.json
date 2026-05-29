@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-28T12:01:18.023Z",
+  "lastUpdated": "2026-05-29T12:01:48.532Z",
   "items": [
     {
       "id": "ae65c17929e7",
@@ -805,6 +805,28 @@
       "status": "open"
     },
     {
+      "id": "8991f91292de",
+      "title": "Optimize AgedLeadStore Review Page for Position 8 Query",
+      "description": "The existing /blog/aged-lead-store-review-2026 page ranks position 8.0 for \"aged lead store reviews\" but has low CTR. Add compelling title tag like \"Aged Lead Store Review 2026: Honest Analysis & Real Results\" and meta description emphasizing unbiased review. Add FAQ schema for \"Is Aged Lead Store legit?\" and \"Aged Lead Store pricing\" to capture featured snippets.",
+      "expectedImpact": "Move from position 8 to positions 3-5, increase CTR from 10% to 15-20%, boost affiliate click-through",
+      "priority": "high",
+      "firstSeen": "2026-05-29",
+      "lastSeen": "2026-05-29",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "2d4270fe525b",
+      "title": "Consolidate Mortgage Lead Content to Fix Page 2 Ranking",
+      "description": "The /lead-types/mortgage-leads page ranks position 31.9 for \"aged mortgage leads\" while /blog/aged-mortgage-leads-2026-guide exists. This is keyword cannibalization. Consolidate all mortgage lead content into the /lead-types/mortgage-leads page, redirect the blog post, and optimize for commercial intent with pricing tables and AgedLeadStore affiliate links.",
+      "expectedImpact": "Move \"aged mortgage leads\" from position 32 to positions 15-20, eliminate cannibalization",
+      "priority": "high",
+      "firstSeen": "2026-05-29",
+      "lastSeen": "2026-05-29",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "e5837806021a",
       "title": "Improve Mobile Search Performance",
       "description": "With only 27 mobile impressions vs 223 desktop, optimize mobile page speed and user experience. Focus on calculator and form functionality on mobile devices.",
@@ -1597,6 +1619,28 @@
       "status": "open"
     },
     {
+      "id": "db4a31343064",
+      "title": "Enhance Calculator Engagement with Lead Capture",
+      "description": "The /calculators/know-your-cpl tool shows high repeat usage (1.83 pages per user). Add email capture after calculation with \"Get Your Personalized Lead Buying Strategy\" lead magnet. Create follow-up email sequence promoting AgedLeadStore.com with calculated CPL benchmarks.",
+      "expectedImpact": "Convert 20-30% of calculator users to email subscribers, create affiliate conversion funnel",
+      "priority": "medium",
+      "firstSeen": "2026-05-29",
+      "lastSeen": "2026-05-29",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "215e62dd6145",
+      "title": "Optimize Insurance Lead Pages for Commercial Queries",
+      "description": "The /lead-types/insurance-leads page ranks position 43.5 for \"aged insurance leads\" - too low for commercial traffic. Add comparison tables, pricing benchmarks from /price-index, and prominent AgedLeadStore affiliate CTAs. Target long-tail queries like \"aged insurance leads for agents\" and \"affordable aged insurance leads.\"",
+      "expectedImpact": "Improve rankings for insurance lead queries from page 4 to page 2, increase affiliate conversions",
+      "priority": "medium",
+      "firstSeen": "2026-05-29",
+      "lastSeen": "2026-05-29",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "cc192c120d5f",
       "title": "Long-tail Keyword Expansion",
       "description": "Target specific queries like 'how much do mortgage trigger leads cost' (pos 56.8) and 'auto insurance lead cost' (pos 23.0) with dedicated content pieces.",
@@ -1868,6 +1912,17 @@
       "priority": "low",
       "firstSeen": "2026-05-28",
       "lastSeen": "2026-05-28",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "1fe45b600f8a",
+      "title": "Leverage Direct Traffic with Newsletter Signup Optimization",
+      "description": "With 75 direct sessions, users are returning to the site. The /newsletter page has 22 views - optimize with clear value proposition \"Weekly Aged Lead Industry Insights + Exclusive Vendor Deals\" and add exit-intent popup on high-traffic pages like /providers.",
+      "expectedImpact": "Increase newsletter signups by 40-50%, create recurring touchpoint for affiliate promotions",
+      "priority": "low",
+      "firstSeen": "2026-05-29",
+      "lastSeen": "2026-05-29",
       "timesRepeated": 1,
       "status": "open"
     },
