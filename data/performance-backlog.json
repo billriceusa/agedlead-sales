@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-29T12:01:48.532Z",
+  "lastUpdated": "2026-05-30T12:01:00.996Z",
   "items": [
     {
       "id": "ae65c17929e7",
@@ -827,14 +827,36 @@
       "status": "open"
     },
     {
+      "id": "9d72f7d53876",
+      "title": "Optimize existing /lead-types/mortgage-leads for 'aged mortgage leads' ranking breakthrough",
+      "description": "This page already receives 3 clicks and ranks position 32.7 for the target query. Add more comprehensive aged-specific content, internal linking from related mortgage blog posts, and optimize title/meta for 'aged mortgage leads' specifically rather than generic mortgage leads.",
+      "expectedImpact": "Move from page 3 to page 1-2, potentially 5-10x click volume",
+      "priority": "high",
+      "firstSeen": "2026-05-30",
+      "lastSeen": "2026-05-30",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "4920ac74ccf0",
+      "title": "Consolidate AgedLeadStore review content to eliminate cannibalization",
+      "description": "The site has /blog/aged-lead-store-review-2026, /providers/aged-lead-store, and /providers pages all targeting AgedLeadStore queries. Pick /blog/aged-lead-store-review-2026 as canonical (currently position 9.9) and redirect internal links from other pages to consolidate ranking power.",
+      "expectedImpact": "Improve 'aged lead store reviews' from position 7.8 to top 5, increase CTR from branded searches",
+      "priority": "high",
+      "firstSeen": "2026-05-30",
+      "lastSeen": "2026-05-30",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "e5837806021a",
       "title": "Improve Mobile Search Performance",
       "description": "With only 27 mobile impressions vs 223 desktop, optimize mobile page speed and user experience. Focus on calculator and form functionality on mobile devices.",
       "expectedImpact": "Increase mobile search visibility by 50-100% and improve mobile conversion rates",
       "priority": "medium",
       "firstSeen": "2026-05-04",
-      "lastSeen": "2026-05-20",
-      "timesRepeated": 5,
+      "lastSeen": "2026-05-30",
+      "timesRepeated": 6,
       "status": "open"
     },
     {
@@ -1637,6 +1659,28 @@
       "priority": "medium",
       "firstSeen": "2026-05-29",
       "lastSeen": "2026-05-29",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "d7e0d58f2f11",
+      "title": "Expand calculator tool promotion across high-traffic pages",
+      "description": "The outreach-cadence-planner shows exceptional engagement (14 views, 1 user). Add prominent calculator CTAs to top pages like /providers, /lead-types/insurance-leads, and homepage to drive more discovery of these high-value tools.",
+      "expectedImpact": "Increase session duration and reduce bounce rate across top pages",
+      "priority": "medium",
+      "firstSeen": "2026-05-30",
+      "lastSeen": "2026-05-30",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "5c46182b8b52",
+      "title": "Optimize existing health insurance content for position breakthrough",
+      "description": "The site has /blog/aged-health-insurance-leads-open-enrollment-sep-strategies-2026 but 'aged health insurance leads' ranks position 35.8. Optimize this existing page with better internal linking, updated 2026 data, and cross-links from /lead-types/insurance-leads.",
+      "expectedImpact": "Move from page 4 to page 2, capture more of the 13 daily impressions",
+      "priority": "medium",
+      "firstSeen": "2026-05-30",
+      "lastSeen": "2026-05-30",
       "timesRepeated": 1,
       "status": "open"
     },
