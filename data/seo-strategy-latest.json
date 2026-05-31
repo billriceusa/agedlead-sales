@@ -1,53 +1,52 @@
 {
-  "lastRun": "2026-05-24T06:02:49.751Z",
-  "weekOf": "2026-05-25",
+  "lastRun": "2026-05-31T06:03:35.591Z",
+  "weekOf": "2026-06-01",
   "analysis": {
-    "strategyReview": "Our content strategy shows strong coverage across all five pillars with 63 published posts, demonstrating comprehensive expertise in aged lead strategies. We have particularly strong coverage in Channel Tactics (phone scripts, voicemail, email) and Vertical Playbooks (insurance, mortgage, solar, legal). However, we have gaps in advanced operational content like lead attribution modeling, multi-touch attribution for aged leads, and sophisticated data analysis techniques that larger operations need. We also lack content addressing the intersection of AI/automation with compliance requirements, which is becoming increasingly important as sales teams scale.",
-    "competitiveInsights": "Competitors are missing advanced operational content that bridges strategy with technology implementation. AgedLeadStore.com focuses on product features but doesn't address complex attribution challenges or advanced CRM integrations. HowToWorkLeads.com covers basic tactics but lacks industry-specific compliance nuances and advanced performance optimization strategies. There's a significant opportunity to own keywords around 'aged lead attribution,' 'multi-channel aged lead campaigns,' and 'aged lead performance benchmarking' - searches that indicate sophisticated buyers ready to invest in larger lead volumes.",
+    "strategyReview": "Our current content strategy shows strong coverage across all five pillars with 66 published posts, demonstrating comprehensive expertise in aged lead management. We have excellent vertical-specific content for insurance, solar, mortgage, and legal sectors, plus solid tactical coverage of channels like direct mail, email, and phone outreach. However, we have gaps in advanced optimization content and seasonal/timing strategies that could capture high-intent searches from experienced practitioners looking to refine their operations.",
+    "competitiveInsights": "AgedLeadStore.com focuses heavily on product features and lead quality metrics but lacks deep tactical implementation guides. HowToWorkLeads.com covers general principles but misses industry-specific compliance requirements and vertical nuances. We have clear opportunities in advanced data analytics, seasonal campaign optimization, and cross-vertical lead arbitrage strategies. Current trending searches show increased interest in AI-assisted lead scoring, multi-channel attribution, and recession-resistant sales strategies as economic uncertainty grows.",
     "newOpportunities": [
-      "Multi-touch attribution for aged lead campaigns",
-      "Advanced lead scoring algorithms for aged lists",
-      "Aged lead performance benchmarking by industry",
-      "Integration strategies for aged leads with marketing automation",
-      "Advanced compliance automation for scaled aged lead operations"
+      "Advanced lead scoring algorithms for different verticals",
+      "Cross-vertical lead arbitrage strategies",
+      "Seasonal campaign optimization by industry",
+      "Multi-touch attribution modeling",
+      "Economic downturn lead strategies"
     ],
     "trendingTopics": [
-      "AI-powered lead prioritization",
-      "Multi-channel attribution modeling",
-      "Compliance automation tools",
-      "Performance benchmarking across verticals",
-      "Advanced CRM integration strategies"
+      "AI lead scoring implementation",
+      "Multi-channel attribution tracking",
+      "Recession-proof sales operations",
+      "Data privacy compliance updates",
+      "Cross-selling aged lead clients"
     ],
     "recommendedUpdates": [
-      "Prioritize Metrics & Optimization content to address advanced operational needs",
-      "Create more Role Guides for specialized positions like lead managers and compliance officers",
-      "Develop content bridging technology implementation with compliance requirements"
+      "Expand metrics & optimization content for advanced practitioners",
+      "Create more role-specific guides for team managers",
+      "Develop seasonal strategy content for Q3 planning"
     ]
   },
   "articlesCreated": [
     {
-      "title": "Multi-Touch Attribution for Aged Leads: Tracking ROI Across Channels and Campaigns",
-      "slug": "multi-touch-attribution-aged-leads",
-      "publishDate": "2026-05-25",
-      "primaryKeyword": "aged lead attribution",
+      "title": "A/B Testing Your Aged Lead Operation: Scripts, Cadences & Channels",
+      "slug": "ab-testing-aged-lead-operation-scripts-cadences-channels",
+      "publishDate": "2026-06-01",
+      "primaryKeyword": "aged lead testing",
       "pillar": "Metrics & Optimization"
     },
     {
-      "title": "Aged Lead Performance Benchmarks 2026: Industry Standards for Contact, Appointment, and Close Rates",
-      "slug": "aged-lead-performance-benchmarks-2026",
-      "publishDate": "2026-05-27",
-      "primaryKeyword": "aged lead benchmarks",
-      "pillar": "Metrics & Optimization"
-    },
-    {
-      "title": "Aged Leads for Independent vs. Captive Agents: Different Playbooks for Different Business Models",
-      "slug": "aged-leads-independent-vs-captive-agents",
-      "publishDate": "2026-05-29",
-      "primaryKeyword": "independent agent aged leads",
-      "pillar": "Role Guides"
+      "title": "Aged Debt Settlement Leads: Scripts and Strategies for Debt Relief Companies",
+      "slug": "aged-debt-settlement-leads-scripts-strategies",
+      "publishDate": "2026-06-03",
+      "primaryKeyword": "debt settlement leads",
+      "pillar": "Vertical Playbooks"
     }
   ],
-  "articlesSkipped": [],
+  "articlesSkipped": [
+    {
+      "title": "Running an Aged Lead Call Center: Operations Playbook for Managers",
+      "slug": "running-aged-lead-call-center-operations-playbook",
+      "reason": "ID already exists: post-running-aged-lead-call-center-operations-playbook"
+    }
+  ],
   "articlesFailed": [],
-  "briefsForNextWeek": "Selected two Metrics & Optimization pieces to address the gap in advanced operational content, focusing on attribution and benchmarking - topics competitors haven't covered comprehensively. The Friday Role Guide addresses a fundamental business model distinction that affects aged lead strategy but hasn't been explicitly covered. All three pieces target high-intent keywords with commercial value while avoiding overlap with existing content."
+  "briefsForNextWeek": "Selected three briefs from existing calendar that address current market needs: advanced optimization content for experienced practitioners (A/B testing), underserved vertical (debt settlement), and management-focused content for scaling operations. All three fill gaps in our current coverage while targeting high-intent keywords our competitors haven't addressed comprehensively."
 }

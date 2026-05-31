@@ -1,0 +1,182 @@
+{
+  "runDate": "2026-05-31T06:03:35.591Z",
+  "weekStartDate": "2026-06-01",
+  "analysis": {
+    "strategyReview": "Our current content strategy shows strong coverage across all five pillars with 66 published posts, demonstrating comprehensive expertise in aged lead management. We have excellent vertical-specific content for insurance, solar, mortgage, and legal sectors, plus solid tactical coverage of channels like direct mail, email, and phone outreach. However, we have gaps in advanced optimization content and seasonal/timing strategies that could capture high-intent searches from experienced practitioners looking to refine their operations.",
+    "competitiveInsights": "AgedLeadStore.com focuses heavily on product features and lead quality metrics but lacks deep tactical implementation guides. HowToWorkLeads.com covers general principles but misses industry-specific compliance requirements and vertical nuances. We have clear opportunities in advanced data analytics, seasonal campaign optimization, and cross-vertical lead arbitrage strategies. Current trending searches show increased interest in AI-assisted lead scoring, multi-channel attribution, and recession-resistant sales strategies as economic uncertainty grows.",
+    "newOpportunities": [
+      "Advanced lead scoring algorithms for different verticals",
+      "Cross-vertical lead arbitrage strategies",
+      "Seasonal campaign optimization by industry",
+      "Multi-touch attribution modeling",
+      "Economic downturn lead strategies"
+    ],
+    "trendingTopics": [
+      "AI lead scoring implementation",
+      "Multi-channel attribution tracking",
+      "Recession-proof sales operations",
+      "Data privacy compliance updates",
+      "Cross-selling aged lead clients"
+    ],
+    "recommendedUpdates": [
+      "Expand metrics & optimization content for advanced practitioners",
+      "Create more role-specific guides for team managers",
+      "Develop seasonal strategy content for Q3 planning"
+    ]
+  },
+  "articlesCreated": [
+    {
+      "title": "A/B Testing Your Aged Lead Operation: Scripts, Cadences & Channels",
+      "slug": "ab-testing-aged-lead-operation-scripts-cadences-channels",
+      "publishDate": "2026-06-01",
+      "primaryKeyword": "aged lead testing",
+      "pillar": "Metrics & Optimization"
+    },
+    {
+      "title": "Aged Debt Settlement Leads: Scripts and Strategies for Debt Relief Companies",
+      "slug": "aged-debt-settlement-leads-scripts-strategies",
+      "publishDate": "2026-06-03",
+      "primaryKeyword": "debt settlement leads",
+      "pillar": "Vertical Playbooks"
+    }
+  ],
+  "articlesSkipped": [
+    {
+      "title": "Running an Aged Lead Call Center: Operations Playbook for Managers",
+      "slug": "running-aged-lead-call-center-operations-playbook",
+      "reason": "ID already exists: post-running-aged-lead-call-center-operations-playbook"
+    }
+  ],
+  "articlesFailed": [],
+  "imageOutcomes": [
+    {
+      "title": "A/B Testing Your Aged Lead Operation: Scripts, Cadences & Channels",
+      "status": "created",
+      "photographer": "Vitaly Gariev"
+    },
+    {
+      "title": "Aged Debt Settlement Leads: Scripts and Strategies for Debt Relief Companies",
+      "status": "created",
+      "photographer": "Vitaly Gariev"
+    }
+  ],
+  "newBriefs": [
+    {
+      "day": "Mon",
+      "publishDate": "2026-06-01",
+      "slug": "ab-testing-aged-lead-operation-scripts-cadences-channels",
+      "title": "A/B Testing Your Aged Lead Operation: Scripts, Cadences & Channels",
+      "pillar": "Metrics & Optimization",
+      "primaryKeyword": "aged lead testing",
+      "secondaryKeywords": [
+        "lead conversion optimization",
+        "sales script testing",
+        "aged lead performance",
+        "lead management analytics"
+      ],
+      "targetLeadTypes": [
+        "lt-insurance",
+        "lt-mortgage",
+        "lt-solar"
+      ],
+      "wordCount": "2,800-3,200",
+      "competitiveAngle": "First comprehensive guide to statistical testing methodology specifically for aged leads, not covered by competitors who focus on general testing principles",
+      "outline": [
+        "Why A/B Testing Matters More for Aged Leads",
+        "Setting Up Your Testing Framework",
+        "Script Testing: Voice, Email & SMS Variables",
+        "Cadence Testing: Timing and Frequency",
+        "Channel Testing: Phone vs Email vs Direct Mail",
+        "Sample Size Requirements by Lead Volume",
+        "Statistical Significance for Lead Operations",
+        "Common Testing Mistakes That Skew Results",
+        "Building a Testing Calendar",
+        "Scaling Winning Variations Across Your Operation"
+      ],
+      "internalLinks": [
+        "/glossary/conversion-rate",
+        "/glossary/contact-rate",
+        "/calculators/lead-roi",
+        "/lead-types/insurance-leads"
+      ]
+    },
+    {
+      "day": "Wed",
+      "publishDate": "2026-06-03",
+      "slug": "aged-debt-settlement-leads-scripts-strategies",
+      "title": "Aged Debt Settlement Leads: Scripts and Strategies for Debt Relief Companies",
+      "pillar": "Vertical Playbooks",
+      "primaryKeyword": "debt settlement leads",
+      "secondaryKeywords": [
+        "aged debt leads",
+        "debt relief scripts",
+        "debt settlement conversion",
+        "financial hardship leads"
+      ],
+      "targetLeadTypes": [
+        "lt-debt-settlement"
+      ],
+      "wordCount": "2,600-3,000",
+      "competitiveAngle": "Only comprehensive guide specifically for debt settlement aged leads, addressing unique compliance and emotional aspects not covered elsewhere",
+      "outline": [
+        "Understanding the Debt Settlement Lead Landscape",
+        "Why Aged Debt Leads Often Convert Better",
+        "Compliance Requirements: FTC and State Regulations",
+        "The Psychology of Financial Distress",
+        "Phone Scripts for Initial Contact",
+        "Qualifying Scripts: Income, Debt, and Hardship",
+        "Handling Common Objections and Concerns",
+        "Email Follow-up Sequences for Aged Debt Leads",
+        "Building Trust with Financially Stressed Prospects",
+        "Conversion Metrics That Matter in Debt Relief"
+      ],
+      "internalLinks": [
+        "/glossary/aged-lead",
+        "/glossary/conversion-rate",
+        "/calculators/lead-roi",
+        "/glossary/ftc-disclosure"
+      ]
+    },
+    {
+      "day": "Fri",
+      "publishDate": "2026-06-05",
+      "slug": "running-aged-lead-call-center-operations-playbook",
+      "title": "Running an Aged Lead Call Center: Operations Playbook for Managers",
+      "pillar": "Role Guides",
+      "primaryKeyword": "aged lead call center",
+      "secondaryKeywords": [
+        "call center management",
+        "aged lead operations",
+        "sales team management",
+        "lead center metrics"
+      ],
+      "targetLeadTypes": [
+        "lt-insurance",
+        "lt-mortgage",
+        "lt-solar"
+      ],
+      "wordCount": "3,000-3,500",
+      "competitiveAngle": "First management-focused guide for aged lead operations, covering team structure, KPIs, and scaling strategies not addressed by agent-focused content",
+      "outline": [
+        "Call Center Structure for Aged Lead Operations",
+        "Hiring and Training for Aged Lead Specialists",
+        "Daily Operations: Scheduling and Lead Distribution",
+        "Key Performance Indicators for Aged Lead Centers",
+        "Quality Assurance and Call Monitoring",
+        "Managing Different Lead Ages and Sources",
+        "Technology Stack: Dialers, CRM, and Analytics",
+        "Compliance Management at Scale",
+        "Team Motivation and Compensation Models",
+        "Scaling Operations: From 5 to 50 Agents"
+      ],
+      "internalLinks": [
+        "/glossary/contact-rate",
+        "/glossary/conversion-rate",
+        "/glossary/dialer",
+        "/calculators/team-roi"
+      ]
+    }
+  ],
+  "nextWeekPlan": "Selected three briefs from existing calendar that address current market needs: advanced optimization content for experienced practitioners (A/B testing), underserved vertical (debt settlement), and management-focused content for scaling operations. All three fill gaps in our current coverage while targeting high-intent keywords our competitors haven't addressed comprehensively.",
+  "errors": []
+}
