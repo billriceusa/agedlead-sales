@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-30T12:01:00.996Z",
+  "lastUpdated": "2026-05-31T12:01:12.337Z",
   "items": [
     {
       "id": "ae65c17929e7",
@@ -97,6 +97,17 @@
       "priority": "high",
       "firstSeen": "2026-05-13",
       "lastSeen": "2026-05-14",
+      "timesRepeated": 2,
+      "status": "open"
+    },
+    {
+      "id": "85907f185c8c",
+      "title": "Optimize AgedLeadStore Review Page for Branded Queries",
+      "description": "The /providers/aged-lead-store page ranks #7 for \"aged lead store reviews\" but only captures 7.1% CTR. Add compelling meta descriptions emphasizing \"honest review,\" \"pricing breakdown,\" and \"2026 analysis.\" Include FAQ schema for queries like \"is aged lead store legit\" and \"aged lead store complaints.\" Strengthen affiliate link placement with clear value propositions.",
+      "expectedImpact": "Increase CTR from 7.1% to 15%+ for branded queries, potentially doubling affiliate referral traffic",
+      "priority": "high",
+      "firstSeen": "2026-05-20",
+      "lastSeen": "2026-05-31",
       "timesRepeated": 2,
       "status": "open"
     },
@@ -629,17 +640,6 @@
       "status": "open"
     },
     {
-      "id": "85907f185c8c",
-      "title": "Optimize AgedLeadStore Review Page for Branded Queries",
-      "description": "The /providers/aged-lead-store page ranks #7 for \"aged lead store reviews\" but only captures 7.1% CTR. Add compelling meta descriptions emphasizing \"honest review,\" \"pricing breakdown,\" and \"2026 analysis.\" Include FAQ schema for queries like \"is aged lead store legit\" and \"aged lead store complaints.\" Strengthen affiliate link placement with clear value propositions.",
-      "expectedImpact": "Increase CTR from 7.1% to 15%+ for branded queries, potentially doubling affiliate referral traffic",
-      "priority": "high",
-      "firstSeen": "2026-05-20",
-      "lastSeen": "2026-05-20",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
       "id": "f551cd4a5920",
       "title": "Consolidate Aged Mortgage Lead Content to Fix Cannibalization",
       "description": "Query \"aged mortgage leads\" shows 21 impressions at position 36.7 with 0 clicks. Multiple pages compete: /lead-types/mortgage-leads, /blog/aged-mortgage-leads-2026-guide, and /blog/from-2-to-6-closings-per-month-with-aged-mortgage-leads. Consolidate internal links to /lead-types/mortgage-leads as the canonical page and add cross-links from blog posts.",
@@ -845,6 +845,17 @@
       "priority": "high",
       "firstSeen": "2026-05-30",
       "lastSeen": "2026-05-30",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "1286e38db085",
+      "title": "Fix Mortgage Leads Page Ranking Ceiling",
+      "description": "The /lead-types/mortgage-leads page gets 2 clicks at position 33.5 for 'aged mortgage leads' queries. This page exists but is stuck on page 3. Add more comprehensive content sections on pricing, ROI calculations, and vendor comparisons. Internal link from high-authority pages like /providers and /playbook/mortgage.",
+      "expectedImpact": "Move to page 2 (positions 11-20) within 60 days, potentially doubling organic clicks",
+      "priority": "high",
+      "firstSeen": "2026-05-31",
+      "lastSeen": "2026-05-31",
       "timesRepeated": 1,
       "status": "open"
     },
@@ -1685,6 +1696,39 @@
       "status": "open"
     },
     {
+      "id": "c96d646837ff",
+      "title": "Consolidate Insurance Lead Content to Prevent Cannibalization",
+      "description": "Multiple pages target insurance lead queries: /lead-types/insurance-leads, /lead-types/final-expense-leads, and various blog posts. Pick /lead-types/insurance-leads as the canonical page and redirect internal links from competing pages. Add comprehensive sections covering all insurance verticals.",
+      "expectedImpact": "Resolve keyword cannibalization and improve rankings for 'aged insurance leads' cluster",
+      "priority": "medium",
+      "firstSeen": "2026-05-31",
+      "lastSeen": "2026-05-31",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "6f29ee9683ef",
+      "title": "Enhance Calculator Pages for Lead Magnet Conversion",
+      "description": "The /calculators/roi-calculator gets 25 views from 12 users, showing strong engagement. Add email capture forms before showing results, create follow-up email sequences, and add more calculator types (cost-per-lead, break-even analysis) to capture more middle-funnel traffic.",
+      "expectedImpact": "Generate 20-30 email leads per week and improve lead nurturing pipeline",
+      "priority": "medium",
+      "firstSeen": "2026-05-31",
+      "lastSeen": "2026-05-31",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "54b13ecded65",
+      "title": "Improve Meta Descriptions for Higher CTR",
+      "description": "With CTR declining to 0.45%, audit and rewrite meta descriptions for top-ranking pages. Focus on benefit-driven copy with clear value propositions. For example, change generic descriptions to 'Get aged insurance leads for $X-Y per lead. Compare 15+ vendors, read honest reviews, and find the best ROI for your agency.'",
+      "expectedImpact": "Increase overall CTR to 0.8-1.2% within 30 days",
+      "priority": "medium",
+      "firstSeen": "2026-05-31",
+      "lastSeen": "2026-05-31",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "cc192c120d5f",
       "title": "Long-tail Keyword Expansion",
       "description": "Target specific queries like 'how much do mortgage trigger leads cost' (pos 56.8) and 'auto insurance lead cost' (pos 23.0) with dedicated content pieces.",
@@ -1967,6 +2011,17 @@
       "priority": "low",
       "firstSeen": "2026-05-29",
       "lastSeen": "2026-05-29",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "1fe1430322c9",
+      "title": "Leverage ChatGPT Referral Traffic Pattern",
+      "description": "ChatGPT.com sent 4 sessions across different referral types, indicating AI-driven discovery. Create AI-optimized content formats (structured Q&A, comparison tables, step-by-step guides) that perform well in AI search results and citation patterns.",
+      "expectedImpact": "Capture emerging AI search traffic and establish authority in AI-driven lead generation queries",
+      "priority": "low",
+      "firstSeen": "2026-05-31",
+      "lastSeen": "2026-05-31",
       "timesRepeated": 1,
       "status": "open"
     },
