@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-31T12:01:12.337Z",
+  "lastUpdated": "2026-06-01T12:01:42.105Z",
   "items": [
     {
       "id": "ae65c17929e7",
@@ -42,6 +42,17 @@
       "priority": "high",
       "firstSeen": "2026-05-01",
       "lastSeen": "2026-05-04",
+      "timesRepeated": 3,
+      "status": "open"
+    },
+    {
+      "id": "85907f185c8c",
+      "title": "Optimize AgedLeadStore Review Page for Branded Queries",
+      "description": "The /providers/aged-lead-store page ranks #7 for \"aged lead store reviews\" but only captures 7.1% CTR. Add compelling meta descriptions emphasizing \"honest review,\" \"pricing breakdown,\" and \"2026 analysis.\" Include FAQ schema for queries like \"is aged lead store legit\" and \"aged lead store complaints.\" Strengthen affiliate link placement with clear value propositions.",
+      "expectedImpact": "Increase CTR from 7.1% to 15%+ for branded queries, potentially doubling affiliate referral traffic",
+      "priority": "high",
+      "firstSeen": "2026-05-20",
+      "lastSeen": "2026-06-01",
       "timesRepeated": 3,
       "status": "open"
     },
@@ -97,17 +108,6 @@
       "priority": "high",
       "firstSeen": "2026-05-13",
       "lastSeen": "2026-05-14",
-      "timesRepeated": 2,
-      "status": "open"
-    },
-    {
-      "id": "85907f185c8c",
-      "title": "Optimize AgedLeadStore Review Page for Branded Queries",
-      "description": "The /providers/aged-lead-store page ranks #7 for \"aged lead store reviews\" but only captures 7.1% CTR. Add compelling meta descriptions emphasizing \"honest review,\" \"pricing breakdown,\" and \"2026 analysis.\" Include FAQ schema for queries like \"is aged lead store legit\" and \"aged lead store complaints.\" Strengthen affiliate link placement with clear value propositions.",
-      "expectedImpact": "Increase CTR from 7.1% to 15%+ for branded queries, potentially doubling affiliate referral traffic",
-      "priority": "high",
-      "firstSeen": "2026-05-20",
-      "lastSeen": "2026-05-31",
       "timesRepeated": 2,
       "status": "open"
     },
@@ -856,6 +856,17 @@
       "priority": "high",
       "firstSeen": "2026-05-31",
       "lastSeen": "2026-05-31",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "b83d51687803",
+      "title": "Consolidate Mortgage Lead Content to Fix Cannibalization",
+      "description": "The /lead-types/mortgage-leads page gets clicks but ranks at position 33.3 for 'aged mortgage leads'. Multiple mortgage-related pages exist (/blog/aged-mortgage-leads-2026-guide, /playbook/mortgage). Consolidate internal links to the main /lead-types/mortgage-leads page and update it with comprehensive content from other pages.",
+      "expectedImpact": "Improve 'aged mortgage leads' ranking from position 31 to top 20, increase clicks by 200%",
+      "priority": "high",
+      "firstSeen": "2026-06-01",
+      "lastSeen": "2026-06-01",
       "timesRepeated": 1,
       "status": "open"
     },
@@ -1729,6 +1740,39 @@
       "status": "open"
     },
     {
+      "id": "8bb75cc90f7d",
+      "title": "Enhance Calculator User Experience and CTAs",
+      "description": "ROI and CPL calculators show high engagement (39 total views, strong repeat usage). Add lead capture forms after calculation results, implement progressive profiling, and include personalized aged lead recommendations based on calculator inputs.",
+      "expectedImpact": "Convert 15-20% of calculator users to email subscribers, improve lead qualification",
+      "priority": "medium",
+      "firstSeen": "2026-06-01",
+      "lastSeen": "2026-06-01",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "5c08372e177b",
+      "title": "Optimize Meta Descriptions for Page 2 Rankings",
+      "description": "Multiple pages rank positions 8-30 with low CTR. Focus on /blog/aged-lead-industry-statistics (position 8.9), /blog/aged-lead-performance-benchmarks-2026 (position 5.3), and /providers page (position 13.7). Rewrite meta descriptions with compelling CTAs and specific value propositions.",
+      "expectedImpact": "Improve CTR by 25-40% for targeted pages, increase organic clicks by 50%",
+      "priority": "medium",
+      "firstSeen": "2026-06-01",
+      "lastSeen": "2026-06-01",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "ae8e1f69da55",
+      "title": "Strengthen Internal Link Architecture to Calculator Pages",
+      "description": "Calculator pages show strong engagement but need more internal link equity. Add contextual links from relevant blog posts (ROI articles should link to ROI calculator, pricing articles to CPL calculator) and create calculator widgets for high-traffic pages.",
+      "expectedImpact": "Increase calculator page views by 75%, improve overall site engagement metrics",
+      "priority": "medium",
+      "firstSeen": "2026-06-01",
+      "lastSeen": "2026-06-01",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "cc192c120d5f",
       "title": "Long-tail Keyword Expansion",
       "description": "Target specific queries like 'how much do mortgage trigger leads cost' (pos 56.8) and 'auto insurance lead cost' (pos 23.0) with dedicated content pieces.",
@@ -2022,6 +2066,17 @@
       "priority": "low",
       "firstSeen": "2026-05-31",
       "lastSeen": "2026-05-31",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "af9fc7a465fc",
+      "title": "Expand Mobile-Specific Content Optimization",
+      "description": "Mobile accounts for only 195 impressions vs 1255 desktop impressions. Optimize page load speeds, improve mobile UX for calculator pages, and ensure affiliate links are mobile-friendly with clear tap targets.",
+      "expectedImpact": "Increase mobile traffic share by 30%, improve mobile conversion rates",
+      "priority": "low",
+      "firstSeen": "2026-06-01",
+      "lastSeen": "2026-06-01",
       "timesRepeated": 1,
       "status": "open"
     },
