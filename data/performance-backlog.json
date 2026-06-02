@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-01T12:01:42.105Z",
+  "lastUpdated": "2026-06-02T12:01:40.821Z",
   "items": [
     {
       "id": "ae65c17929e7",
@@ -24,6 +24,17 @@
       "status": "open"
     },
     {
+      "id": "85907f185c8c",
+      "title": "Optimize AgedLeadStore Review Page for Branded Queries",
+      "description": "The /providers/aged-lead-store page ranks #7 for \"aged lead store reviews\" but only captures 7.1% CTR. Add compelling meta descriptions emphasizing \"honest review,\" \"pricing breakdown,\" and \"2026 analysis.\" Include FAQ schema for queries like \"is aged lead store legit\" and \"aged lead store complaints.\" Strengthen affiliate link placement with clear value propositions.",
+      "expectedImpact": "Increase CTR from 7.1% to 15%+ for branded queries, potentially doubling affiliate referral traffic",
+      "priority": "high",
+      "firstSeen": "2026-05-20",
+      "lastSeen": "2026-06-02",
+      "timesRepeated": 4,
+      "status": "open"
+    },
+    {
       "id": "ec69a8bab532",
       "title": "Capitalize on Search Momentum",
       "description": "With impressions up 127.6%, create targeted landing pages for high-impression, low-click queries like 'aged mortgage leads' (5 impressions, pos 42.8) and 'insurance leads cost' (6 impressions, pos 42.7).",
@@ -42,17 +53,6 @@
       "priority": "high",
       "firstSeen": "2026-05-01",
       "lastSeen": "2026-05-04",
-      "timesRepeated": 3,
-      "status": "open"
-    },
-    {
-      "id": "85907f185c8c",
-      "title": "Optimize AgedLeadStore Review Page for Branded Queries",
-      "description": "The /providers/aged-lead-store page ranks #7 for \"aged lead store reviews\" but only captures 7.1% CTR. Add compelling meta descriptions emphasizing \"honest review,\" \"pricing breakdown,\" and \"2026 analysis.\" Include FAQ schema for queries like \"is aged lead store legit\" and \"aged lead store complaints.\" Strengthen affiliate link placement with clear value propositions.",
-      "expectedImpact": "Increase CTR from 7.1% to 15%+ for branded queries, potentially doubling affiliate referral traffic",
-      "priority": "high",
-      "firstSeen": "2026-05-20",
-      "lastSeen": "2026-06-01",
       "timesRepeated": 3,
       "status": "open"
     },
@@ -871,6 +871,17 @@
       "status": "open"
     },
     {
+      "id": "d2f52d665fa2",
+      "title": "Consolidate Mortgage Lead Content to Eliminate Cannibalization",
+      "description": "The /lead-types/mortgage-leads page receives 2 clicks at position 30.3, while /blog/aged-mortgage-leads-2026-guide exists covering similar intent. Consolidate internal links and topical authority to the /lead-types/mortgage-leads page as the canonical resource, and redirect or rewrite the blog post to support the main page rather than compete.",
+      "expectedImpact": "Improve /lead-types/mortgage-leads ranking from position 30+ to positions 15-20, increase organic clicks by 200-300%",
+      "priority": "high",
+      "firstSeen": "2026-06-02",
+      "lastSeen": "2026-06-02",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "e5837806021a",
       "title": "Improve Mobile Search Performance",
       "description": "With only 27 mobile impressions vs 223 desktop, optimize mobile page speed and user experience. Focus on calculator and form functionality on mobile devices.",
@@ -879,6 +890,17 @@
       "firstSeen": "2026-05-04",
       "lastSeen": "2026-05-30",
       "timesRepeated": 6,
+      "status": "open"
+    },
+    {
+      "id": "088660111850",
+      "title": "Optimize Mobile Search Experience",
+      "description": "Mobile accounts for only 29 of 249 total impressions. Improve mobile page speed, create mobile-specific calculator interfaces, and ensure all affiliate links are mobile-optimized for the insurance agent audience.",
+      "expectedImpact": "Could increase mobile impressions by 100-200% and improve overall CTR",
+      "priority": "medium",
+      "firstSeen": "2026-05-02",
+      "lastSeen": "2026-06-02",
+      "timesRepeated": 4,
       "status": "open"
     },
     {
@@ -900,17 +922,6 @@
       "priority": "medium",
       "firstSeen": "2026-04-25",
       "lastSeen": "2026-05-18",
-      "timesRepeated": 3,
-      "status": "open"
-    },
-    {
-      "id": "088660111850",
-      "title": "Optimize Mobile Search Experience",
-      "description": "Mobile accounts for only 29 of 249 total impressions. Improve mobile page speed, create mobile-specific calculator interfaces, and ensure all affiliate links are mobile-optimized for the insurance agent audience.",
-      "expectedImpact": "Could increase mobile impressions by 100-200% and improve overall CTR",
-      "priority": "medium",
-      "firstSeen": "2026-05-02",
-      "lastSeen": "2026-05-21",
       "timesRepeated": 3,
       "status": "open"
     },
@@ -1769,6 +1780,39 @@
       "priority": "medium",
       "firstSeen": "2026-06-01",
       "lastSeen": "2026-06-01",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "1f17e2733679",
+      "title": "Implement Title Tag CTR Optimization Campaign",
+      "description": "With CTR declining to 0.44% despite 226% impression growth, systematically rewrite title tags for pages ranking positions 8-30. Focus on emotional triggers, specific benefits, and year-current content. Start with /providers page (position 13.7) and /blog/aged-lead-store-review-2026 (position 9.7).",
+      "expectedImpact": "Increase overall CTR from 0.44% to 0.8-1.2%, potentially doubling organic traffic",
+      "priority": "medium",
+      "firstSeen": "2026-06-02",
+      "lastSeen": "2026-06-02",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "551fc80d7eb4",
+      "title": "Scale Direct Traffic Conversion Optimization",
+      "description": "With 69 direct sessions leading traffic, optimize the homepage and /providers page for immediate affiliate link visibility. Add prominent 'Get Aged Leads Now' CTAs, implement exit-intent popups with AgedLeadStore discount codes, and create a sticky header with affiliate link access.",
+      "expectedImpact": "Increase affiliate click-through rate from direct traffic by 25-40%",
+      "priority": "medium",
+      "firstSeen": "2026-06-02",
+      "lastSeen": "2026-06-02",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "3ddb0c10e5bf",
+      "title": "Enhance Calculator Pages for Lead Capture",
+      "description": "The /calculators/roi-calculator shows exceptional engagement (25 views from 12 users). Add email capture forms before showing results, create follow-up email sequences with AgedLeadStore recommendations, and implement social proof testimonials on calculator results pages.",
+      "expectedImpact": "Generate 15-25 email leads weekly, improve affiliate conversion rate by 30%",
+      "priority": "medium",
+      "firstSeen": "2026-06-02",
+      "lastSeen": "2026-06-02",
       "timesRepeated": 1,
       "status": "open"
     },
