@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-02T12:01:40.821Z",
+  "lastUpdated": "2026-06-03T12:02:37.580Z",
   "items": [
     {
       "id": "ae65c17929e7",
@@ -878,6 +878,28 @@
       "priority": "high",
       "firstSeen": "2026-06-02",
       "lastSeen": "2026-06-02",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "5596caa18f70",
+      "title": "Optimize existing AgedLeadStore review page for branded search dominance",
+      "description": "The /blog/aged-lead-store-review-2026 page ranks at position 9.6 for 'aged lead store reviews' but should target position 1-3. Add more comprehensive review sections, customer testimonials, pricing breakdowns, and stronger affiliate CTAs. Update the page title to 'Aged Lead Store Review 2026: Honest Analysis & Pricing Guide' and add FAQ schema markup.",
+      "expectedImpact": "Move from position 9.6 to positions 1-3 for branded queries, potentially 3-5x click volume",
+      "priority": "high",
+      "firstSeen": "2026-06-03",
+      "lastSeen": "2026-06-03",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "fc94f7d7f8b1",
+      "title": "Consolidate and optimize IUL leads content to break page 2 ceiling",
+      "description": "The query 'iul leads' shows 10 impressions at position 38.1, and the /lead-types/iul-leads page exists but underperforms. The /blog/iul-leads-financial-advisors-playbook also targets similar intent. Consolidate internal linking to the /lead-types/iul-leads page as the canonical URL, add more comprehensive IUL lead pricing data, provider comparisons, and conversion strategies.",
+      "expectedImpact": "Break through page 2-3 ceiling to reach page 1 for 'iul leads' and related queries",
+      "priority": "high",
+      "firstSeen": "2026-06-03",
+      "lastSeen": "2026-06-03",
       "timesRepeated": 1,
       "status": "open"
     },
@@ -1817,6 +1839,39 @@
       "status": "open"
     },
     {
+      "id": "09d01715c724",
+      "title": "Enhance mortgage leads page to capture 'aged mortgage leads' traffic",
+      "description": "The /lead-types/mortgage-leads page gets clicks but 'aged mortgage leads' ranks at position 30.5. Add dedicated sections on aged vs real-time mortgage lead performance, pricing comparisons, and seasonal trends. Include more specific data on conversion rates and ROI for aged mortgage leads.",
+      "expectedImpact": "Improve from position 30.5 to page 1-2 for mortgage-related aged lead queries",
+      "priority": "medium",
+      "firstSeen": "2026-06-03",
+      "lastSeen": "2026-06-03",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "a69ad078b6cb",
+      "title": "Optimize contact page conversion flow for high-intent visitors",
+      "description": "The /contact page receives 33 views (31 users), indicating high purchase intent. Add lead magnets like 'Free Aged Lead ROI Calculator' or 'Lead Vendor Comparison Checklist' to capture emails before users leave. Include testimonials and case studies on the contact page.",
+      "expectedImpact": "Convert 20-30% of contact page visitors into email subscribers for nurture sequences",
+      "priority": "medium",
+      "firstSeen": "2026-06-03",
+      "lastSeen": "2026-06-03",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "6cfdd573c68a",
+      "title": "Leverage calculator engagement for email capture",
+      "description": "The /calculators/know-your-cpl page shows 22 views from 11 users (high engagement). Gate the advanced calculator features behind email signup and add a 'Get Your Custom Lead Budget Analysis' CTA that requires contact information.",
+      "expectedImpact": "Convert calculator users into qualified leads for AgedLeadStore affiliate referrals",
+      "priority": "medium",
+      "firstSeen": "2026-06-03",
+      "lastSeen": "2026-06-03",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "cc192c120d5f",
       "title": "Long-tail Keyword Expansion",
       "description": "Target specific queries like 'how much do mortgage trigger leads cost' (pos 56.8) and 'auto insurance lead cost' (pos 23.0) with dedicated content pieces.",
@@ -2121,6 +2176,17 @@
       "priority": "low",
       "firstSeen": "2026-06-01",
       "lastSeen": "2026-06-01",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "8be36343354a",
+      "title": "Expand internal linking from high-traffic pages to conversion pages",
+      "description": "The /providers page (36 views) and homepage (35 views) should include more prominent internal links to specific lead type pages and the AgedLeadStore provider page. Add contextual links within content and prominent CTA buttons.",
+      "expectedImpact": "Increase page depth and guide users toward affiliate conversion pages",
+      "priority": "low",
+      "firstSeen": "2026-06-03",
+      "lastSeen": "2026-06-03",
       "timesRepeated": 1,
       "status": "open"
     },
