@@ -11,6 +11,11 @@ import {
   mergeRecommendations,
   serializeBacklog,
 } from "@/lib/cron/performance-backlog";
+import {
+  fetchGscTrend,
+  appendGscSnapshot,
+  serializeGscTrend,
+} from "@/lib/cron/gsc-trend";
 import { commitFilesToGitHub } from "@/lib/cron/git-commit";
 import { recordCronRun } from "@/lib/cron/heartbeat";
 
@@ -143,6 +148,37 @@ export async function GET(request: Request) {
       }
     } catch (err) {
       const msg = `Backlog update failed: ${err instanceof Error ? err.message : err}`;
+      console.error(msg);
+      errors.push(msg);
+    }
+  }
+
+  // ── Step 2b: Persist GSC trend snapshot ──────────────────────
+  // Keep the raw GSC numbers the AI summary discards, so CTR/traffic trends are
+  // measurable over time. Independent of the backlog so it records every day GSC
+  // is available, even when the backlog didn't change.
+  if (gsc.available) {
+    try {
+      const existingTrend = await fetchGscTrend();
+      const { trend, changed } = appendGscSnapshot(existingTrend, gsc, reportDate);
+      if (changed) {
+        await commitFilesToGitHub(
+          [
+            {
+              path: "data/gsc-trend.json",
+              content: serializeGscTrend(trend, new Date().toISOString()),
+            },
+          ],
+          `chore(gsc): trend snapshot — ${reportDate}\n\n${gsc.sevenDay.metrics.clicks} clicks / ${gsc.sevenDay.metrics.impressions} impressions (7d rolling).`
+        );
+        console.log(
+          `[Performance] GSC trend snapshot committed (${trend.snapshots.length} days tracked)`
+        );
+      } else {
+        console.log("[Performance] GSC trend unchanged — skipping commit");
+      }
+    } catch (err) {
+      const msg = `GSC trend update failed: ${err instanceof Error ? err.message : err}`;
       console.error(msg);
       errors.push(msg);
     }
