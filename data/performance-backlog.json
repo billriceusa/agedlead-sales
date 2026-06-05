@@ -2,40 +2,79 @@
   "lastUpdated": "2026-06-05T12:01:13.392Z",
   "items": [
     {
-      "id": "ae65c17929e7",
-      "title": "Emergency Technical Audit",
-      "description": "Immediately investigate Google Analytics tracking code, server logs, and site functionality. Check for broken tracking implementation, server errors, or CDN issues preventing proper data collection and user access.",
-      "expectedImpact": "Restore traffic visibility and identify root cause of 100% traffic loss",
+      "id": "calculator-page-ctr",
+      "title": "Enhance Calculator Landing Page CTR",
+      "description": "The /calculators/know-your-cpl page shows strong engagement (41 views, 23 users) but needs better search visibility. Optimize for 'cost per lead calculator', 'insurance lead cost calculator', and 'aged lead ROI calculator' with updated title tag and add structured data markup for the calculator tool.",
+      "expectedImpact": "Capture 50-100 additional monthly organic sessions for calculator-related queries",
+      "priority": "high",
+      "firstSeen": "2026-04-16",
+      "lastSeen": "2026-06-05",
+      "timesRepeated": 39,
+      "status": "open",
+      "topicKey": "calculator-page-ctr"
+    },
+    {
+      "id": "mobile-search-experience",
+      "title": "Expand Mobile Search Optimization",
+      "description": "With only 24 mobile impressions vs 198 desktop, optimize content for mobile-first indexing and create mobile-friendly calculator interfaces to capture mobile search traffic.",
+      "expectedImpact": "Increase mobile impressions by 150% and improve overall search visibility",
       "priority": "high",
       "firstSeen": "2026-04-14",
-      "lastSeen": "2026-04-27",
-      "timesRepeated": 8,
-      "status": "open"
+      "lastSeen": "2026-06-05",
+      "timesRepeated": 38,
+      "status": "open",
+      "topicKey": "mobile-search-experience"
     },
     {
-      "id": "8c8b79cd31d6",
-      "title": "Mobile Experience Optimization",
-      "description": "Despite low mobile impressions (21 vs 252 desktop), optimize mobile page speed and user experience as mobile traffic typically converts better for local service queries.",
-      "expectedImpact": "Improve mobile rankings and capture additional 15-20% traffic when issues are resolved",
+      "id": "agedleadstore-branded-ctr",
+      "title": "Optimize AgedLeadStore Branded Query Pages",
+      "description": "The /providers/aged-lead-store page is ranking position 7.2-8.8 for key branded terms but not converting clicks. Optimize title tags to 'Aged Lead Store Review 2026: Pricing, Quality & Agent Results' and meta descriptions to include 'legit', 'reviews', and 'worth it' phrases. Add FAQ schema targeting 'is aged lead store legit' and 'aged lead store coupon code' queries.",
+      "expectedImpact": "Increase CTR from 0% to 3-5% for branded terms, capturing 15-25 additional monthly clicks",
       "priority": "high",
-      "firstSeen": "2026-04-18",
-      "lastSeen": "2026-04-27",
-      "timesRepeated": 6,
-      "status": "open"
+      "firstSeen": "2026-04-16",
+      "lastSeen": "2026-06-05",
+      "timesRepeated": 18,
+      "status": "open",
+      "topicKey": "agedleadstore-branded-ctr"
     },
     {
-      "id": "85907f185c8c",
-      "title": "Optimize AgedLeadStore Review Page for Branded Queries",
-      "description": "The /providers/aged-lead-store page ranks #7 for \"aged lead store reviews\" but only captures 7.1% CTR. Add compelling meta descriptions emphasizing \"honest review,\" \"pricing breakdown,\" and \"2026 analysis.\" Include FAQ schema for queries like \"is aged lead store legit\" and \"aged lead store complaints.\" Strengthen affiliate link placement with clear value propositions.",
-      "expectedImpact": "Increase CTR from 7.1% to 15%+ for branded queries, potentially doubling affiliate referral traffic",
+      "id": "insurance-leads-cannibalization",
+      "title": "Consolidate Insurance Lead Content to Prevent Cannibalization",
+      "description": "Multiple pages target insurance lead queries: /lead-types/insurance-leads, /lead-types/final-expense-leads, and various blog posts. Pick /lead-types/insurance-leads as the canonical page and redirect internal links from competing pages. Add comprehensive sections covering all insurance verticals.",
+      "expectedImpact": "Resolve keyword cannibalization and improve rankings for 'aged insurance leads' cluster",
+      "priority": "high",
+      "firstSeen": "2026-05-02",
+      "lastSeen": "2026-05-31",
+      "timesRepeated": 11,
+      "status": "open",
+      "topicKey": "insurance-leads-cannibalization"
+    },
+    {
+      "id": "high-impression-low-click-pages",
+      "title": "Optimize High-Impression, Zero-Click Pages",
+      "description": "Pages like /blog/aged-lead-budget-allocation-strategy (position 1.0, 0 clicks) and /blog/aged-lead-performance-benchmarks-2026 (position 3.7, 0 clicks) need title tag optimization. Update to include year '2026' and action words like 'guide', 'strategy', or 'complete' to improve CTR.",
+      "expectedImpact": "Convert 20-30% of current impressions to clicks, adding 10-15 monthly organic sessions",
+      "priority": "high",
+      "firstSeen": "2026-04-22",
+      "lastSeen": "2026-06-05",
+      "timesRepeated": 6,
+      "status": "open",
+      "topicKey": "high-impression-low-click-pages"
+    },
+    {
+      "id": "mortgage-leads-cannibalization",
+      "title": "Consolidate Mortgage Lead Content to Eliminate Cannibalization",
+      "description": "The /lead-types/mortgage-leads page receives 2 clicks at position 30.3, while /blog/aged-mortgage-leads-2026-guide exists covering similar intent. Consolidate internal links and topical authority to the /lead-types/mortgage-leads page as the canonical resource, and redirect or rewrite the blog post to support the main page rather than compete.",
+      "expectedImpact": "Improve /lead-types/mortgage-leads ranking from position 30+ to positions 15-20, increase organic clicks by 200-300%",
       "priority": "high",
       "firstSeen": "2026-05-20",
       "lastSeen": "2026-06-02",
-      "timesRepeated": 4,
-      "status": "open"
+      "timesRepeated": 6,
+      "status": "open",
+      "topicKey": "mortgage-leads-cannibalization"
     },
     {
-      "id": "ec69a8bab532",
+      "id": "capitalize-on-search-momentum",
       "title": "Capitalize on Search Momentum",
       "description": "With impressions up 127.6%, create targeted landing pages for high-impression, low-click queries like 'aged mortgage leads' (5 impressions, pos 42.8) and 'insurance leads cost' (6 impressions, pos 42.7).",
       "expectedImpact": "Convert increased visibility into actual traffic and clicks",
@@ -43,21 +82,23 @@
       "firstSeen": "2026-04-14",
       "lastSeen": "2026-04-25",
       "timesRepeated": 3,
-      "status": "open"
+      "status": "open",
+      "topicKey": "capitalize-on-search-momentum"
     },
     {
-      "id": "6e9dd965e5be",
-      "title": "Optimize ROI Calculator for Lead Capture",
-      "description": "Add email capture to the ROI calculator before showing results, create follow-up email sequences, and add clear CTAs to AgedLeadStore. Consider creating calculator-specific landing pages for different verticals (insurance, mortgage, solar).",
-      "expectedImpact": "Convert high-engagement calculator users into qualified leads, potentially 20-30% conversion rate",
+      "id": "iul-leads-cannibalization",
+      "title": "Consolidate IUL Lead Content to Eliminate Cannibalization",
+      "description": "The site has /lead-types/iul-leads, /blog/iul-leads-financial-advisors-playbook, and /blog/how-to-sell-iul-using-aged-leads-consultative-approach all targeting similar queries. The /lead-types/iul-leads page (currently getting 2 clicks at position 19.9) should be the canonical target. Consolidate internal links and redirect the blog posts to this main page with 301s.",
+      "expectedImpact": "Improve IUL-related query rankings from position 19.9 to position 8-12, increasing clicks by 200-300%",
       "priority": "high",
-      "firstSeen": "2026-05-01",
-      "lastSeen": "2026-05-04",
+      "firstSeen": "2026-06-03",
+      "lastSeen": "2026-06-05",
       "timesRepeated": 3,
-      "status": "open"
+      "status": "open",
+      "topicKey": "iul-leads-cannibalization"
     },
     {
-      "id": "02380b7481fe",
+      "id": "serp-snippet-optimization",
       "title": "SERP Snippet Optimization",
       "description": "Review and optimize title tags and meta descriptions for top-ranking pages, especially 'aged lead store' and insurance-related terms. Ensure compelling CTAs that differentiate from competitors.",
       "expectedImpact": "Improve CTR from current 0% to historical 0.23% or higher",
@@ -65,10 +106,11 @@
       "firstSeen": "2026-04-15",
       "lastSeen": "2026-04-17",
       "timesRepeated": 2,
-      "status": "open"
+      "status": "open",
+      "topicKey": "serp-snippet-optimization"
     },
     {
-      "id": "e780bfff40a9",
+      "id": "search-console-deep-dive",
       "title": "Search Console Deep Dive",
       "description": "Review Coverage report for indexing issues, check for crawl errors, and examine any security issues or manual actions. Verify robots.txt and sitemap functionality.",
       "expectedImpact": "Identify and resolve search engine access barriers",
@@ -76,32 +118,11 @@
       "firstSeen": "2026-04-15",
       "lastSeen": "2026-04-18",
       "timesRepeated": 2,
-      "status": "open"
+      "status": "open",
+      "topicKey": "search-console-deep-dive"
     },
     {
-      "id": "2b9e6a3796da",
-      "title": "Emergency Technical Audit and Site Recovery",
-      "description": "Immediately check for site downtime, server errors, robots.txt blocks, or Google penalties. Verify site accessibility, SSL certificates, and core web vitals. Check Google Search Console for crawl errors, manual actions, or security issues.",
-      "expectedImpact": "Restore basic site functionality and traffic within 24-48 hours",
-      "priority": "high",
-      "firstSeen": "2026-04-16",
-      "lastSeen": "2026-04-26",
-      "timesRepeated": 2,
-      "status": "open"
-    },
-    {
-      "id": "efea041f4c10",
-      "title": "Emergency Site Accessibility Audit",
-      "description": "Immediately check for server issues, DNS problems, or Google Analytics tracking failures. Verify the site loads properly across devices and browsers. Check Google Search Console for crawl errors or manual actions.",
-      "expectedImpact": "Restore traffic flow and identify root cause of 100% traffic loss",
-      "priority": "high",
-      "firstSeen": "2026-04-24",
-      "lastSeen": "2026-04-28",
-      "timesRepeated": 2,
-      "status": "open"
-    },
-    {
-      "id": "a1fbb825d68e",
+      "id": "implement-traffic-quality-filtering-and-user-intent-optimiza",
       "title": "Implement Traffic Quality Filtering and User Intent Optimization",
       "description": "Add exit-intent popups with lead magnets on high-bounce pages, implement scroll-depth tracking to identify content gaps, and create sticky navigation with clear value propositions. Focus on the 92.89% bounce rate by adding internal linking between calculator tools and relevant provider pages.",
       "expectedImpact": "Reduce bounce rate by 15-20% and increase engagement rate to 15-20% within 30 days",
@@ -109,10 +130,23 @@
       "firstSeen": "2026-05-13",
       "lastSeen": "2026-05-14",
       "timesRepeated": 2,
-      "status": "open"
+      "status": "open",
+      "topicKey": "implement-traffic-quality-filtering-and-user-intent-optimiza"
     },
     {
-      "id": "15601019dda4",
+      "id": "lead-content-cannibalization",
+      "title": "Consolidate aged leads query targeting to prevent cannibalization",
+      "description": "Query 'aged leads' shows position 22.7 with multiple potential URLs competing (/lead-types/insurance-leads, homepage, /providers). Audit internal linking to establish /lead-types as the canonical aged leads hub and redirect link equity from competing pages.",
+      "expectedImpact": "Move 'aged leads' query from position 22.7 to page 1 (position 8-10), capturing 5-8 additional daily clicks",
+      "priority": "high",
+      "firstSeen": "2026-05-21",
+      "lastSeen": "2026-05-22",
+      "timesRepeated": 2,
+      "status": "open",
+      "topicKey": "lead-content-cannibalization"
+    },
+    {
+      "id": "optimize-meta-descriptions-for-high-impression-queries",
       "title": "Optimize Meta Descriptions for High-Impression Queries",
       "description": "Rewrite meta descriptions for pages ranking for 'aged lead store' (pos 17.3), 'aged insurance leads' (pos 33), and cost-related queries. Focus on compelling CTAs like 'Compare Prices', 'Free Calculator', or 'Exclusive Reviews'.",
       "expectedImpact": "Increase CTR from 0% to 2-5% within 2 weeks",
@@ -120,10 +154,11 @@
       "firstSeen": "2026-04-16",
       "lastSeen": "2026-04-16",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "optimize-meta-descriptions-for-high-impression-queries"
     },
     {
-      "id": "9d767b13ce4c",
+      "id": "create-dedicated-cost-comparison-landing-pages",
       "title": "Create Dedicated Cost Comparison Landing Pages",
       "description": "Build targeted pages for high-impression cost queries: 'auto insurance leads cost', 'cost of insurance leads', 'how much do life insurance leads cost'. Include pricing tables, calculators, and affiliate links to AgedLeadStore.com.",
       "expectedImpact": "Capture 10-15 additional clicks weekly from cost-focused searches",
@@ -131,10 +166,11 @@
       "firstSeen": "2026-04-16",
       "lastSeen": "2026-04-16",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "create-dedicated-cost-comparison-landing-pages"
     },
     {
-      "id": "c2711e0c1965",
+      "id": "content-freshness-campaign",
       "title": "Content Freshness Campaign",
       "description": "Update the aged lead industry statistics page and economics of aged leads content with 2024 data, new case studies, and current market insights to improve rankings and relevance.",
       "expectedImpact": "Improve average position from 30.3 to 20-25 range",
@@ -142,10 +178,11 @@
       "firstSeen": "2026-04-17",
       "lastSeen": "2026-04-17",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "content-freshness-campaign"
     },
     {
-      "id": "8b7d0f14387f",
+      "id": "title-tag-and-meta-description-optimization",
       "title": "Title Tag and Meta Description Optimization",
       "description": "Rewrite title tags and meta descriptions for pages ranking positions 11-30 to improve CTR. Focus on 'aged lead store reviews' (pos 11.7) and 'auto insurance lead cost' (pos 12.7) pages first.",
       "expectedImpact": "Increase CTR by 2-5x for existing impressions, potentially driving 10-20 daily clicks",
@@ -153,21 +190,11 @@
       "firstSeen": "2026-04-18",
       "lastSeen": "2026-04-18",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "title-tag-and-meta-description-optimization"
     },
     {
-      "id": "431dc6d1174e",
-      "title": "Emergency Site Audit and Recovery",
-      "description": "Immediately check site accessibility, server status, DNS resolution, and Google Analytics tracking code. Verify robots.txt, check for manual penalties in Search Console, and test site loading across devices. If tracking is broken, implement backup measurement while fixing primary GA4.",
-      "expectedImpact": "Restore traffic visibility and identify root cause of 100% traffic loss",
-      "priority": "high",
-      "firstSeen": "2026-04-19",
-      "lastSeen": "2026-04-19",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "5ee54d258dd2",
+      "id": "capitalize-on-cost-query-momentum",
       "title": "Capitalize on Cost-Query Momentum",
       "description": "Create dedicated landing pages for high-impression cost queries: 'auto insurance lead cost', 'cost of insurance leads', and 'how much do insurance leads cost'. Build comprehensive cost calculators and comparison tools with affiliate links to AgedLeadStore.",
       "expectedImpact": "Convert 10+ daily impressions into clicks and potential affiliate commissions",
@@ -175,10 +202,11 @@
       "firstSeen": "2026-04-19",
       "lastSeen": "2026-04-19",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "capitalize-on-cost-query-momentum"
     },
     {
-      "id": "4f55e5160362",
+      "id": "capitalize-on-search-visibility-gains",
       "title": "Capitalize on Search Visibility Gains",
       "description": "With impressions up 171.6%, optimize title tags and meta descriptions for top-performing queries like 'aged lead store reviews' and 'auto insurance lead cost'. Add structured data markup for review pages and cost calculator tools to enhance SERP features.",
       "expectedImpact": "Convert improved impressions into actual clicks, potentially 2-3x current CTR",
@@ -186,32 +214,11 @@
       "firstSeen": "2026-04-21",
       "lastSeen": "2026-04-21",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "capitalize-on-search-visibility-gains"
     },
     {
-      "id": "63abe5c55d57",
-      "title": "Emergency Technical Audit and Fix",
-      "description": "Immediately investigate Google Analytics tracking, server uptime, and site accessibility. Check for broken redirects, server errors, or GA4 configuration issues preventing traffic measurement. Verify site is loading properly across all devices and browsers.",
-      "expectedImpact": "Restore traffic visibility and identify root cause of disconnect between search performance and site visits",
-      "priority": "high",
-      "firstSeen": "2026-04-22",
-      "lastSeen": "2026-04-22",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "2f2eff49ad10",
-      "title": "Optimize High-Impression, Low-Click Pages",
-      "description": "Rewrite meta descriptions and titles for pages ranking well but not getting clicks, particularly the providers page (position 23.3) and aged lead store review content (position 13.3). Focus on compelling CTAs and value propositions.",
-      "expectedImpact": "Increase CTR from current 0.27% to 1-2% within 30 days",
-      "priority": "high",
-      "firstSeen": "2026-04-22",
-      "lastSeen": "2026-04-22",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "7486f73eea9b",
+      "id": "capitalize-on-search-position-gains",
       "title": "Capitalize on Search Position Gains",
       "description": "With average position at 18.7 and strong impressions growth, optimize title tags and meta descriptions for top-performing queries like 'aged lead store reviews' (pos 13.3) and 'auto insurance lead cost' (pos 12.0) to break into top 10 results.",
       "expectedImpact": "Increase CTR from 0.27% to 1-2% and capture 10-20 additional clicks daily",
@@ -219,10 +226,11 @@
       "firstSeen": "2026-04-23",
       "lastSeen": "2026-04-23",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "capitalize-on-search-position-gains"
     },
     {
-      "id": "5a807f34a14a",
+      "id": "optimize-provider-page-for-conversion",
       "title": "Optimize Provider Page for Conversion",
       "description": "Since /providers generated the only click, enhance this page with better affiliate link placement, comparison tables, and clear CTAs. Add more provider reviews and comparison content.",
       "expectedImpact": "Increase conversion rate from the single traffic source currently working",
@@ -230,21 +238,11 @@
       "firstSeen": "2026-04-24",
       "lastSeen": "2026-04-24",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "optimize-provider-page-for-conversion"
     },
     {
-      "id": "4dfdd0531d60",
-      "title": "Emergency Analytics Audit",
-      "description": "Immediately audit Google Analytics 4 implementation including tracking code placement, consent management, and data stream configuration. Check for recent changes to GTM, cookie policies, or site architecture that could block data collection.",
-      "expectedImpact": "Restore traffic visibility and enable data-driven optimization decisions",
-      "priority": "high",
-      "firstSeen": "2026-04-25",
-      "lastSeen": "2026-04-25",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "48dcc3f489a7",
+      "id": "implement-click-through-rate-recovery-strategy",
       "title": "Implement Click-Through Rate Recovery Strategy",
       "description": "Optimize title tags and meta descriptions for top-ranking pages, especially those at positions 1.6-18.0. Focus on compelling CTAs like 'Compare Aged Lead Prices' or 'Free Lead ROI Calculator' to capitalize on improved rankings.",
       "expectedImpact": "Convert improved search positions into actual traffic and restore 0.22%+ CTR",
@@ -252,21 +250,11 @@
       "firstSeen": "2026-04-26",
       "lastSeen": "2026-04-26",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "implement-click-through-rate-recovery-strategy"
     },
     {
-      "id": "0d7c32cc8c1b",
-      "title": "Mobile Search Optimization Initiative",
-      "description": "Investigate why mobile impressions are only 7.5% of total. Check mobile-first indexing status, page speed, and mobile usability issues. Optimize for mobile-specific aged lead searches.",
-      "expectedImpact": "Increase mobile impression share from 7.5% to 30%+ industry standard",
-      "priority": "high",
-      "firstSeen": "2026-04-26",
-      "lastSeen": "2026-04-26",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "ce8a436c333d",
+      "id": "search-result-optimization",
       "title": "Search Result Optimization",
       "description": "Rewrite meta titles and descriptions for top-ranking pages, especially 'aged lead store reviews' and branded queries. Focus on compelling CTAs and value propositions to convert impressions to clicks.",
       "expectedImpact": "Increase CTR from 0% to 2-5% based on improved search visibility",
@@ -274,21 +262,11 @@
       "firstSeen": "2026-04-27",
       "lastSeen": "2026-04-27",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "search-result-optimization"
     },
     {
-      "id": "3945f5f43bc4",
-      "title": "Index Status Verification",
-      "description": "Use site:agedleadsales.com search to verify indexing status. Submit updated sitemap and request re-indexing for key pages. Check for robots.txt issues or noindex tags accidentally implemented.",
-      "expectedImpact": "Ensure all content remains searchable and accessible",
-      "priority": "high",
-      "firstSeen": "2026-04-27",
-      "lastSeen": "2026-04-27",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "92e527ae80b3",
+      "id": "capitalize-on-improved-rankings",
       "title": "Capitalize on Improved Rankings",
       "description": "Once site is accessible, optimize meta titles and descriptions for top-ranking pages (industry statistics, compliance content) to improve the 0% CTR. Focus on compelling value propositions for aged lead queries.",
       "expectedImpact": "Convert improved rankings into 2-5% CTR improvement",
@@ -296,10 +274,11 @@
       "firstSeen": "2026-04-28",
       "lastSeen": "2026-04-28",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "capitalize-on-improved-rankings"
     },
     {
-      "id": "4daeacc2e10f",
+      "id": "implement-landing-page-optimization-for-referral-traffic",
       "title": "Implement Landing Page Optimization for Referral Traffic",
       "description": "Create dedicated landing pages for AgedLeadStore.com referral traffic with clear value propositions, prominent CTAs to affiliate links, and streamlined navigation. Add exit-intent popups with lead magnets to capture bouncing visitors.",
       "expectedImpact": "Reduce bounce rate from 90% to 60-70% and increase affiliate click-through rates by 40-50%",
@@ -307,21 +286,11 @@
       "firstSeen": "2026-04-29",
       "lastSeen": "2026-04-29",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "implement-landing-page-optimization-for-referral-traffic"
     },
     {
-      "id": "2e4efe9c0aa9",
-      "title": "Expand and Optimize Calculator Tools",
-      "description": "Build additional calculators (ROI calculator, lead volume planner, conversion rate optimizer) and create dedicated landing pages with clear paths to AgedLeadStore.com. Add lead capture forms before calculator results.",
-      "expectedImpact": "Increase organic traffic by 30% and generate 20-30 qualified leads per month",
-      "priority": "high",
-      "firstSeen": "2026-04-29",
-      "lastSeen": "2026-04-29",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "c2cb00365d11",
+      "id": "optimize-high-ranking-pages-for-click-through",
       "title": "Optimize High-Ranking Pages for Click-Through",
       "description": "Rewrite title tags and meta descriptions for pages ranking in positions 6-11 (auto insurance price index, industry statistics, economics blog posts) to include compelling CTAs and benefit-driven language targeting insurance agents and brokers.",
       "expectedImpact": "Could increase organic clicks by 200-300% based on improved CTR from current 0.40%",
@@ -329,21 +298,11 @@
       "firstSeen": "2026-04-30",
       "lastSeen": "2026-04-30",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "optimize-high-ranking-pages-for-click-through"
     },
     {
-      "id": "573b8aec1d76",
-      "title": "Scale Successful Calculator Content Strategy",
-      "description": "The CPL calculator is the top-performing page with 19 views. Create additional calculators for ROI, lead volume planning, and cost-per-acquisition across insurance, mortgage, and solar verticals with embedded affiliate links.",
-      "expectedImpact": "Potential to double page views and create more conversion touchpoints",
-      "priority": "high",
-      "firstSeen": "2026-04-30",
-      "lastSeen": "2026-04-30",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "3cadabcc84fb",
+      "id": "scale-successful-referral-strategy",
       "title": "Scale Successful Referral Strategy",
       "description": "Analyze what's driving the AgedLeadStore referral traffic surge and replicate across other partner sites. Create co-marketing campaigns and cross-promotional content with complementary aged lead vendors.",
       "expectedImpact": "Double referral traffic within 30 days, expanding beyond current 13 daily sessions",
@@ -351,10 +310,11 @@
       "firstSeen": "2026-05-01",
       "lastSeen": "2026-05-01",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "scale-successful-referral-strategy"
     },
     {
-      "id": "5739fbc86335",
+      "id": "scale-content-around-high-performing-topics",
       "title": "Scale Content Around High-Performing Topics",
       "description": "Create more content around TCPA compliance (currently ranking #15.2) and auto insurance cross-selling strategies (ranking #6.7). These pages show strong search performance. Develop comprehensive guides, case studies, and tool-based content for these topics.",
       "expectedImpact": "Could capture 50-100 additional organic clicks per month",
@@ -362,32 +322,11 @@
       "firstSeen": "2026-05-02",
       "lastSeen": "2026-05-02",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "scale-content-around-high-performing-topics"
     },
     {
-      "id": "da9e76f534a7",
-      "title": "Optimize High-Impression, Low-Click Search Queries",
-      "description": "Focus on 'aged lead store reviews' (22 impressions, pos 12.7) and 'aged leads' (8 impressions, pos 27.0) by creating dedicated review comparison pages and optimizing existing content with better title tags and meta descriptions to improve CTR from current 0.84%.",
-      "expectedImpact": "Could double organic traffic within 30 days by capturing existing search demand",
-      "priority": "high",
-      "firstSeen": "2026-05-03",
-      "lastSeen": "2026-05-03",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "315529ae275b",
-      "title": "Scale ROI Calculator Success with Additional Tools",
-      "description": "The ROI calculator's 14 views per user indicates exceptional engagement. Create complementary calculators for CPL analysis, lead aging value, and conversion rate optimization. Add clear AgedLeadStore.com CTAs within calculator results.",
-      "expectedImpact": "Increase affiliate conversions by 25-40% and extend session duration further",
-      "priority": "high",
-      "firstSeen": "2026-05-03",
-      "lastSeen": "2026-05-03",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "55ab8fe6fb5f",
+      "id": "scale-direct-traffic-campaign-that-s-working",
       "title": "Scale Direct Traffic Campaign That's Working",
       "description": "Analyze the source of the 79 direct sessions surge. If from email marketing, increase frequency. If from partnerships, expand similar relationships. Document and replicate the successful tactics driving this traffic spike.",
       "expectedImpact": "Sustain current traffic levels and potentially double direct traffic within 30 days",
@@ -395,21 +334,11 @@
       "firstSeen": "2026-05-04",
       "lastSeen": "2026-05-04",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "scale-direct-traffic-campaign-that-s-working"
     },
     {
-      "id": "e94c3cbceba8",
-      "title": "Optimize ROI Calculator for Conversions",
-      "description": "The ROI calculator is your highest-engagement content. Add clear AgedLeadStore.com affiliate CTAs within the calculator results, create email capture for detailed reports, and build similar calculators for CPL and lead quality scoring. Track conversion rates from this page specifically.",
-      "expectedImpact": "20-30% increase in affiliate conversions from current high-engagement traffic",
-      "priority": "high",
-      "firstSeen": "2026-05-05",
-      "lastSeen": "2026-05-05",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "5637f0f43033",
+      "id": "scale-successful-traffic-sources",
       "title": "Scale Successful Traffic Sources",
       "description": "With 96 direct sessions and 24 AgedLeadStore referrals driving growth, double down on whatever campaigns are generating this traffic. Analyze the source of direct traffic (email campaigns, social media, ads) and increase investment in those channels.",
       "expectedImpact": "Maintain current growth trajectory and reduce dependency on single traffic sources",
@@ -417,10 +346,11 @@
       "firstSeen": "2026-05-05",
       "lastSeen": "2026-05-05",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "scale-successful-traffic-sources"
     },
     {
-      "id": "26c6057e27f6",
+      "id": "implement-conversion-tracking-and-optimize-high-traffic-page",
       "title": "Implement Conversion Tracking and Optimize High-Traffic Pages",
       "description": "Set up enhanced conversion tracking for the ROI calculator (76 views, 8 users) and providers page (54 views, 50 users). Add clear AgedLeadStore affiliate CTAs and lead magnets to capture the 50.33% bounce rate traffic. A/B test different CTA placements and messaging.",
       "expectedImpact": "15-25% improvement in conversion rate and 10-15% reduction in bounce rate",
@@ -428,10 +358,11 @@
       "firstSeen": "2026-05-06",
       "lastSeen": "2026-05-06",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "implement-conversion-tracking-and-optimize-high-traffic-page"
     },
     {
-      "id": "896ca1a0dce8",
+      "id": "capitalize-on-search-ranking-improvements",
       "title": "Capitalize on Search Ranking Improvements",
       "description": "Focus content creation on queries where you're ranking 6-15 positions: 'aged lead industry statistics' (pos 6.7), 'scaling aged lead operation' (pos 3.0), and brand terms. Create comprehensive guides targeting these improving rankings with internal links to affiliate pages.",
       "expectedImpact": "2-3x increase in organic clicks within 30 days",
@@ -439,10 +370,11 @@
       "firstSeen": "2026-05-06",
       "lastSeen": "2026-05-06",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "capitalize-on-search-ranking-improvements"
     },
     {
-      "id": "e091ced74a33",
+      "id": "optimize-landing-page-experience-for-new-traffic-surge",
       "title": "Optimize Landing Page Experience for New Traffic Surge",
       "description": "Immediately audit the homepage and top entry pages to reduce bounce rate. Add clear value propositions, improve page load speed, and ensure mobile optimization since 84% of traffic is direct visits expecting specific content.",
       "expectedImpact": "Reduce bounce rate by 10-15% and increase session duration to 120+ seconds",
@@ -450,10 +382,11 @@
       "firstSeen": "2026-05-08",
       "lastSeen": "2026-05-08",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "optimize-landing-page-experience-for-new-traffic-surge"
     },
     {
-      "id": "c039e366c35b",
+      "id": "implement-user-retention-optimization",
       "title": "Implement User Retention Optimization",
       "description": "Add internal linking widgets, related content suggestions, and clear CTAs on high-bounce pages. Focus on /providers and homepage with sticky navigation to calculators and playbooks. Test exit-intent popups with lead magnets.",
       "expectedImpact": "Reduce bounce rate by 15-20% and increase session duration to 90+ seconds",
@@ -461,10 +394,11 @@
       "firstSeen": "2026-05-09",
       "lastSeen": "2026-05-09",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "implement-user-retention-optimization"
     },
     {
-      "id": "8a41d3df7926",
+      "id": "optimize-landing-page-experience-for-direct-traffic",
       "title": "Optimize Landing Page Experience for Direct Traffic",
       "description": "With 239 direct sessions and 78.75% bounce rate, immediately audit the homepage and key landing pages. Add clear value propositions, reduce page load time, and implement exit-intent popups with lead magnets. Test different headlines and CTAs specifically for direct traffic.",
       "expectedImpact": "Reduce bounce rate by 15-20% and increase session duration by 30-45 seconds",
@@ -472,10 +406,11 @@
       "firstSeen": "2026-05-10",
       "lastSeen": "2026-05-10",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "optimize-landing-page-experience-for-direct-traffic"
     },
     {
-      "id": "9dfad29d4721",
+      "id": "implement-engagement-optimization-for-high-traffic-pages",
       "title": "Implement Engagement Optimization for High-Traffic Pages",
       "description": "Add interactive elements, internal linking, and clear CTAs to the /providers page (37 views) and homepage (30 views). Create sticky navigation with calculator shortcuts and implement exit-intent popups with lead magnets to reduce the 81.5% bounce rate.",
       "expectedImpact": "Reduce bounce rate by 15-20% and increase session duration to 60+ seconds",
@@ -483,21 +418,11 @@
       "firstSeen": "2026-05-11",
       "lastSeen": "2026-05-11",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "implement-engagement-optimization-for-high-traffic-pages"
     },
     {
-      "id": "3db0adb2287a",
-      "title": "Scale Calculator Content Strategy",
-      "description": "The CPL and ROI calculators are top performers. Create additional calculators for conversion rate, lead lifetime value, and cost-per-acquisition. Add lead capture forms to calculator results pages and create follow-up email sequences.",
-      "expectedImpact": "Increase page views by 40% and generate 10-15 new email subscribers weekly",
-      "priority": "high",
-      "firstSeen": "2026-05-11",
-      "lastSeen": "2026-05-11",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "7a933a1a495b",
+      "id": "investigate-traffic-quality-and-sources",
       "title": "Investigate Traffic Quality and Sources",
       "description": "Immediately audit the 212 direct sessions to identify source quality. Check for bot traffic, referral campaigns, or marketing attribution issues. Implement UTM tracking for all external campaigns and set up bot filtering in GA4.",
       "expectedImpact": "Accurate traffic measurement and improved engagement metrics by filtering low-quality visits",
@@ -505,10 +430,11 @@
       "firstSeen": "2026-05-12",
       "lastSeen": "2026-05-12",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "investigate-traffic-quality-and-sources"
     },
     {
-      "id": "83c8777f824e",
+      "id": "optimize-high-traffic-pages-for-engagement",
       "title": "Optimize High-Traffic Pages for Engagement",
       "description": "Focus on /providers (24 views) and calculator pages by adding internal links, related content sections, and clear affiliate CTAs. Implement exit-intent popups and improve page load speed to reduce immediate bounces.",
       "expectedImpact": "Reduce bounce rate by 15-20% and increase session duration to 45+ seconds",
@@ -516,32 +442,11 @@
       "firstSeen": "2026-05-12",
       "lastSeen": "2026-05-12",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "optimize-high-traffic-pages-for-engagement"
     },
     {
-      "id": "97a6e5303ba6",
-      "title": "Optimize High-Performing Calculator Pages for Conversion",
-      "description": "Add AgedLeadStore.com affiliate CTAs directly within calculator results, create follow-up email sequences for calculator users, and implement lead capture forms offering personalized lead recommendations based on calculator inputs.",
-      "expectedImpact": "Increase affiliate click-through rate by 25-40% from calculator traffic",
-      "priority": "high",
-      "firstSeen": "2026-05-13",
-      "lastSeen": "2026-05-13",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "889aee7501be",
-      "title": "Expand and optimize calculator tool suite",
-      "description": "Since calculators are top performers (ROI and CPL tools leading), create additional calculators for conversion rate optimization, lead lifetime value, and cost per acquisition. Add clear CTAs to AgedLeadStore.com from calculator results pages.",
-      "expectedImpact": "Increase time on site by 40-60 seconds and improve conversion rates by 25%",
-      "priority": "high",
-      "firstSeen": "2026-05-14",
-      "lastSeen": "2026-05-14",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "7bfba2b80121",
+      "id": "audit-direct-traffic-sources-immediately",
       "title": "Audit Direct Traffic Sources Immediately",
       "description": "Investigate the 199 direct sessions to identify source quality. Set up UTM tracking for all referral campaigns and analyze user flow patterns to determine if traffic is from legitimate marketing efforts or low-quality sources. Implement heat mapping tools to understand user behavior on landing pages.",
       "expectedImpact": "Identify traffic quality issues and optimize for better engagement rates within 2 weeks",
@@ -549,10 +454,11 @@
       "firstSeen": "2026-05-15",
       "lastSeen": "2026-05-15",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "audit-direct-traffic-sources-immediately"
     },
     {
-      "id": "76aecf9a919b",
+      "id": "optimize-landing-page-experience-for-high-bounce-traffic",
       "title": "Optimize Landing Page Experience for High-Bounce Traffic",
       "description": "Create dedicated landing pages for different traffic sources with clear value propositions. Add prominent internal linking to calculator tools (top performers) and implement exit-intent popups with lead magnets. Test different page layouts to reduce 92.64% bounce rate.",
       "expectedImpact": "Reduce bounce rate by 20-30% and increase session duration to 45+ seconds",
@@ -560,10 +466,11 @@
       "firstSeen": "2026-05-15",
       "lastSeen": "2026-05-15",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "optimize-landing-page-experience-for-high-bounce-traffic"
     },
     {
-      "id": "3b5f8f1d6e04",
+      "id": "implement-immediate-bounce-rate-reduction-strategy",
       "title": "Implement Immediate Bounce Rate Reduction Strategy",
       "description": "Add internal linking widgets, related content suggestions, and clear CTAs on high-traffic pages. Focus on /calculators/know-your-cpl and /playbook/insurance with 'Next Steps' sections linking to relevant lead type pages and AgedLeadStore affiliate links.",
       "expectedImpact": "Reduce bounce rate by 15-20% and increase pages per session",
@@ -571,10 +478,11 @@
       "firstSeen": "2026-05-16",
       "lastSeen": "2026-05-16",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "implement-immediate-bounce-rate-reduction-strategy"
     },
     {
-      "id": "daf45d614262",
+      "id": "implement-engagement-optimization-for-high-bounce-traffic",
       "title": "Implement Engagement Optimization for High-Bounce Traffic",
       "description": "Add exit-intent popups with lead magnets on high-traffic pages, implement internal linking suggestions after 30 seconds, and create sticky CTAs for AgedLeadStore.com affiliate links. Focus on /calculators/know-your-cpl and /playbook/insurance pages.",
       "expectedImpact": "Reduce bounce rate by 10-15% and increase affiliate click-through rates",
@@ -582,10 +490,11 @@
       "firstSeen": "2026-05-17",
       "lastSeen": "2026-05-17",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "implement-engagement-optimization-for-high-bounce-traffic"
     },
     {
-      "id": "de4344ed5aad",
+      "id": "optimize-search-snippets-for-ctr-improvement",
       "title": "Optimize Search Snippets for CTR Improvement",
       "description": "Rewrite meta descriptions for top-impression queries like 'aged leads' and 'aged lead store' to include compelling CTAs and unique value propositions. Add structured data markup for calculator tools and pricing information.",
       "expectedImpact": "Increase CTR from 0.32% to 0.6%+ and improve click volume by 80%",
@@ -593,32 +502,11 @@
       "firstSeen": "2026-05-17",
       "lastSeen": "2026-05-17",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "optimize-search-snippets-for-ctr-improvement"
     },
     {
-      "id": "d11afd44358a",
-      "title": "Optimize High-Impression, Low-CTR Keywords",
-      "description": "Target the 12 aged mortgage leads impressions (0 clicks) and 8 aged leads impressions (0 clicks) by creating dedicated landing pages with compelling meta descriptions and titles. Focus on position 22-39 keywords where small improvements can yield significant click gains.",
-      "expectedImpact": "Increase organic clicks by 200-300% within 30 days",
-      "priority": "high",
-      "firstSeen": "2026-05-18",
-      "lastSeen": "2026-05-18",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "3e13111db8b4",
-      "title": "Enhance Insurance Playbook Conversion Path",
-      "description": "Add clear AgedLeadStore.com affiliate CTAs within the top-performing insurance playbook content. Create exit-intent popups and inline affiliate links specifically for insurance lead purchasing decisions.",
-      "expectedImpact": "Improve conversion rate from 32.88% to 40%+ engagement",
-      "priority": "high",
-      "firstSeen": "2026-05-18",
-      "lastSeen": "2026-05-18",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "231da8a68746",
+      "id": "optimize-high-impression-low-ranking-pages-for-better-positi",
       "title": "Optimize high-impression, low-ranking pages for better positions",
       "description": "Focus on pages ranking 20-50 for aged lead terms. Add more comprehensive content, internal linking, and target long-tail variations of 'aged mortgage leads' (15 impressions, pos 37.5) and 'aged solar leads' (6 impressions, pos 34.3). Create dedicated landing pages for each lead type with comparison tables and pricing information.",
       "expectedImpact": "Improve average position by 10-15 spots, potentially doubling organic clicks within 30 days",
@@ -626,109 +514,11 @@
       "firstSeen": "2026-05-19",
       "lastSeen": "2026-05-19",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "optimize-high-impression-low-ranking-pages-for-better-positi"
     },
     {
-      "id": "fafe219b4f91",
-      "title": "Expand calculator functionality and promotion",
-      "description": "The CPL calculator is performing well (17 views). Create additional calculators for ROI estimation, lead volume planning, and cost comparison tools. Add schema markup for calculator pages and create dedicated blog posts explaining how to use each calculator effectively.",
-      "expectedImpact": "Increase calculator page views by 50% and improve time on site by targeting practical user needs",
-      "priority": "high",
-      "firstSeen": "2026-05-19",
-      "lastSeen": "2026-05-19",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "f551cd4a5920",
-      "title": "Consolidate Aged Mortgage Lead Content to Fix Cannibalization",
-      "description": "Query \"aged mortgage leads\" shows 21 impressions at position 36.7 with 0 clicks. Multiple pages compete: /lead-types/mortgage-leads, /blog/aged-mortgage-leads-2026-guide, and /blog/from-2-to-6-closings-per-month-with-aged-mortgage-leads. Consolidate internal links to /lead-types/mortgage-leads as the canonical page and add cross-links from blog posts.",
-      "expectedImpact": "Improve \"aged mortgage leads\" ranking from position 36.7 to top 20, increasing monthly clicks by 5-10",
-      "priority": "high",
-      "firstSeen": "2026-05-20",
-      "lastSeen": "2026-05-20",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "30820b977c6b",
-      "title": "Optimize Aged Lead Store Provider Page for Position 7.3 Query",
-      "description": "The /providers/aged-lead-store page ranks at position 7.3 for 'aged lead store reviews' with 2 clicks. Optimize this existing page by adding more comprehensive review content, FAQ section, and stronger affiliate call-to-actions to push from position 7.3 to positions 3-5 for higher CTR.",
-      "expectedImpact": "Could increase clicks from 2 to 8-12 daily by improving position and CTR on this converting query",
-      "priority": "high",
-      "firstSeen": "2026-05-21",
-      "lastSeen": "2026-05-21",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "00f4f54d5a10",
-      "title": "Consolidate Aged Lead Generic Query Cannibalization",
-      "description": "Multiple pages compete for 'aged leads' queries (homepage, lead-types pages, blog posts). The homepage ranks at position 28.3 with 0 clicks. Consolidate internal linking to make /lead-types the canonical hub for 'aged leads' queries and optimize that page's title tag and H1 for better relevance.",
-      "expectedImpact": "Could capture 3-5 additional daily clicks from the 11 impressions for 'aged leads' queries",
-      "priority": "high",
-      "firstSeen": "2026-05-21",
-      "lastSeen": "2026-05-21",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "592b29bbe3df",
-      "title": "Optimize AgedLeadStore review page for position 7.4 query",
-      "description": "The existing /blog/aged-lead-store-review-2026 page ranks position 7.4 for 'aged lead store reviews' with 15 impressions but only 1 click. Add compelling title tag with year/credibility signals, optimize meta description for higher CTR, and strengthen affiliate-forward content to capture this branded traffic.",
-      "expectedImpact": "Increase CTR from 6.7% to 15%+ for this high-intent query, driving 2-3 additional daily clicks",
-      "priority": "high",
-      "firstSeen": "2026-05-22",
-      "lastSeen": "2026-05-22",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "a45fa35b131f",
-      "title": "Consolidate aged leads query targeting to prevent cannibalization",
-      "description": "Query 'aged leads' shows position 22.7 with multiple potential URLs competing (/lead-types/insurance-leads, homepage, /providers). Audit internal linking to establish /lead-types as the canonical aged leads hub and redirect link equity from competing pages.",
-      "expectedImpact": "Move 'aged leads' query from position 22.7 to page 1 (position 8-10), capturing 5-8 additional daily clicks",
-      "priority": "high",
-      "firstSeen": "2026-05-22",
-      "lastSeen": "2026-05-22",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "3c62a8237c2e",
-      "title": "Optimize AgedLeadStore review page for branded search capture",
-      "description": "The existing /blog/aged-lead-store-review-2026 page ranks position 9.8 for branded queries but only captures 1 click from 15 impressions. Optimize title tag to 'Aged Lead Store Review 2026: Honest Analysis & Affiliate Experience', add FAQ schema for 'is aged lead store legit' queries, and strengthen the affirm-and-forward messaging to better capture branded research traffic.",
-      "expectedImpact": "Increase CTR from 6.7% to 12-15% for branded queries, potentially doubling branded traffic",
-      "priority": "high",
-      "firstSeen": "2026-05-23",
-      "lastSeen": "2026-05-23",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "f0a2b1e48b67",
-      "title": "Consolidate and optimize insurance leads content to break page 2 ceiling",
-      "description": "The /lead-types/insurance-leads page ranks position 40.8 and received 2 clicks, indicating a page 2 ranking ceiling. Review the content inventory for potential cannibalization with /blog/aged-life-insurance-leads-scripts-strategies-agents and other insurance-focused pages. Consolidate internal linking to the main /lead-types/insurance-leads page and optimize for 'aged insurance leads' cluster queries.",
-      "expectedImpact": "Move from page 2 to page 1 positions (15-25 range), potentially 3-5x organic clicks",
-      "priority": "high",
-      "firstSeen": "2026-05-23",
-      "lastSeen": "2026-05-23",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "73ed4e514081",
-      "title": "Optimize AgedLeadStore Review Page for Position 7.6 Query",
-      "description": "The existing /blog/aged-lead-store-review-2026 page ranks position 7.6 for 'aged lead store reviews' with 7.7% CTR. Optimize title tag to include 'honest review' or 'comprehensive review', add FAQ schema for common questions, and strengthen the affiliate disclosure while maintaining affirm-and-forward positioning to push from page 1 bottom to top 5.",
-      "expectedImpact": "Move from position 7.6 to positions 3-5, potentially doubling CTR to 15%+ and increasing branded query traffic",
-      "priority": "high",
-      "firstSeen": "2026-05-24",
-      "lastSeen": "2026-05-24",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "d3daad6da143",
+      "id": "consolidate-lead-provider-comparison-pages",
       "title": "Consolidate Lead Provider Comparison Pages",
       "description": "Multiple comparison pages exist (/compare/aged-lead-store-vs-the-leads-warehouse, /providers/the-leads-warehouse, etc.) that may be cannibalizing each other. Audit the 14 comparison pages and consolidate internal linking to focus authority on the highest-performing comparison URLs, particularly those involving AgedLeadStore as the recommended option.",
       "expectedImpact": "Reduce keyword cannibalization and improve rankings for provider comparison queries currently stuck on page 2-3",
@@ -736,21 +526,11 @@
       "firstSeen": "2026-05-24",
       "lastSeen": "2026-05-24",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "consolidate-lead-provider-comparison-pages"
     },
     {
-      "id": "bc81210a7476",
-      "title": "Optimize AgedLeadStore Branded Query Performance",
-      "description": "The 'aged lead store reviews' query at position 8.1 with 13 impressions needs immediate optimization. Update the /blog/aged-lead-store-review-2026 page with fresh 2026 data, add more detailed feature comparisons, include recent customer testimonials, and strengthen the affiliate call-to-action. Also optimize the /providers/aged-lead-store page with complementary content to avoid cannibalization.",
-      "expectedImpact": "Move from position 8 to positions 3-5, potentially doubling clicks from 1 to 2-3 per week, directly increasing affiliate revenue",
-      "priority": "high",
-      "firstSeen": "2026-05-25",
-      "lastSeen": "2026-05-25",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "1bbd43438752",
+      "id": "consolidate-lead-type-page-authority",
       "title": "Consolidate Lead Type Page Authority",
       "description": "The /lead-types/insurance-leads page is generating search clicks but ranking at position 39.9. Audit internal linking from the homepage, /providers pages, and blog posts to funnel more authority to this converting page. Add more comprehensive content sections covering cost comparisons, provider recommendations, and success case studies.",
       "expectedImpact": "Improve rankings from page 4 to page 2-3, potentially increasing weekly clicks from 2 to 5-8",
@@ -758,76 +538,11 @@
       "firstSeen": "2026-05-25",
       "lastSeen": "2026-05-25",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "consolidate-lead-type-page-authority"
     },
     {
-      "id": "4935d790977b",
-      "title": "Optimize existing AgedLeadStore review page for position 3-5 ranking",
-      "description": "The /blog/aged-lead-store-review-2026 page ranks position 8.1 for 'aged lead store reviews' with 15 impressions. Add 500+ words of 2026-specific updates, include recent customer testimonials, add FAQ schema markup, and build 3-5 internal links from related provider comparison pages. Target the 'affirm-and-forward' approach to capture branded research traffic.",
-      "expectedImpact": "Move from position 8 to position 3-5, potentially 3x click volume and affiliate conversions",
-      "priority": "high",
-      "firstSeen": "2026-05-26",
-      "lastSeen": "2026-05-26",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "70c8939afb6c",
-      "title": "Consolidate keyword cannibalization for AgedLeadStore queries",
-      "description": "Three URLs compete for AgedLeadStore branded terms: /blog/aged-lead-store-review-2026, /providers/aged-lead-store, and /compare/aged-lead-store-vs-the-leads-warehouse. Choose /blog/aged-lead-store-review-2026 as canonical, redirect internal links from the other two pages, and consolidate all AgedLeadStore-focused content and affiliate links to this single page.",
-      "expectedImpact": "Eliminate cannibalization, concentrate ranking signals, improve branded query performance by 40-60%",
-      "priority": "high",
-      "firstSeen": "2026-05-26",
-      "lastSeen": "2026-05-26",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "a634185e6772",
-      "title": "Optimize existing Aged Lead Store review page for position 1-3",
-      "description": "The /blog/aged-lead-store-review-2026 page ranks at 7.9 for the branded query 'aged lead store reviews' - a critical affiliate monetization term. Optimize this existing page with enhanced E-A-T signals, more comprehensive review content, FAQ schema, and stronger internal linking from the /providers/aged-lead-store page. Add comparison tables, pricing details, and clear affiliate CTAs.",
-      "expectedImpact": "Move from position 7.9 to positions 1-3, potentially 5-10x click volume for primary monetization query",
-      "priority": "high",
-      "firstSeen": "2026-05-28",
-      "lastSeen": "2026-05-28",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "a9538a8ad58a",
-      "title": "Consolidate mortgage lead content to resolve cannibalization",
-      "description": "The /lead-types/mortgage-leads page gets 3 clicks at position 31.0 for 'aged mortgage leads' while /blog/aged-mortgage-leads-2026-guide exists. Consolidate the blog content into the lead-types page, redirect the blog URL, and concentrate all internal links to the single canonical /lead-types/mortgage-leads page.",
-      "expectedImpact": "Improve 'aged mortgage leads' ranking from position 31 to page 1, consolidating link equity and eliminating cannibalization",
-      "priority": "high",
-      "firstSeen": "2026-05-28",
-      "lastSeen": "2026-05-28",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "8991f91292de",
-      "title": "Optimize AgedLeadStore Review Page for Position 8 Query",
-      "description": "The existing /blog/aged-lead-store-review-2026 page ranks position 8.0 for \"aged lead store reviews\" but has low CTR. Add compelling title tag like \"Aged Lead Store Review 2026: Honest Analysis & Real Results\" and meta description emphasizing unbiased review. Add FAQ schema for \"Is Aged Lead Store legit?\" and \"Aged Lead Store pricing\" to capture featured snippets.",
-      "expectedImpact": "Move from position 8 to positions 3-5, increase CTR from 10% to 15-20%, boost affiliate click-through",
-      "priority": "high",
-      "firstSeen": "2026-05-29",
-      "lastSeen": "2026-05-29",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "2d4270fe525b",
-      "title": "Consolidate Mortgage Lead Content to Fix Page 2 Ranking",
-      "description": "The /lead-types/mortgage-leads page ranks position 31.9 for \"aged mortgage leads\" while /blog/aged-mortgage-leads-2026-guide exists. This is keyword cannibalization. Consolidate all mortgage lead content into the /lead-types/mortgage-leads page, redirect the blog post, and optimize for commercial intent with pricing tables and AgedLeadStore affiliate links.",
-      "expectedImpact": "Move \"aged mortgage leads\" from position 32 to positions 15-20, eliminate cannibalization",
-      "priority": "high",
-      "firstSeen": "2026-05-29",
-      "lastSeen": "2026-05-29",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "9d72f7d53876",
+      "id": "optimize-existing-lead-types-mortgage-leads-for-aged-mortgag",
       "title": "Optimize existing /lead-types/mortgage-leads for 'aged mortgage leads' ranking breakthrough",
       "description": "This page already receives 3 clicks and ranks position 32.7 for the target query. Add more comprehensive aged-specific content, internal linking from related mortgage blog posts, and optimize title/meta for 'aged mortgage leads' specifically rather than generic mortgage leads.",
       "expectedImpact": "Move from page 3 to page 1-2, potentially 5-10x click volume",
@@ -835,142 +550,11 @@
       "firstSeen": "2026-05-30",
       "lastSeen": "2026-05-30",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "optimize-existing-lead-types-mortgage-leads-for-aged-mortgag"
     },
     {
-      "id": "4920ac74ccf0",
-      "title": "Consolidate AgedLeadStore review content to eliminate cannibalization",
-      "description": "The site has /blog/aged-lead-store-review-2026, /providers/aged-lead-store, and /providers pages all targeting AgedLeadStore queries. Pick /blog/aged-lead-store-review-2026 as canonical (currently position 9.9) and redirect internal links from other pages to consolidate ranking power.",
-      "expectedImpact": "Improve 'aged lead store reviews' from position 7.8 to top 5, increase CTR from branded searches",
-      "priority": "high",
-      "firstSeen": "2026-05-30",
-      "lastSeen": "2026-05-30",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "1286e38db085",
-      "title": "Fix Mortgage Leads Page Ranking Ceiling",
-      "description": "The /lead-types/mortgage-leads page gets 2 clicks at position 33.5 for 'aged mortgage leads' queries. This page exists but is stuck on page 3. Add more comprehensive content sections on pricing, ROI calculations, and vendor comparisons. Internal link from high-authority pages like /providers and /playbook/mortgage.",
-      "expectedImpact": "Move to page 2 (positions 11-20) within 60 days, potentially doubling organic clicks",
-      "priority": "high",
-      "firstSeen": "2026-05-31",
-      "lastSeen": "2026-05-31",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "b83d51687803",
-      "title": "Consolidate Mortgage Lead Content to Fix Cannibalization",
-      "description": "The /lead-types/mortgage-leads page gets clicks but ranks at position 33.3 for 'aged mortgage leads'. Multiple mortgage-related pages exist (/blog/aged-mortgage-leads-2026-guide, /playbook/mortgage). Consolidate internal links to the main /lead-types/mortgage-leads page and update it with comprehensive content from other pages.",
-      "expectedImpact": "Improve 'aged mortgage leads' ranking from position 31 to top 20, increase clicks by 200%",
-      "priority": "high",
-      "firstSeen": "2026-06-01",
-      "lastSeen": "2026-06-01",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "d2f52d665fa2",
-      "title": "Consolidate Mortgage Lead Content to Eliminate Cannibalization",
-      "description": "The /lead-types/mortgage-leads page receives 2 clicks at position 30.3, while /blog/aged-mortgage-leads-2026-guide exists covering similar intent. Consolidate internal links and topical authority to the /lead-types/mortgage-leads page as the canonical resource, and redirect or rewrite the blog post to support the main page rather than compete.",
-      "expectedImpact": "Improve /lead-types/mortgage-leads ranking from position 30+ to positions 15-20, increase organic clicks by 200-300%",
-      "priority": "high",
-      "firstSeen": "2026-06-02",
-      "lastSeen": "2026-06-02",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "5596caa18f70",
-      "title": "Optimize existing AgedLeadStore review page for branded search dominance",
-      "description": "The /blog/aged-lead-store-review-2026 page ranks at position 9.6 for 'aged lead store reviews' but should target position 1-3. Add more comprehensive review sections, customer testimonials, pricing breakdowns, and stronger affiliate CTAs. Update the page title to 'Aged Lead Store Review 2026: Honest Analysis & Pricing Guide' and add FAQ schema markup.",
-      "expectedImpact": "Move from position 9.6 to positions 1-3 for branded queries, potentially 3-5x click volume",
-      "priority": "high",
-      "firstSeen": "2026-06-03",
-      "lastSeen": "2026-06-03",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "fc94f7d7f8b1",
-      "title": "Consolidate and optimize IUL leads content to break page 2 ceiling",
-      "description": "The query 'iul leads' shows 10 impressions at position 38.1, and the /lead-types/iul-leads page exists but underperforms. The /blog/iul-leads-financial-advisors-playbook also targets similar intent. Consolidate internal linking to the /lead-types/iul-leads page as the canonical URL, add more comprehensive IUL lead pricing data, provider comparisons, and conversion strategies.",
-      "expectedImpact": "Break through page 2-3 ceiling to reach page 1 for 'iul leads' and related queries",
-      "priority": "high",
-      "firstSeen": "2026-06-03",
-      "lastSeen": "2026-06-03",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "fe59631a807b",
-      "title": "Optimize AgedLeadStore branded query CTR immediately",
-      "description": "Rewrite title tags and meta descriptions for /providers/aged-lead-store and /blog/aged-lead-store-review-2026 to include compelling CTR triggers like '2026 Review', 'Honest Analysis', 'Pros & Cons'. Current position 7.0 for 'aged lead store reviews' with 0 clicks is a massive revenue leak. Test titles like 'Aged Lead Store Review 2026: Honest Analysis & Pricing Guide' and 'Is Aged Lead Store Legit? 2026 Review + Discount Codes'.",
-      "expectedImpact": "Could capture 2-4 additional daily clicks from branded queries, directly increasing affiliate revenue",
-      "priority": "high",
-      "firstSeen": "2026-06-04",
-      "lastSeen": "2026-06-04",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "5dd9a04e0313",
-      "title": "Consolidate and optimize IUL leads content for position 20.6",
-      "description": "The /lead-types/iul-leads page is ranking position 20.6 for 'iul leads' but only getting 2 clicks. Audit existing IUL content across /blog/iul-leads-financial-advisors-playbook and /blog/how-to-sell-iul-using-aged-leads-consultative-approach. Consolidate internal linking to the main /lead-types/iul-leads page and add more comprehensive buyer intent content including pricing, vendor comparisons, and conversion strategies.",
-      "expectedImpact": "Move from page 2 to page 1 for 'iul leads', potentially 5-10x click volume",
-      "priority": "high",
-      "firstSeen": "2026-06-04",
-      "lastSeen": "2026-06-04",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "ce620320caf3",
-      "title": "Optimize AgedLeadStore Branded Query Pages",
-      "description": "The /providers/aged-lead-store page is ranking position 7.2-8.8 for key branded terms but not converting clicks. Optimize title tags to 'Aged Lead Store Review 2026: Pricing, Quality & Agent Results' and meta descriptions to include 'legit', 'reviews', and 'worth it' phrases. Add FAQ schema targeting 'is aged lead store legit' and 'aged lead store coupon code' queries.",
-      "expectedImpact": "Increase CTR from 0% to 3-5% for branded terms, capturing 15-25 additional monthly clicks",
-      "priority": "high",
-      "firstSeen": "2026-06-05",
-      "lastSeen": "2026-06-05",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "24bab104eebe",
-      "title": "Consolidate IUL Lead Content to Eliminate Cannibalization",
-      "description": "The site has /lead-types/iul-leads, /blog/iul-leads-financial-advisors-playbook, and /blog/how-to-sell-iul-using-aged-leads-consultative-approach all targeting similar queries. The /lead-types/iul-leads page (currently getting 2 clicks at position 19.9) should be the canonical target. Consolidate internal links and redirect the blog posts to this main page with 301s.",
-      "expectedImpact": "Improve IUL-related query rankings from position 19.9 to position 8-12, increasing clicks by 200-300%",
-      "priority": "high",
-      "firstSeen": "2026-06-05",
-      "lastSeen": "2026-06-05",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "e5837806021a",
-      "title": "Improve Mobile Search Performance",
-      "description": "With only 27 mobile impressions vs 223 desktop, optimize mobile page speed and user experience. Focus on calculator and form functionality on mobile devices.",
-      "expectedImpact": "Increase mobile search visibility by 50-100% and improve mobile conversion rates",
-      "priority": "medium",
-      "firstSeen": "2026-05-04",
-      "lastSeen": "2026-05-30",
-      "timesRepeated": 6,
-      "status": "open"
-    },
-    {
-      "id": "088660111850",
-      "title": "Optimize Mobile Search Experience",
-      "description": "Mobile accounts for only 29 of 249 total impressions. Improve mobile page speed, create mobile-specific calculator interfaces, and ensure all affiliate links are mobile-optimized for the insurance agent audience.",
-      "expectedImpact": "Could increase mobile impressions by 100-200% and improve overall CTR",
-      "priority": "medium",
-      "firstSeen": "2026-05-02",
-      "lastSeen": "2026-06-02",
-      "timesRepeated": 4,
-      "status": "open"
-    },
-    {
-      "id": "31aa4d6c7de3",
+      "id": "content-expansion-for-high-impression-queries",
       "title": "Content Expansion for High-Impression Queries",
       "description": "Create dedicated landing pages or expand existing content for 'aged mortgage leads' (9 impressions, pos 44.2) and 'auto insurance leads cost' (6 impressions, pos 23.0) to capture more search volume.",
       "expectedImpact": "Improve positions by 10-15 spots and increase impression volume by 50%",
@@ -978,54 +562,11 @@
       "firstSeen": "2026-04-18",
       "lastSeen": "2026-04-26",
       "timesRepeated": 3,
-      "status": "open"
+      "status": "open",
+      "topicKey": "content-expansion-for-high-impression-queries"
     },
     {
-      "id": "3b2bf4da9e3c",
-      "title": "Mobile Search Optimization",
-      "description": "The single click came from mobile despite desktop having 285 impressions. Optimize mobile page speed, implement AMP, and ensure mobile-first indexing compliance for better mobile CTR.",
-      "expectedImpact": "Increase mobile CTR from current levels to 0.5-1.0%",
-      "priority": "medium",
-      "firstSeen": "2026-04-25",
-      "lastSeen": "2026-05-18",
-      "timesRepeated": 3,
-      "status": "open"
-    },
-    {
-      "id": "b922e6802b3f",
-      "title": "Expand Long-tail Insurance Lead Content",
-      "description": "Target specific queries showing in search console like 'aged health insurance leads', 'aged life insurance leads', and 'aged mortgage leads'. Create dedicated landing pages for each vertical with pricing, conversion tips, and provider comparisons.",
-      "expectedImpact": "Capture 50-100 additional monthly organic clicks and improve positions by 10-15 ranks",
-      "priority": "medium",
-      "firstSeen": "2026-05-10",
-      "lastSeen": "2026-05-12",
-      "timesRepeated": 3,
-      "status": "open"
-    },
-    {
-      "id": "b9acf266e5d4",
-      "title": "Mobile Experience Enhancement",
-      "description": "With mobile generating the only click (1 click from 21 mobile impressions vs 0 clicks from 207 desktop impressions), optimize mobile user experience and page speed for the /providers page.",
-      "expectedImpact": "Improve mobile conversion rates and expand mobile traffic capture",
-      "priority": "medium",
-      "firstSeen": "2026-04-14",
-      "lastSeen": "2026-04-15",
-      "timesRepeated": 2,
-      "status": "open"
-    },
-    {
-      "id": "d9390f6018c6",
-      "title": "Calculator Tool Enhancement",
-      "description": "Optimize the CPL calculator page (currently pos 91.3) with better UX, mobile responsiveness, and additional lead cost scenarios for different verticals to capture more long-tail queries.",
-      "expectedImpact": "Move calculator pages into top 30 positions, increase impressions by 50%",
-      "priority": "medium",
-      "firstSeen": "2026-04-17",
-      "lastSeen": "2026-04-25",
-      "timesRepeated": 2,
-      "status": "open"
-    },
-    {
-      "id": "bbe0bc736767",
+      "id": "internal-linking-strategy",
       "title": "Internal Linking Strategy",
       "description": "Implement strategic internal linking between high-performing pages like 'aged-lead-industry-statistics' (pos 3.0) and conversion-focused pages to distribute link equity and improve rankings.",
       "expectedImpact": "Boost average positions by 5-10 spots across target pages",
@@ -1033,10 +574,11 @@
       "firstSeen": "2026-04-18",
       "lastSeen": "2026-04-21",
       "timesRepeated": 2,
-      "status": "open"
+      "status": "open",
+      "topicKey": "internal-linking-strategy"
     },
     {
-      "id": "162c71a0068d",
+      "id": "content-gap-analysis-for-mortgage-leads",
       "title": "Content Gap Analysis for Mortgage Leads",
       "description": "Develop comprehensive content targeting 'aged mortgage leads' (10 daily impressions, position 43.7) and 'aged mortgage protection leads'. Create case studies, ROI calculators, and comparison guides to capture this high-value vertical.",
       "expectedImpact": "Capture additional 10+ daily impressions in mortgage lead space",
@@ -1044,32 +586,11 @@
       "firstSeen": "2026-04-19",
       "lastSeen": "2026-04-25",
       "timesRepeated": 2,
-      "status": "open"
+      "status": "open",
+      "topicKey": "content-gap-analysis-for-mortgage-leads"
     },
     {
-      "id": "fc1963d9ad5a",
-      "title": "Develop Mobile-First Content Strategy",
-      "description": "Optimize for mobile users who represent growing search volume. Create mobile-friendly comparison charts, simplified navigation, and thumb-friendly CTA buttons for affiliate links.",
-      "expectedImpact": "Increase mobile engagement rate by 25% and capture additional mobile search traffic",
-      "priority": "medium",
-      "firstSeen": "2026-04-29",
-      "lastSeen": "2026-05-14",
-      "timesRepeated": 2,
-      "status": "open"
-    },
-    {
-      "id": "e2b7f9ab4203",
-      "title": "Develop Long-tail Insurance Lead Content",
-      "description": "Target specific queries like 'aged mortgage insurance leads' (position 46.5) and 'aged refinance leads' (position 28.5) with dedicated landing pages and comparison tools.",
-      "expectedImpact": "Could capture 10-15 additional targeted clicks per month",
-      "priority": "medium",
-      "firstSeen": "2026-05-02",
-      "lastSeen": "2026-05-08",
-      "timesRepeated": 2,
-      "status": "open"
-    },
-    {
-      "id": "a0497e67e536",
+      "id": "target-long-tail-aged-lead-keywords",
       "title": "Target Long-Tail Aged Lead Keywords",
       "description": "Create content targeting specific queries like 'aged mortgage leads pricing', 'aged life insurance leads reviews', and 'TCPA compliant aged leads'. Your TCPA compliance page already ranks well (position 15.2) - build more content around compliance topics.",
       "expectedImpact": "50-100% increase in organic search clicks within 60 days",
@@ -1077,21 +598,11 @@
       "firstSeen": "2026-05-05",
       "lastSeen": "2026-05-15",
       "timesRepeated": 2,
-      "status": "open"
+      "status": "open",
+      "topicKey": "target-long-tail-aged-lead-keywords"
     },
     {
-      "id": "b7d4d8c1e881",
-      "title": "Optimize Calculator User Experience",
-      "description": "The ROI calculator shows 9.5 pages per user - add progressive disclosure to capture emails mid-calculation, implement exit-intent popups, and create follow-up email sequences for calculator users to nurture them toward AgedLeadStore.",
-      "expectedImpact": "20-30% increase in email captures from calculator traffic",
-      "priority": "medium",
-      "firstSeen": "2026-05-06",
-      "lastSeen": "2026-05-10",
-      "timesRepeated": 2,
-      "status": "open"
-    },
-    {
-      "id": "9b3dd1d6670f",
+      "id": "optimize-high-ranking-low-ctr-pages",
       "title": "Optimize High-Ranking Low-CTR Pages",
       "description": "Focus on pages ranking in positions 8-17 with zero clicks: aged-lead-industry-statistics (pos 9.0), aged-lead-store provider page (pos 11.7), and 7-day follow-up cadence (pos 8.1). Improve titles and meta descriptions.",
       "expectedImpact": "Increase CTR from current 0.44% to 1-2% for top-ranking pages",
@@ -1099,10 +610,11 @@
       "firstSeen": "2026-04-14",
       "lastSeen": "2026-04-14",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "optimize-high-ranking-low-ctr-pages"
     },
     {
-      "id": "9c795d72d2d7",
+      "id": "content-freshness-initiative",
       "title": "Content Freshness Initiative",
       "description": "Update top-performing pages like 'aged-lead-industry-statistics' and 'economics-of-aged-leads' with recent data and insights. Add current market trends and pricing information.",
       "expectedImpact": "Improve search rankings and user engagement once technical issues are resolved",
@@ -1110,32 +622,11 @@
       "firstSeen": "2026-04-15",
       "lastSeen": "2026-04-15",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "content-freshness-initiative"
     },
     {
-      "id": "627164ad7650",
-      "title": "Enhance Calculator Tool Visibility",
-      "description": "Improve rankings for CPL calculator (pos 87-95) by adding more detailed explanations, industry benchmarks, and related tools. Create supporting content around lead cost calculations.",
-      "expectedImpact": "Move calculator pages to positions 20-30, increasing impressions by 50%",
-      "priority": "medium",
-      "firstSeen": "2026-04-16",
-      "lastSeen": "2026-04-16",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "d656ea34d0bb",
-      "title": "Expand Aged Lead Store Review Content",
-      "description": "Leverage strong position 11-12 rankings for 'aged lead store reviews' by adding more detailed comparison content, user testimonials, and pricing analysis to drive affiliate conversions.",
-      "expectedImpact": "Increase affiliate click-through rate and improve rankings to position 5-8",
-      "priority": "medium",
-      "firstSeen": "2026-04-16",
-      "lastSeen": "2026-04-16",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "3e89b068a733",
+      "id": "comparison-content-expansion",
       "title": "Comparison Content Expansion",
       "description": "Create more detailed comparison pages for lead providers, building on the existing 'badass insurance leads vs ileads' content that ranks at position 14.6.",
       "expectedImpact": "Capture more commercial intent queries and improve affiliate conversions",
@@ -1143,10 +634,11 @@
       "firstSeen": "2026-04-17",
       "lastSeen": "2026-04-17",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "comparison-content-expansion"
     },
     {
-      "id": "58864bb6ed70",
+      "id": "optimize-branded-query-conversion",
       "title": "Optimize Branded Query Conversion",
       "description": "Enhance the /providers/aged-lead-store page with more compelling CTAs, customer testimonials, and direct affiliate links. Add schema markup for reviews and pricing to improve SERP appearance for 'aged lead store reviews' queries.",
       "expectedImpact": "Improve conversion of 6+ daily branded impressions into clicks",
@@ -1154,21 +646,11 @@
       "firstSeen": "2026-04-19",
       "lastSeen": "2026-04-19",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "optimize-branded-query-conversion"
     },
     {
-      "id": "31090069484c",
-      "title": "Mobile-First Optimization",
-      "description": "Only 1 click from mobile despite 20 mobile impressions suggests poor mobile UX. Audit mobile page speed, layout, and affiliate link accessibility. Implement AMP or optimize Core Web Vitals for mobile.",
-      "expectedImpact": "Improve mobile CTR from current low performance to match desktop engagement",
-      "priority": "medium",
-      "firstSeen": "2026-04-20",
-      "lastSeen": "2026-04-20",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "7ccc0143faa5",
+      "id": "content-gap-analysis-for-mortgage-vertical",
       "title": "Content Gap Analysis for Mortgage Vertical",
       "description": "With 9 impressions for 'aged mortgage leads' at position 43.7, create comprehensive mortgage lead buying guides, cost calculators, and provider comparisons to capture this high-value vertical traffic.",
       "expectedImpact": "Move mortgage-related queries into top 20 positions and increase vertical-specific affiliate revenue",
@@ -1176,10 +658,11 @@
       "firstSeen": "2026-04-20",
       "lastSeen": "2026-04-20",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "content-gap-analysis-for-mortgage-vertical"
     },
     {
-      "id": "30f76b94728d",
+      "id": "expand-high-performing-content-clusters",
       "title": "Expand High-Performing Content Clusters",
       "description": "Build more content around 'auto insurance lead cost' (ranking position 12) and 'aged mortgage leads' topics. Create comprehensive guides, cost calculators, and comparison content to capture the growing search volume.",
       "expectedImpact": "Increase impressions by 50% in insurance and mortgage lead cost queries",
@@ -1187,10 +670,11 @@
       "firstSeen": "2026-04-22",
       "lastSeen": "2026-04-22",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "expand-high-performing-content-clusters"
     },
     {
-      "id": "2eafcd31d7cb",
+      "id": "content-gap-analysis-for-high-intent-queries",
       "title": "Content Gap Analysis for High-Intent Queries",
       "description": "Create dedicated landing pages for queries showing strong impressions but poor positions: 'aged solar leads' (pos 87), 'best insurance lead company' (pos 50), and 'cpl calculator' (pos 89). Focus on commercial intent keywords with buying signals.",
       "expectedImpact": "Capture 15-25 additional impressions daily and improve average position to 15-20",
@@ -1198,10 +682,11 @@
       "firstSeen": "2026-04-23",
       "lastSeen": "2026-04-23",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "content-gap-analysis-for-high-intent-queries"
     },
     {
-      "id": "79ad0d6cda4b",
+      "id": "provider-page-expansion-strategy",
       "title": "Provider Page Expansion Strategy",
       "description": "The /providers page generated the only click at position 22.2. Create individual provider comparison pages, add user reviews, pricing comparisons, and affiliate link optimization to capitalize on commercial search intent.",
       "expectedImpact": "Increase provider-related clicks from 1 to 5-8 daily and improve conversion rates",
@@ -1209,32 +694,11 @@
       "firstSeen": "2026-04-23",
       "lastSeen": "2026-04-23",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "provider-page-expansion-strategy"
     },
     {
-      "id": "73521981661f",
-      "title": "Target High-Impression, Low-Position Keywords",
-      "description": "Focus on 'aged mortgage leads' (8 impressions, position 42.9) and 'lead providers' (6 impressions, position 48.7) with dedicated landing pages and internal linking strategies.",
-      "expectedImpact": "Move these keywords into top 20 positions to generate 2-4 additional daily clicks",
-      "priority": "medium",
-      "firstSeen": "2026-04-24",
-      "lastSeen": "2026-04-24",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "7707f3dc2f98",
-      "title": "Mobile-First Content Optimization",
-      "description": "Since mobile generated the only click, optimize all content for mobile-first indexing with faster loading, better mobile UX, and mobile-specific CTAs.",
-      "expectedImpact": "Increase mobile click-through rates and capitalize on mobile search preference",
-      "priority": "medium",
-      "firstSeen": "2026-04-24",
-      "lastSeen": "2026-04-24",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "d2a4cf10e094",
+      "id": "capitalize-on-ranking-improvements-for-lead-generation",
       "title": "Capitalize on Ranking Improvements for Lead Generation",
       "description": "Create targeted landing pages for queries ranking 13-18 positions like 'aged lead store' and 'aged mortgage leads'. Add clear affiliate link placements and lead magnet offers to convert improved visibility.",
       "expectedImpact": "Convert ranking improvements into affiliate commissions and email subscribers",
@@ -1242,10 +706,11 @@
       "firstSeen": "2026-04-26",
       "lastSeen": "2026-04-26",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "capitalize-on-ranking-improvements-for-lead-generation"
     },
     {
-      "id": "ddf75d660142",
+      "id": "commercial-query-content-expansion",
       "title": "Commercial Query Content Expansion",
       "description": "Create dedicated landing pages for high-impression queries like 'aged insurance leads' (position 33) and 'aged mortgage leads' (position 41.5) with clear affiliate link placement and conversion optimization.",
       "expectedImpact": "Capture clicks from 7+ commercial queries currently generating impressions",
@@ -1253,10 +718,11 @@
       "firstSeen": "2026-04-27",
       "lastSeen": "2026-04-27",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "commercial-query-content-expansion"
     },
     {
-      "id": "061288a91d8e",
+      "id": "expand-mortgage-lead-content",
       "title": "Expand Mortgage Lead Content",
       "description": "Create dedicated landing pages for 'aged mortgage leads' and 'aged refinance leads' queries that are gaining visibility (positions 28.5-46.5). Include mortgage broker success stories and ROI calculators.",
       "expectedImpact": "Capture 20-30% of mortgage lead search volume",
@@ -1264,10 +730,11 @@
       "firstSeen": "2026-04-28",
       "lastSeen": "2026-04-28",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "expand-mortgage-lead-content"
     },
     {
-      "id": "9fb594bd9ad4",
+      "id": "optimize-brand-review-content",
       "title": "Optimize Brand Review Content",
       "description": "Enhance the Aged Lead Store reviews page ranking at position 10.3 with more detailed reviews, comparison tables, and affiliate conversion elements to capitalize on high commercial intent.",
       "expectedImpact": "Increase affiliate conversions by 15-25%",
@@ -1275,10 +742,11 @@
       "firstSeen": "2026-04-28",
       "lastSeen": "2026-04-28",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "optimize-brand-review-content"
     },
     {
-      "id": "2356990db7f1",
+      "id": "implement-internal-linking-strategy-from-high-traffic-pages",
       "title": "Implement Internal Linking Strategy from High-Traffic Pages",
       "description": "The homepage, providers page, and playbook pages are receiving consistent traffic. Add contextual internal links to affiliate-focused content and lead type pages to distribute link equity and guide user journey.",
       "expectedImpact": "Improve page authority distribution and increase affiliate link exposure by 40-60%",
@@ -1286,10 +754,11 @@
       "firstSeen": "2026-04-30",
       "lastSeen": "2026-04-30",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "implement-internal-linking-strategy-from-high-traffic-pages"
     },
     {
-      "id": "c8cd5be3295c",
+      "id": "target-high-intent-aged-lead-queries",
       "title": "Target High-Intent Aged Lead Queries",
       "description": "Create dedicated landing pages for queries showing in position 6-9 like 'aged lead industry statistics' and 'scaling aged lead operation'. Optimize existing content for 'aged lead store reviews' to capture position 9.2 traffic.",
       "expectedImpact": "Increase organic clicks from 0.1 to 2-3 daily within 60 days",
@@ -1297,21 +766,11 @@
       "firstSeen": "2026-05-01",
       "lastSeen": "2026-05-01",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "target-high-intent-aged-lead-queries"
     },
     {
-      "id": "c4b69b684da5",
-      "title": "Develop Vertical-Specific Calculator Suite",
-      "description": "Create specialized calculators for insurance ROI, mortgage lead value, and solar commission potential. Cross-link between calculators and add comparison features to increase page views per session.",
-      "expectedImpact": "Increase average page views from 73.4 to 100+ and session duration to 500+ seconds",
-      "priority": "medium",
-      "firstSeen": "2026-05-01",
-      "lastSeen": "2026-05-01",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "1d9f43d6fa51",
+      "id": "implement-newsletter-signup-optimization",
       "title": "Implement Newsletter Signup Optimization",
       "description": "The newsletter page has 23 views from 24 users (96% new visitor rate). Add exit-intent popups, content upgrades, and calculator-based lead magnets to capture more email subscribers.",
       "expectedImpact": "Increase newsletter signups by 200-300% and create owned media channel for traffic",
@@ -1319,10 +778,11 @@
       "firstSeen": "2026-05-01",
       "lastSeen": "2026-05-01",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "implement-newsletter-signup-optimization"
     },
     {
-      "id": "df9028d9c9c5",
+      "id": "expand-email-newsletter-content-distribution",
       "title": "Expand Email Newsletter Content Distribution",
       "description": "With 12 sessions from email driving quality traffic, increase newsletter frequency and create email-exclusive content previews that drive traffic to high-converting pages like calculators and playbooks.",
       "expectedImpact": "Increase email-driven sessions by 50% and improve overall engagement metrics",
@@ -1330,21 +790,11 @@
       "firstSeen": "2026-05-03",
       "lastSeen": "2026-05-03",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "expand-email-newsletter-content-distribution"
     },
     {
-      "id": "c64a376d9244",
-      "title": "Expand Calculator Suite Based on Success",
-      "description": "Create additional calculators: Cost Per Lead Calculator, Lead Conversion Rate Calculator, and Monthly Lead Budget Calculator. Cross-link them and create a dedicated calculators landing page to capture more tool-seeking traffic.",
-      "expectedImpact": "Increase tool-based traffic by 200-300% and create multiple lead capture opportunities",
-      "priority": "medium",
-      "firstSeen": "2026-05-04",
-      "lastSeen": "2026-05-04",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "de59c17483d2",
+      "id": "optimize-tcpa-compliance-content-for-featured-snippets",
       "title": "Optimize TCPA Compliance Content for Featured Snippets",
       "description": "The TCPA compliance page earned 1 click at position 15.2. Restructure content with FAQ format, bullet points, and step-by-step compliance checklists to target position 0 for compliance-related queries.",
       "expectedImpact": "Capture featured snippet position, potentially increasing clicks by 300-400%",
@@ -1352,10 +802,11 @@
       "firstSeen": "2026-05-04",
       "lastSeen": "2026-05-04",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "optimize-tcpa-compliance-content-for-featured-snippets"
     },
     {
-      "id": "7c62a30e091d",
+      "id": "expand-content-around-high-impression-queries",
       "title": "Expand Content Around High-Impression Queries",
       "description": "Target 'aged lead store reviews' (22 impressions, pos 12.7) and 'aged leads' (7 impressions, pos 26.3) with dedicated comparison content, case studies, and FAQ pages. These show search demand with improving positions.",
       "expectedImpact": "50-100% increase in organic impressions within 60 days",
@@ -1363,43 +814,11 @@
       "firstSeen": "2026-05-06",
       "lastSeen": "2026-05-06",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "expand-content-around-high-impression-queries"
     },
     {
-      "id": "8901972cc809",
-      "title": "Expand Calculator Tool Content Strategy",
-      "description": "The /calculators/know-your-cpl page shows 2x engagement (36 views, 18 users). Create additional calculators for ROI, lead cost comparison, and conversion rate tools to replicate this success pattern.",
-      "expectedImpact": "Generate 5-10 additional high-engagement pages with 1.5+ views per user",
-      "priority": "medium",
-      "firstSeen": "2026-05-08",
-      "lastSeen": "2026-05-08",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "132d5757919f",
-      "title": "Expand Calculator Content Strategy",
-      "description": "The CPL calculator shows strong user engagement (18 users, 36 views). Create additional calculators for ROI, lead volume planning, and cost comparison. Add lead capture forms to calculator results pages.",
-      "expectedImpact": "Increase engaged sessions by 25% and generate 5-10 email leads weekly",
-      "priority": "medium",
-      "firstSeen": "2026-05-09",
-      "lastSeen": "2026-05-09",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "eb2c3b77d19f",
-      "title": "Optimize for Long-tail Insurance Queries",
-      "description": "Target ranking improvements for 'aged health insurance leads' (pos 30), 'aged life insurance leads' (pos 46), and 'aged mortgage leads' (pos 39.5) by creating dedicated comparison pages with pricing data and provider reviews.",
-      "expectedImpact": "Achieve top 20 rankings for 3-5 long-tail queries within 60 days",
-      "priority": "medium",
-      "firstSeen": "2026-05-09",
-      "lastSeen": "2026-05-09",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "0bb38d1a0d46",
+      "id": "implement-progressive-engagement-strategy",
       "title": "Implement Progressive Engagement Strategy",
       "description": "Since session duration dropped to 38.6s, implement progressive disclosure with content teasers, related article suggestions, and internal linking optimization. Add 'Quick Start' guides and interactive elements to key pages like /providers and /playbook.",
       "expectedImpact": "Increase average session duration to 60-75 seconds and reduce bounce rate by 10-15%",
@@ -1407,10 +826,11 @@
       "firstSeen": "2026-05-10",
       "lastSeen": "2026-05-10",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "implement-progressive-engagement-strategy"
     },
     {
-      "id": "911ae1a89f1c",
+      "id": "expand-long-tail-lead-type-content",
       "title": "Expand Long-Tail Lead Type Content",
       "description": "Target the 20+ motor vehicle accident lead queries showing in Search Console by creating state-specific landing pages, build content around 'aged [lead type] leads' patterns, and optimize existing lead-type pages for featured snippets.",
       "expectedImpact": "Increase organic clicks by 50-75% within 60 days by capturing long-tail traffic",
@@ -1418,32 +838,11 @@
       "firstSeen": "2026-05-13",
       "lastSeen": "2026-05-13",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "expand-long-tail-lead-type-content"
     },
     {
-      "id": "47484af65da3",
-      "title": "Scale Calculator Tool Content Strategy",
-      "description": "ROI and CPL calculators are top performers - create additional calculators for commission tracking, lead cost analysis, and conversion rate optimization. Build dedicated landing pages for each calculator with SEO-optimized content around related keywords.",
-      "expectedImpact": "Increase organic traffic by 40% and improve engagement rates through utility-focused content",
-      "priority": "medium",
-      "firstSeen": "2026-05-15",
-      "lastSeen": "2026-05-15",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "04153e8d0dad",
-      "title": "Implement Mobile-First CTR Optimization",
-      "description": "Mobile generates 4 clicks vs 0 desktop clicks despite lower impression volume. Optimize mobile meta descriptions and titles for aged lead queries, and ensure mobile page speed is under 2 seconds for better search performance.",
-      "expectedImpact": "Improve overall CTR from 0.69% to 1.2% by focusing on mobile optimization",
-      "priority": "medium",
-      "firstSeen": "2026-05-15",
-      "lastSeen": "2026-05-15",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "7f811eba8476",
+      "id": "expand-insurance-content-hub-strategy",
       "title": "Expand Insurance Content Hub Strategy",
       "description": "Build out insurance playbook series based on the strong performance of /playbook/insurance. Create state-specific insurance lead guides, cost calculators, and conversion templates linking to AgedLeadStore inventory.",
       "expectedImpact": "Increase organic traffic by 30-40% within 60 days",
@@ -1451,32 +850,11 @@
       "firstSeen": "2026-05-16",
       "lastSeen": "2026-05-16",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "expand-insurance-content-hub-strategy"
     },
     {
-      "id": "b83172299bdb",
-      "title": "Develop Mobile-First Content Experience",
-      "description": "Optimize page load speeds, implement AMP for key pages, and create mobile-specific lead calculators. Focus on the fact that mobile users are more likely to click (3 vs 0 desktop clicks).",
-      "expectedImpact": "Improve mobile CTR by 25% and reduce mobile bounce rate",
-      "priority": "medium",
-      "firstSeen": "2026-05-16",
-      "lastSeen": "2026-05-16",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "a69b1c4dc2ff",
-      "title": "Expand Calculator Tool Suite",
-      "description": "Create additional calculators for ROI calculation, lead conversion tracking, and cost-per-acquisition tools. Cross-link between calculator pages and add affiliate CTAs within results pages.",
-      "expectedImpact": "Increase utility-focused traffic by 50% and improve conversion rates",
-      "priority": "medium",
-      "firstSeen": "2026-05-17",
-      "lastSeen": "2026-05-17",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "ff9ffb17a67d",
+      "id": "develop-bing-seo-strategy",
       "title": "Develop Bing SEO Strategy",
       "description": "Optimize content specifically for Bing's algorithm preferences, submit sitemap to Bing Webmaster Tools, and create Bing-specific content targeting aged lead queries where Google competition is high.",
       "expectedImpact": "Increase Bing organic traffic from 5 to 15+ sessions weekly",
@@ -1484,10 +862,11 @@
       "firstSeen": "2026-05-17",
       "lastSeen": "2026-05-17",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "develop-bing-seo-strategy"
     },
     {
-      "id": "7d3a59ee15b1",
+      "id": "create-state-specific-pi-attorney-lead-content",
       "title": "Create State-Specific PI Attorney Lead Content",
       "description": "Develop landing pages for motor vehicle accident lead queries by state (Arizona, California, Florida showing in search data) with local pricing and provider information.",
       "expectedImpact": "Capture 20+ additional clicks monthly from geo-specific PI attorney searches",
@@ -1495,21 +874,11 @@
       "firstSeen": "2026-05-17",
       "lastSeen": "2026-05-17",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "create-state-specific-pi-attorney-lead-content"
     },
     {
-      "id": "de53301f57e3",
-      "title": "Expand Calculator Tool Utilization",
-      "description": "The CPL calculator shows 15 views from only 4 users (3.75 pages per user), indicating high engagement. Create similar calculators for mortgage, solar, and PI attorney lead costs to capture more qualified traffic.",
-      "expectedImpact": "Increase average session duration by 25% and pages per session",
-      "priority": "medium",
-      "firstSeen": "2026-05-18",
-      "lastSeen": "2026-05-18",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "644c940e8a37",
+      "id": "leverage-ai-platform-discovery",
       "title": "Leverage AI Platform Discovery",
       "description": "Optimize content for AI search queries by adding FAQ sections, structured data, and conversational content formats that perform well in ChatGPT and Copilot responses.",
       "expectedImpact": "Capture 10-15 additional sessions monthly from AI platforms",
@@ -1517,21 +886,11 @@
       "firstSeen": "2026-05-18",
       "lastSeen": "2026-05-18",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "leverage-ai-platform-discovery"
     },
     {
-      "id": "98d039c5f3eb",
-      "title": "Develop content targeting mobile search behavior",
-      "description": "74 mobile impressions vs 685 desktop impressions, but 3 mobile clicks vs 0 desktop clicks suggests mobile users are more likely to convert. Create mobile-optimized content focusing on quick lead purchasing decisions and mobile-friendly comparison tools.",
-      "expectedImpact": "Improve mobile CTR from current levels and capture more mobile-driven conversions",
-      "priority": "medium",
-      "firstSeen": "2026-05-19",
-      "lastSeen": "2026-05-19",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "ff20531dc18b",
+      "id": "create-comprehensive-aged-lead-comparison-content",
       "title": "Create comprehensive aged lead comparison content",
       "description": "Target queries like 'best place to buy mortgage leads' (pos 72) and 'aged insurance leads' (pos 46) with detailed comparison articles featuring AgedLeadStore.com prominently. Include pricing tables, quality metrics, and user testimonials.",
       "expectedImpact": "Capture 20-30 additional organic clicks monthly from comparison-intent searches",
@@ -1539,32 +898,11 @@
       "firstSeen": "2026-05-19",
       "lastSeen": "2026-05-19",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "create-comprehensive-aged-lead-comparison-content"
     },
     {
-      "id": "a529c748f33b",
-      "title": "Enhance Calculator Page SEO for Lead Generation Queries",
-      "description": "ROI calculator shows 3x engagement rate but lacks search visibility. Optimize /calculators/roi-calculator for queries like \"aged lead ROI calculator,\" \"insurance lead cost calculator,\" and \"lead generation ROI tool.\" Add schema markup for SoftwareApplication and optimize for featured snippets.",
-      "expectedImpact": "Capture 50+ monthly impressions for calculator-related queries, driving high-intent traffic",
-      "priority": "medium",
-      "firstSeen": "2026-05-20",
-      "lastSeen": "2026-05-20",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "c9d19c9cf605",
-      "title": "Optimize High-Impression, Zero-Click Queries",
-      "description": "\"Aged leads\" shows 10 impressions at position 23.0 with 0 clicks. The homepage ranks for this but needs better title tag and meta description. Change from generic to specific: \"Aged Leads for Insurance Agents - Pricing, Providers & ROI Guide 2026\" to capture more clicks.",
-      "expectedImpact": "Convert 2-3 daily impressions to clicks for high-volume aged lead queries",
-      "priority": "medium",
-      "firstSeen": "2026-05-20",
-      "lastSeen": "2026-05-20",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "fea07dd5eba1",
+      "id": "enhance-lead-tycoons-provider-page-ctr",
       "title": "Enhance Lead Tycoons Provider Page CTR",
       "description": "The /providers/lead-tycoons page ranks well (position 10.4) for branded queries but needs CTR optimization. Add compelling meta description highlighting key differentiators and pricing information to improve click-through from the 2 daily impressions.",
       "expectedImpact": "Could improve CTR from current levels to capture 1-2 additional clicks daily",
@@ -1572,10 +910,11 @@
       "firstSeen": "2026-05-21",
       "lastSeen": "2026-05-21",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "enhance-lead-tycoons-provider-page-ctr"
     },
     {
-      "id": "d5e563e5d933",
+      "id": "optimize-provider-comparison-pages-for-competitor-brand-quer",
       "title": "Optimize provider comparison pages for competitor brand queries",
       "description": "Existing /compare/aged-lead-store-vs-the-leads-warehouse ranks position 16.3 for 'the leads warehouse reviews'. Strengthen this page's E-A-T signals, add recent pricing data, and optimize for affiliate conversion while maintaining comparison credibility.",
       "expectedImpact": "Capture competitor research traffic and convert 20-30% to AgedLeadStore affiliate clicks",
@@ -1583,10 +922,11 @@
       "firstSeen": "2026-05-22",
       "lastSeen": "2026-05-22",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "optimize-provider-comparison-pages-for-competitor-brand-quer"
     },
     {
-      "id": "6bdbc0ce0827",
+      "id": "scale-referral-traffic-momentum-with-partner-content",
       "title": "Scale referral traffic momentum with partner content",
       "description": "AgedLeadStore referrals (23 sessions) are driving quality traffic. Create dedicated landing pages for referral traffic with affiliate-optimized content, clear CTAs, and conversion tracking to maximize partner channel ROI.",
       "expectedImpact": "Increase referral traffic conversion rate by 25-40% through dedicated landing experiences",
@@ -1594,32 +934,11 @@
       "firstSeen": "2026-05-22",
       "lastSeen": "2026-05-22",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "scale-referral-traffic-momentum-with-partner-content"
     },
     {
-      "id": "2f2e315987fa",
-      "title": "Enhance calculator engagement for lead capture",
-      "description": "ROI calculator shows 25 views from 8 users indicating high engagement. Add email capture gate after calculation results, integrate with newsletter signup, and create follow-up sequences for calculator users.",
-      "expectedImpact": "Convert 15-25% of calculator users to email subscribers, building owned audience for affiliate promotions",
-      "priority": "medium",
-      "firstSeen": "2026-05-22",
-      "lastSeen": "2026-05-22",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "62bbd20c826d",
-      "title": "Implement schema markup for calculator tools",
-      "description": "The calculator pages (/calculators/roi-calculator, /calculators/know-your-cpl) show strong engagement but low user-to-view ratios. Add FAQ schema, calculator schema, and optimize for 'lead cost calculator' and 'insurance ROI calculator' queries to improve search visibility and click-through rates.",
-      "expectedImpact": "Increase calculator page organic visibility by 25-40% and improve user acquisition",
-      "priority": "medium",
-      "firstSeen": "2026-05-23",
-      "lastSeen": "2026-05-23",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "491ad3ed3125",
+      "id": "optimize-the-leads-warehouse-comparison-page-for-competitor",
       "title": "Optimize The Leads Warehouse comparison page for competitor capture",
       "description": "The /compare/aged-lead-store-vs-the-leads-warehouse page ranks position 14.1 for 'the leads warehouse reviews' with 1 click from 5 impressions. Optimize the comparison to better capture competitor research traffic while maintaining affiliate-friendly positioning toward AgedLeadStore.",
       "expectedImpact": "Capture 20-30% more competitor research traffic and funnel to AgedLeadStore affiliate links",
@@ -1627,21 +946,11 @@
       "firstSeen": "2026-05-23",
       "lastSeen": "2026-05-23",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "optimize-the-leads-warehouse-comparison-page-for-competitor"
     },
     {
-      "id": "388a3d4a2df1",
-      "title": "Enhance Calculator Engagement Conversion",
-      "description": "The /calculators/know-your-cpl page shows strong engagement (33 views, 18 users = high time-on-page). Add exit-intent affiliate link overlays and 'next step' CTAs that guide users from cost calculation to AgedLeadStore.com browsing with affiliate tracking.",
-      "expectedImpact": "Convert high-engagement calculator traffic into affiliate referrals, potentially increasing conversion rate by 25%",
-      "priority": "medium",
-      "firstSeen": "2026-05-24",
-      "lastSeen": "2026-05-24",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "d77bcbd7ab09",
+      "id": "optimize-insurance-lead-type-pages-for-search",
       "title": "Optimize Insurance Lead Type Pages for Search",
       "description": "The /lead-types/insurance-leads page received 2 search clicks but ranks at position 41.8. Review and optimize for primary 'aged insurance leads' queries by strengthening topical authority, adding comparison tables, and improving internal linking from related blog posts.",
       "expectedImpact": "Move insurance lead queries from page 4-5 to page 2-3, potentially increasing organic clicks by 200%",
@@ -1649,21 +958,11 @@
       "firstSeen": "2026-05-24",
       "lastSeen": "2026-05-24",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "optimize-insurance-lead-type-pages-for-search"
     },
     {
-      "id": "dcfdf59da21b",
-      "title": "Expand Calculator Tool Suite Based on Usage Patterns",
-      "description": "The ROI calculator shows 3.4 pages per user, indicating high engagement. Create additional calculators for 'Lead Cost Comparison', 'Break-Even Analysis', and 'Commission Projection' tools. Cross-link these from high-traffic lead-type pages to increase session value and time on site.",
-      "expectedImpact": "Increase average session duration from 128s to 150s+ and improve internal link equity distribution",
-      "priority": "medium",
-      "firstSeen": "2026-05-25",
-      "lastSeen": "2026-05-25",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "f63a8e1715cf",
+      "id": "optimize-the-leads-warehouse-comparison-content",
       "title": "Optimize The Leads Warehouse Comparison Content",
       "description": "The query 'the leads warehouse reviews' generated 1 click at position 10.0. Optimize the /compare/aged-lead-store-vs-the-leads-warehouse page with more detailed feature comparisons, pricing analysis, and stronger affiliate positioning for AgedLeadStore. Add schema markup for comparison tables.",
       "expectedImpact": "Move from position 10 to positions 5-7, increasing clicks and strengthening affiliate funnel",
@@ -1671,21 +970,11 @@
       "firstSeen": "2026-05-25",
       "lastSeen": "2026-05-25",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "optimize-the-leads-warehouse-comparison-content"
     },
     {
-      "id": "a2715e720f63",
-      "title": "Enhance /lead-types/insurance-leads page for broader aged insurance queries",
-      "description": "This page receives 2 clicks at position 41.9 for insurance-related queries. Add comprehensive sections on aged auto insurance leads, aged health insurance leads, and aged insurance leads for agents. Include state-specific considerations, compliance requirements, and ROI calculators to capture the 12+ insurance lead queries currently ranking page 2-4.",
-      "expectedImpact": "Improve rankings for 8-10 insurance lead queries from page 2-4 to page 1, potentially 5x organic traffic",
-      "priority": "medium",
-      "firstSeen": "2026-05-26",
-      "lastSeen": "2026-05-26",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "0b7213471973",
+      "id": "implement-schema-markup-across-top-performing-pages",
       "title": "Implement schema markup across top-performing pages",
       "description": "Add FAQ schema to /providers pages, Review schema to comparison pages, and Article schema to blog posts. Focus on the top 15 pages by traffic: homepage, /providers, /lead-types, and key blog posts. Include aggregate rating schema for provider reviews to enhance SERP visibility.",
       "expectedImpact": "Improve CTR by 15-25% through enhanced SERP features and rich snippets",
@@ -1693,10 +982,11 @@
       "firstSeen": "2026-05-26",
       "lastSeen": "2026-05-26",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "implement-schema-markup-across-top-performing-pages"
     },
     {
-      "id": "fb67a250b90c",
+      "id": "optimize-providers-lead-tycoons-for-position-ranking",
       "title": "Optimize /providers/lead-tycoons for position 1 ranking",
       "description": "Currently ranks position 23 for 'lead tycoons' with 1 click from 4 impressions. The www.agedleadsales.com version ranks position 1, indicating a canonical URL issue. Implement proper canonical tags, update the main page with fresh 2026 content, and build internal links from related mortgage and insurance lead type pages.",
       "expectedImpact": "Capture position 1 ranking consistently, potentially 10x click volume for this branded query",
@@ -1704,10 +994,11 @@
       "firstSeen": "2026-05-26",
       "lastSeen": "2026-05-26",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "optimize-providers-lead-tycoons-for-position-ranking"
     },
     {
-      "id": "c994b1126bf9",
+      "id": "enhance-insurance-lead-type-page-for-better-rankings",
       "title": "Enhance insurance lead type page for better rankings",
       "description": "The /lead-types/insurance-leads page ranks at position 44.4 for insurance-related queries. Add comprehensive sections on lead quality factors, pricing benchmarks, conversion strategies, and vendor comparisons. Include internal links to specific insurance lead blog posts and provider pages.",
       "expectedImpact": "Move insurance lead queries from page 4-5 to page 2-3, increasing organic traffic for high-value commercial terms",
@@ -1715,10 +1006,11 @@
       "firstSeen": "2026-05-28",
       "lastSeen": "2026-05-28",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "enhance-insurance-lead-type-page-for-better-rankings"
     },
     {
-      "id": "4b72f5b4608c",
+      "id": "optimize-homepage-for-aged-leads-primary-keyword",
       "title": "Optimize homepage for 'aged leads' primary keyword",
       "description": "Homepage ranks at position 26.9 for core 'aged leads' terms. Enhance the hero section with clearer value proposition, add comprehensive aged lead benefits section, and include links to all lead types and top providers. Implement breadcrumb schema and improve page speed.",
       "expectedImpact": "Improve homepage ranking for primary 'aged leads' keyword cluster, increasing brand visibility and traffic",
@@ -1726,10 +1018,11 @@
       "firstSeen": "2026-05-28",
       "lastSeen": "2026-05-28",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "optimize-homepage-for-aged-leads-primary-keyword"
     },
     {
-      "id": "b65dff6e4941",
+      "id": "leverage-direct-traffic-surge-with-conversion-optimization",
       "title": "Leverage direct traffic surge with conversion optimization",
       "description": "With 73 direct sessions leading traffic, optimize high-traffic pages (/providers, /newsletter, /calculators) with stronger affiliate CTAs, email capture forms, and clear paths to AgedLeadStore.com. Add exit-intent popups and improve internal linking to monetization pages.",
       "expectedImpact": "Convert 10-15% more direct traffic into affiliate clicks and email subscribers",
@@ -1737,21 +1030,11 @@
       "firstSeen": "2026-05-28",
       "lastSeen": "2026-05-28",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "leverage-direct-traffic-surge-with-conversion-optimization"
     },
     {
-      "id": "db4a31343064",
-      "title": "Enhance Calculator Engagement with Lead Capture",
-      "description": "The /calculators/know-your-cpl tool shows high repeat usage (1.83 pages per user). Add email capture after calculation with \"Get Your Personalized Lead Buying Strategy\" lead magnet. Create follow-up email sequence promoting AgedLeadStore.com with calculated CPL benchmarks.",
-      "expectedImpact": "Convert 20-30% of calculator users to email subscribers, create affiliate conversion funnel",
-      "priority": "medium",
-      "firstSeen": "2026-05-29",
-      "lastSeen": "2026-05-29",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "215e62dd6145",
+      "id": "optimize-insurance-lead-pages-for-commercial-queries",
       "title": "Optimize Insurance Lead Pages for Commercial Queries",
       "description": "The /lead-types/insurance-leads page ranks position 43.5 for \"aged insurance leads\" - too low for commercial traffic. Add comparison tables, pricing benchmarks from /price-index, and prominent AgedLeadStore affiliate CTAs. Target long-tail queries like \"aged insurance leads for agents\" and \"affordable aged insurance leads.\"",
       "expectedImpact": "Improve rankings for insurance lead queries from page 4 to page 2, increase affiliate conversions",
@@ -1759,21 +1042,11 @@
       "firstSeen": "2026-05-29",
       "lastSeen": "2026-05-29",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "optimize-insurance-lead-pages-for-commercial-queries"
     },
     {
-      "id": "d7e0d58f2f11",
-      "title": "Expand calculator tool promotion across high-traffic pages",
-      "description": "The outreach-cadence-planner shows exceptional engagement (14 views, 1 user). Add prominent calculator CTAs to top pages like /providers, /lead-types/insurance-leads, and homepage to drive more discovery of these high-value tools.",
-      "expectedImpact": "Increase session duration and reduce bounce rate across top pages",
-      "priority": "medium",
-      "firstSeen": "2026-05-30",
-      "lastSeen": "2026-05-30",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "5c46182b8b52",
+      "id": "optimize-existing-health-insurance-content-for-position-brea",
       "title": "Optimize existing health insurance content for position breakthrough",
       "description": "The site has /blog/aged-health-insurance-leads-open-enrollment-sep-strategies-2026 but 'aged health insurance leads' ranks position 35.8. Optimize this existing page with better internal linking, updated 2026 data, and cross-links from /lead-types/insurance-leads.",
       "expectedImpact": "Move from page 4 to page 2, capture more of the 13 daily impressions",
@@ -1781,32 +1054,11 @@
       "firstSeen": "2026-05-30",
       "lastSeen": "2026-05-30",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "optimize-existing-health-insurance-content-for-position-brea"
     },
     {
-      "id": "c96d646837ff",
-      "title": "Consolidate Insurance Lead Content to Prevent Cannibalization",
-      "description": "Multiple pages target insurance lead queries: /lead-types/insurance-leads, /lead-types/final-expense-leads, and various blog posts. Pick /lead-types/insurance-leads as the canonical page and redirect internal links from competing pages. Add comprehensive sections covering all insurance verticals.",
-      "expectedImpact": "Resolve keyword cannibalization and improve rankings for 'aged insurance leads' cluster",
-      "priority": "medium",
-      "firstSeen": "2026-05-31",
-      "lastSeen": "2026-05-31",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "6f29ee9683ef",
-      "title": "Enhance Calculator Pages for Lead Magnet Conversion",
-      "description": "The /calculators/roi-calculator gets 25 views from 12 users, showing strong engagement. Add email capture forms before showing results, create follow-up email sequences, and add more calculator types (cost-per-lead, break-even analysis) to capture more middle-funnel traffic.",
-      "expectedImpact": "Generate 20-30 email leads per week and improve lead nurturing pipeline",
-      "priority": "medium",
-      "firstSeen": "2026-05-31",
-      "lastSeen": "2026-05-31",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "54b13ecded65",
+      "id": "improve-meta-descriptions-for-higher-ctr",
       "title": "Improve Meta Descriptions for Higher CTR",
       "description": "With CTR declining to 0.45%, audit and rewrite meta descriptions for top-ranking pages. Focus on benefit-driven copy with clear value propositions. For example, change generic descriptions to 'Get aged insurance leads for $X-Y per lead. Compare 15+ vendors, read honest reviews, and find the best ROI for your agency.'",
       "expectedImpact": "Increase overall CTR to 0.8-1.2% within 30 days",
@@ -1814,21 +1066,11 @@
       "firstSeen": "2026-05-31",
       "lastSeen": "2026-05-31",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "improve-meta-descriptions-for-higher-ctr"
     },
     {
-      "id": "8bb75cc90f7d",
-      "title": "Enhance Calculator User Experience and CTAs",
-      "description": "ROI and CPL calculators show high engagement (39 total views, strong repeat usage). Add lead capture forms after calculation results, implement progressive profiling, and include personalized aged lead recommendations based on calculator inputs.",
-      "expectedImpact": "Convert 15-20% of calculator users to email subscribers, improve lead qualification",
-      "priority": "medium",
-      "firstSeen": "2026-06-01",
-      "lastSeen": "2026-06-01",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "5c08372e177b",
+      "id": "optimize-meta-descriptions-for-page-rankings",
       "title": "Optimize Meta Descriptions for Page 2 Rankings",
       "description": "Multiple pages rank positions 8-30 with low CTR. Focus on /blog/aged-lead-industry-statistics (position 8.9), /blog/aged-lead-performance-benchmarks-2026 (position 5.3), and /providers page (position 13.7). Rewrite meta descriptions with compelling CTAs and specific value propositions.",
       "expectedImpact": "Improve CTR by 25-40% for targeted pages, increase organic clicks by 50%",
@@ -1836,21 +1078,11 @@
       "firstSeen": "2026-06-01",
       "lastSeen": "2026-06-01",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "optimize-meta-descriptions-for-page-rankings"
     },
     {
-      "id": "ae8e1f69da55",
-      "title": "Strengthen Internal Link Architecture to Calculator Pages",
-      "description": "Calculator pages show strong engagement but need more internal link equity. Add contextual links from relevant blog posts (ROI articles should link to ROI calculator, pricing articles to CPL calculator) and create calculator widgets for high-traffic pages.",
-      "expectedImpact": "Increase calculator page views by 75%, improve overall site engagement metrics",
-      "priority": "medium",
-      "firstSeen": "2026-06-01",
-      "lastSeen": "2026-06-01",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "1f17e2733679",
+      "id": "implement-title-tag-ctr-optimization-campaign",
       "title": "Implement Title Tag CTR Optimization Campaign",
       "description": "With CTR declining to 0.44% despite 226% impression growth, systematically rewrite title tags for pages ranking positions 8-30. Focus on emotional triggers, specific benefits, and year-current content. Start with /providers page (position 13.7) and /blog/aged-lead-store-review-2026 (position 9.7).",
       "expectedImpact": "Increase overall CTR from 0.44% to 0.8-1.2%, potentially doubling organic traffic",
@@ -1858,10 +1090,11 @@
       "firstSeen": "2026-06-02",
       "lastSeen": "2026-06-02",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "implement-title-tag-ctr-optimization-campaign"
     },
     {
-      "id": "551fc80d7eb4",
+      "id": "scale-direct-traffic-conversion-optimization",
       "title": "Scale Direct Traffic Conversion Optimization",
       "description": "With 69 direct sessions leading traffic, optimize the homepage and /providers page for immediate affiliate link visibility. Add prominent 'Get Aged Leads Now' CTAs, implement exit-intent popups with AgedLeadStore discount codes, and create a sticky header with affiliate link access.",
       "expectedImpact": "Increase affiliate click-through rate from direct traffic by 25-40%",
@@ -1869,21 +1102,11 @@
       "firstSeen": "2026-06-02",
       "lastSeen": "2026-06-02",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "scale-direct-traffic-conversion-optimization"
     },
     {
-      "id": "3ddb0c10e5bf",
-      "title": "Enhance Calculator Pages for Lead Capture",
-      "description": "The /calculators/roi-calculator shows exceptional engagement (25 views from 12 users). Add email capture forms before showing results, create follow-up email sequences with AgedLeadStore recommendations, and implement social proof testimonials on calculator results pages.",
-      "expectedImpact": "Generate 15-25 email leads weekly, improve affiliate conversion rate by 30%",
-      "priority": "medium",
-      "firstSeen": "2026-06-02",
-      "lastSeen": "2026-06-02",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "09d01715c724",
+      "id": "enhance-mortgage-leads-page-to-capture-aged-mortgage-leads-t",
       "title": "Enhance mortgage leads page to capture 'aged mortgage leads' traffic",
       "description": "The /lead-types/mortgage-leads page gets clicks but 'aged mortgage leads' ranks at position 30.5. Add dedicated sections on aged vs real-time mortgage lead performance, pricing comparisons, and seasonal trends. Include more specific data on conversion rates and ROI for aged mortgage leads.",
       "expectedImpact": "Improve from position 30.5 to page 1-2 for mortgage-related aged lead queries",
@@ -1891,10 +1114,11 @@
       "firstSeen": "2026-06-03",
       "lastSeen": "2026-06-03",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "enhance-mortgage-leads-page-to-capture-aged-mortgage-leads-t"
     },
     {
-      "id": "a69ad078b6cb",
+      "id": "optimize-contact-page-conversion-flow-for-high-intent-visito",
       "title": "Optimize contact page conversion flow for high-intent visitors",
       "description": "The /contact page receives 33 views (31 users), indicating high purchase intent. Add lead magnets like 'Free Aged Lead ROI Calculator' or 'Lead Vendor Comparison Checklist' to capture emails before users leave. Include testimonials and case studies on the contact page.",
       "expectedImpact": "Convert 20-30% of contact page visitors into email subscribers for nurture sequences",
@@ -1902,21 +1126,11 @@
       "firstSeen": "2026-06-03",
       "lastSeen": "2026-06-03",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "optimize-contact-page-conversion-flow-for-high-intent-visito"
     },
     {
-      "id": "6cfdd573c68a",
-      "title": "Leverage calculator engagement for email capture",
-      "description": "The /calculators/know-your-cpl page shows 22 views from 11 users (high engagement). Gate the advanced calculator features behind email signup and add a 'Get Your Custom Lead Budget Analysis' CTA that requires contact information.",
-      "expectedImpact": "Convert calculator users into qualified leads for AgedLeadStore affiliate referrals",
-      "priority": "medium",
-      "firstSeen": "2026-06-03",
-      "lastSeen": "2026-06-03",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "aa51b4a5002f",
+      "id": "implement-schema-markup-for-review-and-provider-pages",
       "title": "Implement schema markup for review and provider pages",
       "description": "Add Review schema to /blog/aged-lead-store-review-2026 and Organization schema to /providers pages. Include aggregate ratings, pricing information, and FAQ schema to increase SERP real estate and CTR for competitive queries. Focus on pages ranking positions 7-15 that need CTR boost.",
       "expectedImpact": "Increase CTR by 15-25% through enhanced SERP appearance and rich snippets",
@@ -1924,43 +1138,11 @@
       "firstSeen": "2026-06-04",
       "lastSeen": "2026-06-04",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "implement-schema-markup-for-review-and-provider-pages"
     },
     {
-      "id": "72e80491ca8f",
-      "title": "Optimize mobile experience for search traffic",
-      "description": "With only 2 mobile clicks vs 4 desktop clicks despite mobile search volume, audit mobile page speed and user experience on key landing pages. Focus on /providers, /lead-types pages, and top blog posts. Implement mobile-specific CTAs and streamlined affiliate link placement.",
-      "expectedImpact": "Capture 50-100% more mobile search traffic and improve mobile conversion rates",
-      "priority": "medium",
-      "firstSeen": "2026-06-04",
-      "lastSeen": "2026-06-04",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "4e7db381fd28",
-      "title": "Enhance Calculator Landing Page CTR",
-      "description": "The /calculators/know-your-cpl page shows strong engagement (41 views, 23 users) but needs better search visibility. Optimize for 'cost per lead calculator', 'insurance lead cost calculator', and 'aged lead ROI calculator' with updated title tag and add structured data markup for the calculator tool.",
-      "expectedImpact": "Capture 50-100 additional monthly organic sessions for calculator-related queries",
-      "priority": "medium",
-      "firstSeen": "2026-06-05",
-      "lastSeen": "2026-06-05",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "0523a1690e8c",
-      "title": "Optimize High-Impression, Zero-Click Pages",
-      "description": "Pages like /blog/aged-lead-budget-allocation-strategy (position 1.0, 0 clicks) and /blog/aged-lead-performance-benchmarks-2026 (position 3.7, 0 clicks) need title tag optimization. Update to include year '2026' and action words like 'guide', 'strategy', or 'complete' to improve CTR.",
-      "expectedImpact": "Convert 20-30% of current impressions to clicks, adding 10-15 monthly organic sessions",
-      "priority": "medium",
-      "firstSeen": "2026-06-05",
-      "lastSeen": "2026-06-05",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "cc192c120d5f",
+      "id": "long-tail-keyword-expansion",
       "title": "Long-tail Keyword Expansion",
       "description": "Target specific queries like 'how much do mortgage trigger leads cost' (pos 56.8) and 'auto insurance lead cost' (pos 23.0) with dedicated content pieces.",
       "expectedImpact": "Increase impressions and capture more qualified traffic for affiliate conversions",
@@ -1968,21 +1150,11 @@
       "firstSeen": "2026-04-15",
       "lastSeen": "2026-04-20",
       "timesRepeated": 2,
-      "status": "open"
+      "status": "open",
+      "topicKey": "long-tail-keyword-expansion"
     },
     {
-      "id": "ab004c9da1fa",
-      "title": "Expand Mobile Search Optimization",
-      "description": "With only 24 mobile impressions vs 198 desktop, optimize content for mobile-first indexing and create mobile-friendly calculator interfaces to capture mobile search traffic.",
-      "expectedImpact": "Increase mobile impressions by 150% and improve overall search visibility",
-      "priority": "low",
-      "firstSeen": "2026-05-01",
-      "lastSeen": "2026-06-05",
-      "timesRepeated": 2,
-      "status": "open"
-    },
-    {
-      "id": "6bb79e498c01",
+      "id": "content-gap-analysis",
       "title": "Content Gap Analysis",
       "description": "Develop content targeting queries showing in positions 60-90+ like 'how much do insurance leads cost' (pos 73) and 'cpl calculator' (pos 88) to capture long-tail search volume.",
       "expectedImpact": "Expand search footprint and capture additional qualified traffic",
@@ -1990,10 +1162,11 @@
       "firstSeen": "2026-04-14",
       "lastSeen": "2026-04-14",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "content-gap-analysis"
     },
     {
-      "id": "6ec75f69c7d7",
+      "id": "long-tail-keyword-content-development",
       "title": "Long-tail Keyword Content Development",
       "description": "Develop content targeting specific cost-related queries showing good positions: 'how much do auto insurance leads cost' (pos 19) and 'auto insurance leads cost' (pos 14). Create comprehensive cost analysis and ROI calculators.",
       "expectedImpact": "Capture 3-5 additional clicks from cost-conscious prospects with higher conversion intent",
@@ -2001,10 +1174,11 @@
       "firstSeen": "2026-04-23",
       "lastSeen": "2026-04-23",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "long-tail-keyword-content-development"
     },
     {
-      "id": "d15b81ba6d8c",
+      "id": "blog-content-click-through-optimization",
       "title": "Blog Content Click-Through Optimization",
       "description": "Rewrite meta descriptions for blog posts showing good positions but zero clicks, focusing on benefit-driven copy that appeals to insurance agents and mortgage brokers.",
       "expectedImpact": "Convert existing search visibility into 3-5 additional daily clicks from blog content",
@@ -2012,10 +1186,11 @@
       "firstSeen": "2026-04-24",
       "lastSeen": "2026-04-24",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "blog-content-click-through-optimization"
     },
     {
-      "id": "e048233d4130",
+      "id": "create-industry-specific-landing-pages",
       "title": "Create Industry-Specific Landing Pages",
       "description": "Build dedicated pages for 'aged mortgage leads,' 'aged insurance leads,' and 'aged refinance leads' queries where you're ranking 27-46. Include industry-specific calculators and AgedLeadStore.com affiliate links.",
       "expectedImpact": "Improve rankings to positions 15-20 and increase targeted organic traffic by 15%",
@@ -2023,21 +1198,11 @@
       "firstSeen": "2026-04-29",
       "lastSeen": "2026-04-29",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "create-industry-specific-landing-pages"
     },
     {
-      "id": "e43316599362",
-      "title": "Optimize for Mobile Search Performance",
-      "description": "With only 27 mobile impressions vs 224 desktop, ensure mobile page speed and user experience are optimized, especially for calculator and comparison tools that drive conversions.",
-      "expectedImpact": "Potential 30-50% increase in mobile search visibility and engagement",
-      "priority": "low",
-      "firstSeen": "2026-04-30",
-      "lastSeen": "2026-04-30",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "5c5025782110",
+      "id": "expand-newsletter-content-strategy",
       "title": "Expand Newsletter Content Strategy",
       "description": "The newsletter page shows strong engagement (45 views, 47 users). Create lead magnets around aged lead best practices, pricing guides, and industry reports to capture emails from your growing traffic.",
       "expectedImpact": "Build email list for sustained traffic and reduce reliance on external referrals",
@@ -2045,10 +1210,11 @@
       "firstSeen": "2026-05-05",
       "lastSeen": "2026-05-05",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "expand-newsletter-content-strategy"
     },
     {
-      "id": "4d82b27dc6a2",
+      "id": "strengthen-email-newsletter-conversion-path",
       "title": "Strengthen Email Newsletter Conversion Path",
       "description": "With 9 sessions from email and /newsletter getting 36 views, optimize the newsletter signup process and create email-exclusive content to nurture the growing subscriber base.",
       "expectedImpact": "Increase email-driven sessions by 50% and improve subscriber engagement",
@@ -2056,10 +1222,11 @@
       "firstSeen": "2026-05-08",
       "lastSeen": "2026-05-08",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "strengthen-email-newsletter-conversion-path"
     },
     {
-      "id": "88a2ad4c0dc8",
+      "id": "investigate-direct-traffic-source",
       "title": "Investigate Direct Traffic Source",
       "description": "Analyze the 183 direct sessions spike - identify if from email campaign, social media, or referral source. Set up proper UTM tracking for future campaigns to measure attribution accurately.",
       "expectedImpact": "Better campaign attribution and ability to replicate successful traffic sources",
@@ -2067,10 +1234,11 @@
       "firstSeen": "2026-05-09",
       "lastSeen": "2026-05-09",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "investigate-direct-traffic-source"
     },
     {
-      "id": "c2ee0d265682",
+      "id": "leverage-direct-traffic-with-retargeting",
       "title": "Leverage Direct Traffic with Retargeting",
       "description": "With 224 direct sessions, implement Facebook Pixel and Google Analytics Enhanced Ecommerce to retarget visitors who didn't convert. Create lookalike audiences based on high-engagement users.",
       "expectedImpact": "Increase return visitor rate by 25% and improve overall conversion tracking",
@@ -2078,10 +1246,11 @@
       "firstSeen": "2026-05-11",
       "lastSeen": "2026-05-11",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "leverage-direct-traffic-with-retargeting"
     },
     {
-      "id": "c4af9a489d5e",
+      "id": "investigate-and-optimize-direct-traffic-sources",
       "title": "Investigate and Optimize Direct Traffic Sources",
       "description": "Implement UTM tracking for all referral sources, analyze the 195 direct sessions for patterns, and create targeted landing pages for different traffic sources to improve relevance and reduce bounce rates.",
       "expectedImpact": "Improve traffic quality metrics and identify scalable acquisition channels",
@@ -2089,10 +1258,11 @@
       "firstSeen": "2026-05-13",
       "lastSeen": "2026-05-13",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "investigate-and-optimize-direct-traffic-sources"
     },
     {
-      "id": "47c93be66e97",
+      "id": "create-state-specific-motor-vehicle-accident-lead-pages",
       "title": "Create state-specific motor vehicle accident lead pages",
       "description": "Target the multiple state-specific MVA lead queries showing in search console by creating location-specific landing pages for Arizona, California, Florida, Georgia, Illinois, New York, and Ohio.",
       "expectedImpact": "Capture 5-10 additional monthly clicks from state-specific queries",
@@ -2100,21 +1270,11 @@
       "firstSeen": "2026-05-14",
       "lastSeen": "2026-05-14",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "create-state-specific-motor-vehicle-accident-lead-pages"
     },
     {
-      "id": "d57489849b48",
-      "title": "Expand Insurance Playbook Content",
-      "description": "The /playbook/insurance page shows strong performance (12 views, 10 users). Create similar playbooks for mortgage, solar, and PI attorney verticals with downloadable resources to capture leads and improve engagement time.",
-      "expectedImpact": "Increase average session duration by 60% and generate 15-20 new leads monthly",
-      "priority": "low",
-      "firstSeen": "2026-05-15",
-      "lastSeen": "2026-05-15",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "13e841bc62db",
+      "id": "create-long-tail-keyword-content-strategy",
       "title": "Create Long-Tail Keyword Content Strategy",
       "description": "Target specific queries like 'buy motor vehicle accident leads [state]' with dedicated landing pages. Current impressions show opportunity in PI attorney lead space.",
       "expectedImpact": "Capture 20-30 additional monthly impressions per state-specific page",
@@ -2122,21 +1282,11 @@
       "firstSeen": "2026-05-16",
       "lastSeen": "2026-05-16",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "create-long-tail-keyword-content-strategy"
     },
     {
-      "id": "ea418f0168c2",
-      "title": "Implement Mobile-First Content Optimization",
-      "description": "Since mobile shows 2 clicks vs 0 desktop clicks, optimize page loading speed, simplify navigation, and ensure affiliate links are prominently displayed on mobile devices.",
-      "expectedImpact": "Improve mobile conversion rates and reduce mobile bounce rate",
-      "priority": "low",
-      "firstSeen": "2026-05-17",
-      "lastSeen": "2026-05-17",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "7995f14817c0",
+      "id": "optimize-internal-linking-structure-for-playbook-pages",
       "title": "Optimize internal linking structure for playbook pages",
       "description": "The /playbook pages are performing well but could cross-link more effectively. Create a hub-and-spoke model linking the main playbook to industry-specific guides, and add related calculators to each playbook page.",
       "expectedImpact": "Increase average pages per session by 15-20% and improve overall site authority",
@@ -2144,10 +1294,11 @@
       "firstSeen": "2026-05-19",
       "lastSeen": "2026-05-19",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "optimize-internal-linking-structure-for-playbook-pages"
     },
     {
-      "id": "cd10769daa12",
+      "id": "leverage-direct-traffic-growth-for-email-capture",
       "title": "Leverage Direct Traffic Growth for Email Capture",
       "description": "With 52 direct sessions weekly, add exit-intent popups and content upgrades on high-traffic pages (/contact, /newsletter, /playbook) to capture emails. Create lead magnets like \"Aged Lead Buyer's Checklist\" or \"ROI Calculator Spreadsheet.\"",
       "expectedImpact": "Convert 10-15% of direct traffic to email subscribers, building owned audience for affiliate promotions",
@@ -2155,43 +1306,11 @@
       "firstSeen": "2026-05-20",
       "lastSeen": "2026-05-20",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "leverage-direct-traffic-growth-for-email-capture"
     },
     {
-      "id": "5bba1a24c476",
-      "title": "Expand Calculator Tool Internal Linking",
-      "description": "The ROI calculator shows high engagement (25 views, 8 users) indicating repeat usage. Add internal links to this tool from relevant blog posts and lead-type pages to increase discovery and session depth.",
-      "expectedImpact": "Could increase calculator usage by 30-50% and improve overall session duration",
-      "priority": "low",
-      "firstSeen": "2026-05-21",
-      "lastSeen": "2026-05-21",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "bc9cc02939e3",
-      "title": "Optimize mobile search experience for growing mobile impressions",
-      "description": "Mobile shows 115 impressions vs 942 desktop, but mobile-first indexing means mobile experience affects all rankings. Audit mobile page speed, CLS, and tap targets on key pages like /providers and /lead-types.",
-      "expectedImpact": "Improve overall search rankings by 2-3 positions through better mobile experience signals",
-      "priority": "low",
-      "firstSeen": "2026-05-22",
-      "lastSeen": "2026-05-22",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "c2871bf99281",
-      "title": "Expand mobile optimization focus",
-      "description": "Mobile accounts for only 119 impressions vs 1,059 desktop impressions in search. Review mobile page speed, user experience, and ensure calculator tools are mobile-optimized since these show high engagement intent.",
-      "expectedImpact": "Increase mobile search visibility by 15-25% and improve overall user experience",
-      "priority": "low",
-      "firstSeen": "2026-05-23",
-      "lastSeen": "2026-05-23",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "56c564f9e689",
+      "id": "leverage-direct-traffic-with-email-capture",
       "title": "Leverage Direct Traffic with Email Capture",
       "description": "With 77 direct sessions showing strong brand awareness, add strategic lead magnets (like the existing /newsletter page) to capture emails from direct visitors who are already engaged with the brand.",
       "expectedImpact": "Build email list for nurturing and reduce dependency on direct traffic volatility",
@@ -2199,43 +1318,11 @@
       "firstSeen": "2026-05-24",
       "lastSeen": "2026-05-24",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "leverage-direct-traffic-with-email-capture"
     },
     {
-      "id": "dcb2de50f615",
-      "title": "Enhance Mobile Search Performance",
-      "description": "Mobile accounts for only 2 clicks vs 8 desktop clicks despite mobile-first indexing. Audit mobile page speed, improve mobile UX for key landing pages (/providers, /lead-types), and ensure affiliate CTAs are mobile-optimized.",
-      "expectedImpact": "Increase mobile click share from 20% to 35-40% of total search clicks",
-      "priority": "low",
-      "firstSeen": "2026-05-25",
-      "lastSeen": "2026-05-25",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "c862d36c4025",
-      "title": "Create internal linking strategy for calculator pages",
-      "description": "The /calculators/know-your-cpl page shows strong engagement (38 views, 20 users) indicating high utility. Build contextual internal links from all lead-type pages and relevant blog posts to drive more traffic to this conversion-focused tool. Add related calculators for ROI and lead volume planning.",
-      "expectedImpact": "Increase calculator usage by 50-75%, improve lead qualification and affiliate conversion rates",
-      "priority": "low",
-      "firstSeen": "2026-05-26",
-      "lastSeen": "2026-05-26",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "de7e5db52ca0",
-      "title": "Expand successful calculator content",
-      "description": "The /calculators/know-your-cpl page shows strong engagement (24 views, 13 users indicates repeat usage). Create additional calculators for ROI calculation, lead volume planning, and budget allocation. Cross-link between calculators and relevant lead type pages.",
-      "expectedImpact": "Increase user engagement time and create more conversion touchpoints throughout the customer journey",
-      "priority": "low",
-      "firstSeen": "2026-05-28",
-      "lastSeen": "2026-05-28",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "1fe45b600f8a",
+      "id": "leverage-direct-traffic-with-newsletter-signup-optimization",
       "title": "Leverage Direct Traffic with Newsletter Signup Optimization",
       "description": "With 75 direct sessions, users are returning to the site. The /newsletter page has 22 views - optimize with clear value proposition \"Weekly Aged Lead Industry Insights + Exclusive Vendor Deals\" and add exit-intent popup on high-traffic pages like /providers.",
       "expectedImpact": "Increase newsletter signups by 40-50%, create recurring touchpoint for affiliate promotions",
@@ -2243,10 +1330,11 @@
       "firstSeen": "2026-05-29",
       "lastSeen": "2026-05-29",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "leverage-direct-traffic-with-newsletter-signup-optimization"
     },
     {
-      "id": "1fe1430322c9",
+      "id": "leverage-chatgpt-referral-traffic-pattern",
       "title": "Leverage ChatGPT Referral Traffic Pattern",
       "description": "ChatGPT.com sent 4 sessions across different referral types, indicating AI-driven discovery. Create AI-optimized content formats (structured Q&A, comparison tables, step-by-step guides) that perform well in AI search results and citation patterns.",
       "expectedImpact": "Capture emerging AI search traffic and establish authority in AI-driven lead generation queries",
@@ -2254,21 +1342,11 @@
       "firstSeen": "2026-05-31",
       "lastSeen": "2026-05-31",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "leverage-chatgpt-referral-traffic-pattern"
     },
     {
-      "id": "af9fc7a465fc",
-      "title": "Expand Mobile-Specific Content Optimization",
-      "description": "Mobile accounts for only 195 impressions vs 1255 desktop impressions. Optimize page load speeds, improve mobile UX for calculator pages, and ensure affiliate links are mobile-friendly with clear tap targets.",
-      "expectedImpact": "Increase mobile traffic share by 30%, improve mobile conversion rates",
-      "priority": "low",
-      "firstSeen": "2026-06-01",
-      "lastSeen": "2026-06-01",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "8be36343354a",
+      "id": "expand-internal-linking-from-high-traffic-pages-to-conversio",
       "title": "Expand internal linking from high-traffic pages to conversion pages",
       "description": "The /providers page (36 views) and homepage (35 views) should include more prominent internal links to specific lead type pages and the AgedLeadStore provider page. Add contextual links within content and prominent CTA buttons.",
       "expectedImpact": "Increase page depth and guide users toward affiliate conversion pages",
@@ -2276,10 +1354,11 @@
       "firstSeen": "2026-06-03",
       "lastSeen": "2026-06-03",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "expand-internal-linking-from-high-traffic-pages-to-conversio"
     },
     {
-      "id": "411bec29dd1b",
+      "id": "leverage-high-performing-referral-traffic-for-email-capture",
       "title": "Leverage high-performing referral traffic for email capture",
       "description": "With 28 sessions from AgedLeadStore.com referrals, add targeted lead magnets on pages these users visit most (/providers, /newsletter). Create AgedLeadStore-specific landing experience that captures emails before forwarding to affiliate links, building owned audience.",
       "expectedImpact": "Convert 20-30% of referral traffic to email subscribers for ongoing nurture and affiliate promotion",
@@ -2287,7 +1366,8 @@
       "firstSeen": "2026-06-04",
       "lastSeen": "2026-06-04",
       "timesRepeated": 1,
-      "status": "open"
+      "status": "open",
+      "topicKey": "leverage-high-performing-referral-traffic-for-email-capture"
     },
     {
       "id": "89e9b92e6cfd",
@@ -2298,7 +1378,8 @@
       "firstSeen": "2026-05-04",
       "lastSeen": "2026-05-10",
       "timesRepeated": 2,
-      "status": "ignored"
+      "status": "ignored",
+      "topicKey": "create-comprehensive-aged-lead-store-reviews-content"
     },
     {
       "id": "59cf2ee5c3ed",
@@ -2309,7 +1390,8 @@
       "firstSeen": "2026-05-09",
       "lastSeen": "2026-05-12",
       "timesRepeated": 2,
-      "status": "ignored"
+      "status": "ignored",
+      "topicKey": "capitalize-on-brand-query-rankings"
     },
     {
       "id": "6489d0d1a7c4",
@@ -2320,7 +1402,8 @@
       "firstSeen": "2026-04-24",
       "lastSeen": "2026-04-24",
       "timesRepeated": 1,
-      "status": "ignored"
+      "status": "ignored",
+      "topicKey": "capitalize-on-aged-lead-store-reviews-opportunity"
     },
     {
       "id": "becf5966a5bb",
@@ -2331,7 +1414,8 @@
       "firstSeen": "2026-05-08",
       "lastSeen": "2026-05-08",
       "timesRepeated": 1,
-      "status": "ignored"
+      "status": "ignored",
+      "topicKey": "capitalize-on-aged-lead-store-reviews-ranking-success"
     },
     {
       "id": "32e961ba9fc5",
@@ -2342,7 +1426,8 @@
       "firstSeen": "2026-05-16",
       "lastSeen": "2026-05-16",
       "timesRepeated": 1,
-      "status": "ignored"
+      "status": "ignored",
+      "topicKey": "optimize-for-aged-lead-store-reviews-query-dominance"
     },
     {
       "id": "6b00ce2de3b9",
@@ -2353,7 +1438,8 @@
       "firstSeen": "2026-04-22",
       "lastSeen": "2026-05-13",
       "timesRepeated": 2,
-      "status": "ignored"
+      "status": "ignored",
+      "topicKey": "capitalize-on-brand-query-momentum"
     },
     {
       "id": "0c528609d3eb",
@@ -2364,7 +1450,8 @@
       "firstSeen": "2026-04-29",
       "lastSeen": "2026-04-29",
       "timesRepeated": 1,
-      "status": "ignored"
+      "status": "ignored",
+      "topicKey": "target-aged-lead-store-reviews-query-aggressively"
     },
     {
       "id": "69b7a9e3aef1",
@@ -2375,7 +1462,8 @@
       "firstSeen": "2026-04-30",
       "lastSeen": "2026-04-30",
       "timesRepeated": 1,
-      "status": "ignored"
+      "status": "ignored",
+      "topicKey": "expand-content-around-winning-search-queries"
     },
     {
       "id": "8c14f37220af",
@@ -2386,7 +1474,8 @@
       "firstSeen": "2026-05-02",
       "lastSeen": "2026-05-02",
       "timesRepeated": 1,
-      "status": "ignored"
+      "status": "ignored",
+      "topicKey": "expand-aged-lead-store-brand-query-coverage"
     },
     {
       "id": "3d575d41a9ec",
@@ -2397,7 +1486,8 @@
       "firstSeen": "2026-05-03",
       "lastSeen": "2026-05-03",
       "timesRepeated": 1,
-      "status": "ignored"
+      "status": "ignored",
+      "topicKey": "create-aged-lead-store-review-and-comparison-content"
     },
     {
       "id": "dc9e3b0689e8",
@@ -2408,7 +1498,8 @@
       "firstSeen": "2026-05-11",
       "lastSeen": "2026-05-11",
       "timesRepeated": 1,
-      "status": "ignored"
+      "status": "ignored",
+      "topicKey": "optimize-for-aged-lead-store-reviews-search-intent"
     },
     {
       "id": "13acc3efb530",
@@ -2419,7 +1510,20 @@
       "firstSeen": "2026-05-14",
       "lastSeen": "2026-05-14",
       "timesRepeated": 1,
-      "status": "ignored"
+      "status": "ignored",
+      "topicKey": "optimize-for-aged-lead-store-reviews-search-opportunity"
+    },
+    {
+      "id": "emergency-traffic-false-alarm",
+      "title": "Emergency Site Accessibility Audit",
+      "description": "Immediately check for server issues, DNS problems, or Google Analytics tracking failures. Verify the site loads properly across devices and browsers. Check Google Search Console for crawl errors or manual actions.",
+      "expectedImpact": "Restore traffic flow and identify root cause of 100% traffic loss",
+      "priority": "low",
+      "firstSeen": "2026-04-14",
+      "lastSeen": "2026-04-28",
+      "timesRepeated": 16,
+      "status": "ignored",
+      "topicKey": "emergency-traffic-false-alarm"
     }
   ]
 }

@@ -33,6 +33,7 @@ export interface PerformanceAnalysis {
     title: string;
     description: string;
     expectedImpact: string;
+    topicKey: string;
   }[];
   contentPerformance: string;
   seoPerformance: string;
@@ -157,7 +158,23 @@ CRITICAL RECOMMENDATION RULES — these override the instinct to recommend new c
    affiliate links. Recommend "affirm-and-forward" optimization of the existing
    review/provider page. NEVER recommend competitor-comparison, "position
    against", or review-rebuttal framing aimed at AgedLeadStore — that would
-   divert revenue away from the partner the site monetizes through.`,
+   divert revenue away from the partner the site monetizes through.
+
+4. STABLE topicKey PER RECOMMENDATION. Every recommendation must carry a
+   "topicKey": a short, stable kebab-case slug naming the UNDERLYING issue, not
+   today's phrasing. CRITICAL: reuse the EXACT same topicKey on every run for
+   the same underlying issue so it is tracked as a recurring item, not
+   duplicated. The slug must contain NO numbers, positions, dates, or volatile
+   words — it identifies the problem, not its current state. Recurring issues
+   on this site and their canonical keys:
+     - agedleadstore-branded-ctr   (capturing AgedLeadStore branded queries)
+     - mortgage-leads-cannibalization
+     - iul-leads-cannibalization
+     - insurance-leads-cannibalization
+     - calculator-page-ctr
+     - mobile-search-experience
+     - high-impression-low-click-pages
+   Invent a new kebab-case key only for a genuinely new issue not in this list.`,
     messages: [
       {
         role: "user",
@@ -184,7 +201,8 @@ Respond with valid JSON:
       "priority": "high|medium|low",
       "title": "Recommendation title",
       "description": "Specific, actionable recommendation with implementation steps",
-      "expectedImpact": "What improvement to expect"
+      "expectedImpact": "What improvement to expect",
+      "topicKey": "stable-kebab-case-issue-slug (reuse across runs; no numbers/dates)"
     }
   ],
   "contentPerformance": "2-3 paragraph analysis of content performance — which pages are performing well, which need attention",
