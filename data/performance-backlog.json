@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-04T12:01:26.047Z",
+  "lastUpdated": "2026-06-05T12:01:13.392Z",
   "items": [
     {
       "id": "ae65c17929e7",
@@ -922,6 +922,28 @@
       "priority": "high",
       "firstSeen": "2026-06-04",
       "lastSeen": "2026-06-04",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "ce620320caf3",
+      "title": "Optimize AgedLeadStore Branded Query Pages",
+      "description": "The /providers/aged-lead-store page is ranking position 7.2-8.8 for key branded terms but not converting clicks. Optimize title tags to 'Aged Lead Store Review 2026: Pricing, Quality & Agent Results' and meta descriptions to include 'legit', 'reviews', and 'worth it' phrases. Add FAQ schema targeting 'is aged lead store legit' and 'aged lead store coupon code' queries.",
+      "expectedImpact": "Increase CTR from 0% to 3-5% for branded terms, capturing 15-25 additional monthly clicks",
+      "priority": "high",
+      "firstSeen": "2026-06-05",
+      "lastSeen": "2026-06-05",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "24bab104eebe",
+      "title": "Consolidate IUL Lead Content to Eliminate Cannibalization",
+      "description": "The site has /lead-types/iul-leads, /blog/iul-leads-financial-advisors-playbook, and /blog/how-to-sell-iul-using-aged-leads-consultative-approach all targeting similar queries. The /lead-types/iul-leads page (currently getting 2 clicks at position 19.9) should be the canonical target. Consolidate internal links and redirect the blog posts to this main page with 301s.",
+      "expectedImpact": "Improve IUL-related query rankings from position 19.9 to position 8-12, increasing clicks by 200-300%",
+      "priority": "high",
+      "firstSeen": "2026-06-05",
+      "lastSeen": "2026-06-05",
       "timesRepeated": 1,
       "status": "open"
     },
@@ -1916,6 +1938,28 @@
       "status": "open"
     },
     {
+      "id": "4e7db381fd28",
+      "title": "Enhance Calculator Landing Page CTR",
+      "description": "The /calculators/know-your-cpl page shows strong engagement (41 views, 23 users) but needs better search visibility. Optimize for 'cost per lead calculator', 'insurance lead cost calculator', and 'aged lead ROI calculator' with updated title tag and add structured data markup for the calculator tool.",
+      "expectedImpact": "Capture 50-100 additional monthly organic sessions for calculator-related queries",
+      "priority": "medium",
+      "firstSeen": "2026-06-05",
+      "lastSeen": "2026-06-05",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
+      "id": "0523a1690e8c",
+      "title": "Optimize High-Impression, Zero-Click Pages",
+      "description": "Pages like /blog/aged-lead-budget-allocation-strategy (position 1.0, 0 clicks) and /blog/aged-lead-performance-benchmarks-2026 (position 3.7, 0 clicks) need title tag optimization. Update to include year '2026' and action words like 'guide', 'strategy', or 'complete' to improve CTR.",
+      "expectedImpact": "Convert 20-30% of current impressions to clicks, adding 10-15 monthly organic sessions",
+      "priority": "medium",
+      "firstSeen": "2026-06-05",
+      "lastSeen": "2026-06-05",
+      "timesRepeated": 1,
+      "status": "open"
+    },
+    {
       "id": "cc192c120d5f",
       "title": "Long-tail Keyword Expansion",
       "description": "Target specific queries like 'how much do mortgage trigger leads cost' (pos 56.8) and 'auto insurance lead cost' (pos 23.0) with dedicated content pieces.",
@@ -1923,6 +1967,17 @@
       "priority": "low",
       "firstSeen": "2026-04-15",
       "lastSeen": "2026-04-20",
+      "timesRepeated": 2,
+      "status": "open"
+    },
+    {
+      "id": "ab004c9da1fa",
+      "title": "Expand Mobile Search Optimization",
+      "description": "With only 24 mobile impressions vs 198 desktop, optimize content for mobile-first indexing and create mobile-friendly calculator interfaces to capture mobile search traffic.",
+      "expectedImpact": "Increase mobile impressions by 150% and improve overall search visibility",
+      "priority": "low",
+      "firstSeen": "2026-05-01",
+      "lastSeen": "2026-06-05",
       "timesRepeated": 2,
       "status": "open"
     },
@@ -1978,17 +2033,6 @@
       "priority": "low",
       "firstSeen": "2026-04-30",
       "lastSeen": "2026-04-30",
-      "timesRepeated": 1,
-      "status": "open"
-    },
-    {
-      "id": "ab004c9da1fa",
-      "title": "Expand Mobile Search Optimization",
-      "description": "With only 24 mobile impressions vs 198 desktop, optimize content for mobile-first indexing and create mobile-friendly calculator interfaces to capture mobile search traffic.",
-      "expectedImpact": "Increase mobile impressions by 150% and improve overall search visibility",
-      "priority": "low",
-      "firstSeen": "2026-05-01",
-      "lastSeen": "2026-05-01",
       "timesRepeated": 1,
       "status": "open"
     },
