@@ -24,11 +24,11 @@ const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "Aged Lead Sales – Sales Training & Aged Lead Strategies",
+    default: "Aged Lead Sales: Pricing, Provider Reviews & Playbooks",
     template: "%s | Aged Lead Sales",
   },
   description:
-    "Learn how to grow your sales business with aged leads. Training, playbooks, and strategies for insurance agents, mortgage brokers, and sales professionals.",
+    "Buy aged leads the smart way. Compare 50+ lead providers, see real price benchmarks, and get free playbooks that turn cheap aged leads into closed deals.",
   alternates: {
     canonical: baseUrl,
   },
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     url: baseUrl,
     images: [
       {
-        url: `/api/og?title=${encodeURIComponent("Aged Lead Sales – Sales Training & Aged Lead Strategies")}`,
+        url: `/api/og?title=${encodeURIComponent("Aged Lead Sales: Pricing, Provider Reviews & Playbooks")}`,
         width: 1200,
         height: 630,
       },

@@ -6,9 +6,9 @@ import { CtaBanner } from "@/components/cta-banner";
 import { NewsletterSignup } from "@/components/newsletter-signup";
 
 export const metadata: Metadata = {
-  title: "Blog",
+  title: "Aged Lead Strategies, Scripts & Industry Data",
   description:
-    "Sales tips, prospecting strategies, and industry insights for insurance agents, mortgage brokers, and sales professionals working with aged leads.",
+    "Proven aged-lead strategies, call scripts, and pricing data for insurance agents, mortgage brokers, and sales pros — turn low-cost aged leads into closed deals.",
 };
 
 export default async function BlogPage() {
