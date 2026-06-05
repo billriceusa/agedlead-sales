@@ -1,0 +1,377 @@
+{
+  "capturedDate": "2026-06-05",
+  "source": "GSC Performance export (Last 3 months, Web)",
+  "range": {
+    "start": "2026-03-14",
+    "end": "2026-06-01"
+  },
+  "totals": {
+    "clicks": 34,
+    "impressions": 6744,
+    "ctr": 0.005,
+    "note": "avg position ~27 (page 3) \u2014 CTR is position-gated, not title-gated"
+  },
+  "topQueries": [
+    {
+      "query": "aged mortgage leads",
+      "clicks": 1,
+      "impr": 166,
+      "ctr": 0.006,
+      "pos": 32.9
+    },
+    {
+      "query": "aged leads",
+      "clicks": 1,
+      "impr": 118,
+      "ctr": 0.0085,
+      "pos": 25.8
+    },
+    {
+      "query": "aged lead store reviews",
+      "clicks": 3,
+      "impr": 98,
+      "ctr": 0.0306,
+      "pos": 10.1
+    },
+    {
+      "query": "agedleadstore",
+      "clicks": 1,
+      "impr": 55,
+      "ctr": 0.0182,
+      "pos": 17.7
+    },
+    {
+      "query": "p&c",
+      "clicks": 0,
+      "impr": 45,
+      "ctr": 0.0,
+      "pos": 48.2
+    },
+    {
+      "query": "aged lead store",
+      "clicks": 0,
+      "impr": 44,
+      "ctr": 0.0,
+      "pos": 18.6
+    },
+    {
+      "query": "aged life insurance leads",
+      "clicks": 0,
+      "impr": 44,
+      "ctr": 0.0,
+      "pos": 38.1
+    },
+    {
+      "query": "mortgage sales playbook",
+      "clicks": 0,
+      "impr": 42,
+      "ctr": 0.0,
+      "pos": 46.8
+    },
+    {
+      "query": "aged insurance leads",
+      "clicks": 0,
+      "impr": 41,
+      "ctr": 0.0,
+      "pos": 37.8
+    },
+    {
+      "query": "leads price",
+      "clicks": 0,
+      "impr": 41,
+      "ctr": 0.0,
+      "pos": 72.8
+    },
+    {
+      "query": "lead vendors",
+      "clicks": 0,
+      "impr": 40,
+      "ctr": 0.0,
+      "pos": 77.7
+    },
+    {
+      "query": "motor vehicle accident leads",
+      "clicks": 0,
+      "impr": 38,
+      "ctr": 0.0,
+      "pos": 51.0
+    },
+    {
+      "query": "lead providers",
+      "clicks": 0,
+      "impr": 35,
+      "ctr": 0.0,
+      "pos": 51.6
+    },
+    {
+      "query": "iul leads",
+      "clicks": 1,
+      "impr": 34,
+      "ctr": 0.0294,
+      "pos": 46.1
+    },
+    {
+      "query": "best life insurance leads",
+      "clicks": 0,
+      "impr": 32,
+      "ctr": 0.0,
+      "pos": 50.7
+    },
+    {
+      "query": "best life insurance lead companies",
+      "clicks": 0,
+      "impr": 30,
+      "ctr": 0.0,
+      "pos": 63.7
+    },
+    {
+      "query": "aged health insurance leads",
+      "clicks": 0,
+      "impr": 25,
+      "ctr": 0.0,
+      "pos": 34.3
+    },
+    {
+      "query": "best exclusive life insurance leads",
+      "clicks": 0,
+      "impr": 24,
+      "ctr": 0.0,
+      "pos": 63.1
+    },
+    {
+      "query": "insurance leads cost",
+      "clicks": 0,
+      "impr": 23,
+      "ctr": 0.0,
+      "pos": 51.4
+    },
+    {
+      "query": "exclusive life insurance leads price",
+      "clicks": 0,
+      "impr": 22,
+      "ctr": 0.0,
+      "pos": 32.4
+    },
+    {
+      "query": "auto accident leads",
+      "clicks": 0,
+      "impr": 22,
+      "ctr": 0.0,
+      "pos": 80.8
+    },
+    {
+      "query": "aged leads store",
+      "clicks": 1,
+      "impr": 21,
+      "ctr": 0.0476,
+      "pos": 15.5
+    },
+    {
+      "query": "mortgage sales roi measurement",
+      "clicks": 0,
+      "impr": 21,
+      "ctr": 0.0,
+      "pos": 38.6
+    },
+    {
+      "query": "final expense leads",
+      "clicks": 0,
+      "impr": 21,
+      "ctr": 0.0,
+      "pos": 66.9
+    },
+    {
+      "query": "goat leads life insurance",
+      "clicks": 0,
+      "impr": 20,
+      "ctr": 0.0,
+      "pos": 30.3
+    }
+  ],
+  "topPages": [
+    {
+      "page": "https://agedleadsales.com/providers/best/life-insurance",
+      "clicks": 0,
+      "impr": 456,
+      "ctr": 0.0,
+      "pos": 54.4
+    },
+    {
+      "page": "https://agedleadsales.com/lead-types/mva-leads",
+      "clicks": 0,
+      "impr": 453,
+      "ctr": 0.0,
+      "pos": 59.0
+    },
+    {
+      "page": "https://agedleadsales.com/providers",
+      "clicks": 2,
+      "impr": 418,
+      "ctr": 0.0048,
+      "pos": 18.0
+    },
+    {
+      "page": "https://agedleadsales.com/providers/aged-lead-store",
+      "clicks": 3,
+      "impr": 344,
+      "ctr": 0.0087,
+      "pos": 11.2
+    },
+    {
+      "page": "https://agedleadsales.com/",
+      "clicks": 2,
+      "impr": 279,
+      "ctr": 0.0072,
+      "pos": 22.6
+    },
+    {
+      "page": "https://www.agedleadsales.com/playbooks/7-day-aged-lead-follow-up-cadence",
+      "clicks": 0,
+      "impr": 279,
+      "ctr": 0.0,
+      "pos": 6.0
+    },
+    {
+      "page": "https://agedleadsales.com/blog/aged-lead-industry-statistics",
+      "clicks": 0,
+      "impr": 267,
+      "ctr": 0.0,
+      "pos": 7.6
+    },
+    {
+      "page": "https://agedleadsales.com/blog",
+      "clicks": 0,
+      "impr": 266,
+      "ctr": 0.0,
+      "pos": 13.2
+    },
+    {
+      "page": "https://www.agedleadsales.com/providers/lead-heroes",
+      "clicks": 0,
+      "impr": 238,
+      "ctr": 0.0,
+      "pos": 15.4
+    },
+    {
+      "page": "https://agedleadsales.com/lead-types/insurance-leads",
+      "clicks": 3,
+      "impr": 227,
+      "ctr": 0.0132,
+      "pos": 32.0
+    },
+    {
+      "page": "https://www.agedleadsales.com/providers",
+      "clicks": 2,
+      "impr": 219,
+      "ctr": 0.0091,
+      "pos": 25.3
+    },
+    {
+      "page": "https://www.agedleadsales.com/price-index/auto-insurance",
+      "clicks": 2,
+      "impr": 155,
+      "ctr": 0.0129,
+      "pos": 23.7
+    },
+    {
+      "page": "https://agedleadsales.com/lead-types/mortgage-leads",
+      "clicks": 4,
+      "impr": 148,
+      "ctr": 0.027,
+      "pos": 35.1
+    },
+    {
+      "page": "https://agedleadsales.com/lead-types/final-expense-leads",
+      "clicks": 0,
+      "impr": 147,
+      "ctr": 0.0,
+      "pos": 52.2
+    },
+    {
+      "page": "https://www.agedleadsales.com/playbooks/mortgage-rate-shopping-playbook",
+      "clicks": 0,
+      "impr": 146,
+      "ctr": 0.0,
+      "pos": 25.7
+    },
+    {
+      "page": "https://agedleadsales.com/blog/aged-lead-store-review-2026",
+      "clicks": 2,
+      "impr": 136,
+      "ctr": 0.0147,
+      "pos": 9.7
+    },
+    {
+      "page": "https://www.agedleadsales.com/price-index/mortgage",
+      "clicks": 0,
+      "impr": 117,
+      "ctr": 0.0,
+      "pos": 24.1
+    },
+    {
+      "page": "https://www.agedleadsales.com/blog/tcpa-compliance-calling-aged-leads",
+      "clicks": 2,
+      "impr": 112,
+      "ctr": 0.0179,
+      "pos": 11.2
+    },
+    {
+      "page": "https://agedleadsales.com/glossary/appointment-set-rate",
+      "clicks": 0,
+      "impr": 104,
+      "ctr": 0.0,
+      "pos": 6.3
+    },
+    {
+      "page": "https://agedleadsales.com/lead-types/iul-leads",
+      "clicks": 2,
+      "impr": 102,
+      "ctr": 0.0196,
+      "pos": 25.7
+    },
+    {
+      "page": "https://agedleadsales.com/compare/aged-lead-store-vs-badass-insurance-leads",
+      "clicks": 0,
+      "impr": 95,
+      "ctr": 0.0,
+      "pos": 11.6
+    },
+    {
+      "page": "https://www.agedleadsales.com/playbooks/tracking-aged-lead-roi-metrics",
+      "clicks": 0,
+      "impr": 94,
+      "ctr": 0.0,
+      "pos": 18.5
+    },
+    {
+      "page": "https://www.agedleadsales.com/glossary/p-and-c-insurance",
+      "clicks": 0,
+      "impr": 93,
+      "ctr": 0.0,
+      "pos": 52.3
+    },
+    {
+      "page": "https://www.agedleadsales.com/",
+      "clicks": 0,
+      "impr": 92,
+      "ctr": 0.0,
+      "pos": 34.9
+    },
+    {
+      "page": "https://www.agedleadsales.com/blog/economics-of-aged-leads",
+      "clicks": 0,
+      "impr": 87,
+      "ctr": 0.0,
+      "pos": 6.2
+    }
+  ],
+  "knownIssues": {
+    "wwwSplit": {
+      "pages": 33,
+      "impressions": 2126,
+      "note": "www 308-redirects to non-www + canonical correct; Google recrawl-lag, will consolidate"
+    },
+    "brandedCluster": "aged lead store cluster is the only page-1 traction (reviews pos 10, provider pos 11, blog review pos 9.7) \u2014 push to top 5",
+    "orphanedPlaybooks": "FIXED 2026-06-05: /playbooks/7-day-... (pos 6) rebuilt as /guides/7-day-aged-lead-follow-up-cadence; 2 others remapped to relevant pages"
+  }
+}
