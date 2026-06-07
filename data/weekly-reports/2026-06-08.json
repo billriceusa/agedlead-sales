@@ -1,0 +1,177 @@
+{
+  "runDate": "2026-06-07T06:03:21.396Z",
+  "weekStartDate": "2026-06-08",
+  "analysis": {
+    "strategyReview": "Our content strategy shows strong foundation across all five pillars with 68 published posts. We have excellent coverage of core topics like compliance (TCPA, Medicare CMS), channel tactics (email, direct mail, door knocking), and vertical playbooks for major industries. However, we have gaps in advanced operational content for established teams, seasonal strategy content, and emerging technology integration. Our Role Guides pillar is underrepresented compared to Vertical Playbooks and Channel Tactics.",
+    "competitiveInsights": "Competitors are missing advanced operational content for scaling teams and seasonal strategy optimization. AgedLeadStore.com focuses on product features while HowToWorkLeads.com stays general. We have opportunities in Q2-specific content (summer solar push, post-tax season financial planning), advanced CRM automation, and multi-channel attribution. Keywords like 'aged lead automation', 'summer solar strategy', and 'lead scoring algorithms' show search volume but limited quality content.",
+    "newOpportunities": [
+      "Q2 solar lead activation strategies",
+      "Automated lead scoring implementation",
+      "Summer insurance sales tactics",
+      "Post-tax season financial lead conversion",
+      "Multi-generational sales approaches for aged leads"
+    ],
+    "trendingTopics": [
+      "AI integration in lead management",
+      "Economic uncertainty driving aged lead adoption",
+      "Regulatory changes in telemarketing",
+      "Cross-generational communication preferences",
+      "Seasonal optimization strategies"
+    ],
+    "recommendedUpdates": [
+      "Prioritize Role Guides pillar to balance content distribution",
+      "Create more seasonal/timely content for Q2",
+      "Develop advanced operational content for scaling teams"
+    ]
+  },
+  "articlesCreated": [
+    {
+      "title": "Summer Solar Sales: How to Activate Your Aged Lead Inventory for Peak Season",
+      "slug": "summer-solar-sales-aged-leads-q2-strategy",
+      "publishDate": "2026-06-08",
+      "primaryKeyword": "summer solar sales strategy",
+      "pillar": "Vertical Playbooks"
+    },
+    {
+      "title": "Training Your Sales Team on Aged Leads: The 30-Day Manager's Playbook",
+      "slug": "aged-lead-team-training-playbook-managers",
+      "publishDate": "2026-06-10",
+      "primaryKeyword": "aged lead team training",
+      "pillar": "Role Guides"
+    },
+    {
+      "title": "How to Allocate Your Aged Lead Budget: ROI-Driven Distribution by Vertical, Age & Channel",
+      "slug": "aged-lead-budget-allocation-roi-optimization",
+      "publishDate": "2026-06-12",
+      "primaryKeyword": "aged lead budget allocation",
+      "pillar": "Metrics & Optimization"
+    }
+  ],
+  "articlesSkipped": [],
+  "articlesFailed": [],
+  "imageOutcomes": [
+    {
+      "title": "Summer Solar Sales: How to Activate Your Aged Lead Inventory for Peak Season",
+      "status": "created",
+      "photographer": "Helena Lopes"
+    },
+    {
+      "title": "Training Your Sales Team on Aged Leads: The 30-Day Manager's Playbook",
+      "status": "created",
+      "photographer": "Vitaly Gariev"
+    },
+    {
+      "title": "How to Allocate Your Aged Lead Budget: ROI-Driven Distribution by Vertical, Age & Channel",
+      "status": "created",
+      "photographer": "Vitaly Gariev"
+    }
+  ],
+  "newBriefs": [
+    {
+      "day": "Mon",
+      "publishDate": "2026-06-08",
+      "slug": "summer-solar-sales-aged-leads-q2-strategy",
+      "title": "Summer Solar Sales: How to Activate Your Aged Lead Inventory for Peak Season",
+      "pillar": "Vertical Playbooks",
+      "primaryKeyword": "summer solar sales strategy",
+      "secondaryKeywords": [
+        "solar lead activation",
+        "Q2 solar leads",
+        "seasonal solar strategy"
+      ],
+      "targetLeadTypes": [
+        "lt-solar"
+      ],
+      "wordCount": "2,800-3,200",
+      "competitiveAngle": "First comprehensive guide linking seasonal solar demand patterns to aged lead activation strategies - competitors focus on real-time leads only",
+      "outline": [
+        "Why Summer is Peak Solar Season",
+        "Aged Lead Advantages in Summer Market",
+        "The 90-Day Summer Activation Plan",
+        "Messaging That Leverages Summer Urgency",
+        "Financing Conversations for Summer Buyers",
+        "Managing Installation Timelines",
+        "Q3 Pipeline Building from Q2 Conversions"
+      ],
+      "internalLinks": [
+        "/glossary/lead-age",
+        "/calculators/solar-roi",
+        "/lead-types/solar-leads",
+        "/glossary/conversion-rate"
+      ]
+    },
+    {
+      "day": "Wed",
+      "publishDate": "2026-06-10",
+      "slug": "aged-lead-team-training-playbook-managers",
+      "title": "Training Your Sales Team on Aged Leads: The 30-Day Manager's Playbook",
+      "pillar": "Role Guides",
+      "primaryKeyword": "aged lead team training",
+      "secondaryKeywords": [
+        "sales team training",
+        "aged lead onboarding",
+        "sales manager playbook"
+      ],
+      "targetLeadTypes": [
+        "lt-insurance",
+        "lt-mortgage",
+        "lt-solar"
+      ],
+      "wordCount": "3,000-3,500",
+      "competitiveAngle": "Only comprehensive 30-day training program specifically for aged leads - competitors offer generic sales training without aged lead specifics",
+      "outline": [
+        "Week 1: Aged Lead Fundamentals",
+        "Week 2: Channel Mastery and Scripts",
+        "Week 3: Objection Handling and Follow-up",
+        "Week 4: Metrics and Optimization",
+        "Training Materials and Resources",
+        "Performance Benchmarks by Week",
+        "Common Training Pitfalls to Avoid"
+      ],
+      "internalLinks": [
+        "/glossary/contact-rate",
+        "/calculators/team-performance",
+        "/glossary/follow-up-cadence",
+        "/glossary/close-rate"
+      ]
+    },
+    {
+      "day": "Fri",
+      "publishDate": "2026-06-12",
+      "slug": "aged-lead-budget-allocation-roi-optimization",
+      "title": "How to Allocate Your Aged Lead Budget: ROI-Driven Distribution by Vertical, Age & Channel",
+      "pillar": "Metrics & Optimization",
+      "primaryKeyword": "aged lead budget allocation",
+      "secondaryKeywords": [
+        "lead budget optimization",
+        "aged lead ROI",
+        "lead spend distribution"
+      ],
+      "targetLeadTypes": [
+        "lt-insurance",
+        "lt-mortgage",
+        "lt-solar",
+        "lt-final-expense"
+      ],
+      "wordCount": "2,600-3,000",
+      "competitiveAngle": "First data-driven framework for aged lead budget allocation across multiple variables - competitors focus on single-variable optimization",
+      "outline": [
+        "The Budget Allocation Framework",
+        "ROI Analysis by Lead Age Segments",
+        "Vertical Performance Benchmarks",
+        "Channel Allocation Strategies",
+        "Seasonal Budget Adjustments",
+        "Testing and Reallocation Protocols",
+        "Budget Scaling Strategies"
+      ],
+      "internalLinks": [
+        "/glossary/cost-per-acquisition",
+        "/calculators/budget-optimizer",
+        "/glossary/lead-age",
+        "/glossary/ltv"
+      ]
+    }
+  ],
+  "nextWeekPlan": "Selected one existing brief (team training) and created two new seasonal/strategic briefs to address Q2 opportunities. Balanced pillars: Vertical Playbooks → Role Guides → Metrics & Optimization. Prioritized timely summer solar content and advanced operational topics that competitors lack.",
+  "errors": []
+}
