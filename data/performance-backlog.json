@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-06T12:01:11.658Z",
+  "lastUpdated": "2026-06-07T12:01:15.452Z",
   "items": [
     {
       "id": "calculator-page-ctr",
@@ -8,8 +8,8 @@
       "expectedImpact": "Capture 50-100 additional monthly organic sessions for calculator-related queries",
       "priority": "high",
       "firstSeen": "2026-04-16",
-      "lastSeen": "2026-06-06",
-      "timesRepeated": 40,
+      "lastSeen": "2026-06-07",
+      "timesRepeated": 41,
       "status": "open",
       "topicKey": "calculator-page-ctr"
     },
@@ -20,8 +20,8 @@
       "expectedImpact": "Increase mobile impressions by 150% and improve overall search visibility",
       "priority": "high",
       "firstSeen": "2026-04-14",
-      "lastSeen": "2026-06-06",
-      "timesRepeated": 39,
+      "lastSeen": "2026-06-07",
+      "timesRepeated": 40,
       "status": "open",
       "topicKey": "mobile-search-experience"
     },
@@ -32,8 +32,8 @@
       "expectedImpact": "Increase CTR from 0% to 3-5% for branded terms, capturing 15-25 additional monthly clicks",
       "priority": "high",
       "firstSeen": "2026-04-16",
-      "lastSeen": "2026-06-06",
-      "timesRepeated": 19,
+      "lastSeen": "2026-06-07",
+      "timesRepeated": 20,
       "status": "open",
       "topicKey": "agedleadstore-branded-ctr"
     },
@@ -56,8 +56,8 @@
       "expectedImpact": "Convert 20-30% of current impressions to clicks, adding 10-15 monthly organic sessions",
       "priority": "high",
       "firstSeen": "2026-04-22",
-      "lastSeen": "2026-06-06",
-      "timesRepeated": 7,
+      "lastSeen": "2026-06-07",
+      "timesRepeated": 8,
       "status": "open",
       "topicKey": "high-impression-low-click-pages"
     },
@@ -80,8 +80,8 @@
       "expectedImpact": "Improve IUL-related query rankings from position 19.9 to position 8-12, increasing clicks by 200-300%",
       "priority": "high",
       "firstSeen": "2026-06-03",
-      "lastSeen": "2026-06-06",
-      "timesRepeated": 4,
+      "lastSeen": "2026-06-07",
+      "timesRepeated": 5,
       "status": "open",
       "topicKey": "iul-leads-cannibalization"
     },
