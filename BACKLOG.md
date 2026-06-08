@@ -8,6 +8,10 @@
 
 ## Done
 
+<!-- added 2026-06-08 /brsg-session -->
+- [x] **Glossary auto-linking on lead-type pages** (2026-06-08) — lead-type CMS body now passes `glossary` prop to `PortableText`, so the commercial vertical pages internally link to the 77-term glossary (previously only blog + playbook pages did). Topical-authority + crawl-depth win.
+- [x] **Provider-count overclaim fix** (2026-06-08) — homepage stat and affiliate-disclosure said "50+ providers reviewed" but the directory has 15 (`data/providers.ts`) and `/providers` says "15+". Corrected both to "15+".
+
 - [x] **Privacy Policy page** (`/privacy`) — legal requirement, trust signal
 - [x] **Terms of Service page** (`/terms`) — legal requirement
 - [x] **Affiliate Disclosure page** (`/affiliate-disclosure`) — standalone FTC-compliant route
@@ -54,6 +58,24 @@ Homepage has stat cards but is missing:
 
 ## P1 — SEO & Visibility
 
+<!-- added 2026-06-08 /brsg-session — cold-start diagnosis: Ahrefs DR 2.5, ~0 backlinks, 1 organic keyword, ~2 organic visits/mo. Site is fully indexed (30+ pages) but does not rank. Ceiling is authority + content depth, not technical SEO. SEO audit score 78/100 (2026-06-03). -->
+
+### Authority / backlink campaign (the real ranking ceiling)
+DR is **2.5** with near-zero referring domains — this caps every page regardless of on-page quality. Needs an off-site campaign: digital PR, guest posts, data-study link bait (the price-index is a natural asset), HARO/Source-of-Sources, partnerships. Off-site, multi-week — not a single session.
+- **Impact:** Unlocks ranking ability sitewide. Highest ceiling, slowest payoff.
+
+### Content depth for Helpful Content / Dec-2024 Core Update
+Audit's #1 high finding: thin affiliate content is demoted post-update. Expand top playbook + lead-type pages to 3000+ words with original data, implementation detail, and Bill Rice's first-hand expertise (value that stands even without affiliate links).
+- **Impact:** Ranking eligibility + YMYL trust. Start with the 1-2 pages already earning impressions.
+
+### YMYL author-expertise demonstration
+Strengthen Bill Rice author profile (verifiable industry experience, credentials) on author + about pages; financial-lead content is YMYL and needs stronger E-E-A-T signals.
+- **Impact:** YMYL ranking trust.
+
+### FTC affiliate-disclosure prominence
+Audit flags the site-wide disclosure may not meet "clear and conspicuous" 2024 FTC standards. Make per-page disclosure more prominent near affiliate CTAs.
+- **Impact:** Compliance + trust signal.
+
 ### Entity SEO — Wikidata Entry
 Create/claim a Wikidata entry for "Aged Lead Sales" with proper classification. Entity-recognized brands see 3.4x more AI-sourced traffic.
 - **Impact:** Knowledge graph, AI citation
@@ -91,6 +113,31 @@ Only 1 active lead magnet (prospecting checklist). Playbook says 1-2 per site mi
 - Aged lead scripts bundle
 - Vertical-specific buying guides
 - See [project_als_lead_magnets.md] for planned items
+
+---
+
+## P2 — Technical & Accuracy
+
+<!-- added 2026-06-08 /brsg-session -->
+
+### Glossary auto-linking on lead-type STATIC content
+Done for the CMS `body` path (2026-06-08), but most lead-type pages render the static fallback from `data/lead-types.ts` (plain JSX strings), which the glossary linker doesn't touch. Extend auto-linking to that path to cover the lead-types that have no CMS body.
+- **Impact:** Completes the internal-linking win across all commercial vertical pages.
+
+### Product / Review schema on provider pages
+15 provider review pages lack Product + Review JSON-LD — missing rich-result eligibility (stars in SERP). Reuse the existing `json-ld` component pattern.
+- **Impact:** SERP CTR via rich results.
+
+### Verify "researches 50+ lead providers monthly" claim (`/price-index`)
+Left unchanged on 2026-06-08 because "researches monthly" is a broader process claim than the 15-provider directory — but confirm the real number so it isn't an overclaim. Align if needed.
+- **Impact:** Credibility / no-overclaim.
+
+### Featured images on 2 recent posts
+Audit (2026-06-03) flags two recent blog posts missing featured images — engagement + OG-share signal.
+
+### Migrate in-repo crons to central automation
+6 crons still live in `app/api/cron/*` (seo-audit, marketwatch, daily-performance, health-check, weekly-content, weekly-newsletter). Per brsg-website-automation, crons are migrating OUT of site repos to the central system. Remove once the central system covers this site.
+- **Impact:** Tech-debt / single-source automation.
 
 ---
 

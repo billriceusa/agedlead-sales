@@ -127,7 +127,7 @@ export default async function HomePage() {
             {[
               { value: "10-50x", label: "Lower Cost Per Lead" },
               { value: "15+", label: "Verticals Covered" },
-              { value: "50+", label: "Providers Reviewed" },
+              { value: "15+", label: "Providers Reviewed" },
               { value: "Free", label: "Tools & Calculators" },
             ].map((stat) => (
               <div key={stat.label}>

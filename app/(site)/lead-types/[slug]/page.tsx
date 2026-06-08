@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { sanityFetch } from "@/sanity/lib/fetch";
-import { leadTypeBySlugQuery } from "@/sanity/lib/queries";
+import { leadTypeBySlugQuery, glossaryTooltipQuery } from "@/sanity/lib/queries";
 import { urlForImage } from "@/sanity/lib/image";
 import { PortableText } from "@/components/portable-text";
 import { PostCard } from "@/components/post-card";
@@ -53,7 +53,10 @@ export default async function LeadTypePage({ params }: Props) {
   const { slug } = await params;
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const leadType: any = await sanityFetch(leadTypeBySlugQuery, { slug });
+  const [leadType, glossary]: [any, any] = await Promise.all([
+    sanityFetch(leadTypeBySlugQuery, { slug }),
+    sanityFetch(glossaryTooltipQuery),
+  ]);
   const data = LEAD_TYPES[slug];
   if (!leadType && !data) notFound();
 
@@ -145,7 +148,7 @@ export default async function LeadTypePage({ params }: Props) {
       {leadType?.body && (
         <section className="bg-white py-16 dark:bg-zinc-950">
           <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-            <PortableText value={leadType.body} />
+            <PortableText value={leadType.body} glossary={glossary || []} />
           </div>
         </section>
       )}

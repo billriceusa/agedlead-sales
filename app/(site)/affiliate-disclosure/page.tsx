@@ -56,7 +56,7 @@ export default function AffiliateDisclosurePage() {
               Full disclosure: Bill Rice, the founder of this site, serves as
               the marketing director for{" "}
               <strong>AgedLeadStore.com</strong>. Aged Lead Store is one of the
-              50+ providers reviewed in our{" "}
+              15+ providers reviewed in our{" "}
               <Link href="/providers">provider directory</Link>. This
               relationship is always disclosed on relevant pages.
             </p>
