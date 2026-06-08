@@ -18,7 +18,7 @@ export function GlossaryTooltip({
 }: GlossaryTooltipProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [position, setPosition] = useState<"above" | "below">("below");
-  const triggerRef = useRef<HTMLSpanElement>(null);
+  const triggerRef = useRef<HTMLAnchorElement>(null);
   const tooltipRef = useRef<HTMLDivElement>(null);
   const timeoutRef = useRef<ReturnType<typeof setTimeout>>(undefined);
 
@@ -58,15 +58,18 @@ export function GlossaryTooltip({
 
   return (
     <span className="relative inline">
-      <span
+      {/* Always-rendered anchor so the glossary link is crawlable in SSR HTML
+          (not just shown on hover) — gives the internal-linking SEO value.
+          Hover still surfaces the inline definition tooltip below. */}
+      <Link
         ref={triggerRef}
+        href={`/glossary/${slug}`}
         onMouseEnter={show}
         onMouseLeave={hide}
-        onClick={() => setIsOpen((o) => !o)}
         className="cursor-help border-b border-dashed border-blue-400/50 text-inherit transition-colors hover:border-blue-500 dark:border-blue-500/40 dark:hover:border-blue-400"
       >
         {children}
-      </span>
+      </Link>
       {isOpen && (
         <span
           ref={tooltipRef}

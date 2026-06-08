@@ -9,7 +9,8 @@
 ## Done
 
 <!-- added 2026-06-08 /brsg-session -->
-- [x] **Glossary auto-linking on lead-type pages** (2026-06-08) — lead-type CMS body now passes `glossary` prop to `PortableText`, so the commercial vertical pages internally link to the 77-term glossary (previously only blog + playbook pages did). Topical-authority + crawl-depth win.
+- [x] **Glossary internal-linking — static path + crawlable** (2026-06-08) — (1) lead-type CMS body passes `glossary` to `PortableText` (wired but dormant; no lead-type has a CMS body yet); (2) new static-path linker (`components/glossary-static.tsx`) auto-links the 77-term glossary in lead-type static content (`data/lead-types.ts`) including the deep-dive sections; (3) **fixed a site-wide SEO gap** — `GlossaryTooltip` only rendered its `/glossary/` link inside the hover popup (not in SSR HTML, so uncrawlable); the inline term is now an always-rendered `<a href="/glossary/…">`, making every glossary mention a real internal link across blog, playbook, and lead-type pages.
+- [x] **Mortgage-leads content-depth pass** (2026-06-08) — `/lead-types/mortgage-leads` expanded ~700 → ~2,600 words: 6 deep-dive H2 sections, 5 new long-tail FAQs (FAQ schema auto-extends), 2 best practices. Addresses Helpful Content / YMYL thin-content risk.
 - [x] **Provider-count overclaim fix** (2026-06-08) — homepage stat and affiliate-disclosure said "50+ providers reviewed" but the directory has 15 (`data/providers.ts`) and `/providers` says "15+". Corrected both to "15+".
 
 - [x] **Privacy Policy page** (`/privacy`) — legal requirement, trust signal
@@ -119,10 +120,6 @@ Only 1 active lead magnet (prospecting checklist). Playbook says 1-2 per site mi
 ## P2 — Technical & Accuracy
 
 <!-- added 2026-06-08 /brsg-session -->
-
-### Glossary auto-linking on lead-type STATIC content
-Done for the CMS `body` path (2026-06-08), but most lead-type pages render the static fallback from `data/lead-types.ts` (plain JSX strings), which the glossary linker doesn't touch. Extend auto-linking to that path to cover the lead-types that have no CMS body.
-- **Impact:** Completes the internal-linking win across all commercial vertical pages.
 
 ### Product / Review schema on provider pages
 15 provider review pages lack Product + Review JSON-LD — missing rich-result eligibility (stars in SERP). Reuse the existing `json-ld` component pattern.

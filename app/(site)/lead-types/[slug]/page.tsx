@@ -5,6 +5,7 @@ import { sanityFetch } from "@/sanity/lib/fetch";
 import { leadTypeBySlugQuery, glossaryTooltipQuery } from "@/sanity/lib/queries";
 import { urlForImage } from "@/sanity/lib/image";
 import { PortableText } from "@/components/portable-text";
+import { makeGlossaryLinker } from "@/components/glossary-static";
 import { PostCard } from "@/components/post-card";
 import { PlaybookCard } from "@/components/playbook-card";
 import { CtaBanner } from "@/components/cta-banner";
@@ -59,6 +60,10 @@ export default async function LeadTypePage({ params }: Props) {
   ]);
   const data = LEAD_TYPES[slug];
   if (!leadType && !data) notFound();
+
+  // First-occurrence glossary auto-linking for the static-content path.
+  // Reused across every prose field so the shared seen-set links each term once.
+  const linkGlossary = makeGlossaryLinker(glossary || []);
 
   const title = leadType?.title || data?.title || "";
   const icon = leadType?.icon || data?.icon || "";
@@ -163,7 +168,7 @@ export default async function LeadTypePage({ params }: Props) {
                 What Are Aged {title}?
               </h2>
               <p className="mb-6 leading-relaxed text-zinc-600 dark:text-zinc-400">
-                {data.sections.whatAre}
+                {linkGlossary(data.sections.whatAre)}
               </p>
 
               {/* What You Get */}
@@ -205,7 +210,7 @@ export default async function LeadTypePage({ params }: Props) {
                 Why Use Aged {title}?
               </h2>
               <p className="mb-8 leading-relaxed text-zinc-600 dark:text-zinc-400">
-                {data.sections.whyUse}
+                {linkGlossary(data.sections.whyUse)}
               </p>
 
               {/* Cost Comparison */}
@@ -277,7 +282,7 @@ export default async function LeadTypePage({ params }: Props) {
                 How to Work Aged {title}
               </h2>
               <p className="mb-8 leading-relaxed text-zinc-600 dark:text-zinc-400">
-                {data.sections.howToWork}
+                {linkGlossary(data.sections.howToWork)}
               </p>
 
               {/* Script */}
@@ -332,7 +337,7 @@ export default async function LeadTypePage({ params }: Props) {
                         key={i}
                         className="mb-4 leading-relaxed text-zinc-600 dark:text-zinc-400"
                       >
-                        {para}
+                        {linkGlossary(para)}
                       </p>
                     ))}
                   </div>
@@ -358,7 +363,7 @@ export default async function LeadTypePage({ params }: Props) {
                         {faq.question}
                       </h3>
                       <p className="mt-3 leading-relaxed text-zinc-600 dark:text-zinc-400">
-                        {faq.answer}
+                        {linkGlossary(faq.answer)}
                       </p>
                     </div>
                   ))}
