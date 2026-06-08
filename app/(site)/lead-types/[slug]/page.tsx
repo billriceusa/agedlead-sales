@@ -318,6 +318,29 @@ export default async function LeadTypePage({ params }: Props) {
             </div>
           </section>
 
+          {/* Deep-dive long-form sections (content-depth / E-E-A-T) */}
+          {data.deepDive && data.deepDive.length > 0 && (
+            <section className="bg-white py-16 dark:bg-zinc-950">
+              <div className="mx-auto max-w-3xl space-y-12 px-4 sm:px-6 lg:px-8">
+                {data.deepDive.map((block) => (
+                  <div key={block.heading}>
+                    <h2 className="mb-6 text-2xl font-bold text-zinc-900 dark:text-white sm:text-3xl">
+                      {block.heading}
+                    </h2>
+                    {block.body.split("\n\n").map((para, i) => (
+                      <p
+                        key={i}
+                        className="mb-4 leading-relaxed text-zinc-600 dark:text-zinc-400"
+                      >
+                        {para}
+                      </p>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+
           {/* FAQ Section */}
           {data.faqs.length > 0 && (
             <section className="border-t border-zinc-200 bg-zinc-50 py-16 dark:border-zinc-800 dark:bg-zinc-900">

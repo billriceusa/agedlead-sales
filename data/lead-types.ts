@@ -18,6 +18,12 @@ export interface LeadTypeData {
     costComparison: { realTime: string; aged: string; savings: string };
     bestPractices: string[];
   };
+  /**
+   * Optional long-form sections rendered as additional H2 blocks for topical
+   * depth (Helpful Content / E-E-A-T). Body supports paragraph breaks via "\n\n".
+   * Populated per-vertical as content-depth passes are completed.
+   */
+  deepDive?: { heading: string; body: string }[];
   faqs: { question: string; answer: string }[];
   getCompareUrl: () => string;
 }
@@ -85,8 +91,36 @@ export const LEAD_TYPES: Record<string, LeadTypeData> = {
         "Send a plain-text email after your first call attempt — no HTML templates",
         "For local leads, consider a personalized direct mail piece as your first touch",
         "Don't call the same lead more than 3 times — use other channels instead",
+        "Pull a fresh phone and DNC scrub before every campaign — aged data ages between the day it was captured and the day you dial it",
+        "Track cost per contact and cost per funded loan, not just cost per lead — the per-lead price is the least important number in the funnel",
       ],
     },
+    deepDive: [
+      {
+        heading: "Aged Mortgage Leads by Loan Type: Purchase, Refinance, HELOC, and Reverse",
+        body: "Not all aged mortgage leads behave the same way, and the loan type a consumer originally inquired about should shape how you work the record. Purchase leads are the most time-sensitive: a homebuyer who requested information 60 days ago may already be under contract or, just as often, may have stalled because their first lender was slow or their pre-approval fell through. Those stalled buyers are exactly who an aged list surfaces — people who are still in the market but no longer being chased.\n\nRefinance leads age differently. A refinance inquiry is tied to the rate environment at the moment it was made. When rates drop even a quarter point below where they sat when the lead was captured, a 90- or 180-day-old refi record can re-activate overnight — the consumer's math just changed, and most of the loan officers who originally received that lead have long since moved on. This is the single biggest reason refinance is the highest-leverage aged mortgage vertical for patient operators.\n\nHELOC and home-equity leads track homeowner equity and the consumer's need for cash — debt consolidation, renovations, tuition. These needs rarely resolve in 30 days, so the aged window stays warm longer. Reverse-mortgage leads (consumers 62+) are the slowest-moving of all; the decision cycle is measured in months, and a respectful, education-first follow-up months after the original inquiry often arrives exactly when the household is finally ready to talk. Segment your list by loan type before you dial, and write a distinct opening line for each — a purchase script and a reverse script should not sound the same.",
+      },
+      {
+        heading: "The Real Math: What an Aged Mortgage Lead Actually Costs Per Funded Loan",
+        body: "The per-lead price is the number buyers fixate on and the number that matters least. What matters is your fully loaded cost per funded loan. Here is the math, framed as an illustration you should re-run with your own close rate and commission.\n\nSay you buy 1,000 aged mortgage leads at $1.50 each — a $1,500 spend. At a 10% contact rate you reach 100 people. At a 2% overall conversion rate (a reasonable target with disciplined, consistent follow-up) you fund roughly 20 loans. That puts your lead cost per funded loan at about $75. Compare that to real-time leads at, say, $40 each: 1,000 of those would cost $40,000, and even at a higher 6% close you would need a far larger budget to fund the same number of loans.\n\nThe lever most operators ignore is contact rate, not price. Doubling your contact rate from 5% to 10% — through better dialing windows, a fresh DNC scrub, and a real multi-touch cadence — does more for your cost per funded loan than negotiating the per-lead price down by half. Always model the full funnel: leads → contacts → applications → funded loans → commission. When you do, a $1.50 lead that closes at 2% routinely beats a $40 lead that closes at 6%, because volume at low cost absorbs the lower close rate and still wins on total funded production.",
+      },
+      {
+        heading: "Why Aged Refinance Leads Re-Activate When Rates Move",
+        body: "A refinance lead is a snapshot of a consumer's interest at a specific rate. The moment rates fall below that snapshot, the economics of refinancing change for everyone who inquired while rates were higher — and your aged list becomes a ready-made call list of people whose break-even math just flipped in their favor.\n\nThis is why experienced operators treat aged refinance inventory as a rate-environment hedge rather than a one-time buy. In a high-rate market, refinance demand looks dead, prices on these leads soften, and most loan officers stop buying them entirely. The patient operator accumulates that inventory cheaply and works it with a low-pressure, stay-in-touch cadence. When the next rate dip arrives — and over a mortgage cycle one always does — they are already in conversation with hundreds of homeowners while competitors are starting from a cold list.\n\nThe practical move: when you call an aged refi lead, lead with current rate information. Rates are the hook because they are the one thing that has objectively changed since the consumer first inquired. You are not pitching; you are delivering a relevant update to someone who already raised their hand.",
+      },
+      {
+        heading: "Building a Multi-Touch Cadence That Converts Aged Mortgage Leads",
+        body: "Single-touch outreach wastes aged leads. The contact rates that make the math work assume a structured cadence across channels, spaced over 7 to 14 days, not one phone call and a shrug.\n\nA workable cadence looks like this: Day 1, a manual phone call using a non-pushy opener that acknowledges the consumer's prior inquiry. If you don't connect, leave a brief, specific voicemail. Day 2, a short plain-text email — no HTML template, no images, just a human note that references mortgage rates and offers to help. Day 4, a second call at a different time of day than the first. Day 7, a value-add touch: a rate update, a one-line market note, or a link to a helpful resource. For local leads, a personalized direct-mail piece as an early touch lifts response meaningfully. Day 10 to 14, a final call and a soft close email that leaves the door open.\n\nTwo disciplines separate operators who profit from aged leads from those who churn through them. First, vary the channel and the time of day — calling the same number three times at 10 a.m. is not a cadence. Second, log every attempt in a CRM with the outcome and the next action. Aged-lead profitability is a workflow problem far more than a lead-quality problem; the inventory is cheap enough that process, not luck, decides your return.",
+      },
+      {
+        heading: "Five Mistakes That Destroy Aged Mortgage Lead ROI",
+        body: "First, treating aged leads like real-time leads. These consumers inquired weeks or months ago; an opener that pretends the inquiry was yesterday breaks trust instantly. Acknowledge the gap and reframe as a helpful follow-up.\n\nSecond, buying on price alone. A cheaper lead with no phone scrub, stale contact data, or the wrong geography costs more per funded loan than a slightly pricier, cleaner record. Judge inventory on data quality and fit, not headline price.\n\nThird, under-working the list. Operators routinely buy 1,000 leads, make 200 calls, and quit. The math only works if you run the full cadence on the full list. Half-working a list guarantees the disappointing contact rates people then blame on lead quality.\n\nFourth, ignoring compliance until it's a problem. Aged leads are not pre-consented; skipping a DNC and litigator scrub or leaning on prohibited dialing technology turns a profitable channel into legal exposure. Build compliance into the workflow from day one.\n\nFifth, measuring the wrong number. Cost per lead tells you almost nothing. Track cost per contact and cost per funded loan, and optimize the contact rate — that is where the leverage lives.",
+      },
+      {
+        heading: "Working Aged Mortgage Leads Compliantly in 2026",
+        body: "Aged mortgage leads are consumer data records, not pre-consented contacts, so you should treat outreach as cold contact and build compliance into your process rather than bolting it on later. That means scrubbing every campaign against the National Do Not Call Registry and a TCPA litigator list before you dial, honoring opt-outs immediately, and relying on manual dialing rather than prohibited automated dialing technology.\n\nThe regulatory picture in 2026 is more workable than the headlines of recent years suggested. The FCC's one-to-one consent rule was vacated in early 2025 before it ever took effect, so the doomsday scenario many lead buyers feared did not materialize. At the same time, several states have active mini-TCPA statutes with their own consent and calling-time rules, so a campaign that is fine federally can still create exposure at the state level. The safe posture is to dial manually, keep clean records of your scrubs and contact attempts, respect state calling windows, and run your specific program past qualified compliance counsel before launch.\n\nFor the full framework — including the conservative-to-aggressive operating modes and the step-by-step consent ladder we use across verticals — see the free playbook. The short version for mortgage: cheap inventory plus a disciplined, compliant workflow is a durable advantage; shortcuts on compliance are the fastest way to lose it.",
+      },
+    ],
     faqs: [
       {
         question: "What is an aged mortgage lead?",
@@ -112,6 +146,31 @@ export const LEAD_TYPES: Record<string, LeadTypeData> = {
         question: "How should I contact aged mortgage leads?",
         answer:
           "The most effective approach is a multi-channel cadence: start with a personal phone call using a non-pushy script, follow up with a plain-text email, and consider direct mail for local leads. Space your touches over 7-14 days.",
+      },
+      {
+        question: "Do aged mortgage leads still work in a high-rate market?",
+        answer:
+          "Yes — arguably better. In a high-rate market, refinance demand looks dead and lead prices soften, so disciplined operators accumulate aged refinance inventory cheaply and stay in low-pressure contact. When rates dip, those records re-activate because the consumer's break-even math has changed, and you're already in the conversation while competitors start cold. Purchase leads work in any rate environment because people still need to buy homes.",
+      },
+      {
+        question: "How old is too old for a mortgage lead?",
+        answer:
+          "There's no hard cutoff — it depends on loan type and your approach. Purchase leads are most actionable in the 30-90 day window. Refinance, HELOC, and reverse leads stay viable far longer (180 days and beyond) because the underlying need or the rate trigger persists. The key is matching your message to the age: the older the lead, the more your outreach should read as a helpful check-in rather than a response to a fresh inquiry.",
+      },
+      {
+        question: "Should I buy aged purchase or refinance leads?",
+        answer:
+          "It depends on your business and the rate environment. Purchase leads convert on a shorter timeline and perform consistently regardless of rates. Refinance leads are the higher-leverage play for patient operators because they re-activate when rates move and are cheapest to acquire exactly when competitors stop buying them. Many loan officers run both: purchase for steady near-term production, refinance as an accumulating, rate-sensitive pipeline.",
+      },
+      {
+        question: "Exclusive vs. shared aged mortgage leads — which is better?",
+        answer:
+          "Exclusive aged leads cost more but you're the only one working them, which lifts contact and conversion rates. Shared leads are cheaper but you may be one of several callers. Because aged leads are already low-competition compared to real-time leads (most original buyers have moved on), shared aged inventory is often a smart value — but if your follow-up process is strong, exclusive aged leads maximize the return on that effort.",
+      },
+      {
+        question: "Where can I buy aged mortgage leads?",
+        answer:
+          "Several established providers sell aged mortgage leads. Rather than buying on price alone, compare providers on data quality, lead age and filtering options, geographic coverage, and refund or replacement policies. Our independent provider directory rates lead sellers across these dimensions so you can match a provider to your vertical and budget.",
       },
     ],
     getCompareUrl: () =>
