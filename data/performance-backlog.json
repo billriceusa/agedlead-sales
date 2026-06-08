@@ -1,6 +1,18 @@
 {
-  "lastUpdated": "2026-06-07T12:01:15.452Z",
+  "lastUpdated": "2026-06-08T12:01:02.535Z",
   "items": [
+    {
+      "id": "mobile-search-experience",
+      "title": "Expand Mobile Search Optimization",
+      "description": "With only 24 mobile impressions vs 198 desktop, optimize content for mobile-first indexing and create mobile-friendly calculator interfaces to capture mobile search traffic.",
+      "expectedImpact": "Increase mobile impressions by 150% and improve overall search visibility",
+      "priority": "high",
+      "firstSeen": "2026-04-14",
+      "lastSeen": "2026-06-08",
+      "timesRepeated": 41,
+      "status": "open",
+      "topicKey": "mobile-search-experience"
+    },
     {
       "id": "calculator-page-ctr",
       "title": "Enhance Calculator Landing Page CTR",
@@ -14,26 +26,14 @@
       "topicKey": "calculator-page-ctr"
     },
     {
-      "id": "mobile-search-experience",
-      "title": "Expand Mobile Search Optimization",
-      "description": "With only 24 mobile impressions vs 198 desktop, optimize content for mobile-first indexing and create mobile-friendly calculator interfaces to capture mobile search traffic.",
-      "expectedImpact": "Increase mobile impressions by 150% and improve overall search visibility",
-      "priority": "high",
-      "firstSeen": "2026-04-14",
-      "lastSeen": "2026-06-07",
-      "timesRepeated": 40,
-      "status": "open",
-      "topicKey": "mobile-search-experience"
-    },
-    {
       "id": "agedleadstore-branded-ctr",
       "title": "Optimize AgedLeadStore Branded Query Pages",
       "description": "The /providers/aged-lead-store page is ranking position 7.2-8.8 for key branded terms but not converting clicks. Optimize title tags to 'Aged Lead Store Review 2026: Pricing, Quality & Agent Results' and meta descriptions to include 'legit', 'reviews', and 'worth it' phrases. Add FAQ schema targeting 'is aged lead store legit' and 'aged lead store coupon code' queries.",
       "expectedImpact": "Increase CTR from 0% to 3-5% for branded terms, capturing 15-25 additional monthly clicks",
       "priority": "high",
       "firstSeen": "2026-04-16",
-      "lastSeen": "2026-06-07",
-      "timesRepeated": 20,
+      "lastSeen": "2026-06-08",
+      "timesRepeated": 21,
       "status": "open",
       "topicKey": "agedleadstore-branded-ctr"
     },
@@ -56,8 +56,8 @@
       "expectedImpact": "Convert 20-30% of current impressions to clicks, adding 10-15 monthly organic sessions",
       "priority": "high",
       "firstSeen": "2026-04-22",
-      "lastSeen": "2026-06-07",
-      "timesRepeated": 8,
+      "lastSeen": "2026-06-08",
+      "timesRepeated": 9,
       "status": "open",
       "topicKey": "high-impression-low-click-pages"
     },
@@ -80,8 +80,8 @@
       "expectedImpact": "Improve IUL-related query rankings from position 19.9 to position 8-12, increasing clicks by 200-300%",
       "priority": "high",
       "firstSeen": "2026-06-03",
-      "lastSeen": "2026-06-07",
-      "timesRepeated": 5,
+      "lastSeen": "2026-06-08",
+      "timesRepeated": 6,
       "status": "open",
       "topicKey": "iul-leads-cannibalization"
     },
@@ -1368,6 +1368,18 @@
       "timesRepeated": 1,
       "status": "open",
       "topicKey": "leverage-high-performing-referral-traffic-for-email-capture"
+    },
+    {
+      "id": "calculator-page-expansion",
+      "title": "Expand calculator functionality to capture more lead cost queries",
+      "description": "The /calculators/know-your-cpl page is performing well with 84 views. Add calculators for ROI calculation, lead volume planning, and cost comparison tools. Target queries like 'aged lead cost calculator' and 'insurance lead ROI calculator' that currently have no dedicated landing pages in the inventory.",
+      "expectedImpact": "Increase calculator page traffic by 50-75%, capture additional long-tail cost-related queries",
+      "priority": "low",
+      "firstSeen": "2026-06-08",
+      "lastSeen": "2026-06-08",
+      "timesRepeated": 1,
+      "status": "open",
+      "topicKey": "calculator-page-expansion"
     },
     {
       "id": "89e9b92e6cfd",
