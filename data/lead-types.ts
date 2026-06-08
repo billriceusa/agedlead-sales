@@ -239,8 +239,36 @@ export const LEAD_TYPES: Record<string, LeadTypeData> = {
         "Send a personalized email within 1 hour of your first call attempt",
         "Use current rate comparisons as your hook — premiums change constantly",
         "Ask about life events (new home, new baby, retirement) that create insurance needs",
+        "Pull a fresh phone and DNC scrub before every campaign — aged data degrades between capture and dial",
+        "Track cost per bound policy and lifetime household value, not just cost per lead — a cross-sold household is worth several times a single policy",
       ],
     },
+    deepDive: [
+      {
+        heading: "Aged Insurance Leads by Line: Auto, Home, Life, and Health",
+        body: "Insurance lines age at very different rates, and the line a consumer originally inquired about should dictate how — and how long — you work the record. Auto insurance leads are the most time-sensitive and the most renewable. Policies run on six- or twelve-month terms, so even a consumer who bought elsewhere after their original quote request comes back into play as their renewal approaches. An auto lead that looked cold at 60 days can be perfectly timed at 150 days if it lands a few weeks before their policy renews.\n\nHome insurance leads track the home-buying and mortgage cycle, so they pair naturally with a life event you can ask about directly. Many home-insurance inquiries come from people shopping a new purchase or fighting a premium increase at renewal — both are durable motivations that don't evaporate in 30 days. Life insurance leads are the longest-lived of all. The need behind a life inquiry — a new baby, a mortgage, a gap in coverage — persists for months or years, and the consumer often stalled simply because the decision felt heavy. A respectful follow-up 90 or 180 days later frequently arrives exactly when they're finally ready.\n\nHealth insurance leads are the most calendar-driven: open-enrollment windows and special-enrollment triggers (job loss, marriage, a move) concentrate buying intent into specific periods. An aged health lead worked just before or during open enrollment behaves almost like a fresh one. Segment your list by line before you dial, and write a distinct opener for each — an auto-renewal script and a life-insurance script should not sound the same.",
+      },
+      {
+        heading: "The Real Math: What an Aged Insurance Lead Costs Per Bound Policy",
+        body: "The per-lead price is the number agents fixate on and the number that matters least. What matters is your fully loaded cost per bound policy — and, because insurance is a cross-sell business, the lifetime value of the household behind it. Here is the math, framed as an illustration you should re-run with your own numbers.\n\nSay you buy 1,000 aged insurance leads at $1 each — a $1,000 spend. At a 10% contact rate you reach 100 people. At a 2% overall conversion rate you bind roughly 20 policies, putting your lead cost per bound policy around $50. Compare that to real-time leads at, say, $25 each: 1,000 of those would cost $25,000, and even at a higher close rate you'd need a far larger budget to bind the same number of policies. The cheap inventory absorbs a lower close rate and still wins on total policies bound.\n\nThe lever most agents ignore is contact rate, not price. Doubling your contact rate from 5% to 10% — through better dialing windows, a fresh DNC scrub, and a real multi-touch cadence — does more for your cost per bound policy than negotiating the per-lead price in half. And in insurance there's a second multiplier real-time-only agents rarely capture: every bound household is a cross-sell base. When you model the full picture — leads → contacts → bound policies → cross-sold lines → renewals — low-cost aged inventory routinely produces more total premium per dollar spent than a small batch of expensive real-time leads.",
+      },
+      {
+        heading: "Cross-Selling: The Multiplier That Makes Aged Insurance Leads Pay",
+        body: "Cross-selling is the single biggest reason aged insurance leads outperform their headline economics, and it's the discipline that separates agents who profit from a list from those who churn through it. A consumer who originally requested an auto quote almost always owns or rents a home, may have a family to protect, and will face renewals across every line they hold. Each bound policy is not an endpoint — it's the start of a household relationship.\n\nThe practical workflow: when you bind one line, you've earned the right to review the rest. An auto policyholder is a natural home- or renters-insurance prospect; a new homeowner needs life coverage to protect the mortgage; a life-insurance buyer often has under-shopped auto and home policies. Because you're already in a trusted advisor conversation — not cold-calling — the second and third policies close at far higher rates than the first, and they cost you nothing in additional lead spend.\n\nThis is why the right success metric for aged insurance leads is lifetime household value, not cost per lead. A single $1 lead that becomes a three-line household with annual renewals can return many multiples of a one-policy close. Build cross-sell prompts into your CRM so every bound policy automatically queues a coverage review on the other lines, and the cheap aged lead becomes the cheapest customer-acquisition channel you have.",
+      },
+      {
+        heading: "Building a Multi-Touch Cadence That Converts Aged Insurance Leads",
+        body: "Single-touch outreach wastes aged insurance leads. The contact rates that make the math work assume a structured cadence across channels, spaced over 7 to 14 days — plan for five to seven attempts per lead, not one call and a shrug.\n\nA workable cadence looks like this: Day 1, a manual phone call using a non-pushy opener that acknowledges the consumer's prior quote request. If you don't connect, leave a brief, specific voicemail. Day 1 or 2, a short plain-text email — no HTML template — that references current rates and offers a quick coverage check. Day 3 to 4, a second call at a different time of day than the first. Day 7, a value-add touch: a rate comparison, a note about a renewal window, or a relevant coverage tip. For high-value lines like life insurance, a personalized direct-mail piece lifts response meaningfully. Day 10 to 14, a final call and a soft-close email that leaves the door open.\n\nTwo disciplines decide your return. First, vary the channel and the time of day — three calls at 10 a.m. is not a cadence. Second, log every attempt, outcome, and next action in your CRM, and tag the line of business so cross-sell follow-ups surface automatically. Aged-lead profitability is a workflow problem far more than a lead-quality problem; the inventory is cheap enough that process, not luck, decides the outcome.",
+      },
+      {
+        heading: "Five Mistakes That Destroy Aged Insurance Lead ROI",
+        body: "First, treating aged leads like real-time leads. These consumers requested quotes weeks or months ago; an opener that pretends the inquiry was yesterday breaks trust instantly. Acknowledge the gap and reframe as a helpful check-in on their coverage.\n\nSecond, buying on price alone. A cheaper lead with stale contact data, no phone scrub, or the wrong geography costs more per bound policy than a slightly pricier, cleaner record. Judge inventory on data quality and fit, not headline price.\n\nThird, ignoring the cross-sell. Agents who bind one policy and move on leave most of the value on the table. The household behind the lead is the asset; a single-line close is a fraction of what that record can return.\n\nFourth, under-working the list. Buying 1,000 leads, making 200 calls, and quitting guarantees the disappointing contact rates people then blame on lead quality. The math only works when you run the full cadence on the full list.\n\nFifth, treating aged data as pre-consented. Skipping a DNC and litigator scrub or leaning on prohibited dialing technology turns a profitable channel into legal exposure. Build compliance into the workflow from day one rather than bolting it on after a complaint.",
+      },
+      {
+        heading: "Working Aged Insurance Leads Compliantly in 2026",
+        body: "Aged insurance leads are consumer data records, not pre-consented contacts, so you should treat outreach as cold contact and build compliance into your process rather than bolting it on later. That means scrubbing every campaign against the National Do Not Call Registry and a TCPA litigator list before you dial, honoring opt-outs immediately, respecting state calling windows, and relying on manual dialing rather than prohibited automated dialing technology.\n\nThe regulatory picture in 2026 is more workable than recent headlines suggested. The FCC's one-to-one consent rule was vacated in early 2025 before it ever took effect, so the disruption many lead buyers feared did not materialize. At the same time, several states run active mini-TCPA statutes with their own consent and calling-time rules, so a campaign that's fine federally can still create exposure at the state level. The safe posture is to dial manually, keep clean records of your scrubs and contact attempts, respect state rules, and run your specific program past qualified compliance counsel before launch.\n\nFor the full framework — including the conservative-to-aggressive operating modes and the step-by-step consent ladder we use across verticals — see the free playbook. The short version for insurance: cheap inventory plus a disciplined, compliant, cross-sell-oriented workflow is a durable advantage; shortcuts on compliance are the fastest way to lose it.",
+      },
+    ],
     faqs: [
       {
         question: "What types of aged insurance leads are available?",
@@ -266,6 +294,36 @@ export const LEAD_TYPES: Record<string, LeadTypeData> = {
         question: "How old are aged insurance leads?",
         answer:
           "Aged insurance leads are typically 30-180 days old, with some providers offering leads up to 360 days old. Fresher aged leads (30-60 days) generally have higher contact and conversion rates, while older leads cost less per record.",
+      },
+      {
+        question: "What conversion rate can I expect from aged insurance leads?",
+        answer:
+          "Most agents see a 1-3% conversion rate on aged insurance leads with consistent, multi-touch follow-up. That's lower than real-time leads, but because aged leads cost a small fraction of the price, you work far more records per dollar — and the cross-sell potential of each bound household lifts the real return well above the single-policy close rate.",
+      },
+      {
+        question: "Do aged life insurance leads still convert months later?",
+        answer:
+          "Yes — life insurance is the longest-lived aged line. The need behind a life inquiry (a new baby, a mortgage, a coverage gap) persists for months or years, and many consumers simply stalled because the decision felt heavy. A respectful, education-first follow-up 90-180 days after the original request often arrives exactly when the household is finally ready to act, which is why life leads are worth calling far longer than auto.",
+      },
+      {
+        question: "How does cross-selling work with aged insurance leads?",
+        answer:
+          "Cross-selling is where aged insurance leads pay off. A consumer who requested an auto quote almost always has a home or rental, may need life coverage, and faces renewals across every line. Once you bind one policy you're a trusted advisor, so the second and third lines close at much higher rates — and cost nothing in extra lead spend. Build a coverage-review prompt into your CRM after every bind so cross-sell opportunities surface automatically.",
+      },
+      {
+        question: "Are aged insurance leads TCPA compliant?",
+        answer:
+          "Aged insurance leads are consumer data records, not pre-consented leads, so treat them as cold outreach. Scrub every campaign against the National Do Not Call Registry and a TCPA litigator list, dial manually rather than using prohibited automated dialing technology, honor opt-outs immediately, and respect state calling windows. The FCC's one-to-one consent rule was vacated in 2025, but several states have active mini-TCPA statutes — run your specific program past qualified compliance counsel before launch.",
+      },
+      {
+        question: "Exclusive vs. shared aged insurance leads — which is better?",
+        answer:
+          "Exclusive aged leads cost more but you're the only agent working them, which lifts contact and conversion rates. Shared leads are cheaper but you may be one of several callers. Because aged leads are already low-competition compared to real-time leads (most original agents have moved on), shared aged inventory is often strong value — but if your follow-up and cross-sell process is disciplined, exclusive aged leads maximize the return on that effort.",
+      },
+      {
+        question: "Where can I buy aged insurance leads?",
+        answer:
+          "Several established providers sell aged insurance leads across auto, home, life, and health lines. Rather than buying on price alone, compare providers on data quality, available lines and filters, lead age, geographic coverage, and refund or replacement policies. Our independent provider directory rates lead sellers across these dimensions so you can match a provider to your lines and budget.",
       },
     ],
     getCompareUrl: () =>
