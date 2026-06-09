@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     template: "%s | Aged Lead Sales",
   },
   description:
-    "Buy aged leads the smart way. Compare 50+ lead providers, see real price benchmarks, and get free playbooks that turn cheap aged leads into closed deals.",
+    "Buy aged leads the smart way. Compare 15+ lead providers, see real price benchmarks, and get free playbooks that turn cheap aged leads into closed deals.",
   alternates: {
     canonical: baseUrl,
   },

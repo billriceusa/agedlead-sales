@@ -250,8 +250,9 @@ export default async function PriceIndexPage() {
             How We Collect This Data
           </h2>
           <p className="mt-4 text-zinc-600 dark:text-zinc-400">
-            Our team researches 50+ lead providers monthly, aggregating
-            published pricing, requesting quotes, and analyzing market trends.
+            Our team researches the aged-lead provider market monthly,
+            aggregating published pricing, requesting quotes, and analyzing
+            market trends.
             Every data point includes a confidence rating indicating data
             quality. Benchmarks represent fair market ranges, not specific
             provider pricing.

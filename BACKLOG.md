@@ -131,8 +131,9 @@ Only 1 active lead magnet (prospecting checklist). Playbook says 1-2 per site mi
 ~~15 provider review pages lack Product + Review JSON-LD — missing rich-result eligibility (stars in SERP).~~ The pages emitted `Organization` + `AggregateRating` (ratingCount: 1), which Google does NOT grant review-star snippets for (and a single-count aggregate is an anti-pattern). Replaced with a proper **`Product` reviewed by Aged Lead Sales** carrying our editorial star rating (`Review` + `reviewRating`, bestRating 10) — legitimate third-party (non-self-serving) review schema, the structure eligible for star rich results. Identity `Organization` node retained without the rating. The 1 provider with a canonical blog review (`aged-lead-store` → `aged-lead-store-review-2026`) had its rating schema dropped on the profile but the article never actually emitted Review schema — fixed by attaching the Product/Review to the blog article via `reviewArticleSlug` lookup, so all 15 providers now have star schema on their canonical URL.
 - **Impact:** SERP CTR via rich results.
 
-### Verify "researches 50+ lead providers monthly" claim (`/price-index`)
-Left unchanged on 2026-06-08 because "researches monthly" is a broader process claim than the 15-provider directory — but confirm the real number so it isn't an overclaim. Align if needed.
+### Provider-count overclaims — DONE 2026-06-09
+- [x] Homepage/site root meta+OG description said "Compare **50+** lead providers" — this lived in code (`app/(site)/layout.tsx:31`, NOT Sanity; the dataset has no siteSettings/homepage doc type) → changed to "15+".
+- [x] `/price-index` "Our team researches **50+** lead providers monthly" → reframed to "researches the aged-lead provider market monthly" (removed the unverified count rather than swapping a new number, to avoid any overclaim).
 - **Impact:** Credibility / no-overclaim.
 
 ### Featured images on 2 recent posts
