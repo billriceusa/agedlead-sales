@@ -133,6 +133,13 @@ Only 1 active lead magnet (prospecting checklist). Playbook says 1-2 per site mi
 - [x] `/price-index` "Our team researches **50+** lead providers monthly" → reframed to "researches the aged-lead provider market monthly" (removed the unverified count rather than swapping a new number, to avoid any overclaim).
 - **Impact:** Credibility / no-overclaim.
 
+### Price index repositioned as a quarterly verified study — DONE 2026-06-09
+Bill's call after the data-integrity dig below: the Lead Price Index is now framed as a **quarterly human-verified study**, not a live monthly AI-estimated feed — matches what the data supports and makes it a stronger citable/link asset.
+- [x] All "monthly" / "Updated <Month>" copy → "quarterly verified" / "Verified Q# YYYY" (new `quarterLabel()` helper, derived from latest reliable month) across `/price-index`, `/price-index/[vertical]`, `/methodology`, statistics page. Dataset JSON-LD + meta + citations updated.
+- [x] Methodology now states benchmarks are human-reviewed, never auto-generated; AI only flags changes for verification between cycles.
+- [x] **Removed the AI-estimate dependency at the source:** marketwatch cron no longer synthesizes/publishes benchmark estimates — it now only monitors provider sites for pricing changes, flags "pricing signals to verify" for a human, stamps lastVerified, and emails the team. Benchmarks remain human-curated; display-side trustworthy gate stays as a backstop.
+- **Maintenance:** each quarter, a human verifies pricing and updates benchmark data (Sanity or `data/price-benchmarks.ts`); the "Verified Q#" stamp advances automatically from the latest reliable month.
+
 ### Price-index data integrity — single-provider cron junk — DONE 2026-06-09
 The marketwatch cron (`app/api/cron/marketwatch` → `lib/cron/marketwatch-ai.ts`) **LLM-synthesizes** monthly benchmarks from scraped provider sites and was publishing single-provider, low-confidence estimates that collapsed to meaningless flat ranges (auto-insurance aged rendered a literal **"$1 – $1"**; mca real-time produced a $150–$2,500 / median $1,325 one-provider guess). Because the index read only the latest month with no quality bar, that junk overwrote the real multi-provider March/April data in the public cards and produced fake "trends" driven by sampling noise.
 - [x] `isTrustworthyBenchmark` (≥2 providers sampled) in `data/price-benchmarks.ts`. Single-provider rows stay in Sanity but never surface as headline pricing or trend points.
