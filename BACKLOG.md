@@ -136,8 +136,8 @@ Only 1 active lead magnet (prospecting checklist). Playbook says 1-2 per site mi
 - [x] `/price-index` "Our team researches **50+** lead providers monthly" → reframed to "researches the aged-lead provider market monthly" (removed the unverified count rather than swapping a new number, to avoid any overclaim).
 - **Impact:** Credibility / no-overclaim.
 
-### Featured images on 2 recent posts
-Audit (2026-06-03) flags two recent blog posts missing featured images — engagement + OG-share signal.
+### Featured images on 2 recent posts — DONE 2026-06-09
+Two posts lacked `mainImage` (`life-insurance-aged-lead-roi`, `smart-agents-buy-aged-leads-instead-facebook-ads`) — now 71/71 posts have one. Generated via the existing `scripts/generate-featured-images.mjs` (Unsplash photo, scored for real people in a professional setting, + brand-blue gradient/title overlay → uploaded to Sanity → patched `mainImage`), keeping them visually consistent with the other 69. Sanity-only change; blog renders on-demand so it went live with no redeploy. Verified: hero `<img>` + og:image + twitter:image on both.
 
 ### Migrate in-repo crons to central automation
 6 crons still live in `app/api/cron/*` (seo-audit, marketwatch, daily-performance, health-check, weekly-content, weekly-newsletter). Per brsg-website-automation, crons are migrating OUT of site repos to the central system. Remove once the central system covers this site.
