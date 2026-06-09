@@ -115,7 +115,7 @@ export default function StatisticsPage() {
             />
             <CopyableStatCard
               value={`${market.benchmarkDataPoints}+`}
-              label="Monthly price data points tracked"
+              label="Verified price data points tracked"
               source="Aged Lead Sales Price Index"
               sourceUrl={`${baseUrl}/price-index`}
             />
@@ -440,8 +440,8 @@ export default function StatisticsPage() {
                   independent analysis. All figures are verified quarterly.
                 </p>
                 <p>
-                  <strong>Update cadence:</strong> This page is updated quarterly.
-                  Price benchmarks are refreshed monthly. Provider ratings are
+                  <strong>Update cadence:</strong> This page and our price
+                  benchmarks are verified quarterly. Provider ratings are
                   re-verified every 90 days.
                 </p>
               </div>

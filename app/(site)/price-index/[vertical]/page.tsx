@@ -10,6 +10,7 @@ import { VERTICALS, getVertical } from "@/data/verticals";
 import {
   getBenchmarksByVertical,
   isTrustworthyBenchmark,
+  quarterLabel,
   EXCLUSIVITY_LABELS,
   LEAD_TYPE_LABELS,
   type PriceBenchmarkData,
@@ -40,13 +41,13 @@ export async function generateMetadata({
   const title = `${vertical.name} Lead Pricing — How Much Should You Pay?`;
   return {
     title,
-    description: `Fair market pricing benchmarks for ${vertical.name.toLowerCase()} leads. Aged, real-time, and live transfer pricing by age and exclusivity. Updated monthly.`,
+    description: `Fair market pricing benchmarks for ${vertical.name.toLowerCase()} leads. Aged, real-time, and live transfer pricing by age and exclusivity. Verified quarterly.`,
     alternates: {
       canonical: `${baseUrl}/price-index/${verticalSlug}`,
     },
     openGraph: {
       title: `${vertical.name} Lead Pricing | Aged Lead Sales`,
-      description: `How much do ${vertical.name.toLowerCase()} leads cost? See monthly benchmarks for aged, real-time, exclusive, and shared leads.`,
+      description: `How much do ${vertical.name.toLowerCase()} leads cost? See our quarterly verified benchmarks for aged, real-time, exclusive, and shared leads.`,
       url: `${baseUrl}/price-index/${verticalSlug}`,
       images: [
         {
@@ -130,10 +131,7 @@ export default async function VerticalPriceIndexPage({
       });
     }
   }
-  const monthLabel = new Date(latestMonth + "-01").toLocaleDateString("en-US", {
-    month: "long",
-    year: "numeric",
-  });
+  const verifiedLabel = quarterLabel(latestMonth);
 
   // Observed monthly price trend. We plot a SINGLE consistent aged series
   // (same bracket + exclusivity + leadType across months) so the line never
@@ -224,10 +222,10 @@ export default async function VerticalPriceIndexPage({
             <p className="mt-4 max-w-3xl text-lg text-zinc-600 dark:text-zinc-400">
               How much should you pay for {vertical.name.toLowerCase()} leads?
               These benchmarks represent fair market pricing ranges based on our
-              monthly research across multiple providers.
+              quarterly verified research across multiple providers.
             </p>
             <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400">
-              Last updated: {monthLabel} &middot;{" "}
+              Last verified: {verifiedLabel} &middot;{" "}
               {observedCount} observed data points
               {computedCount > 0 && (
                 <> &middot; {computedCount} model-estimated &middot;{" "}
@@ -277,7 +275,7 @@ export default async function VerticalPriceIndexPage({
             <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-12 text-center dark:border-zinc-800 dark:bg-zinc-900">
               <p className="text-zinc-500 dark:text-zinc-400">
                 Benchmark data for {vertical.name} is coming soon. Check back
-                next month.
+                next quarter.
               </p>
             </div>
           )}
@@ -335,7 +333,7 @@ export default async function VerticalPriceIndexPage({
           <div className="flex flex-wrap items-center gap-3">
             <span className="text-sm text-zinc-500">Reference this data:</span>
             <CiteThisButton
-              citation={`${vertical.name} lead pricing benchmarks from the Aged Lead Sales Lead Price Index. Source: ${baseUrl}/price-index/${verticalSlug}`}
+              citation={`${vertical.name} lead pricing benchmarks from the Aged Lead Sales Lead Price Index, a quarterly verified study (last verified ${verifiedLabel}). Source: ${baseUrl}/price-index/${verticalSlug}`}
             />
           </div>
         </div>

@@ -8,6 +8,7 @@ import {
   PRICE_BENCHMARKS,
   formatPriceRange,
   isTrustworthyBenchmark,
+  quarterLabel,
   type PriceBenchmarkData,
 } from "@/data/price-benchmarks";
 import { sanityFetch } from "@/sanity/lib/fetch";
@@ -34,7 +35,7 @@ const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 export const metadata: Metadata = {
   title: "Lead Price Index — What Should You Pay for Leads?",
   description:
-    "Monthly pricing benchmarks for aged leads, real-time leads, and live transfers across 15 verticals. Fair market values updated monthly.",
+    "Quarterly verified pricing benchmarks for aged leads, real-time leads, and live transfers across 15 verticals. Fair market values from published pricing, quote requests, and market analysis.",
   alternates: { canonical: `${baseUrl}/price-index` },
   openGraph: {
     title: "Lead Price Index | Aged Lead Sales",
@@ -105,10 +106,7 @@ export default async function PriceIndexPage() {
     benchmarks.find((b) => isTrustworthyBenchmark(b))?.month ||
     benchmarks[0]?.month ||
     "2026-03";
-  const monthLabel = new Date(latestMonth + "-01").toLocaleDateString("en-US", {
-    month: "long",
-    year: "numeric",
-  });
+  const verifiedLabel = quarterLabel(latestMonth);
 
   // Build vertical cards with summary data
   const verticalCards = VERTICALS.filter((v) => v.tier <= 2).map((v) => ({
@@ -130,7 +128,7 @@ export default async function PriceIndexPage() {
           "@type": "Dataset",
           name: "Lead Price Index",
           description:
-            "Monthly pricing benchmarks for aged leads and real-time leads across 15 verticals.",
+            "Quarterly verified pricing benchmarks for aged leads and real-time leads across 15 verticals.",
           url: `${baseUrl}/price-index`,
           temporalCoverage: latestMonth,
           creator: {
@@ -150,16 +148,16 @@ export default async function PriceIndexPage() {
               Lead Marketwatch
             </span>
             <span className="text-xs text-zinc-400">
-              Updated {monthLabel}
+              Verified {verifiedLabel}
             </span>
           </div>
           <h1 className="mt-4 text-4xl font-bold tracking-tight text-white sm:text-5xl">
             Lead Price Index
           </h1>
           <p className="mt-4 max-w-2xl text-lg leading-relaxed text-zinc-300">
-            What should you pay for leads? Our monthly benchmarks track fair
-            market pricing across 15 verticals and every lead type — aged,
-            real-time, live transfers, and more.
+            What should you pay for leads? Our quarterly verified benchmarks
+            track fair market pricing across 15 verticals and every lead type —
+            aged, real-time, live transfers, and more.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
@@ -262,12 +260,13 @@ export default async function PriceIndexPage() {
             How We Collect This Data
           </h2>
           <p className="mt-4 text-zinc-600 dark:text-zinc-400">
-            Our team researches the aged-lead provider market monthly,
-            aggregating published pricing, requesting quotes, and analyzing
-            market trends.
-            Every data point includes a confidence rating indicating data
-            quality. Benchmarks represent fair market ranges, not specific
-            provider pricing.
+            Each quarter our team verifies pricing across the aged-lead provider
+            market — aggregating published pricing, requesting quotes as a
+            prospective buyer, and triangulating against market analysis. Every
+            data point includes a confidence rating indicating data quality, and
+            we only publish benchmarks backed by more than one provider.
+            Benchmarks represent fair market ranges, not specific provider
+            pricing.
           </p>
           <div className="mt-6 flex items-center justify-center gap-6 text-sm">
             <span className="inline-flex items-center gap-1.5">
@@ -303,7 +302,7 @@ export default async function PriceIndexPage() {
           <div className="flex flex-wrap items-center gap-3">
             <span className="text-sm text-zinc-500">Reference this data:</span>
             <CiteThisButton
-              citation={`Lead pricing benchmarks from the Aged Lead Sales Lead Price Index, covering ${VERTICALS.length} verticals with monthly updates. Source: ${baseUrl}/price-index`}
+              citation={`Lead pricing benchmarks from the Aged Lead Sales Lead Price Index, a quarterly verified study covering ${VERTICALS.length} verticals (last verified ${verifiedLabel}). Source: ${baseUrl}/price-index`}
             />
           </div>
         </div>

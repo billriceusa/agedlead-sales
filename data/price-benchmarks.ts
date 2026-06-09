@@ -600,6 +600,17 @@ export function isTrustworthyBenchmark(b: {
   return (b.providersSampled ?? 0) >= 2;
 }
 
+/**
+ * The price index is published as a quarterly human-verified study (not a live
+ * AI-estimated feed). Convert a benchmark's "YYYY-MM" month to its calendar
+ * quarter for the public "Last verified" stamp.
+ */
+export function quarterLabel(ym: string): string {
+  const [y, m] = ym.split("-");
+  const q = Math.floor((parseInt(m, 10) - 1) / 3) + 1;
+  return `Q${q} ${y}`;
+}
+
 /** Get benchmarks for a specific vertical (latest month) */
 export function getBenchmarksByVertical(
   verticalSlug: string

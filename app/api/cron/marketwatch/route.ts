@@ -3,15 +3,12 @@ import { Resend } from "resend";
 import {
   scrapeProviderWebsite,
   extractProviderData,
-  generateBenchmarkEstimates,
   buildMarketwatchReport,
   type ExtractedProviderUpdate,
 } from "@/lib/cron/marketwatch-ai";
 import {
   getProviderProfiles,
-  upsertPriceBenchmarks,
   findStaleProviders,
-  getExistingBenchmarks,
   updateProviderVerifiedDate,
 } from "@/lib/cron/marketwatch-publish";
 import { commitFilesToGitHub } from "@/lib/cron/git-commit";
@@ -155,48 +152,20 @@ export async function GET(request: Request) {
     }
   }
 
-  // ── Step 3: Generate updated benchmark estimates ─────────────
-  console.log("[Marketwatch] Generating benchmark estimates...");
-  let existingBenchmarks: Awaited<ReturnType<typeof getExistingBenchmarks>> =
-    [];
-  try {
-    existingBenchmarks = await getExistingBenchmarks();
-  } catch (err) {
-    console.warn("Could not fetch existing benchmarks:", err);
-  }
-
-  let newBenchmarks: Awaited<ReturnType<typeof generateBenchmarkEstimates>> =
-    [];
-  try {
-    newBenchmarks = await generateBenchmarkEstimates(
-      providerUpdates,
-      existingBenchmarks
-    );
+  // ── Price benchmarks are NOT auto-generated ──────────────────
+  // The Lead Price Index is a quarterly *human-verified* study, not an
+  // LLM-estimated feed. This cron only monitors provider sites for pricing
+  // changes and surfaces them (below + in the email) for a human to verify and
+  // publish. We deliberately no longer synthesize/publish benchmark estimates
+  // here — single-provider LLM guesses polluted the public index. The change
+  // signals collected above tell the team what to re-verify next cycle.
+  const providersWithPricingSignals = providerUpdates.filter(
+    (u) => u.pricingChanges.length > 0 || u.rawPricingData.length > 0
+  ).length;
+  if (providersWithPricingSignals > 0) {
     console.log(
-      `[Marketwatch] Generated ${newBenchmarks.length} benchmark estimates`
+      `[Marketwatch] ${providersWithPricingSignals} provider(s) show pricing signals to verify`
     );
-  } catch (err) {
-    const msg = `Benchmark generation failed: ${err instanceof Error ? err.message : err}`;
-    console.error(msg);
-    errors.push(msg);
-  }
-
-  // ── Step 4: Publish benchmarks to Sanity ─────────────────────
-  let benchmarksPublished = 0;
-  if (newBenchmarks.length > 0) {
-    try {
-      benchmarksPublished = await upsertPriceBenchmarks(
-        newBenchmarks,
-        month
-      );
-      console.log(
-        `[Publish] Published ${benchmarksPublished} benchmarks to Sanity`
-      );
-    } catch (err) {
-      const msg = `Failed to publish benchmarks: ${err instanceof Error ? err.message : err}`;
-      console.error(msg);
-      errors.push(msg);
-    }
   }
 
   // ── Step 5: Flag stale providers ─────────────────────────────
@@ -213,9 +182,12 @@ export async function GET(request: Request) {
   }
 
   // ── Step 6: Build the report ─────────────────────────────────
+  // No benchmarks are generated here — pass an empty set. The report's
+  // newBenchmarksGenerated count stays 0 by design; price benchmarks are
+  // verified and published by a human each quarter.
   const report = buildMarketwatchReport(
     providerUpdates,
-    newBenchmarks,
+    [],
     staleProviders,
     errors
   );
@@ -230,7 +202,7 @@ export async function GET(request: Request) {
           content: JSON.stringify(report, null, 2),
         },
       ],
-      `chore(marketwatch): monthly research — ${month}\n\nScanned ${report.providersScanned} providers, ${report.providersWithChanges} with changes.\nGenerated ${report.newBenchmarksGenerated} benchmark estimates.`
+      `chore(marketwatch): provider monitoring — ${month}\n\nScanned ${report.providersScanned} providers, ${report.providersWithChanges} with changes, ${providersWithPricingSignals} with pricing signals to verify.`
     );
     console.log("[Git] Committed marketwatch report");
   } catch (err) {
@@ -251,7 +223,7 @@ export async function GET(request: Request) {
 
   const duration = Date.now() - startTime;
   console.log(
-    `[Marketwatch] Completed in ${(duration / 1000).toFixed(1)}s — ${report.providersScanned} scanned, ${benchmarksPublished} benchmarks published, ${errors.length} errors`
+    `[Marketwatch] Completed in ${(duration / 1000).toFixed(1)}s — ${report.providersScanned} scanned, ${providersWithPricingSignals} with pricing signals, ${errors.length} errors`
   );
 
   await recordCronRun({
@@ -260,7 +232,7 @@ export async function GET(request: Request) {
     detail:
       errors.length > 0
         ? errors.join("; ")
-        : `scanned=${report.providersScanned} changed=${report.providersWithChanges} benchmarks=${benchmarksPublished}`,
+        : `scanned=${report.providersScanned} changed=${report.providersWithChanges} pricingSignals=${providersWithPricingSignals}`,
     durationMs: duration,
   });
 
@@ -270,7 +242,7 @@ export async function GET(request: Request) {
     month,
     providersScanned: report.providersScanned,
     providersWithChanges: report.providersWithChanges,
-    benchmarksPublished,
+    providersWithPricingSignals,
     staleProviders: staleProviders.length,
     errors,
   });
@@ -331,8 +303,8 @@ async function sendMarketwatchEmail(
 <head><meta charset="utf-8"></head>
 <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #1f2937; max-width: 800px; margin: 0 auto; padding: 20px;">
   <div style="background: linear-gradient(135deg, #1e40af, #3b82f6); color: white; padding: 24px 32px; border-radius: 12px; margin-bottom: 24px;">
-    <h1 style="margin: 0 0 4px 0; font-size: 24px;">Lead Marketwatch Report</h1>
-    <p style="margin: 0; opacity: 0.9;">${report.month} Monthly Research</p>
+    <h1 style="margin: 0 0 4px 0; font-size: 24px;">Lead Marketwatch — Provider Monitoring</h1>
+    <p style="margin: 0; opacity: 0.9;">${report.month} provider scan</p>
     <p style="margin: 8px 0 0 0; opacity: 0.7; font-size: 14px;">Run: ${report.runDate}</p>
   </div>
 
@@ -346,8 +318,8 @@ async function sendMarketwatchEmail(
       <div style="font-size: 12px; color: #6b7280;">With Changes</div>
     </div>
     <div style="background: #fefce8; border-radius: 8px; padding: 16px; text-align: center;">
-      <div style="font-size: 28px; font-weight: bold; color: #92400e;">${report.newBenchmarksGenerated}</div>
-      <div style="font-size: 12px; color: #6b7280;">Benchmarks Updated</div>
+      <div style="font-size: 28px; font-weight: bold; color: #92400e;">${report.providerUpdates.filter((u) => u.pricingChanges.length > 0 || u.rawPricingData.length > 0).length}</div>
+      <div style="font-size: 12px; color: #6b7280;">Pricing Signals to Verify</div>
     </div>
     <div style="background: ${report.staleProviders.length > 0 ? "#fef2f2" : "#f0fdf4"}; border-radius: 8px; padding: 16px; text-align: center;">
       <div style="font-size: 28px; font-weight: bold; color: ${report.staleProviders.length > 0 ? "#dc2626" : "#166534"};">${report.staleProviders.length}</div>

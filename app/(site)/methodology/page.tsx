@@ -157,8 +157,9 @@ export default function MethodologyPage() {
             </p>
             <ol>
               <li>
-                <strong>Published pricing audit:</strong> We review provider
-                websites monthly to capture any publicly listed per-lead pricing.
+                <strong>Published pricing audit:</strong> Each quarter we review
+                provider websites to capture any publicly listed per-lead
+                pricing.
               </li>
               <li>
                 <strong>Quote requests:</strong> For providers that don&apos;t
@@ -170,9 +171,10 @@ export default function MethodologyPage() {
                 direct data is limited.
               </li>
               <li>
-                <strong>AI-assisted monitoring:</strong> We use automated tools
-                to track pricing changes on provider websites between monthly
-                reviews.
+                <strong>AI-assisted monitoring:</strong> Between quarterly
+                reviews we use automated tools to watch provider websites for
+                pricing changes and flag them for human verification — every
+                published benchmark is reviewed by our team, never auto-generated.
               </li>
             </ol>
 
@@ -231,11 +233,12 @@ export default function MethodologyPage() {
 
             <h2>Update Frequency</h2>
             <p>
-              We review and update provider profiles and pricing benchmarks on a
-              monthly cycle. Every provider profile shows a &quot;Last
-              Verified&quot; date so you can see exactly how fresh the data is.
-              Profiles not verified within 60 days are flagged as potentially
-              outdated.
+              We re-verify pricing benchmarks on a quarterly cycle, and every
+              benchmark carries a &quot;Last Verified&quot; quarter so you can
+              see exactly how fresh the data is. Provider profiles are monitored
+              continuously between cycles — each shows its own &quot;Last
+              Verified&quot; date, and profiles not verified within 60 days are
+              flagged as potentially outdated.
             </p>
 
             <h2>Editorial Independence</h2>
