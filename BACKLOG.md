@@ -133,6 +133,20 @@ Only 1 active lead magnet (prospecting checklist). Playbook says 1-2 per site mi
 - [x] `/price-index` "Our team researches **50+** lead providers monthly" → reframed to "researches the aged-lead provider market monthly" (removed the unverified count rather than swapping a new number, to avoid any overclaim).
 - **Impact:** Credibility / no-overclaim.
 
+### Price-index data integrity — single-provider cron junk — DONE 2026-06-09
+The marketwatch cron (`app/api/cron/marketwatch` → `lib/cron/marketwatch-ai.ts`) **LLM-synthesizes** monthly benchmarks from scraped provider sites and was publishing single-provider, low-confidence estimates that collapsed to meaningless flat ranges (auto-insurance aged rendered a literal **"$1 – $1"**; mca real-time produced a $150–$2,500 / median $1,325 one-provider guess). Because the index read only the latest month with no quality bar, that junk overwrote the real multi-provider March/April data in the public cards and produced fake "trends" driven by sampling noise.
+- [x] `isTrustworthyBenchmark` (≥2 providers sampled) in `data/price-benchmarks.ts`. Single-provider rows stay in Sanity but never surface as headline pricing or trend points.
+- [x] `/price-index` now pulls every tracked month (`recentStaticShapedBenchmarksQuery`) and shows each vertical's latest *reliable* benchmark (auto aged now reads the real **$0.25 – $0.50**); freshness date = latest reliable month.
+- [x] `/price-index/[vertical]` filters to reliable benchmarks before the gap-fill model, tables, "last updated", and trend chart consume them. Trend chart now renders only where 3+ multi-provider months exist (**mca only** — flat $0.03 data-list, legit); auto/life noise lines correctly suppressed.
+- [x] Publish-side guard in `lib/cron/marketwatch-publish.ts` drops sub-2-provider estimates at the source so the junk never gets written again.
+- **NOTE / open:** existing single-provider rows (2026-05/06) remain in Sanity, filtered from display. The deeper question — whether an LLM-estimated "monthly index" is the right product vs. a periodic human-verified benchmark study — is a positioning call for Bill. **Impact:** Credibility, no-fabrication, honest trends (#1 traffic/CTR asset).
+
+### Empty pricing comparison table on statistics page — DONE 2026-06-09
+- [x] `getPricingDistributionStats` (`lib/statistics.ts`) filtered aged benchmarks on `"31-85 days"` (space) vs the data's `"31-85-days"` (hyphens) → aged column always empty → the flagship **"Real-Time vs. Aged Leads by Vertical"** table on `/blog/aged-lead-industry-statistics` rendered **zero rows**. Fixed; table now populates all 10 verticals (real-time, aged, savings %). **Impact:** flagship statistics page (key linkable/SEO asset) was silently broken.
+
+### Stat-card value overflow — DONE 2026-06-09
+- [x] `CopyableStatCard` long values ("$225-$5,000") overflowed the card at the `lg` 4-column layout (`text-3xl`). Held at `text-2xl` + `tabular-nums` + `break-words` so the value stays on one clean line. **Impact:** visible UI breakage on the statistics page.
+
 ### Featured images on 2 recent posts — DONE 2026-06-09
 Two posts lacked `mainImage` (`life-insurance-aged-lead-roi`, `smart-agents-buy-aged-leads-instead-facebook-ads`) — now 71/71 posts have one. Generated via the existing `scripts/generate-featured-images.mjs` (Unsplash photo, scored for real people in a professional setting, + brand-blue gradient/title overlay → uploaded to Sanity → patched `mainImage`), keeping them visually consistent with the other 69. Sanity-only change; blog renders on-demand so it went live with no redeploy. Verified: hero `<img>` + og:image + twitter:image on both.
 
