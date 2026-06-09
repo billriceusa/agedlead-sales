@@ -176,9 +176,9 @@ Survey-style funnel: lead type, volume, experience, budget, email. Outputs perso
 
 ### Original Data Visualizations
 - [x] **Price trend charts on price-index pages — DONE 2026-06-09.** Zero-dependency, server-rendered SVG (`components/price-trend-chart.tsx`, crawlable, no client JS). Plots the median aged-lead price + low/high range band across tracked months, picking the best-covered single aged series per vertical (no mixed denominators), 0-baseline, observed data only (no interpolation/model-fills), and only renders with 3+ real months. Live on auto-insurance, life-insurance, mca-business-loans now; more appear as the marketwatch cron accumulates months. Makes the price-index a more linkable data-study asset.
-- [ ] Vertical comparison visualizations
-- [ ] Provider rating radar charts
-- (Charts are SSR SVG by design — no Recharts/client dep needed.)
+- [x] **Vertical comparison visualization — DONE 2026-06-09.** `components/vertical-savings-chart.tsx` on `/price-index`: horizontal bars ranking verticals by how much cheaper aged is vs real-time (savings %), each bar labeled with the underlying real-time → aged medians so the % is auditable. Rows computed from the same reliable benchmarks the cards show (chart and cards never disagree). Live: Auto 99% → Legal 82%.
+- [x] **Provider rating radar charts — DONE 2026-06-09.** `components/provider-rating-radar.tsx` on `/providers/[slug]`: 6-axis radar (transparency, value, compliance, flexibility, platform, reputation) on a fixed 0-10 scale, shown beside the existing rating bars.
+- (Charts are SSR SVG by design — no Recharts/client dep needed; honest by construction with full-range axes + role=img aria-labels.)
 
 ### Video Content (YouTube)
 60-90 second summary videos for key articles, published to YouTube with `VideoObject` schema on the blog post. Google Discover prioritizes video.
