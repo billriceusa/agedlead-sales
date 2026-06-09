@@ -50,12 +50,11 @@
 
 ## P1 — High Value Engagement & Traffic
 
-### Homepage Social Proof & Trust Indicators
-Homepage has stat cards but is missing:
-- [ ] Subscriber count near newsletter CTA: "Join X sales professionals"
-- [ ] Trust badges or credential indicators
-- [ ] Clear positioning statement per the playbook formula
-- [ ] Testimonial cards (when available)
+### Homepage Social Proof & Trust Indicators — DONE 2026-06-09 (verified)
+- [x] **Trust indicators** — `TrustStrip` in the hero shows real E-E-A-T signals (30+ yrs expertise, independent reviews, human-reviewed, transparent disclosure), each linking to the page that backs it.
+- [x] **Positioning statement** — present in the hero.
+- [n/a] **Subscriber count** — deliberately omitted. Real Resend audience is only **39** contacts (verified live); "Join 39" undercuts trust and we won't fabricate a bigger number. Revisit once the list is materially larger.
+- [n/a] **Testimonial cards** — no real testimonials exist; won't fabricate. Add when genuine ones are collected.
 - **Impact:** Conversion rate, trust, first-impression authority
 
 ---
@@ -64,9 +63,7 @@ Homepage has stat cards but is missing:
 
 <!-- added 2026-06-08 /brsg-session — cold-start diagnosis: Ahrefs DR 2.5, ~0 backlinks, 1 organic keyword, ~2 organic visits/mo. Site is fully indexed (30+ pages) but does not rank. Ceiling is authority + content depth, not technical SEO. SEO audit score 78/100 (2026-06-03). -->
 
-### Authority / backlink campaign (the real ranking ceiling)
-DR is **2.5** with near-zero referring domains — this caps every page regardless of on-page quality. Needs an off-site campaign: digital PR, guest posts, data-study link bait (the price-index is a natural asset), HARO/Source-of-Sources, partnerships. Off-site, multi-week — not a single session.
-- **Impact:** Unlocks ranking ability sitewide. Highest ceiling, slowest payoff.
+<!-- Authority / backlink campaign removed 2026-06-09 — tracked as offline work (digital PR, HARO, partnerships), not a repo task. -->
 
 ### Content depth for Helpful Content / Dec-2024 Core Update
 Audit's #1 high finding: thin affiliate content is demoted post-update.
@@ -75,16 +72,16 @@ Audit's #1 high finding: thin affiliate content is demoted post-update.
 - [ ] **Stretch:** push the highest-impression lead-type pages from ~2,600 to 3,000+ words with original data/visuals once GSC shows which earn impressions.
 - **Impact:** Ranking eligibility + YMYL trust.
 
-### YMYL author-expertise demonstration
-Strengthen Bill Rice author profile (verifiable industry experience, credentials) on author + about pages; financial-lead content is YMYL and needs stronger E-E-A-T signals.
+### YMYL author-expertise demonstration — DONE 2026-06-09 (verified)
+`/about/bill-rice` is already a strong E-E-A-T page: 30+ years, detailed verifiable career (AFOSI special agent → DeepGreen Bank employee #7 → Quicken Loans COO/VP → founder of Kaleidico/BRSG/Verified Vector), `personPageJsonLd` Person schema, and it's linked from the homepage TrustStrip. Articles carry a "Human-reviewed / Reviewed by Bill Rice" credibility line. Considered sufficient for YMYL; optional micro-win later = make the article byline link to the author page.
 - **Impact:** YMYL ranking trust.
 
-### FTC affiliate-disclosure prominence
-Audit flags the site-wide disclosure may not meet "clear and conspicuous" 2024 FTC standards. Make per-page disclosure more prominent near affiliate CTAs.
+### FTC affiliate-disclosure prominence — DONE 2026-06-09
+Sitewide disclosure already renders above the footer on every page, but it wasn't adjacent to the affiliate CTAs. Added an inline FTC micro-disclosure inside `CtaBanner` (both default + compact variants, affiliate mode only) — "Affiliate link — we may earn a commission at no cost to you, and it never affects our ratings," linking to `/affiliate-disclosure`. `CtaBanner` is the primary affiliate CTA across blog/playbook/lead-type pages, so the disclosure is now clear-and-conspicuous right at the action on every content page.
 - **Impact:** Compliance + trust signal.
 
-### Entity SEO — Wikidata Entry
-Create/claim a Wikidata entry for "Aged Lead Sales" with proper classification. Entity-recognized brands see 3.4x more AI-sourced traffic.
+### Entity SEO — Wikidata Entry (OFFLINE / manual)
+Create/claim a Wikidata entry for "Aged Lead Sales" with proper classification. Entity-recognized brands see more AI-sourced traffic. **Note:** like the backlink campaign, this is a manual off-site task, not a repo change — tracked here but executed externally.
 - **Impact:** Knowledge graph, AI citation
 
 ---

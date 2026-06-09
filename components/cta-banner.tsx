@@ -84,6 +84,18 @@ export function CtaBanner({
             </Link>
           )}
         </div>
+        {useAffiliate && (
+          <p className="mt-3 text-xs text-zinc-500">
+            Affiliate link — we may earn a commission at no cost to you, and it
+            never affects our ratings.{" "}
+            <Link
+              href="/affiliate-disclosure"
+              className="underline hover:text-zinc-700 dark:hover:text-zinc-300"
+            >
+              Disclosure
+            </Link>
+          </p>
+        )}
       </div>
     );
   }
@@ -122,6 +134,15 @@ export function CtaBanner({
             {finalSecondaryText}
           </Link>
         </div>
+        {useAffiliate && (
+          <p className="mx-auto mt-6 max-w-2xl text-xs text-blue-100/80">
+            Affiliate link — we may earn a commission at no cost to you, and it
+            never affects our ratings or recommendations.{" "}
+            <Link href="/affiliate-disclosure" className="underline hover:text-white">
+              Disclosure
+            </Link>
+          </p>
+        )}
       </div>
     </section>
   );
