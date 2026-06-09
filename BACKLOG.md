@@ -9,7 +9,8 @@
 ## Done
 
 <!-- added 2026-06-08 /brsg-session -->
-- [x] **Insurance-leads content-depth pass** (2026-06-08) — `/lead-types/insurance-leads` expanded to match mortgage depth: 6 deep-dive H2 sections (per-line aging auto/home/life/health, cost-per-bound-policy math, the cross-sell multiplier, multi-touch cadence, 5 ROI mistakes, 2026 compliance), FAQs 5→11, 2 new best practices. Generic `[slug]/page.tsx` renders deepDive + glossary linking automatically. No fabricated stats (reused existing $0.25–$2 / $15–$50 ranges, illustrative math labeled).
+- [x] **ALL 9 lead-type pages now have full content-depth passes** (2026-06-09) — every `/lead-types/*` page expanded from ~700 to ~2,600 words to match mortgage: each got 6 deep-dive H2 sections + 2 added best practices + 5-6 long-tail FAQs (site-wide FAQ count ~40→72). Verticals: mortgage (2026-06-08), insurance, home-services, final-expense, medicare, IUL, SSDI, MVA, solar. Each deep-dive is vertical-specific — e.g. home-services "neighborhood play" + cost-per-booked-estimate; final-expense persistency + door-knock economics; **medicare conservative CMS section** (permission-to-contact, Scope of Appointment, call recording, TPMO disclaimer); **SSDI + MVA legal-advertising/anti-solicitation** sections (no outcome guarantees, bar rules, contingency math); IUL suitability/illustration honesty; solar FTC savings-claim + Reg Z. Renders via generic `[slug]/page.tsx` (deepDive + static glossary linker). No fabricated stats (reused existing cost/conversion ranges; illustrative math labeled). Goal: Helpful Content / YMYL depth + long-tail FAQ-schema capture (traffic + CTR).
+- [x] **Insurance-leads content-depth pass** (2026-06-08) — first vertical after mortgage; cross-sell multiplier + cost-per-bound-policy math. (Now part of the full 9-vertical pass above.)
 - [x] **Removed dead OPENAI_API_KEY from .env.example** (2026-06-08) — zero code references; site uses ANTHROPIC_API_KEY. Confirmed not used.
 - [x] **Glossary internal-linking — static path + crawlable** (2026-06-08) — (1) lead-type CMS body passes `glossary` to `PortableText` (wired but dormant; no lead-type has a CMS body yet); (2) new static-path linker (`components/glossary-static.tsx`) auto-links the 77-term glossary in lead-type static content (`data/lead-types.ts`) including the deep-dive sections; (3) **fixed a site-wide SEO gap** — `GlossaryTooltip` only rendered its `/glossary/` link inside the hover popup (not in SSR HTML, so uncrawlable); the inline term is now an always-rendered `<a href="/glossary/…">`, making every glossary mention a real internal link across blog, playbook, and lead-type pages.
 - [x] **Mortgage-leads content-depth pass** (2026-06-08) — `/lead-types/mortgage-leads` expanded ~700 → ~2,600 words: 6 deep-dive H2 sections, 5 new long-tail FAQs (FAQ schema auto-extends), 2 best practices. Addresses Helpful Content / YMYL thin-content risk.
@@ -68,8 +69,11 @@ DR is **2.5** with near-zero referring domains — this caps every page regardle
 - **Impact:** Unlocks ranking ability sitewide. Highest ceiling, slowest payoff.
 
 ### Content depth for Helpful Content / Dec-2024 Core Update
-Audit's #1 high finding: thin affiliate content is demoted post-update. Expand top playbook + lead-type pages to 3000+ words with original data, implementation detail, and Bill Rice's first-hand expertise (value that stands even without affiliate links).
-- **Impact:** Ranking eligibility + YMYL trust. Start with the 1-2 pages already earning impressions.
+Audit's #1 high finding: thin affiliate content is demoted post-update.
+- [x] **Lead-type pages — DONE 2026-06-09.** All 9 `/lead-types/*` pages expanded to ~2,600 words with deep-dive sections, vertical-specific compliance, and long-tail FAQs.
+- [ ] **Playbook pages still thin.** Apply the same depth treatment to the top playbook pages. Add original data and Bill Rice's first-hand expertise (value that stands even without affiliate links).
+- [ ] **Stretch:** push the highest-impression lead-type pages from ~2,600 to 3,000+ words with original data/visuals once GSC shows which earn impressions.
+- **Impact:** Ranking eligibility + YMYL trust.
 
 ### YMYL author-expertise demonstration
 Strengthen Bill Rice author profile (verifiable industry experience, credentials) on author + about pages; financial-lead content is YMYL and needs stronger E-E-A-T signals.

@@ -535,8 +535,36 @@ export const LEAD_TYPES: Record<string, LeadTypeData> = {
         "Use email to share educational content between conversations",
         "Expect a 2-4 conversation sales cycle — IUL is a considered purchase",
         "Focus on high-income zip codes for better conversion rates",
+        "Pull a fresh phone and DNC scrub before every campaign — aged data degrades between capture and dial",
+        "Track cost per placed policy and target premium, not cost per lead — one IUL case can outweigh hundreds of leads",
       ],
     },
+    deepDive: [
+      {
+        heading: "Why IUL Is a 2-to-4-Conversation Sale — and Why Aged Leads Suit It",
+        body: "Indexed Universal Life is among the most complex products an agent sells, and that complexity changes everything about how you work the lead. An IUL combines permanent life insurance with a cash-value account whose growth is linked to a market index, subject to caps, floors, and participation rates. No financially literate buyer commits to that on a first call — they want to understand the mechanics, see real illustrations, and weigh it against their other options. The sale typically takes two to four conversations.\n\nThat extended cycle is exactly why aged IUL leads are valuable rather than stale. A consumer who researched IUL 60 to 180 days ago has had time to read, compare, and think — they're often further along than a fresh lead who just clicked an ad. Many are still deciding, and many were never properly educated by whoever first received their inquiry. When you re-engage as a patient educator rather than a closer, you meet them where the considered purchase actually happens.\n\nBecause IUL leads cost more than most aged inventory ($1 to $5 versus pennies for some verticals), the discipline is to treat each one as the start of a relationship worth real effort. The product's high premium and commission justify the longer cycle — but only if you show up to teach, not to pitch.",
+      },
+      {
+        heading: "The Real Math: Cost Per Placed Policy When Commissions Are Large",
+        body: "IUL inverts the usual aged-lead math. In most verticals the case for cheap leads is sheer volume; in IUL it's that a single placed policy can dwarf your entire lead spend. The number that matters is cost per placed policy measured against the target premium and commission, not cost per lead. Here is the math, framed as an illustration you should re-run with your own numbers.\n\nSay you buy 500 aged IUL leads at $3 each — a $1,500 spend. At a 10% contact rate you reach 50 financially-aware prospects. At a 2% overall conversion you place roughly 10 policies, putting your lead cost per placed policy around $150. Against IUL's premium and first-year commission, $150 of acquisition cost is trivial — a single well-funded case can return many multiples of your total spend on the batch. Compare that to real-time IUL leads at $50 or more each, where reaching the same 500 prospects would cost $25,000.\n\nThe lever isn't price, it's conversation quality and follow-through across the 2-to-4-touch cycle. Prospects who drop out of an IUL pipeline almost always do so because the education stalled, not because the lead was bad. Model the funnel — leads → contacts → engaged prospects → placed policies → target premium — and you'll see that patience and preparation, not lead price, decide the return in this vertical.",
+      },
+      {
+        heading: "The Education-First Consultative Process",
+        body: "The fastest way to lose an IUL prospect is to pitch the policy before you've understood their goals. These are financially aware consumers comparing IUL against 401(k)s, Roth IRAs, and other vehicles — they can smell a product push, and it ends the conversation. Your job is to be the clearest explainer they talk to.\n\nThe process has an order. Start with their financial picture: retirement timeline, income, existing coverage, tax situation, and what drew them to research IUL in the first place. Then teach the mechanics honestly — how index crediting works, what the caps and floors mean, the cost of insurance, and how cash value can be accessed. Use real illustrations with conservative assumptions, not best-case projections. Frame IUL where it genuinely fits: tax-advantaged accumulation, downside protection, and a death benefit, positioned alongside — not against — their other retirement tools. Share educational content between conversations so the prospect can absorb at their own pace.\n\nDone this way, the close becomes a natural conclusion rather than a pressure point. The prospect trusts the recommendation because it's built on their goals and on honest numbers, and an honestly-sold IUL persists — which protects both your reputation and your renewals.",
+      },
+      {
+        heading: "Building a Multi-Conversation Nurture for a Considered Purchase",
+        body: "IUL's 2-to-4-conversation cycle requires a nurture built for patience, not pace. The goal of each touch is to advance understanding, not to force a decision.\n\nA workable rhythm: an initial call that re-engages on their prior interest and positions you as an educator, ending with a scheduled next conversation rather than a pitch. Between touches, email a piece of genuinely useful education — a plain-language explainer, a comparison of IUL to other retirement vehicles, a conservative sample illustration. The second conversation digs into their specific goals and walks through real numbers built for their situation. A third addresses objections — roof-of-the-house questions about caps, fees, and access to cash value — and a fourth, if needed, finalizes. Throughout, you're demonstrating expertise and patience, which is the entire reason a higher-income buyer chooses one agent over another.\n\nTwo disciplines decide your return. First, always leave each conversation with a concrete next step on the calendar — IUL pipelines die from drift, not rejection. Second, log the prospect's goals, objections, and where they are in the cycle in your CRM, so every touch builds on the last. Profitability in IUL is a preparation-and-follow-through problem; the cheap aged lead just gives you enough at-bats to make the long cycle pay.",
+      },
+      {
+        heading: "Five Mistakes That Destroy Aged IUL Lead ROI",
+        body: "First, pitching the product before understanding the person. Financially literate buyers reject a generic IUL push instantly; lead with their goals or lose them.\n\nSecond, overselling the illustration. Projecting best-case index returns sets up disappointment, lapses, and — increasingly — regulatory and reputational risk. Use conservative, honest assumptions and explain caps and floors plainly.\n\nThird, treating IUL like a one-call close. The sale takes two to four conversations; agents who push for an immediate decision collapse the pipeline that patience would have converted.\n\nFourth, ignoring suitability. IUL isn't right for everyone — a prospect who can't fund the policy adequately, or who'd be better served by maxing a 401(k) match first, is a lapse waiting to happen. Recommending a policy that doesn't fit costs you the persistency that makes the case worthwhile.\n\nFifth, letting the pipeline drift. Without a scheduled next step and CRM notes on each prospect's goals and objections, multi-conversation cases quietly evaporate. In IUL the follow-through is the sale.",
+      },
+      {
+        heading: "Working Aged IUL Leads Compliantly in 2026",
+        body: "Aged IUL leads are consumer data records, not pre-consented contacts, so treat outreach as cold contact and build compliance into your process. The federal baseline matches every vertical: scrub each campaign against the National Do Not Call Registry and a TCPA litigator list before you dial, honor opt-outs immediately, respect calling windows, and rely on manual dialing rather than prohibited automated dialing technology. The FCC's one-to-one consent rule was vacated in early 2025 before it took effect, and several states run active mini-TCPA statutes, so a campaign that's fine federally can still create state-level exposure.\n\nIUL carries a second layer because it's a regulated life-insurance and accumulation product. Illustrations and sales materials are governed by state insurance regulation and carrier rules, and overstating projected returns or misrepresenting how index crediting works can trigger real consequences. Sell to suitability, use compliant illustration software with honest assumptions, disclose caps, floors, fees, and the cost of insurance clearly, and never position an IUL as a guaranteed investment or imply returns the contract doesn't promise. If you also hold securities licenses, keep insurance and investment-advisory conversations properly separated.\n\nThe honest takeaway: IUL rewards expertise and integrity. Build TCPA compliance, suitability documentation, and honest illustrations into your workflow, confirm current state and carrier rules, and run your specific program past qualified compliance counsel before launch. For the broader cross-vertical framework — the operating modes and consent ladder — see the free playbook.",
+      },
+    ],
     faqs: [
       {
         question: "What is an aged IUL lead?",
@@ -557,6 +585,21 @@ export const LEAD_TYPES: Record<string, LeadTypeData> = {
         question: "How do I approach aged IUL leads differently than other insurance leads?",
         answer:
           "IUL requires education-first selling. These consumers are financially aware and want to understand the product before committing. Use illustrations, comparisons to other retirement vehicles, and focus on their financial goals rather than the insurance product itself.",
+      },
+      {
+        question: "How many conversations does it take to close an aged IUL lead?",
+        answer:
+          "Plan for two to four conversations. IUL is a considered purchase — buyers want to understand index crediting, caps and floors, fees, and how the policy compares to a 401(k) or Roth IRA before committing. The discipline is to end every conversation with a concrete scheduled next step, because IUL pipelines die from drift far more often than from rejection.",
+      },
+      {
+        question: "Should I use best-case illustrations to sell IUL?",
+        answer:
+          "No. Overstating projected index returns sets up disappointment, policy lapses, and growing regulatory and reputational risk. Use compliant illustration software with conservative assumptions, disclose caps, floors, fees, and the cost of insurance plainly, and never position an IUL as a guaranteed investment. An honestly-sold policy persists — which protects both your renewals and your reputation.",
+      },
+      {
+        question: "Where can I buy aged IUL leads?",
+        answer:
+          "Several established providers sell aged IUL and cash-value life insurance leads, often filtered by income range and geography. Because IUL prospects are higher-value, prioritize data quality and consent documentation over headline price, and weigh lead age and refund policies. Our independent provider directory rates lead sellers across these dimensions so you can match a provider to your market.",
       },
     ],
     getCompareUrl: () =>
@@ -625,8 +668,36 @@ export const LEAD_TYPES: Record<string, LeadTypeData> = {
         "Follow up persistently but gently — the SSDI process is overwhelming",
         "Provide educational materials about the appeal process",
         "Track the timeline of their claim — urgency increases as deadlines approach",
+        "Pull a fresh phone and DNC scrub before every campaign — aged data degrades between capture and dial",
+        "Track cost per signed case and case quality, not cost per lead — contingency revenue lives in won cases, not intakes",
       ],
     },
+    deepDive: [
+      {
+        heading: "The SSDI Timeline: Why Denials Make Aged Leads Convert",
+        body: "Social Security Disability is one of the slowest processes in American benefits administration, and that slowness is precisely what makes aged SSDI leads valuable. An initial application commonly takes three to six months to decide, and the majority of initial claims are denied. From there, reconsideration and an appeal before an administrative law judge can stretch the timeline to one or two years or more. A claimant who inquired 60 to 180 days ago is very likely still in the system — and may have just received a denial.\n\nThat denial is the conversion moment. Many people file their initial application themselves, confident they'll be approved because their condition is real and serious. When the denial letter arrives, they're shocked, frustrated, and suddenly aware they need professional help — and they're up against strict appeal deadlines. An aged lead list is, in effect, a population of people moving through that exact arc, and re-contacting them at the right point in the cycle catches them precisely when representation becomes urgent.\n\nThe practical implication: the age of an SSDI lead is a feature, not a defect. Where a fresh lead may still be optimistic and unrepresented-by-choice, an aged lead is often a denied claimant who now knows they need an advocate. Working the timeline — not just the contact list — is the whole strategy.",
+      },
+      {
+        heading: "The Real Math: Cost Per Signed Case on Contingency",
+        body: "SSDI representation is contingency-based and the fee is federally capped and paid out of back benefits, so the economics revolve around signed, winnable cases rather than raw intake volume. The number that matters is cost per signed case measured against expected fee revenue, not cost per lead. Here is the math, framed as an illustration you should re-run with your own numbers.\n\nSay a firm buys 1,000 aged SSDI leads at $1.50 each — a $1,500 spend. At a 10% contact rate you reach 100 claimants. Because SSDI screening matters — you want claimants with qualifying conditions, work history, and viable appeal posture — suppose you sign 2% of the list, or roughly 20 cases, at about $75 in lead cost per signed case. Against a federally-capped contingency fee paid on a successful claim, that acquisition cost is small relative to the revenue from cases that ultimately win. Compare that to real-time SSDI leads at $20 to $50 each, where reaching the same 1,000 claimants would cost far more.\n\nThe levers are contact rate and case selection. A patient, empathetic, deadline-aware cadence lifts how many claimants you reach; disciplined intake screening ensures the cases you sign are ones you can actually win. Because contingency revenue only materializes on won cases, a cheap lead that becomes a strong, well-screened case is worth far more than a pile of intakes you can't move forward.",
+      },
+      {
+        heading: "Empathy-First Intake for a Vulnerable Claimant",
+        body: "SSDI prospects are, by definition, people dealing with a disabling condition and the stress of a confusing government process. Many are in financial distress, in pain, and demoralized by a denial. The intake that converts them isn't a sales call — it's a supportive, human conversation.\n\nStart by listening. Ask about their condition, where they are in the process, and what happened with their claim, and let them tell their story before you talk about representation. Explain the process clearly and calmly — what a denial means, that most initial claims are denied, and that an appeal is a normal next step, not a dead end. Reassure them on cost: SSDI representation is contingency-based, so there's typically no upfront fee, and the fee comes out of back benefits only if the claim succeeds. That single fact removes the biggest barrier in most claimants' minds.\n\nThroughout, lead with compassion and avoid any promise about the outcome — you can describe the process and your role, but guaranteeing approval is both dishonest and a compliance problem. The firms that win in this vertical are the ones that make a frightened claimant feel heard and supported; the representation follows naturally from trust.",
+      },
+      {
+        heading: "Building a Deadline-Aware Follow-Up Sequence",
+        body: "SSDI runs on hard deadlines — a claimant generally has a limited window to appeal a denial — so the follow-up cadence has to be both gentle and timed to those deadlines. Persistence matters because overwhelmed claimants often don't respond on the first try, but the persistence must be patient, not aggressive.\n\nA workable approach: an initial empathetic call that establishes where they are in the process and whether they've been denied. If you don't connect, a brief, warm voicemail and a follow-up that offers help with the appeal. For claimants who've been denied, escalate gentle urgency as the appeal deadline approaches — the deadline is real and missing it can cost them the claim, so a respectful reminder is genuinely in their interest. Between touches, send plain-language educational material about the appeal process so they understand what's at stake. For claimants earlier in the process, a lighter, stay-in-touch cadence keeps you present for when a denial arrives.\n\nTwo disciplines decide your return. First, track each claimant's status and any known deadlines in your CRM, so outreach is timed to their actual situation rather than a generic drip. Second, keep the tone supportive even as deadlines tighten — pressure reads as exploitation to a vulnerable claimant, while a well-timed, caring reminder reads as advocacy. The cheap aged lead gives you the volume; the timeline-aware process is what converts it.",
+      },
+      {
+        heading: "Five Mistakes That Destroy Aged SSDI Lead ROI",
+        body: "First, treating intake as a sales pitch. These claimants are vulnerable and wary; a pushy approach destroys the trust the whole relationship depends on. Lead with listening and empathy.\n\nSecond, ignoring the appeal deadline. The conversion window for a denied claimant is bounded by their appeal deadline. Outreach that isn't timed to that deadline either misses the moment or arrives too late to help.\n\nThird, signing every intake regardless of merit. Contingency revenue only comes from won cases, so a firm that doesn't screen for qualifying conditions, work history, and a viable appeal posture wastes effort on cases it can't move. Disciplined case selection is part of profitability.\n\nFourth, promising outcomes. Guaranteeing approval is dishonest, sets up disappointment, and violates attorney advertising and ethics rules. Describe the process and your role, never the result.\n\nFifth, neglecting compliance. SSDI outreach sits at the intersection of TCPA and legal-advertising rules, and non-attorney intake operations risk unauthorized-practice issues if they cross from intake into legal advice. Build the rules in from the start.",
+      },
+      {
+        heading: "Working Aged SSDI Leads Compliantly in 2026",
+        body: "Aged SSDI leads are consumer data records, not pre-consented contacts, so treat outreach as cold contact and build compliance into your process. The federal baseline matches every vertical: scrub each campaign against the National Do Not Call Registry and a TCPA litigator list before you dial, honor opt-outs immediately, respect calling windows, and rely on manual dialing rather than prohibited automated dialing technology. The FCC's one-to-one consent rule was vacated in early 2025 before it took effect, and several states run active mini-TCPA statutes, so a campaign that's fine federally can still create state-level exposure.\n\nBecause SSDI representation is legal work, attorney-advertising and ethics rules apply on top of TCPA. State bar rules govern solicitation of prospective clients, required advertising disclosures, and what you may and may not promise — and they vary by jurisdiction. Never guarantee a benefits outcome, be careful that any non-attorney intake staff gather information rather than give legal advice (to avoid unauthorized-practice-of-law problems), and ensure your scripts and materials carry whatever disclosures your state requires. Representation fees before the Social Security Administration are themselves federally regulated and capped, which is part of what makes the no-upfront-cost conversation honest.\n\nThe honest takeaway: this vertical rewards firms that combine empathy with rigor. Build TCPA scrubbing, bar-compliant scripting, and disciplined intake into your workflow, confirm current rules in each state you operate in, and run your specific program past qualified legal-ethics counsel before launch. For the broader cross-vertical framework — the operating modes and consent ladder — see the free playbook.",
+      },
+    ],
     faqs: [
       {
         question: "What is an aged SSDI lead?",
@@ -642,6 +713,21 @@ export const LEAD_TYPES: Record<string, LeadTypeData> = {
         question: "What's the best approach for SSDI leads?",
         answer:
           "Lead with empathy and education. Ask about their claim status, explain the appeal process clearly, and emphasize that legal representation is typically on a contingency basis — no upfront cost. Focus on denied applicants who need help with appeals.",
+      },
+      {
+        question: "Why do denied SSDI applicants make the best aged leads?",
+        answer:
+          "Most initial SSDI claims are denied, and many people only realize they need representation when the denial letter arrives — usually months after their original inquiry. A denied claimant facing a strict appeal deadline has an urgent, concrete need, which is exactly when an aged lead converts. Working the timeline to reach claimants at the denial stage is the core SSDI strategy.",
+      },
+      {
+        question: "Can I guarantee an SSDI claimant they'll get approved?",
+        answer:
+          "No. Guaranteeing a benefits outcome is dishonest, sets up disappointment, and violates attorney-advertising and ethics rules. You can explain the process, the appeal steps, and your role as an advocate, but never promise the result. Non-attorney intake staff should also gather information rather than give legal advice, to avoid unauthorized-practice-of-law issues.",
+      },
+      {
+        question: "Where can I buy aged SSDI leads?",
+        answer:
+          "Several established providers sell aged SSDI and disability leads, often filtered by claim status (initial, denied, appeal) and geography. Because this is legal work, prioritize providers with clean consent documentation and clear sourcing alongside data quality, lead age, and refund policies. Our independent provider directory rates lead sellers across these dimensions so you can match a provider to your firm.",
       },
     ],
     getCompareUrl: () =>
@@ -710,8 +796,36 @@ export const LEAD_TYPES: Record<string, LeadTypeData> = {
         "Follow up within 24 hours of first contact with a case evaluation email",
         "Document everything discussed for case intake purposes",
         "Prioritize leads with recent accident dates (within 6-12 months)",
+        "Pull a fresh phone and DNC scrub before every campaign — aged data degrades between capture and dial",
+        "Track cost per signed case and case value, not cost per lead — one strong injury case can outweigh thousands of leads",
       ],
     },
+    deepDive: [
+      {
+        heading: "Why Accident Victims Hire an Attorney Late",
+        body: "The timing of when accident victims hire counsel is the entire reason aged MVA leads work. In the immediate aftermath of a crash, most people are focused on injuries, vehicle damage, and their own insurance claim — and many assume they can handle the claim themselves. They don't call a lawyer because they don't yet believe they need one.\n\nThe realization comes later, usually one of two ways. Either the insurance company offers a lowball settlement that doesn't come close to covering their medical bills and lost wages, or the claim is delayed or denied while the bills keep arriving. That's when a victim who confidently went it alone suddenly needs representation — often weeks or months after the accident, which is exactly where an aged lead sits in the timeline. The aged MVA list is, in effect, a population of people moving from 'I've got this' to 'I need help,' and re-contacting them catches the ones who've hit that wall.\n\nThe practical implication: an aged MVA lead is frequently a warmer prospect than a fresh one, because the fresh lead may still be in denial about needing counsel while the aged lead has felt the insurance company's first move. Working the timeline — checking in to see whether the claim got resolved or whether they're still fighting the insurer — is what surfaces the cases worth signing.",
+      },
+      {
+        heading: "The Real Math: Cost Per Signed Case in Personal Injury",
+        body: "Personal injury runs on contingency and individual case values can be large, so MVA economics are about signed, viable cases — not raw lead volume. The number that matters is cost per signed case measured against expected case value, not cost per lead. Here is the math, framed as an illustration you should re-run with your own numbers.\n\nSay a firm buys 1,000 aged MVA leads at $3 each — a $3,000 spend. At a 10% contact rate you reach 100 accident victims. After screening for genuine injuries, ongoing treatment, viable liability, and available insurance coverage, suppose you sign 2% of the list, or roughly 20 cases, at about $150 in lead cost per signed case. Against the fee on even a modest injury settlement, that acquisition cost is negligible — a single strong case can return many multiples of the entire batch's lead spend. Compare that to real-time MVA leads at $50 to $200 each, sold to several firms at once, where reaching the same 1,000 victims could cost $50,000 or more.\n\nThe levers are contact rate and case selection. A fast, sensitive, deadline-aware cadence lifts how many victims you reach; rigorous intake screening ensures the cases you sign have real damages and clear liability. Because contingency revenue only materializes on cases that resolve favorably, a cheap lead that becomes a well-screened, well-documented case is worth far more than a stack of marginal intakes.",
+      },
+      {
+        heading: "Fast, Sensitive Intake and the Statute of Limitations",
+        body: "MVA intake balances two forces: urgency and sensitivity. The urgency is real — every state has a statute of limitations on personal injury claims, commonly two to three years, and a victim who waits too long can lose the right to recover entirely. The sensitivity is just as real — these are people in pain, stressed about money, and wary of being 'ambulance-chased.'\n\nThe intake that converts respects both. Open by referencing their accident and asking whether they got their claim resolved or are still dealing with the insurance company — a neutral, helpful question rather than a pitch. Listen to what happened, ask about their injuries and ongoing medical treatment, and find out what the insurer has offered. This does double duty: it builds rapport and it lets you evaluate the case. Explain the contingency structure plainly — no fee unless they recover — which removes the cost barrier. Where the statute of limitations is genuinely approaching, raising it is appropriate and in the client's interest, but it should inform real urgency, not manufacture pressure.\n\nThen move quickly. A same-day or next-day case-evaluation follow-up email after first contact signals competence and keeps the case from drifting to another firm. Document everything discussed for intake, because thorough early documentation is what turns a phone conversation into a signable case.",
+      },
+      {
+        heading: "Qualifying the Case: Injuries, Treatment, Liability, and Coverage",
+        body: "Not every accident victim is a case worth signing, and the discipline of qualifying is what separates a profitable MVA pipeline from a busy but unprofitable one. Four factors decide whether an intake becomes a viable case.\n\nInjuries: are there real, documented injuries? Soft-tissue-only claims with no treatment are far weaker than cases with diagnosed injuries and a medical record. Treatment: is the victim currently under medical care? Active, consistent treatment both strengthens the claim and signals a serious injury — gaps in treatment are a common weakness. Liability: is fault reasonably clear, and does the other party bear responsibility? A case where your prospect was largely at fault is a hard one to win. Coverage: is there insurance to recover against — the at-fault driver's policy, or uninsured/underinsured motorist coverage? A clear-liability case against an uninsured driver with no UM coverage may have nowhere to collect.\n\nScreen for these on intake and prioritize accordingly. Recent accident dates (within the last 6 to 12 months) generally make stronger cases than older ones, both for evidence freshness and statute-of-limitations runway. The goal isn't to sign the most cases — it's to sign the cases you can actually move to a favorable resolution, because that's where contingency revenue lives.",
+      },
+      {
+        heading: "Five Mistakes That Destroy Aged MVA Lead ROI",
+        body: "First, signing every intake. Personal injury revenue comes only from cases that resolve favorably, so a firm that doesn't screen for injuries, treatment, liability, and coverage burns effort on cases it can't win. Disciplined qualification is profitability.\n\nSecond, manufacturing false urgency. The statute of limitations is a legitimate reason for urgency, but high-pressure tactics on injured, wary victims backfire and risk crossing ethical lines. Let real deadlines drive real urgency.\n\nThird, slow follow-up. Aged MVA prospects are often shopping firms; a case-evaluation follow-up that takes days lets the case drift elsewhere. Speed after first contact signals competence.\n\nFourth, ignoring documentation. Thin intake notes turn a promising conversation into an unsignable case. Capture injuries, treatment, the insurer's offer, and the accident details while they're fresh.\n\nFifth, getting solicitation rules wrong. Personal injury advertising and client solicitation are tightly regulated, and some states have strict anti-solicitation statutes. Outreach that's fine in one jurisdiction can be a serious violation in another — build the rules in before you dial.",
+      },
+      {
+        heading: "Working Aged MVA Leads Compliantly in 2026",
+        body: "Aged MVA leads are consumer data records, not pre-consented contacts, so treat outreach as cold contact and build compliance into your process. The federal baseline matches every vertical: scrub each campaign against the National Do Not Call Registry and a TCPA litigator list before you dial, honor opt-outs immediately, respect calling windows, and rely on manual dialing rather than prohibited automated dialing technology. The FCC's one-to-one consent rule was vacated in early 2025 before it took effect, and several states run active mini-TCPA statutes, so a campaign that's fine federally can still create state-level exposure.\n\nPersonal injury carries heavy legal-advertising and anti-solicitation rules on top of TCPA, and this vertical is scrutinized more than most. State bar rules govern how firms may solicit prospective clients, what disclosures advertising must carry, and how soon after an accident contact is permitted — and some states have specific statutes restricting direct solicitation of accident victims, with serious penalties for improper solicitation (historically framed as barratry or 'runner and capper' laws). Never guarantee a settlement amount or outcome, ensure non-attorney intake staff gather facts rather than give legal advice, and confirm that buying and contacting purchased accident leads is permitted and properly disclosed in every state you work.\n\nThe honest takeaway: MVA can be highly profitable, but the compliance surface is among the largest of any vertical. Build TCPA scrubbing, bar-compliant scripting, anti-solicitation review, and rigorous intake into your workflow, confirm current rules in each state, and run your specific program past qualified legal-ethics counsel before launch. For the broader cross-vertical framework — the operating modes and consent ladder — see the free playbook.",
+      },
+    ],
     faqs: [
       {
         question: "What is an aged MVA lead?",
@@ -726,7 +840,22 @@ export const LEAD_TYPES: Record<string, LeadTypeData> = {
       {
         question: "How much do aged MVA leads cost compared to real-time?",
         answer:
-          "Aged MVA leads typically cost $1-$5 per record, compared to $50-$200+ for real-time personal injury leads. This represents a 90-97% cost savings.",
+          "Aged MVA leads typically cost $1-$5 per record, compared to $50-$200+ for real-time personal injury leads. This represents a 90-97% cost savings. Because a single strong injury case can be worth many multiples of an entire lead batch, the right metric is cost per signed, viable case — not cost per lead.",
+      },
+      {
+        question: "How do I qualify an aged MVA lead into a viable case?",
+        answer:
+          "Screen on four factors: documented injuries, active and consistent medical treatment, reasonably clear liability, and available insurance coverage to recover against (the at-fault driver's policy or uninsured/underinsured motorist coverage). Recent accident dates within the last 6-12 months generally make stronger cases. The goal isn't to sign the most intakes — it's to sign the cases you can actually move to a favorable resolution.",
+      },
+      {
+        question: "Are there special rules for soliciting accident victims?",
+        answer:
+          "Yes — and they're strict. Personal injury advertising and client solicitation are tightly regulated by state bar rules, and some states have specific anti-solicitation statutes restricting how and how soon you may contact accident victims, with serious penalties for improper solicitation. Never guarantee an outcome, keep non-attorney intake to fact-gathering rather than legal advice, and confirm that buying and contacting purchased accident leads is permitted and disclosed in every state you operate. Get legal-ethics counsel's sign-off first.",
+      },
+      {
+        question: "Where can I buy aged MVA leads?",
+        answer:
+          "Several established providers sell aged motor-vehicle-accident and personal-injury leads, often filtered by accident date, injury type, and geography. Because this vertical is heavily regulated, prioritize providers with clean consent documentation and clear sourcing alongside data quality, lead age, and refund policies. Our independent provider directory rates lead sellers across these dimensions so you can match a provider to your firm.",
       },
     ],
     getCompareUrl: () =>
@@ -795,8 +924,36 @@ export const LEAD_TYPES: Record<string, LeadTypeData> = {
         "Focus on homeowners in high-electricity-cost areas for better conversion",
         "Address common objections: roof condition, HOA restrictions, and financing",
         "Send a personalized savings estimate by email after your first conversation",
+        "Pull a fresh phone and DNC scrub before every campaign — aged data degrades between capture and dial",
+        "Track cost per signed install and cost per closed appointment, not cost per lead — solar is a high-ticket, two-step sale",
       ],
     },
+    deepDive: [
+      {
+        heading: "Solar's Long Cycle: Why Aged Leads Are Deeper in the Funnel",
+        body: "Residential solar has one of the longest sales cycles in the aged-lead universe — homeowners commonly take three to six months from first researching solar to signing an installation contract. A typical system runs $15,000 to $25,000 before incentives, and the decision touches roof condition, financing, tax credits, utility rates, and household budgeting. People don't rush it.\n\nThat long cycle flips the usual concern about lead age. A solar lead that's 60 to 180 days old isn't cold — it's often a homeowner who is further along: they've gathered quotes, learned the vocabulary, weighed financing, and narrowed their thinking. Many stalled not because they lost interest but because an installer was pushy, a quote was confusing, or the incentive picture felt uncertain. Re-engaging them as a helpful guide catches people who are closer to ready than a fresh lead who just clicked an ad out of curiosity.\n\nThe practical implication: work aged solar leads as warm, mid-funnel prospects, not cold starts. Your opener should assume they've done homework and offer something new — an updated incentive, a concrete savings number — rather than re-pitching solar from scratch. Meeting them where they actually are in a months-long decision is the whole advantage.",
+      },
+      {
+        heading: "The Real Math: Cost Per Installed System",
+        body: "Solar is a high-ticket, two-step sale — contact, then a home assessment, then a signed install — so the per-lead price is nearly irrelevant. The numbers that matter are cost per closed appointment and cost per installed system. Here is the math, framed as an illustration you should re-run with your own close rate and system price.\n\nSay you buy 1,000 aged solar leads at $1.50 each — a $1,500 spend. At a 10% contact-to-appointment rate you book 100 home assessments, putting your cost per appointment at $15. If your closers sign 20% of assessments, you sell 20 systems, putting your lead cost per installed system at $75. Against a system that grosses thousands of dollars in margin, $75 of lead cost is a rounding error — which is exactly why a long, expensive sale can still be driven economically by cheap aged inventory. Compare that to real-time solar leads at $20 to $50 each, where reaching the same 1,000 homeowners would cost far more for prospects who are often earlier in their thinking.\n\nThe lever to optimize is the appointment rate and the assessment-to-close rate, not the lead price. Leading with a real savings number from their electric bill, pre-qualifying roof suitability before you call, and bringing current incentive information all lift bookings and closes far more than shaving pennies off the lead cost. Model the full funnel — leads → contacts → assessments → installs → margin — and the aged lead's economics are overwhelming.",
+      },
+      {
+        heading: "Lead With the Electric Bill: Savings-First Selling",
+        body: "Every homeowner who researched solar did it for one underlying reason: their electricity bill. That makes the bill your single most powerful tool, and savings-first selling your highest-converting approach.\n\nWhen the lead record includes an average monthly electric cost, you can open with something concrete and personal rather than a generic solar pitch — a realistic, honest estimate of what solar could do for their specific bill in their specific utility territory. If the bill isn't in the record, getting it is your first conversational goal, because without it you're selling in the abstract. From there, the conversation is about their numbers: current rate, usage, how utility rates have trended, what financing would cost monthly, and how the math nets out. Pre-qualifying roof suitability with satellite imagery before you call lets you avoid wasting time on homes that can't support a system and arrive with credible specifics.\n\nThe discipline here is honesty. Solar savings depend on real variables — sun exposure, roof orientation, utility rates, net-metering rules, financing terms — and overstated savings claims both lose informed buyers and invite regulatory trouble. The agents who win lead with a credible, conservative savings story grounded in the homeowner's actual bill, then back it with a personalized written estimate. Real numbers, honestly framed, close high-consideration buyers; hype drives them off.",
+      },
+      {
+        heading: "Incentives as the Re-Engagement Hook",
+        body: "The best reason to call an aged solar lead is that something has genuinely changed since they last looked — and in solar, the incentive landscape changes constantly. Federal tax credits, state and local rebates, utility programs, and net-metering rules all shift over time, and each shift changes a homeowner's math. That gives you an honest, value-first reason to reconnect that isn't just 'are you ready yet?'\n\nUsed well, an incentive update re-opens a stalled conversation: 'When you looked at solar before, the incentive picture was X — there have been updates in your area that change your numbers, and I wanted to make sure you had the current information.' It positions you as a helpful source rather than a pest, and it creates legitimate timing urgency when an incentive is genuinely scheduled to step down or expire. Because incentives are time-sensitive and consequential, they're the rare hook that is both compelling and true.\n\nTwo cautions keep this honest and effective. First, use current, accurate incentive information — solar incentives change often enough that stale or wrong figures will destroy your credibility with an informed buyer and can create compliance exposure. Second, don't invent urgency; let real deadlines create real urgency. An incentive that is actually stepping down is a reason to act now; a fabricated 'limited time offer' is the kind of pressure that makes solar shoppers distrust the whole industry.",
+      },
+      {
+        heading: "Five Mistakes That Destroy Aged Solar Lead ROI",
+        body: "First, re-pitching solar from scratch. Aged solar leads are mid-funnel; opening as if they've never heard of solar wastes the homework they've already done. Lead with something new — an updated incentive or a real savings number.\n\nSecond, selling without the electric bill. Without their actual usage and rate, you're selling in the abstract. Get the bill, or get the home assessment booked so you can build real numbers.\n\nThird, overstating savings. Inflated savings claims lose informed buyers and invite FTC and state scrutiny. Lead with conservative, honest figures grounded in the homeowner's situation.\n\nFourth, skipping roof pre-qualification. Calling homeowners whose roofs can't support a viable system wastes appointments. Use satellite imagery to pre-qualify before you dial.\n\nFifth, mishandling financing and incentive claims. Solar financing carries Regulation Z disclosure obligations, and incentive figures must be current and accurate. Sloppy financing pitches or stale incentive numbers turn a high-margin sale into legal and reputational risk.",
+      },
+      {
+        heading: "Working Aged Solar Leads Compliantly in 2026",
+        body: "Aged solar leads are consumer data records, not pre-consented contacts, so treat outreach as cold contact and build compliance into your process. The federal baseline matches every vertical: scrub each campaign against the National Do Not Call Registry and a TCPA litigator list before you dial, honor opt-outs immediately, respect calling windows, and rely on manual dialing rather than prohibited automated dialing technology. The FCC's one-to-one consent rule was vacated in early 2025 before it took effect, and several states run active mini-TCPA statutes, so a campaign that's fine federally can still create state-level exposure.\n\nSolar carries its own layer of scrutiny because of a history of aggressive sales practices in the industry. The FTC and state attorneys general watch solar savings and financing claims closely, so every savings figure must be honest and substantiated, and financing offers must carry Regulation Z-compliant disclosures. Many states regulate door-to-door solar sales specifically — cooling-off periods, written-contract requirements, and licensing — and some restrict the marketing language you may use. Incentive claims must be current and accurate, because misstating a tax credit or rebate isn't just a credibility problem, it's a compliance one.\n\nThe honest takeaway: solar's economics on aged leads are excellent, but the industry's reputation means honest, well-documented selling is both the ethical and the safe path. Build TCPA scrubbing, substantiated savings claims, Reg Z financing disclosures, and current incentive data into your workflow, confirm current federal and state rules, and run your specific program past qualified compliance counsel before launch. For the broader cross-vertical framework — the operating modes and consent ladder — see the free playbook.",
+      },
+    ],
     faqs: [
       {
         question: "What is an aged solar lead?",
@@ -812,6 +969,26 @@ export const LEAD_TYPES: Record<string, LeadTypeData> = {
         question: "What's the conversion rate for aged solar leads?",
         answer:
           "Aged solar leads typically convert at 1-3% with consistent follow-up. The key is leading with updated incentive information and personalized savings estimates based on their electricity costs and location.",
+      },
+      {
+        question: "How much do aged solar leads cost versus real-time?",
+        answer:
+          "Aged solar leads typically run $0.50 to $3 per record, versus $20-$50+ for real-time leads. Because solar is a high-ticket, two-step sale (contact, home assessment, signed install) where a single system grosses thousands in margin, the meaningful metric is cost per installed system — often well under $100 in lead cost — not cost per lead.",
+      },
+      {
+        question: "Why lead with the homeowner's electric bill?",
+        answer:
+          "The electric bill is why every solar prospect started researching, so it's your most powerful and most personal tool. With their average monthly cost and utility territory you can open with a concrete, honest savings estimate instead of a generic pitch. If the bill isn't in the lead record, getting it is your first conversational goal — without it you're selling in the abstract.",
+      },
+      {
+        question: "Can I promise homeowners specific solar savings?",
+        answer:
+          "Be careful and conservative. Solar savings depend on real variables — sun exposure, roof orientation, utility rates, net-metering rules, and financing terms — and the FTC and state regulators scrutinize inflated savings claims closely. Lead with honest, conservative figures grounded in the homeowner's actual bill, back them with a written personalized estimate, and make sure any financing offer carries Regulation Z disclosures. Overstated claims lose informed buyers and create compliance exposure.",
+      },
+      {
+        question: "Where can I buy aged solar leads?",
+        answer:
+          "Several established providers sell aged residential solar leads, often filtered by electric-bill range, property type, and geography. Rather than buying on price alone, compare providers on data quality, roof/bill filters, lead age, and refund or replacement policies. Our independent provider directory rates lead sellers across these dimensions so you can match a provider to your territory.",
       },
     ],
     getCompareUrl: () =>
