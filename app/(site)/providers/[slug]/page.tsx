@@ -145,6 +145,8 @@ export default async function ProviderProfilePage({
           { name: p.name, url: `${baseUrl}/providers/${p.slug}` },
         ])}
       />
+      {/* Provider identity (no rating here — the rating lives on the Product
+          Review below so it isn't a duplicate/conflicting signal). */}
       <JsonLd
         data={{
           "@context": "https://schema.org",
@@ -152,27 +154,43 @@ export default async function ProviderProfilePage({
           name: p.name,
           url: p.website,
           foundingDate: String(p.foundedYear),
-          // When a dedicated blog review exists, that article owns the
-          // Review/AggregateRating structured data. This profile canonicalizes
-          // to it, so emitting the rating here too would be a duplicate,
-          // conflicting signal for the same entity.
-          ...(p.reviewArticleSlug
-            ? {}
-            : {
-                aggregateRating: {
-                  "@type": "AggregateRating",
-                  ratingValue: p.overallRating,
-                  bestRating: 10,
-                  worstRating: 1,
-                  ratingCount: 1,
-                  author: {
-                    "@type": "Organization",
-                    name: "Aged Lead Sales",
-                  },
-                },
-              }),
         }}
       />
+      {/* Product + editorial Review carrying our star rating. This is a
+          third-party (non-self-serving) review of another company's offering,
+          which is the structure eligible for review-snippet stars — unlike an
+          AggregateRating on the Organization itself.
+
+          When a dedicated blog review exists, that article owns the Review
+          schema and this profile canonicalizes to it, so emitting the rating
+          here too would duplicate the signal for the same entity. */}
+      {!p.reviewArticleSlug && (
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "Product",
+            name: `${p.name} Aged Leads`,
+            brand: { "@type": "Brand", name: p.name },
+            description: p.shortDescription,
+            review: {
+              "@type": "Review",
+              reviewRating: {
+                "@type": "Rating",
+                ratingValue: p.overallRating,
+                bestRating: 10,
+                worstRating: 1,
+              },
+              author: {
+                "@type": "Organization",
+                name: "Aged Lead Sales",
+                url: baseUrl,
+              },
+              datePublished: p.lastVerified,
+              reviewBody: p.ratingNotes || p.shortDescription,
+            },
+          }}
+        />
+      )}
 
       {/* Hero */}
       <section className="relative overflow-hidden bg-gradient-to-br from-zinc-900 via-zinc-900 to-blue-950">

@@ -127,8 +127,8 @@ Only 1 active lead magnet (prospecting checklist). Playbook says 1-2 per site mi
 
 <!-- added 2026-06-08 /brsg-session -->
 
-### Product / Review schema on provider pages
-15 provider review pages lack Product + Review JSON-LD — missing rich-result eligibility (stars in SERP). Reuse the existing `json-ld` component pattern.
+### Product / Review schema on provider pages — DONE 2026-06-09
+~~15 provider review pages lack Product + Review JSON-LD — missing rich-result eligibility (stars in SERP).~~ The pages emitted `Organization` + `AggregateRating` (ratingCount: 1), which Google does NOT grant review-star snippets for (and a single-count aggregate is an anti-pattern). Replaced with a proper **`Product` reviewed by Aged Lead Sales** carrying our editorial star rating (`Review` + `reviewRating`, bestRating 10) — legitimate third-party (non-self-serving) review schema, the structure eligible for star rich results. Identity `Organization` node retained without the rating. The 1 provider with a canonical blog review (`aged-lead-store` → `aged-lead-store-review-2026`) had its rating schema dropped on the profile but the article never actually emitted Review schema — fixed by attaching the Product/Review to the blog article via `reviewArticleSlug` lookup, so all 15 providers now have star schema on their canonical URL.
 - **Impact:** SERP CTR via rich results.
 
 ### Verify "researches 50+ lead providers monthly" claim (`/price-index`)

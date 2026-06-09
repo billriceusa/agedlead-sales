@@ -16,6 +16,7 @@ import { CredibilityBadges } from "@/components/credibility-badges";
 import { StickyToc } from "@/components/sticky-toc";
 import { NextReadBar } from "@/components/next-read-bar";
 import { ReactionButtons } from "@/components/reaction-buttons";
+import { PROVIDERS } from "@/data/providers";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
@@ -66,8 +67,42 @@ export default async function BlogPostPage({ params }: Props) {
     ? urlForImage(post.mainImage)?.width(1200).url()
     : undefined;
 
+  // If this article is the canonical in-depth review for a provider, it owns
+  // that provider's Review/star schema (the provider profile defers to it).
+  const reviewedProvider = PROVIDERS.find((p) => p.reviewArticleSlug === slug);
+
   return (
     <>
+      {reviewedProvider && (
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "Product",
+            name: `${reviewedProvider.name} Aged Leads`,
+            brand: { "@type": "Brand", name: reviewedProvider.name },
+            description: reviewedProvider.shortDescription,
+            review: {
+              "@type": "Review",
+              reviewRating: {
+                "@type": "Rating",
+                ratingValue: reviewedProvider.overallRating,
+                bestRating: 10,
+                worstRating: 1,
+              },
+              author: {
+                "@type": "Organization",
+                name: "Aged Lead Sales",
+                url: baseUrl,
+              },
+              datePublished: post.publishedAt || reviewedProvider.lastVerified,
+              dateModified: post._updatedAt || reviewedProvider.lastVerified,
+              reviewBody:
+                reviewedProvider.ratingNotes ||
+                reviewedProvider.shortDescription,
+            },
+          }}
+        />
+      )}
       <JsonLd
         data={articleJsonLd({
           title: post.title,
