@@ -8,6 +8,7 @@ import {
 } from "@/sanity/lib/queries";
 import { ProviderRatingBadge } from "@/components/provider-rating-badge";
 import { ProviderRatingBar } from "@/components/provider-rating-bar";
+import { ProviderRatingRadar } from "@/components/provider-rating-radar";
 import { FreshnessIndicator } from "@/components/freshness-indicator";
 import { CtaBanner } from "@/components/cta-banner";
 import { JsonLd, breadcrumbJsonLd } from "@/components/json-ld";
@@ -134,6 +135,16 @@ export default async function ProviderProfilePage({
     { label: "Flexibility", score: p.ratingFlexibility, weight: "15%" },
     { label: "Platform & Delivery", score: p.ratingPlatform, weight: "15%" },
     { label: "Reputation & Track Record", score: p.ratingReputation, weight: "10%" },
+  ];
+
+  // Short axis labels for the radar (the bar list keeps the full names).
+  const radarDimensions = [
+    { label: "Transparency", score: p.ratingTransparency },
+    { label: "Value", score: p.ratingValue },
+    { label: "Compliance", score: p.ratingCompliance },
+    { label: "Flexibility", score: p.ratingFlexibility },
+    { label: "Platform", score: p.ratingPlatform },
+    { label: "Reputation", score: p.ratingReputation },
   ];
 
   return (
@@ -332,7 +343,7 @@ export default async function ProviderProfilePage({
       {/* Ratings Breakdown */}
       <section className="border-t border-zinc-200 bg-white py-12 dark:border-zinc-800 dark:bg-zinc-950">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-3xl">
+          <div className="mx-auto max-w-4xl">
             <h2 className="text-2xl font-bold text-zinc-900 dark:text-white">
               Ratings Breakdown
             </h2>
@@ -345,15 +356,21 @@ export default async function ProviderProfilePage({
                 See methodology
               </Link>
             </p>
-            <div className="mt-6 space-y-4">
-              {ratings.map((r) => (
-                <ProviderRatingBar
-                  key={r.label}
-                  label={r.label}
-                  score={r.score}
-                  weight={r.weight}
-                />
-              ))}
+            <div className="mt-6 grid gap-8 md:grid-cols-2 md:items-center">
+              <ProviderRatingRadar
+                dimensions={radarDimensions}
+                providerName={p.name}
+              />
+              <div className="space-y-4">
+                {ratings.map((r) => (
+                  <ProviderRatingBar
+                    key={r.label}
+                    label={r.label}
+                    score={r.score}
+                    weight={r.weight}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>

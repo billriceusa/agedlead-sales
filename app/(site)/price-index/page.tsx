@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { CtaBanner } from "@/components/cta-banner";
 import { CiteThisButton } from "@/components/cite-this-button";
+import {
+  VerticalSavingsChart,
+  type SavingsRow,
+} from "@/components/vertical-savings-chart";
 import { JsonLd, breadcrumbJsonLd } from "@/components/json-ld";
 import { VERTICALS } from "@/data/verticals";
 import {
@@ -113,6 +117,23 @@ export default async function PriceIndexPage() {
     ...v,
     summary: getVerticalSummary(v.slug, benchmarks),
   }));
+
+  // Savings chart rows — computed from the exact same reliable benchmarks the
+  // cards show (real-time vs aged shared internet-form), so the chart and cards
+  // never disagree.
+  const savingsRows: SavingsRow[] = verticalCards
+    .map((v) => {
+      const rt = v.summary?.realTime;
+      const aged = v.summary?.aged;
+      if (!rt?.priceMedian || !aged?.priceMedian) return null;
+      return {
+        vertical: v.name,
+        realTimeMedian: rt.priceMedian,
+        agedMedian: aged.priceMedian,
+        savingsPercent: Math.round((1 - aged.priceMedian / rt.priceMedian) * 100),
+      };
+    })
+    .filter((r): r is SavingsRow => r !== null);
 
   return (
     <>
@@ -250,6 +271,12 @@ export default async function PriceIndexPage() {
               </Link>
             ))}
           </div>
+
+          {savingsRows.length >= 3 && (
+            <div className="mt-12">
+              <VerticalSavingsChart rows={savingsRows} />
+            </div>
+          )}
         </div>
       </section>
 
