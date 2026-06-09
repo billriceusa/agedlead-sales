@@ -104,12 +104,12 @@ Structure cornerstone content as 3-5 part series. Gate parts 2+ behind email. Ea
 
 ## P2 — Information Architecture
 
-### Add `homeowners-insurance` vertical to taxonomy
-`data/verticals.ts` is missing a homeowners-insurance vertical. Aged Lead Store features "Home Insurance" as one of its 8 main aged-lead category cards; other multi-line insurance marketplaces likely sell it too. Adding it requires:
-- New entry in `VERTICALS` with slug, icon, description, tier, order, and `benchmarkDefaults` (real-time + aged contact/close rates, avg deal value)
-- Audit all 15 providers in `data/providers.ts` and add `homeowners-insurance` to whichever already sell it (start with aged-lead-store)
-- Verify the new vertical surfaces correctly on `/providers/best/homeowners-insurance` and the lead-types index
-- **Impact:** Completeness of provider directory; missing this vertical undercounts a major insurance category
+### Add `homeowners-insurance` vertical to taxonomy — DONE 2026-06-09
+- [x] New `VERTICALS` entry (tier 1, order 8, 🏡, benchmarkDefaults consistent with the other personal lines).
+- [x] Provider audit done via live-site verification (not guessed): added `homeowners-insurance` to the **6** providers confirmed to sell it — Aged Lead Store, iLeads, DataToLeads, Aged Leads Depot, QuoteWizard, SmartFinancial. The Leads Warehouse, Badass Insurance Leads, and Brokers Data verified as NOT selling it (excluded); LeadsData unverifiable (excluded — no assumption).
+- [x] `/providers/best/homeowners-insurance` auto-generates (page builds from VERTICALS) with the 6 providers sorted by rating. Price-index handles it like the existing data-less `long-term-care` vertical (overview card shows "Benchmark data coming soon"; `getDecayProfile` falls back to DEFAULT_PROFILE — verified `long-term-care` renders 200 live, same path).
+- Note: this is a **vertical** (provider categorization), distinct from the 9 `/lead-types/*` content pages. A dedicated `/lead-types/homeowners-insurance` depth page is a separate, optional follow-up.
+- **Impact:** Completeness of provider directory; a major insurance category was previously uncounted.
 
 ### Cross-provider vertical audit
 Aged Lead Store's verticals were corrected on 2026-05-20 after the original list overstated their offering (medicare, mca-business-loans, debt-settlement, auto-warranty all removed — they don't sell those). The other 14 providers in `data/providers.ts` likely have similar drift. A pass per provider against their live site (~5-10 min each) would tighten the directory's accuracy.

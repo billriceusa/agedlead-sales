@@ -129,6 +129,22 @@ export const VERTICALS: VerticalData[] = [
       avgDealValue: 4500,
     },
   },
+  {
+    name: "Homeowners Insurance",
+    slug: "homeowners-insurance",
+    icon: "🏡",
+    description:
+      "Home and homeowners insurance quote leads from property owners shopping for new coverage or switching carriers at renewal.",
+    tier: 1,
+    order: 8,
+    benchmarkDefaults: {
+      realTimeContactRate: 0.5,
+      agedContactRate: 0.32,
+      realTimeCloseRate: 0.07,
+      agedCloseRate: 0.028,
+      avgDealValue: 300,
+    },
+  },
 
   // ── Tier 2: Significant Volume ────────────────────────────
   {
