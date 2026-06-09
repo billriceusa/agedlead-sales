@@ -392,8 +392,36 @@ export const LEAD_TYPES: Record<string, LeadTypeData> = {
         "Keep explanations simple: monthly premium, coverage amount, no medical exam",
         "Ask about their family and who they want to protect — make it personal",
         "Follow up by mail if you can't reach them by phone — seniors often respond to letters",
+        "Pull a fresh phone and DNC scrub before every campaign — aged data degrades between capture and dial",
+        "Track cost per issued policy and persistency, not cost per lead — a policy that lapses in month three isn't a sale",
       ],
     },
+    deepDive: [
+      {
+        heading: "Why Aged Final Expense Leads Convert When Fresh Ones Burn Out",
+        body: "Final expense is the rare vertical where aged leads frequently outperform real-time leads, and understanding why shapes how you work them. The senior buyer moves slowly by nature: they're often on a fixed income, weighing a decision that touches mortality and family, and they want to feel comfortable rather than rushed. Real-time final expense leads are sold to multiple agents who call within minutes, so the senior's first experience is often a wave of aggressive, competing pitches. Many simply shut down and do nothing.\n\nThat stalled senior is exactly who an aged list surfaces. The need hasn't gone away — the desire to spare their family a funeral bill is durable, not seasonal — but the agents who originally bought the lead have long since moved on. When you reach out 60 to 180 days later with a calm, helpful, un-pressured tone, you're often the first person who treated them like a human being rather than a commission. That contrast is your entire advantage, and it's why a gentle aged-lead approach can convert a senior the real-time frenzy drove off.\n\nThe practical implication: your tone is the product. An opener that acknowledges the prior inquiry and offers help, rather than pushing a close, consistently beats the urgency scripts that work in faster verticals. Patience isn't a soft skill here — it's the conversion mechanism.",
+      },
+      {
+        heading: "The Real Math: What an Aged Final Expense Lead Costs Per Issued Policy",
+        body: "The per-lead price is the number agents fixate on and the number that matters least. What matters is your fully loaded cost per issued, persisting policy. Here is the math, framed as an illustration you should re-run with your own numbers.\n\nSay you buy 1,000 aged final expense leads at $1.50 each — a $1,500 spend. At a 10% contact rate you reach 100 seniors. At a 2% overall conversion rate you issue roughly 20 policies, putting your lead cost per issued policy around $75. Compare that to real-time leads at, say, $30 each: 1,000 of those would cost $30,000, and even at a higher close rate you'd need a far larger budget to issue the same number of policies. The cheap inventory absorbs a lower close rate and still wins on total policies issued.\n\nTwo levers matter more than price. First, contact rate: doubling it from 5% to 10% — through daytime dialing windows, direct mail ahead of the call, and a real multi-touch cadence — does more for your cost per issued policy than halving the lead price. Second, and unique to this vertical, persistency. A final expense policy that lapses in month three pays you nothing and may trigger a chargeback. Selling a premium the senior can comfortably afford on a fixed income — and confirming it fits their budget before you write it — protects the only number that actually pays: issued business that stays on the books.",
+      },
+      {
+        heading: "Door Knocking and Direct Mail: The Senior-Market Channels That Beat the Phone",
+        body: "In most verticals the phone is the primary channel. Final expense is the exception: for local aged leads, door knocking converts at two to five times the rate of phone calls, and a personal letter often outperforms a cold dial. Seniors grew up trusting mail and face-to-face conversation, and they're more comfortable with both than with a phone pitch from a stranger.\n\nThe highest-converting sequence pairs the two. Start with direct mail — a personal letter, not a flashy postcard — that references their prior interest in final expense coverage and signals you'll follow up. The letter warms the contact, so your call or visit isn't truly cold. For leads in your driving radius, an in-person visit is the close: sitting at a kitchen table, explaining a small whole-life policy with no medical exam in plain language, is the single most effective thing you can do in this market. Because aged leads are cheap and plentiful, you can build a route of nearby seniors and work them in person far more economically than real-time-lead economics would ever allow.\n\nThe practical move: load aged final expense leads by zip, plan local routes for door knocking, and use direct mail to soften every contact before you arrive. Reserve the phone for leads outside your driving radius and for follow-up — not as your only tool.",
+      },
+      {
+        heading: "Building a Patient, Empathy-First Cadence for the Senior Market",
+        body: "The cadence that works in fast verticals — rapid calls, urgency language, a hard push to close — actively backfires with seniors. Final expense rewards a slower, warmer sequence built around trust.\n\nA workable cadence: begin with a personal letter that references the prior inquiry and says you'll reach out. A few days later, a daytime phone call (mid-morning or early afternoon, when seniors are most reachable) using a gentle opener that asks whether they ever got their coverage 'taken care of.' If you don't connect, follow with another letter rather than hammering the phone. For local leads, schedule an in-person visit; for distant ones, a calm phone conversation that explains the policy simply — monthly premium, coverage amount, no medical exam. Across every touch, keep the focus on their family and their peace of mind, not on closing today.\n\nTwo disciplines separate agents who profit in this market from those who churn through it. First, never let urgency creep into your voice — the moment a senior feels pushed, you've lost the very advantage that aged leads gave you. Second, log every contact and outcome in your CRM and confirm affordability before you write, because in final expense a sale that doesn't persist isn't a sale. Profitability here is a patience-and-process problem far more than a lead-quality one.",
+      },
+      {
+        heading: "Five Mistakes That Destroy Aged Final Expense Lead ROI",
+        body: "First, using urgency tactics. The high-pressure scripts that work in faster verticals drive seniors away and squander the calm, helpful positioning that makes aged final expense leads convert in the first place.\n\nSecond, leading with the phone for local leads. Door knocking and direct mail convert far better with this audience; phone-only operators leave the easiest sales on the table.\n\nThird, selling a premium the senior can't sustain. A policy priced above what a fixed income can comfortably carry lapses quickly, pays nothing, and can trigger a chargeback. Confirm affordability before you write.\n\nFourth, under-working the list. Buying thousands of cheap leads and making a few hundred calls guarantees disappointing contact rates that agents then blame on lead quality. The math only works when you run the full cadence — including mail — on the full list.\n\nFifth, getting careless with a vulnerable audience. Seniors warrant extra care on consent, clarity, and honesty. Skipping DNC and litigator scrubs, or blurring how a policy works, turns a profitable channel into both legal exposure and a reputational risk you don't want in the senior market.",
+      },
+      {
+        heading: "Working Aged Final Expense Leads Compliantly in 2026",
+        body: "Aged final expense leads are consumer data records, not pre-consented contacts, so treat outreach as cold contact and build compliance into your process. The federal baseline matches every vertical: scrub each campaign against the National Do Not Call Registry and a TCPA litigator list before you dial, honor opt-outs immediately, respect calling windows, and rely on manual dialing rather than prohibited automated dialing technology. The FCC's one-to-one consent rule was vacated in early 2025 before it took effect, and several states run active mini-TCPA statutes, so a campaign that's fine federally can still create state-level exposure.\n\nFinal expense adds a layer of care because the audience is older and, in regulators' eyes, more vulnerable. Be scrupulously clear about what the policy is — a small whole-life insurance product, not a prepaid funeral or a government benefit — and never imply affiliation with Medicare, Social Security, or a government program. Confirm the senior understands the premium, the coverage amount, and any graded-benefit waiting period before issuing. Carriers and state regulators watch senior-market practices closely, so honest, plain-language selling isn't just ethics, it's risk management.\n\nFor the full framework — including the conservative-to-aggressive operating modes and the step-by-step consent ladder we use across verticals — see the free playbook.",
+      },
+    ],
     faqs: [
       {
         question: "What is a final expense lead?",
@@ -419,6 +447,26 @@ export const LEAD_TYPES: Record<string, LeadTypeData> = {
         question: "Can I work aged final expense leads by door knocking?",
         answer:
           "Yes — door knocking is one of the most effective channels for final expense aged leads, especially for local leads. Seniors are often more receptive to in-person visits than phone calls, and conversion rates are significantly higher.",
+      },
+      {
+        question: "What conversion rate can I expect from aged final expense leads?",
+        answer:
+          "Most agents see a 1-3% overall conversion on aged final expense leads with a patient, multi-touch cadence — higher when door knocking local leads. Because the leads cost a small fraction of real-time prices, you work far more prospects per dollar, and the gentle aged-lead approach often converts seniors who shut down under the real-time sales frenzy.",
+      },
+      {
+        question: "How does persistency affect final expense lead ROI?",
+        answer:
+          "Persistency is the number that actually pays. A final expense policy that lapses in the first few months earns you little and can trigger a chargeback from the carrier. The fix is to sell a premium the senior can comfortably afford on a fixed income and confirm it fits their budget before writing — so track cost per issued, persisting policy, not cost per lead.",
+      },
+      {
+        question: "Do health issues disqualify aged final expense prospects?",
+        answer:
+          "Rarely. Most final expense products are simplified-issue or guaranteed-issue whole life with no medical exam, and many carriers offer graded-benefit policies for seniors with health conditions. That's part of why the need persists — applicants who were declined or hesitated elsewhere often still qualify somewhere. Always disclose any graded-benefit waiting period clearly before issuing.",
+      },
+      {
+        question: "Where can I buy aged final expense leads?",
+        answer:
+          "Several established providers sell aged final expense leads filtered by senior age bands, coverage amount, and geography. Rather than buying on price alone, compare providers on data quality, lead age, local-routing filters for door knocking, and refund or replacement policies. Our independent provider directory rates lead sellers across these dimensions so you can match a provider to your market.",
       },
     ],
     getCompareUrl: () =>
@@ -832,8 +880,36 @@ export const LEAD_TYPES: Record<string, LeadTypeData> = {
         "Build relationships year-round, then convert during enrollment windows",
         "Mail a personal letter with your contact info — seniors keep and reference mail",
         "Follow CMS marketing guidelines strictly — Medicare has specific advertising rules",
+        "Confirm a valid permission to contact and a documented Scope of Appointment before discussing specific MA/PDP plans",
+        "Record beneficiary calls in their entirety where CMS requires it, and track cost per enrolled member plus renewals, not cost per lead",
       ],
     },
+    deepDive: [
+      {
+        heading: "Medicare's Enrollment Calendar: Why Aged Leads Are a Year-Round Relationship Play",
+        body: "Medicare is unlike any other aged vertical because conversion is gated by a calendar. A senior can want to switch plans in July, but in most cases they can't actually enroll until a qualifying window opens. That single fact reframes how you work aged Medicare leads: the goal is not to close on the first call, it's to be the trusted agent already in the relationship when the senior's enrollment window arrives.\n\nThe windows that matter: the Annual Enrollment Period (October 15 to December 7), when anyone can change Medicare Advantage and Part D coverage; the Medicare Advantage Open Enrollment Period (January 1 to March 31) for those already in an MA plan; Special Enrollment Periods triggered by life events like a move, a loss of employer coverage, or a plan leaving the market; and the Initial Enrollment Period around a person's 65th birthday. Roughly 10,000 Americans age into Medicare every day, so the aging-in pipeline never stops refreshing.\n\nThis is why aged Medicare inventory is a relationship asset rather than a one-call-close list. You buy cheap, stay in helpful contact year-round, and convert in volume when a window opens. An agent who has been quietly useful to a senior for six months wins the AEP conversation against the wall of mailers and cold calls every other agent unleashes in October.",
+      },
+      {
+        heading: "The Real Math: Cost Per Enrolled Member and the Renewal Annuity",
+        body: "The per-lead price matters less in Medicare than almost anywhere, because Medicare pays on renewals. An enrolled member typically generates a commission in year one and a recurring renewal commission for as long as the policy stays active — so the real metric is cost per enrolled member measured against the member's multi-year value, not cost per lead. Here is the math, framed as an illustration you should re-run with your own numbers.\n\nSay you buy 1,000 aged Medicare leads at $1.50 each — a $1,500 spend. Worked patiently across a year and converted around an enrollment window at a 2% overall rate, that's roughly 20 enrolled members, or about $75 in lead cost per member. Now layer in renewals: each member who stays on the books pays you again every year, so a $75 acquisition cost is recovered many times over the life of the relationship. Compare that to real-time enrollment-season leads at $30 or more each, where you'd spend $30,000 to work the same 1,000 prospects.\n\nThe levers are contact rate and retention. A real multi-touch, year-round cadence lifts both how many leads you reach and how many you're still serving at renewal. Because the renewal annuity rewards members who stay, the consultative work of matching a senior to a plan that genuinely fits their drugs and doctors isn't just good service — it's what protects the recurring revenue that makes Medicare the best long-term economics of any aged vertical.",
+      },
+      {
+        heading: "Plan Selection: Drugs First, Doctors Second",
+        body: "The fastest way to lose a Medicare prospect is to lead with a plan instead of with their situation. Seniors are buried in generic plan pitches; your differentiator is a genuinely consultative process, and that process has a specific order.\n\nDrugs first. Prescription coverage drives most plan decisions, and the wrong formulary can cost a senior thousands out of pocket. Before you recommend anything, get their medication list and check it against each plan's formulary and pharmacy network. Doctors second. A Medicare Advantage plan that doesn't include their physician or preferred hospital is a non-starter for most seniors, so confirm network coverage before going further. Only after drugs and doctors do plan type, premium, and extra benefits come into play — and even then the right answer is whatever genuinely fits, which sometimes means a Medigap plus standalone Part D rather than an all-in-one Advantage plan.\n\nThis order does double duty. It produces a recommendation the senior trusts because it's built around their actual life, and it protects persistency — members enrolled in a plan that truly covers their drugs and doctors don't churn out at the next enrollment period. In a renewal-driven business, getting the fit right is the whole game.",
+      },
+      {
+        heading: "Building a Year-Round Nurture That Converts at Enrollment",
+        body: "Because enrollment is calendar-gated, the Medicare cadence is a marathon, not a sprint. The work is staying genuinely useful for months so that you're the obvious choice when the senior can finally act.\n\nA workable rhythm: an early, permission-respecting introduction that offers a free, no-obligation plan comparison and asks how they'd like to stay in touch. Periodic value touches through the year — a personal letter they can keep with your contact info, a heads-up about plan changes in their county, a reminder of when their enrollment window opens. As AEP approaches, a warmer outreach to schedule the comparison and, where required, to set up a documented Scope of Appointment before discussing specific plans. During the window itself, the conversion conversation you've earned the right to have. After enrollment, you don't go quiet — you check in so the member is still with you at renewal and refers their friends.\n\nTwo disciplines decide your return. First, respect the contact rules at every step (covered below) — Medicare is the most regulated aged vertical and shortcuts are expensive. Second, log every touch, the senior's drugs and doctors, their enrollment window, and their plan in your CRM, so the right conversation happens at the right time. Profitability here is patience plus organization, not dialing volume.",
+      },
+      {
+        heading: "Five Mistakes That Destroy Aged Medicare Lead ROI",
+        body: "First, treating Medicare like a one-call close. Enrollment is calendar-gated; pushing for an enrollment outside a valid window is both futile and, in some cases, non-compliant. The win is the relationship that converts when the window opens.\n\nSecond, ignoring the CMS contact rules. Medicare restricts how and when you can market MA and Part D plans far more tightly than other verticals — assuming an old lead gives you free rein to call and pitch plans is the single most dangerous mistake in this market.\n\nThird, leading with a plan instead of the senior's drugs and doctors. It reads as just another generic pitch, and it produces mismatched enrollments that lapse at the next window — destroying the renewal annuity that makes Medicare worthwhile.\n\nFourth, neglecting the year-round nurture. Agents who only show up in October are buried under everyone else's AEP blitz. The cheap aged lead's whole advantage is the months of relationship you can build before the window.\n\nFifth, sloppy documentation. Missing or invalid Scope of Appointment forms, un-recorded calls where recording is required, and no record of permission to contact turn a good enrollment into a compliance liability. In Medicare, the paperwork is part of the sale.",
+      },
+      {
+        heading: "Working Aged Medicare Leads Compliantly in 2026",
+        body: "Medicare is the most heavily regulated aged vertical, and the rules go well beyond standard TCPA practice — so approach aged Medicare inventory more conservatively than any other lead type, and treat qualified compliance counsel as mandatory rather than optional. The marketing of Medicare Advantage and Part D plans is governed by CMS, and several requirements bear directly on aged-lead outreach.\n\nPermission to contact is the threshold issue. CMS generally prohibits unsolicited contact to market MA and PDP plans; a consumer's request for information can establish permission to contact, but that permission is event-specific and time-limited — which means an aged Medicare lead's original consent may no longer be valid, and calling on a stale permission is a real risk. Before discussing specific plans you must obtain and document a Scope of Appointment, generally secured ahead of the meeting under CMS timing rules. TPMOs are required to include the CMS disclaimer in marketing and, in many cases, to record beneficiary calls in their entirety, including the enrollment conversation. On top of all that sit the ordinary TCPA baselines — DNC and litigator scrubs, manual dialing, honoring opt-outs, and state mini-TCPA rules.\n\nThe honest takeaway: aged Medicare leads can be valuable as a year-round relationship pipeline, but the compliance surface is large and the penalties are serious. Build SOA, permission-to-contact verification, call recording, and CMS disclaimers into your workflow from day one, confirm current CMS rules each plan year, and run your specific program past qualified Medicare compliance counsel before you launch. For the broader cross-vertical framework — the conservative-to-aggressive operating modes and the consent ladder — see the free playbook, and layer the CMS-specific requirements on top.",
+      },
+    ],
     faqs: [
       {
         question: "What is an aged Medicare lead?",
@@ -848,7 +924,22 @@ export const LEAD_TYPES: Record<string, LeadTypeData> = {
       {
         question: "What compliance rules apply to Medicare leads?",
         answer:
-          "Medicare marketing is regulated by CMS (Centers for Medicare & Medicaid Services). You must follow specific guidelines around scope of appointment, plan comparisons, and marketing materials. Consult your compliance team and follow CMS guidelines for all Medicare outreach.",
+          "Medicare marketing is regulated by CMS (Centers for Medicare & Medicaid Services) on top of standard TCPA rules. Key requirements include a valid permission to contact, a documented Scope of Appointment before discussing specific plans, the CMS/TPMO disclaimer in marketing, and call recording where required — plus DNC scrubs and manual dialing. This is the most regulated aged vertical; consult qualified Medicare compliance counsel and confirm current CMS rules each plan year before any outreach.",
+      },
+      {
+        question: "Can I cold-call aged Medicare leads to sell a plan?",
+        answer:
+          "Be very careful here. CMS generally prohibits unsolicited contact to market Medicare Advantage and Part D plans. A consumer's original information request can establish permission to contact, but that permission is event-specific and time-limited — so an aged lead's consent may have expired. Because calling on a stale permission is a real compliance risk, treat aged Medicare leads more conservatively than other verticals and verify a valid permission to contact before you dial. When in doubt, get compliance counsel's sign-off.",
+      },
+      {
+        question: "Why do renewals make Medicare leads valuable long-term?",
+        answer:
+          "Medicare typically pays a first-year commission plus a recurring renewal commission for as long as the member keeps the plan active. That turns each enrolled member into a multi-year annuity, so a modest cost per enrolled member is recovered many times over. It also means getting the plan fit right — matching the senior's drugs and doctors so they don't switch away — directly protects your recurring revenue.",
+      },
+      {
+        question: "Where can I buy aged Medicare leads?",
+        answer:
+          "Several established providers sell aged Medicare leads filtered by eligibility status, interest area (supplement, Advantage, Part D), and geography. Because Medicare carries extra compliance requirements, prioritize providers with clean consent documentation and clear sourcing alongside data quality, lead age, and refund policies. Our independent provider directory rates lead sellers across these dimensions so you can match a provider to your market.",
       },
     ],
     getCompareUrl: () =>
@@ -920,8 +1011,36 @@ export const LEAD_TYPES: Record<string, LeadTypeData> = {
         "Check state storm moratoriums (FL, TX, LA) before post-storm outreach",
         "Use 'free estimate' not 'free inspection' — the word 'inspection' triggers solicitation rules in some states",
         "Financing disclosures require Regulation Z-compliant script language",
+        "Pull a fresh phone and DNC scrub before every campaign — aged data degrades between capture and dial",
+        "Track cost per booked estimate and cost per sold job, not cost per lead — the booked estimate is the real unit of work",
       ],
     },
+    deepDive: [
+      {
+        heading: "Aged Home Services Leads by Trade: Roofing, Solar, HVAC, Windows, and Remodel",
+        body: "Home services is really a dozen businesses under one label, and the trade a homeowner inquired about should dictate both your timing and your expectations. Roofing leads are driven by a failing or aging roof and, in storm states, by weather events — the underlying problem only worsens with time, so an aged roofing lead stays high-intent for months. The decision cycle is relatively fast once the homeowner re-engages, and average revenue per job (often $4,500 and up) makes even modest close rates pay.\n\nHVAC and foundation leads behave similarly: they're problem-driven, the problem doesn't resolve itself, and homeowners who stalled often did so because the first contractor was slow, pushy, or never followed up. Window and door leads sit in the middle — part comfort, part energy bill, part curb appeal — with moderate cycles and solid per-job revenue. Solar and full remodel leads are the longest-cycle, highest-ticket categories. A solar inquiry can take months to mature as the homeowner weighs financing, incentives, and roof condition; a kitchen or bath remodel can run $15,000 and up with a deliberation period to match. These reward patient, well-designed nurture far more than aggressive calling.\n\nThe practical move: segment your aged list by trade before you dial and set timing expectations accordingly. A roofing record gets a fast, problem-focused booking push; a remodel record gets a longer, value-and-design nurture. One generic script across every trade leaves money on the table.",
+      },
+      {
+        heading: "The Real Math: Cost Per Booked Estimate and Cost Per Sold Job",
+        body: "Home services is a two-step funnel — contact, then estimate, then sold — so the per-lead price tells you almost nothing. The two numbers that matter are cost per booked estimate and cost per sold job. Here is the math, framed as an illustration you should re-run with your own close rate and ticket size.\n\nSay you buy 1,000 aged roofing leads at $3 each — a $3,000 spend. At a 10% contact-to-booking rate you book 100 estimates, putting your cost per booked estimate at $30. If your field reps close 25% of estimates, you sell 25 jobs, putting your lead cost per sold job at $120. At a $4,500 average roofing ticket, that's $112,500 in booked revenue against a $3,000 lead spend — and the lead cost is a rounding error against the job value. That economic cushion is exactly why home services is one of the most forgiving verticals for aged-lead operations.\n\nThe lever to optimize is the booked-estimate rate, not the lead price. Better dialing windows, an SMS touch alongside the call, appointment reminders, and zip-based routing that lets you offer tight estimate windows all lift bookings far more than shaving the per-lead cost. Model the full funnel — leads → contacts → booked estimates → sold jobs → revenue — and you'll consistently find that a cheap aged lead worked through a disciplined two-step process beats a small batch of expensive real-time leads on total sold revenue.",
+      },
+      {
+        heading: "The Neighborhood Play: Route Density as a Profit Multiplier",
+        body: "The single highest-ROI move unique to aged home services leads is the neighborhood play, and most operators never run it. The idea: when you complete a job, you already have a crew, a truck, and a finished install in a specific zip code. That is the moment to reach out — softly — to every aged lead you hold in that same zip.\n\nThe outreach is low-key and credible: 'We're finishing a roof on [street] this week and will have a crew in your area — since you'd looked at roofing a while back, want us to swing by for a free estimate while we're nearby?' It converts well for three reasons. Proximity is real and verifiable, so it doesn't read as a generic pitch. A nearby completed job is social proof the homeowner can literally drive past. And the offer is convenient — you're already there, so the estimate costs them nothing in friction.\n\nTo run it, your aged leads must be loaded and queryable by zip code, and your CRM should let you pull 'all open aged leads within this zip' on demand when a job wraps. Route density then compounds: tighter estimate clusters mean lower drive time, more estimates per rep-day, and a believable reason to re-contact records that had gone cold. It turns your aged list from a static call file into a geographically activated asset.",
+      },
+      {
+        heading: "Building a 14-Day Estimate-Booking Cadence",
+        body: "Single-touch outreach wastes aged home services leads, and because the goal is a booked estimate rather than a phone close, the cadence is built to drive to a calendar slot. Plan for a structured 14-day sequence across phone, SMS, and email — not one call and a shrug.\n\nA workable cadence: Day 1, a manual phone call with a non-pushy opener that names the specific project type and asks whether it's been handled. If you don't connect, leave a brief voicemail and follow within minutes with a short SMS — text often gets a faster reply than voicemail in this vertical. Day 2, a plain-text email offering a free estimate with two concrete time windows. Day 4, a second call at a different time of day plus a follow-up text. Day 7, a value touch — a financing option, a seasonal note ('before winter'), or proof of a nearby completed job. Day 10 to 14, a final call and a soft-close text that leaves the door open. Once an estimate is booked, switch immediately to reminder mode: an SMS-plus-email reminder sequence drops no-show rates dramatically.\n\nTwo disciplines decide your return. First, lead with SMS as a co-channel, not an afterthought — home-services homeowners respond to text. Second, log every attempt, outcome, and the booked-estimate status in your CRM, tagged by trade and zip so the neighborhood play and field routing both stay live. Aged-lead profitability here is a workflow-and-routing problem far more than a lead-quality problem.",
+      },
+      {
+        heading: "Five Mistakes That Destroy Aged Home Services Lead ROI",
+        body: "First, trying to close on the phone. Home services is a two-step funnel; the phone's only job is to book the estimate. Pitching price or product on the call kills bookings — let the field rep close on the driveway.\n\nSecond, ignoring SMS. This is the one vertical where text frequently outperforms the call for getting a response and confirming a slot. Operators who run phone-only leave the easiest bookings on the table.\n\nThird, skipping appointment reminders. A booked estimate with no reminder sequence no-shows at a far higher rate. An SMS-plus-email reminder cadence is the cheapest conversion lift available and most teams simply don't run it.\n\nFourth, ignoring geography. Without zip-based loading and routing, field reps cross paths, drive time balloons, and the neighborhood play — the vertical's best move — never happens. Treat location as a first-class field, not an afterthought.\n\nFifth, ignoring trade-specific compliance. Storm-solicitation moratoriums, contractor-board marketing rules, and Regulation Z financing disclosures vary by state and trade. Outreach that's fine in one state can be a violation in another; build the rules into your scripts before you dial.",
+      },
+      {
+        heading: "Working Aged Home Services Leads Compliantly in 2026",
+        body: "Aged home services leads are consumer data records, not pre-consented contacts, so treat outreach as cold contact and build compliance into your process. The federal baseline is the same as every vertical: scrub each campaign against the National Do Not Call Registry and a TCPA litigator list before you dial, honor opt-outs immediately, respect calling windows, and rely on manual dialing rather than prohibited automated dialing technology. The FCC's one-to-one consent rule was vacated in early 2025 before it took effect, and several states run active mini-TCPA statutes, so a campaign that's fine federally can still create state-level exposure.\n\nHome services carries trade-specific rules on top of that. Several states restrict roofing and storm-related solicitation for a window after a declared disaster — Florida, Texas, and Louisiana are the most active — so post-storm outreach needs a moratorium check first. Many state contractor boards regulate marketing language and incentives; using 'free estimate' rather than 'free inspection' avoids triggering solicitation rules in some states. And any financing offer must carry Regulation Z-compliant disclosure language in your script. The safe posture: dial manually, keep clean records, check state and trade rules before each campaign, and run your specific program past qualified compliance counsel before launch.\n\nFor the full framework — including the conservative-to-aggressive operating modes and the step-by-step consent ladder we use across verticals — see the free playbook.",
+      },
+    ],
     faqs: [
       {
         question: "What types of aged home services leads are available?",
@@ -942,6 +1061,31 @@ export const LEAD_TYPES: Record<string, LeadTypeData> = {
         question: "Which sub-verticals have the best aged-lead economics?",
         answer:
           "Roofing, HVAC install, pest control, and foundation tend to have the fastest decision cycles and strongest close rates. Solar and remodel leads have longer cycles but higher revenue per close — they reward patient, well-designed nurture sequences.",
+      },
+      {
+        question: "How much do aged home services leads cost?",
+        answer:
+          "Aged home services leads typically run $0.75 to $10 per record depending on trade, lead age, and geography — versus $30-$150 for real-time leads. Because average revenue per closed job is high ($2,500+ for windows, $4,500+ for roofing, $15,000+ for remodels), the lead cost is a small fraction of the job value, making this one of the most forgiving verticals for aged-lead operations.",
+      },
+      {
+        question: "What close rate can I expect from aged home services leads?",
+        answer:
+          "Work it as a two-step funnel. Expect to book an estimate from roughly 10% of leads with a disciplined multi-channel cadence, and for field reps to close around 25% of estimates that are run — though both numbers vary widely by trade, market, and rep skill. Optimizing the booked-estimate rate (via SMS, reminders, and zip routing) moves your cost per sold job far more than negotiating the per-lead price.",
+      },
+      {
+        question: "How do I reduce estimate no-shows on aged leads?",
+        answer:
+          "Run an automated reminder sequence the moment an estimate is booked: an SMS plus email reminder cadence (confirmation, day-before, and morning-of) typically cuts no-show rates from around 25% to under 10%. Reminders are the cheapest conversion lift in home services and most teams skip them.",
+      },
+      {
+        question: "What is the 'neighborhood play' for aged home services leads?",
+        answer:
+          "When you complete a job, reach out softly to every aged lead you hold in that same zip code — 'we'll have a crew in your area this week, want a free estimate while we're nearby?' It converts well because the proximity is real, a nearby finished job is visible social proof, and the offer is low-friction. It requires loading and querying your aged leads by zip, and it turns a static call file into a geographically activated asset.",
+      },
+      {
+        question: "Where can I buy aged home services leads?",
+        answer:
+          "Several established providers sell aged home services leads across roofing, solar, HVAC, windows, and remodel categories. Rather than buying on price alone, compare providers on data quality, trade and zip filtering, lead age, and refund or replacement policies. Our independent provider directory rates lead sellers across these dimensions so you can match a provider to your trade and service area.",
       },
     ],
     getCompareUrl: () =>
