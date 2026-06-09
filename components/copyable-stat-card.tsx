@@ -44,7 +44,7 @@ export function CopyableStatCard({
 
   return (
     <div className="group relative rounded-xl border border-zinc-200 bg-white p-5 transition-colors hover:border-blue-200 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-blue-800">
-      <p className="text-3xl font-bold text-blue-600 dark:text-blue-400">
+      <p className="text-2xl font-bold leading-tight tracking-tight text-blue-600 tabular-nums break-words dark:text-blue-400 sm:text-3xl">
         {value}
       </p>
       <p className="mt-1 text-sm font-medium text-zinc-900 dark:text-white">

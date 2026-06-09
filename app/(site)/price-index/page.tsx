@@ -6,13 +6,13 @@ import { JsonLd, breadcrumbJsonLd } from "@/components/json-ld";
 import { VERTICALS } from "@/data/verticals";
 import {
   PRICE_BENCHMARKS,
-  formatPrice,
   formatPriceRange,
+  isTrustworthyBenchmark,
   type PriceBenchmarkData,
 } from "@/data/price-benchmarks";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import {
-  latestStaticShapedBenchmarksQuery,
+  recentStaticShapedBenchmarksQuery,
   postsByCategorySlugsQuery,
 } from "@/sanity/lib/queries";
 import { PostCard } from "@/components/post-card";
@@ -53,10 +53,15 @@ function getVerticalSummary(
   verticalSlug: string,
   benchmarkSource: PriceBenchmarkData[]
 ) {
-  const benchmarks = benchmarkSource.filter((b) => b.vertical === verticalSlug);
+  // Only surface trustworthy benchmarks (≥2 providers sampled). benchmarkSource
+  // is ordered newest-month-first, so the first match per series is the latest
+  // reliable data point — never a sparse single-provider cron estimate.
+  const benchmarks = benchmarkSource.filter(
+    (b) => b.vertical === verticalSlug && isTrustworthyBenchmark(b)
+  );
   if (benchmarks.length === 0) return null;
 
-  // Find the most common aged benchmark (31-85 days, shared, internet-form)
+  // Latest reliable aged benchmark (31-85 days, shared, internet-form)
   const aged = benchmarks.find(
     (b) =>
       b.leadAgeBracket === "31-85-days" &&
@@ -64,7 +69,7 @@ function getVerticalSummary(
       b.leadType === "internet-form"
   );
 
-  // Find real-time shared
+  // Latest reliable real-time shared
   const realTime = benchmarks.find(
     (b) =>
       b.leadAgeBracket === "real-time" &&
@@ -77,9 +82,11 @@ function getVerticalSummary(
 
 export default async function PriceIndexPage() {
   // Prefer Sanity (kept fresh by the marketwatch cron) and fall back to the
-  // static seed when Sanity is empty or unreachable.
+  // static seed when Sanity is empty or unreachable. We pull every tracked
+  // month (newest first) so each card can show its latest *reliable* price,
+  // not just whatever the most recent cron run happened to write.
   const [sanityBenchmarks, clusterPostsRaw] = await Promise.all([
-    sanityFetch(latestStaticShapedBenchmarksQuery) as Promise<
+    sanityFetch(recentStaticShapedBenchmarksQuery) as Promise<
       PriceBenchmarkData[] | null
     >,
     sanityFetch(postsByCategorySlugsQuery, {
@@ -92,7 +99,12 @@ export default async function PriceIndexPage() {
       ? sanityBenchmarks
       : PRICE_BENCHMARKS;
 
-  const latestMonth = benchmarks[0]?.month || "2026-03";
+  // Freshness reflects the latest *reliable* month, so we don't advertise a
+  // single-provider cron run as the current state of the market.
+  const latestMonth =
+    benchmarks.find((b) => isTrustworthyBenchmark(b))?.month ||
+    benchmarks[0]?.month ||
+    "2026-03";
   const monthLabel = new Date(latestMonth + "-01").toLocaleDateString("en-US", {
     month: "long",
     year: "numeric",

@@ -64,6 +64,20 @@ export async function upsertPriceBenchmarks(
   const client = getSanityWriteClient();
   let created = 0;
 
+  // Quality guard: never publish single-provider estimates. The LLM synthesis
+  // step occasionally emits a benchmark from one provider that collapses to a
+  // meaningless flat range (e.g. $1–$1). Those pollute the public index and
+  // are filtered out of display anyway (isTrustworthyBenchmark), so we drop
+  // them at the source rather than carry the junk forward.
+  const publishable = benchmarks.filter((b) => (b.providersSampled ?? 0) >= 2);
+  const skipped = benchmarks.length - publishable.length;
+  if (skipped > 0) {
+    console.log(
+      `Skipping ${skipped} single-provider benchmark(s) below the 2-provider quality bar`
+    );
+  }
+  if (publishable.length === 0) return 0;
+
   // First, get vertical IDs by slug
   const verticals: { _id: string; slug: string }[] = await client.fetch(
     `*[_type == "vertical"] { _id, "slug": slug.current }`
@@ -71,7 +85,7 @@ export async function upsertPriceBenchmarks(
 
   const verticalMap = new Map(verticals.map((v) => [v.slug, v._id]));
 
-  for (const benchmark of benchmarks) {
+  for (const benchmark of publishable) {
     const verticalId = verticalMap.get(benchmark.vertical);
     if (!verticalId) {
       console.warn(

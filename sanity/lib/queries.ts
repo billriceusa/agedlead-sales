@@ -577,6 +577,27 @@ export const latestStaticShapedBenchmarksQuery = defineQuery(
   }`
 );
 
+// All benchmarks across every tracked month, in the shape of
+// data/price-benchmarks.ts PriceBenchmarkData, newest month first. The index
+// page picks the latest *trustworthy* benchmark per vertical from this set
+// (see isTrustworthyBenchmark) rather than blindly showing the latest month —
+// which can be a sparse single-provider cron estimate.
+export const recentStaticShapedBenchmarksQuery = defineQuery(
+  `*[_type == "priceBenchmark"] | order(month desc) {
+    "vertical": vertical->slug.current,
+    leadAgeBracket,
+    exclusivity,
+    leadType,
+    month,
+    priceLow,
+    priceMedian,
+    priceHigh,
+    providersSampled,
+    confidence,
+    notes
+  }`
+);
+
 // Recent published posts in any of the supplied category slugs. Used by
 // the /playbook and /price-index pillar pages to surface their topical
 // cluster — strategies+scripts+compliance for the operations playbook,

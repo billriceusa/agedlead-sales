@@ -584,6 +584,22 @@ export const PRICE_BENCHMARKS: PriceBenchmarkData[] = [
 
 // ── Helper Functions ──────────────────────────────────────────
 
+/**
+ * Minimum bar for a benchmark to be shown as a headline price or plotted as a
+ * trend point. The marketwatch cron synthesizes monthly estimates with an LLM;
+ * single-provider runs are unreliable (they collapse to round numbers like a
+ * flat $1–$1 range and don't represent a real market sample). We require at
+ * least two providers in the sample to surface a benchmark as fair-market
+ * pricing. Single-provider rows are still retained in Sanity, just not
+ * displayed. Keep this in sync with the publish-side guard in
+ * lib/cron/marketwatch-publish.ts so junk never gets written in the first place.
+ */
+export function isTrustworthyBenchmark(b: {
+  providersSampled?: number;
+}): boolean {
+  return (b.providersSampled ?? 0) >= 2;
+}
+
 /** Get benchmarks for a specific vertical (latest month) */
 export function getBenchmarksByVertical(
   verticalSlug: string

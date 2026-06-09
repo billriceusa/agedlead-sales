@@ -9,6 +9,7 @@ import { JsonLd, breadcrumbJsonLd } from "@/components/json-ld";
 import { VERTICALS, getVertical } from "@/data/verticals";
 import {
   getBenchmarksByVertical,
+  isTrustworthyBenchmark,
   EXCLUSIVITY_LABELS,
   LEAD_TYPE_LABELS,
   type PriceBenchmarkData,
@@ -72,10 +73,16 @@ export default async function VerticalPriceIndexPage({
     { vertical: verticalSlug }
   )) as PriceBenchmarkData[] | null;
   const staticBenchmarks = getBenchmarksByVertical(verticalSlug);
-  const rawBenchmarks: PriceBenchmarkData[] =
+  const sourceBenchmarks: PriceBenchmarkData[] =
     sanityBenchmarks && sanityBenchmarks.length > 0
       ? sanityBenchmarks
       : staticBenchmarks;
+  // Drop single-provider cron estimates before anything downstream uses the
+  // data — the gap-fill model, price tables, "last updated" date, and trend
+  // chart should all be built on reliable benchmarks only.
+  const rawBenchmarks: PriceBenchmarkData[] = sourceBenchmarks.filter(
+    isTrustworthyBenchmark
+  );
 
   // Use the pricing model to fill gaps in age brackets
   const latestMonth = rawBenchmarks[0]?.month || "2026-03";
