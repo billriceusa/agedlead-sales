@@ -120,6 +120,16 @@ Only 1 active lead magnet (prospecting checklist). Playbook says 1-2 per site mi
 
 ---
 
+## Done — data-led internal linking (2026-06-09)
+
+### Internal-linking pass (driven by GSC/GA4 analysis) — DONE 2026-06-09
+Analyzed the GSC export (3 mo: 8,551 impr, 44 clicks, avg pos ~28) + GA4. Finding: high-demand commercial pages (`/lead-types/*`, `/providers/best/*`) rank deep (pos 30–58) while the best-ranking page type (provider profiles, pos ~11) didn't link to them. Built a bidirectional internal-link cluster per vertical: **lead-type guide ↔ price index ↔ best providers ↔ provider profile.**
+- [x] `data/lead-type-vertical-map.ts` — single curated source of truth for the lead-type ↔ vertical relationship (both directions hand-curated to avoid mislinks). **Bug fixed:** `home-services-leads` had no mapping → fell back to `home-services` (not a real vertical) → broken `/price-index/home-services` + `/providers/best/home-services` links on that page. Now correctly → `home-improvement` (verified live).
+- [x] `components/related-links.tsx` — reusable crawlable cross-link grid (SSR, deduped).
+- [x] Provider profiles → link to lead-type guides + best-in-vertical for the verticals they serve (funnels equity from the best-ranking pages to the deep-ranking high-demand pages).
+- [x] `providers/best/[vertical]` + `price-index/[vertical]` → link to their sibling cluster pages + the stats page. Also fixed a stray "Updated monthly" → "Verified quarterly" on providers/best.
+- **Bottleneck noted:** rankings are page 2–6 because the site is young/low-authority; the biggest remaining lever (backlinks) is Bill's offline track. AI-assistant traffic is real (ChatGPT = 3rd-biggest source in GA4), which the data-study assets feed.
+
 ## P2 — Technical & Accuracy
 
 <!-- added 2026-06-08 /brsg-session -->
