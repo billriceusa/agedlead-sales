@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-08T12:01:02.535Z",
+  "lastUpdated": "2026-06-09T12:02:05.861Z",
   "items": [
     {
       "id": "mobile-search-experience",
@@ -8,8 +8,8 @@
       "expectedImpact": "Increase mobile impressions by 150% and improve overall search visibility",
       "priority": "high",
       "firstSeen": "2026-04-14",
-      "lastSeen": "2026-06-08",
-      "timesRepeated": 41,
+      "lastSeen": "2026-06-09",
+      "timesRepeated": 42,
       "status": "open",
       "topicKey": "mobile-search-experience"
     },
@@ -32,8 +32,8 @@
       "expectedImpact": "Increase CTR from 0% to 3-5% for branded terms, capturing 15-25 additional monthly clicks",
       "priority": "high",
       "firstSeen": "2026-04-16",
-      "lastSeen": "2026-06-08",
-      "timesRepeated": 21,
+      "lastSeen": "2026-06-09",
+      "timesRepeated": 22,
       "status": "open",
       "topicKey": "agedleadstore-branded-ctr"
     },
@@ -44,8 +44,8 @@
       "expectedImpact": "Resolve keyword cannibalization and improve rankings for 'aged insurance leads' cluster",
       "priority": "high",
       "firstSeen": "2026-05-02",
-      "lastSeen": "2026-05-31",
-      "timesRepeated": 11,
+      "lastSeen": "2026-06-09",
+      "timesRepeated": 12,
       "status": "open",
       "topicKey": "insurance-leads-cannibalization"
     },
@@ -56,8 +56,8 @@
       "expectedImpact": "Convert 20-30% of current impressions to clicks, adding 10-15 monthly organic sessions",
       "priority": "high",
       "firstSeen": "2026-04-22",
-      "lastSeen": "2026-06-08",
-      "timesRepeated": 9,
+      "lastSeen": "2026-06-09",
+      "timesRepeated": 10,
       "status": "open",
       "topicKey": "high-impression-low-click-pages"
     },
@@ -1154,6 +1154,18 @@
       "topicKey": "long-tail-keyword-expansion"
     },
     {
+      "id": "leverage-direct-traffic-growth-for-email-capture",
+      "title": "Leverage Direct Traffic Growth for Email Capture",
+      "description": "With 52 direct sessions weekly, add exit-intent popups and content upgrades on high-traffic pages (/contact, /newsletter, /playbook) to capture emails. Create lead magnets like \"Aged Lead Buyer's Checklist\" or \"ROI Calculator Spreadsheet.\"",
+      "expectedImpact": "Convert 10-15% of direct traffic to email subscribers, building owned audience for affiliate promotions",
+      "priority": "low",
+      "firstSeen": "2026-05-20",
+      "lastSeen": "2026-06-09",
+      "timesRepeated": 2,
+      "status": "open",
+      "topicKey": "leverage-direct-traffic-growth-for-email-capture"
+    },
+    {
       "id": "content-gap-analysis",
       "title": "Content Gap Analysis",
       "description": "Develop content targeting queries showing in positions 60-90+ like 'how much do insurance leads cost' (pos 73) and 'cpl calculator' (pos 88) to capture long-tail search volume.",
@@ -1296,18 +1308,6 @@
       "timesRepeated": 1,
       "status": "open",
       "topicKey": "optimize-internal-linking-structure-for-playbook-pages"
-    },
-    {
-      "id": "leverage-direct-traffic-growth-for-email-capture",
-      "title": "Leverage Direct Traffic Growth for Email Capture",
-      "description": "With 52 direct sessions weekly, add exit-intent popups and content upgrades on high-traffic pages (/contact, /newsletter, /playbook) to capture emails. Create lead magnets like \"Aged Lead Buyer's Checklist\" or \"ROI Calculator Spreadsheet.\"",
-      "expectedImpact": "Convert 10-15% of direct traffic to email subscribers, building owned audience for affiliate promotions",
-      "priority": "low",
-      "firstSeen": "2026-05-20",
-      "lastSeen": "2026-05-20",
-      "timesRepeated": 1,
-      "status": "open",
-      "topicKey": "leverage-direct-traffic-growth-for-email-capture"
     },
     {
       "id": "leverage-direct-traffic-with-email-capture",
