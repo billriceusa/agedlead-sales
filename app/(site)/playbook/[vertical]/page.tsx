@@ -5,7 +5,10 @@ import { FLAGSHIP_VERTICALS, allFlagshipVerticals } from "@/data/flagship-vertic
 import type { Vertical } from "@/lib/email-course/types";
 import { FlagshipSignupForm } from "@/components/flagship/flagship-signup-form";
 import { Breadcrumbs } from "@/components/breadcrumbs";
-import { JsonLd, breadcrumbJsonLd } from "@/components/json-ld";
+import { JsonLd, breadcrumbJsonLd, faqJsonLd } from "@/components/json-ld";
+import { sanityFetch } from "@/sanity/lib/fetch";
+import { glossaryTooltipQuery } from "@/sanity/lib/queries";
+import { makeGlossaryLinker } from "@/components/glossary-static";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
@@ -46,6 +49,10 @@ export default async function FlagshipVerticalPage({ params }: PageProps) {
 
   const config = FLAGSHIP_VERTICALS[vertical];
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const glossary: any = await sanityFetch(glossaryTooltipQuery);
+  const linkGlossary = makeGlossaryLinker(glossary || []);
+
   return (
     <>
       <JsonLd
@@ -54,6 +61,11 @@ export default async function FlagshipVerticalPage({ params }: PageProps) {
           { name: "Playbook", url: `${baseUrl}/playbook` },
           { name: config.title, url: `${baseUrl}/playbook/${vertical}` },
         ])}
+      />
+      <JsonLd
+        data={faqJsonLd(
+          config.faqs.map((f) => ({ question: f.q, answer: f.a }))
+        )}
       />
 
       <section className="bg-gradient-to-br from-zinc-950 via-blue-950 to-zinc-900 py-20 text-white">
@@ -148,6 +160,46 @@ export default async function FlagshipVerticalPage({ params }: PageProps) {
                 </div>
               ))}
             </div>
+          </div>
+
+          {/* Long-form SEO depth — operator/"build-a-system" intent, kept BELOW
+              the conversion fold so it doesn't dilute the signup form above.
+              Glossary terms link to /glossary/* (crawlable internal links). */}
+          {config.deepDive && config.deepDive.length > 0 && (
+            <div className="mt-16 space-y-12">
+              {config.deepDive.map((block) => (
+                <article key={block.heading}>
+                  <h2 className="mb-5 text-2xl font-bold text-zinc-900 dark:text-white sm:text-3xl">
+                    {block.heading}
+                  </h2>
+                  {block.body.split("\n\n").map((para, i) => (
+                    <p
+                      key={i}
+                      className="mb-4 leading-relaxed text-zinc-600 dark:text-zinc-400"
+                    >
+                      {linkGlossary(para)}
+                    </p>
+                  ))}
+                </article>
+              ))}
+            </div>
+          )}
+
+          {/* Closing CTA — repeat the signup so deep-scrollers can convert
+              without scrolling back to the hero form. */}
+          <div className="mt-16 rounded-2xl border border-blue-200 bg-blue-50 p-6 dark:border-blue-900/50 dark:bg-blue-950/30 sm:p-8">
+            <h2 className="text-2xl font-bold text-zinc-900 dark:text-white">
+              Get the {config.title} edition free
+            </h2>
+            <p className="mt-3 max-w-2xl text-zinc-600 dark:text-zinc-300">
+              The complete playbook, workbook, and 10-day email course —
+              everything above, built into a system you can run this week.
+            </p>
+            <FlagshipSignupForm
+              vertical={config.slug}
+              verticalTitle={config.title}
+              context={`flagship-landing-${config.slug}-footer`}
+            />
           </div>
 
           <div className="mt-12 text-center">
