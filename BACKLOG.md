@@ -108,8 +108,8 @@ Structure cornerstone content as 3-5 part series. Gate parts 2+ behind email. Ea
 - Note: this is a **vertical** (provider categorization), distinct from the 9 `/lead-types/*` content pages. A dedicated `/lead-types/homeowners-insurance` depth page is a separate, optional follow-up.
 - **Impact:** Completeness of provider directory; a major insurance category was previously uncounted.
 
-### Cross-provider vertical audit
-Aged Lead Store's verticals were corrected on 2026-05-20 after the original list overstated their offering (medicare, mca-business-loans, debt-settlement, auto-warranty all removed — they don't sell those). The other 14 providers in `data/providers.ts` likely have similar drift. A pass per provider against their live site (~5-10 min each) would tighten the directory's accuracy.
+### Cross-provider vertical audit — automated pass attempted 2026-06-09, NOT applied
+An automated live-site audit of the other 14 providers was run but found **too unreliable to apply**: it produced false removals from failed/encoding-broken scrapes (e.g., DataToLeads → "remove 9 verticals" when the page simply didn't render; we'd separately verified DataToLeads sells homeowners) and false additions from weak keyword/imagery inference (e.g., SmartFinancial "+solar/+mortgage/+legal" inferred from a stock image and the sentence "mortgage lenders require homeowners insurance"; QuoteWizard "+mortgage" from a licensing footer). Curated `lastVerified`-dated data was left untouched — per no-fabrication, not overwritten with low-quality scrape inferences. **Needs deliberate per-provider human verification** (the homeowners-insurance add was done that way and is trustworthy). The only concretely-evidenced automated finding worth a manual re-check: Aged Leads Depot may also sell medicare + health (explicit `/aged-medicare-leads`, `/aged-health-insurance-leads` pages).
 
 ### Additional Lead Magnets
 Only 1 active lead magnet (prospecting checklist). Playbook says 1-2 per site minimum:
