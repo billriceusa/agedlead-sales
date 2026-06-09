@@ -31,7 +31,7 @@ export function getPricingDistributionStats() {
     (b) => b.leadAgeBracket === "real-time" && b.exclusivity === "shared"
   );
   const agedBenchmarks = PRICE_BENCHMARKS.filter(
-    (b) => b.leadAgeBracket === "31-85 days" && b.exclusivity === "shared"
+    (b) => b.leadAgeBracket === "31-85-days" && b.exclusivity === "shared"
   );
 
   const verticalPricing = VERTICALS.map((v) => {
