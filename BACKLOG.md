@@ -154,10 +154,10 @@ Survey-style funnel: lead type, volume, experience, budget, email. Outputs perso
 - Minimum 3 unique data dimensions per page
 
 ### Original Data Visualizations
-One original chart per key article. Interactive with embed codes (Recharts).
-- Price trend charts for price-index pages
-- Vertical comparison visualizations
-- Provider rating radar charts
+- [x] **Price trend charts on price-index pages — DONE 2026-06-09.** Zero-dependency, server-rendered SVG (`components/price-trend-chart.tsx`, crawlable, no client JS). Plots the median aged-lead price + low/high range band across tracked months, picking the best-covered single aged series per vertical (no mixed denominators), 0-baseline, observed data only (no interpolation/model-fills), and only renders with 3+ real months. Live on auto-insurance, life-insurance, mca-business-loans now; more appear as the marketwatch cron accumulates months. Makes the price-index a more linkable data-study asset.
+- [ ] Vertical comparison visualizations
+- [ ] Provider rating radar charts
+- (Charts are SSR SVG by design — no Recharts/client dep needed.)
 
 ### Video Content (YouTube)
 60-90 second summary videos for key articles, published to YouTube with `VideoObject` schema on the blog post. Google Discover prioritizes video.
