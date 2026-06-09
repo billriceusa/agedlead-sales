@@ -3,9 +3,12 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ProviderCard } from "@/components/provider-card";
 import { CtaBanner } from "@/components/cta-banner";
+import { RelatedLinks } from "@/components/related-links";
 import { JsonLd, breadcrumbJsonLd } from "@/components/json-ld";
 import { VERTICALS, getVertical } from "@/data/verticals";
 import { getProvidersByVertical } from "@/data/providers";
+import { LEAD_TYPES } from "@/data/lead-types";
+import { leadTypeForVertical } from "@/data/lead-type-vertical-map";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
@@ -25,7 +28,7 @@ export async function generateMetadata({
   const title = `Best ${vertical.name} Lead Providers (2026)`;
   return {
     title,
-    description: `Compare the top-rated ${vertical.name.toLowerCase()} lead providers. Independent reviews, transparent ratings, and honest recommendations. Updated monthly.`,
+    description: `Compare the top-rated ${vertical.name.toLowerCase()} lead providers. Independent reviews, transparent ratings, and honest recommendations. Verified quarterly.`,
     alternates: { canonical: `${baseUrl}/providers/best/${verticalSlug}` },
     openGraph: {
       title: `${title} | Aged Lead Sales`,
@@ -50,6 +53,33 @@ export default async function BestByVerticalPage({
   if (!vertical) return notFound();
 
   const providers = getProvidersByVertical(verticalSlug);
+
+  // Internal-linking cluster: tie this best-providers page to its lead-type
+  // guide and price benchmarks for the same vertical.
+  const guideSlug = leadTypeForVertical(verticalSlug);
+  const guide = guideSlug ? LEAD_TYPES[guideSlug] : undefined;
+  const relatedLinks = [
+    guide && {
+      href: `/lead-types/${guideSlug}`,
+      label: `${vertical.name} lead buyer's guide`,
+      description: `How aged ${vertical.name.toLowerCase()} leads work, pricing, and how to work them.`,
+    },
+    {
+      href: `/price-index/${verticalSlug}`,
+      label: `${vertical.name} price benchmarks`,
+      description: `What you should pay for ${vertical.name.toLowerCase()} leads by age and exclusivity.`,
+    },
+    {
+      href: "/blog/aged-lead-industry-statistics",
+      label: "Aged lead industry statistics",
+      description: "Pricing, contact rates, and provider data across every vertical.",
+    },
+    {
+      href: "/providers",
+      label: "Compare all lead providers",
+      description: "The full directory with our 6-dimension ratings.",
+    },
+  ];
 
   return (
     <>
@@ -141,6 +171,11 @@ export default async function BestByVerticalPage({
           )}
         </div>
       </section>
+
+      <RelatedLinks
+        title={`More on ${vertical.name.toLowerCase()} leads`}
+        links={relatedLinks}
+      />
 
       <CtaBanner />
     </>

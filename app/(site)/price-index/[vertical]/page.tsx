@@ -4,9 +4,11 @@ import Link from "next/link";
 import { PriceBenchmarkTable } from "@/components/price-benchmark-table";
 import { PriceTrendChart, type PriceTrendPoint } from "@/components/price-trend-chart";
 import { CtaBanner } from "@/components/cta-banner";
+import { RelatedLinks } from "@/components/related-links";
 import { CiteThisButton } from "@/components/cite-this-button";
 import { JsonLd, breadcrumbJsonLd } from "@/components/json-ld";
 import { VERTICALS, getVertical } from "@/data/verticals";
+import { leadTypeForVertical } from "@/data/lead-type-vertical-map";
 import {
   getBenchmarksByVertical,
   isTrustworthyBenchmark,
@@ -66,6 +68,9 @@ export default async function VerticalPriceIndexPage({
   const { vertical: verticalSlug } = await params;
   const vertical = getVertical(verticalSlug);
   if (!vertical) return notFound();
+
+  // Internal-linking cluster: link to this vertical's lead-type buyer's guide.
+  const guideSlug = leadTypeForVertical(verticalSlug);
 
   // Prefer Sanity benchmarks (kept fresh by the marketwatch cron); fall back
   // to the static seed when Sanity is empty or unreachable.
@@ -338,6 +343,29 @@ export default async function VerticalPriceIndexPage({
           </div>
         </div>
       </section>
+
+      <RelatedLinks
+        title={`More on ${vertical.name.toLowerCase()} leads`}
+        links={[
+          guideSlug
+            ? {
+                href: `/lead-types/${guideSlug}`,
+                label: `${vertical.name} lead buyer's guide`,
+                description: `How aged ${vertical.name.toLowerCase()} leads work, pricing, and how to work them.`,
+              }
+            : null,
+          {
+            href: `/providers/best/${verticalSlug}`,
+            label: `Best ${vertical.name.toLowerCase()} lead providers`,
+            description: `Top-rated providers for ${vertical.name.toLowerCase()} leads, independently scored.`,
+          },
+          {
+            href: "/calculators/know-your-cpl",
+            label: "Cost-per-lead calculator",
+            description: "Work out your true cost per acquired customer.",
+          },
+        ]}
+      />
 
       <CtaBanner />
     </>

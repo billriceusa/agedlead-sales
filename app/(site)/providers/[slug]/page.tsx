@@ -11,9 +11,12 @@ import { ProviderRatingBar } from "@/components/provider-rating-bar";
 import { ProviderRatingRadar } from "@/components/provider-rating-radar";
 import { FreshnessIndicator } from "@/components/freshness-indicator";
 import { CtaBanner } from "@/components/cta-banner";
+import { RelatedLinks } from "@/components/related-links";
 import { JsonLd, breadcrumbJsonLd } from "@/components/json-ld";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { getProvider, PROVIDERS } from "@/data/providers";
+import { getVertical } from "@/data/verticals";
+import { leadTypeForVertical } from "@/data/lead-type-vertical-map";
 import { ProviderCompareSelector } from "@/components/provider-compare-selector";
 import { TrackedOutboundLink } from "@/components/tracked-outbound-link";
 import { providerWebsiteUrl, isAffiliateProvider } from "@/lib/provider-links";
@@ -135,6 +138,37 @@ export default async function ProviderProfilePage({
     { label: "Flexibility", score: p.ratingFlexibility, weight: "15%" },
     { label: "Platform & Delivery", score: p.ratingPlatform, weight: "15%" },
     { label: "Reputation & Track Record", score: p.ratingReputation, weight: "10%" },
+  ];
+
+  // Internal-linking cluster: from this provider profile (our best-ranking
+  // page type) funnel equity to the high-demand lead-type guides and
+  // best-in-vertical pages for the verticals this provider actually serves.
+  const servedWithGuide = (p.verticals || [])
+    .filter((v) => leadTypeForVertical(v))
+    .slice(0, 4);
+  const relatedLinks = [
+    ...servedWithGuide.map((v) => {
+      const vname = getVertical(v)?.name || v;
+      return {
+        href: `/lead-types/${leadTypeForVertical(v)}`,
+        label: `Aged ${vname.toLowerCase()} leads`,
+        description: `Buyer's guide: pricing, sourcing, and how to work ${vname.toLowerCase()} leads.`,
+      };
+    }),
+    servedWithGuide[0]
+      ? {
+          href: `/providers/best/${servedWithGuide[0]}`,
+          label: `Best ${(
+            getVertical(servedWithGuide[0])?.name || servedWithGuide[0]
+          ).toLowerCase()} providers`,
+          description: `See how ${p.name} ranks against competitors.`,
+        }
+      : null,
+    {
+      href: "/price-index",
+      label: "Lead Price Index",
+      description: "Quarterly verified pricing benchmarks across every vertical.",
+    },
   ];
 
   // Short axis labels for the radar (the bar list keeps the full names).
@@ -476,6 +510,12 @@ export default async function ProviderProfilePage({
           </div>
         </div>
       </section>
+
+      <RelatedLinks
+        title={`Explore ${p.name}'s verticals`}
+        intro="Buyer's guides, pricing, and provider comparisons for the lead types this provider serves."
+        links={relatedLinks}
+      />
 
       {/* Disclosure */}
       <section className="border-t border-zinc-200 bg-white py-8 dark:border-zinc-800 dark:bg-zinc-950">

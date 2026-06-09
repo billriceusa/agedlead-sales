@@ -13,6 +13,7 @@ import { JsonLd, breadcrumbJsonLd, faqJsonLd } from "@/components/json-ld";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { NewsletterSignup } from "@/components/newsletter-signup";
 import { LEAD_TYPES } from "@/data/lead-types";
+import { verticalForLeadType } from "@/data/lead-type-vertical-map";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
@@ -69,18 +70,7 @@ export default async function LeadTypePage({ params }: Props) {
   const icon = leadType?.icon || data?.icon || "";
   const description =
     leadType?.shortDescription || data?.heroDescription || "";
-  // Map lead type slugs to vertical slugs (they don't always match)
-  const LEAD_TYPE_TO_VERTICAL: Record<string, string> = {
-    "mortgage-leads": "mortgage",
-    "insurance-leads": "auto-insurance",
-    "final-expense-leads": "final-expense",
-    "iul-leads": "annuity-iul",
-    "ssdi-leads": "life-insurance",
-    "mva-leads": "legal",
-    "solar-leads": "solar",
-    "medicare-leads": "medicare",
-  };
-  const verticalSlug = LEAD_TYPE_TO_VERTICAL[slug] || slug.replace(/-leads$/, "");
+  const verticalSlug = verticalForLeadType(slug);
   const compareHref = `/providers/best/${verticalSlug}`;
   const imageUrl = leadType?.mainImage
     ? urlForImage(leadType.mainImage)?.width(1200).url()
