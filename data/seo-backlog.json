@@ -1,11 +1,204 @@
 {
-  "lastUpdated": "2026-06-03T10:01:38.171Z",
+  "lastUpdated": "2026-06-10T10:01:50.795Z",
   "items": [
+    {
+      "id": "finding-002",
+      "createdAt": "2026-06-03T10:01:38.171Z",
+      "updatedAt": "2026-06-10T10:01:50.795Z",
+      "status": "open",
+      "priority": 2,
+      "category": "e-e-a-t",
+      "severity": "high",
+      "title": "YMYL financial content lacks sufficient expertise demonstration",
+      "description": "Content targeting insurance agents, mortgage brokers, and financial advisors touches YMYL (Your Money or Your Life) topics. The enhanced E-E-A-T guidelines require stronger demonstration of expertise and trustworthiness for financial services content, especially given the affiliate nature of the site.",
+      "recommendation": "Create comprehensive author bio pages with specific credentials, years of experience, client testimonials, speaking engagements, and industry certifications. Add author bylines with mini-bios on each post. Include 'About the Expert' sections highlighting relevant experience for each vertical (insurance, mortgage, solar, etc.).",
+      "effort": "medium",
+      "affectedPages": [
+        "/about",
+        "/blog/*",
+        "/author/bill-rice"
+      ],
+      "sourceAudit": "2026-06-03",
+      "notes": "Re-identified in audit 2026-06-10"
+    },
+    {
+      "id": "finding-003",
+      "createdAt": "2026-06-10T10:01:50.795Z",
+      "updatedAt": "2026-06-10T10:01:50.795Z",
+      "status": "open",
+      "priority": 2,
+      "category": "affiliate-compliance",
+      "severity": "high",
+      "title": "Affiliate disclosure prominence needs 2024 FTC compliance enhancement",
+      "description": "While affiliate links use proper rel attributes and site has disclosure, the FTC has increased enforcement of prominent, clear disclosures that appear before affiliate content and are easily understood by consumers.",
+      "recommendation": "Add prominent affiliate disclosure boxes at the top of each post mentioning AgedLeadStore.com. Use clear language like 'This post contains affiliate links to AgedLeadStore.com, which means we earn a commission if you make a purchase.' Ensure disclosures are mobile-friendly and above-the-fold.",
+      "effort": "small",
+      "affectedPages": [
+        "/blog/*",
+        "/guides/*",
+        "/lead-types/*"
+      ],
+      "sourceAudit": "2026-06-10"
+    },
+    {
+      "id": "finding-004",
+      "createdAt": "2026-05-13T10:01:23.622Z",
+      "updatedAt": "2026-06-10T10:01:50.795Z",
+      "status": "open",
+      "priority": 3,
+      "category": "structured-data",
+      "severity": "medium",
+      "title": "Missing Product and Review schema reduces rich results eligibility",
+      "description": "Content about AgedLeadStore.com and aged lead services lacks Product and Review structured data, missing opportunities for rich results that could improve click-through rates and visibility in search results.",
+      "recommendation": "Implement Product schema for AgedLeadStore.com services and Review schema for genuine service evaluations. Ensure reviews reflect actual experience and include specific details about lead quality, delivery times, and conversion rates. Follow Google's updated structured data policies to avoid spam classification.",
+      "effort": "medium",
+      "affectedPages": [
+        "/lead-types/*",
+        "/blog/agedleadstore-review",
+        "/guides/*"
+      ],
+      "sourceAudit": "2026-05-13",
+      "notes": "Re-identified in audit 2026-06-10"
+    },
+    {
+      "id": "finding-007",
+      "createdAt": "2026-05-20T10:01:43.743Z",
+      "updatedAt": "2026-06-10T10:01:50.795Z",
+      "status": "open",
+      "priority": 3,
+      "category": "internal-linking",
+      "severity": "medium",
+      "title": "Glossary cross-linking underutilized for topical authority",
+      "description": "With 77 glossary terms, there's significant opportunity to build topical authority through strategic internal linking between blog posts, glossary terms, and lead type pages. This supports Google's understanding of site expertise depth.",
+      "recommendation": "Implement automated internal linking system to connect glossary terms with relevant blog posts. Add 'Related Terms' sections to glossary pages. Create topic clusters linking pillar pages (lead types) with supporting blog posts and relevant glossary definitions. Aim for 3-5 contextual internal links per post.",
+      "effort": "medium",
+      "affectedPages": [
+        "/glossary/*",
+        "/blog/*",
+        "/lead-types/*"
+      ],
+      "sourceAudit": "2026-05-20",
+      "notes": "Re-identified in audit 2026-06-10"
+    },
+    {
+      "id": "finding-006",
+      "createdAt": "2026-06-10T10:01:50.795Z",
+      "updatedAt": "2026-06-10T10:01:50.795Z",
+      "status": "open",
+      "priority": 3,
+      "category": "technical-seo",
+      "severity": "medium",
+      "title": "Core Web Vitals optimization needed for INP transition",
+      "description": "Google is replacing FID with INP (Interaction to Next Paint) in March 2024, requiring focus on interaction responsiveness. Next.js/Vercel stack should perform well, but affiliate tracking and content loading may impact metrics.",
+      "recommendation": "Audit Core Web Vitals with focus on INP metrics. Optimize affiliate link tracking in lib/affiliate.ts for minimal performance impact. Implement lazy loading for non-critical content, optimize images with Next.js Image component, and minimize JavaScript bundle size. Monitor real user metrics via Vercel Analytics.",
+      "effort": "medium",
+      "affectedPages": [
+        "site-wide"
+      ],
+      "sourceAudit": "2026-06-10"
+    },
+    {
+      "id": "finding-007",
+      "createdAt": "2026-06-03T10:01:38.171Z",
+      "updatedAt": "2026-06-10T10:01:50.795Z",
+      "status": "open",
+      "priority": 3,
+      "category": "content-quality",
+      "severity": "medium",
+      "title": "Content pillar gaps undermine comprehensive topical coverage",
+      "description": "While content pillars are defined (Vertical Playbooks, Channel Tactics, Role Guides, Metrics & Optimization, Compliance), there may be gaps in comprehensive coverage that limit topical authority signals to Google's algorithms.",
+      "recommendation": "Conduct content gap analysis for each pillar. Create content calendar to fill missing subtopics within each vertical (insurance types, mortgage products, solar installation processes). Develop comprehensive guides for each major topic cluster. Aim for 10-15 pieces of supporting content per main pillar topic.",
+      "effort": "large",
+      "affectedPages": [
+        "/blog",
+        "/guides",
+        "/playbooks"
+      ],
+      "sourceAudit": "2026-06-03",
+      "notes": "Re-identified in audit 2026-06-10"
+    },
+    {
+      "id": "finding-011",
+      "createdAt": "2026-05-06T10:01:31.937Z",
+      "updatedAt": "2026-06-10T10:01:50.795Z",
+      "status": "open",
+      "priority": 3,
+      "category": "mobile",
+      "severity": "low",
+      "title": "Mobile affiliate link interaction optimization needed",
+      "description": "With mobile-first indexing and the upcoming INP metric, affiliate link interactions need optimization for mobile users to ensure good user experience signals and proper conversion tracking.",
+      "recommendation": "Ensure affiliate links have adequate touch targets (44px minimum), clear visual indicators, and smooth interaction feedback. Test affiliate link tracking on mobile devices. Consider mobile-specific call-to-action styling and positioning for better user experience.",
+      "effort": "small",
+      "affectedPages": [
+        "/blog/*",
+        "/lead-types/*",
+        "/guides/*"
+      ],
+      "sourceAudit": "2026-05-06",
+      "notes": "Re-identified in audit 2026-06-10"
+    },
+    {
+      "id": "finding-009",
+      "createdAt": "2026-04-29T10:02:06.586Z",
+      "updatedAt": "2026-06-10T10:01:50.795Z",
+      "status": "open",
+      "priority": 4,
+      "category": "e-e-a-t",
+      "severity": "medium",
+      "title": "Case studies lack verifiable sourcing for credibility",
+      "description": "The Helpful Content System and E-E-A-T guidelines emphasize verifiable, first-hand experience. Case studies and success stories need stronger credibility signals to demonstrate genuine expertise rather than hypothetical scenarios.",
+      "recommendation": "Develop case studies with anonymized but specific details: actual conversion rates, time periods, lead volumes, and outcomes. Include methodology explanations and lessons learned. Add disclaimers about typical results. Consider client testimonials or third-party validation where possible while maintaining privacy.",
+      "effort": "medium",
+      "affectedPages": [
+        "/blog/*",
+        "/guides/*"
+      ],
+      "sourceAudit": "2026-04-29",
+      "notes": "Re-identified in audit 2026-06-10"
+    },
+    {
+      "id": "finding-010",
+      "createdAt": "2026-06-03T10:01:38.171Z",
+      "updatedAt": "2026-06-10T10:01:50.795Z",
+      "status": "open",
+      "priority": 4,
+      "category": "structured-data",
+      "severity": "low",
+      "title": "FAQ schema opportunities on glossary pages underutilized",
+      "description": "Glossary pages could benefit from FAQ structured data to capture featured snippets and improve visibility for definition-based queries, supporting the site's role as an authoritative resource.",
+      "recommendation": "Add FAQ schema to glossary pages with common questions like 'What is [term]?', 'How does [term] work?', 'Why is [term] important?' Use natural language that matches user search queries. Ensure FAQ content adds value beyond the basic definition.",
+      "effort": "small",
+      "affectedPages": [
+        "/glossary/*"
+      ],
+      "sourceAudit": "2026-06-03",
+      "notes": "Re-identified in audit 2026-06-10"
+    },
+    {
+      "id": "finding-001",
+      "createdAt": "2026-04-29T10:02:06.586Z",
+      "updatedAt": "2026-06-10T10:01:50.795Z",
+      "status": "completed",
+      "priority": 2,
+      "category": "content-quality",
+      "severity": "high",
+      "title": "Content depth insufficient for March 2024 Core Update standards",
+      "description": "The March 2024 Core Update emphasized rewarding content with first-hand experience and reducing thin affiliate content by 40%. While we have 71 blog posts with good topical coverage, many posts may lack the depth and original insights needed to demonstrate genuine expertise in aged lead generation.",
+      "recommendation": "Enhance 15-20 top-performing posts with specific data points, case studies, screenshots of actual campaigns, conversion metrics, and detailed implementation guides. Add 'What We've Learned' sections with specific examples from Bill Rice's experience. Include failure cases and lessons learned to demonstrate authentic expertise.",
+      "effort": "large",
+      "affectedPages": [
+        "/blog",
+        "/guides",
+        "/playbooks"
+      ],
+      "sourceAudit": "2026-04-29",
+      "notes": "Re-identified in audit 2026-06-10"
+    },
     {
       "id": "finding-001",
       "createdAt": "2026-06-03T10:01:38.171Z",
-      "updatedAt": "2026-06-03T10:01:38.171Z",
-      "status": "open",
+      "updatedAt": "2026-06-10T10:01:50.795Z",
+      "status": "completed",
       "priority": 2,
       "category": "content-quality",
       "severity": "high",
@@ -16,32 +209,14 @@
       "affectedPages": [
         "/blog/*"
       ],
-      "sourceAudit": "2026-06-03"
-    },
-    {
-      "id": "finding-002",
-      "createdAt": "2026-06-03T10:01:38.171Z",
-      "updatedAt": "2026-06-03T10:01:38.171Z",
-      "status": "open",
-      "priority": 2,
-      "category": "e-e-a-t",
-      "severity": "high",
-      "title": "YMYL financial content lacks sufficient expertise demonstration",
-      "description": "Insurance and financial lead generation content falls under YMYL guidelines requiring exceptional expertise demonstration. Current author bio and credentials need strengthening to meet heightened E-E-A-T requirements for financial topics.",
-      "recommendation": "Enhance Bill Rice's author profile with specific insurance industry certifications, years of experience metrics, client success stories, speaking engagements, and links to industry publications. Add author bylines to all financial content with expanded bio sections.",
-      "effort": "medium",
-      "affectedPages": [
-        "/about",
-        "/blog/*",
-        "/glossary/*"
-      ],
-      "sourceAudit": "2026-06-03"
+      "sourceAudit": "2026-06-03",
+      "notes": "Not found in audit 2026-06-10 — appears resolved"
     },
     {
       "id": "finding-003",
       "createdAt": "2026-05-27T10:01:36.471Z",
-      "updatedAt": "2026-06-03T10:01:38.171Z",
-      "status": "open",
+      "updatedAt": "2026-06-10T10:01:50.795Z",
+      "status": "completed",
       "priority": 2,
       "category": "affiliate-compliance",
       "severity": "high",
@@ -54,176 +229,7 @@
         "/lead-types/*"
       ],
       "sourceAudit": "2026-05-27",
-      "notes": "Re-identified in audit 2026-06-03"
-    },
-    {
-      "id": "finding-004",
-      "createdAt": "2026-06-03T10:01:38.171Z",
-      "updatedAt": "2026-06-03T10:01:38.171Z",
-      "status": "open",
-      "priority": 3,
-      "category": "content-quality",
-      "severity": "medium",
-      "title": "Missing images reduce engagement and user experience signals",
-      "description": "Two recent posts lack featured images, which impacts user engagement metrics that Google uses as quality signals. Visual content is increasingly important for content quality assessment.",
-      "recommendation": "Create custom infographics or charts for missing posts. Develop image templates for consistent visual branding. Implement automated image optimization and WebP format delivery through Next.js Image component.",
-      "effort": "small",
-      "affectedPages": [
-        "/blog/smart-agents-buy-aged-leads-instead-facebook-ads",
-        "/blog/life-insurance-aged-lead-roi"
-      ],
-      "sourceAudit": "2026-06-03"
-    },
-    {
-      "id": "finding-004",
-      "createdAt": "2026-05-13T10:01:23.622Z",
-      "updatedAt": "2026-06-03T10:01:38.171Z",
-      "status": "open",
-      "priority": 3,
-      "category": "structured-data",
-      "severity": "medium",
-      "title": "Missing Product and Review schema reduces rich results eligibility",
-      "description": "Content reviewing lead generation services lacks Product and Review schema markup, missing opportunities for rich snippets and enhanced search visibility in competitive affiliate space.",
-      "recommendation": "Implement Product schema for AgedLeadStore.com reviews with aggregateRating, offers, and brand information. Add Review schema to comparison posts with author ratings and detailed pros/cons structured data.",
-      "effort": "medium",
-      "affectedPages": [
-        "/blog/aged-lead-store-review-2026",
-        "/blog/*review*",
-        "/blog/*comparison*"
-      ],
-      "sourceAudit": "2026-05-13",
-      "notes": "Re-identified in audit 2026-06-03"
-    },
-    {
-      "id": "finding-007",
-      "createdAt": "2026-05-20T10:01:43.743Z",
-      "updatedAt": "2026-06-03T10:01:38.171Z",
-      "status": "open",
-      "priority": 3,
-      "category": "internal-linking",
-      "severity": "medium",
-      "title": "Glossary cross-linking underutilized for topical authority",
-      "description": "77 glossary terms represent significant topical authority opportunity, but cross-linking between glossary and blog content appears limited. This reduces semantic relationship signals to Google.",
-      "recommendation": "Implement automated contextual linking from blog posts to relevant glossary terms. Create glossary term clusters around core topics. Add 'Related Terms' sections to each glossary page with strategic internal links.",
-      "effort": "medium",
-      "affectedPages": [
-        "/glossary/*",
-        "/blog/*"
-      ],
-      "sourceAudit": "2026-05-20",
-      "notes": "Re-identified in audit 2026-06-03"
-    },
-    {
-      "id": "finding-007",
-      "createdAt": "2026-06-03T10:01:38.171Z",
-      "updatedAt": "2026-06-03T10:01:38.171Z",
-      "status": "open",
-      "priority": 3,
-      "category": "content-quality",
-      "severity": "medium",
-      "title": "Content pillar gaps undermine comprehensive topical coverage",
-      "description": "Current content pillars (Vertical Playbooks, Channel Tactics, Role Guides, Metrics & Optimization, Compliance) have gaps that prevent comprehensive topical authority demonstration required by Helpful Content System.",
-      "recommendation": "Create comprehensive playbook content for each vertical (insurance, mortgage, solar, etc.). Develop step-by-step implementation guides for each channel tactic. Ensure balanced content distribution across all pillars.",
-      "effort": "large",
-      "affectedPages": [
-        "/playbooks/*",
-        "/guides/*",
-        "/blog/*"
-      ],
-      "sourceAudit": "2026-06-03"
-    },
-    {
-      "id": "finding-008",
-      "createdAt": "2026-06-03T10:01:38.171Z",
-      "updatedAt": "2026-06-03T10:01:38.171Z",
-      "status": "open",
-      "priority": 3,
-      "category": "technical-seo",
-      "severity": "medium",
-      "title": "Core Web Vitals optimization needed for updated May 2024 thresholds",
-      "description": "Google's updated Core Web Vitals thresholds are more stringent. Next.js/Vercel setup should be optimized to ensure consistent 'good' ratings across all metrics, especially for affiliate link interactions.",
-      "recommendation": "Implement Core Web Vitals monitoring with real user metrics. Optimize LCP through image preloading and font optimization. Minimize CLS through proper image dimensions and layout reservations. Monitor INP for affiliate link interactions.",
-      "effort": "medium",
-      "affectedPages": [
-        "/*"
-      ],
-      "sourceAudit": "2026-06-03"
-    },
-    {
-      "id": "finding-011",
-      "createdAt": "2026-05-06T10:01:31.937Z",
-      "updatedAt": "2026-06-03T10:01:38.171Z",
-      "status": "open",
-      "priority": 3,
-      "category": "mobile",
-      "severity": "low",
-      "title": "Mobile affiliate link interaction optimization needed",
-      "description": "Affiliate links and CTAs may not be optimized for mobile touch interactions, potentially impacting user experience signals and conversion rates on mobile devices.",
-      "recommendation": "Ensure affiliate links have adequate touch targets (44px minimum). Optimize CTA button sizing and spacing for mobile. Test affiliate link interactions across devices to ensure smooth user experience.",
-      "effort": "small",
-      "affectedPages": [
-        "/blog/*",
-        "/lead-types/*"
-      ],
-      "sourceAudit": "2026-05-06",
-      "notes": "Re-identified in audit 2026-06-03"
-    },
-    {
-      "id": "finding-009",
-      "createdAt": "2026-04-29T10:02:06.586Z",
-      "updatedAt": "2026-06-03T10:01:38.171Z",
-      "status": "open",
-      "priority": 4,
-      "category": "e-e-a-t",
-      "severity": "medium",
-      "title": "Case studies lack verifiable sourcing for credibility",
-      "description": "Content includes performance claims and case studies without verifiable sources or detailed methodology, reducing trustworthiness signals important for YMYL content and affiliate recommendations.",
-      "recommendation": "Add detailed methodology sections to case studies. Include anonymized but verifiable client data. Provide data sources and calculation methods. Consider third-party validation for significant performance claims.",
-      "effort": "medium",
-      "affectedPages": [
-        "/blog/life-insurance-aged-lead-roi",
-        "/blog/*case-study*",
-        "/blog/*benchmark*"
-      ],
-      "sourceAudit": "2026-04-29",
-      "notes": "Re-identified in audit 2026-06-03"
-    },
-    {
-      "id": "finding-010",
-      "createdAt": "2026-06-03T10:01:38.171Z",
-      "updatedAt": "2026-06-03T10:01:38.171Z",
-      "status": "open",
-      "priority": 4,
-      "category": "structured-data",
-      "severity": "low",
-      "title": "FAQ schema opportunities on glossary pages underutilized",
-      "description": "Glossary pages could benefit from FAQ schema markup to capture more featured snippet opportunities and provide additional structured data signals for topical authority.",
-      "recommendation": "Add FAQ schema to glossary pages with common questions about each term. Include 'How to use X leads', 'What is the average cost of X', 'How to improve X conversion rates' type questions with detailed answers.",
-      "effort": "small",
-      "affectedPages": [
-        "/glossary/*"
-      ],
-      "sourceAudit": "2026-06-03"
-    },
-    {
-      "id": "finding-001",
-      "createdAt": "2026-04-29T10:02:06.586Z",
-      "updatedAt": "2026-06-03T10:01:38.171Z",
-      "status": "completed",
-      "priority": 2,
-      "category": "content-quality",
-      "severity": "high",
-      "title": "Content depth insufficient for March 2024 Core Update standards",
-      "description": "Recent posts like 'Why Smart Agents Buy Aged Leads Instead of Facebook Ads' and 'Life Insurance Aged Lead ROI' lack the comprehensive depth and first-hand experience details required by the March 2024 Core Update. Google now heavily penalizes thin affiliate content that doesn't provide substantial unique value.",
-      "recommendation": "Expand key posts to 2,500+ words with detailed case studies, specific ROI calculations, screenshots of actual campaigns, and step-by-step implementation guides. Add 'Author's Experience' sections detailing Bill Rice's direct work with these strategies.",
-      "effort": "large",
-      "affectedPages": [
-        "/blog/smart-agents-buy-aged-leads-instead-facebook-ads",
-        "/blog/life-insurance-aged-lead-roi",
-        "/blog/aged-lead-store-review-2026"
-      ],
-      "sourceAudit": "2026-04-29",
-      "notes": "Not found in audit 2026-06-03 — appears resolved"
+      "notes": "Not found in audit 2026-06-10 — appears resolved"
     },
     {
       "id": "finding-002",
@@ -404,6 +410,43 @@
       ],
       "sourceAudit": "2026-04-15",
       "notes": "Not found in audit 2026-04-22 — appears resolved"
+    },
+    {
+      "id": "finding-004",
+      "createdAt": "2026-06-03T10:01:38.171Z",
+      "updatedAt": "2026-06-10T10:01:50.795Z",
+      "status": "completed",
+      "priority": 3,
+      "category": "content-quality",
+      "severity": "medium",
+      "title": "Missing images reduce engagement and user experience signals",
+      "description": "Two recent posts lack featured images, which impacts user engagement metrics that Google uses as quality signals. Visual content is increasingly important for content quality assessment.",
+      "recommendation": "Create custom infographics or charts for missing posts. Develop image templates for consistent visual branding. Implement automated image optimization and WebP format delivery through Next.js Image component.",
+      "effort": "small",
+      "affectedPages": [
+        "/blog/smart-agents-buy-aged-leads-instead-facebook-ads",
+        "/blog/life-insurance-aged-lead-roi"
+      ],
+      "sourceAudit": "2026-06-03",
+      "notes": "Not found in audit 2026-06-10 — appears resolved"
+    },
+    {
+      "id": "finding-008",
+      "createdAt": "2026-06-03T10:01:38.171Z",
+      "updatedAt": "2026-06-10T10:01:50.795Z",
+      "status": "completed",
+      "priority": 3,
+      "category": "technical-seo",
+      "severity": "medium",
+      "title": "Core Web Vitals optimization needed for updated May 2024 thresholds",
+      "description": "Google's updated Core Web Vitals thresholds are more stringent. Next.js/Vercel setup should be optimized to ensure consistent 'good' ratings across all metrics, especially for affiliate link interactions.",
+      "recommendation": "Implement Core Web Vitals monitoring with real user metrics. Optimize LCP through image preloading and font optimization. Minimize CLS through proper image dimensions and layout reservations. Monitor INP for affiliate link interactions.",
+      "effort": "medium",
+      "affectedPages": [
+        "/*"
+      ],
+      "sourceAudit": "2026-06-03",
+      "notes": "Not found in audit 2026-06-10 — appears resolved"
     },
     {
       "id": "finding-004",
