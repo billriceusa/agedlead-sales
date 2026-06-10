@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-09T12:02:05.861Z",
+  "lastUpdated": "2026-06-10T12:01:09.455Z",
   "items": [
     {
       "id": "mobile-search-experience",
@@ -8,8 +8,8 @@
       "expectedImpact": "Increase mobile impressions by 150% and improve overall search visibility",
       "priority": "high",
       "firstSeen": "2026-04-14",
-      "lastSeen": "2026-06-09",
-      "timesRepeated": 42,
+      "lastSeen": "2026-06-10",
+      "timesRepeated": 43,
       "status": "open",
       "topicKey": "mobile-search-experience"
     },
@@ -20,8 +20,8 @@
       "expectedImpact": "Capture 50-100 additional monthly organic sessions for calculator-related queries",
       "priority": "high",
       "firstSeen": "2026-04-16",
-      "lastSeen": "2026-06-07",
-      "timesRepeated": 41,
+      "lastSeen": "2026-06-10",
+      "timesRepeated": 42,
       "status": "open",
       "topicKey": "calculator-page-ctr"
     },
@@ -32,8 +32,8 @@
       "expectedImpact": "Increase CTR from 0% to 3-5% for branded terms, capturing 15-25 additional monthly clicks",
       "priority": "high",
       "firstSeen": "2026-04-16",
-      "lastSeen": "2026-06-09",
-      "timesRepeated": 22,
+      "lastSeen": "2026-06-10",
+      "timesRepeated": 23,
       "status": "open",
       "topicKey": "agedleadstore-branded-ctr"
     },
@@ -44,8 +44,8 @@
       "expectedImpact": "Resolve keyword cannibalization and improve rankings for 'aged insurance leads' cluster",
       "priority": "high",
       "firstSeen": "2026-05-02",
-      "lastSeen": "2026-06-09",
-      "timesRepeated": 12,
+      "lastSeen": "2026-06-10",
+      "timesRepeated": 13,
       "status": "open",
       "topicKey": "insurance-leads-cannibalization"
     },
@@ -56,8 +56,8 @@
       "expectedImpact": "Convert 20-30% of current impressions to clicks, adding 10-15 monthly organic sessions",
       "priority": "high",
       "firstSeen": "2026-04-22",
-      "lastSeen": "2026-06-09",
-      "timesRepeated": 10,
+      "lastSeen": "2026-06-10",
+      "timesRepeated": 11,
       "status": "open",
       "topicKey": "high-impression-low-click-pages"
     },
@@ -1380,6 +1380,18 @@
       "timesRepeated": 1,
       "status": "open",
       "topicKey": "calculator-page-expansion"
+    },
+    {
+      "id": "affiliate-referral-optimization",
+      "title": "Leverage Referral Traffic Growth",
+      "description": "AgedLeadStore.com referrals (17 sessions) suggest strong partnership momentum. Add UTM parameters to track which specific affiliate links drive the most traffic and optimize those placements. Consider creating a dedicated landing page for AgedLeadStore referral traffic to improve conversion tracking.",
+      "expectedImpact": "Improve referral traffic attribution and optimize highest-converting affiliate placements",
+      "priority": "low",
+      "firstSeen": "2026-06-10",
+      "lastSeen": "2026-06-10",
+      "timesRepeated": 1,
+      "status": "open",
+      "topicKey": "affiliate-referral-optimization"
     },
     {
       "id": "89e9b92e6cfd",
