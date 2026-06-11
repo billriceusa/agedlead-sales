@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-10T12:01:09.455Z",
+  "lastUpdated": "2026-06-11T12:01:24.968Z",
   "items": [
     {
       "id": "mobile-search-experience",
@@ -8,8 +8,8 @@
       "expectedImpact": "Increase mobile impressions by 150% and improve overall search visibility",
       "priority": "high",
       "firstSeen": "2026-04-14",
-      "lastSeen": "2026-06-10",
-      "timesRepeated": 43,
+      "lastSeen": "2026-06-11",
+      "timesRepeated": 44,
       "status": "open",
       "topicKey": "mobile-search-experience"
     },
@@ -20,8 +20,8 @@
       "expectedImpact": "Capture 50-100 additional monthly organic sessions for calculator-related queries",
       "priority": "high",
       "firstSeen": "2026-04-16",
-      "lastSeen": "2026-06-10",
-      "timesRepeated": 42,
+      "lastSeen": "2026-06-11",
+      "timesRepeated": 43,
       "status": "open",
       "topicKey": "calculator-page-ctr"
     },
@@ -32,8 +32,8 @@
       "expectedImpact": "Increase CTR from 0% to 3-5% for branded terms, capturing 15-25 additional monthly clicks",
       "priority": "high",
       "firstSeen": "2026-04-16",
-      "lastSeen": "2026-06-10",
-      "timesRepeated": 23,
+      "lastSeen": "2026-06-11",
+      "timesRepeated": 24,
       "status": "open",
       "topicKey": "agedleadstore-branded-ctr"
     },
@@ -56,10 +56,22 @@
       "expectedImpact": "Convert 20-30% of current impressions to clicks, adding 10-15 monthly organic sessions",
       "priority": "high",
       "firstSeen": "2026-04-22",
-      "lastSeen": "2026-06-10",
-      "timesRepeated": 11,
+      "lastSeen": "2026-06-11",
+      "timesRepeated": 12,
       "status": "open",
       "topicKey": "high-impression-low-click-pages"
+    },
+    {
+      "id": "iul-leads-cannibalization",
+      "title": "Consolidate IUL Lead Content to Eliminate Cannibalization",
+      "description": "The site has /lead-types/iul-leads, /blog/iul-leads-financial-advisors-playbook, and /blog/how-to-sell-iul-using-aged-leads-consultative-approach all targeting similar queries. The /lead-types/iul-leads page (currently getting 2 clicks at position 19.9) should be the canonical target. Consolidate internal links and redirect the blog posts to this main page with 301s.",
+      "expectedImpact": "Improve IUL-related query rankings from position 19.9 to position 8-12, increasing clicks by 200-300%",
+      "priority": "high",
+      "firstSeen": "2026-06-03",
+      "lastSeen": "2026-06-11",
+      "timesRepeated": 7,
+      "status": "open",
+      "topicKey": "iul-leads-cannibalization"
     },
     {
       "id": "mortgage-leads-cannibalization",
@@ -72,18 +84,6 @@
       "timesRepeated": 6,
       "status": "open",
       "topicKey": "mortgage-leads-cannibalization"
-    },
-    {
-      "id": "iul-leads-cannibalization",
-      "title": "Consolidate IUL Lead Content to Eliminate Cannibalization",
-      "description": "The site has /lead-types/iul-leads, /blog/iul-leads-financial-advisors-playbook, and /blog/how-to-sell-iul-using-aged-leads-consultative-approach all targeting similar queries. The /lead-types/iul-leads page (currently getting 2 clicks at position 19.9) should be the canonical target. Consolidate internal links and redirect the blog posts to this main page with 301s.",
-      "expectedImpact": "Improve IUL-related query rankings from position 19.9 to position 8-12, increasing clicks by 200-300%",
-      "priority": "high",
-      "firstSeen": "2026-06-03",
-      "lastSeen": "2026-06-08",
-      "timesRepeated": 6,
-      "status": "open",
-      "topicKey": "iul-leads-cannibalization"
     },
     {
       "id": "capitalize-on-search-momentum",
