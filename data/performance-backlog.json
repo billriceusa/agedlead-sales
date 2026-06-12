@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-11T12:01:24.968Z",
+  "lastUpdated": "2026-06-12T12:01:14.399Z",
   "items": [
     {
       "id": "mobile-search-experience",
@@ -8,8 +8,8 @@
       "expectedImpact": "Increase mobile impressions by 150% and improve overall search visibility",
       "priority": "high",
       "firstSeen": "2026-04-14",
-      "lastSeen": "2026-06-11",
-      "timesRepeated": 44,
+      "lastSeen": "2026-06-12",
+      "timesRepeated": 45,
       "status": "open",
       "topicKey": "mobile-search-experience"
     },
@@ -20,8 +20,8 @@
       "expectedImpact": "Capture 50-100 additional monthly organic sessions for calculator-related queries",
       "priority": "high",
       "firstSeen": "2026-04-16",
-      "lastSeen": "2026-06-11",
-      "timesRepeated": 43,
+      "lastSeen": "2026-06-12",
+      "timesRepeated": 44,
       "status": "open",
       "topicKey": "calculator-page-ctr"
     },
@@ -32,8 +32,8 @@
       "expectedImpact": "Increase CTR from 0% to 3-5% for branded terms, capturing 15-25 additional monthly clicks",
       "priority": "high",
       "firstSeen": "2026-04-16",
-      "lastSeen": "2026-06-11",
-      "timesRepeated": 24,
+      "lastSeen": "2026-06-12",
+      "timesRepeated": 25,
       "status": "open",
       "topicKey": "agedleadstore-branded-ctr"
     },
@@ -44,8 +44,8 @@
       "expectedImpact": "Resolve keyword cannibalization and improve rankings for 'aged insurance leads' cluster",
       "priority": "high",
       "firstSeen": "2026-05-02",
-      "lastSeen": "2026-06-10",
-      "timesRepeated": 13,
+      "lastSeen": "2026-06-12",
+      "timesRepeated": 14,
       "status": "open",
       "topicKey": "insurance-leads-cannibalization"
     },
@@ -62,6 +62,18 @@
       "topicKey": "high-impression-low-click-pages"
     },
     {
+      "id": "mortgage-leads-cannibalization",
+      "title": "Consolidate Mortgage Lead Content to Eliminate Cannibalization",
+      "description": "The /lead-types/mortgage-leads page receives 2 clicks at position 30.3, while /blog/aged-mortgage-leads-2026-guide exists covering similar intent. Consolidate internal links and topical authority to the /lead-types/mortgage-leads page as the canonical resource, and redirect or rewrite the blog post to support the main page rather than compete.",
+      "expectedImpact": "Improve /lead-types/mortgage-leads ranking from position 30+ to positions 15-20, increase organic clicks by 200-300%",
+      "priority": "high",
+      "firstSeen": "2026-05-20",
+      "lastSeen": "2026-06-12",
+      "timesRepeated": 7,
+      "status": "open",
+      "topicKey": "mortgage-leads-cannibalization"
+    },
+    {
       "id": "iul-leads-cannibalization",
       "title": "Consolidate IUL Lead Content to Eliminate Cannibalization",
       "description": "The site has /lead-types/iul-leads, /blog/iul-leads-financial-advisors-playbook, and /blog/how-to-sell-iul-using-aged-leads-consultative-approach all targeting similar queries. The /lead-types/iul-leads page (currently getting 2 clicks at position 19.9) should be the canonical target. Consolidate internal links and redirect the blog posts to this main page with 301s.",
@@ -72,18 +84,6 @@
       "timesRepeated": 7,
       "status": "open",
       "topicKey": "iul-leads-cannibalization"
-    },
-    {
-      "id": "mortgage-leads-cannibalization",
-      "title": "Consolidate Mortgage Lead Content to Eliminate Cannibalization",
-      "description": "The /lead-types/mortgage-leads page receives 2 clicks at position 30.3, while /blog/aged-mortgage-leads-2026-guide exists covering similar intent. Consolidate internal links and topical authority to the /lead-types/mortgage-leads page as the canonical resource, and redirect or rewrite the blog post to support the main page rather than compete.",
-      "expectedImpact": "Improve /lead-types/mortgage-leads ranking from position 30+ to positions 15-20, increase organic clicks by 200-300%",
-      "priority": "high",
-      "firstSeen": "2026-05-20",
-      "lastSeen": "2026-06-02",
-      "timesRepeated": 6,
-      "status": "open",
-      "topicKey": "mortgage-leads-cannibalization"
     },
     {
       "id": "capitalize-on-search-momentum",
