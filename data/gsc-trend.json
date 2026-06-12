@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-11T12:01:26.993Z",
+  "lastUpdated": "2026-06-12T12:01:16.613Z",
   "snapshots": [
     {
       "date": "2026-06-06",
@@ -916,6 +916,159 @@
           "impressions": 1,
           "ctr": 0,
           "position": 17
+        }
+      ]
+    },
+    {
+      "date": "2026-06-12",
+      "rolling7d": {
+        "clicks": 16,
+        "impressions": 1568,
+        "ctr": 0.0102,
+        "position": 31.85
+      },
+      "topPages": [
+        {
+          "page": "https://agedleadsales.com/blog/aged-lead-store-review-2026",
+          "clicks": 4,
+          "impressions": 44,
+          "ctr": 0.0909,
+          "position": 13.02
+        },
+        {
+          "page": "https://agedleadsales.com/",
+          "clicks": 1,
+          "impressions": 39,
+          "ctr": 0.0256,
+          "position": 21.31
+        },
+        {
+          "page": "https://agedleadsales.com/blog",
+          "clicks": 1,
+          "impressions": 103,
+          "ctr": 0.0097,
+          "position": 11.33
+        },
+        {
+          "page": "https://agedleadsales.com/blog/aged-home-improvement-leads-playbook",
+          "clicks": 1,
+          "impressions": 7,
+          "ctr": 0.1429,
+          "position": 5.29
+        },
+        {
+          "page": "https://agedleadsales.com/blog/tcpa-compliance-calling-aged-leads",
+          "clicks": 1,
+          "impressions": 17,
+          "ctr": 0.0588,
+          "position": 13
+        },
+        {
+          "page": "https://agedleadsales.com/glossary/personal-injury-lead",
+          "clicks": 1,
+          "impressions": 3,
+          "ctr": 0.3333,
+          "position": 18.67
+        },
+        {
+          "page": "https://agedleadsales.com/lead-types/final-expense-leads",
+          "clicks": 1,
+          "impressions": 70,
+          "ctr": 0.0143,
+          "position": 40.24
+        },
+        {
+          "page": "https://agedleadsales.com/lead-types/insurance-leads",
+          "clicks": 1,
+          "impressions": 163,
+          "ctr": 0.0061,
+          "position": 31.67
+        },
+        {
+          "page": "https://agedleadsales.com/lead-types/iul-leads",
+          "clicks": 1,
+          "impressions": 42,
+          "ctr": 0.0238,
+          "position": 23.31
+        },
+        {
+          "page": "https://agedleadsales.com/lead-types/mortgage-leads",
+          "clicks": 1,
+          "impressions": 56,
+          "ctr": 0.0179,
+          "position": 41.48
+        }
+      ],
+      "topQueries": [
+        {
+          "query": "aged iul leads",
+          "clicks": 2,
+          "impressions": 2,
+          "ctr": 1,
+          "position": 45.5
+        },
+        {
+          "query": "aged lead store reviews",
+          "clicks": 2,
+          "impressions": 16,
+          "ctr": 0.125,
+          "position": 8.13
+        },
+        {
+          "query": "aged mortgage leads",
+          "clicks": 1,
+          "impressions": 40,
+          "ctr": 0.025,
+          "position": 30.9
+        },
+        {
+          "query": "aged roofing leads",
+          "clicks": 1,
+          "impressions": 1,
+          "ctr": 1,
+          "position": 20
+        },
+        {
+          "query": "accident leads",
+          "clicks": 0,
+          "impressions": 14,
+          "ctr": 0,
+          "position": 50
+        },
+        {
+          "query": "advisor world annuity leads",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 89
+        },
+        {
+          "query": "affordable aged life leads",
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 41.5
+        },
+        {
+          "query": "aged auto insurance leads",
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 22.67
+        },
+        {
+          "query": "aged direct mail final expense leads",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 49
+        },
+        {
+          "query": "aged final expense leads",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 38
         }
       ]
     }
