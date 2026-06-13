@@ -209,6 +209,18 @@ Set up profiles on Source of Sources, Featured.com, QWOTED for expert quote oppo
 
 ---
 
+## Editorial / Content — from the Aged Leads Insights email-program audit (2026-06-13)
+
+Audited the email program (welcome + AI + replenishment series) against the live site. The editorial calendar is already deep, so only the **genuine gaps** were added as `status: "brief"` items in `data/editorial-calendar.ts` (weeks 13–14) — ready for a writing session:
+
+- [ ] **Call Recording Consent by State** (Compliance) — the consent-law map + universal-safe disclosure; pairs with the email's record-every-call lesson (existing call-recording-analysis post is about *analysis*, not consent).
+- [ ] **The Aged-Lead Sales Stack <$100/mo** (Metrics) — software recommender (Workspace + dialer + CRM + drip + recording + scheduling); `/providers` covers lead sellers, not tools. **Affiliate-monetizable.**
+- [ ] **Put Your CRM on Autopilot: AI Agents + MCP** (Metrics) — the 2026 auto-documentation angle the existing crm-setup/ai-lead-scoring posts predate.
+- [ ] **Scheduling Links That Book + Capture Consent** (Channel Tactics) — booking links as a consent-capture mechanism.
+- [ ] **AI Guardrails for Aged-Lead Agents** (Compliance) — the responsible-AI companion to the prompts content.
+- [ ] **FLAG — revise existing Week-9 brief** `aged-lead-text-sms-strategies`: it leans pro-SMS, which **conflicts** with the program's stance (don't text non-consent purchased data; earn consent first). Re-angle it around earning consent, or retire it. **Bill's call.**
+- Full reasoning: `~/Documents/agedleadstore/agedleadsales-integration-audit.html`.
+
 ## Notes
 
 - Audit reference: `_shared-docs/lead-gen-patterns.md` (Sections 1-18)
