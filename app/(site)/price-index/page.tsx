@@ -193,6 +193,12 @@ export default async function PriceIndexPage() {
             >
               Compare Providers &rarr;
             </Link>
+            <Link
+              href="/compare/aged-vs-real-time-leads"
+              className="inline-flex items-center rounded-lg bg-white/10 px-4 py-2.5 text-sm font-medium text-white backdrop-blur-sm transition-colors hover:bg-white/20"
+            >
+              Aged vs. Real-Time &rarr;
+            </Link>
           </div>
         </div>
       </section>

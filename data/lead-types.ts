@@ -731,7 +731,7 @@ export const LEAD_TYPES: Record<string, LeadTypeData> = {
       },
     ],
     getCompareUrl: () =>
-      `/providers/best/life-insurance`,
+      `/providers/best/legal`,
   },
 
   "mva-leads": {

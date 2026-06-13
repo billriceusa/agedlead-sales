@@ -10,8 +10,6 @@ import { JsonLd, breadcrumbJsonLd } from "@/components/json-ld";
 import { VERTICALS, getVertical } from "@/data/verticals";
 import { leadTypeForVertical } from "@/data/lead-type-vertical-map";
 import {
-  getBenchmarksByVertical,
-  isTrustworthyBenchmark,
   quarterLabel,
   EXCLUSIVITY_LABELS,
   LEAD_TYPE_LABELS,
@@ -22,8 +20,10 @@ import {
   getDecayProfile,
   getDecayLabel,
 } from "@/lib/pricing-model";
-import { sanityFetch } from "@/sanity/lib/fetch";
-import { staticShapedBenchmarksByVerticalQuery } from "@/sanity/lib/queries";
+import {
+  loadTrustworthyBenchmarks,
+  hasTrustworthyBenchmarks,
+} from "@/lib/benchmark-coverage";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
@@ -41,9 +41,13 @@ export async function generateMetadata({
   if (!vertical) return {};
 
   const title = `${vertical.name} Lead Pricing — How Much Should You Pay?`;
+  // Keep "coming soon" verticals (no reliable benchmark data) out of the index.
+  // They stay crawlable and auto-rejoin the index once real data is added.
+  const hasData = await hasTrustworthyBenchmarks(verticalSlug);
   return {
     title,
     description: `Fair market pricing benchmarks for ${vertical.name.toLowerCase()} leads. Aged, real-time, and live transfer pricing by age and exclusivity. Verified quarterly.`,
+    robots: hasData ? undefined : { index: false, follow: true },
     alternates: {
       canonical: `${baseUrl}/price-index/${verticalSlug}`,
     },
@@ -72,23 +76,13 @@ export default async function VerticalPriceIndexPage({
   // Internal-linking cluster: link to this vertical's lead-type buyer's guide.
   const guideSlug = leadTypeForVertical(verticalSlug);
 
-  // Prefer Sanity benchmarks (kept fresh by the marketwatch cron); fall back
-  // to the static seed when Sanity is empty or unreachable.
-  const sanityBenchmarks = (await sanityFetch(
-    staticShapedBenchmarksByVerticalQuery,
-    { vertical: verticalSlug }
-  )) as PriceBenchmarkData[] | null;
-  const staticBenchmarks = getBenchmarksByVertical(verticalSlug);
-  const sourceBenchmarks: PriceBenchmarkData[] =
-    sanityBenchmarks && sanityBenchmarks.length > 0
-      ? sanityBenchmarks
-      : staticBenchmarks;
-  // Drop single-provider cron estimates before anything downstream uses the
+  // Prefer Sanity benchmarks (human-curated), fall back to the static seed,
+  // and drop single-provider estimates before anything downstream uses the
   // data — the gap-fill model, price tables, "last updated" date, and trend
-  // chart should all be built on reliable benchmarks only.
-  const rawBenchmarks: PriceBenchmarkData[] = sourceBenchmarks.filter(
-    isTrustworthyBenchmark
-  );
+  // chart are all built on reliable benchmarks only. Shared with the page's
+  // generateMetadata + the sitemap via the cached loader.
+  const rawBenchmarks: PriceBenchmarkData[] =
+    await loadTrustworthyBenchmarks(verticalSlug);
 
   // Use the pricing model to fill gaps in age brackets
   const latestMonth = rawBenchmarks[0]?.month || "2026-03";

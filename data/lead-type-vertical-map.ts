@@ -17,7 +17,9 @@ export const LEAD_TYPE_TO_VERTICAL: Record<string, string> = {
   "insurance-leads": "auto-insurance",
   "final-expense-leads": "final-expense",
   "iul-leads": "annuity-iul",
-  "ssdi-leads": "life-insurance",
+  // SSDI = Social Security Disability; these are disability-attorney leads, so
+  // they map to the "legal" vertical (same as mva-leads), NOT life-insurance.
+  "ssdi-leads": "legal",
   "mva-leads": "legal",
   "solar-leads": "solar",
   "medicare-leads": "medicare",

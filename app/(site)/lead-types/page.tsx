@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { leadTypesQuery } from "@/sanity/lib/queries";
 import { LeadTypeCard } from "@/components/lead-type-card";
@@ -87,6 +88,15 @@ export default async function LeadTypesPage() {
               We carry aged leads across the most popular sales verticals.
               Click any lead type to learn prospecting strategies, browse
               playbooks, and find links to purchase leads at AgedLeadStore.com.
+            </p>
+            <p className="mt-3 text-sm text-zinc-500 dark:text-zinc-400">
+              New to aged leads?{" "}
+              <Link
+                href="/compare/aged-vs-real-time-leads"
+                className="font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400"
+              >
+                See how aged leads compare to real-time leads &rarr;
+              </Link>
             </p>
           </div>
 

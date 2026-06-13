@@ -26,9 +26,13 @@ export async function generateMetadata({
   if (!vertical) return {};
 
   const title = `Best ${vertical.name} Lead Providers (2026)`;
+  // A "best providers" page needs at least 2 reviewed providers to be a real
+  // ranking; thinner pages stay crawlable but out of the index until filled.
+  const thin = getProvidersByVertical(verticalSlug).length < 2;
   return {
     title,
     description: `Compare the top-rated ${vertical.name.toLowerCase()} lead providers. Independent reviews, transparent ratings, and honest recommendations. Verified quarterly.`,
+    robots: thin ? { index: false, follow: true } : undefined,
     alternates: { canonical: `${baseUrl}/providers/best/${verticalSlug}` },
     openGraph: {
       title: `${title} | Aged Lead Sales`,

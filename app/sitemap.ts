@@ -1,7 +1,12 @@
 import type { MetadataRoute } from "next";
 import { sanityFetch } from "@/sanity/lib/fetch";
-import { PROVIDERS, getProviderPairs } from "@/data/providers";
+import {
+  PROVIDERS,
+  getProviderPairs,
+  getProvidersByVertical,
+} from "@/data/providers";
 import { VERTICALS } from "@/data/verticals";
+import { hasTrustworthyBenchmarks } from "@/lib/benchmark-coverage";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
@@ -69,19 +74,44 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     });
   }
 
-  // Best-of-vertical pages
-  for (const vertical of VERTICALS) {
+  // Best-of-vertical + price-index pages. Both routes auto-generate for every
+  // vertical, but thin ones are noindexed at the page level (best-providers
+  // with <2 providers; price-index with no reliable benchmark data) — mirror
+  // that here so the sitemap never advertises a noindexed page. They rejoin
+  // automatically once real providers/benchmarks are added.
+  const benchmarkCoverage = await Promise.all(
+    VERTICALS.map((v) => hasTrustworthyBenchmarks(v.slug))
+  );
+  VERTICALS.forEach((vertical, i) => {
+    if (getProvidersByVertical(vertical.slug).length >= 2) {
+      entries.push({
+        url: `${baseUrl}/providers/best/${vertical.slug}`,
+        lastModified: new Date(),
+        changeFrequency: "monthly",
+        priority: 0.8,
+      });
+    }
+    if (benchmarkCoverage[i]) {
+      entries.push({
+        url: `${baseUrl}/price-index/${vertical.slug}`,
+        lastModified: new Date(),
+        changeFrequency: "monthly",
+        priority: 0.7,
+      });
+    }
+  });
+
+  // Editorial comparison pages (literal /compare routes, hand-written).
+  for (const slug of [
+    "aged-vs-real-time-leads",
+    "medicare-advantage-vs-supplement",
+    "iul-vs-term-life",
+  ]) {
     entries.push({
-      url: `${baseUrl}/providers/best/${vertical.slug}`,
+      url: `${baseUrl}/compare/${slug}`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.8,
-    });
-    entries.push({
-      url: `${baseUrl}/price-index/${vertical.slug}`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
     });
   }
 
