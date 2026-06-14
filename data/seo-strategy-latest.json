@@ -1,53 +1,51 @@
 {
-  "lastRun": "2026-06-07T06:03:21.396Z",
-  "weekOf": "2026-06-08",
+  "lastRun": "2026-06-14T06:03:29.710Z",
+  "weekOf": "2026-06-15",
   "analysis": {
-    "strategyReview": "Our content strategy shows strong foundation across all five pillars with 68 published posts. We have excellent coverage of core topics like compliance (TCPA, Medicare CMS), channel tactics (email, direct mail, door knocking), and vertical playbooks for major industries. However, we have gaps in advanced operational content for established teams, seasonal strategy content, and emerging technology integration. Our Role Guides pillar is underrepresented compared to Vertical Playbooks and Channel Tactics.",
-    "competitiveInsights": "Competitors are missing advanced operational content for scaling teams and seasonal strategy optimization. AgedLeadStore.com focuses on product features while HowToWorkLeads.com stays general. We have opportunities in Q2-specific content (summer solar push, post-tax season financial planning), advanced CRM automation, and multi-channel attribution. Keywords like 'aged lead automation', 'summer solar strategy', and 'lead scoring algorithms' show search volume but limited quality content.",
+    "strategyReview": "Our content strategy shows strong coverage across all five pillars with 76 published posts. We have excellent depth in Channel Tactics (phone, email, direct mail, door knocking) and solid Vertical Playbooks for major industries. However, we have gaps in advanced Metrics & Optimization content and Role Guides for specific positions beyond basic agent guidance. Our Compliance coverage is strong for TCPA and Medicare but lacks depth in other regulatory areas. The unpublished calendar shows good balance but needs more timely, seasonal content for Q2/summer selling cycles.",
+    "competitiveInsights": "AgedLeadStore.com focuses heavily on product features and basic lead descriptions but lacks strategic implementation guidance. HowToWorkLeads.com provides generic advice without industry-specific nuances. We have clear differentiation with our vertical-specific playbooks and compliance focus. Current keyword opportunities include 'aged lead ROI calculation,' 'lead aging impact on conversion,' 'summer insurance sales strategy,' and 'aged lead team management.' Trending searches show increased interest in AI integration, multi-channel attribution, and seasonal sales strategies as agents prepare for summer selling seasons.",
     "newOpportunities": [
-      "Q2 solar lead activation strategies",
-      "Automated lead scoring implementation",
-      "Summer insurance sales tactics",
-      "Post-tax season financial lead conversion",
-      "Multi-generational sales approaches for aged leads"
+      "Summer selling season optimization for aged leads",
+      "Lead aging impact on conversion rates by industry",
+      "ROI calculation methodologies for aged lead campaigns",
+      "Team performance benchmarking for aged lead operations"
     ],
     "trendingTopics": [
-      "AI integration in lead management",
-      "Economic uncertainty driving aged lead adoption",
-      "Regulatory changes in telemarketing",
-      "Cross-generational communication preferences",
-      "Seasonal optimization strategies"
+      "Summer home buying surge and aged mortgage leads",
+      "Mid-year sales performance optimization",
+      "Q2 insurance renewals and aged lead activation",
+      "Solar installation season peak strategies"
     ],
     "recommendedUpdates": [
-      "Prioritize Role Guides pillar to balance content distribution",
-      "Create more seasonal/timely content for Q2",
-      "Develop advanced operational content for scaling teams"
+      "Prioritize seasonal content for Q2/summer",
+      "Develop more advanced metrics content for experienced users",
+      "Create role-specific guides for sales managers and team leads"
     ]
   },
   "articlesCreated": [
     {
-      "title": "Summer Solar Sales: How to Activate Your Aged Lead Inventory for Peak Season",
-      "slug": "summer-solar-sales-aged-leads-q2-strategy",
-      "publishDate": "2026-06-08",
+      "title": "Calculating Aged Lead ROI: The Industry-Specific Formula Every Sales Manager Needs",
+      "slug": "aged-lead-roi-calculation-methodology-by-industry",
+      "publishDate": "2026-06-15",
+      "primaryKeyword": "aged lead ROI calculation",
+      "pillar": "Metrics & Optimization"
+    },
+    {
+      "title": "Summer Solar Sales: Activating Your Aged Lead Inventory for Peak Installation Season",
+      "slug": "summer-solar-aged-lead-activation-strategy",
+      "publishDate": "2026-06-17",
       "primaryKeyword": "summer solar sales strategy",
       "pillar": "Vertical Playbooks"
     },
     {
-      "title": "Training Your Sales Team on Aged Leads: The 30-Day Manager's Playbook",
-      "slug": "aged-lead-team-training-playbook-managers",
-      "publishDate": "2026-06-10",
-      "primaryKeyword": "aged lead team training",
+      "title": "Benchmarking Your Aged Lead Team: Performance Standards by Role and Experience Level",
+      "slug": "aged-lead-team-performance-benchmarking-guide",
+      "publishDate": "2026-06-19",
+      "primaryKeyword": "aged lead team benchmarks",
       "pillar": "Role Guides"
-    },
-    {
-      "title": "How to Allocate Your Aged Lead Budget: ROI-Driven Distribution by Vertical, Age & Channel",
-      "slug": "aged-lead-budget-allocation-roi-optimization",
-      "publishDate": "2026-06-12",
-      "primaryKeyword": "aged lead budget allocation",
-      "pillar": "Metrics & Optimization"
     }
   ],
   "articlesSkipped": [],
   "articlesFailed": [],
-  "briefsForNextWeek": "Selected one existing brief (team training) and created two new seasonal/strategic briefs to address Q2 opportunities. Balanced pillars: Vertical Playbooks → Role Guides → Metrics & Optimization. Prioritized timely summer solar content and advanced operational topics that competitors lack."
+  "briefsForNextWeek": "Selected three new briefs addressing current gaps: advanced ROI calculation methodology (Metrics pillar), seasonal solar strategy for peak summer season (Vertical pillar), and team management benchmarks (Role Guides pillar). These topics leverage current search trends while avoiding overlap with our 76 published posts. Prioritized timely summer content and advanced metrics that serve our experienced user segment."
 }
