@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-13T12:02:29.936Z",
+  "lastUpdated": "2026-06-14T12:01:46.245Z",
   "items": [
     {
       "id": "mobile-search-experience",
@@ -8,8 +8,8 @@
       "expectedImpact": "Increase mobile impressions by 150% and improve overall search visibility",
       "priority": "high",
       "firstSeen": "2026-04-14",
-      "lastSeen": "2026-06-13",
-      "timesRepeated": 46,
+      "lastSeen": "2026-06-14",
+      "timesRepeated": 47,
       "status": "open",
       "topicKey": "mobile-search-experience"
     },
@@ -20,8 +20,8 @@
       "expectedImpact": "Capture 50-100 additional monthly organic sessions for calculator-related queries",
       "priority": "high",
       "firstSeen": "2026-04-16",
-      "lastSeen": "2026-06-13",
-      "timesRepeated": 45,
+      "lastSeen": "2026-06-14",
+      "timesRepeated": 46,
       "status": "open",
       "topicKey": "calculator-page-ctr"
     },
@@ -32,8 +32,8 @@
       "expectedImpact": "Increase CTR from 0% to 3-5% for branded terms, capturing 15-25 additional monthly clicks",
       "priority": "high",
       "firstSeen": "2026-04-16",
-      "lastSeen": "2026-06-13",
-      "timesRepeated": 26,
+      "lastSeen": "2026-06-14",
+      "timesRepeated": 27,
       "status": "open",
       "topicKey": "agedleadstore-branded-ctr"
     },
@@ -68,8 +68,8 @@
       "expectedImpact": "Improve /lead-types/mortgage-leads ranking from position 30+ to positions 15-20, increase organic clicks by 200-300%",
       "priority": "high",
       "firstSeen": "2026-05-20",
-      "lastSeen": "2026-06-13",
-      "timesRepeated": 8,
+      "lastSeen": "2026-06-14",
+      "timesRepeated": 9,
       "status": "open",
       "topicKey": "mortgage-leads-cannibalization"
     },
@@ -80,8 +80,8 @@
       "expectedImpact": "Improve IUL-related query rankings from position 19.9 to position 8-12, increasing clicks by 200-300%",
       "priority": "high",
       "firstSeen": "2026-06-03",
-      "lastSeen": "2026-06-11",
-      "timesRepeated": 7,
+      "lastSeen": "2026-06-14",
+      "timesRepeated": 8,
       "status": "open",
       "topicKey": "iul-leads-cannibalization"
     },
