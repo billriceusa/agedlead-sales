@@ -3,13 +3,23 @@ import Script from "next/script";
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
 const GA4_ID = process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID;
 
+const PROD_HOST = (() => {
+  try {
+    return new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://agedleadsales.com').hostname;
+  } catch {
+    return 'agedleadsales.com';
+  }
+})();
+const IS_NON_PROD_DEPLOY =
+  !!process.env.VERCEL_ENV && process.env.VERCEL_ENV !== 'production';
+
 /**
  * Standalone GA4 — only loads if GTM is NOT configured.
  * When GTM is active, GA4 fires through GTM (no need to load gtag.js twice).
  */
 export function GoogleAnalyticsTag() {
   // Skip standalone GA4 if GTM handles it — avoids loading gtag.js twice (~170KB saved)
-  if (!GA4_ID || GTM_ID) return null;
+  if (!GA4_ID || GTM_ID || IS_NON_PROD_DEPLOY) return null;
 
   return (
     <>
@@ -24,7 +34,7 @@ export function GoogleAnalyticsTag() {
           __html: `window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-gtag('config', '${GA4_ID}');`,
+if(location.hostname==='${PROD_HOST}'){gtag('config','${GA4_ID}');}`,
         }}
       />
     </>
@@ -37,7 +47,7 @@ gtag('config', '${GA4_ID}');`,
  * GTM handles GA4, conversion tracking, and any other tags configured in the container.
  */
 export function GoogleTagManager() {
-  if (!GTM_ID) return null;
+  if (!GTM_ID || IS_NON_PROD_DEPLOY) return null;
 
   return (
     <>
@@ -45,11 +55,11 @@ export function GoogleTagManager() {
         id="gtm-script"
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
-          __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          __html: `if(location.hostname==='${PROD_HOST}'){(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','${GTM_ID}');`,
+})(window,document,'script','dataLayer','${GTM_ID}');}`,
         }}
       />
       <noscript>
