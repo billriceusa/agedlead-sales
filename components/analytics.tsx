@@ -32,7 +32,8 @@ gtag('config', '${GA4_ID}');`,
 }
 
 /**
- * Google Tag Manager — deferred to lazyOnload so it doesn't block LCP/FCP.
+ * Google Tag Manager — loaded afterInteractive so the referrer-bearing page_view
+ * fires reliably (lazyOnload can miss it on quick bounces and inflate "Direct").
  * GTM handles GA4, conversion tracking, and any other tags configured in the container.
  */
 export function GoogleTagManager() {

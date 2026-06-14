@@ -74,6 +74,14 @@
 
 <!-- Authority / backlink campaign removed 2026-06-09 — tracked as offline work (digital PR, HARO, partnerships), not a repo task. -->
 
+### /website-audit 2026-06-13 — fresh GSC/GA4 findings <!-- added 2026-06-13 /website-audit -->
+Site is healthy and the on-page work is largely done (FAQPage schema present, data-led internal-linking pass shipped 2026-06-09, AEO clusters live, thin pages noindexed). 28d snapshot: GA4 597 sessions (+36%), **15 key events / 1.01% conv**, GSC 43 clicks, impressions **+252% to 5,730**, avg pos 32.4, DR 2.5. The remaining levers are position (a cluster of money pages just off page 1) and the two things converting best (AI assistants + the pipeline calculator). Concrete, fresh-data items:
+- [ ] **Next internal-linking pass: target the off-page-1 cluster.** Highest-impression pages stuck at pos 12-38: **/providers** (454 impr, pos 18), **/blog** (392 impr, pos 12), **/lead-types/insurance-leads** (378 impr, pos 33), **/lead-types/iul-leads** (145 impr, pos 24). Point more internal links (descriptive anchors) at these from high-traffic pages — same play as the 2026-06-09 pass, refreshed against this month's GSC.
+- [ ] **Feature the pipeline calculator more prominently** — it converted **9 of 16 sessions** (`/calculators/pipeline-calculator`), by far the best on-site converter, but barely gets traffic. Surface it in nav/homepage + internal-link from the lead-type and playbook pages.
+- [ ] **Lean harder into AEO** — the **AI-Assistant channel drove 10 of 15 key events** (ChatGPT). The comparison/provider content is exactly what assistants cite; keep expanding the `/compare/*` cluster and provider-directory depth. Biggest ROI front and doesn't need authority.
+- [ ] **Attribution (config only — code already correct):** analytics already loads `afterInteractive`, so the 66% "Direct" is GA4/GTM-config + bots, not code. In GA4 Admin enable bot-traffic exclusion + review referral exclusions; confirm the GTM page_view tag isn't dropping `page_referrer`. Fleet-wide BRSG pattern (proinvestorhub shows it too) — worth fixing once at the template/container level.
+- [ ] **Stretch:** push "aged lead store reviews" (already pos 8, page 1) toward top-3 / featured snippet — high-intent buyer query that already converts.
+
 ### Content depth for Helpful Content / Dec-2024 Core Update
 Audit's #1 high finding: thin affiliate content is demoted post-update.
 - [x] **Lead-type pages — DONE 2026-06-09.** All 9 `/lead-types/*` pages expanded to ~2,600 words with deep-dive sections, vertical-specific compliance, and long-tail FAQs.
