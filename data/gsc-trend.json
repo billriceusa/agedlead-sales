@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-14T12:01:48.126Z",
+  "lastUpdated": "2026-06-15T12:01:54.436Z",
   "snapshots": [
     {
       "date": "2026-06-06",
@@ -1375,6 +1375,159 @@
           "impressions": 11,
           "ctr": 0,
           "position": 22.82
+        }
+      ]
+    },
+    {
+      "date": "2026-06-15",
+      "rolling7d": {
+        "clicks": 13,
+        "impressions": 1676,
+        "ctr": 0.0078,
+        "position": 31.85
+      },
+      "topPages": [
+        {
+          "page": "https://agedleadsales.com/blog/aged-lead-store-review-2026",
+          "clicks": 3,
+          "impressions": 58,
+          "ctr": 0.0517,
+          "position": 9.83
+        },
+        {
+          "page": "https://agedleadsales.com/blog",
+          "clicks": 1,
+          "impressions": 85,
+          "ctr": 0.0118,
+          "position": 12.25
+        },
+        {
+          "page": "https://agedleadsales.com/blog/aged-home-improvement-leads-playbook",
+          "clicks": 1,
+          "impressions": 3,
+          "ctr": 0.3333,
+          "position": 6.67
+        },
+        {
+          "page": "https://agedleadsales.com/compare/aged-lead-store-vs-the-leads-warehouse",
+          "clicks": 1,
+          "impressions": 30,
+          "ctr": 0.0333,
+          "position": 16.6
+        },
+        {
+          "page": "https://agedleadsales.com/glossary/personal-injury-lead",
+          "clicks": 1,
+          "impressions": 1,
+          "ctr": 1,
+          "position": 8
+        },
+        {
+          "page": "https://agedleadsales.com/lead-types/insurance-leads",
+          "clicks": 1,
+          "impressions": 173,
+          "ctr": 0.0058,
+          "position": 33.34
+        },
+        {
+          "page": "https://agedleadsales.com/lead-types/iul-leads",
+          "clicks": 1,
+          "impressions": 43,
+          "ctr": 0.0233,
+          "position": 24.16
+        },
+        {
+          "page": "https://agedleadsales.com/lead-types/mortgage-leads",
+          "clicks": 1,
+          "impressions": 66,
+          "ctr": 0.0152,
+          "position": 46.33
+        },
+        {
+          "page": "https://agedleadsales.com/playbook/home-services",
+          "clicks": 1,
+          "impressions": 2,
+          "ctr": 0.5,
+          "position": 21
+        },
+        {
+          "page": "https://agedleadsales.com/price-index/auto-insurance",
+          "clicks": 1,
+          "impressions": 26,
+          "ctr": 0.0385,
+          "position": 16.27
+        }
+      ],
+      "topQueries": [
+        {
+          "query": "aged lead store reviews",
+          "clicks": 2,
+          "impressions": 25,
+          "ctr": 0.08,
+          "position": 8.12
+        },
+        {
+          "query": "aged iul leads",
+          "clicks": 1,
+          "impressions": 2,
+          "ctr": 0.5,
+          "position": 13
+        },
+        {
+          "query": "aged mortgage leads",
+          "clicks": 1,
+          "impressions": 33,
+          "ctr": 0.0303,
+          "position": 31.55
+        },
+        {
+          "query": "aged roofing leads",
+          "clicks": 1,
+          "impressions": 1,
+          "ctr": 1,
+          "position": 20
+        },
+        {
+          "query": "the leads warehouse reviews",
+          "clicks": 1,
+          "impressions": 6,
+          "ctr": 0.1667,
+          "position": 12
+        },
+        {
+          "query": "\"national benchmarks\" sales competencies or standards",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 9
+        },
+        {
+          "query": "accident leads",
+          "clicks": 0,
+          "impressions": 11,
+          "ctr": 0,
+          "position": 50.18
+        },
+        {
+          "query": "affordable aged life leads",
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 41.5
+        },
+        {
+          "query": "affordable final expense direct mail leads",
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 60
+        },
+        {
+          "query": "aged auto insurance leads",
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 16
         }
       ]
     }
