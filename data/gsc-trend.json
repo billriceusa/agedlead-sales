@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-15T12:01:54.436Z",
+  "lastUpdated": "2026-06-16T12:00:36.279Z",
   "snapshots": [
     {
       "date": "2026-06-06",
@@ -1528,6 +1528,159 @@
           "impressions": 2,
           "ctr": 0,
           "position": 16
+        }
+      ]
+    },
+    {
+      "date": "2026-06-16",
+      "rolling7d": {
+        "clicks": 17,
+        "impressions": 1798,
+        "ctr": 0.0095,
+        "position": 31.66
+      },
+      "topPages": [
+        {
+          "page": "https://agedleadsales.com/blog/aged-lead-store-review-2026",
+          "clicks": 3,
+          "impressions": 65,
+          "ctr": 0.0462,
+          "position": 9.71
+        },
+        {
+          "page": "https://agedleadsales.com/lead-types/mortgage-leads",
+          "clicks": 2,
+          "impressions": 65,
+          "ctr": 0.0308,
+          "position": 46.05
+        },
+        {
+          "page": "https://agedleadsales.com/blog",
+          "clicks": 1,
+          "impressions": 90,
+          "ctr": 0.0111,
+          "position": 11.51
+        },
+        {
+          "page": "https://agedleadsales.com/blog/aged-home-improvement-leads-playbook",
+          "clicks": 1,
+          "impressions": 2,
+          "ctr": 0.5,
+          "position": 6.5
+        },
+        {
+          "page": "https://agedleadsales.com/compare/aged-lead-store-vs-the-leads-warehouse",
+          "clicks": 1,
+          "impressions": 25,
+          "ctr": 0.04,
+          "position": 17.88
+        },
+        {
+          "page": "https://agedleadsales.com/glossary/personal-injury-lead",
+          "clicks": 1,
+          "impressions": 1,
+          "ctr": 1,
+          "position": 8
+        },
+        {
+          "page": "https://agedleadsales.com/lead-types/final-expense-leads",
+          "clicks": 1,
+          "impressions": 118,
+          "ctr": 0.0085,
+          "position": 36.84
+        },
+        {
+          "page": "https://agedleadsales.com/lead-types/insurance-leads",
+          "clicks": 1,
+          "impressions": 173,
+          "ctr": 0.0058,
+          "position": 33.21
+        },
+        {
+          "page": "https://agedleadsales.com/lead-types/iul-leads",
+          "clicks": 1,
+          "impressions": 47,
+          "ctr": 0.0213,
+          "position": 23.21
+        },
+        {
+          "page": "https://agedleadsales.com/lead-types/mva-leads",
+          "clicks": 1,
+          "impressions": 87,
+          "ctr": 0.0115,
+          "position": 49.13
+        }
+      ],
+      "topQueries": [
+        {
+          "query": "aged lead store reviews",
+          "clicks": 2,
+          "impressions": 25,
+          "ctr": 0.08,
+          "position": 8.12
+        },
+        {
+          "query": "aged iul leads",
+          "clicks": 1,
+          "impressions": 2,
+          "ctr": 0.5,
+          "position": 13
+        },
+        {
+          "query": "aged mortgage leads",
+          "clicks": 1,
+          "impressions": 31,
+          "ctr": 0.0323,
+          "position": 31.87
+        },
+        {
+          "query": "aged roofing leads",
+          "clicks": 1,
+          "impressions": 1,
+          "ctr": 1,
+          "position": 20
+        },
+        {
+          "query": "burial insurance leads",
+          "clicks": 1,
+          "impressions": 8,
+          "ctr": 0.125,
+          "position": 62.25
+        },
+        {
+          "query": "homeowner insurance leads",
+          "clicks": 1,
+          "impressions": 2,
+          "ctr": 0.5,
+          "position": 64
+        },
+        {
+          "query": "the leads warehouse reviews",
+          "clicks": 1,
+          "impressions": 3,
+          "ctr": 0.3333,
+          "position": 14
+        },
+        {
+          "query": "\"national benchmarks\" sales competencies or standards",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 9
+        },
+        {
+          "query": "$29 final expense leads",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 64
+        },
+        {
+          "query": "accident leads",
+          "clicks": 0,
+          "impressions": 14,
+          "ctr": 0,
+          "position": 49.79
         }
       ]
     }
