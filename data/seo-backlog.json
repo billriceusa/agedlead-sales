@@ -1,11 +1,11 @@
 {
-  "lastUpdated": "2026-06-10T10:01:50.795Z",
+  "lastUpdated": "2026-06-17T10:00:33.491Z",
   "items": [
     {
       "id": "finding-002",
       "createdAt": "2026-06-03T10:01:38.171Z",
-      "updatedAt": "2026-06-10T10:01:50.795Z",
-      "status": "open",
+      "updatedAt": "2026-06-17T10:00:33.491Z",
+      "status": "completed",
       "priority": 2,
       "category": "e-e-a-t",
       "severity": "high",
@@ -19,13 +19,13 @@
         "/author/bill-rice"
       ],
       "sourceAudit": "2026-06-03",
-      "notes": "Re-identified in audit 2026-06-10"
+      "notes": "Not found in audit 2026-06-17 — appears resolved"
     },
     {
       "id": "finding-003",
       "createdAt": "2026-06-10T10:01:50.795Z",
-      "updatedAt": "2026-06-10T10:01:50.795Z",
-      "status": "open",
+      "updatedAt": "2026-06-17T10:00:33.491Z",
+      "status": "completed",
       "priority": 2,
       "category": "affiliate-compliance",
       "severity": "high",
@@ -38,141 +38,8 @@
         "/guides/*",
         "/lead-types/*"
       ],
-      "sourceAudit": "2026-06-10"
-    },
-    {
-      "id": "finding-004",
-      "createdAt": "2026-05-13T10:01:23.622Z",
-      "updatedAt": "2026-06-10T10:01:50.795Z",
-      "status": "open",
-      "priority": 3,
-      "category": "structured-data",
-      "severity": "medium",
-      "title": "Missing Product and Review schema reduces rich results eligibility",
-      "description": "Content about AgedLeadStore.com and aged lead services lacks Product and Review structured data, missing opportunities for rich results that could improve click-through rates and visibility in search results.",
-      "recommendation": "Implement Product schema for AgedLeadStore.com services and Review schema for genuine service evaluations. Ensure reviews reflect actual experience and include specific details about lead quality, delivery times, and conversion rates. Follow Google's updated structured data policies to avoid spam classification.",
-      "effort": "medium",
-      "affectedPages": [
-        "/lead-types/*",
-        "/blog/agedleadstore-review",
-        "/guides/*"
-      ],
-      "sourceAudit": "2026-05-13",
-      "notes": "Re-identified in audit 2026-06-10"
-    },
-    {
-      "id": "finding-007",
-      "createdAt": "2026-05-20T10:01:43.743Z",
-      "updatedAt": "2026-06-10T10:01:50.795Z",
-      "status": "open",
-      "priority": 3,
-      "category": "internal-linking",
-      "severity": "medium",
-      "title": "Glossary cross-linking underutilized for topical authority",
-      "description": "With 77 glossary terms, there's significant opportunity to build topical authority through strategic internal linking between blog posts, glossary terms, and lead type pages. This supports Google's understanding of site expertise depth.",
-      "recommendation": "Implement automated internal linking system to connect glossary terms with relevant blog posts. Add 'Related Terms' sections to glossary pages. Create topic clusters linking pillar pages (lead types) with supporting blog posts and relevant glossary definitions. Aim for 3-5 contextual internal links per post.",
-      "effort": "medium",
-      "affectedPages": [
-        "/glossary/*",
-        "/blog/*",
-        "/lead-types/*"
-      ],
-      "sourceAudit": "2026-05-20",
-      "notes": "Re-identified in audit 2026-06-10"
-    },
-    {
-      "id": "finding-006",
-      "createdAt": "2026-06-10T10:01:50.795Z",
-      "updatedAt": "2026-06-10T10:01:50.795Z",
-      "status": "open",
-      "priority": 3,
-      "category": "technical-seo",
-      "severity": "medium",
-      "title": "Core Web Vitals optimization needed for INP transition",
-      "description": "Google is replacing FID with INP (Interaction to Next Paint) in March 2024, requiring focus on interaction responsiveness. Next.js/Vercel stack should perform well, but affiliate tracking and content loading may impact metrics.",
-      "recommendation": "Audit Core Web Vitals with focus on INP metrics. Optimize affiliate link tracking in lib/affiliate.ts for minimal performance impact. Implement lazy loading for non-critical content, optimize images with Next.js Image component, and minimize JavaScript bundle size. Monitor real user metrics via Vercel Analytics.",
-      "effort": "medium",
-      "affectedPages": [
-        "site-wide"
-      ],
-      "sourceAudit": "2026-06-10"
-    },
-    {
-      "id": "finding-007",
-      "createdAt": "2026-06-03T10:01:38.171Z",
-      "updatedAt": "2026-06-10T10:01:50.795Z",
-      "status": "open",
-      "priority": 3,
-      "category": "content-quality",
-      "severity": "medium",
-      "title": "Content pillar gaps undermine comprehensive topical coverage",
-      "description": "While content pillars are defined (Vertical Playbooks, Channel Tactics, Role Guides, Metrics & Optimization, Compliance), there may be gaps in comprehensive coverage that limit topical authority signals to Google's algorithms.",
-      "recommendation": "Conduct content gap analysis for each pillar. Create content calendar to fill missing subtopics within each vertical (insurance types, mortgage products, solar installation processes). Develop comprehensive guides for each major topic cluster. Aim for 10-15 pieces of supporting content per main pillar topic.",
-      "effort": "large",
-      "affectedPages": [
-        "/blog",
-        "/guides",
-        "/playbooks"
-      ],
-      "sourceAudit": "2026-06-03",
-      "notes": "Re-identified in audit 2026-06-10"
-    },
-    {
-      "id": "finding-011",
-      "createdAt": "2026-05-06T10:01:31.937Z",
-      "updatedAt": "2026-06-10T10:01:50.795Z",
-      "status": "open",
-      "priority": 3,
-      "category": "mobile",
-      "severity": "low",
-      "title": "Mobile affiliate link interaction optimization needed",
-      "description": "With mobile-first indexing and the upcoming INP metric, affiliate link interactions need optimization for mobile users to ensure good user experience signals and proper conversion tracking.",
-      "recommendation": "Ensure affiliate links have adequate touch targets (44px minimum), clear visual indicators, and smooth interaction feedback. Test affiliate link tracking on mobile devices. Consider mobile-specific call-to-action styling and positioning for better user experience.",
-      "effort": "small",
-      "affectedPages": [
-        "/blog/*",
-        "/lead-types/*",
-        "/guides/*"
-      ],
-      "sourceAudit": "2026-05-06",
-      "notes": "Re-identified in audit 2026-06-10"
-    },
-    {
-      "id": "finding-009",
-      "createdAt": "2026-04-29T10:02:06.586Z",
-      "updatedAt": "2026-06-10T10:01:50.795Z",
-      "status": "open",
-      "priority": 4,
-      "category": "e-e-a-t",
-      "severity": "medium",
-      "title": "Case studies lack verifiable sourcing for credibility",
-      "description": "The Helpful Content System and E-E-A-T guidelines emphasize verifiable, first-hand experience. Case studies and success stories need stronger credibility signals to demonstrate genuine expertise rather than hypothetical scenarios.",
-      "recommendation": "Develop case studies with anonymized but specific details: actual conversion rates, time periods, lead volumes, and outcomes. Include methodology explanations and lessons learned. Add disclaimers about typical results. Consider client testimonials or third-party validation where possible while maintaining privacy.",
-      "effort": "medium",
-      "affectedPages": [
-        "/blog/*",
-        "/guides/*"
-      ],
-      "sourceAudit": "2026-04-29",
-      "notes": "Re-identified in audit 2026-06-10"
-    },
-    {
-      "id": "finding-010",
-      "createdAt": "2026-06-03T10:01:38.171Z",
-      "updatedAt": "2026-06-10T10:01:50.795Z",
-      "status": "open",
-      "priority": 4,
-      "category": "structured-data",
-      "severity": "low",
-      "title": "FAQ schema opportunities on glossary pages underutilized",
-      "description": "Glossary pages could benefit from FAQ structured data to capture featured snippets and improve visibility for definition-based queries, supporting the site's role as an authoritative resource.",
-      "recommendation": "Add FAQ schema to glossary pages with common questions like 'What is [term]?', 'How does [term] work?', 'Why is [term] important?' Use natural language that matches user search queries. Ensure FAQ content adds value beyond the basic definition.",
-      "effort": "small",
-      "affectedPages": [
-        "/glossary/*"
-      ],
-      "sourceAudit": "2026-06-03",
-      "notes": "Re-identified in audit 2026-06-10"
+      "sourceAudit": "2026-06-10",
+      "notes": "Not found in audit 2026-06-17 — appears resolved"
     },
     {
       "id": "finding-001",
@@ -410,6 +277,104 @@
       ],
       "sourceAudit": "2026-04-15",
       "notes": "Not found in audit 2026-04-22 — appears resolved"
+    },
+    {
+      "id": "finding-004",
+      "createdAt": "2026-05-13T10:01:23.622Z",
+      "updatedAt": "2026-06-17T10:00:33.491Z",
+      "status": "completed",
+      "priority": 3,
+      "category": "structured-data",
+      "severity": "medium",
+      "title": "Missing Product and Review schema reduces rich results eligibility",
+      "description": "Content about AgedLeadStore.com and aged lead services lacks Product and Review structured data, missing opportunities for rich results that could improve click-through rates and visibility in search results.",
+      "recommendation": "Implement Product schema for AgedLeadStore.com services and Review schema for genuine service evaluations. Ensure reviews reflect actual experience and include specific details about lead quality, delivery times, and conversion rates. Follow Google's updated structured data policies to avoid spam classification.",
+      "effort": "medium",
+      "affectedPages": [
+        "/lead-types/*",
+        "/blog/agedleadstore-review",
+        "/guides/*"
+      ],
+      "sourceAudit": "2026-05-13",
+      "notes": "Not found in audit 2026-06-17 — appears resolved"
+    },
+    {
+      "id": "finding-007",
+      "createdAt": "2026-05-20T10:01:43.743Z",
+      "updatedAt": "2026-06-17T10:00:33.491Z",
+      "status": "completed",
+      "priority": 3,
+      "category": "internal-linking",
+      "severity": "medium",
+      "title": "Glossary cross-linking underutilized for topical authority",
+      "description": "With 77 glossary terms, there's significant opportunity to build topical authority through strategic internal linking between blog posts, glossary terms, and lead type pages. This supports Google's understanding of site expertise depth.",
+      "recommendation": "Implement automated internal linking system to connect glossary terms with relevant blog posts. Add 'Related Terms' sections to glossary pages. Create topic clusters linking pillar pages (lead types) with supporting blog posts and relevant glossary definitions. Aim for 3-5 contextual internal links per post.",
+      "effort": "medium",
+      "affectedPages": [
+        "/glossary/*",
+        "/blog/*",
+        "/lead-types/*"
+      ],
+      "sourceAudit": "2026-05-20",
+      "notes": "Not found in audit 2026-06-17 — appears resolved"
+    },
+    {
+      "id": "finding-006",
+      "createdAt": "2026-06-10T10:01:50.795Z",
+      "updatedAt": "2026-06-17T10:00:33.491Z",
+      "status": "completed",
+      "priority": 3,
+      "category": "technical-seo",
+      "severity": "medium",
+      "title": "Core Web Vitals optimization needed for INP transition",
+      "description": "Google is replacing FID with INP (Interaction to Next Paint) in March 2024, requiring focus on interaction responsiveness. Next.js/Vercel stack should perform well, but affiliate tracking and content loading may impact metrics.",
+      "recommendation": "Audit Core Web Vitals with focus on INP metrics. Optimize affiliate link tracking in lib/affiliate.ts for minimal performance impact. Implement lazy loading for non-critical content, optimize images with Next.js Image component, and minimize JavaScript bundle size. Monitor real user metrics via Vercel Analytics.",
+      "effort": "medium",
+      "affectedPages": [
+        "site-wide"
+      ],
+      "sourceAudit": "2026-06-10",
+      "notes": "Not found in audit 2026-06-17 — appears resolved"
+    },
+    {
+      "id": "finding-007",
+      "createdAt": "2026-06-03T10:01:38.171Z",
+      "updatedAt": "2026-06-17T10:00:33.491Z",
+      "status": "completed",
+      "priority": 3,
+      "category": "content-quality",
+      "severity": "medium",
+      "title": "Content pillar gaps undermine comprehensive topical coverage",
+      "description": "While content pillars are defined (Vertical Playbooks, Channel Tactics, Role Guides, Metrics & Optimization, Compliance), there may be gaps in comprehensive coverage that limit topical authority signals to Google's algorithms.",
+      "recommendation": "Conduct content gap analysis for each pillar. Create content calendar to fill missing subtopics within each vertical (insurance types, mortgage products, solar installation processes). Develop comprehensive guides for each major topic cluster. Aim for 10-15 pieces of supporting content per main pillar topic.",
+      "effort": "large",
+      "affectedPages": [
+        "/blog",
+        "/guides",
+        "/playbooks"
+      ],
+      "sourceAudit": "2026-06-03",
+      "notes": "Not found in audit 2026-06-17 — appears resolved"
+    },
+    {
+      "id": "finding-011",
+      "createdAt": "2026-05-06T10:01:31.937Z",
+      "updatedAt": "2026-06-17T10:00:33.491Z",
+      "status": "completed",
+      "priority": 3,
+      "category": "mobile",
+      "severity": "low",
+      "title": "Mobile affiliate link interaction optimization needed",
+      "description": "With mobile-first indexing and the upcoming INP metric, affiliate link interactions need optimization for mobile users to ensure good user experience signals and proper conversion tracking.",
+      "recommendation": "Ensure affiliate links have adequate touch targets (44px minimum), clear visual indicators, and smooth interaction feedback. Test affiliate link tracking on mobile devices. Consider mobile-specific call-to-action styling and positioning for better user experience.",
+      "effort": "small",
+      "affectedPages": [
+        "/blog/*",
+        "/lead-types/*",
+        "/guides/*"
+      ],
+      "sourceAudit": "2026-05-06",
+      "notes": "Not found in audit 2026-06-17 — appears resolved"
     },
     {
       "id": "finding-004",
@@ -718,6 +683,43 @@
       ],
       "sourceAudit": "2026-04-15",
       "notes": "Not found in audit 2026-04-22 — appears resolved"
+    },
+    {
+      "id": "finding-009",
+      "createdAt": "2026-04-29T10:02:06.586Z",
+      "updatedAt": "2026-06-17T10:00:33.491Z",
+      "status": "completed",
+      "priority": 4,
+      "category": "e-e-a-t",
+      "severity": "medium",
+      "title": "Case studies lack verifiable sourcing for credibility",
+      "description": "The Helpful Content System and E-E-A-T guidelines emphasize verifiable, first-hand experience. Case studies and success stories need stronger credibility signals to demonstrate genuine expertise rather than hypothetical scenarios.",
+      "recommendation": "Develop case studies with anonymized but specific details: actual conversion rates, time periods, lead volumes, and outcomes. Include methodology explanations and lessons learned. Add disclaimers about typical results. Consider client testimonials or third-party validation where possible while maintaining privacy.",
+      "effort": "medium",
+      "affectedPages": [
+        "/blog/*",
+        "/guides/*"
+      ],
+      "sourceAudit": "2026-04-29",
+      "notes": "Not found in audit 2026-06-17 — appears resolved"
+    },
+    {
+      "id": "finding-010",
+      "createdAt": "2026-06-03T10:01:38.171Z",
+      "updatedAt": "2026-06-17T10:00:33.491Z",
+      "status": "completed",
+      "priority": 4,
+      "category": "structured-data",
+      "severity": "low",
+      "title": "FAQ schema opportunities on glossary pages underutilized",
+      "description": "Glossary pages could benefit from FAQ structured data to capture featured snippets and improve visibility for definition-based queries, supporting the site's role as an authoritative resource.",
+      "recommendation": "Add FAQ schema to glossary pages with common questions like 'What is [term]?', 'How does [term] work?', 'Why is [term] important?' Use natural language that matches user search queries. Ensure FAQ content adds value beyond the basic definition.",
+      "effort": "small",
+      "affectedPages": [
+        "/glossary/*"
+      ],
+      "sourceAudit": "2026-06-03",
+      "notes": "Not found in audit 2026-06-17 — appears resolved"
     },
     {
       "id": "finding-011",
