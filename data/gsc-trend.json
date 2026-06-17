@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-16T12:00:36.279Z",
+  "lastUpdated": "2026-06-17T12:00:34.420Z",
   "snapshots": [
     {
       "date": "2026-06-06",
@@ -1681,6 +1681,159 @@
           "impressions": 14,
           "ctr": 0,
           "position": 49.79
+        }
+      ]
+    },
+    {
+      "date": "2026-06-17",
+      "rolling7d": {
+        "clicks": 16,
+        "impressions": 1934,
+        "ctr": 0.0083,
+        "position": 32.81
+      },
+      "topPages": [
+        {
+          "page": "https://agedleadsales.com/blog/aged-lead-store-review-2026",
+          "clicks": 2,
+          "impressions": 66,
+          "ctr": 0.0303,
+          "position": 9.44
+        },
+        {
+          "page": "https://agedleadsales.com/lead-types/mortgage-leads",
+          "clicks": 2,
+          "impressions": 55,
+          "ctr": 0.0364,
+          "position": 47.56
+        },
+        {
+          "page": "https://agedleadsales.com/price-index/auto-insurance",
+          "clicks": 2,
+          "impressions": 53,
+          "ctr": 0.0377,
+          "position": 21.72
+        },
+        {
+          "page": "https://agedleadsales.com/blog",
+          "clicks": 1,
+          "impressions": 97,
+          "ctr": 0.0103,
+          "position": 11.95
+        },
+        {
+          "page": "https://agedleadsales.com/blog/aged-home-improvement-leads-playbook",
+          "clicks": 1,
+          "impressions": 1,
+          "ctr": 1,
+          "position": 3
+        },
+        {
+          "page": "https://agedleadsales.com/blog/category/strategies",
+          "clicks": 1,
+          "impressions": 7,
+          "ctr": 0.1429,
+          "position": 30
+        },
+        {
+          "page": "https://agedleadsales.com/compare/aged-lead-store-vs-the-leads-warehouse",
+          "clicks": 1,
+          "impressions": 23,
+          "ctr": 0.0435,
+          "position": 14.87
+        },
+        {
+          "page": "https://agedleadsales.com/glossary/personal-injury-lead",
+          "clicks": 1,
+          "impressions": 1,
+          "ctr": 1,
+          "position": 8
+        },
+        {
+          "page": "https://agedleadsales.com/lead-types/final-expense-leads",
+          "clicks": 1,
+          "impressions": 154,
+          "ctr": 0.0065,
+          "position": 40.24
+        },
+        {
+          "page": "https://agedleadsales.com/lead-types/insurance-leads",
+          "clicks": 1,
+          "impressions": 194,
+          "ctr": 0.0052,
+          "position": 34.45
+        }
+      ],
+      "topQueries": [
+        {
+          "query": "aged mortgage leads",
+          "clicks": 1,
+          "impressions": 26,
+          "ctr": 0.0385,
+          "position": 31.08
+        },
+        {
+          "query": "aged roofing leads",
+          "clicks": 1,
+          "impressions": 1,
+          "ctr": 1,
+          "position": 20
+        },
+        {
+          "query": "burial insurance leads",
+          "clicks": 1,
+          "impressions": 8,
+          "ctr": 0.125,
+          "position": 61.13
+        },
+        {
+          "query": "homeowner insurance leads",
+          "clicks": 1,
+          "impressions": 3,
+          "ctr": 0.3333,
+          "position": 69
+        },
+        {
+          "query": "life insurance aged leads",
+          "clicks": 1,
+          "impressions": 2,
+          "ctr": 0.5,
+          "position": 29
+        },
+        {
+          "query": "the leads warehouse reviews",
+          "clicks": 1,
+          "impressions": 3,
+          "ctr": 0.3333,
+          "position": 14
+        },
+        {
+          "query": "\"national benchmarks\" sales competencies or standards",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 9
+        },
+        {
+          "query": "$29 final expense leads",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 64
+        },
+        {
+          "query": "accident leads",
+          "clicks": 0,
+          "impressions": 11,
+          "ctr": 0,
+          "position": 48.45
+        },
+        {
+          "query": "affordable aged life leads",
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 45.67
         }
       ]
     }
