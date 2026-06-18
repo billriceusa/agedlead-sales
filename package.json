@@ -25,7 +25,9 @@
     "resend": "^6.9.3",
     "sanity": "^5.16.0",
     "sharp": "^0.34.5",
-    "styled-components": "^6.3.11"
+    "styled-components": "^6.3.11",
+    "drizzle-orm": "^0.45.2",
+    "@neondatabase/serverless": "^1.0.2"
   },
   "devDependencies": {
     "@sanity/client": "^7.21.0",
@@ -38,6 +40,7 @@
     "marked": "^18.0.0",
     "tailwindcss": "^4",
     "tsx": "^4.21.0",
-    "typescript": "^5"
+    "typescript": "^5",
+    "drizzle-kit": "^0.31.10"
   }
 }
