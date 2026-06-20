@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-19T12:00:34.568Z",
+  "lastUpdated": "2026-06-20T12:00:22.207Z",
   "snapshots": [
     {
       "date": "2026-06-06",
@@ -2140,6 +2140,159 @@
           "impressions": 2,
           "ctr": 0,
           "position": 60
+        }
+      ]
+    },
+    {
+      "date": "2026-06-20",
+      "rolling7d": {
+        "clicks": 15,
+        "impressions": 2169,
+        "ctr": 0.0069,
+        "position": 34.63
+      },
+      "topPages": [
+        {
+          "page": "https://agedleadsales.com/lead-types/final-expense-leads",
+          "clicks": 2,
+          "impressions": 187,
+          "ctr": 0.0107,
+          "position": 40.98
+        },
+        {
+          "page": "https://agedleadsales.com/lead-types/insurance-leads",
+          "clicks": 2,
+          "impressions": 183,
+          "ctr": 0.0109,
+          "position": 37.27
+        },
+        {
+          "page": "https://agedleadsales.com/providers/best/long-term-care",
+          "clicks": 2,
+          "impressions": 2,
+          "ctr": 1,
+          "position": 12.5
+        },
+        {
+          "page": "https://agedleadsales.com/blog/category/strategies",
+          "clicks": 1,
+          "impressions": 7,
+          "ctr": 0.1429,
+          "position": 30
+        },
+        {
+          "page": "https://agedleadsales.com/lead-types/iul-leads",
+          "clicks": 1,
+          "impressions": 54,
+          "ctr": 0.0185,
+          "position": 21.59
+        },
+        {
+          "page": "https://agedleadsales.com/lead-types/mortgage-leads",
+          "clicks": 1,
+          "impressions": 65,
+          "ctr": 0.0154,
+          "position": 46.38
+        },
+        {
+          "page": "https://agedleadsales.com/lead-types/mva-leads",
+          "clicks": 1,
+          "impressions": 62,
+          "ctr": 0.0161,
+          "position": 54.21
+        },
+        {
+          "page": "https://agedleadsales.com/price-index/auto-insurance",
+          "clicks": 1,
+          "impressions": 77,
+          "ctr": 0.013,
+          "position": 27.78
+        },
+        {
+          "page": "https://agedleadsales.com/providers",
+          "clicks": 1,
+          "impressions": 124,
+          "ctr": 0.0081,
+          "position": 35.53
+        },
+        {
+          "page": "https://agedleadsales.com/providers/badass-insurance-leads",
+          "clicks": 1,
+          "impressions": 27,
+          "ctr": 0.037,
+          "position": 13.74
+        }
+      ],
+      "topQueries": [
+        {
+          "query": "aged annuity leads",
+          "clicks": 1,
+          "impressions": 2,
+          "ctr": 0.5,
+          "position": 14.5
+        },
+        {
+          "query": "burial insurance leads",
+          "clicks": 1,
+          "impressions": 9,
+          "ctr": 0.1111,
+          "position": 51.22
+        },
+        {
+          "query": "final expense leads",
+          "clicks": 1,
+          "impressions": 28,
+          "ctr": 0.0357,
+          "position": 50.89
+        },
+        {
+          "query": "homeowner insurance leads",
+          "clicks": 1,
+          "impressions": 7,
+          "ctr": 0.1429,
+          "position": 77
+        },
+        {
+          "query": "life insurance aged leads",
+          "clicks": 1,
+          "impressions": 3,
+          "ctr": 0.3333,
+          "position": 28.67
+        },
+        {
+          "query": "\"national benchmarks\" sales competencies or standards",
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 9
+        },
+        {
+          "query": "$29 final expense leads",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 64
+        },
+        {
+          "query": "accident leads",
+          "clicks": 0,
+          "impressions": 10,
+          "ctr": 0,
+          "position": 48.2
+        },
+        {
+          "query": "advantage vs medigap",
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 95
+        },
+        {
+          "query": "affordable aged life leads",
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 45.67
         }
       ]
     }
