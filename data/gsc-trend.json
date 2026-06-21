@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-20T12:00:22.207Z",
+  "lastUpdated": "2026-06-21T12:01:35.003Z",
   "snapshots": [
     {
       "date": "2026-06-06",
@@ -2279,6 +2279,159 @@
           "impressions": 10,
           "ctr": 0,
           "position": 48.2
+        },
+        {
+          "query": "advantage vs medigap",
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 95
+        },
+        {
+          "query": "affordable aged life leads",
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 45.67
+        }
+      ]
+    },
+    {
+      "date": "2026-06-21",
+      "rolling7d": {
+        "clicks": 18,
+        "impressions": 2229,
+        "ctr": 0.0081,
+        "position": 35.15
+      },
+      "topPages": [
+        {
+          "page": "https://agedleadsales.com/lead-types/final-expense-leads",
+          "clicks": 3,
+          "impressions": 185,
+          "ctr": 0.0162,
+          "position": 40.83
+        },
+        {
+          "page": "https://agedleadsales.com/lead-types/insurance-leads",
+          "clicks": 2,
+          "impressions": 185,
+          "ctr": 0.0108,
+          "position": 37.53
+        },
+        {
+          "page": "https://agedleadsales.com/providers/best/long-term-care",
+          "clicks": 2,
+          "impressions": 2,
+          "ctr": 1,
+          "position": 12.5
+        },
+        {
+          "page": "https://agedleadsales.com/blog/category/strategies",
+          "clicks": 1,
+          "impressions": 8,
+          "ctr": 0.125,
+          "position": 30.25
+        },
+        {
+          "page": "https://agedleadsales.com/glossary/exclusive-lead",
+          "clicks": 1,
+          "impressions": 41,
+          "ctr": 0.0244,
+          "position": 18.68
+        },
+        {
+          "page": "https://agedleadsales.com/lead-types/iul-leads",
+          "clicks": 1,
+          "impressions": 49,
+          "ctr": 0.0204,
+          "position": 21.27
+        },
+        {
+          "page": "https://agedleadsales.com/lead-types/mortgage-leads",
+          "clicks": 1,
+          "impressions": 71,
+          "ctr": 0.0141,
+          "position": 45.56
+        },
+        {
+          "page": "https://agedleadsales.com/lead-types/mva-leads",
+          "clicks": 1,
+          "impressions": 58,
+          "ctr": 0.0172,
+          "position": 54.53
+        },
+        {
+          "page": "https://agedleadsales.com/price-index/auto-insurance",
+          "clicks": 1,
+          "impressions": 86,
+          "ctr": 0.0116,
+          "position": 29.22
+        },
+        {
+          "page": "https://agedleadsales.com/providers",
+          "clicks": 1,
+          "impressions": 161,
+          "ctr": 0.0062,
+          "position": 30.12
+        }
+      ],
+      "topQueries": [
+        {
+          "query": "aged annuity leads",
+          "clicks": 1,
+          "impressions": 2,
+          "ctr": 0.5,
+          "position": 14.5
+        },
+        {
+          "query": "burial insurance leads",
+          "clicks": 1,
+          "impressions": 8,
+          "ctr": 0.125,
+          "position": 49.5
+        },
+        {
+          "query": "final expense leads",
+          "clicks": 1,
+          "impressions": 27,
+          "ctr": 0.037,
+          "position": 51.52
+        },
+        {
+          "query": "homeowner insurance leads",
+          "clicks": 1,
+          "impressions": 14,
+          "ctr": 0.0714,
+          "position": 79.21
+        },
+        {
+          "query": "life insurance aged leads",
+          "clicks": 1,
+          "impressions": 3,
+          "ctr": 0.3333,
+          "position": 28.67
+        },
+        {
+          "query": "\"national benchmarks\" sales competencies or standards",
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 9
+        },
+        {
+          "query": "$29 final expense leads",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 64
+        },
+        {
+          "query": "accident leads",
+          "clicks": 0,
+          "impressions": 9,
+          "ctr": 0,
+          "position": 48
         },
         {
           "query": "advantage vs medigap",
