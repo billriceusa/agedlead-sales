@@ -31,6 +31,27 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
 
+      // Near-duplicate blog posts produced by the (now-disabled) weekly-content
+      // cron. Each pair cannibalized the same query; the canonical (older, more
+      // comprehensive) post wins and the cron dupe 308-redirects into it. The
+      // redirected slugs are unpublished in Sanity so they also drop from the
+      // sitemap (scripts/unpublish-duplicate-posts.mjs). Disabled 2026-06-23.
+      {
+        source: "/blog/aged-lead-budget-allocation-roi-optimization",
+        destination: "/blog/aged-lead-budget-allocation-strategy",
+        permanent: true,
+      },
+      {
+        source: "/blog/aged-lead-team-training-playbook-managers",
+        destination: "/blog/training-aged-lead-sales-team",
+        permanent: true,
+      },
+      {
+        source: "/blog/summer-solar-aged-lead-activation-strategy",
+        destination: "/blog/summer-solar-sales-aged-leads-q2-strategy",
+        permanent: true,
+      },
+
       // Old plural /playbooks routes funnel into the new flagship /playbook master.
       // The 4 old Sanity-backed playbook pages are deprecated in favor of the
       // consolidated "Aged Lead Operator's System" flagship magnet.
