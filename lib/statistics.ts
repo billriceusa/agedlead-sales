@@ -110,6 +110,65 @@ export function getProviderLandscapeStats() {
   };
 }
 
+// Order aged-lead price brackets youngest → oldest for the decay curve.
+const AGE_BRACKET_ORDER = [
+  "real-time",
+  "1-7-days",
+  "8-30-days",
+  "31-85-days",
+  "86-180-days",
+  "181-365-days",
+];
+
+/**
+ * The aged-lead price decay curve. For each vertical with multi-bracket data,
+ * track the median price of a shared internet-form lead as it ages, and the
+ * percent of its real-time value retained at each stage. Mortgage carries the
+ * fullest curve (5 brackets); only verticals with at least three brackets
+ * (real-time + two aged) are returned so every plotted curve is real, not
+ * interpolated. All figures come straight from PRICE_BENCHMARKS.
+ */
+export function getAgingCurveStats() {
+  const curves = VERTICALS.map((v) => {
+    const points = PRICE_BENCHMARKS.filter(
+      (b) =>
+        b.vertical === v.slug &&
+        b.exclusivity === "shared" &&
+        b.leadType === "internet-form" &&
+        AGE_BRACKET_ORDER.includes(b.leadAgeBracket)
+    ).sort(
+      (a, b) =>
+        AGE_BRACKET_ORDER.indexOf(a.leadAgeBracket) -
+        AGE_BRACKET_ORDER.indexOf(b.leadAgeBracket)
+    );
+
+    const realTime = points.find((p) => p.leadAgeBracket === "real-time");
+    if (!realTime || points.length < 3) return null;
+
+    const stops = points.map((p) => ({
+      bracket: p.leadAgeBracket,
+      median: p.priceMedian,
+      pctOfRealTime: Math.round((p.priceMedian / realTime.priceMedian) * 100),
+    }));
+
+    const oldest = stops[stops.length - 1];
+    return {
+      vertical: v.name,
+      slug: v.slug,
+      icon: v.icon,
+      realTimeMedian: realTime.priceMedian,
+      stops,
+      // value lost from real-time to the oldest tracked bracket
+      maxDecayPercent: 100 - oldest.pctOfRealTime,
+      oldestBracket: oldest.bracket,
+    };
+  }).filter((c): c is NonNullable<typeof c> => c !== null);
+
+  // sort by curve completeness (most brackets first) so the richest curve leads
+  curves.sort((a, b) => b.stops.length - a.stops.length);
+  return { curves };
+}
+
 export function getLeadEconomicsStats() {
   const verticalEconomics = VERTICALS.map((v) => {
     const b = v.benchmarkDefaults;

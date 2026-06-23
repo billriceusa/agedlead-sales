@@ -11,7 +11,9 @@ import {
   getPricingDistributionStats,
   getProviderLandscapeStats,
   getLeadEconomicsStats,
+  getAgingCurveStats,
 } from "@/lib/statistics";
+import { AGE_BRACKET_LABELS } from "@/data/price-benchmarks";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 const lastUpdated = "2026-04-08";
@@ -36,6 +38,8 @@ export default function StatisticsPage() {
   const pricing = getPricingDistributionStats();
   const providers = getProviderLandscapeStats();
   const economics = getLeadEconomicsStats();
+  const aging = getAgingCurveStats();
+  const heroCurve = aging.curves[0];
 
   return (
     <>
@@ -52,9 +56,16 @@ export default function StatisticsPage() {
           "@type": "Dataset",
           name: "Aged Lead Industry Pricing & Performance Benchmarks",
           description:
-            "Quarterly benchmarks for aged lead pricing, contact rates, and provider ratings across 14 verticals.",
+            "Quarterly benchmarks for aged lead pricing, the price-decay curve by lead age, contact rates, and provider ratings across 14 verticals.",
           url: pageUrl,
           dateModified: lastUpdated,
+          variableMeasured: [
+            "Median lead price by vertical",
+            "Price decay by lead age bracket",
+            "Real-time vs aged contact rate",
+            "Real-time vs aged close rate",
+            "Provider pricing transparency",
+          ],
           creator: {
             "@type": "Person",
             name: "Bill Rice",
@@ -208,6 +219,127 @@ export default function StatisticsPage() {
             />
           </section>
 
+          {/* Price Decay Curve */}
+          {heroCurve && (
+            <section className="mb-16">
+              <h2 className="mb-2 text-2xl font-bold text-zinc-900 dark:text-white">
+                How Aged Lead Prices Decay With Age
+              </h2>
+              <p className="mb-6 text-sm text-zinc-600 dark:text-zinc-400">
+                Median price of a shared internet-form lead as it ages, by
+                bracket, shown as a percentage of its real-time value. The{" "}
+                {heroCurve.vertical.toLowerCase()} vertical carries the most
+                complete curve.
+              </p>
+
+              {/* Hero curve — % of real-time value retained at each stage */}
+              <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-5 dark:border-zinc-800 dark:bg-zinc-900">
+                <p className="mb-4 text-xs font-semibold uppercase tracking-wider text-zinc-400">
+                  {heroCurve.icon} {heroCurve.vertical} — price by lead age
+                  (shared, internet form)
+                </p>
+                <div className="space-y-3">
+                  {heroCurve.stops.map((s) => (
+                    <div key={s.bracket} className="flex items-center gap-3">
+                      <span className="w-28 shrink-0 text-sm text-zinc-700 dark:text-zinc-300">
+                        {AGE_BRACKET_LABELS[s.bracket] || s.bracket}
+                      </span>
+                      <div className="h-6 flex-1 overflow-hidden rounded bg-zinc-200 dark:bg-zinc-800">
+                        <div
+                          className="flex h-full items-center justify-end rounded bg-blue-600 pr-2 dark:bg-blue-500"
+                          style={{ width: `${Math.max(s.pctOfRealTime, 4)}%` }}
+                        >
+                          {s.pctOfRealTime >= 18 && (
+                            <span className="text-xs font-medium text-white">
+                              {s.pctOfRealTime}%
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                      <span className="w-16 shrink-0 text-right text-sm font-medium text-zinc-900 dark:text-white">
+                        ${s.median}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+                <p className="mt-4 text-sm text-zinc-500 dark:text-zinc-400">
+                  By the {AGE_BRACKET_LABELS[heroCurve.oldestBracket] || heroCurve.oldestBracket}{" "}
+                  bracket, a {heroCurve.vertical.toLowerCase()} lead has shed{" "}
+                  <strong className="text-zinc-700 dark:text-zinc-300">
+                    {heroCurve.maxDecayPercent}%
+                  </strong>{" "}
+                  of its real-time value (${heroCurve.realTimeMedian} &rarr; $
+                  {heroCurve.stops[heroCurve.stops.length - 1].median}).{" "}
+                  <Link
+                    href="/blog/aged-mortgage-leads-2026-guide"
+                    className="text-blue-600 hover:text-blue-700 dark:text-blue-400"
+                  >
+                    See the full aged mortgage leads guide &rarr;
+                  </Link>
+                </p>
+              </div>
+
+              {/* Decay summary across every vertical with a full curve */}
+              {aging.curves.length > 1 && (
+                <div className="mt-6 overflow-x-auto">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="border-b border-zinc-200 dark:border-zinc-800">
+                        <th className="py-3 pr-4 text-left font-semibold text-zinc-900 dark:text-white">
+                          Vertical
+                        </th>
+                        <th className="px-4 py-3 text-right font-semibold text-zinc-900 dark:text-white">
+                          Real-Time
+                        </th>
+                        <th className="px-4 py-3 text-right font-semibold text-zinc-900 dark:text-white">
+                          Oldest Tracked
+                        </th>
+                        <th className="py-3 pl-4 text-right font-semibold text-zinc-900 dark:text-white">
+                          Value Lost
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {aging.curves.map((c) => (
+                        <tr
+                          key={c.slug}
+                          className="border-b border-zinc-100 dark:border-zinc-800/50"
+                        >
+                          <td className="py-3 pr-4 text-zinc-700 dark:text-zinc-300">
+                            <Link
+                              href={`/price-index/${c.slug}`}
+                              className="hover:text-blue-600 dark:hover:text-blue-400"
+                            >
+                              {c.icon} {c.vertical}
+                            </Link>
+                          </td>
+                          <td className="px-4 py-3 text-right text-zinc-700 dark:text-zinc-300">
+                            ${c.realTimeMedian}
+                          </td>
+                          <td className="px-4 py-3 text-right text-zinc-700 dark:text-zinc-300">
+                            ${c.stops[c.stops.length - 1].median}{" "}
+                            <span className="text-zinc-400">
+                              ({AGE_BRACKET_LABELS[c.oldestBracket] || c.oldestBracket})
+                            </span>
+                          </td>
+                          <td className="py-3 pl-4 text-right font-medium text-green-600 dark:text-green-400">
+                            {c.maxDecayPercent}%
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+
+              <div className="mt-4">
+                <CiteThisButton
+                  citation={`According to Aged Lead Sales, a shared ${heroCurve.vertical.toLowerCase()} internet lead falls from $${heroCurve.realTimeMedian} real-time to $${heroCurve.stops[heroCurve.stops.length - 1].median} by the ${(AGE_BRACKET_LABELS[heroCurve.oldestBracket] || heroCurve.oldestBracket).toLowerCase()} bracket — a ${heroCurve.maxDecayPercent}% loss of value as the lead ages. Source: ${pageUrl} (Updated ${lastUpdated})`}
+                />
+              </div>
+            </section>
+          )}
+
           {/* Provider Landscape */}
           <section className="mb-16">
             <h2 className="mb-2 text-2xl font-bold text-zinc-900 dark:text-white">
@@ -215,7 +347,15 @@ export default function StatisticsPage() {
             </h2>
             <p className="mb-6 text-sm text-zinc-600 dark:text-zinc-400">
               How {market.providerCount} rated providers compare on
-              transparency, accreditation, and business practices.
+              transparency, accreditation, and business practices. See our
+              in-depth{" "}
+              <Link
+                href="/blog/aged-lead-store-review-2026"
+                className="text-blue-600 hover:text-blue-700 dark:text-blue-400"
+              >
+                Aged Lead Store review
+              </Link>{" "}
+              for the largest marketplace in the category.
             </p>
 
             <div className="grid gap-4 sm:grid-cols-3">
