@@ -198,6 +198,17 @@ export async function GET(request: Request) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
+  // Auto-send DISABLED 2026-06-23 by owner directive — no cron auto-publishing on
+  // BRSG sites. AI-generated weekly newsletter is no longer auto-broadcast to the
+  // subscriber list. Also unscheduled in vercel.json. To re-enable, set
+  // CRON_PUBLISH_DISABLED="false" in the environment AND restore the vercel.json cron.
+  if (process.env.CRON_PUBLISH_DISABLED !== "false") {
+    return NextResponse.json({
+      disabled: true,
+      reason: "weekly-newsletter auto-send disabled by owner directive (2026-06-23)",
+    });
+  }
+
   const startTime = Date.now();
   const errors: string[] = [];
   const weekDates = getWeekDates();

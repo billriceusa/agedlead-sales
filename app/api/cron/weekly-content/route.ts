@@ -63,6 +63,16 @@ export async function GET(request: Request) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
+  // Auto-publishing DISABLED 2026-06-23 by owner directive — no cron auto-publishing
+  // on BRSG sites. Also unscheduled in vercel.json. To re-enable, set
+  // CRON_PUBLISH_DISABLED="false" in the environment AND restore the vercel.json cron.
+  if (process.env.CRON_PUBLISH_DISABLED !== "false") {
+    return NextResponse.json({
+      disabled: true,
+      reason: "weekly-content auto-publishing disabled by owner directive (2026-06-23)",
+    });
+  }
+
   const startTime = Date.now();
   const errors: string[] = [];
   const weekDates = getWeekDates();
