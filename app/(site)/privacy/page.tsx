@@ -210,12 +210,35 @@ export default function PrivacyPage() {
               </li>
             </ul>
 
-            <h3>California Residents (CCPA)</h3>
+            <h3>California Residents (CCPA/CPRA)</h3>
             <p>
-              Under the California Consumer Privacy Act, California residents
-              have the right to know what personal information is collected, to
-              request its deletion, and to opt out of the sale of personal
-              information. We do not sell personal information.
+              Under the California Consumer Privacy Act, as amended by the CPRA,
+              California residents have the right to know what personal
+              information we collect, to access it, to delete it, to correct it,
+              and to opt out of the sale or sharing of personal information &mdash;
+              without discrimination for exercising these rights.
+            </p>
+            <p>
+              We do not sell your personal information for money. The CPRA also
+              treats some uses of third-party analytics cookies (such as Google
+              Analytics) as &quot;sharing&quot; personal information for
+              cross-context behavioral advertising, even when no money changes
+              hands.
+            </p>
+            <p>
+              <strong>Do Not Sell or Share My Personal Information:</strong> to
+              opt out, disable analytics cookies in your browser or via the{" "}
+              <a
+                href="https://tools.google.com/dlpage/gaoptout"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Google Analytics Opt-out Add-on
+              </a>
+              , and/or email us at{" "}
+              <a href="mailto:bill@agedleadsales.com">bill@agedleadsales.com</a>{" "}
+              with the subject &quot;Do Not Sell or Share&quot; and we will honor
+              your request.
             </p>
 
             <h3>European Residents (GDPR)</h3>
