@@ -84,6 +84,7 @@ const CRON_STALENESS: Record<CronName, { maxDays: number; label: string }> = {
   "seo-audit": { maxDays: 8, label: "SEO audit cron" },
   "marketwatch": { maxDays: 35, label: "Marketwatch cron" },
   "health-check": { maxDays: 2, label: "Health-check cron" },
+  "als-email-report": { maxDays: 8, label: "ALS email report cron" },
 };
 
 async function checkCronHeartbeats(

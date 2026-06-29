@@ -6,7 +6,8 @@ export type CronName =
   | "daily-performance"
   | "seo-audit"
   | "marketwatch"
-  | "health-check";
+  | "health-check"
+  | "als-email-report";
 
 export type CronStatus = "ok" | "partial" | "failed";
 
