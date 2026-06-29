@@ -278,6 +278,66 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* Pipeline Calculator — featured tool */}
+      <section className="bg-white py-16 dark:bg-zinc-950">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="overflow-hidden rounded-2xl border border-blue-200 bg-gradient-to-br from-blue-50 to-white p-8 dark:border-blue-900/50 dark:from-blue-950/40 dark:to-zinc-950 sm:p-10">
+            <div className="grid gap-8 md:grid-cols-[1.4fr_1fr] md:items-center">
+              <div>
+                <span className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-700 dark:bg-blue-900/50 dark:text-blue-300">
+                  Most-used tool
+                </span>
+                <h2 className="mt-3 text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-3xl">
+                  How many leads do you actually need?
+                </h2>
+                <p className="mt-3 max-w-xl text-zinc-600 dark:text-zinc-400">
+                  At a 1–2% close rate, your pipeline math decides whether aged
+                  leads pay off. The Pipeline Volume Calculator turns your income
+                  goal, close rate, and average deal size into the exact lead
+                  volume to buy — in seconds, no sign-up.
+                </p>
+                <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
+                  <Link
+                    href="/calculators/pipeline-calculator"
+                    className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
+                  >
+                    Run your pipeline numbers
+                    <svg
+                      className="h-4 w-4"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={2}
+                      stroke="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                    </svg>
+                  </Link>
+                  <Link
+                    href="/calculators"
+                    className="text-sm font-semibold text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+                  >
+                    See all 5 free calculators &rarr;
+                  </Link>
+                </div>
+              </div>
+              <div className="hidden items-center justify-center md:flex">
+                <svg
+                  className="h-32 w-32 text-blue-600/80 dark:text-blue-400/80"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.25}
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Newsletter Signup */}
       <NewsletterSignup variant="banner" context="homepage" />
 

@@ -442,6 +442,67 @@ export default async function LeadTypePage({ params }: Props) {
         </section>
       )}
 
+      {/* Free Tools */}
+      <section className="border-t border-zinc-200 bg-zinc-50 py-16 dark:border-zinc-800 dark:bg-zinc-900">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-zinc-900 dark:text-white">
+            Run the numbers before you buy {title.toLowerCase()}
+          </h2>
+          <p className="mt-3 max-w-2xl text-zinc-600 dark:text-zinc-400">
+            Free calculators, no sign-up. Start with the Pipeline Volume
+            Calculator to size how many {title.toLowerCase()} you need to hit
+            your income goal.
+          </p>
+          <div className="mt-8 grid gap-4 sm:grid-cols-3">
+            <Link
+              href="/calculators/pipeline-calculator"
+              className="group relative flex flex-col rounded-xl border border-blue-500 bg-white p-5 ring-1 ring-blue-500/40 transition hover:shadow-md dark:bg-zinc-950"
+            >
+              <span className="absolute right-4 top-4 rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-semibold text-blue-700 dark:bg-blue-900/50 dark:text-blue-300">
+                Most popular
+              </span>
+              <h3 className="pr-20 text-base font-semibold text-zinc-900 dark:text-white">
+                Pipeline Volume Calculator
+              </h3>
+              <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+                How many leads you need to hit your income goal.
+              </p>
+              <span className="mt-3 text-sm font-semibold text-blue-600 group-hover:text-blue-700 dark:text-blue-400">
+                Open calculator &rarr;
+              </span>
+            </Link>
+            <Link
+              href="/calculators/roi-calculator"
+              className="group flex flex-col rounded-xl border border-zinc-200 bg-white p-5 transition hover:shadow-md dark:border-zinc-800 dark:bg-zinc-950"
+            >
+              <h3 className="text-base font-semibold text-zinc-900 dark:text-white">
+                Aged Lead ROI Calculator
+              </h3>
+              <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+                Compare aged vs. real-time lead ROI for your budget.
+              </p>
+              <span className="mt-3 text-sm font-semibold text-blue-600 group-hover:text-blue-700 dark:text-blue-400">
+                Open calculator &rarr;
+              </span>
+            </Link>
+            <Link
+              href="/calculators/lead-cost-calculator"
+              className="group flex flex-col rounded-xl border border-zinc-200 bg-white p-5 transition hover:shadow-md dark:border-zinc-800 dark:bg-zinc-950"
+            >
+              <h3 className="text-base font-semibold text-zinc-900 dark:text-white">
+                Lead Cost Calculator
+              </h3>
+              <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+                Your true cost per acquisition after contact and close rates.
+              </p>
+              <span className="mt-3 text-sm font-semibold text-blue-600 group-hover:text-blue-700 dark:text-blue-400">
+                Open calculator &rarr;
+              </span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Bottom CTA */}
       <CtaBanner />
     </>

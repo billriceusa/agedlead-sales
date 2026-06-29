@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Free Sales Calculators & Tools | Aged Lead Sales",
     description:
-      "5 free interactive tools: Know Your CPL, ROI calculator, lead cost calculator, pipeline planner, and outreach cadence planner. No sign-up required.",
+      "5 free interactive tools: pipeline volume calculator, Know Your CPL, ROI calculator, lead cost calculator, and outreach cadence planner. No sign-up required.",
     url: `${baseUrl}/calculators`,
     images: [
       {
@@ -24,6 +24,15 @@ export const metadata: Metadata = {
 };
 
 const CALCULATORS = [
+  {
+    title: "Pipeline Volume Calculator",
+    slug: "pipeline-calculator",
+    description:
+      "Determine how many leads you need to hit your income goals based on your close rate and average deal size. Our most-used tool — start here.",
+    icon: "📈",
+    status: "live",
+    popular: true,
+  },
   {
     title: "Know Your CPL",
     slug: "know-your-cpl",
@@ -46,14 +55,6 @@ const CALCULATORS = [
     description:
       "Calculate your true cost per acquisition when factoring in lead cost, contact rate, and conversion rate.",
     icon: "💰",
-    status: "live",
-  },
-  {
-    title: "Pipeline Volume Calculator",
-    slug: "pipeline-calculator",
-    description:
-      "Determine how many leads you need to hit your income goals based on your close rate and average deal size.",
-    icon: "📈",
     status: "live",
   },
   {
@@ -107,8 +108,17 @@ export default function CalculatorsPage() {
             {CALCULATORS.map((calc) => (
               <div
                 key={calc.slug}
-                className="relative flex flex-col rounded-xl border border-zinc-200 bg-white p-6 dark:border-zinc-800 dark:bg-zinc-900"
+                className={`relative flex flex-col rounded-xl border bg-white p-6 dark:bg-zinc-900 ${
+                  calc.popular
+                    ? "border-blue-500 ring-1 ring-blue-500/40 dark:border-blue-500"
+                    : "border-zinc-200 dark:border-zinc-800"
+                }`}
               >
+                {calc.popular && (
+                  <span className="absolute right-4 top-4 rounded-full bg-blue-100 px-2.5 py-1 text-xs font-semibold text-blue-700 dark:bg-blue-900/50 dark:text-blue-300">
+                    Most popular
+                  </span>
+                )}
                 <span className="mb-3 text-3xl">{calc.icon}</span>
                 <h2 className="text-xl font-semibold text-zinc-900 dark:text-white">
                   {calc.title}
