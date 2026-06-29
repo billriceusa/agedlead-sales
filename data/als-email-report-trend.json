@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-29T15:30:38.791Z",
+  "lastUpdated": "2026-06-29T16:45:07.078Z",
   "snapshots": [
     {
       "date": "2026-06-29",
@@ -17,8 +17,8 @@
           "unsubscribed": 8
         }
       ],
-      "emailSessions": 0,
-      "emailKeyEvents": null
+      "emailSessions": 16,
+      "emailKeyEvents": 0
     }
   ]
 }
