@@ -1,0 +1,38 @@
+{
+  "runDate": "2026-07-01T06:01:33.347Z",
+  "month": "2026-07",
+  "providersScanned": 1,
+  "providersWithChanges": 0,
+  "newBenchmarksGenerated": 0,
+  "staleProviders": [],
+  "providerUpdates": [
+    {
+      "providerSlug": "need-a-lead",
+      "providerName": "Need-A-Lead",
+      "pricingChanges": [],
+      "policyChanges": [],
+      "newVerticals": [],
+      "newLeadTypes": [],
+      "notableChanges": [
+        "[Failed to fetch: HTTP 403]"
+      ],
+      "rawPricingData": []
+    }
+  ],
+  "errors": [
+    "Failed to process Aged Lead Store: Error: 404 {\"type\":\"error\",\"error\":{\"type\":\"not_found_error\",\"message\":\"model: claude-sonnet-4-20250514\"},\"request_id\":\"req_011Ccaq2fvGRf6gW4aFLXy9C\"}",
+    "Failed to process Aged Leads Depot: Error: 404 {\"type\":\"error\",\"error\":{\"type\":\"not_found_error\",\"message\":\"model: claude-sonnet-4-20250514\"},\"request_id\":\"req_011Ccaq2h4ybWe2rMQm1J5te\"}",
+    "Failed to process Badass Insurance Leads: Error: 404 {\"type\":\"error\",\"error\":{\"type\":\"not_found_error\",\"message\":\"model: claude-sonnet-4-20250514\"},\"request_id\":\"req_011Ccaq2gvHzfJ5zcWGy43Nv\"}",
+    "Failed to process Brokers Data: Error: 404 {\"type\":\"error\",\"error\":{\"type\":\"not_found_error\",\"message\":\"model: claude-sonnet-4-20250514\"},\"request_id\":\"req_011Ccaq2iXXtDVhBbPttTuby\"}",
+    "Failed to process DataToLeads: Error: 404 {\"type\":\"error\",\"error\":{\"type\":\"not_found_error\",\"message\":\"model: claude-sonnet-4-20250514\"},\"request_id\":\"req_011Ccaq2ghQG8hmD28TTCYj5\"}",
+    "Failed to process iLeads: Error: 404 {\"type\":\"error\",\"error\":{\"type\":\"not_found_error\",\"message\":\"model: claude-sonnet-4-20250514\"},\"request_id\":\"req_011Ccaq2m7ohLmtcDx61Sq2v\"}",
+    "Failed to process Lead Heroes: Error: 404 {\"type\":\"error\",\"error\":{\"type\":\"not_found_error\",\"message\":\"model: claude-sonnet-4-20250514\"},\"request_id\":\"req_011Ccaq2pwVtSJHQ3mPRDMEk\"}",
+    "Failed to process Lead Tycoons: Error: 404 {\"type\":\"error\",\"error\":{\"type\":\"not_found_error\",\"message\":\"model: claude-sonnet-4-20250514\"},\"request_id\":\"req_011Ccaq2kKBcsSLokcyhAjBP\"}",
+    "Failed to process LeadPoint: Error: 404 {\"type\":\"error\",\"error\":{\"type\":\"not_found_error\",\"message\":\"model: claude-sonnet-4-20250514\"},\"request_id\":\"req_011Ccaq2jw7ammeUheyNpg4j\"}",
+    "Failed to process LeadsData: Error: 404 {\"type\":\"error\",\"error\":{\"type\":\"not_found_error\",\"message\":\"model: claude-sonnet-4-20250514\"},\"request_id\":\"req_011Ccaq2oK1qQfjdtQsBs92f\"}",
+    "Failed to process QuoteWizard: Error: 404 {\"type\":\"error\",\"error\":{\"type\":\"not_found_error\",\"message\":\"model: claude-sonnet-4-20250514\"},\"request_id\":\"req_011Ccaq2qt3wPoy1htPt77mU\"}",
+    "Failed to process SmartFinancial: Error: 404 {\"type\":\"error\",\"error\":{\"type\":\"not_found_error\",\"message\":\"model: claude-sonnet-4-20250514\"},\"request_id\":\"req_011Ccaq2tL8uTnBzg7xEdrp2\"}",
+    "Failed to process Synergy Direct Solution: Error: 404 {\"type\":\"error\",\"error\":{\"type\":\"not_found_error\",\"message\":\"model: claude-sonnet-4-20250514\"},\"request_id\":\"req_011Ccaq2seDgA7QA9PZgVfr9\"}",
+    "Failed to process The Leads Warehouse: Error: 404 {\"type\":\"error\",\"error\":{\"type\":\"not_found_error\",\"message\":\"model: claude-sonnet-4-20250514\"},\"request_id\":\"req_011Ccaq2sMrBPrSckWaPXJ1K\"}"
+  ]
+}
