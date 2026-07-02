@@ -105,7 +105,11 @@ export async function extractProviderData(
   }
 
   const message = await anthropic.messages.create({
-    model: "claude-sonnet-4-20250514",
+    // claude-sonnet-4 retired 2026-06-15 (was 404ing every run). Thinking is
+    // explicitly disabled so content[0] stays a text block for the parser
+    // below and max_tokens isn't consumed by thinking output.
+    model: "claude-sonnet-5",
+    thinking: { type: "disabled" },
     max_tokens: 2000,
     messages: [
       {
@@ -207,7 +211,9 @@ export async function generateBenchmarkEstimates(
   }
 
   const message = await anthropic.messages.create({
-    model: "claude-sonnet-4-20250514",
+    // Same retired-model swap + explicit no-thinking as extractProviderData.
+    model: "claude-sonnet-5",
+    thinking: { type: "disabled" },
     max_tokens: 4000,
     messages: [
       {

@@ -37,26 +37,6 @@ function daysBetween(fromIso: string, to: Date): number {
   return Math.round((to.getTime() - from) / 86400000);
 }
 
-async function checkWeeklyContent(client: ReturnType<typeof getSanityClient>, now: Date): Promise<HealthCheck> {
-  const latest = await client.fetch<{ _createdAt: string; title: string } | null>(
-    `*[_type == "post"] | order(_createdAt desc)[0]{ _createdAt, title }`
-  );
-  if (!latest) {
-    return { name: "Weekly content", ok: false, detail: "No posts exist in Sanity" };
-  }
-  const age = daysBetween(latest._createdAt, now);
-  const ok = age <= 10;
-  return {
-    name: "Weekly content",
-    ok,
-    detail: ok
-      ? `Latest post "${latest.title}" created ${age}d ago`
-      : `Latest post was ${age}d ago — weekly cron may have failed. Title: "${latest.title}"`,
-    lastSeen: latest._createdAt,
-    ageDays: age,
-  };
-}
-
 async function checkMarketwatch(client: ReturnType<typeof getSanityClient>, now: Date): Promise<HealthCheck> {
   const latest = await client.fetch<{ _updatedAt: string } | null>(
     `*[_type == "priceBenchmark"] | order(_updatedAt desc)[0]{ _updatedAt }`
@@ -77,13 +57,14 @@ async function checkMarketwatch(client: ReturnType<typeof getSanityClient>, now:
   };
 }
 
-const CRON_STALENESS: Record<CronName, { maxDays: number; label: string }> = {
-  "weekly-content": { maxDays: 8, label: "Weekly content cron" },
-  "weekly-newsletter": { maxDays: 8, label: "Weekly newsletter cron" },
-  "daily-performance": { maxDays: 2, label: "Daily performance cron" },
-  "seo-audit": { maxDays: 8, label: "SEO audit cron" },
+// Only crons still scheduled in vercel.json are monitored. weekly-content,
+// weekly-newsletter, seo-audit, and daily-performance were decommissioned
+// 2026-07-02 (superseded by the consolidated BRSG Portfolio Performance
+// Report in billricestrategy.com) — their routes remain but are unscheduled,
+// so a staleness check would alert forever.
+const MONITORED_CRONS = ["marketwatch", "als-email-report"] as const satisfies readonly CronName[];
+const CRON_STALENESS: Record<(typeof MONITORED_CRONS)[number], { maxDays: number; label: string }> = {
   "marketwatch": { maxDays: 35, label: "Marketwatch cron" },
-  "health-check": { maxDays: 2, label: "Health-check cron" },
   "als-email-report": { maxDays: 8, label: "ALS email report cron" },
 };
 
@@ -96,14 +77,7 @@ async function checkCronHeartbeats(
   >(`*[_type == "cronHeartbeat"]{ name, status, ranAt, detail }`);
   const byName = new Map(heartbeats.map((h) => [h.name, h]));
   const results: HealthCheck[] = [];
-  const cronsToCheck: CronName[] = [
-    "weekly-content",
-    "weekly-newsletter",
-    "daily-performance",
-    "seo-audit",
-    "marketwatch",
-  ];
-  for (const name of cronsToCheck) {
+  for (const name of MONITORED_CRONS) {
     const { maxDays, label } = CRON_STALENESS[name];
     const hb = byName.get(name);
     if (!hb) {
@@ -177,7 +151,7 @@ export async function GET(request: Request) {
   const client = getSanityClient();
 
   const [contentChecks, heartbeatChecks] = await Promise.all([
-    Promise.all([checkWeeklyContent(client, now), checkMarketwatch(client, now)]),
+    Promise.all([checkMarketwatch(client, now)]),
     checkCronHeartbeats(client, now),
   ]);
 
