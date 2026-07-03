@@ -45,7 +45,7 @@ If legal guidance in one file changes, cross-check the other content files and t
 
 ## Daily cron commits to main
 
-A Vercel cron (daily-performance) auto-commits `performance-backlog.json` to `main` around 6 AM ET daily. Before pushing your own work to `main`, always `git fetch origin main && git pull --rebase origin main` to avoid non-fast-forward rejects.
+A Vercel cron (`gsc-trend`, 12:00 UTC daily) auto-commits `data/gsc-trend.json` to `main` — the disavow / toxic-backlink tripwire. Before pushing your own work to `main`, always `git fetch origin main && git pull --rebase origin main` to avoid non-fast-forward rejects. (The old `daily-performance` cron — which also committed `performance-backlog.json` — was unscheduled 2026-07-03; its report is superseded by the consolidated BRSG Portfolio Performance Report. The route survives for manual runs.)
 
 ## Sanity dataset notes
 
