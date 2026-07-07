@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-06T12:01:17.654Z",
+  "lastUpdated": "2026-07-07T12:00:31.322Z",
   "snapshots": [
     {
       "date": "2026-06-06",
@@ -4129,6 +4129,159 @@
           "impressions": 35,
           "ctr": 0,
           "position": 15.63
+        }
+      ]
+    },
+    {
+      "date": "2026-07-07",
+      "rolling7d": {
+        "clicks": 18,
+        "impressions": 2902,
+        "ctr": 0.0062,
+        "position": 26.76
+      },
+      "topPages": [
+        {
+          "page": "https://agedleadsales.com/lead-types/medicare-leads",
+          "clicks": 3,
+          "impressions": 73,
+          "ctr": 0.0411,
+          "position": 43.59
+        },
+        {
+          "page": "https://agedleadsales.com/price-index/debt-settlement",
+          "clicks": 2,
+          "impressions": 3,
+          "ctr": 0.6667,
+          "position": 22.67
+        },
+        {
+          "page": "https://agedleadsales.com/",
+          "clicks": 1,
+          "impressions": 79,
+          "ctr": 0.0127,
+          "position": 21.53
+        },
+        {
+          "page": "https://agedleadsales.com/about",
+          "clicks": 1,
+          "impressions": 43,
+          "ctr": 0.0233,
+          "position": 6.44
+        },
+        {
+          "page": "https://agedleadsales.com/downloads/aged-lead-scripts-bundle.pdf",
+          "clicks": 1,
+          "impressions": 3,
+          "ctr": 0.3333,
+          "position": 6.33
+        },
+        {
+          "page": "https://agedleadsales.com/lead-types/final-expense-leads",
+          "clicks": 1,
+          "impressions": 140,
+          "ctr": 0.0071,
+          "position": 20.81
+        },
+        {
+          "page": "https://agedleadsales.com/lead-types/iul-leads",
+          "clicks": 1,
+          "impressions": 75,
+          "ctr": 0.0133,
+          "position": 20.56
+        },
+        {
+          "page": "https://agedleadsales.com/lead-types/mortgage-leads",
+          "clicks": 1,
+          "impressions": 176,
+          "ctr": 0.0057,
+          "position": 35.17
+        },
+        {
+          "page": "https://agedleadsales.com/lead-types/mva-leads",
+          "clicks": 1,
+          "impressions": 49,
+          "ctr": 0.0204,
+          "position": 58.33
+        },
+        {
+          "page": "https://agedleadsales.com/lead-types/solar-leads",
+          "clicks": 1,
+          "impressions": 62,
+          "ctr": 0.0161,
+          "position": 50.74
+        }
+      ],
+      "topQueries": [
+        {
+          "query": "aged iul leads",
+          "clicks": 1,
+          "impressions": 4,
+          "ctr": 0.25,
+          "position": 2.75
+        },
+        {
+          "query": "aged lead store reviews",
+          "clicks": 1,
+          "impressions": 12,
+          "ctr": 0.0833,
+          "position": 6.08
+        },
+        {
+          "query": "aged solar leads",
+          "clicks": 1,
+          "impressions": 2,
+          "ctr": 0.5,
+          "position": 19
+        },
+        {
+          "query": "accident leads",
+          "clicks": 0,
+          "impressions": 4,
+          "ctr": 0,
+          "position": 43.25
+        },
+        {
+          "query": "advantage vs medigap",
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 96.33
+        },
+        {
+          "query": "affordable aged life leads",
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 32
+        },
+        {
+          "query": "aged auto insurance leads",
+          "clicks": 0,
+          "impressions": 9,
+          "ctr": 0,
+          "position": 7.78
+        },
+        {
+          "query": "aged business loan leads",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 81
+        },
+        {
+          "query": "aged final expense leads",
+          "clicks": 0,
+          "impressions": 33,
+          "ctr": 0,
+          "position": 15.27
+        },
+        {
+          "query": "aged health insurance leads",
+          "clicks": 0,
+          "impressions": 16,
+          "ctr": 0,
+          "position": 17.06
         }
       ]
     }
