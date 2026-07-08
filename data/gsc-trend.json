@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-07T12:00:31.322Z",
+  "lastUpdated": "2026-07-08T12:00:39.098Z",
   "snapshots": [
     {
       "date": "2026-06-06",
@@ -4282,6 +4282,159 @@
           "impressions": 16,
           "ctr": 0,
           "position": 17.06
+        }
+      ]
+    },
+    {
+      "date": "2026-07-08",
+      "rolling7d": {
+        "clicks": 17,
+        "impressions": 3124,
+        "ctr": 0.0054,
+        "position": 25.01
+      },
+      "topPages": [
+        {
+          "page": "https://agedleadsales.com/lead-types/medicare-leads",
+          "clicks": 3,
+          "impressions": 72,
+          "ctr": 0.0417,
+          "position": 43.46
+        },
+        {
+          "page": "https://agedleadsales.com/lead-types/final-expense-leads",
+          "clicks": 2,
+          "impressions": 145,
+          "ctr": 0.0138,
+          "position": 22.51
+        },
+        {
+          "page": "https://agedleadsales.com/providers/best/final-expense",
+          "clicks": 2,
+          "impressions": 307,
+          "ctr": 0.0065,
+          "position": 16.91
+        },
+        {
+          "page": "https://agedleadsales.com/",
+          "clicks": 1,
+          "impressions": 77,
+          "ctr": 0.013,
+          "position": 18.21
+        },
+        {
+          "page": "https://agedleadsales.com/about",
+          "clicks": 1,
+          "impressions": 32,
+          "ctr": 0.0313,
+          "position": 6.88
+        },
+        {
+          "page": "https://agedleadsales.com/blog/aged-lead-store-review-2026",
+          "clicks": 1,
+          "impressions": 64,
+          "ctr": 0.0156,
+          "position": 7.47
+        },
+        {
+          "page": "https://agedleadsales.com/downloads/aged-lead-scripts-bundle.pdf",
+          "clicks": 1,
+          "impressions": 3,
+          "ctr": 0.3333,
+          "position": 6.33
+        },
+        {
+          "page": "https://agedleadsales.com/lead-types/insurance-leads",
+          "clicks": 1,
+          "impressions": 188,
+          "ctr": 0.0053,
+          "position": 35.38
+        },
+        {
+          "page": "https://agedleadsales.com/lead-types/solar-leads",
+          "clicks": 1,
+          "impressions": 63,
+          "ctr": 0.0159,
+          "position": 50.35
+        },
+        {
+          "page": "https://agedleadsales.com/lead-types/ssdi-leads",
+          "clicks": 1,
+          "impressions": 108,
+          "ctr": 0.0093,
+          "position": 15.06
+        }
+      ],
+      "topQueries": [
+        {
+          "query": "aged lead store reviews",
+          "clicks": 1,
+          "impressions": 12,
+          "ctr": 0.0833,
+          "position": 5.67
+        },
+        {
+          "query": "aged medicare supplement leads",
+          "clicks": 1,
+          "impressions": 3,
+          "ctr": 0.3333,
+          "position": 2.33
+        },
+        {
+          "query": "aged solar leads",
+          "clicks": 1,
+          "impressions": 1,
+          "ctr": 1,
+          "position": 3
+        },
+        {
+          "query": "cheap final expense leads",
+          "clicks": 1,
+          "impressions": 12,
+          "ctr": 0.0833,
+          "position": 30.92
+        },
+        {
+          "query": "accident leads",
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 43
+        },
+        {
+          "query": "advantage vs medigap",
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 96.33
+        },
+        {
+          "query": "affordable aged life leads",
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 45.67
+        },
+        {
+          "query": "aged auto insurance leads",
+          "clicks": 0,
+          "impressions": 11,
+          "ctr": 0,
+          "position": 8
+        },
+        {
+          "query": "aged business loan leads",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 81
+        },
+        {
+          "query": "aged direct mail final expense leads",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 10
         }
       ]
     }
