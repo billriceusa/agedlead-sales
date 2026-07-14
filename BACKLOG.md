@@ -6,6 +6,20 @@
 
 ---
 
+## 2026-07-14 — Portfolio Performance Report priority anchor
+<!-- added 2026-07-14 — cross-portfolio prioritization from the BRSG Portfolio Performance Report (daily) -->
+
+**Report snapshot (2026-07-14 daily):** 450 sessions (+172.8%), **27 conv** — the portfolio's #1 converter.
+
+**Portfolio rank: TIER 1 — the top converter** (AEO-driven; AI assistants are the best-converting channel). Scale and defend. Work these existing items, in order:
+
+1. **Refresh + resubmit the disavow** (P0 below) — the toxic-backlink attack is ongoing and this is **overdue** (due ~2026-07-06); avg position is eroding 25.4 → 32.3. Diff new spam domains; Bill re-submits in GSC. Authority is the binding traffic constraint — this stops the bleeding.
+2. **Feature the pipeline calculator** (P1 below) — it converted **9 of 16 sessions** (best on-site converter) but is starved of traffic; surface in nav/homepage + internal-link + add SoftwareApplication/HowTo JSON-LD so it also *earns* organic landings.
+3. **Ship the next `/compare/*` AEO wave** (P1 below) — AI Assistants are the best-converting channel and cite this format; build `final-expense-vs-term-life`, `medicare-vs-aca` on the existing template.
+4. **Attribution config fix** (P1 below) — enable bot exclusion + referral review so the 66% "Direct" stops poisoning measurement (fleet pattern; code is already correct).
+
+*Next content lever: build the 3 missing lead-type guides — health-insurance, debt-settlement, mca-business-loans (P1 below).*
+
 ## Done
 
 <!-- added 2026-06-13 editorial session -->
