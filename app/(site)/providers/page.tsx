@@ -107,6 +107,12 @@ export default async function ProvidersPage() {
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
+              href="/compare"
+              className="inline-flex items-center rounded-lg bg-white/10 px-4 py-2.5 text-sm font-medium text-white backdrop-blur-sm transition-colors hover:bg-white/20"
+            >
+              Head-to-head comparisons &rarr;
+            </Link>
+            <Link
               href="/price-index"
               className="inline-flex items-center rounded-lg bg-white/10 px-4 py-2.5 text-sm font-medium text-white backdrop-blur-sm transition-colors hover:bg-white/20"
             >

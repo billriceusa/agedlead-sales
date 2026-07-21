@@ -7,6 +7,7 @@ const navigation = [
   { name: "Start Here", href: "/start-here" },
   { name: "Lead Types", href: "/lead-types" },
   { name: "Providers", href: "/providers" },
+  { name: "Compare", href: "/compare" },
   { name: "Price Index", href: "/price-index" },
   { name: "Blog", href: "/blog" },
   { name: "Playbook", href: "/playbook" },

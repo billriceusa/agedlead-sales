@@ -24,6 +24,7 @@ const footerLinks = {
   ],
   "Lead Marketwatch": [
     { name: "Provider Directory", href: "/providers" },
+    { name: "Comparisons", href: "/compare" },
     { name: "Price Index", href: "/price-index" },
     { name: "Know Your CPL", href: "/calculators/know-your-cpl" },
     { name: "Our Methodology", href: "/methodology" },
