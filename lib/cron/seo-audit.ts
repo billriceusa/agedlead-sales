@@ -5,6 +5,7 @@ import type {
   SEOBacklog,
   BacklogItem,
 } from "./types";
+import { SONNET_MODEL } from "./model-config";
 import { parseJsonResponse } from "./parse-json";
 
 function getAnthropicClient(): Anthropic {
@@ -63,7 +64,7 @@ export async function researchGoogleUpdates(): Promise<GoogleUpdateSummary[]> {
   const client = getAnthropicClient();
 
   const response = await client.messages.create({
-    model: "claude-sonnet-4-20250514",
+    model: SONNET_MODEL,
     max_tokens: 4096,
     system: AUDIT_SYSTEM,
     messages: [
@@ -140,7 +141,7 @@ ${existingBacklog.items
     .join("\n");
 
   const response = await client.messages.create({
-    model: "claude-sonnet-4-20250514",
+    model: SONNET_MODEL,
     max_tokens: 8192,
     system: AUDIT_SYSTEM,
     messages: [

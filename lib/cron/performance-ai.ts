@@ -6,6 +6,7 @@ import {
   fetchContentInventory,
   renderContentInventory,
 } from "./content-inventory";
+import { SONNET_MODEL } from "./model-config";
 
 function getAnthropicClient(): Anthropic {
   const apiKey = process.env.ANTHROPIC_API_KEY;
@@ -122,7 +123,7 @@ ${gsc.ninetyDay.topQueries.slice(0, 10).map((q) => `- "${q.query}": ${q.clicks} 
   )}\n`;
 
   const response = await client.messages.create({
-    model: "claude-sonnet-4-20250514",
+    model: SONNET_MODEL,
     max_tokens: 4096,
     system: `You are a senior digital marketing analyst reviewing the daily performance of Aged Lead Sales (agedleadsales.com), an SEO-driven affiliate content site targeting insurance agents, mortgage brokers, financial advisors, PI attorneys, and solar reps. The site promotes AgedLeadStore.com via affiliate links.
 
