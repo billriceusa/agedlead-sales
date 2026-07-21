@@ -11,9 +11,10 @@ import Link from "next/link";
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
 export const metadata: Metadata = {
-  title: "Lead Provider Directory — Compare & Rate Lead Providers",
+  // "aged" is the money term this page ranks for and the old title omitted it.
+  title: "Aged Lead Providers: 15+ Rated & Compared",
   description:
-    "Independent ratings and reviews of 15+ lead providers across mortgage, insurance, solar, and more. Transparent methodology. Updated monthly.",
+    "Independent ratings of 15+ aged lead providers across mortgage, insurance, solar and more. Real pricing, 6-dimension scores, transparent methodology.",
   alternates: { canonical: `${baseUrl}/providers` },
   openGraph: {
     title: "Lead Provider Directory | Aged Lead Sales",

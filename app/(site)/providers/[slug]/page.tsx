@@ -93,7 +93,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${name} Review — Lead Provider Rating & Analysis`,
+    title: `${name} Review: Pricing, Ratings & Verdict`,
     description: `Independent review and rating of ${name}. See our honest assessment, 6-dimension scores, and how they compare to other lead providers.`,
     alternates: { canonical: `${baseUrl}/providers/${slug}` },
     openGraph: {

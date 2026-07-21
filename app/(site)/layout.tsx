@@ -25,7 +25,11 @@ export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
     default: "Aged Lead Sales: Pricing, Provider Reviews & Playbooks",
-    template: "%s | Aged Lead Sales",
+    // No brand suffix. Google sources the SERP site name from the WebSite /
+    // Organization schema (both declare "Aged Lead Sales"), so appending it here
+    // was redundant — and its 18 chars pushed 212 of 246 page titles past the
+    // ~60-char SERP budget, truncating them. Dropping it brings 182 back in range.
+    template: "%s",
   },
   description:
     "Buy aged leads the smart way. Compare 15+ lead providers, see real price benchmarks, and get free playbooks that turn cheap aged leads into closed deals.",

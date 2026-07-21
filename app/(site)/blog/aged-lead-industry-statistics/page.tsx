@@ -20,10 +20,9 @@ const lastUpdated = "2026-04-08";
 const pageUrl = `${baseUrl}/blog/aged-lead-industry-statistics`;
 
 export const metadata: Metadata = {
-  title:
-    "Aged Lead Industry Statistics [2026] — Pricing, Contact Rates & Market Data",
+  title: "Aged Lead Industry Statistics [2026]",
   description:
-    "Comprehensive aged lead industry statistics for 2026: pricing benchmarks across 14 verticals, provider landscape data, contact rates, close rates, and ROI analysis. Updated quarterly.",
+    "Aged lead pricing benchmarks across 14 verticals, plus contact rates, close rates and ROI data from 18+ providers. Updated quarterly.",
   alternates: { canonical: pageUrl },
   openGraph: {
     title: "Aged Lead Industry Statistics [2026]",

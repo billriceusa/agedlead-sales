@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const name = cmsTerm?.term || staticTerm?.term || "";
   const def = cmsTerm?.definition || staticTerm?.definition || "";
-  const title = cmsTerm?.seo?.metaTitle || `What is ${name}? – Definition & Guide`;
+  const title = cmsTerm?.seo?.metaTitle || `What is ${name}? — Definition`;
   const description = cmsTerm?.seo?.metaDescription || def;
 
   return {
