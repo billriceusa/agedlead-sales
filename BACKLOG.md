@@ -20,6 +20,23 @@
 
 *Next content lever: build the 3 missing lead-type guides — health-insurance, debt-settlement, mca-business-loans (P1 below).*
 
+---
+
+## 2026-07-21 — /brsg-session
+
+**Position has recovered, contrary to the 07-14 note above.** Rolling-7d GSC: avg position **32.3 (Jun 25) → 21.76**, CTR **0.62% → 1.02%**, clicks **14 → 33**. Impressions cooled (4,122 → 3,223). Ahrefs: DR low, org traffic ~26/mo, 6 organic keywords.
+
+Shipped this session:
+
+- [x] **Disavow refreshed to 291 domains (+41).** Attack still running — refdomains **252 (06-29) → 292 (07-20)**, and **all 70 newest referring domains were spam** (100% of the new cohort). Bill uploaded to GSC 2026-07-21. The P0 above is now closed.
+- [x] **SERP title truncation fixed sitewide — 34 → 241 of 246 pages within budget (`e74d4bd`).** 212 of 246 titles exceeded the ~60-char SERP budget. Root cause was the layout `title.template` appending `" | Aged Lead Sales"` to every page; that suffix was redundant because the `WebSite`/`Organization` schema already declares the site name, which is how Google sources it. Dropping it alone recovered 182 pages. Also shortened the compare/glossary/provider-review templated patterns, fixed the worst hardcoded titles, and added "aged" — the money term — to the `/providers` title, which omitted it entirely. Verified by measuring all 246 sitemap URLs against a served production build.
+- [x] **Toxic-backlink classification automated (`2cb7742`).** `lib/backlink-audit/spam-classifier.ts` + `scripts/refresh-disavow.ts` + 37 tests (`npm test`, `node:test`, no new dependency). Validated against real ground truth — the 291 domains already disavowed: calls **none** of them clean, auto-flags **270 (93%)**, defers 21 genuinely ambiguous ones to a human. Deliberately three-verdict, not boolean: wrongly disavowing a genuine editorial link costs far more than deferring one spam domain.
+- [x] **Comparison cluster de-orphaned (`091a03a`).** A crawl of the in-body link graph found **16 of 17 indexed `/compare/*` pages had zero inbound links from anywhere** — not nav, footer, or body — reachable only via the sitemap. Root cause: `ProviderCompareSelector` is a `<select>` + `router.push()`, emitting no `<a href>`, and no `/compare` index existed. This matters because it is the **best-converting format on the site** — `/compare/aged-lead-store-vs-the-leads-warehouse` ranks position 9 at **5.97% CTR**, the highest of any page, on zero internal link equity. Built the `/compare` hub (17 comparisons, ItemList + breadcrumb JSON-LD, in sitemap), added it to header nav + footer, and gave every provider page a real crawlable link to its own head-to-head.
+
+Still open from this session:
+
+- [ ] **5 Sanity post metaTitles/metaDescriptions still truncated — needs Bill's go-ahead.** A seeding pass clipped values to satisfy the 60/160 caps, shipping **10 metaTitles and 12 metaDescriptions ending in a literal `…`** that Google renders verbatim — including the site's best-ranked page (`aged-lead-store-review-2026`, position 6.25, 251 impr/wk, showing "…Honest Assessment of the L…" and converting at only **1.59% CTR** against a ~5–7% expectation for that position). Rewrites are drafted and dry-run clean for all 17 affected posts; the write was blocked by the permission gate because it mutates live production Sanity. Rollback snapshot of all 76 posts saved. The schema now rejects ellipsis-terminated values so this cannot recur. **Action:** approve the Sanity write. *Effort: S.*
+
 ## Done
 
 <!-- added 2026-06-13 editorial session -->
@@ -224,6 +241,14 @@ Two posts lacked `mainImage` (`life-insurance-aged-lead-roi`, `smart-agents-buy-
 ### Clean up 27 orphaned `seo-draft` PRs (#3–#36) <!-- added 2026-07-03 /brsg-session -->
 27 open draft PRs on `seo-draft/*` branches (#3–#36) left by an earlier content-automation routine that opened a PR per draft but never merged/closed them. They clutter the PR list and obscure real review items (this session's PR #40 was buried among them). **Action:** triage — a draft still worth publishing gets folded into the editorial pipeline; the rest get closed + branches deleted. Likely bulk-closable (`gh pr close` + `git push --delete`) after a quick scan confirms none carry unshipped content Bill wants. *Effort: S.*
 - **Impact:** Repo hygiene; unblocks legible PR review.
+- [x] **DONE 2026-07-21 /brsg-session.** All 27 closed; **0 open PRs** remain. Branches left in place so nothing is lost. Confirmed superseded: 20 targeted "aged life insurance leads" and 7 targeted "aged final expense leads" — the routine re-picked the same two keywords for three months, and each PR wrote to a *different* directory convention (`content/drafts-<date>/`, `content/drafts/<date>-<slug>.md`, `content/drafts/<slug>/draft.md`) so they never collided. Both topics already covered by published posts. **#3 was the exception** — it also carried `lib/cron/model-config.ts`, and that idea was right: see the new P1 note below.
+
+---
+
+## P1 — Reliability (added 2026-07-21 /brsg-session)
+
+- [x] **Dead Anthropic model IDs in four cron modules — FIXED (`8100c18`).** `claude-sonnet-4-20250514` retired 2026-06-15 and started 404ing every run. `marketwatch-ai.ts` was fixed at the time; `ai-content.ts` (×2), `newsletter-ai.ts`, `seo-audit.ts` (×2) and `performance-ai.ts` were missed and still pointed at the dead ID **over a month later**. Nothing was failing in production only because none of those four routes (`weekly-content`, `weekly-newsletter`, `seo-audit`, `daily-performance`) are scheduled in `vercel.json` — re-enable any one and it 404s. `lib/cron/model-config.ts` is now the single source of truth with env-var overrides. Salvaged from abandoned PR #3.
+- [ ] **The weekly-content routine still has no dedupe gate.** Root cause of the 27-PR pile-up: it re-picked "aged life insurance leads" 20 times and "aged final expense leads" 7 times across three months without noticing. The route is currently unscheduled so this is latent, **but do not re-enable `weekly-content` until a dedupe gate exists** — check both published Sanity slugs *and* open PR titles before drafting. Also collapse the three competing `content/drafts*` path conventions into one. *Effort: M.* <!-- added 2026-07-21 /brsg-session -->
 
 ---
 
