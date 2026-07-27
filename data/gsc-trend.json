@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-26T12:01:47.542Z",
+  "lastUpdated": "2026-07-27T12:00:03.587Z",
   "snapshots": [
     {
       "date": "2026-07-10",
@@ -2599,6 +2599,159 @@
           "impressions": 10,
           "ctr": 0,
           "position": 5.8
+        }
+      ]
+    },
+    {
+      "date": "2026-07-27",
+      "rolling7d": {
+        "clicks": 28,
+        "impressions": 3546,
+        "ctr": 0.0079,
+        "position": 20.78
+      },
+      "topPages": [
+        {
+          "page": "https://agedleadsales.com/lead-types/insurance-leads",
+          "clicks": 5,
+          "impressions": 319,
+          "ctr": 0.0157,
+          "position": 13.71
+        },
+        {
+          "page": "https://agedleadsales.com/providers",
+          "clicks": 3,
+          "impressions": 330,
+          "ctr": 0.0091,
+          "position": 19.51
+        },
+        {
+          "page": "https://agedleadsales.com/blog/aged-lead-store-review-2026",
+          "clicks": 2,
+          "impressions": 232,
+          "ctr": 0.0086,
+          "position": 5.79
+        },
+        {
+          "page": "https://agedleadsales.com/lead-types/mva-leads",
+          "clicks": 2,
+          "impressions": 62,
+          "ctr": 0.0323,
+          "position": 22.87
+        },
+        {
+          "page": "https://agedleadsales.com/providers/aged-leads-depot",
+          "clicks": 2,
+          "impressions": 60,
+          "ctr": 0.0333,
+          "position": 6.75
+        },
+        {
+          "page": "https://www.agedleadsales.com/providers/lead-heroes",
+          "clicks": 2,
+          "impressions": 141,
+          "ctr": 0.0142,
+          "position": 7.54
+        },
+        {
+          "page": "https://agedleadsales.com/",
+          "clicks": 1,
+          "impressions": 64,
+          "ctr": 0.0156,
+          "position": 12.66
+        },
+        {
+          "page": "https://agedleadsales.com/blog/aged-lead-industry-statistics",
+          "clicks": 1,
+          "impressions": 74,
+          "ctr": 0.0135,
+          "position": 7.14
+        },
+        {
+          "page": "https://agedleadsales.com/blog/category/getting-started",
+          "clicks": 1,
+          "impressions": 1,
+          "ctr": 1,
+          "position": 12
+        },
+        {
+          "page": "https://agedleadsales.com/compare/aged-lead-store-vs-badass-insurance-leads",
+          "clicks": 1,
+          "impressions": 10,
+          "ctr": 0.1,
+          "position": 14.3
+        }
+      ],
+      "topQueries": [
+        {
+          "query": "aged insurance leads",
+          "clicks": 1,
+          "impressions": 41,
+          "ctr": 0.0244,
+          "position": 9.71
+        },
+        {
+          "query": "aged lead store",
+          "clicks": 1,
+          "impressions": 92,
+          "ctr": 0.0109,
+          "position": 5.43
+        },
+        {
+          "query": "aged lead store reviews",
+          "clicks": 1,
+          "impressions": 12,
+          "ctr": 0.0833,
+          "position": 2.08
+        },
+        {
+          "query": "aged leads store",
+          "clicks": 1,
+          "impressions": 19,
+          "ctr": 0.0526,
+          "position": 5.42
+        },
+        {
+          "query": "30 day aged mca leads",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 30
+        },
+        {
+          "query": "3000 per month",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 4
+        },
+        {
+          "query": "aep leads",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 53
+        },
+        {
+          "query": "affordable aged life leads",
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 42
+        },
+        {
+          "query": "affordable final expense direct mail leads",
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 49.33
+        },
+        {
+          "query": "affordable health insurance leads",
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 25.5
         }
       ]
     }
