@@ -14,7 +14,10 @@
 /** Lead-type page slug → its vertical slug (for price-index + providers/best). */
 export const LEAD_TYPE_TO_VERTICAL: Record<string, string> = {
   "mortgage-leads": "mortgage",
-  "insurance-leads": "auto-insurance",
+  // The generic insurance bucket. Points at life-insurance (the largest
+  // insurance vertical) rather than auto-insurance, which now has its own
+  // dedicated guide and should keep its own cluster links.
+  "insurance-leads": "life-insurance",
   "final-expense-leads": "final-expense",
   "iul-leads": "annuity-iul",
   // SSDI = Social Security Disability; these are disability-attorney leads, so
@@ -23,9 +26,16 @@ export const LEAD_TYPE_TO_VERTICAL: Record<string, string> = {
   "mva-leads": "legal",
   "solar-leads": "solar",
   "medicare-leads": "medicare",
-  // Without this, "home-services-leads" falls back to "home-services", which is
-  // not a real vertical slug (the vertical is "home-improvement") — producing
-  // broken /price-index and /providers/best links on that page.
+  // Added for the workagedleads.com consolidation so leadType covers the same
+  // vertical spine as /price-index/* and /providers/best/*, giving every folded
+  // /buying-leads page a topic-matched destination.
+  "life-insurance-leads": "life-insurance",
+  "auto-insurance-leads": "auto-insurance",
+  "health-insurance-leads": "health-insurance",
+  "home-improvement-leads": "home-improvement",
+  // Legacy slug — the home-services-leads page no longer exists, but keep the
+  // mapping so the page resolves correctly if it is ever restored. Without it
+  // the fallback yields "home-services", which is not a real vertical.
   "home-services-leads": "home-improvement",
 };
 
@@ -43,15 +53,18 @@ export function verticalForLeadType(leadTypeSlug: string): string {
  */
 export const VERTICAL_TO_LEAD_TYPE: Record<string, string> = {
   mortgage: "mortgage-leads",
-  "auto-insurance": "insurance-leads",
-  "life-insurance": "insurance-leads",
-  "health-insurance": "insurance-leads",
+  // These four used to funnel into the generic "insurance-leads" guide (and,
+  // for home-improvement, into "home-services-leads" — a page that no longer
+  // exists, so the cluster link was dead). Each now has a dedicated guide.
+  "auto-insurance": "auto-insurance-leads",
+  "life-insurance": "life-insurance-leads",
+  "health-insurance": "health-insurance-leads",
+  "home-improvement": "home-improvement-leads",
   "final-expense": "final-expense-leads",
   "annuity-iul": "iul-leads",
   legal: "mva-leads",
   solar: "solar-leads",
   medicare: "medicare-leads",
-  "home-improvement": "home-services-leads",
 };
 
 export function leadTypeForVertical(

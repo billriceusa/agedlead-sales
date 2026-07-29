@@ -87,24 +87,69 @@ const NEW_LEAD_TYPES = new Set([
 const PRUNE_PREFIXES = ["/crm-systems/", "/lead-management/", "/sales-process/"];
 
 /**
- * Near-duplicate pairs (Jaccard >= 0.5 on slug tokens) found between the two
- * blog corpora. Each needs a human winner, so they are emitted as REVIEW.
+ * Real duplicates, resolved by reading the actual titles rather than trusting
+ * the slug-token similarity that surfaced them.
+ *
+ * Take the best of both into the destination, then 301. The howtoworkleads
+ * version is often the more thorough one (aged-lead-scripts-templates covers
+ * four channels vs two) — merging means harvesting that depth into the
+ * destination, not discarding it.
+ *
+ * Seven other flagged pairs turned out to be false positives and are NOT here:
+ * aged-lead-pricing-guide (pricing) matched aged-lead-crm-setup-guide (CRM
+ * setup) on shared tokens alone, and it is a position-4.8 page with 2,959
+ * impressions. Likewise the "how to WORK aged X leads" vertical guides matched
+ * "how to BUY aged leads" — different job, different intent. Those all migrate.
  */
-const NEAR_DUPES = new Set([
-  "how-to-buy-mortgage-leads",
-  "gohighlevel-aged-leads-setup",
-  "how-to-work-aged-solar-leads",
-  "how-to-work-aged-mortgage-leads",
-  "how-to-work-aged-insurance-leads",
-  "real-cost-aged-vs-fresh-leads-2026",
-  "ai-lead-scoring-prioritization",
-  "aged-leads-dnc-compliance",
-  "aged-lead-vendor-comparison",
-  "aged-lead-scripts-templates",
-  "aged-lead-pricing-guide",
-  "aged-lead-follow-up-cadence",
-  "aged-lead-conversion-rates",
-]);
+const MERGE_INTO = {
+  // Both cover aged-vs-real-time cost. The coded /compare/ route is the better
+  // pattern than either blog post — answer-first, real table, FAQPage schema.
+  "real-cost-aged-vs-fresh-leads-2026": "/compare/aged-vs-real-time-leads",
+  // Generic "for sales teams" angle is off-moat; the aged-specific one wins.
+  "ai-lead-scoring-prioritization": "/blog/ai-lead-scoring-aged-leads",
+  // Comparison vs scorecard — same job. This is the review/compare moat, so
+  // merge into one stronger vendor-evaluation page rather than keeping two.
+  "aged-lead-vendor-comparison": "/blog/aged-lead-vendor-scorecard-evaluation",
+  "aged-lead-scripts-templates": "/blog/aged-lead-scripts-that-work",
+  // Duplicates the existing ALSales guide, not the CRM/dialer post.
+  "aged-lead-follow-up-cadence": "/guides/7-day-aged-lead-follow-up-cadence",
+  "aged-lead-conversion-rates":
+    "/blog/aged-lead-conversion-rates-by-industry-data-benchmarks",
+};
+
+/**
+ * Hubs, tools and download pages — everything that is neither a blog post nor
+ * a /buying-leads page. Destination null means prune.
+ */
+const EXPLICIT = {
+  "/": "/",
+  "/blog": "/blog",
+  "/resources": "/resources",
+  // Category hubs whose children all fold into the lead-type spine.
+  "/buying-leads": "/lead-types",
+  "/aged-leads": "/lead-types",
+  "/insurance-leads": "/lead-types/insurance-leads",
+  "/home-services-leads": "/lead-types/home-improvement-leads",
+  "/legal-leads": "/providers/best/legal",
+  // Tools map onto the existing calculator suite.
+  "/tools": "/calculators",
+  "/tools/aged-lead-roi-calculator": "/calculators/roi-calculator",
+  "/tools/compliance-checklist": "/blog/tcpa-compliance-calling-aged-leads",
+  // Gated downloads all live behind the resources hub on the target.
+  "/downloads": "/resources",
+  "/downloads/7-day-follow-up-cadence": "/resources",
+  "/downloads/aged-lead-quick-start-kit": "/resources",
+  "/downloads/insurance-lead-scripts-bundle": "/resources",
+  "/downloads/mortgage-lead-scripts-bundle": "/resources",
+  "/downloads/lead-vendor-comparison-scorecard": "/resources",
+  "/downloads/real-time-lead-team-playbook": "/resources",
+  // Hubs for the pruned generic sections — nothing left to point at.
+  "/crm-systems": null,
+  "/lead-management": null,
+  "/sales-process": null,
+  // Utility page with no unique content (renders the site-wide fallback title).
+  "/lead-order": null,
+};
 
 const path = (u) => new URL(u).pathname.replace(/\/$/, "") || "/";
 const perf = (p) => gsc[p] ?? { clicks: 0, impr: 0, pos: null };
@@ -152,9 +197,10 @@ for (const url of readLines("htwl-sitemap.txt")) {
   }
 
   if (p.startsWith("/blog/")) {
-    if (NEAR_DUPES.has(slug)) {
-      add({ ...base, new_url: "", action: "REVIEW", risk: "medium",
-        notes: "near-duplicate of an agedleadsales post — pick a winner, redirect the loser" });
+    if (MERGE_INTO[slug]) {
+      add({ ...base, new_url: `${NEW_HOST}${MERGE_INTO[slug]}`, action: "MERGE",
+        risk: pos !== null && pos < 15 ? "medium" : "low",
+        notes: "harvest the best of both into the destination, then redirect" });
     } else if (impr === 0 && (publishedAt[slug] ?? "") > GSC_WINDOW_END) {
       add({ ...base, new_url: `${NEW_HOST}${p}`, action: "MIGRATE", risk: "low",
         notes: `published ${publishedAt[slug]}, after the GSC window closed — too new to judge, do not prune` });
@@ -170,6 +216,24 @@ for (const url of readLines("htwl-sitemap.txt")) {
   if (p === "/resources/about") {
     add({ ...base, new_url: `${NEW_HOST}/about`, action: "MERGE", risk: "low",
       notes: "merge into the existing about page" });
+    continue;
+  }
+
+  if (p in EXPLICIT) {
+    const dest = EXPLICIT[p];
+    if (dest === null) {
+      add({ ...base, new_url: "", action: "PRUNE", risk: "low",
+        notes: "hub for a pruned section, or no unique content" });
+    } else {
+      const same = dest === p;
+      add({
+        ...base,
+        new_url: `${NEW_HOST}${dest}`,
+        action: same ? "MIGRATE" : dest.startsWith("/lead-types") ? "FOLD" : "MERGE",
+        risk: pos !== null && pos < 15 && !same ? "medium" : "low",
+        notes: same ? "" : "hub/tool/download remapped onto the target site's equivalent",
+      });
+    }
     continue;
   }
 

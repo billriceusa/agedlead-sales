@@ -24,27 +24,62 @@ Regenerate with `node scripts/build-url-map.mjs`.
 | Action | Count | Meaning |
 |---|---|---|
 | `REHOST` | 246 | agedleadsales.com page, path unchanged, host swap only |
-| `MIGRATE` | 67 | howtoworkleads blog post moves across at the same path |
-| `PRUNE` | 49 | Dropped — 16 generic CRM/sales theory, 33 zero-impression |
-| `REVIEW` | 35 | **Needs a human call before Phase 2** |
-| `FOLD` | 23 | `/buying-leads/*` collapses into `/lead-types/*` |
-| `MERGE` | 1 | `/resources/about` into the existing `/about` |
+| `MIGRATE` | 71 | howtoworkleads page moves across at the same path |
+| `PRUNE` | 59 | Dropped — generic theory, zero-impression, dead hubs |
+| `FOLD` | 27 | `/buying-leads/*` and category hubs into `/lead-types/*` |
+| `MERGE` | 18 | Content merged into an existing target page, then 301 |
 
-## Before this is executable
+Every row is resolved — no `REVIEW` rows remain. All 23 distinct `FOLD`/`MERGE`
+destinations were verified live at HTTP 200 on 2026-07-29.
 
-The 35 `REVIEW` rows need decisions — 13 near-duplicate pairs where a winner
-must be picked, plus unclassified URLs. Nothing in Phase 2 should run until
-those are resolved.
+## The four high-risk rows
 
-Four `FOLD` rows are marked `risk=high`. These are page-1 assets, and
-`/buying-leads/buy-iul-leads` (position 8.7, 62 clicks, 3,891 impressions) is
-the strongest page on either site. Harvest the copy into the destination
-`leadType` **before** the redirect fires, not after.
+`/buying-leads/*` is **73% of howtoworkleads clicks and 42% of its
+impressions** — the fold is not a low-stakes cleanup. Four rows are marked
+`risk=high` because they are page-1 assets:
 
-Four destination lead types do not exist in Sanity yet and must be created
-first: `life-insurance-leads`, `auto-insurance-leads`, `health-insurance-leads`,
-`home-improvement-leads`. This brings `leadType` in line with the 11–12 vertical
-taxonomy `/price-index/*` and `/providers/best/*` already use.
+| Position | Clicks | Impressions | Page |
+|---|---|---|---|
+| 8.7 | 62 | 3,891 | `/buying-leads/buy-iul-leads` |
+| 12.7 | 12 | 5,170 | `/buying-leads/buy-home-improvement-leads` |
+| 14.6 | 1 | 65 | `/buying-leads/buy-mortgage-protection-leads` |
+| 6.3 | 1 | 56 | `/buying-leads/buy-non-qm-mortgage-leads` |
+
+`buy-iul-leads` is the strongest page on either site. Harvest its copy into the
+destination `leadType` **before** the redirect fires, not after.
+
+## Near-duplicate resolution — 7 of 13 were false positives
+
+The pairs were surfaced by slug-token similarity, which is noisy. Reading the
+actual titles, only 6 were real duplicates. The rest are distinct work and
+migrate intact — most importantly `aged-lead-pricing-guide` (pricing), which
+had matched `aged-lead-crm-setup-guide` (CRM setup) on shared tokens alone and
+sits at position 4.8 with 2,959 impressions. The "how to **work** aged X leads"
+vertical guides likewise matched "how to **buy** aged leads" — different job,
+different intent.
+
+The 6 real merges are listed in `MERGE_INTO` in the generator with a one-line
+rationale each. Take the best of both into the destination; the howtoworkleads
+version is often the more thorough one.
+
+## Lead types — done
+
+The four destination lead types now exist in Sanity (`lt-life-insurance`,
+`lt-auto-insurance`, `lt-health-insurance`, `lt-home-improvement`), created by
+`scripts/create-lead-types.mjs`. All four pages render live. This brings
+`leadType` to the same 12-vertical spine `/price-index/*` and
+`/providers/best/*` already use.
+
+`data/lead-type-vertical-map.ts` was updated in both directions. That also fixed
+a pre-existing live bug: `home-improvement` pointed at `home-services-leads`, a
+lead type that no longer exists, so the cluster links on
+`/price-index/home-improvement` and `/providers/best/home-improvement` were dead.
+
+`averageCostPerLead` is deliberately unset on the new lead types. The reliable
+benchmarks for these verticals span mixed age brackets and produce misleading
+ranges ($20–$100 for aged auto, $1.00–$1.00 for life). Benchmarks are
+human-verified quarterly here and never auto-generated — fill these in on the
+next quarterly pass.
 
 ## Data vintage — read this before trusting the prune list
 
