@@ -1,6 +1,18 @@
 const HONEYPOT_FIELD = "website";
 
+/**
+ * Origin allowlist for every capture route. Note that isGoodOrigin() returns a
+ * FAKE SUCCESS on failure (see below) — so a host missing from this set does
+ * not error, it silently drops the lead. Any new domain must be added here
+ * BEFORE it serves traffic.
+ *
+ * workagedleads.com is listed ahead of the consolidation so capture works from
+ * the moment the domain is attached. Keeping the agedleadsales hosts through
+ * cutover is deliberate: they keep serving until the 301s are live.
+ */
 const ALLOWED_HOSTS = new Set([
+  "workagedleads.com",
+  "www.workagedleads.com",
   "agedleadsales.com",
   "www.agedleadsales.com",
   "localhost",
