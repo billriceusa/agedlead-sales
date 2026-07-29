@@ -1,0 +1,422 @@
+old_url,new_url,action,risk,clicks,impr,pos,notes
+https://howtoworkleads.com,,REVIEW,medium,5,65,4.8,unclassified howtoworkleads URL
+https://howtoworkleads.com/aged-leads,,REVIEW,medium,0,0,,unclassified howtoworkleads URL
+https://howtoworkleads.com/blog,,REVIEW,medium,0,244,17.6,unclassified howtoworkleads URL
+https://howtoworkleads.com/blog/aged-lead-case-studies,,PRUNE,low,0,0,,zero impressions in the 3mo GSC window
+https://howtoworkleads.com/blog/aged-lead-conversion-rates,,REVIEW,medium,0,84,4.7,"near-duplicate of an agedleadsales post — pick a winner, redirect the loser"
+https://howtoworkleads.com/blog/aged-lead-email-drip-campaigns,,PRUNE,low,0,0,,zero impressions in the 3mo GSC window
+https://howtoworkleads.com/blog/aged-lead-follow-up-cadence,,REVIEW,medium,0,0,,"near-duplicate of an agedleadsales post — pick a winner, redirect the loser"
+https://howtoworkleads.com/blog/aged-lead-pricing-guide,,REVIEW,medium,4,2959,4.8,"near-duplicate of an agedleadsales post — pick a winner, redirect the loser"
+https://howtoworkleads.com/blog/aged-lead-scripts-templates,,REVIEW,medium,0,0,,"near-duplicate of an agedleadsales post — pick a winner, redirect the loser"
+https://howtoworkleads.com/blog/aged-lead-vendor-comparison,,REVIEW,medium,0,0,,"near-duplicate of an agedleadsales post — pick a winner, redirect the loser"
+https://howtoworkleads.com/blog/aged-leads,https://workagedleads.com/blog/aged-leads,MIGRATE,low,0,36,20.8,
+https://howtoworkleads.com/blog/aged-leads-buying-guide-profit-leads-other-reps-gave-up,https://workagedleads.com/blog/aged-leads-buying-guide-profit-leads-other-reps-gave-up,MIGRATE,low,0,10,10.4,
+https://howtoworkleads.com/blog/aged-leads-dnc-compliance,,REVIEW,medium,0,0,,"near-duplicate of an agedleadsales post — pick a winner, redirect the loser"
+https://howtoworkleads.com/blog/aged-leads-vs-fresh-leads,https://workagedleads.com/blog/aged-leads-vs-fresh-leads,MIGRATE,low,0,84,5.7,
+https://howtoworkleads.com/blog/ai-lead-scoring-prioritization,,REVIEW,medium,0,2,11.5,"near-duplicate of an agedleadsales post — pick a winner, redirect the loser"
+https://howtoworkleads.com/blog/ai-sales-stack-lead-followup,,PRUNE,low,0,0,,zero impressions in the 3mo GSC window
+https://howtoworkleads.com/blog/ai-text-followup-aged-leads,,PRUNE,low,0,0,,zero impressions in the 3mo GSC window
+https://howtoworkleads.com/blog/ai-voice-sms-tools-working-leads,,PRUNE,low,0,0,,zero impressions in the 3mo GSC window
+https://howtoworkleads.com/blog/appointment-setting-scripts-internet-lead-booked-meeting-one-call,https://workagedleads.com/blog/appointment-setting-scripts-internet-lead-booked-meeting-one-call,MIGRATE,low,0,56,9.8,
+https://howtoworkleads.com/blog/best-crm-aged-leads,https://workagedleads.com/blog/best-crm-aged-leads,MIGRATE,low,0,7,7.7,
+https://howtoworkleads.com/blog/building-lead-based-sales-team,https://workagedleads.com/blog/building-lead-based-sales-team,MIGRATE,low,0,10,8.4,
+https://howtoworkleads.com/blog/close-crm-aged-leads-review,https://workagedleads.com/blog/close-crm-aged-leads-review,MIGRATE,low,0,1529,9,
+https://howtoworkleads.com/blog/closing-techniques-internet-leads,https://workagedleads.com/blog/closing-techniques-internet-leads,MIGRATE,low,0,32,10.1,
+https://howtoworkleads.com/blog/compare-aged-lead-vendors,,PRUNE,low,0,0,,zero impressions in the 3mo GSC window
+https://howtoworkleads.com/blog/compliance-automation-workflows-2026,,PRUNE,low,0,0,,zero impressions in the 3mo GSC window
+https://howtoworkleads.com/blog/conversion-psychology-internet-leads,,PRUNE,low,0,0,,zero impressions in the 3mo GSC window
+https://howtoworkleads.com/blog/cost-per-lead-analysis,https://workagedleads.com/blog/cost-per-lead-analysis,MIGRATE,low,0,63,14.3,
+https://howtoworkleads.com/blog/crm-automation-workflows,,PRUNE,low,0,0,,zero impressions in the 3mo GSC window
+https://howtoworkleads.com/blog/crm-integration-checklist-lead-tools,,PRUNE,low,0,0,,zero impressions in the 3mo GSC window
+https://howtoworkleads.com/blog/crm-speedtolead-reports-lying-you,,PRUNE,low,0,0,,zero impressions in the 3mo GSC window
+https://howtoworkleads.com/blog/cross-channel-lead-attribution-tracking,,PRUNE,low,0,0,,zero impressions in the 3mo GSC window
+https://howtoworkleads.com/blog/dnc-scrubbing-on-a-budget,https://workagedleads.com/blog/dnc-scrubbing-on-a-budget,MIGRATE,low,0,0,,"published 2026-07-14, after the GSC window closed — too new to judge, do not prune"
+https://howtoworkleads.com/blog/fcc-consent-rule-lead-buying,,PRUNE,low,0,0,,zero impressions in the 3mo GSC window
+https://howtoworkleads.com/blog/gohighlevel-aged-leads-setup,,REVIEW,medium,0,0,,"near-duplicate of an agedleadsales post — pick a winner, redirect the loser"
+https://howtoworkleads.com/blog/how-to-buy-mortgage-leads,,REVIEW,medium,0,0,,"near-duplicate of an agedleadsales post — pick a winner, redirect the loser"
+https://howtoworkleads.com/blog/how-to-evaluate-lead-vendor,https://workagedleads.com/blog/how-to-evaluate-lead-vendor,MIGRATE,low,0,95,7.1,
+https://howtoworkleads.com/blog/how-to-work-aca-leads,,PRUNE,low,0,0,,zero impressions in the 3mo GSC window
+https://howtoworkleads.com/blog/how-to-work-aged-insurance-leads,,REVIEW,medium,0,0,,"near-duplicate of an agedleadsales post — pick a winner, redirect the loser"
+https://howtoworkleads.com/blog/how-to-work-aged-leads-the-complete-system-for-maximum-roi,https://workagedleads.com/blog/how-to-work-aged-leads-the-complete-system-for-maximum-roi,MIGRATE,low,1,151,6.2,
+https://howtoworkleads.com/blog/how-to-work-aged-mortgage-leads,,REVIEW,medium,0,0,,"near-duplicate of an agedleadsales post — pick a winner, redirect the loser"
+https://howtoworkleads.com/blog/how-to-work-aged-solar-leads,,REVIEW,medium,0,0,,"near-duplicate of an agedleadsales post — pick a winner, redirect the loser"
+https://howtoworkleads.com/blog/how-to-work-annuity-leads,https://workagedleads.com/blog/how-to-work-annuity-leads,MIGRATE,low,0,4,6.5,
+https://howtoworkleads.com/blog/how-to-work-auto-insurance-leads,,PRUNE,low,0,0,,zero impressions in the 3mo GSC window
+https://howtoworkleads.com/blog/how-to-work-bank-statement-loan-leads,https://workagedleads.com/blog/how-to-work-bank-statement-loan-leads,MIGRATE,low,0,63,20.2,
+https://howtoworkleads.com/blog/how-to-work-bankruptcy-leads,https://workagedleads.com/blog/how-to-work-bankruptcy-leads,MIGRATE,low,1,98,19.1,
+https://howtoworkleads.com/blog/how-to-work-debt-leads,https://workagedleads.com/blog/how-to-work-debt-leads,MIGRATE,low,0,70,26.8,
+https://howtoworkleads.com/blog/how-to-work-dscr-loan-leads,https://workagedleads.com/blog/how-to-work-dscr-loan-leads,MIGRATE,low,1,72,6.8,
+https://howtoworkleads.com/blog/how-to-work-electrical-leads,https://workagedleads.com/blog/how-to-work-electrical-leads,MIGRATE,low,0,6,39.5,
+https://howtoworkleads.com/blog/how-to-work-family-law-leads,https://workagedleads.com/blog/how-to-work-family-law-leads,MIGRATE,low,0,68,23.2,
+https://howtoworkleads.com/blog/how-to-work-final-expense-leads,,PRUNE,low,0,0,,zero impressions in the 3mo GSC window
+https://howtoworkleads.com/blog/how-to-work-garage-door-leads,https://workagedleads.com/blog/how-to-work-garage-door-leads,MIGRATE,low,0,22,11.2,
+https://howtoworkleads.com/blog/how-to-work-health-insurance-leads,https://workagedleads.com/blog/how-to-work-health-insurance-leads,MIGRATE,low,0,37,20,
+https://howtoworkleads.com/blog/how-to-work-heloc-leads,https://workagedleads.com/blog/how-to-work-heloc-leads,MIGRATE,low,0,50,9.5,
+https://howtoworkleads.com/blog/how-to-work-home-improvement-leads,https://workagedleads.com/blog/how-to-work-home-improvement-leads,MIGRATE,low,1,113,18.8,
+https://howtoworkleads.com/blog/how-to-work-home-services-leads,https://workagedleads.com/blog/how-to-work-home-services-leads,MIGRATE,low,0,4,6,
+https://howtoworkleads.com/blog/how-to-work-hvac-leads,https://workagedleads.com/blog/how-to-work-hvac-leads,MIGRATE,low,0,59,11.1,
+https://howtoworkleads.com/blog/how-to-work-iul-leads,https://workagedleads.com/blog/how-to-work-iul-leads,MIGRATE,low,2,199,9.6,
+https://howtoworkleads.com/blog/how-to-work-landscaping-leads,https://workagedleads.com/blog/how-to-work-landscaping-leads,MIGRATE,low,0,27,8,
+https://howtoworkleads.com/blog/how-to-work-leads-the-simple-4-step-system-for-sales-professionals,https://workagedleads.com/blog/how-to-work-leads-the-simple-4-step-system-for-sales-professionals,MIGRATE,low,1,80,7.6,
+https://howtoworkleads.com/blog/how-to-work-life-insurance-leads,https://workagedleads.com/blog/how-to-work-life-insurance-leads,MIGRATE,low,0,65,15.6,
+https://howtoworkleads.com/blog/how-to-work-mass-tort-leads,https://workagedleads.com/blog/how-to-work-mass-tort-leads,MIGRATE,low,0,110,21.3,
+https://howtoworkleads.com/blog/how-to-work-medicare-leads,https://workagedleads.com/blog/how-to-work-medicare-leads,MIGRATE,low,0,47,13.3,
+https://howtoworkleads.com/blog/how-to-work-mva-leads,https://workagedleads.com/blog/how-to-work-mva-leads,MIGRATE,low,0,250,23.1,
+https://howtoworkleads.com/blog/how-to-work-non-qm-mortgage-leads,https://workagedleads.com/blog/how-to-work-non-qm-mortgage-leads,MIGRATE,low,0,28,9.8,
+https://howtoworkleads.com/blog/how-to-work-painting-leads,https://workagedleads.com/blog/how-to-work-painting-leads,MIGRATE,low,0,46,21.2,
+https://howtoworkleads.com/blog/how-to-work-pc-insurance-leads,https://workagedleads.com/blog/how-to-work-pc-insurance-leads,MIGRATE,low,1,75,11.3,
+https://howtoworkleads.com/blog/how-to-work-pest-control-leads,,PRUNE,low,0,0,,zero impressions in the 3mo GSC window
+https://howtoworkleads.com/blog/how-to-work-plumbing-leads,https://workagedleads.com/blog/how-to-work-plumbing-leads,MIGRATE,low,0,6,8.7,
+https://howtoworkleads.com/blog/how-to-work-purchase-mortgage-leads,,PRUNE,low,0,0,,zero impressions in the 3mo GSC window
+https://howtoworkleads.com/blog/how-to-work-real-estate-leads,https://workagedleads.com/blog/how-to-work-real-estate-leads,MIGRATE,low,0,20,8.5,
+https://howtoworkleads.com/blog/how-to-work-refinance-mortgage-leads,https://workagedleads.com/blog/how-to-work-refinance-mortgage-leads,MIGRATE,low,0,89,16.4,
+https://howtoworkleads.com/blog/how-to-work-roofing-leads,,PRUNE,low,0,0,,zero impressions in the 3mo GSC window
+https://howtoworkleads.com/blog/how-to-work-ssdi-leads,https://workagedleads.com/blog/how-to-work-ssdi-leads,MIGRATE,low,0,110,13.3,
+https://howtoworkleads.com/blog/how-to-work-window-replacement-leads,https://workagedleads.com/blog/how-to-work-window-replacement-leads,MIGRATE,low,0,7,6.7,
+https://howtoworkleads.com/blog/how-to-work-workers-comp-leads,https://workagedleads.com/blog/how-to-work-workers-comp-leads,MIGRATE,low,1,649,15,
+https://howtoworkleads.com/blog/hubspot-crm-leads-review,https://workagedleads.com/blog/hubspot-crm-leads-review,MIGRATE,low,0,2414,8.1,
+https://howtoworkleads.com/blog/insurance-agent-lead-budget,https://workagedleads.com/blog/insurance-agent-lead-budget,MIGRATE,low,0,20,8.4,
+https://howtoworkleads.com/blog/is-it-legal-to-call-purchased-leads,https://workagedleads.com/blog/is-it-legal-to-call-purchased-leads,MIGRATE,low,0,0,,"published 2026-07-16, after the GSC window closed — too new to judge, do not prune"
+https://howtoworkleads.com/blog/iul-appointment-setting,https://workagedleads.com/blog/iul-appointment-setting,MIGRATE,low,0,0,,"published 2026-07-02, after the GSC window closed — too new to judge, do not prune"
+https://howtoworkleads.com/blog/iul-lead-objection-scripts,https://workagedleads.com/blog/iul-lead-objection-scripts,MIGRATE,low,0,0,,"published 2026-06-30, after the GSC window closed — too new to judge, do not prune"
+https://howtoworkleads.com/blog/iul-leads-cost,https://workagedleads.com/blog/iul-leads-cost,MIGRATE,low,0,0,,"published 2026-06-26, after the GSC window closed — too new to judge, do not prune"
+https://howtoworkleads.com/blog/iul-vs-whole-life-leads,https://workagedleads.com/blog/iul-vs-whole-life-leads,MIGRATE,low,0,0,,"published 2026-06-23, after the GSC window closed — too new to judge, do not prune"
+https://howtoworkleads.com/blog/lead-buyer-regulatory-cheat-sheet,https://workagedleads.com/blog/lead-buyer-regulatory-cheat-sheet,MIGRATE,low,0,61,7.5,
+https://howtoworkleads.com/blog/lead-data-hygiene-checklist,https://workagedleads.com/blog/lead-data-hygiene-checklist,MIGRATE,low,0,0,,"published 2026-07-07, after the GSC window closed — too new to judge, do not prune"
+https://howtoworkleads.com/blog/lead-fraud-detection-fake-leads,https://workagedleads.com/blog/lead-fraud-detection-fake-leads,MIGRATE,low,0,75,12.5,
+https://howtoworkleads.com/blog/lead-generation-glossary,,PRUNE,low,0,0,,zero impressions in the 3mo GSC window
+https://howtoworkleads.com/blog/lead-qualification-framework-internet-leads,,PRUNE,low,0,0,,zero impressions in the 3mo GSC window
+https://howtoworkleads.com/blog/lead-quality-metrics-kpis-lead-buyers-track,,PRUNE,low,0,0,,zero impressions in the 3mo GSC window
+https://howtoworkleads.com/blog/lead-scoring-models-prioritize-internet-leads-maximum-roi,https://workagedleads.com/blog/lead-scoring-models-prioritize-internet-leads-maximum-roi,MIGRATE,low,0,4,9.3,
+https://howtoworkleads.com/blog/lead-source-roi-tracking-system,,PRUNE,low,0,0,,zero impressions in the 3mo GSC window
+https://howtoworkleads.com/blog/lead-velocity-optimization-guide,,PRUNE,low,0,0,,zero impressions in the 3mo GSC window
+https://howtoworkleads.com/blog/lead-vendor-negotiation-guide,https://workagedleads.com/blog/lead-vendor-negotiation-guide,MIGRATE,low,0,68,6.9,
+https://howtoworkleads.com/blog/managing-multiple-lead-vendors,,PRUNE,low,0,0,,zero impressions in the 3mo GSC window
+https://howtoworkleads.com/blog/mortgage-lead-conversion-playbook,https://workagedleads.com/blog/mortgage-lead-conversion-playbook,MIGRATE,low,0,43,10.8,
+https://howtoworkleads.com/blog/multi-channel-outreach-strategy,https://workagedleads.com/blog/multi-channel-outreach-strategy,MIGRATE,low,0,26,13.7,
+https://howtoworkleads.com/blog/objection-handling-scripts,https://workagedleads.com/blog/objection-handling-scripts,MIGRATE,low,0,32,8.3,
+https://howtoworkleads.com/blog/pipeline-management-framework,,PRUNE,low,0,0,,zero impressions in the 3mo GSC window
+https://howtoworkleads.com/blog/power-dialer-comparison-lead-workers,,PRUNE,low,0,0,,zero impressions in the 3mo GSC window
+https://howtoworkleads.com/blog/real-cost-aged-vs-fresh-leads-2026,,REVIEW,medium,0,0,,"near-duplicate of an agedleadsales post — pick a winner, redirect the loser"
+https://howtoworkleads.com/blog/real-estate-lead-generation-strategies,,PRUNE,low,0,0,,zero impressions in the 3mo GSC window
+https://howtoworkleads.com/blog/remove-landlines-disconnected-numbers,https://workagedleads.com/blog/remove-landlines-disconnected-numbers,MIGRATE,low,0,0,,"published 2026-07-11, after the GSC window closed — too new to judge, do not prune"
+https://howtoworkleads.com/blog/right-way-to-use-ai-lead-followup,,PRUNE,low,0,0,,zero impressions in the 3mo GSC window
+https://howtoworkleads.com/blog/salesforce-leads-review,,PRUNE,low,0,0,,zero impressions in the 3mo GSC window
+https://howtoworkleads.com/blog/sms-templates-home-services-leads,https://workagedleads.com/blog/sms-templates-home-services-leads,MIGRATE,low,0,19,11.9,
+https://howtoworkleads.com/blog/sms-templates-insurance-leads,https://workagedleads.com/blog/sms-templates-insurance-leads,MIGRATE,low,3,1154,7.9,
+https://howtoworkleads.com/blog/sms-templates-mortgage-leads,https://workagedleads.com/blog/sms-templates-mortgage-leads,MIGRATE,low,0,86,16.9,
+https://howtoworkleads.com/blog/solar-lead-conversion-internet-leads,,PRUNE,low,0,0,,zero impressions in the 3mo GSC window
+https://howtoworkleads.com/blog/speed-to-lead-aged-leads,,PRUNE,low,0,0,,zero impressions in the 3mo GSC window
+https://howtoworkleads.com/blog/state-by-state-lead-compliance-guide,https://workagedleads.com/blog/state-by-state-lead-compliance-guide,MIGRATE,low,4,428,7.4,
+https://howtoworkleads.com/blog/tcpa-compliance-lead-buyers,https://workagedleads.com/blog/tcpa-compliance-lead-buyers,MIGRATE,low,0,59,11.7,
+https://howtoworkleads.com/blog/tcpa-litigator-scrub,https://workagedleads.com/blog/tcpa-litigator-scrub,MIGRATE,low,0,0,,"published 2026-07-09, after the GSC window closed — too new to judge, do not prune"
+https://howtoworkleads.com/blog/text-messaging-compliance-guide,,PRUNE,low,0,0,,zero impressions in the 3mo GSC window
+https://howtoworkleads.com/blog/trigger-lead-ban-mortgage-buyers,https://workagedleads.com/blog/trigger-lead-ban-mortgage-buyers,MIGRATE,low,0,3,6.3,
+https://howtoworkleads.com/blog/voicemail-scripts-home-services-leads,https://workagedleads.com/blog/voicemail-scripts-home-services-leads,MIGRATE,low,0,4,10.5,
+https://howtoworkleads.com/blog/voicemail-scripts-insurance-leads,https://workagedleads.com/blog/voicemail-scripts-insurance-leads,MIGRATE,low,2,418,6.1,
+https://howtoworkleads.com/blog/voicemail-scripts-mortgage-leads,https://workagedleads.com/blog/voicemail-scripts-mortgage-leads,MIGRATE,low,9,649,12.5,
+https://howtoworkleads.com/buying-leads,,REVIEW,medium,1,509,13.3,unclassified howtoworkleads URL
+https://howtoworkleads.com/buying-leads/aged-final-expense-leads,https://workagedleads.com/lead-types/final-expense-leads,FOLD,low,0,0,,
+https://howtoworkleads.com/buying-leads/aged-iul-leads,https://workagedleads.com/lead-types/iul-leads,FOLD,low,0,0,,
+https://howtoworkleads.com/buying-leads/aged-life-insurance-leads,https://workagedleads.com/lead-types/life-insurance-leads,FOLD,low,0,0,,destination leadType 'life-insurance-leads' must be created first
+https://howtoworkleads.com/buying-leads/buy-aged-leads,https://workagedleads.com/lead-types,FOLD,medium,9,815,16.9,"hub page — folds to the lead-types index, not a single vertical"
+https://howtoworkleads.com/buying-leads/buy-annuity-leads,https://workagedleads.com/lead-types/insurance-leads,FOLD,low,0,0,,
+https://howtoworkleads.com/buying-leads/buy-auto-insurance-leads,https://workagedleads.com/lead-types/auto-insurance-leads,FOLD,low,0,0,,destination leadType 'auto-insurance-leads' must be created first
+https://howtoworkleads.com/buying-leads/buy-bank-statement-loan-leads,https://workagedleads.com/lead-types/mortgage-leads,FOLD,low,0,0,,
+https://howtoworkleads.com/buying-leads/buy-dscr-loan-leads,https://workagedleads.com/lead-types/mortgage-leads,FOLD,low,0,0,,
+https://howtoworkleads.com/buying-leads/buy-final-expense-leads,https://workagedleads.com/lead-types/final-expense-leads,FOLD,low,0,0,,
+https://howtoworkleads.com/buying-leads/buy-heloc-leads,https://workagedleads.com/lead-types/mortgage-leads,FOLD,low,0,0,,
+https://howtoworkleads.com/buying-leads/buy-home-improvement-leads,https://workagedleads.com/lead-types/home-improvement-leads,FOLD,high,12,5170,12.7,destination leadType 'home-improvement-leads' must be created first; page-1 asset — harvest copy into destination before redirecting
+https://howtoworkleads.com/buying-leads/buy-iul-leads,https://workagedleads.com/lead-types/iul-leads,FOLD,high,62,3891,8.7,page-1 asset — harvest copy into destination before redirecting
+https://howtoworkleads.com/buying-leads/buy-life-insurance-leads,https://workagedleads.com/lead-types/life-insurance-leads,FOLD,medium,41,17579,34.3,destination leadType 'life-insurance-leads' must be created first
+https://howtoworkleads.com/buying-leads/buy-medicare-leads,https://workagedleads.com/lead-types/medicare-leads,FOLD,low,0,0,,
+https://howtoworkleads.com/buying-leads/buy-mortgage-leads,https://workagedleads.com/lead-types/mortgage-leads,FOLD,low,1,174,19,
+https://howtoworkleads.com/buying-leads/buy-mortgage-protection-leads,https://workagedleads.com/lead-types/insurance-leads,FOLD,high,1,65,14.6,page-1 asset — harvest copy into destination before redirecting
+https://howtoworkleads.com/buying-leads/buy-non-qm-mortgage-leads,https://workagedleads.com/lead-types/mortgage-leads,FOLD,high,1,56,6.3,page-1 asset — harvest copy into destination before redirecting
+https://howtoworkleads.com/buying-leads/buy-pc-insurance-leads,https://workagedleads.com/lead-types/insurance-leads,FOLD,low,0,60,28.1,
+https://howtoworkleads.com/buying-leads/buy-purchase-mortgage-leads,https://workagedleads.com/lead-types/mortgage-leads,FOLD,low,0,18,28.6,
+https://howtoworkleads.com/buying-leads/buy-real-estate-leads,https://workagedleads.com/lead-types/mortgage-leads,FOLD,low,0,0,,
+https://howtoworkleads.com/buying-leads/buy-refinance-mortgage-leads,https://workagedleads.com/lead-types/mortgage-leads,FOLD,low,0,0,,
+https://howtoworkleads.com/buying-leads/buy-solar-leads,https://workagedleads.com/lead-types/solar-leads,FOLD,low,2,300,15,
+https://howtoworkleads.com/buying-leads/health-insurance-leads,https://workagedleads.com/lead-types/health-insurance-leads,FOLD,medium,1,2097,26.5,destination leadType 'health-insurance-leads' must be created first
+https://howtoworkleads.com/crm-systems,,REVIEW,medium,0,86,6.7,unclassified howtoworkleads URL
+https://howtoworkleads.com/crm-systems/b2c-vs-b2b-crm,,PRUNE,low,1,4459,46.8,"generic CRM/sales theory — high impressions, ~0 clicks, position 39-70"
+https://howtoworkleads.com/crm-systems/crm-vs-lead-management,,PRUNE,low,0,1277,50,"generic CRM/sales theory — high impressions, ~0 clicks, position 39-70"
+https://howtoworkleads.com/crm-systems/operational-analytical-and-collaborative-crm,,PRUNE,low,0,2395,39,"generic CRM/sales theory — high impressions, ~0 clicks, position 39-70"
+https://howtoworkleads.com/crm-systems/the-evolution-of-crm,,PRUNE,low,0,758,12,"generic CRM/sales theory — high impressions, ~0 clicks, position 39-70"
+https://howtoworkleads.com/crm-systems/what-is-a-crm-system,,PRUNE,low,0,5065,70.3,"generic CRM/sales theory — high impressions, ~0 clicks, position 39-70"
+https://howtoworkleads.com/downloads,,REVIEW,medium,0,0,,unclassified howtoworkleads URL
+https://howtoworkleads.com/downloads/7-day-follow-up-cadence,,REVIEW,medium,0,0,,unclassified howtoworkleads URL
+https://howtoworkleads.com/downloads/aged-lead-quick-start-kit,,REVIEW,medium,0,0,,unclassified howtoworkleads URL
+https://howtoworkleads.com/downloads/insurance-lead-scripts-bundle,,REVIEW,medium,0,0,,unclassified howtoworkleads URL
+https://howtoworkleads.com/downloads/lead-vendor-comparison-scorecard,,REVIEW,medium,0,4,3.2,unclassified howtoworkleads URL
+https://howtoworkleads.com/downloads/mortgage-lead-scripts-bundle,,REVIEW,medium,0,12,25.6,unclassified howtoworkleads URL
+https://howtoworkleads.com/downloads/real-time-lead-team-playbook,,REVIEW,medium,0,0,,unclassified howtoworkleads URL
+https://howtoworkleads.com/home-services-leads,,REVIEW,medium,0,18,42.3,unclassified howtoworkleads URL
+https://howtoworkleads.com/insurance-leads,,REVIEW,medium,0,0,,unclassified howtoworkleads URL
+https://howtoworkleads.com/lead-management,,REVIEW,medium,1,728,56.2,unclassified howtoworkleads URL
+https://howtoworkleads.com/lead-management/b2b-vs-b2c-lead-management,,PRUNE,low,1,905,19.4,"generic CRM/sales theory — high impressions, ~0 clicks, position 39-70"
+https://howtoworkleads.com/lead-management/lead-management-vs-crm,,PRUNE,low,1,2730,51.5,"generic CRM/sales theory — high impressions, ~0 clicks, position 39-70"
+https://howtoworkleads.com/lead-management/lead-status-vs-lifecycle-stage,,PRUNE,low,3,3050,31.1,"generic CRM/sales theory — high impressions, ~0 clicks, position 39-70"
+https://howtoworkleads.com/lead-management/the-lead-lifecycle,,PRUNE,low,0,1367,26.9,"generic CRM/sales theory — high impressions, ~0 clicks, position 39-70"
+https://howtoworkleads.com/lead-management/what-is-lead-management,,PRUNE,low,0,968,80.6,"generic CRM/sales theory — high impressions, ~0 clicks, position 39-70"
+https://howtoworkleads.com/lead-order,,REVIEW,medium,0,67,12.5,unclassified howtoworkleads URL
+https://howtoworkleads.com/legal-leads,,REVIEW,medium,0,93,35.1,unclassified howtoworkleads URL
+https://howtoworkleads.com/resources,,REVIEW,medium,0,77,14.5,unclassified howtoworkleads URL
+https://howtoworkleads.com/resources/about,https://workagedleads.com/about,MERGE,low,0,57,6.1,merge into the existing about page
+https://howtoworkleads.com/sales-process,,REVIEW,medium,0,94,20.9,unclassified howtoworkleads URL
+https://howtoworkleads.com/sales-process/b2c-vs-b2b-sales-process,,PRUNE,low,2,1817,16.9,"generic CRM/sales theory — high impressions, ~0 clicks, position 39-70"
+https://howtoworkleads.com/sales-process/how-to-build-a-real-time-internet-lead-team,,PRUNE,low,0,0,,"generic CRM/sales theory — high impressions, ~0 clicks, position 39-70"
+https://howtoworkleads.com/sales-process/sales-process-vs-sales-methodology,,PRUNE,low,1,383,27.5,"generic CRM/sales theory — high impressions, ~0 clicks, position 39-70"
+https://howtoworkleads.com/sales-process/the-customer-journey,,PRUNE,low,0,132,5.2,"generic CRM/sales theory — high impressions, ~0 clicks, position 39-70"
+https://howtoworkleads.com/sales-process/the-modern-b2c-sales-funnel,,PRUNE,low,2,1369,14.2,"generic CRM/sales theory — high impressions, ~0 clicks, position 39-70"
+https://howtoworkleads.com/sales-process/what-is-a-sales-process,,PRUNE,low,0,510,46,"generic CRM/sales theory — high impressions, ~0 clicks, position 39-70"
+https://howtoworkleads.com/tools,,REVIEW,medium,0,4,5.2,unclassified howtoworkleads URL
+https://howtoworkleads.com/tools/aged-lead-roi-calculator,,REVIEW,medium,0,157,6.8,unclassified howtoworkleads URL
+https://howtoworkleads.com/tools/compliance-checklist,,REVIEW,medium,0,17,78.7,unclassified howtoworkleads URL
+https://agedleadsales.com,https://workagedleads.com/,REHOST,low,,,,
+https://agedleadsales.com/about,https://workagedleads.com/about,REHOST,low,,,,
+https://agedleadsales.com/affiliate-disclosure,https://workagedleads.com/affiliate-disclosure,REHOST,low,,,,
+https://agedleadsales.com/authors,https://workagedleads.com/authors,REHOST,low,,,,
+https://agedleadsales.com/blog,https://workagedleads.com/blog,REHOST,low,,,,
+https://agedleadsales.com/blog/ab-testing-aged-lead-operation-scripts-cadences-channels,https://workagedleads.com/blog/ab-testing-aged-lead-operation-scripts-cadences-channels,REHOST,low,,,,
+https://agedleadsales.com/blog/aged-auto-insurance-leads-overlooked-goldmine-pc-agents,https://workagedleads.com/blog/aged-auto-insurance-leads-overlooked-goldmine-pc-agents,REHOST,low,,,,
+https://agedleadsales.com/blog/aged-debt-settlement-leads-scripts-strategies,https://workagedleads.com/blog/aged-debt-settlement-leads-scripts-strategies,REHOST,low,,,,
+https://agedleadsales.com/blog/aged-health-insurance-leads-open-enrollment-sep-strategies-2026,https://workagedleads.com/blog/aged-health-insurance-leads-open-enrollment-sep-strategies-2026,REHOST,low,,,,
+https://agedleadsales.com/blog/aged-home-improvement-leads-playbook,https://workagedleads.com/blog/aged-home-improvement-leads-playbook,REHOST,low,,,,
+https://agedleadsales.com/blog/aged-lead-budget-allocation-strategy,https://workagedleads.com/blog/aged-lead-budget-allocation-strategy,REHOST,low,,,,
+https://agedleadsales.com/blog/aged-lead-call-recording-analysis,https://workagedleads.com/blog/aged-lead-call-recording-analysis,REHOST,low,,,,
+https://agedleadsales.com/blog/aged-lead-call-recording-consent-by-state,https://workagedleads.com/blog/aged-lead-call-recording-consent-by-state,REHOST,low,,,,
+https://agedleadsales.com/blog/aged-lead-conversion-rates-by-industry-data-benchmarks,https://workagedleads.com/blog/aged-lead-conversion-rates-by-industry-data-benchmarks,REHOST,low,,,,
+https://agedleadsales.com/blog/aged-lead-crm-setup-guide,https://workagedleads.com/blog/aged-lead-crm-setup-guide,REHOST,low,,,,
+https://agedleadsales.com/blog/aged-lead-follow-up-machine-crm-dialer,https://workagedleads.com/blog/aged-lead-follow-up-machine-crm-dialer,REHOST,low,,,,
+https://agedleadsales.com/blog/aged-lead-industry-statistics,https://workagedleads.com/blog/aged-lead-industry-statistics,REHOST,low,,,,
+https://agedleadsales.com/blog/aged-lead-nurture-sequences-insurance-agents,https://workagedleads.com/blog/aged-lead-nurture-sequences-insurance-agents,REHOST,low,,,,
+https://agedleadsales.com/blog/aged-lead-performance-benchmarks-2026,https://workagedleads.com/blog/aged-lead-performance-benchmarks-2026,REHOST,low,,,,
+https://agedleadsales.com/blog/aged-lead-quality-control-checklist,https://workagedleads.com/blog/aged-lead-quality-control-checklist,REHOST,low,,,,
+https://agedleadsales.com/blog/aged-lead-roi-calculation-methodology-by-industry,https://workagedleads.com/blog/aged-lead-roi-calculation-methodology-by-industry,REHOST,low,,,,
+https://agedleadsales.com/blog/aged-lead-sales-stack-under-100-month,https://workagedleads.com/blog/aged-lead-sales-stack-under-100-month,REHOST,low,,,,
+https://agedleadsales.com/blog/aged-lead-scripts-that-work,https://workagedleads.com/blog/aged-lead-scripts-that-work,REHOST,low,,,,
+https://agedleadsales.com/blog/aged-lead-store-review-2026,https://workagedleads.com/blog/aged-lead-store-review-2026,REHOST,low,,,,
+https://agedleadsales.com/blog/aged-lead-team-performance-benchmarking-guide,https://workagedleads.com/blog/aged-lead-team-performance-benchmarking-guide,REHOST,low,,,,
+https://agedleadsales.com/blog/aged-lead-vendor-scorecard-evaluation,https://workagedleads.com/blog/aged-lead-vendor-scorecard-evaluation,REHOST,low,,,,
+https://agedleadsales.com/blog/aged-leads-independent-vs-captive-agents,https://workagedleads.com/blog/aged-leads-independent-vs-captive-agents,REHOST,low,,,,
+https://agedleadsales.com/blog/aged-leads-pricing-2026-complete-industry-guide,https://workagedleads.com/blog/aged-leads-pricing-2026-complete-industry-guide,REHOST,low,,,,
+https://agedleadsales.com/blog/aged-leads-vs-live-transfers-better-roi-2026,https://workagedleads.com/blog/aged-leads-vs-live-transfers-better-roi-2026,REHOST,low,,,,
+https://agedleadsales.com/blog/aged-leads-vs-real-time-leads-cost-comparison,https://workagedleads.com/blog/aged-leads-vs-real-time-leads-cost-comparison,REHOST,low,,,,
+https://agedleadsales.com/blog/aged-life-insurance-leads-scripts-strategies-agents,https://workagedleads.com/blog/aged-life-insurance-leads-scripts-strategies-agents,REHOST,low,,,,
+https://agedleadsales.com/blog/aged-mortgage-leads-2026-guide,https://workagedleads.com/blog/aged-mortgage-leads-2026-guide,REHOST,low,,,,
+https://agedleadsales.com/blog/aged-mortgage-leads-vs-trigger-leads-what-loan-officers-need-to-know,https://workagedleads.com/blog/aged-mortgage-leads-vs-trigger-leads-what-loan-officers-need-to-know,REHOST,low,,,,
+https://agedleadsales.com/blog/aged-mva-leads-personal-injury-case-pipeline-on-a-budget,https://workagedleads.com/blog/aged-mva-leads-personal-injury-case-pipeline-on-a-budget,REHOST,low,,,,
+https://agedleadsales.com/blog/aged-refinance-leads-most-undervalued-mortgage-asset,https://workagedleads.com/blog/aged-refinance-leads-most-undervalued-mortgage-asset,REHOST,low,,,,
+https://agedleadsales.com/blog/aged-solar-leads-2026-battery-solar-messaging-that-converts,https://workagedleads.com/blog/aged-solar-leads-2026-battery-solar-messaging-that-converts,REHOST,low,,,,
+https://agedleadsales.com/blog/ai-guardrails-aged-lead-agents,https://workagedleads.com/blog/ai-guardrails-aged-lead-agents,REHOST,low,,,,
+https://agedleadsales.com/blog/ai-lead-scoring-aged-leads,https://workagedleads.com/blog/ai-lead-scoring-aged-leads,REHOST,low,,,,
+https://agedleadsales.com/blog/auto-insurance-aged-leads-cross-sell-strategy-double-revenue,https://workagedleads.com/blog/auto-insurance-aged-leads-cross-sell-strategy-double-revenue,REHOST,low,,,,
+https://agedleadsales.com/blog/auto-insurance-leads-cost-2026,https://workagedleads.com/blog/auto-insurance-leads-cost-2026,REHOST,low,,,,
+https://agedleadsales.com/blog/best-aged-lead-providers-compared-where-to-buy-aged-leads-2026,https://workagedleads.com/blog/best-aged-lead-providers-compared-where-to-buy-aged-leads-2026,REHOST,low,,,,
+https://agedleadsales.com/blog/best-time-to-call-aged-insurance-leads,https://workagedleads.com/blog/best-time-to-call-aged-insurance-leads,REHOST,low,,,,
+https://agedleadsales.com/blog/category/compliance,https://workagedleads.com/blog/category/compliance,REHOST,low,,,,
+https://agedleadsales.com/blog/category/getting-started,https://workagedleads.com/blog/category/getting-started,REHOST,low,,,,
+https://agedleadsales.com/blog/category/lead-types,https://workagedleads.com/blog/category/lead-types,REHOST,low,,,,
+https://agedleadsales.com/blog/category/roi-analytics,https://workagedleads.com/blog/category/roi-analytics,REHOST,low,,,,
+https://agedleadsales.com/blog/category/scripts-outreach,https://workagedleads.com/blog/category/scripts-outreach,REHOST,low,,,,
+https://agedleadsales.com/blog/category/strategies,https://workagedleads.com/blog/category/strategies,REHOST,low,,,,
+https://agedleadsales.com/blog/chatgpt-prompts-aged-leads,https://workagedleads.com/blog/chatgpt-prompts-aged-leads,REHOST,low,,,,
+https://agedleadsales.com/blog/crm-autopilot-ai-agents-mcp-aged-leads,https://workagedleads.com/blog/crm-autopilot-ai-agents-mcp-aged-leads,REHOST,low,,,,
+https://agedleadsales.com/blog/dialer-setup-aged-leads,https://workagedleads.com/blog/dialer-setup-aged-leads,REHOST,low,,,,
+https://agedleadsales.com/blog/direct-mail-aged-leads-playbook,https://workagedleads.com/blog/direct-mail-aged-leads-playbook,REHOST,low,,,,
+https://agedleadsales.com/blog/door-knocking-aged-solar-leads-in-person-approach,https://workagedleads.com/blog/door-knocking-aged-solar-leads-in-person-approach,REHOST,low,,,,
+https://agedleadsales.com/blog/door-knocking-vs-phone-aged-leads,https://workagedleads.com/blog/door-knocking-vs-phone-aged-leads,REHOST,low,,,,
+https://agedleadsales.com/blog/economics-of-aged-leads,https://workagedleads.com/blog/economics-of-aged-leads,REHOST,low,,,,
+https://agedleadsales.com/blog/email-outreach-aged-leads-templates,https://workagedleads.com/blog/email-outreach-aged-leads-templates,REHOST,low,,,,
+https://agedleadsales.com/blog/final-expense-door-knocking-playbook,https://workagedleads.com/blog/final-expense-door-knocking-playbook,REHOST,low,,,,
+https://agedleadsales.com/blog/final-expense-telesales-close-aged-leads-over-phone,https://workagedleads.com/blog/final-expense-telesales-close-aged-leads-over-phone,REHOST,low,,,,
+https://agedleadsales.com/blog/from-2-to-6-closings-per-month-with-aged-mortgage-leads,https://workagedleads.com/blog/from-2-to-6-closings-per-month-with-aged-mortgage-leads,REHOST,low,,,,
+https://agedleadsales.com/blog/health-insurance-leads-cost-2026,https://workagedleads.com/blog/health-insurance-leads-cost-2026,REHOST,low,,,,
+https://agedleadsales.com/blog/how-to-buy-aged-leads,https://workagedleads.com/blog/how-to-buy-aged-leads,REHOST,low,,,,
+https://agedleadsales.com/blog/how-to-leave-voicemail-aged-leads,https://workagedleads.com/blog/how-to-leave-voicemail-aged-leads,REHOST,low,,,,
+https://agedleadsales.com/blog/how-to-sell-iul-using-aged-leads-consultative-approach,https://workagedleads.com/blog/how-to-sell-iul-using-aged-leads-consultative-approach,REHOST,low,,,,
+https://agedleadsales.com/blog/iul-leads-financial-advisors-playbook,https://workagedleads.com/blog/iul-leads-financial-advisors-playbook,REHOST,low,,,,
+https://agedleadsales.com/blog/life-insurance-aged-lead-roi,https://workagedleads.com/blog/life-insurance-aged-lead-roi,REHOST,low,,,,
+https://agedleadsales.com/blog/life-insurance-leads-cost-2026,https://workagedleads.com/blog/life-insurance-leads-cost-2026,REHOST,low,,,,
+https://agedleadsales.com/blog/medicare-aep-aged-lead-strategy,https://workagedleads.com/blog/medicare-aep-aged-lead-strategy,REHOST,low,,,,
+https://agedleadsales.com/blog/medicare-compliance-aged-leads-cms-rules,https://workagedleads.com/blog/medicare-compliance-aged-leads-cms-rules,REHOST,low,,,,
+https://agedleadsales.com/blog/mortgage-broker-pipeline-aged-leads,https://workagedleads.com/blog/mortgage-broker-pipeline-aged-leads,REHOST,low,,,,
+https://agedleadsales.com/blog/multi-touch-attribution-aged-leads,https://workagedleads.com/blog/multi-touch-attribution-aged-leads,REHOST,low,,,,
+https://agedleadsales.com/blog/mva-leads-personal-injury-intake-playbook,https://workagedleads.com/blog/mva-leads-personal-injury-intake-playbook,REHOST,low,,,,
+https://agedleadsales.com/blog/new-insurance-agent-aged-leads-first-90-days,https://workagedleads.com/blog/new-insurance-agent-aged-leads-first-90-days,REHOST,low,,,,
+https://agedleadsales.com/blog/q2-aged-lead-strategy,https://workagedleads.com/blog/q2-aged-lead-strategy,REHOST,low,,,,
+https://agedleadsales.com/blog/re-engage-aged-leads-after-90-days,https://workagedleads.com/blog/re-engage-aged-leads-after-90-days,REHOST,low,,,,
+https://agedleadsales.com/blog/referral-engine-from-aged-lead-clients,https://workagedleads.com/blog/referral-engine-from-aged-lead-clients,REHOST,low,,,,
+https://agedleadsales.com/blog/running-aged-lead-call-center-operations-playbook,https://workagedleads.com/blog/running-aged-lead-call-center-operations-playbook,REHOST,low,,,,
+https://agedleadsales.com/blog/scaling-aged-lead-operation-solo-agent-to-team,https://workagedleads.com/blog/scaling-aged-lead-operation-solo-agent-to-team,REHOST,low,,,,
+https://agedleadsales.com/blog/scheduling-links-book-calls-capture-consent,https://workagedleads.com/blog/scheduling-links-book-calls-capture-consent,REHOST,low,,,,
+https://agedleadsales.com/blog/smart-agents-buy-aged-leads-instead-facebook-ads,https://workagedleads.com/blog/smart-agents-buy-aged-leads-instead-facebook-ads,REHOST,low,,,,
+https://agedleadsales.com/blog/solar-seasonal-aged-lead-strategy,https://workagedleads.com/blog/solar-seasonal-aged-lead-strategy,REHOST,low,,,,
+https://agedleadsales.com/blog/solo-insurance-agent-47-policies-90-days-aged-leads,https://workagedleads.com/blog/solo-insurance-agent-47-policies-90-days-aged-leads,REHOST,low,,,,
+https://agedleadsales.com/blog/ssdi-lead-qualification-checklist-for-disability-attorneys,https://workagedleads.com/blog/ssdi-lead-qualification-checklist-for-disability-attorneys,REHOST,low,,,,
+https://agedleadsales.com/blog/ssdi-leads-disability-attorneys,https://workagedleads.com/blog/ssdi-leads-disability-attorneys,REHOST,low,,,,
+https://agedleadsales.com/blog/summer-solar-sales-aged-leads-q2-strategy,https://workagedleads.com/blog/summer-solar-sales-aged-leads-q2-strategy,REHOST,low,,,,
+https://agedleadsales.com/blog/tcpa-compliance-calling-aged-leads,https://workagedleads.com/blog/tcpa-compliance-calling-aged-leads,REHOST,low,,,,
+https://agedleadsales.com/blog/training-aged-lead-sales-team,https://workagedleads.com/blog/training-aged-lead-sales-team,REHOST,low,,,,
+https://agedleadsales.com/blog/weekly-numbers-review-track-improve-aged-lead-performance,https://workagedleads.com/blog/weekly-numbers-review-track-improve-aged-lead-performance,REHOST,low,,,,
+https://agedleadsales.com/blog/year-round-medicare-prospecting-aged-leads-beyond-aep,https://workagedleads.com/blog/year-round-medicare-prospecting-aged-leads-beyond-aep,REHOST,low,,,,
+https://agedleadsales.com/calculators,https://workagedleads.com/calculators,REHOST,low,,,,
+https://agedleadsales.com/calculators/know-your-cpl,https://workagedleads.com/calculators/know-your-cpl,REHOST,low,,,,
+https://agedleadsales.com/compare/aged-lead-store-vs-aged-leads-depot,https://workagedleads.com/compare/aged-lead-store-vs-aged-leads-depot,REHOST,low,,,,
+https://agedleadsales.com/compare/aged-lead-store-vs-badass-insurance-leads,https://workagedleads.com/compare/aged-lead-store-vs-badass-insurance-leads,REHOST,low,,,,
+https://agedleadsales.com/compare/aged-lead-store-vs-brokers-data,https://workagedleads.com/compare/aged-lead-store-vs-brokers-data,REHOST,low,,,,
+https://agedleadsales.com/compare/aged-lead-store-vs-datatoleads,https://workagedleads.com/compare/aged-lead-store-vs-datatoleads,REHOST,low,,,,
+https://agedleadsales.com/compare/aged-lead-store-vs-ileads,https://workagedleads.com/compare/aged-lead-store-vs-ileads,REHOST,low,,,,
+https://agedleadsales.com/compare/aged-lead-store-vs-lead-heroes,https://workagedleads.com/compare/aged-lead-store-vs-lead-heroes,REHOST,low,,,,
+https://agedleadsales.com/compare/aged-lead-store-vs-lead-tycoons,https://workagedleads.com/compare/aged-lead-store-vs-lead-tycoons,REHOST,low,,,,
+https://agedleadsales.com/compare/aged-lead-store-vs-leadpoint,https://workagedleads.com/compare/aged-lead-store-vs-leadpoint,REHOST,low,,,,
+https://agedleadsales.com/compare/aged-lead-store-vs-leadsdata,https://workagedleads.com/compare/aged-lead-store-vs-leadsdata,REHOST,low,,,,
+https://agedleadsales.com/compare/aged-lead-store-vs-need-a-lead,https://workagedleads.com/compare/aged-lead-store-vs-need-a-lead,REHOST,low,,,,
+https://agedleadsales.com/compare/aged-lead-store-vs-quotewizard,https://workagedleads.com/compare/aged-lead-store-vs-quotewizard,REHOST,low,,,,
+https://agedleadsales.com/compare/aged-lead-store-vs-smartfinancial,https://workagedleads.com/compare/aged-lead-store-vs-smartfinancial,REHOST,low,,,,
+https://agedleadsales.com/compare/aged-lead-store-vs-synergy-direct-solution,https://workagedleads.com/compare/aged-lead-store-vs-synergy-direct-solution,REHOST,low,,,,
+https://agedleadsales.com/compare/aged-lead-store-vs-the-leads-warehouse,https://workagedleads.com/compare/aged-lead-store-vs-the-leads-warehouse,REHOST,low,,,,
+https://agedleadsales.com/compare/aged-vs-real-time-leads,https://workagedleads.com/compare/aged-vs-real-time-leads,REHOST,low,,,,
+https://agedleadsales.com/compare/iul-vs-term-life,https://workagedleads.com/compare/iul-vs-term-life,REHOST,low,,,,
+https://agedleadsales.com/compare/medicare-advantage-vs-supplement,https://workagedleads.com/compare/medicare-advantage-vs-supplement,REHOST,low,,,,
+https://agedleadsales.com/contact,https://workagedleads.com/contact,REHOST,low,,,,
+https://agedleadsales.com/editorial-process,https://workagedleads.com/editorial-process,REHOST,low,,,,
+https://agedleadsales.com/glossary,https://workagedleads.com/glossary,REHOST,low,,,,
+https://agedleadsales.com/glossary/advance-commission,https://workagedleads.com/glossary/advance-commission,REHOST,low,,,,
+https://agedleadsales.com/glossary/affiliate-marketing,https://workagedleads.com/glossary/affiliate-marketing,REHOST,low,,,,
+https://agedleadsales.com/glossary/aged-lead,https://workagedleads.com/glossary/aged-lead,REHOST,low,,,,
+https://agedleadsales.com/glossary/annual-enrollment-period,https://workagedleads.com/glossary/annual-enrollment-period,REHOST,low,,,,
+https://agedleadsales.com/glossary/appointment-set-rate,https://workagedleads.com/glossary/appointment-set-rate,REHOST,low,,,,
+https://agedleadsales.com/glossary/book-of-business,https://workagedleads.com/glossary/book-of-business,REHOST,low,,,,
+https://agedleadsales.com/glossary/cac,https://workagedleads.com/glossary/cac,REHOST,low,,,,
+https://agedleadsales.com/glossary/chargeback,https://workagedleads.com/glossary/chargeback,REHOST,low,,,,
+https://agedleadsales.com/glossary/close-rate,https://workagedleads.com/glossary/close-rate,REHOST,low,,,,
+https://agedleadsales.com/glossary/cms-guidelines,https://workagedleads.com/glossary/cms-guidelines,REHOST,low,,,,
+https://agedleadsales.com/glossary/cold-calling,https://workagedleads.com/glossary/cold-calling,REHOST,low,,,,
+https://agedleadsales.com/glossary/consumer-intent,https://workagedleads.com/glossary/consumer-intent,REHOST,low,,,,
+https://agedleadsales.com/glossary/contact-rate,https://workagedleads.com/glossary/contact-rate,REHOST,low,,,,
+https://agedleadsales.com/glossary/contingency-fee,https://workagedleads.com/glossary/contingency-fee,REHOST,low,,,,
+https://agedleadsales.com/glossary/conversion-rate,https://workagedleads.com/glossary/conversion-rate,REHOST,low,,,,
+https://agedleadsales.com/glossary/cost-per-acquisition,https://workagedleads.com/glossary/cost-per-acquisition,REHOST,low,,,,
+https://agedleadsales.com/glossary/cost-per-lead,https://workagedleads.com/glossary/cost-per-lead,REHOST,low,,,,
+https://agedleadsales.com/glossary/crm,https://workagedleads.com/glossary/crm,REHOST,low,,,,
+https://agedleadsales.com/glossary/cross-selling,https://workagedleads.com/glossary/cross-selling,REHOST,low,,,,
+https://agedleadsales.com/glossary/data-hygiene,https://workagedleads.com/glossary/data-hygiene,REHOST,low,,,,
+https://agedleadsales.com/glossary/denial-rate,https://workagedleads.com/glossary/denial-rate,REHOST,low,,,,
+https://agedleadsales.com/glossary/dialer,https://workagedleads.com/glossary/dialer,REHOST,low,,,,
+https://agedleadsales.com/glossary/dnc-list,https://workagedleads.com/glossary/dnc-list,REHOST,low,,,,
+https://agedleadsales.com/glossary/door-knocking,https://workagedleads.com/glossary/door-knocking,REHOST,low,,,,
+https://agedleadsales.com/glossary/drip-campaign,https://workagedleads.com/glossary/drip-campaign,REHOST,low,,,,
+https://agedleadsales.com/glossary/exclusive-lead,https://workagedleads.com/glossary/exclusive-lead,REHOST,low,,,,
+https://agedleadsales.com/glossary/final-expense-insurance,https://workagedleads.com/glossary/final-expense-insurance,REHOST,low,,,,
+https://agedleadsales.com/glossary/follow-up-cadence,https://workagedleads.com/glossary/follow-up-cadence,REHOST,low,,,,
+https://agedleadsales.com/glossary/ftc-disclosure,https://workagedleads.com/glossary/ftc-disclosure,REHOST,low,,,,
+https://agedleadsales.com/glossary/heloc,https://workagedleads.com/glossary/heloc,REHOST,low,,,,
+https://agedleadsales.com/glossary/indexed-universal-life,https://workagedleads.com/glossary/indexed-universal-life,REHOST,low,,,,
+https://agedleadsales.com/glossary/kitchen-table-presentation,https://workagedleads.com/glossary/kitchen-table-presentation,REHOST,low,,,,
+https://agedleadsales.com/glossary/lead-age,https://workagedleads.com/glossary/lead-age,REHOST,low,,,,
+https://agedleadsales.com/glossary/lead-recycling,https://workagedleads.com/glossary/lead-recycling,REHOST,low,,,,
+https://agedleadsales.com/glossary/lead-source,https://workagedleads.com/glossary/lead-source,REHOST,low,,,,
+https://agedleadsales.com/glossary/lead-validation,https://workagedleads.com/glossary/lead-validation,REHOST,low,,,,
+https://agedleadsales.com/glossary/lead-vendor,https://workagedleads.com/glossary/lead-vendor,REHOST,low,,,,
+https://agedleadsales.com/glossary/loan-officer,https://workagedleads.com/glossary/loan-officer,REHOST,low,,,,
+https://agedleadsales.com/glossary/loan-to-value,https://workagedleads.com/glossary/loan-to-value,REHOST,low,,,,
+https://agedleadsales.com/glossary/ltv,https://workagedleads.com/glossary/ltv,REHOST,low,,,,
+https://agedleadsales.com/glossary/medicare-advantage,https://workagedleads.com/glossary/medicare-advantage,REHOST,low,,,,
+https://agedleadsales.com/glossary/medicare-supplement,https://workagedleads.com/glossary/medicare-supplement,REHOST,low,,,,
+https://agedleadsales.com/glossary/multi-channel-outreach,https://workagedleads.com/glossary/multi-channel-outreach,REHOST,low,,,,
+https://agedleadsales.com/glossary/mva,https://workagedleads.com/glossary/mva,REHOST,low,,,,
+https://agedleadsales.com/glossary/net-metering,https://workagedleads.com/glossary/net-metering,REHOST,low,,,,
+https://agedleadsales.com/glossary/objection-handling,https://workagedleads.com/glossary/objection-handling,REHOST,low,,,,
+https://agedleadsales.com/glossary/open-enrollment-period,https://workagedleads.com/glossary/open-enrollment-period,REHOST,low,,,,
+https://agedleadsales.com/glossary/opt-in,https://workagedleads.com/glossary/opt-in,REHOST,low,,,,
+https://agedleadsales.com/glossary/p-and-c-insurance,https://workagedleads.com/glossary/p-and-c-insurance,REHOST,low,,,,
+https://agedleadsales.com/glossary/persistency-rate,https://workagedleads.com/glossary/persistency-rate,REHOST,low,,,,
+https://agedleadsales.com/glossary/personal-injury-lead,https://workagedleads.com/glossary/personal-injury-lead,REHOST,low,,,,
+https://agedleadsales.com/glossary/pipeline,https://workagedleads.com/glossary/pipeline,REHOST,low,,,,
+https://agedleadsales.com/glossary/power-purchase-agreement,https://workagedleads.com/glossary/power-purchase-agreement,REHOST,low,,,,
+https://agedleadsales.com/glossary/pre-qualification,https://workagedleads.com/glossary/pre-qualification,REHOST,low,,,,
+https://agedleadsales.com/glossary/purchase-lead,https://workagedleads.com/glossary/purchase-lead,REHOST,low,,,,
+https://agedleadsales.com/glossary/rate-lock,https://workagedleads.com/glossary/rate-lock,REHOST,low,,,,
+https://agedleadsales.com/glossary/real-time-lead,https://workagedleads.com/glossary/real-time-lead,REHOST,low,,,,
+https://agedleadsales.com/glossary/refinance-lead,https://workagedleads.com/glossary/refinance-lead,REHOST,low,,,,
+https://agedleadsales.com/glossary/reverse-mortgage,https://workagedleads.com/glossary/reverse-mortgage,REHOST,low,,,,
+https://agedleadsales.com/glossary/roi,https://workagedleads.com/glossary/roi,REHOST,low,,,,
+https://agedleadsales.com/glossary/scope-of-appointment,https://workagedleads.com/glossary/scope-of-appointment,REHOST,low,,,,
+https://agedleadsales.com/glossary/seo,https://workagedleads.com/glossary/seo,REHOST,low,,,,
+https://agedleadsales.com/glossary/sga,https://workagedleads.com/glossary/sga,REHOST,low,,,,
+https://agedleadsales.com/glossary/shared-lead,https://workagedleads.com/glossary/shared-lead,REHOST,low,,,,
+https://agedleadsales.com/glossary/solar-itc,https://workagedleads.com/glossary/solar-itc,REHOST,low,,,,
+https://agedleadsales.com/glossary/special-enrollment-period,https://workagedleads.com/glossary/special-enrollment-period,REHOST,low,,,,
+https://agedleadsales.com/glossary/speed-to-lead,https://workagedleads.com/glossary/speed-to-lead,REHOST,low,,,,
+https://agedleadsales.com/glossary/ssdi,https://workagedleads.com/glossary/ssdi,REHOST,low,,,,
+https://agedleadsales.com/glossary/statute-of-limitations,https://workagedleads.com/glossary/statute-of-limitations,REHOST,low,,,,
+https://agedleadsales.com/glossary/t65-lead,https://workagedleads.com/glossary/t65-lead,REHOST,low,,,,
+https://agedleadsales.com/glossary/tcpa,https://workagedleads.com/glossary/tcpa,REHOST,low,,,,
+https://agedleadsales.com/glossary/term-life-insurance,https://workagedleads.com/glossary/term-life-insurance,REHOST,low,,,,
+https://agedleadsales.com/glossary/underwriting,https://workagedleads.com/glossary/underwriting,REHOST,low,,,,
+https://agedleadsales.com/glossary/utm-parameters,https://workagedleads.com/glossary/utm-parameters,REHOST,low,,,,
+https://agedleadsales.com/glossary/voicemail-drop,https://workagedleads.com/glossary/voicemail-drop,REHOST,low,,,,
+https://agedleadsales.com/glossary/warm-lead,https://workagedleads.com/glossary/warm-lead,REHOST,low,,,,
+https://agedleadsales.com/glossary/yellow-letter,https://workagedleads.com/glossary/yellow-letter,REHOST,low,,,,
+https://agedleadsales.com/guides,https://workagedleads.com/guides,REHOST,low,,,,
+https://agedleadsales.com/guides/7-day-aged-lead-follow-up-cadence,https://workagedleads.com/guides/7-day-aged-lead-follow-up-cadence,REHOST,low,,,,
+https://agedleadsales.com/lead-types,https://workagedleads.com/lead-types,REHOST,low,,,,
+https://agedleadsales.com/lead-types/final-expense-leads,https://workagedleads.com/lead-types/final-expense-leads,REHOST,low,,,,
+https://agedleadsales.com/lead-types/insurance-leads,https://workagedleads.com/lead-types/insurance-leads,REHOST,low,,,,
+https://agedleadsales.com/lead-types/iul-leads,https://workagedleads.com/lead-types/iul-leads,REHOST,low,,,,
+https://agedleadsales.com/lead-types/medicare-leads,https://workagedleads.com/lead-types/medicare-leads,REHOST,low,,,,
+https://agedleadsales.com/lead-types/mortgage-leads,https://workagedleads.com/lead-types/mortgage-leads,REHOST,low,,,,
+https://agedleadsales.com/lead-types/mva-leads,https://workagedleads.com/lead-types/mva-leads,REHOST,low,,,,
+https://agedleadsales.com/lead-types/solar-leads,https://workagedleads.com/lead-types/solar-leads,REHOST,low,,,,
+https://agedleadsales.com/lead-types/ssdi-leads,https://workagedleads.com/lead-types/ssdi-leads,REHOST,low,,,,
+https://agedleadsales.com/methodology,https://workagedleads.com/methodology,REHOST,low,,,,
+https://agedleadsales.com/playbook,https://workagedleads.com/playbook,REHOST,low,,,,
+https://agedleadsales.com/playbook/home-services,https://workagedleads.com/playbook/home-services,REHOST,low,,,,
+https://agedleadsales.com/playbook/insurance,https://workagedleads.com/playbook/insurance,REHOST,low,,,,
+https://agedleadsales.com/playbook/mortgage,https://workagedleads.com/playbook/mortgage,REHOST,low,,,,
+https://agedleadsales.com/price-index,https://workagedleads.com/price-index,REHOST,low,,,,
+https://agedleadsales.com/price-index/auto-insurance,https://workagedleads.com/price-index/auto-insurance,REHOST,low,,,,
+https://agedleadsales.com/price-index/debt-settlement,https://workagedleads.com/price-index/debt-settlement,REHOST,low,,,,
+https://agedleadsales.com/price-index/final-expense,https://workagedleads.com/price-index/final-expense,REHOST,low,,,,
+https://agedleadsales.com/price-index/health-insurance,https://workagedleads.com/price-index/health-insurance,REHOST,low,,,,
+https://agedleadsales.com/price-index/home-improvement,https://workagedleads.com/price-index/home-improvement,REHOST,low,,,,
+https://agedleadsales.com/price-index/legal,https://workagedleads.com/price-index/legal,REHOST,low,,,,
+https://agedleadsales.com/price-index/life-insurance,https://workagedleads.com/price-index/life-insurance,REHOST,low,,,,
+https://agedleadsales.com/price-index/mca-business-loans,https://workagedleads.com/price-index/mca-business-loans,REHOST,low,,,,
+https://agedleadsales.com/price-index/medicare,https://workagedleads.com/price-index/medicare,REHOST,low,,,,
+https://agedleadsales.com/price-index/mortgage,https://workagedleads.com/price-index/mortgage,REHOST,low,,,,
+https://agedleadsales.com/price-index/solar,https://workagedleads.com/price-index/solar,REHOST,low,,,,
+https://agedleadsales.com/privacy,https://workagedleads.com/privacy,REHOST,low,,,,
+https://agedleadsales.com/providers,https://workagedleads.com/providers,REHOST,low,,,,
+https://agedleadsales.com/providers/aged-lead-store,https://workagedleads.com/providers/aged-lead-store,REHOST,low,,,,
+https://agedleadsales.com/providers/aged-leads-depot,https://workagedleads.com/providers/aged-leads-depot,REHOST,low,,,,
+https://agedleadsales.com/providers/badass-insurance-leads,https://workagedleads.com/providers/badass-insurance-leads,REHOST,low,,,,
+https://agedleadsales.com/providers/best/auto-insurance,https://workagedleads.com/providers/best/auto-insurance,REHOST,low,,,,
+https://agedleadsales.com/providers/best/debt-settlement,https://workagedleads.com/providers/best/debt-settlement,REHOST,low,,,,
+https://agedleadsales.com/providers/best/final-expense,https://workagedleads.com/providers/best/final-expense,REHOST,low,,,,
+https://agedleadsales.com/providers/best/health-insurance,https://workagedleads.com/providers/best/health-insurance,REHOST,low,,,,
+https://agedleadsales.com/providers/best/home-improvement,https://workagedleads.com/providers/best/home-improvement,REHOST,low,,,,
+https://agedleadsales.com/providers/best/homeowners-insurance,https://workagedleads.com/providers/best/homeowners-insurance,REHOST,low,,,,
+https://agedleadsales.com/providers/best/legal,https://workagedleads.com/providers/best/legal,REHOST,low,,,,
+https://agedleadsales.com/providers/best/life-insurance,https://workagedleads.com/providers/best/life-insurance,REHOST,low,,,,
+https://agedleadsales.com/providers/best/mca-business-loans,https://workagedleads.com/providers/best/mca-business-loans,REHOST,low,,,,
+https://agedleadsales.com/providers/best/medicare,https://workagedleads.com/providers/best/medicare,REHOST,low,,,,
+https://agedleadsales.com/providers/best/mortgage,https://workagedleads.com/providers/best/mortgage,REHOST,low,,,,
+https://agedleadsales.com/providers/best/solar,https://workagedleads.com/providers/best/solar,REHOST,low,,,,
+https://agedleadsales.com/providers/brokers-data,https://workagedleads.com/providers/brokers-data,REHOST,low,,,,
+https://agedleadsales.com/providers/datatoleads,https://workagedleads.com/providers/datatoleads,REHOST,low,,,,
+https://agedleadsales.com/providers/ileads,https://workagedleads.com/providers/ileads,REHOST,low,,,,
+https://agedleadsales.com/providers/lead-heroes,https://workagedleads.com/providers/lead-heroes,REHOST,low,,,,
+https://agedleadsales.com/providers/lead-tycoons,https://workagedleads.com/providers/lead-tycoons,REHOST,low,,,,
+https://agedleadsales.com/providers/leadpoint,https://workagedleads.com/providers/leadpoint,REHOST,low,,,,
+https://agedleadsales.com/providers/leadsdata,https://workagedleads.com/providers/leadsdata,REHOST,low,,,,
+https://agedleadsales.com/providers/need-a-lead,https://workagedleads.com/providers/need-a-lead,REHOST,low,,,,
+https://agedleadsales.com/providers/quotewizard,https://workagedleads.com/providers/quotewizard,REHOST,low,,,,
+https://agedleadsales.com/providers/smartfinancial,https://workagedleads.com/providers/smartfinancial,REHOST,low,,,,
+https://agedleadsales.com/providers/synergy-direct-solution,https://workagedleads.com/providers/synergy-direct-solution,REHOST,low,,,,
+https://agedleadsales.com/providers/the-leads-warehouse,https://workagedleads.com/providers/the-leads-warehouse,REHOST,low,,,,
+https://agedleadsales.com/resources,https://workagedleads.com/resources,REHOST,low,,,,
+https://agedleadsales.com/terms,https://workagedleads.com/terms,REHOST,low,,,,
