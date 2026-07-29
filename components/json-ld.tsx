@@ -1,3 +1,5 @@
+import { billRicePersonRef } from "@/lib/identity";
+
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
 interface JsonLdProps {
@@ -23,14 +25,10 @@ export function websiteJsonLd() {
     description:
       "Learn how to grow your sales business with aged leads. Training, playbooks, and strategies for insurance agents, mortgage brokers, and sales professionals.",
     publisher: personJsonLdData(),
-    potentialAction: {
-      "@type": "SearchAction",
-      target: {
-        "@type": "EntryPoint",
-        urlTemplate: `${baseUrl}/glossary?q={search_term_string}`,
-      },
-      "query-input": "required name=search_term_string",
-    },
+    // SearchAction removed: it advertised /glossary?q={search_term_string}, but
+    // <GlossarySearch> filters from local useState and never reads a `q` URL
+    // param — the link did nothing. Wiring the component to seed its query from
+    // ?q= would make the declaration true and let this come back.
   };
 }
 
@@ -48,13 +46,13 @@ export function organizationJsonLd() {
 
 export function personJsonLdData() {
   return {
-    "@type": "Person",
-    "@id": `${baseUrl}/about/bill-rice#person`,
-    name: "Bill Rice",
-    url: `${baseUrl}/about/bill-rice`,
+    // Canonical person URI, shared across every property Bill owns. This used
+    // to mint agedleadsales.com/about/bill-rice#person — a third distinct Bill
+    // Rice, unconnected to any other site.
+    ...billRicePersonRef,
     jobTitle: "Founder & Lead Conversion Expert",
     description:
-      "20+ years building lead conversion systems across insurance, mortgage, solar, and home improvement. Founder of Kaleidico. Marketing director for Aged Lead Store.",
+      "30+ years building lead conversion systems across insurance, mortgage, solar, and home improvement. Founder of Kaleidico. Marketing director for Aged Lead Store.",
     knowsAbout: [
       "Aged Leads",
       "Lead Generation",
@@ -64,11 +62,10 @@ export function personJsonLdData() {
       "Sales Training",
       "Digital Marketing",
     ],
-    sameAs: [
-      "https://www.howtoworkleads.com/resources/about",
-      "https://kaleidico.com/bill-rice/",
-      "https://medium.com/@billrice",
-    ],
+    // sameAs comes from billRicePersonRef. The two entries removed here —
+    // howtoworkleads.com/resources/about and kaleidico.com/bill-rice/ — are
+    // pages *about* Bill, not profiles that *are* him; Kaleidico is already
+    // expressed below as worksFor, which is the accurate relationship.
     worksFor: [
       {
         "@type": "Organization",

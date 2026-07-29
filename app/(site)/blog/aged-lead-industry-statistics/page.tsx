@@ -14,6 +14,7 @@ import {
   getAgingCurveStats,
 } from "@/lib/statistics";
 import { AGE_BRACKET_LABELS } from "@/data/price-benchmarks";
+import { billRicePersonRef } from "@/lib/identity";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 const lastUpdated = "2026-04-08";
@@ -66,11 +67,8 @@ export default function StatisticsPage() {
             "Real-time vs aged close rate",
             "Provider pricing transparency",
           ],
-          creator: {
-            "@type": "Person",
-            name: "Bill Rice",
-            url: `${baseUrl}/about`,
-          },
+          // Canonical person, not a site-local anonymous Person.
+          creator: billRicePersonRef,
           license: "https://creativecommons.org/licenses/by/4.0/",
         }}
       />
