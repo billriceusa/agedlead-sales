@@ -4,7 +4,7 @@ import { CtaBanner } from "@/components/cta-banner";
 import { LeadMagnetCta } from "@/components/lead-magnet-cta";
 
 export const metadata: Metadata = {
-  title: "Start Here — Your Complete Guide to Working Aged Leads | Aged Lead Sales",
+  title: "Start Here — Your Complete Guide to Working Aged Leads",
   description:
     "New to aged leads? This guided onboarding page walks you through the math, the systems, and the strategies that make aged leads the most profitable lead source in insurance, mortgage, and solar sales.",
 };
