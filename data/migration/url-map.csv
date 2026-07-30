@@ -160,7 +160,7 @@ https://howtoworkleads.com/lead-management/lead-management-vs-crm,,PRUNE,low,1,1
 https://howtoworkleads.com/lead-management/lead-status-vs-lifecycle-stage,,PRUNE,low,3,2566,30.5,"generic CRM/sales theory — high impressions, ~0 clicks, position 39-70"
 https://howtoworkleads.com/lead-management/the-lead-lifecycle,,PRUNE,low,0,793,30.2,"generic CRM/sales theory — high impressions, ~0 clicks, position 39-70"
 https://howtoworkleads.com/lead-management/what-is-lead-management,,PRUNE,low,0,1009,82.9,"generic CRM/sales theory — high impressions, ~0 clicks, position 39-70"
-https://howtoworkleads.com/lead-order,,PRUNE,low,0,25,24,"hub for a pruned section, or no unique content"
+https://howtoworkleads.com/lead-order,https://workagedleads.com/lead-order,MIGRATE,medium,0,25,24,"affiliate CTA endpoint, not content — keep the outbound redirect alive"
 https://howtoworkleads.com/legal-leads,https://workagedleads.com/providers/best/legal,MERGE,low,0,443,41.8,hub/tool/download remapped onto the target site's equivalent
 https://howtoworkleads.com/resources,https://workagedleads.com/resources,MIGRATE,low,0,63,30.1,
 https://howtoworkleads.com/resources/about,https://workagedleads.com/about,MERGE,low,0,83,12.9,merge into the existing about page

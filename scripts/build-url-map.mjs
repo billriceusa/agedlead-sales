@@ -186,8 +186,6 @@ const EXPLICIT = {
   "/crm-systems": null,
   "/lead-management": null,
   "/sales-process": null,
-  // Utility page with no unique content (renders the site-wide fallback title).
-  "/lead-order": null,
 };
 
 const path = (u) => new URL(u).pathname.replace(/\/$/, "") || "/";
@@ -271,6 +269,20 @@ for (const url of readLines("htwl-sitemap.txt")) {
   if (p === "/resources/about") {
     add({ ...base, new_url: `${NEW_HOST}/about`, action: "MERGE", risk: "low",
       notes: "merge into the existing about page" });
+    continue;
+  }
+
+  // Not a content page — a CTA endpoint that 307s to agedleadstore.com with
+  // UTM tagging. An earlier pass pruned it as "no unique content", which is
+  // true and beside the point: nobody searches for a redirect, they click it,
+  // so its 25 impressions say nothing about its value. 36 link instances
+  // across 17 pages point here, six of them on pages that survive the
+  // migration, including two body-copy links in the cornerstone article.
+  // Preserved as a route on the new host (see next.config.ts) so the affiliate
+  // exit keeps working.
+  if (p === "/lead-order") {
+    add({ ...base, new_url: `${NEW_HOST}${p}`, action: "MIGRATE", risk: "medium",
+      notes: "affiliate CTA endpoint, not content — keep the outbound redirect alive" });
     continue;
   }
 

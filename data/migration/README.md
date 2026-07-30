@@ -25,31 +25,36 @@ Regenerate with `node scripts/build-url-map.mjs`.
 | Action | Count | Meaning |
 |---|---|---|
 | `REHOST` | 246 | agedleadsales.com page, path unchanged, host swap only |
-| `MIGRATE` | 81 | howtoworkleads page moves across at the same path |
-| `PRUNE` | 49 | Dropped — generic theory, zero-impression, dead hubs |
+| `MIGRATE` | 82 | howtoworkleads page moves across at the same path |
+| `PRUNE` | 48 | Dropped — generic theory, zero-impression, dead hubs |
 | `FOLD` | 27 | `/buying-leads/*` and category hubs into `/lead-types/*` |
 | `MERGE` | 18 | Content merged into an existing target page, then 301 |
 
-Risk: 409 low, 8 medium, 4 high.
+Risk: 408 low, 9 medium, 4 high.
 
 Every row is resolved — no `REVIEW` rows remain. All 23 distinct `FOLD`/`MERGE`
 destinations were verified live at HTTP 200 on 2026-07-29.
 
 ## The four high-risk rows
 
-`/buying-leads/*` is **73% of howtoworkleads clicks and 42% of its
+`/buying-leads/*` is **60% of howtoworkleads clicks and 51% of its
 impressions** — the fold is not a low-stakes cleanup. Four rows are marked
-`risk=high` because they are page-1 assets:
+`risk=high`:
 
 | Position | Clicks | Impressions | Page |
 |---|---|---|---|
-| 8.7 | 62 | 3,891 | `/buying-leads/buy-iul-leads` |
-| 12.7 | 12 | 5,170 | `/buying-leads/buy-home-improvement-leads` |
-| 14.6 | 1 | 65 | `/buying-leads/buy-mortgage-protection-leads` |
-| 6.3 | 1 | 56 | `/buying-leads/buy-non-qm-mortgage-leads` |
+| 13.3 | 67 | 3,346 | `/buying-leads/buy-iul-leads` |
+| 33.6 | 51 | 20,714 | `/buying-leads/buy-life-insurance-leads` |
+| 12.4 | 1 | 138 | `/buying-leads/buy-mortgage-protection-leads` |
+| 10.7 | 3 | 278 | `/buying-leads/buy-non-qm-mortgage-leads` |
 
 `buy-iul-leads` is the strongest page on either site. Harvest its copy into the
 destination `leadType` **before** the redirect fires, not after.
+
+The risk rule leads with **clicks, not position**. Position alone rated
+`buy-life-insurance-leads` low — 51 clicks, the second-strongest page in the
+fold, on 20,714 impressions at position 33.6. A page earning 67 clicks at
+position 13 deserves more care than one earning 1 click at position 12.
 
 ## Near-duplicate resolution — 7 of 13 were false positives
 
@@ -144,18 +149,27 @@ converted to real marks and markDefs.
 Use `--new-only` when re-running the import. The write is `createOrReplace`, so a
 plain re-run silently discards editorial work on drafts already staged.
 
-## Open decision — `/lead-order`
+## `/lead-order` — the CTA endpoint that was nearly pruned
 
-`howtoworkleads.com/lead-order` is marked `PRUNE`, but it is not content: it 307s
-to `agedleadstore.com/all-lead-types/` with `utm_source=howtoworkleads`. It is an
-affiliate exit, and judging it by its 25 search impressions is the wrong
-instrument — nobody searches for a redirect endpoint, they click it. 36 link
-instances across 17 pages point at it, six of them on pages that survive the
-migration, including two body-copy links in the cornerstone article.
+`howtoworkleads.com/lead-order` was marked `PRUNE` as a "utility page with no
+unique content". True, and beside the point: it is not a page. It 307s to
+`agedleadstore.com/all-lead-types/` with UTM tagging — an affiliate exit.
 
-Pruning it 404s those links. Resolving it needs the Phase 0 attribution question
-answered first — the correct replacement URL depends on whether affiliate credit
-is keyed to `utm_source` or the referring domain.
+Judging it by its 25 search impressions was the wrong instrument. Nobody
+searches for a redirect endpoint; they click it. A crawl of all 175 source URLs
+found **36 link instances across 17 pages** pointing at it, six of them on pages
+that survive the migration, including two body-copy links in the cornerstone
+article. It is also the **only** pruned URL still linked from a surviving page —
+that sweep is worth re-running if the prune list changes.
+
+Now `MIGRATE`, and recreated as a redirect in `next.config.ts`. Deliberately
+**not** `permanent`: a 301 invites search engines to treat an affiliate exit as
+the canonical destination. The UTM source comes from `lib/affiliate.ts`, so it
+changes in one place at cutover — once Troy has confirmed whether affiliate
+credit is keyed to `utm_source` or the referring domain (Phase 0, still open).
+
+The general lesson: **a redirect endpoint's search metrics measure nothing.**
+Before pruning any zero-content URL, check what links to it.
 
 ## Expect impressions to drop at cutover
 
