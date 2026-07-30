@@ -13,6 +13,9 @@
  *   - htwl-sitemap.txt        howtoworkleads.com sitemap URLs
  *   - alsales-sitemap.txt     agedleadsales.com sitemap URLs
  *   - htwl-gsc-pages.json     GSC page performance, www/non-www normalized
+ *   - htwl-gsc-pages-2026-06-05.json   the prior window, retained so the prune
+ *                             rule needs two observations rather than one
+ *   - htwl-published-at.json  publish dates, for the new-content grace window
  *
  * Usage: node scripts/build-url-map.mjs
  */
@@ -33,12 +36,48 @@ const gsc = JSON.parse(readFileSync(join(DIR, "htwl-gsc-pages.json"), "utf8"));
 const publishedAt = JSON.parse(readFileSync(join(DIR, "htwl-published-at.json"), "utf8"));
 
 /**
- * The GSC export is a 3-month window that closed on this date. Anything
- * published after it has no data here, so zero impressions means "not measured
- * yet", NOT "dead". Pruning on that would have killed the entire IUL cluster
- * and the 5-post compliance cluster — the site's newest and best work.
+ * The window that closed 2026-06-05, kept so the prune rule can see more than
+ * one observation. A single window is not enough evidence to delete a page:
+ * how-to-work-aged-leads-the-complete-system-for-maximum-roi sat at position
+ * 6.2 with 151 impressions here and vanished from the 2026-07-29 export
+ * entirely — and it is the site's namesake cornerstone article. Pruning a page
+ * that ranked page-1 eight weeks ago is precisely the mistake the /playbooks
+ * consolidation already made once.
+ *
+ * Do not replace this file when refreshing. Add the newer window and keep the
+ * older one; prune eligibility is the intersection.
  */
-const GSC_WINDOW_END = "2026-06-05";
+const priorGsc = JSON.parse(
+  readFileSync(join(DIR, "htwl-gsc-pages-2026-06-05.json"), "utf8")
+);
+
+/**
+ * End of the GSC window in htwl-gsc-pages.json. Refresh both together via
+ * scripts/refresh-gsc-input.mjs.
+ */
+const GSC_WINDOW_END = "2026-07-29";
+
+/**
+ * Zero impressions only means "dead" if the page had a fair chance to be
+ * measured. Anything published inside this grace period is exempt from the
+ * zero-impression prune.
+ *
+ * Originally this was a simple "published after the window closed" test, which
+ * rescued 9 posts the first pass would have deleted — the IUL cluster and the
+ * 5-post compliance cluster. The 2026-07-29 refresh proved that right: three of
+ * them now earn clicks and three sit inside the top 10. But a hard window edge
+ * is too brittle. Under a plain window test, iul-leads-cost and
+ * iul-vs-whole-life-leads (published late June, still at zero impressions)
+ * would flip to PRUNE — deleting half of a deliberate strategic cluster after
+ * five weeks. Ninety days is the honest floor for judging new content.
+ */
+const NEW_CONTENT_GRACE_DAYS = 90;
+
+const graceCutoff = new Date(
+  Date.parse(`${GSC_WINDOW_END}T00:00:00Z`) - NEW_CONTENT_GRACE_DAYS * 86_400_000
+)
+  .toISOString()
+  .slice(0, 10);
 
 /**
  * The approved fold: all 23 /buying-leads/* pages collapse into the lead-type
@@ -153,6 +192,7 @@ const EXPLICIT = {
 
 const path = (u) => new URL(u).pathname.replace(/\/$/, "") || "/";
 const perf = (p) => gsc[p] ?? { clicks: 0, impr: 0, pos: null };
+const priorPerf = (p) => priorGsc[p] ?? { clicks: 0, impr: 0, pos: null };
 
 const rows = [];
 const add = (r) => rows.push(r);
@@ -175,8 +215,16 @@ for (const url of readLines("htwl-sitemap.txt")) {
       add({ ...base, new_url: "", action: "REVIEW", risk: "high", notes: "buying-leads page with no fold mapping" });
       continue;
     }
-    // Page-1 assets are the ones a bad fold actually costs you.
-    const risk = pos !== null && pos < 15 ? "high" : impr > 1000 ? "medium" : "low";
+    // What a bad fold costs you is TRAFFIC, not rank. The 2026-07-29 GSC
+    // refresh made this concrete: buy-iul-leads slipped from position 8.7 to
+    // 16.2 while growing to 67 clicks — still the strongest page across both
+    // sites, but a position-only rule had just downgraded it. Clicks lead.
+    const risk =
+      clicks >= 10 || (pos !== null && pos < 15 && clicks > 0)
+        ? "high"
+        : impr > 1000
+          ? "medium"
+          : "low";
     add({
       ...base,
       new_url: `${NEW_HOST}/lead-types/${dest}`,
@@ -201,12 +249,19 @@ for (const url of readLines("htwl-sitemap.txt")) {
       add({ ...base, new_url: `${NEW_HOST}${MERGE_INTO[slug]}`, action: "MERGE",
         risk: pos !== null && pos < 15 ? "medium" : "low",
         notes: "harvest the best of both into the destination, then redirect" });
-    } else if (impr === 0 && (publishedAt[slug] ?? "") > GSC_WINDOW_END) {
+    } else if (impr === 0 && (publishedAt[slug] ?? "") > graceCutoff) {
       add({ ...base, new_url: `${NEW_HOST}${p}`, action: "MIGRATE", risk: "low",
-        notes: `published ${publishedAt[slug]}, after the GSC window closed — too new to judge, do not prune` });
+        notes: `published ${publishedAt[slug]}, inside the ${NEW_CONTENT_GRACE_DAYS}-day grace window — too new to judge, do not prune` });
+    } else if (impr === 0 && priorPerf(p).impr > 0) {
+      const prior = priorPerf(p);
+      add({ ...base, new_url: `${NEW_HOST}${p}`, action: "MIGRATE", risk: "low",
+        notes: `zero impressions now, but ${prior.impr} impressions at position ${prior.pos} in the window ending 2026-06-05 — decayed, not dead; do not prune on one window` });
     } else if (impr === 0) {
       add({ ...base, new_url: "", action: "PRUNE", risk: "low",
-        notes: "zero impressions in the 3mo GSC window" });
+        notes: [
+          "zero impressions in both GSC windows (2026-06-05 and 2026-07-29)",
+          publishedAt[slug] ? "" : "no publishedAt in Sanity — age unverified",
+        ].filter(Boolean).join("; ") });
     } else {
       add({ ...base, new_url: `${NEW_HOST}${p}`, action: "MIGRATE", risk: "low", notes: "" });
     }

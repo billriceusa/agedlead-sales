@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { migrationRedirects } from "./lib/migration-redirects";
 
 const nextConfig: NextConfig = {
   images: {
@@ -52,9 +53,16 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
 
+      // workagedleads.com consolidation — path-level redirects generated from
+      // data/migration/url-map.csv. None of these sources start with
+      // /playbooks, so they cannot shadow (or be shadowed by) the rules above
+      // or the catch-all below. Edit the CSV, not this file.
+      ...migrationRedirects(),
+
       // Old plural /playbooks routes funnel into the new flagship /playbook master.
       // The 4 old Sanity-backed playbook pages are deprecated in favor of the
       // consolidated "Aged Lead Operator's System" flagship magnet.
+      // MUST stay last — /playbooks/:slug* is a catch-all.
       {
         source: "/playbooks",
         destination: "/playbook",
