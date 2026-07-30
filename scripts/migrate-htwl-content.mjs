@@ -22,6 +22,7 @@
 
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { join } from "node:path";
+import { normalizeImportedBlocks } from "./lib/normalize-imported-blocks.mjs";
 
 const SRC_PROJECT = "e9k38j42";
 const DST_PROJECT = "p7rbtajg";
@@ -33,6 +34,7 @@ const EXPORT_PATH =
   "/Users/billrice/Documents/brsg/sites/_migration-backups/sanity-htwl-e9k38j42-2026-07-29.ndjson";
 
 const dryRun = process.argv.includes("--dry-run");
+const newOnly = process.argv.includes("--new-only");
 const token = process.env.SANITY_API_TOKEN;
 if (!token && !dryRun) {
   console.error("SANITY_API_TOKEN required (or pass --dry-run)");
@@ -120,7 +122,7 @@ const pick = (action) =>
     )
     .map((r) => r.old_url.split("/blog/")[1]);
 
-const toImport = pick("MIGRATE");
+let toImport = pick("MIGRATE");
 const toHarvest = pick("MERGE");
 
 // ---------------------------------------------------------------- transforms
@@ -188,7 +190,14 @@ function transformBody(content, assetMap) {
         out.push(b);
     }
   }
-  return out;
+
+  // Portable Text is less portable than it looks. howtoworkleads renders
+  // markdown *inside* span text, so its documents carry raw `**bold**`,
+  // `[text](url)`, a leading `# Title` line and (on six posts) the authoring
+  // brief as a "Sanity CMS Fields" blockquote. @portabletext/react prints span
+  // text verbatim, so without this they publish as literal markdown.
+  const { blocks } = normalizeImportedBlocks(out, keyCounter);
+  return blocks;
 }
 
 function transform(src, assetMap) {
@@ -314,6 +323,34 @@ const missing = toImport.filter((s) => !bySlug.has(s));
 if (missing.length) {
   console.error(`\nMissing from export: ${missing.join(", ")}`);
   process.exit(1);
+}
+
+// --new-only imports just the slugs that are not already staged. The write is
+// createOrReplace, so a plain re-run silently discards any editorial work done
+// on a draft since it was imported. Use this when the url-map has gained rows
+// (the 2026-07-29 GSC refresh rescued 10 posts from PRUNE, for example) and
+// the drafts already in the dataset should be left alone.
+if (newOnly) {
+  const groq = `*[_id in path("drafts.**") && _type=="post"].slug.current`;
+  const res = await fetch(
+    `https://${DST_PROJECT}.api.sanity.io/v${API}/data/query/${DATASET}?query=${encodeURIComponent(groq)}`,
+    { headers: token ? { Authorization: `Bearer ${token}` } : {} }
+  );
+  const json = await res.json();
+  if (json.error) {
+    console.error(`\nexisting-draft lookup failed: ${JSON.stringify(json.error).slice(0, 300)}`);
+    process.exit(1);
+  }
+  const staged = new Set(json.result ?? []);
+  const skipped = toImport.filter((s) => staged.has(s));
+  toImport = toImport.filter((s) => !staged.has(s));
+  console.log(
+    `--new-only: ${staged.size} drafts already staged, skipping ${skipped.length}, importing ${toImport.length}`
+  );
+  if (!toImport.length) {
+    console.log("nothing new to import.");
+    process.exit(0);
+  }
 }
 
 // First pass with no asset map, purely to discover which assets are referenced.

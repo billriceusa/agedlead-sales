@@ -14,7 +14,8 @@ Regenerate with `node scripts/build-url-map.mjs`.
 | `url-map.csv` | 421 rows — every live URL across both sites, one row each |
 | `htwl-sitemap.txt` | 175 howtoworkleads.com URLs (live sitemap, 2026-07-29) |
 | `alsales-sitemap.txt` | 246 agedleadsales.com URLs (live sitemap, 2026-07-29) |
-| `htwl-gsc-pages.json` | GSC page performance, www/non-www normalized |
+| `htwl-gsc-pages.json` | Current GSC window, www/non-www/#fragment normalized |
+| `htwl-gsc-pages-2026-06-05.json` | The **prior** window. Keep it — prune eligibility is the intersection of the two |
 | `htwl-published-at.json` | publishedAt per slug, from the Sanity export |
 
 ## url-map.csv columns
@@ -24,10 +25,12 @@ Regenerate with `node scripts/build-url-map.mjs`.
 | Action | Count | Meaning |
 |---|---|---|
 | `REHOST` | 246 | agedleadsales.com page, path unchanged, host swap only |
-| `MIGRATE` | 71 | howtoworkleads page moves across at the same path |
-| `PRUNE` | 59 | Dropped — generic theory, zero-impression, dead hubs |
+| `MIGRATE` | 81 | howtoworkleads page moves across at the same path |
+| `PRUNE` | 49 | Dropped — generic theory, zero-impression, dead hubs |
 | `FOLD` | 27 | `/buying-leads/*` and category hubs into `/lead-types/*` |
 | `MERGE` | 18 | Content merged into an existing target page, then 301 |
+
+Risk: 409 low, 8 medium, 4 high.
 
 Every row is resolved — no `REVIEW` rows remain. All 23 distinct `FOLD`/`MERGE`
 destinations were verified live at HTTP 200 on 2026-07-29.
@@ -81,20 +84,78 @@ ranges ($20–$100 for aged auto, $1.00–$1.00 for life). Benchmarks are
 human-verified quarterly here and never auto-generated — fill these in on the
 next quarterly pass.
 
-## Data vintage — read this before trusting the prune list
+## Data vintage — refreshed 2026-07-29
 
-`htwl-gsc-pages.json` is a **3-month GSC window ending 2026-06-05**, taken from
-`data/gsc-export-2026-06-05/Pages.csv` in the howtoworkleads repo. It is the
-best available: the GSC MCP account lost read access to the property partway
-through this work, and BRSG properties need service-account impersonation.
+`htwl-gsc-pages.json` is now the 3-month window ending **2026-07-29**, and
+`htwl-gsc-pages-2026-06-05.json` retains the previous one. See
+`GSC-REFRESH-2026-07-29.md` for what the refresh changed — eleven pages came
+off the prune list.
 
-Because the window is stale, zero impressions can mean "published after the
-window closed" rather than "dead". The generator guards on `publishedAt` — 9
-posts, including the entire IUL cluster and the 5-post compliance cluster, are
-marked `MIGRATE` with a note rather than pruned.
+Two rules exist because a single window is not evidence:
 
-**Refresh the GSC data before executing the prune list.** 33 pages are slated
-for deletion on a two-month-old measurement.
+- **Prune eligibility is the intersection.** Zero impressions in the latest
+  export reads identically to a page that decayed off page 1. Retaining the
+  prior window is what stopped the namesake cornerstone article from being
+  deleted at position 6.2.
+- **Position is impression-weighted, never a flat mean.** A page appears in the
+  export as several rows (www, non-www, every `#fragment`); averaging them flat
+  fabricated page-1 rankings.
+
+**When the next export lands, add the window — do not replace the old one.**
+
+## Redirect topology at cutover
+
+`lib/migration-redirects.ts` emits **path-level** rules only. The host change is
+a separate 301, so a URL whose path also changes takes two hops:
+`agedleadsales.com/old` → `workagedleads.com/old` → `workagedleads.com/new`.
+That is fine — Google follows short chains and passes equity.
+
+What is **not** fine is the third hop. `www.` is a serving domain on both sites
+today and its URLs are indexed and earning (`www.agedleadsales.com/providers/lead-heroes`
+was at 168 impressions / position 7.2). Right now www 301s to the bare host in
+one hop. If the bare host is then pointed at workagedleads.com, every www URL
+becomes a three-hop chain.
+
+**Point the `www.` redirect at workagedleads.com directly, not at its bare-domain
+sibling.** This is Vercel domain configuration, not code — there is nothing in
+this repo to change, which is exactly why it is easy to miss.
+
+Verify with `node scripts/verify-redirects.mjs --mode=post`, which probes every
+row **and its www variant** and fails on hop count, wrong destination, or a
+`PRUNE` row that still resolves.
+
+## Phase 2a content normalization
+
+Portable Text is less portable than it looks. howtoworkleads.com parses markdown
+*inside* span text at render time, so its documents store raw `**bold**`,
+`[text](url)`, a leading `# Title` line, and — on six posts — the authoring brief
+as a "Sanity CMS Fields" blockquote listing slug, SEO title, meta description and
+excerpt. That brief is publicly visible on howtoworkleads.com today.
+
+This project renders with `@portabletext/react`, which prints span text verbatim.
+Imported as-is, 30 of the staged drafts would have published literal markdown.
+
+`scripts/lib/normalize-imported-blocks.mjs` fixes this in the import path, so a
+re-import cannot reintroduce it. `scripts/repair-imported-drafts.mjs` applied the
+same normalization to drafts already staged (2026-07-30): 42 brief blocks
+dropped, 17 duplicate `# Title` blocks dropped, 29 links and 37 bold spans
+converted to real marks and markDefs.
+
+Use `--new-only` when re-running the import. The write is `createOrReplace`, so a
+plain re-run silently discards editorial work on drafts already staged.
+
+## Open decision — `/lead-order`
+
+`howtoworkleads.com/lead-order` is marked `PRUNE`, but it is not content: it 307s
+to `agedleadstore.com/all-lead-types/` with `utm_source=howtoworkleads`. It is an
+affiliate exit, and judging it by its 25 search impressions is the wrong
+instrument — nobody searches for a redirect endpoint, they click it. 36 link
+instances across 17 pages point at it, six of them on pages that survive the
+migration, including two body-copy links in the cornerstone article.
+
+Pruning it 404s those links. Resolving it needs the Phase 0 attribution question
+answered first — the correct replacement URL depends on whether affiliate credit
+is keyed to `utm_source` or the referring domain.
 
 ## Expect impressions to drop at cutover
 
