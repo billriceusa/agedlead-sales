@@ -1,4 +1,5 @@
 import Anthropic from "@anthropic-ai/sdk";
+import { SONNET_MODEL } from "./model-config";
 
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY || "",
@@ -108,7 +109,7 @@ export async function extractProviderData(
     // claude-sonnet-4 retired 2026-06-15 (was 404ing every run). Thinking is
     // explicitly disabled so content[0] stays a text block for the parser
     // below and max_tokens isn't consumed by thinking output.
-    model: "claude-sonnet-5",
+    model: SONNET_MODEL,
     thinking: { type: "disabled" },
     max_tokens: 2000,
     messages: [
@@ -212,7 +213,7 @@ export async function generateBenchmarkEstimates(
 
   const message = await anthropic.messages.create({
     // Same retired-model swap + explicit no-thinking as extractProviderData.
-    model: "claude-sonnet-5",
+    model: SONNET_MODEL,
     thinking: { type: "disabled" },
     max_tokens: 4000,
     messages: [

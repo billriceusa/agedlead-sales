@@ -101,6 +101,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   });
 
+  // Hub for every comparison below. Added 2026-07-21: the comparison cluster
+  // had no index and no inbound links from anywhere on the site, so the pages
+  // were reachable only via this sitemap despite being the best-converting
+  // format on the site.
+  entries.push({
+    url: `${baseUrl}/compare`,
+    lastModified: new Date(),
+    changeFrequency: "weekly",
+    priority: 0.8,
+  });
+
   // Editorial comparison pages (literal /compare routes, hand-written).
   for (const slug of [
     "aged-vs-real-time-leads",

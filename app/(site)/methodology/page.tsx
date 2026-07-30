@@ -5,7 +5,7 @@ import { JsonLd, breadcrumbJsonLd } from "@/components/json-ld";
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
 export const metadata: Metadata = {
-  title: "Our Methodology — How We Rate Lead Providers & Benchmark Pricing",
+  title: "Our Methodology: How We Rate Lead Providers",
   description:
     "Transparent methodology for our lead provider ratings and pricing benchmarks. Learn how we score, what data we use, and how we stay independent.",
   alternates: { canonical: `${baseUrl}/methodology` },

@@ -39,7 +39,10 @@ export async function generateMetadata({
   const pB = getProvider(slugB);
   if (!pA || !pB) return {};
 
-  const title = `${pA.name} vs ${pB.name} — Lead Provider Comparison`;
+  // Keep the boilerplate short — the provider names already carry the keywords,
+  // and long pairs (e.g. "Aged Lead Store vs Synergy Direct Solution") blew the
+  // ~60-char SERP budget with the old "— Lead Provider Comparison" suffix.
+  const title = `${pA.name} vs ${pB.name} — Compared`;
   // Only the 14 pairings involving Aged Lead Store carry meaningful commercial
   // search intent; the other 91 are programmatic filler that dilutes topical
   // authority. Noindex them but keep follow=true so internal links still pass

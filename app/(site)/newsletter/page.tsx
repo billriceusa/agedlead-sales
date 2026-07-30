@@ -4,8 +4,7 @@ import { CtaBanner } from "@/components/cta-banner";
 import { NewsletterSignup } from "@/components/newsletter-signup";
 
 export const metadata: Metadata = {
-  title:
-    "Newsletter — Weekly Aged Lead Strategies & Scripts | Aged Lead Sales",
+  title: "Newsletter — Weekly Aged Lead Strategies & Scripts",
   description:
     "Subscribe to the Aged Lead Sales newsletter. Weekly strategies, scripts, and insights for sales professionals who work aged leads. Delivered every Tuesday morning by Bill Rice.",
   alternates: { canonical: "https://agedleadsales.com/newsletter" },

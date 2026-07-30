@@ -1,5 +1,6 @@
 import Anthropic from "@anthropic-ai/sdk";
 import type { NewsletterPlan } from "@/data/newsletter-calendar";
+import { SONNET_MODEL } from "./model-config";
 
 function getAnthropicClient(): Anthropic {
   const apiKey = process.env.ANTHROPIC_API_KEY;
@@ -139,7 +140,7 @@ Respond with ONLY valid JSON (no markdown fences, no commentary):
 }`;
 
   const response = await client.messages.create({
-    model: "claude-sonnet-4-20250514",
+    model: SONNET_MODEL,
     max_tokens: 4096,
     system: NEWSLETTER_SYSTEM,
     messages: [{ role: "user", content: prompt }],

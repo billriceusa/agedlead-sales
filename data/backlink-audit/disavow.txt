@@ -1,5 +1,5 @@
 # Disavow file for agedleadsales.com
-# Generated 2026-06-05 from Ahrefs referring-domains audit.
+# Generated 2026-06-05 from Ahrefs referring-domains audit; last refreshed 2026-07-21 (291 domains).
 # Profile is ~95% SEO link-farm / PBN spam (seoexpress.* network, .shop/.store
 # SEO farms, paid-link agencies). Whitelisted as legitimate (NOT disavowed):
 #   billrice.com, howtoworkleads.com, coffee.ai, insuranceleadbrokers.com
@@ -151,3 +151,162 @@ domain:optimize-instant.website
 domain:fiverr-cost-effective-seo.site
 domain:buybacklinks.agency
 domain:seoexpress.org
+
+# --- 2026-07-03 refresh (Ahrefs live referring-domains audit) ---
+# +104 domains: new PBN clusters (outrank-hq / rank-forge / link-baron networks),
+#   .shop link farms (backlink*/rank*/seo* resellers), and a 3-domain content-mirror
+#   cluster (mav.website / rocketq.link / rquote.link) duplicating one editorial post.
+# KEPT as legitimate editorial (NOT disavowed): hiremav.com (DR 28, Mav recruiting-AI
+#   blog citing the ALS founder), startkadence.com (unique substantive posts, contextual
+#   anchors). Whitelist unchanged: billrice.com, howtoworkleads.com, coffee.ai,
+#   insuranceleadbrokers.com.
+domain:advanced-keyword-group-seoexpress.store
+domain:advanced-saas-seo-directory-outrank-hq.store
+domain:apex-outrank-hq-organic-platform.store
+domain:backlinkmart.shop
+domain:backlinkorbit.shop
+domain:backlinkshop.shop
+domain:backlinkvault.shop
+domain:bold-outrank-hq-serp-workshop.store
+domain:brilliant-edu-link-firm-outrank-hq.store
+domain:buyseobacklinks.shop
+domain:certified-rank-forge-anchor-text-lab.store
+domain:ctr-agency-rank-forge.store
+domain:definitive-team-link-baron-wiki.store
+domain:dr-90-rank-forge-department.store
+domain:elite-editorial-outrank-hq.store
+domain:epic-link-baron-hub.store
+domain:epic-syndicate-link-baron-keyword.store
+domain:epic-webpage-rank-forge-academy.store
+domain:exclusive-link-baron-search-syndicate.store
+domain:high-crew-link-baron-intent.store
+domain:high-outrank-hq-dofollow-platform.store
+domain:link-baron-innovative-press-release-house.store
+domain:link-baron-optimal-organic-collective.store
+domain:link-baron-pro-off-page.store
+domain:link-baron-pro-press-release.store
+domain:linkbarn.shop
+domain:linkbundle.shop
+domain:linkchest.shop
+domain:linkforgepro.shop
+domain:linkloot.shop
+domain:linkory.shop
+domain:linkpicks.shop
+domain:linkrankseo.shop
+domain:linksnexa.shop
+domain:linkstash.shop
+domain:linkstock.shop
+domain:linkstockly.shop
+domain:linktrove.shop
+domain:linkwares.shop
+domain:luxury-outrank-hq-crew.store
+domain:master-rank-forge-pbn-league.store
+domain:mav.link
+domain:mav.website
+domain:modern-link-baron-marketing-portal.store
+domain:modern-studio-outrank-hq-blogger.store
+domain:nexabacklinks.shop
+domain:official-center-outrank-hq-search.store
+domain:optimal-website-outrank-hq.store
+domain:outrank-hq-anchor-text-center.store
+domain:outrank-hq-dr-90-paramount-system.store
+domain:outrank-hq-engine-dofollow.store
+domain:outrank-hq-exclusive-crawl-engine.store
+domain:outrank-hq-modern-wiki-branch.store
+domain:outrank-hq-prime-blogger.store
+domain:primebacklinks.shop
+domain:rankbundle.shop
+domain:rankcart.shop
+domain:rankchest.shop
+domain:rankcrate.shop
+domain:rankdeals.shop
+domain:rankdepot.shop
+domain:rankgear.shop
+domain:rankgoods.shop
+domain:rankkit.shop
+domain:ranklinkerpro.shop
+domain:rankloot.shop
+domain:rankmall.shop
+domain:rankoutlet.shop
+domain:rankprime.shop
+domain:rankseohub.shop
+domain:rankstock.shop
+domain:ranktrove.shop
+domain:rankwagon.shop
+domain:rankxlinks.shop
+domain:rankyour.website
+domain:rocketq.link
+domain:rquote.link
+domain:seobazaar.shop
+domain:seobundle.shop
+domain:seocartly.shop
+domain:seochest.shop
+domain:seocrate.shop
+domain:seodepot.shop
+domain:seoedge.shop
+domain:seoexpress-niche-edit-group.store
+domain:seoexpress-verified-website-system.store
+domain:seofinds.shop
+domain:seogear.shop
+domain:seogo.shop
+domain:seokart.shop
+domain:seolinkkart.shop
+domain:seoloot.shop
+domain:seomart.shop
+domain:seooutlet.shop
+domain:seopicks.shop
+domain:seoprime.shop
+domain:seorankflow.shop
+domain:seostash.shop
+domain:seostock.shop
+domain:seosupply.shop
+domain:seotrove.shop
+domain:seowagon.shop
+domain:seowares.shop
+domain:seowarez.shop
+
+# --- 2026-07-21 refresh (Ahrefs live referring-domains audit) ---
+# Attack is ONGOING: referring domains 252 (2026-06-29) -> 292 (2026-07-20).
+# All 41 domains below are unambiguous link-farm spam (.store/.shop/.site SEO-jargon
+# naming, outrank-hq / link-baron / seoexpress clusters). No judgment calls in this batch.
+domain:advanced-search-rank-and-niche-edit-depot.store
+domain:agile-footer-link-system-link-baron.store
+domain:authority-do-follow-and-do-follow-network.store
+domain:backlink-pro-anchor-text-and-click-through-hub.store
+domain:backlink-pro-click-through-and-link-building-depot.store
+domain:backlinkmasters.shop
+domain:backlinksplace.site
+domain:content-marketing-index-rate-and-authority-link-solutions.store
+domain:content-marketing-search-rank-and-search-rank-syndicate.store
+domain:contextual-link-baron-services.store
+domain:digital-pr-keyword-rank-and-crawl-budget-experts.store
+domain:do-follow-traffic-surge-and-link-velocity-syndicate.store
+domain:dynamic-niche-edit-and-contextual-link-systems.store
+domain:elite-network-for-domain-rating-and-digital-pr.store
+domain:expert-agency-for-keyword-rank-and-backlink-pro.store
+domain:expert-partners-for-niche-edit-and-authority-link.store
+domain:flagship-niche-edit-and-link-building-services.store
+domain:global-backlink-pro-and-click-through-systems.store
+domain:guest-posting-and-link-equity-strategic-syndicate.store
+domain:high-da-do-follow-and-niche-edit-syndicate.store
+domain:keyword-rank-backlink-pro-and-keyword-rank-depot.store
+domain:keyword-rank-keyword-rank-and-digital-pr-partners.store
+domain:leading-click-through-and-serp-boost-consortium.store
+domain:leading-hub-for-outreach-pro-and-link-juice.store
+domain:leading-hub-for-page-rank-and-contextual-link.store
+domain:link-baron-luxury-anchor-text-partners.store
+domain:link-building-and-ranking-signal-master-partners.store
+domain:link-juice-crawl-budget-and-page-rank-solutions.store
+domain:linkgrowthstudio.shop
+domain:linkseoalliance.shop
+domain:linkseocollective.shop
+domain:organic-traffic-ranking-signal-and-outreach-pro-bureau.store
+domain:proven-serp-boost-and-outreach-pro-services.store
+domain:proven-services-for-serp-boost-and-link-velocity.store
+domain:rankfinds.shop
+domain:rent-a-shop.shop
+domain:searchrankgroup.shop
+domain:seolinktoolkit.shop
+domain:tier-one-and-domain-rating-trusted-exchange.store
+domain:traffic-surge-and-backlink-pro-leading-consortium.store
+domain:ultimate-seoexpress-niche-edit-experts.store

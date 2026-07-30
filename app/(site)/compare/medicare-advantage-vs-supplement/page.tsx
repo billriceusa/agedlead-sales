@@ -9,7 +9,7 @@ import {
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
 export const metadata: Metadata = {
-  title: "Medicare Advantage vs. Medicare Supplement (Medigap): Key Differences",
+  title: "Medicare Advantage vs Medigap: Key Differences",
   description:
     "Medicare Advantage vs. Medicare Supplement compared — premiums, networks, out-of-pocket costs, drug coverage, and enrollment. A plain-English guide for agents working Medicare leads and the seniors they serve.",
   alternates: {

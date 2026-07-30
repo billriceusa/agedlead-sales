@@ -93,7 +93,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${name} Review — Lead Provider Rating & Analysis`,
+    title: `${name} Review: Pricing, Ratings & Verdict`,
     description: `Independent review and rating of ${name}. See our honest assessment, 6-dimension scores, and how they compare to other lead providers.`,
     alternates: { canonical: `${baseUrl}/providers/${slug}` },
     openGraph: {
@@ -164,6 +164,22 @@ export default async function ProviderProfilePage({
           description: `See how ${p.name} ranks against competitors.`,
         }
       : null,
+    // Crawlable link into the comparison cluster. ProviderCompareSelector above
+    // is a <select> + router.push(), so it emits no <a href> — which left all 17
+    // indexed /compare/* pages with zero inbound links from anywhere on the
+    // site, reachable only via the sitemap, despite being the best-converting
+    // format we publish.
+    p.slug !== "aged-lead-store"
+      ? {
+          href: `/compare/${["aged-lead-store", p.slug].sort().join("-vs-")}`,
+          label: `${p.name} vs Aged Lead Store`,
+          description: `Head-to-head against the largest aged lead marketplace, scored on the same six dimensions.`,
+        }
+      : {
+          href: "/compare",
+          label: "All provider comparisons",
+          description: `Every head-to-head we publish, plus the lead-type decisions that follow.`,
+        },
     {
       href: "/price-index",
       label: "Lead Price Index",
