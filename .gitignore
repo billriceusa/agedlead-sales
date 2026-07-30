@@ -39,3 +39,6 @@ next-env.d.ts
 
 # flagship PDF build intermediates
 /.flagship-pdf-tmp/
+
+# Claude Code local worktrees / session state
+.claude/
