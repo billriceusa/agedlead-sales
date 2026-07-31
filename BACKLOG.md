@@ -6,6 +6,163 @@
 
 ---
 
+## 2026-07-31 — Striking-distance pass: the constraint is on-page, not authority
+<!-- added 2026-07-31 (Scout, #owned-sites) — measured GSC + live SERP -->
+
+**Sources.** GSC `sc-domain:agedleadsales.com`, `2026-07-01 → 2026-07-28`, `dataState: final`, read via
+the `brsg-analytics-reader` WIF path (the `gsc` MCP connector returns 403 on this property — use the
+Vercel-OIDC route). Ahrefs `serp-overview`, keyword `aged insurance leads`, country `us`, 2026-07-31.
+Ahrefs `site-explorer-domain-rating`, `agedleadsales.com`, 2026-07-31.
+
+### The headline: a DR-0 domain outranks us, twice
+
+`agedleadsales.com` **DR 4.1**. Live top-10 for `aged insurance leads` — the term we sit at position
+10.7 on:
+
+| Pos | Domain | DR | Refdomains |
+|---:|---|---:|---:|
+| 1 | agedleadstore.com | 33 | 519 |
+| 2 | reddit.com (3 sitelinks + "more results") | 95 | — |
+| **3** | **secondchanceleads.com** | **0** | 146 |
+| 4 | badassinsuranceleads.com | 15 | 398 |
+| 5 | youtube.com (video) | 99 | — |
+| 6 | agents.smartfinancial.com | 69 | 1 |
+| 9 | leadheroes.com | 28 | 2 |
+| **10** | **agedinsuranceleads.com** | **0** | 371 |
+
+Two DR-0 domains hold top-10 positions. Position 6 is a DR-69 subdomain with **1 referring domain**
+to the ranking page. **Authority is not what separates us from page one on this cluster.**
+
+This contradicts the 2026-07-14 anchor below, which states "Authority is the binding traffic
+constraint." That claim does not survive the SERP for these queries. It may still hold as a *defensive*
+argument for the disavow — a toxic-backlink attack is a different problem from needing more links to
+rank — but the disavow should not be justified as the unlock for this traffic, because it isn't.
+
+### CTR ceiling — read before forecasting any of this
+
+This SERP is not a clean ten blue links. Position 2 is a Reddit block carrying three sitelinks plus a
+"More results from reddit.com" link; position 5 is a YouTube video thumbnail; position 8 is a
+discussions block (Reddit + insurance-forums); position 10 expands four sitelinks. A commercial result
+at position 8–13 here sits below a forum block, a video, and a discussions module. Measured CTR on our
+best position in this set — 1.47% at position 6.3 — is consistent with that, not with a clean SERP's
+~8–10%. Model the ceiling from this environment, not from a generic CTR curve.
+
+### Defect — five pages competing for one query
+
+Query → pages, same GSC pull. Every one of these is one query split across multiple URLs:
+
+| Query | Impr | Pages competing | Best pos |
+|---|---:|---|---:|
+| `aged leads` | 162 | `/providers` (8.0), `/glossary` (13.8), `/compare/aged-lead-store-vs-need-a-lead` (22.0), `/` (29.6), `/guides` (39.0) | 8.0 |
+| `aged insurance leads` | 169 | `/lead-types/insurance-leads` (10.7), `/providers` (12.8), `/` (38.9) | 10.7 |
+| `aged life insurance leads` | 124 | `/providers` (15.0), `/lead-types/insurance-leads` (26.4), `/lead-types/iul-leads` (35.8) | 15.0 |
+| `aged final expense leads` | 137 | `/providers/best/final-expense` (8.9), `/lead-types/final-expense-leads` (25.8), `/glossary` (29.5) | 8.9 |
+
+`/providers` and `/glossary` are absorbing impressions on commercial queries that the specific
+`/lead-types/*` page should own. Fix is internal-linking and on-page intent separation, not new content.
+
+- [ ] **P1 — Resolve query cannibalization on the four terms above.** Pick one canonical target per
+  query, point internal anchors at it, and differentiate the competing pages' titles/H1s so they stop
+  bidding against each other. Highest-impression cluster on the site.
+
+### Defect — apex/www host split on a ranking page
+
+`iul leads` (105 impr, pos 16.0) returns **both hosts of the same page** in GSC:
+`https://agedleadsales.com/blog/iul-leads-financial-advisors-playbook` (69 impr, pos 12.2) and
+`https://www.agedleadsales.com/blog/iul-leads-financial-advisors-playbook` (19 impr, pos 15.1).
+Same split pattern found on proinvestorhub.com the same day.
+
+- [ ] **P1 — Confirm the www → apex redirect and canonical on this route**, then request reindex.
+  Two hosts splitting one page's signals on a term already in striking distance.
+
+### RESOLVED 2026-07-31 — D6 answered, and the opportunity is smaller than I filed it
+
+Bill unblocked D6 in `#owned-sites` 2026-07-31 15:52 UTC: honest objective reviews of companies with
+active engagements are fine, affiliate disclosures are in place. **Measured what the unblock actually
+buys, and it is much less than the impression count suggested.**
+
+**The pages already exist and already rank.** No build required. GSC page dimension,
+`sc-domain:agedleadsales.com`, `2026-07-01 → 07-28`, `dataState: final`:
+
+| Query | Impr | Clicks | Best page | Pos |
+|---|---:|---:|---|---:|
+| `aged lead store` | 244 | **4** | `/blog/aged-lead-store-review-2026` | 6.0 |
+| | 92 | 1 | `/providers` | 7.5 |
+| `agedleadstore` | 93 | **0** | `/blog/aged-lead-store-review-2026` | 6.7 |
+| `aged leads store` | 19 | 1 | `/providers/aged-lead-store` | 5.2 |
+| `lead heroes` | 66 | **0** | `www.`/providers/lead-heroes | 7.6 |
+| `badass insurance leads` | 56 | **0** | `/providers/badass-insurance-leads` | 6.5 |
+| `the leads warehouse` | 37 | 2 | `/compare/aged-lead-store-vs-the-leads-warehouse` | 7.4 |
+| `lead warehouse` | 53 | 0 | `/compare/aged-lead-store-vs-the-leads-warehouse` | 12.4 |
+
+**~620 impressions produced roughly 10 clicks. 1.6% CTR at an average position of 6–8.**
+
+### Why — the SERP, not the pages
+
+Ahrefs `serp-overview`, `lead heroes`, US, 2026-07-31. Above our position-7.6 result sit:
+
+1. `leadheroes.com` **plus five sitelinks** — the brand owns the entire top block
+2. an insurance-forums thread
+3. a People Also Ask block (4 questions)
+4. two more discussion results
+5. BBB profile (DR 93)
+6. LinkedIn (DR 99)
+7. a competitor review site
+
+These are **navigational** queries. Someone typing `lead heroes` is going to leadheroes.com, and the
+brand's own six-link block answers them before anything else renders. Zero clicks from 66 impressions
+is what that SERP predicts, not an underperformance to fix. Position is not the constraint and no
+title rewrite moves it much.
+
+**Correction to my own 2026-07-31 filing.** I wrote that "~620 impressions per 28 days sit behind that
+one line of policy" and ranked D6 first for this site. The impressions are real; the traffic behind
+them is not. Measured, this cluster is worth ~10 clicks a month and is capped by query intent.
+
+### The better target was never blocked
+
+The generic category cluster needs no policy answer, carries comparable impressions, and sits in a
+SERP where **two DR-0 domains hold top-10** — commercial intent, movable positions:
+
+`aged insurance leads` 169 · `aged leads` 162 · `aged final expense leads` 137 ·
+`aged life insurance leads` 124 · `aged health insurance leads` 96 · `aged medicare leads` 49 ·
+`aged auto insurance leads` 40.
+
+- [ ] **P1 — Work the generic cluster first.** It was available all morning and did not need D6.
+
+### Two corrections to earlier items in this section
+
+- [x] ~~**P1 — Confirm the www → apex redirect and canonical** on the IUL route~~ — **not a defect.**
+  Verified 2026-07-31: `www.agedleadsales.com/blog/iul-leads-financial-advisors-playbook` returns
+  **308** to the apex, and the apex page carries a correct self-referential canonical and `og:url`.
+  Configuration is right; Google is holding stale `www` rows and consolidating. Same shape as the
+  billricestrategy 301 — no action, recheck rather than "fix."
+- [ ] **P2 — The www split is broader than one blog post.** `lead heroes` earns its 66 impressions on
+  `https://www.agedleadsales.com/providers/lead-heroes`. Worth a sitewide sweep of which paths still
+  surface on `www`, since the redirect is correct and this is purely index lag.
+
+### Superseded — the original framing of this section
+
+### Blocked — the single biggest opportunity needs a policy answer first
+
+The largest striking-distance query on this site is **`aged lead store` — 340 impressions, position
+6.3, 1.47% CTR**, plus `agedleadstore` (149 impr, pos 9.1) and `aged leads store` (64 impr, pos 6.6).
+The cluster also includes `lead heroes` (70), `badass insurance leads` (66), `lead warehouse` (61),
+`the leads warehouse` (48) — competitor brand navigational terms. A `/compare/aged-lead-store-vs-need-a-lead`
+page already ranks (pos 22.0 on `aged leads`).
+
+This is **D6** in `~/.buzz/PLANS/brsg/owned-sites/DECISIONS_FOR_BILL.md` — editorial policy on owned-site
+coverage of companies Bill's businesses also work with. ~620 impressions/28d sit behind that one line.
+Do not build here until it lands.
+
+### Ready to work with no decision required
+
+`aged insurance leads` (169), `aged leads` (162), `aged final expense leads` (137), `aged life insurance
+leads` (124), `aged health insurance leads` (96, pos 13.0), `aged medicare leads` (49, pos 11.0),
+`aged auto insurance leads` (40, pos 8.1). All generic category terms, no brand conflict, all in
+striking distance, all pointing at pages that already exist.
+
+---
+
 ## 2026-07-14 — Portfolio Performance Report priority anchor
 <!-- added 2026-07-14 — cross-portfolio prioritization from the BRSG Portfolio Performance Report (daily) -->
 
