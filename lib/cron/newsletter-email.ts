@@ -80,7 +80,7 @@ export function buildNewsletterHtml(
           <!-- Header -->
           <tr>
             <td class="header" style="background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%); padding: 32px; text-align: center;">
-              <h1 style="margin: 0; color: #ffffff; font-size: 26px; font-weight: 800; letter-spacing: -0.5px;">Aged Lead Sales</h1>
+              <h1 style="margin: 0; color: #ffffff; font-size: 26px; font-weight: 800; letter-spacing: -0.5px;">Work Aged Leads</h1>
               <p style="margin: 6px 0 0 0; color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 400;">Weekly strategies for sales professionals — by Bill Rice</p>
             </td>
           </tr>
@@ -207,7 +207,7 @@ export function buildNewsletterHtml(
                 <tr>
                   <td style="text-align: center;">
                     <p style="margin: 0 0 8px 0; color: #6b7280; font-size: 13px;">
-                      <a href="${siteUrl}" style="color: #1e40af; text-decoration: none; font-weight: 600;">Aged Lead Sales</a> &nbsp;|&nbsp;
+                      <a href="${siteUrl}" style="color: #1e40af; text-decoration: none; font-weight: 600;">Work Aged Leads</a> &nbsp;|&nbsp;
                       <a href="${siteUrl}/blog" style="color: #6b7280; text-decoration: none;">Blog</a> &nbsp;|&nbsp;
                       <a href="${siteUrl}/playbook" style="color: #6b7280; text-decoration: none;">Playbook</a> &nbsp;|&nbsp;
                       <a href="${siteUrl}/glossary" style="color: #6b7280; text-decoration: none;">Glossary</a> &nbsp;|&nbsp;

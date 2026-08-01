@@ -91,7 +91,7 @@ export default async function BlogPostPage({ params }: Props) {
               },
               author: {
                 "@type": "Organization",
-                name: "Aged Lead Sales",
+                name: "Work Aged Leads",
                 url: baseUrl,
               },
               datePublished: post.publishedAt || reviewedProvider.lastVerified,

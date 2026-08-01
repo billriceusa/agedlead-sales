@@ -88,7 +88,7 @@ export async function GET(request: Request) {
       const resend = new Resend(resendApiKey);
       const fromEmail =
         process.env.RESEND_FROM_EMAIL ||
-        "Aged Lead Sales <noreply@agedleadsales.com>";
+        "Work Aged Leads <noreply@agedleadsales.com>";
       const purchasers = report.audiences.find((a) => a.name.includes("Purchasers"));
       const inquiries = report.audiences.find((a) => a.name.includes("Inquiries"));
       const totalList =

@@ -19,7 +19,7 @@ export function renderShell({ bodyHtml, ctx }: ShellOptions): string {
         <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border-radius: 12px; overflow: hidden; max-width: 600px;">
           <tr>
             <td style="background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%); padding: 28px 32px; text-align: center;">
-              <h1 style="margin: 0; color: #ffffff; font-size: 22px; font-weight: 800; letter-spacing: -0.3px;">Aged Lead Sales</h1>
+              <h1 style="margin: 0; color: #ffffff; font-size: 22px; font-weight: 800; letter-spacing: -0.3px;">Work Aged Leads</h1>
               <p style="margin: 4px 0 0 0; color: rgba(255,255,255,0.82); font-size: 13px;">The Aged Lead Operator's System</p>
             </td>
           </tr>
@@ -47,7 +47,7 @@ export function renderShell({ bodyHtml, ctx }: ShellOptions): string {
           <tr>
             <td style="background-color: #f9fafb; padding: 20px 32px; border-top: 1px solid #e5e7eb; text-align: center;">
               <p style="margin: 0 0 8px 0; color: #6b7280; font-size: 13px;">
-                <a href="${SITE_URL}" style="color: #2563eb; text-decoration: none; font-weight: 600;">Aged Lead Sales</a> &nbsp;|&nbsp;
+                <a href="${SITE_URL}" style="color: #2563eb; text-decoration: none; font-weight: 600;">Work Aged Leads</a> &nbsp;|&nbsp;
                 <a href="${SITE_URL}/playbook" style="color: #6b7280; text-decoration: none;">Playbooks</a> &nbsp;|&nbsp;
                 <a href="${SITE_URL}/calculators" style="color: #6b7280; text-decoration: none;">Calculators</a>
               </p>

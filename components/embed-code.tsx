@@ -15,7 +15,7 @@ export function EmbedCode({ calculatorName, calculatorSlug }: EmbedCodeProps) {
   const embedUrl = `${baseUrl}/calculators/${calculatorSlug}/embed`;
   const attributionUrl = `${baseUrl}/calculators/${calculatorSlug}?utm_source=embed&utm_medium=iframe&utm_campaign=${calculatorSlug}`;
 
-  const snippet = `<iframe src="${embedUrl}" width="100%" height="700" frameborder="0" title="${calculatorName}" style="border:none;border-radius:12px;"></iframe>\n<p style="font-size:12px;text-align:center;margin-top:8px;">Powered by <a href="${attributionUrl}" target="_blank" rel="noopener">Aged Lead Sales</a></p>`;
+  const snippet = `<iframe src="${embedUrl}" width="100%" height="700" frameborder="0" title="${calculatorName}" style="border:none;border-radius:12px;"></iframe>\n<p style="font-size:12px;text-align:center;margin-top:8px;">Powered by <a href="${attributionUrl}" target="_blank" rel="noopener">Work Aged Leads</a></p>`;
 
   const handleCopy = async () => {
     try {

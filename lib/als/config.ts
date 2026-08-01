@@ -18,7 +18,7 @@ export const ALS_AUDIENCE_PURCHASERS = "ALS Aged-Lead Buyers — Purchasers";
 export const ALS_AUDIENCE_INQUIRIES = "ALS Aged-Lead Buyers — Inquiries";
 
 // --- Lifecycle email program (Aged Leads Insights) ---
-// Co-branded value/education series (AgedLeadSales = Bill Rice's expertise;
+// Co-branded value/education series (Work Aged Leads = Bill Rice's expertise;
 // AgedLeadStore = the exclusive buy CTA). Subtle, value-first — NOT a
 // transactional "thanks for your order" welcome (AgedLeadStore already sends
 // registration + first-order email). Positions aged leads as a consistent,

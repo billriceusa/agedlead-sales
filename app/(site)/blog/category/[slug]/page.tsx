@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const category: any = await sanityFetch(categoryBySlugQuery, { slug });
   if (!category) return {};
 
-  const title = `${category.title} Articles — Aged Lead Sales Blog`;
+  const title = `${category.title} Articles — Work Aged Leads Blog`;
   const description =
     category.description ||
     `Browse all articles about ${category.title.toLowerCase()} — sales tips, strategies, and insights for aged lead professionals.`;

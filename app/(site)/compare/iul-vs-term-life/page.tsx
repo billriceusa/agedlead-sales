@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     "Indexed Universal Life (IUL) vs. term life insurance compared — premiums, cash value, duration, market exposure, and complexity. A plain-English guide for agents working life insurance leads.",
   alternates: { canonical: `${baseUrl}/compare/iul-vs-term-life` },
   openGraph: {
-    title: "IUL vs. Term Life Insurance | Aged Lead Sales",
+    title: "IUL vs. Term Life Insurance | Work Aged Leads",
     description:
       "Premiums, cash value, duration, and market exposure compared side by side.",
     url: `${baseUrl}/compare/iul-vs-term-life`,
@@ -125,7 +125,7 @@ export default function IulVsTermLifePage() {
       rows={ROWS}
       tableNote="Educational overview only — not insurance or financial advice. IUL illustrations are projections, not guarantees; product features vary by carrier. Verify specifics against the policy and carrier illustrations."
       faqs={FAQS}
-      citation={`IUL vs. Term Life Insurance comparison from Aged Lead Sales. Source: ${baseUrl}/compare/iul-vs-term-life`}
+      citation={`IUL vs. Term Life Insurance comparison from Work Aged Leads. Source: ${baseUrl}/compare/iul-vs-term-life`}
       relatedTitle="Work life insurance leads"
       relatedLinks={[
         {

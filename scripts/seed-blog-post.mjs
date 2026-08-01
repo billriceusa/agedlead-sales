@@ -15,12 +15,12 @@ async function seed() {
   await client.createOrReplace({
     _id: "author-aged-lead-sales",
     _type: "author",
-    name: "Aged Lead Sales",
+    name: "Work Aged Leads",
     slug: { _type: "slug", current: "aged-lead-sales" },
     bio: "Sales training and aged lead strategies for insurance agents, mortgage brokers, and sales professionals.",
     role: "Editorial Team",
   });
-  console.log("✓ Author: Aged Lead Sales");
+  console.log("✓ Author: Work Aged Leads");
 
   // Blog post: What Are Aged Leads?
   await client.createOrReplace({

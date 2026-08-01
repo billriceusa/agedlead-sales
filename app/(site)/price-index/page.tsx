@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     "Quarterly verified pricing benchmarks for aged leads, real-time leads, and live transfers across 15 verticals. Fair market values from published pricing, quote requests, and market analysis.",
   alternates: { canonical: `${baseUrl}/price-index` },
   openGraph: {
-    title: "Lead Price Index | Aged Lead Sales",
+    title: "Lead Price Index | Work Aged Leads",
     description:
       "The first independent lead pricing index. Fair market values for aged and real-time leads across mortgage, insurance, solar, and more.",
     url: `${baseUrl}/price-index`,
@@ -154,7 +154,7 @@ export default async function PriceIndexPage() {
           temporalCoverage: latestMonth,
           creator: {
             "@type": "Organization",
-            name: "Aged Lead Sales",
+            name: "Work Aged Leads",
             url: baseUrl,
           },
         }}
@@ -335,7 +335,7 @@ export default async function PriceIndexPage() {
           <div className="flex flex-wrap items-center gap-3">
             <span className="text-sm text-zinc-500">Reference this data:</span>
             <CiteThisButton
-              citation={`Lead pricing benchmarks from the Aged Lead Sales Lead Price Index, a quarterly verified study covering ${VERTICALS.length} verticals (last verified ${verifiedLabel}). Source: ${baseUrl}/price-index`}
+              citation={`Lead pricing benchmarks from the Work Aged Leads Price Index, a quarterly verified study covering ${VERTICALS.length} verticals (last verified ${verifiedLabel}). Source: ${baseUrl}/price-index`}
             />
           </div>
         </div>

@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     canonical: `${baseUrl}/compare/medicare-advantage-vs-supplement`,
   },
   openGraph: {
-    title: "Medicare Advantage vs. Medicare Supplement | Aged Lead Sales",
+    title: "Medicare Advantage vs. Medicare Supplement | Work Aged Leads",
     description:
       "Premiums, networks, out-of-pocket costs, drug coverage, and enrollment compared side by side.",
     url: `${baseUrl}/compare/medicare-advantage-vs-supplement`,
@@ -135,7 +135,7 @@ export default function MedicareAdvantageVsSupplementPage() {
       rows={ROWS}
       tableNote="Educational overview only — not insurance, financial, or enrollment advice. Plan rules and availability vary by state and by year; verify specifics with official Medicare resources."
       faqs={FAQS}
-      citation={`Medicare Advantage vs. Medicare Supplement comparison from Aged Lead Sales. Source: ${baseUrl}/compare/medicare-advantage-vs-supplement`}
+      citation={`Medicare Advantage vs. Medicare Supplement comparison from Work Aged Leads. Source: ${baseUrl}/compare/medicare-advantage-vs-supplement`}
       relatedTitle="Work Medicare leads"
       relatedLinks={[
         {

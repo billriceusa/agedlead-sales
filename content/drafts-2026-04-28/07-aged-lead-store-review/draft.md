@@ -12,7 +12,7 @@ wordCount: ~2700
 
 # Aged Lead Store Review (2026): Honest Assessment of the Largest Aged Lead Marketplace
 
-> **Affiliate disclosure**: This review contains affiliate links to AgedLeadStore.com. AgedLeadSales may earn a commission if you purchase through these links — at no additional cost to you. We've reviewed the company on the same six-dimension framework we apply to every provider on this site, and the review reflects our honest assessment of strengths and weaknesses. See [our editorial process](/editorial-process) for the full methodology.
+> **Affiliate disclosure**: This review contains affiliate links to AgedLeadStore.com. Work Aged Leads may earn a commission if you purchase through these links — at no additional cost to you. We've reviewed the company on the same six-dimension framework we apply to every provider on this site, and the review reflects our honest assessment of strengths and weaknesses. See [our editorial process](/editorial-process) for the full methodology.
 
 This article is a working review of Aged Lead Store — the largest aged internet lead marketplace in the United States. I've written it the way I'd want to read it before spending my own money: short on hype, long on specifics, with the gaps and weaknesses called out as clearly as the strengths.
 

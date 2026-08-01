@@ -91,7 +91,7 @@ export function PriceTrendChart({ points, verticalName, seriesLabel }: Props) {
         </h2>
         <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
           Median price for {seriesLabel}, by month. Shaded band shows the
-          tracked low–high range. Source: Aged Lead Sales Lead Price Index.
+          tracked low–high range. Source: Work Aged Leads Price Index.
         </p>
       </figcaption>
 

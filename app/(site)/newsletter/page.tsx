@@ -6,7 +6,7 @@ import { NewsletterSignup } from "@/components/newsletter-signup";
 export const metadata: Metadata = {
   title: "Newsletter — Weekly Aged Lead Strategies & Scripts",
   description:
-    "Subscribe to the Aged Lead Sales newsletter. Weekly strategies, scripts, and insights for sales professionals who work aged leads. Delivered every Tuesday morning by Bill Rice.",
+    "Subscribe to the Work Aged Leads newsletter. Weekly strategies, scripts, and insights for sales professionals who work aged leads. Delivered every Tuesday morning by Bill Rice.",
   alternates: { canonical: "https://agedleadsales.com/newsletter" },
 };
 
@@ -41,7 +41,7 @@ export default function NewsletterPage() {
       <section className="bg-white py-16 dark:bg-zinc-950">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl font-bold text-zinc-900 dark:text-white">
-            The Aged Lead Sales Newsletter
+            The Work Aged Leads Newsletter
           </h1>
           <p className="mt-6 text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
             Weekly strategies, scripts, and insights for sales professionals who
@@ -158,7 +158,7 @@ export default function NewsletterPage() {
               platform for mortgage lead buyers. He owned and operated Velocity
               Lending (DTC mortgage lender, 2016-2018) and has personally
               worked millions of aged leads across insurance, mortgage, solar,
-              and home improvement. He founded Aged Lead Sales as an
+              and home improvement. He founded Work Aged Leads as an
               independent lead buying intelligence platform.
             </p>
             <Link

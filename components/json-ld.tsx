@@ -20,7 +20,7 @@ export function websiteJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "Aged Lead Sales",
+    name: "Work Aged Leads",
     url: baseUrl,
     description:
       "Learn how to grow your sales business with aged leads. Training, playbooks, and strategies for insurance agents, mortgage brokers, and sales professionals.",
@@ -36,7 +36,7 @@ export function organizationJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "Aged Lead Sales",
+    name: "Work Aged Leads",
     url: baseUrl,
     founder: personJsonLdData(),
     description:
@@ -69,7 +69,7 @@ export function personJsonLdData() {
     worksFor: [
       {
         "@type": "Organization",
-        name: "Aged Lead Sales",
+        name: "Work Aged Leads",
         url: baseUrl,
       },
       {
@@ -123,7 +123,7 @@ export function articleJsonLd({
     ...(imageUrl && { image: imageUrl }),
     publisher: {
       "@type": "Organization",
-      name: "Aged Lead Sales",
+      name: "Work Aged Leads",
       url: baseUrl,
     },
     speakable: {
@@ -201,7 +201,7 @@ export function glossaryTermJsonLd({
     url: `${baseUrl}/glossary/${slug}`,
     inDefinedTermSet: {
       "@type": "DefinedTermSet",
-      name: "Aged Lead Sales Glossary",
+      name: "Work Aged Leads Glossary",
       url: `${baseUrl}/glossary`,
     },
   };

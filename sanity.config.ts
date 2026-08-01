@@ -8,7 +8,7 @@ import { apiVersion, dataset, projectId } from "./sanity/env";
 
 export default defineConfig({
   name: "aged-lead-sales",
-  title: "Aged Lead Sales",
+  title: "Work Aged Leads",
   projectId,
   dataset,
   plugins: [structureTool(), visionTool({ defaultApiVersion: apiVersion })],

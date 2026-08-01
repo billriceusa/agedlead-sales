@@ -51,7 +51,7 @@ export async function GET(request: Request) {
   return new NextResponse(
     buildPage(
       "You've been unsubscribed",
-      "You won't receive any more emails from Aged Lead Sales. If this was a mistake, you can re-subscribe at agedleadsales.com anytime."
+      "You won't receive any more emails from Work Aged Leads. If this was a mistake, you can re-subscribe at agedleadsales.com anytime."
     ),
     { status: 200, headers: { "Content-Type": "text/html" } }
   );
@@ -63,7 +63,7 @@ function buildPage(title: string, message: string): string {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${title} — Aged Lead Sales</title>
+  <title>${title} — Work Aged Leads</title>
   <style>
     body { margin: 0; padding: 40px 20px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; background: #f3f4f6; color: #1f2937; }
     .card { max-width: 480px; margin: 0 auto; background: white; border-radius: 12px; padding: 40px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
@@ -76,7 +76,7 @@ function buildPage(title: string, message: string): string {
   <div class="card">
     <h1>${title}</h1>
     <p>${message}</p>
-    <a href="https://www.agedleadsales.com">Back to Aged Lead Sales</a>
+    <a href="https://www.agedleadsales.com">Back to Work Aged Leads</a>
   </div>
 </body>
 </html>`;

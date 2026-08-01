@@ -2,7 +2,7 @@
 
 **The complete playbook for turning cheap leads into closed deals.**
 
-*By Bill Rice — Founder, Aged Lead Sales*
+*By Bill Rice — Founder, Work Aged Leads*
 
 ---
 
@@ -791,7 +791,7 @@ Here's what to do this week:
 2. **Score yourself on the diagnostic.** Be honest. The diagnostic is only useful if you're honest about where you are today.
 3. **Pick one dimension to fix in the next 30 days.** Not five. One. Usually it's either the unit economics (you don't know your numbers) or the outreach cadence (you're not following one).
 4. **Find a lead source.** When you're ready to buy, [agedleadstore.com](https://agedleadstore.com/all-lead-types/?utm_source=agedleadsales&utm_medium=affiliate&utm_campaign=flagship-master&utm_content=cta-end) offers aged leads across all the major verticals with consent documentation and suppression support. Start with the smallest batch they offer, run it through your new system, and measure.
-5. **Get on the weekly list.** The Aged Lead Sales weekly newsletter ships every Tuesday with one tactical idea to sharpen your operation. You're already on the list (that's how you got this playbook). Open every one — they're short.
+5. **Get on the weekly list.** The Work Aged Leads weekly newsletter ships every Tuesday with one tactical idea to sharpen your operation. You're already on the list (that's how you got this playbook). Open every one — they're short.
 
 You have the system. Go run it.
 
@@ -799,4 +799,4 @@ You have the system. Go run it.
 
 ---
 
-*The Aged Lead Operator's System is published by Aged Lead Sales. For corrections, updates, or to request a vertical-specific consultation, visit agedleadsales.com/contact.*
+*The Aged Lead Operator's System is published by Work Aged Leads. For corrections, updates, or to request a vertical-specific consultation, visit agedleadsales.com/contact.*

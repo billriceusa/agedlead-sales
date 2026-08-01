@@ -42,7 +42,7 @@ export function Footer() {
               href="/"
               className="text-lg font-bold text-zinc-900 dark:text-white"
             >
-              Aged Lead Sales
+              Work Aged Leads
             </Link>
             <p className="mt-3 text-sm text-zinc-600 dark:text-zinc-400">
               The independent lead buying intelligence platform. Compare
@@ -108,7 +108,7 @@ export function Footer() {
             </Link>
           </div>
           <p className="text-center text-sm text-zinc-500 dark:text-zinc-500">
-            &copy; {new Date().getFullYear()} Aged Lead Sales. All rights
+            &copy; {new Date().getFullYear()} Work Aged Leads. All rights
             reserved.
           </p>
           <p className="mt-2 text-center text-sm text-zinc-500 dark:text-zinc-500">

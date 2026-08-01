@@ -268,14 +268,14 @@ function htmlShell(title: string, bodyHtml: string, cover: CoverCopy): string {
       }
     </div>
     <div class="footer">
-      <strong>Aged Lead Sales</strong> · agedleadsales.com<br/>
+      <strong>Work Aged Leads</strong> · agedleadsales.com<br/>
       Not legal advice · Consult TCPA-literate counsel before running outreach
     </div>
   </section>
   <section class="content">
     ${bodyHtml}
     <div class="footer-strap">
-      Aged Lead Sales · <a href="https://www.agedleadsales.com">agedleadsales.com</a> · Operator guidance, not legal advice. TCPA counsel recommended: <a href="https://www.henson-legal.com/">Henson Legal</a>.
+      Work Aged Leads · <a href="https://www.agedleadsales.com">agedleadsales.com</a> · Operator guidance, not legal advice. TCPA counsel recommended: <a href="https://www.henson-legal.com/">Henson Legal</a>.
     </div>
   </section>
 </body>

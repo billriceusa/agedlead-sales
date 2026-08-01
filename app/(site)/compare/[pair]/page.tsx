@@ -55,7 +55,7 @@ export async function generateMetadata({
     alternates: { canonical: `${baseUrl}/compare/${slugA}-vs-${slugB}` },
     robots: involvesAls ? undefined : { index: false, follow: true },
     openGraph: {
-      title: `${pA.name} vs ${pB.name} | Aged Lead Sales`,
+      title: `${pA.name} vs ${pB.name} | Work Aged Leads`,
       description: `Head-to-head comparison across 6 dimensions: pricing transparency, value, compliance, flexibility, platform, and reputation.`,
       url: `${baseUrl}/compare/${slugA}-vs-${slugB}`,
       images: [
@@ -205,7 +205,7 @@ export default async function ComparePage({
           <div className="flex flex-wrap items-center gap-3">
             <span className="text-sm text-zinc-500">Reference this comparison:</span>
             <CiteThisButton
-              citation={`${providerA.name} vs ${providerB.name} comparison from Aged Lead Sales independent provider directory. Source: ${baseUrl}/compare/${pair}`}
+              citation={`${providerA.name} vs ${providerB.name} comparison from Work Aged Leads independent provider directory. Source: ${baseUrl}/compare/${pair}`}
             />
           </div>
         </div>

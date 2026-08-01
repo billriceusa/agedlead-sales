@@ -15,7 +15,10 @@ import { ALS_LIFECYCLE_SEND_ENABLED, ALS_LIFECYCLE_LAUNCH_AT } from "@/lib/als/c
 export const maxDuration = 300;
 export const dynamic = "force-dynamic";
 
-// Lifecycle emails send from the AgedLeadSales Resend account. The full-access
+// Lifecycle emails send from the AgedLeadSales Resend account — that is the
+// account's name in Resend, not the site brand. It survives the rename to
+// Work Aged Leads on purpose; renaming it here would not rename it there.
+// The full-access
 // key lives in env on this project (ALS_RESEND_API_KEY, falling back to the
 // shared RESEND_API_KEY).
 function resolveResendApiKey(): string | null {

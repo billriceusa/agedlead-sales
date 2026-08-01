@@ -12,7 +12,7 @@ import { getAccessToken } from "@/lib/cron/google-auth";
 export const maxDuration = 60;
 export const dynamic = "force-dynamic";
 
-const PROPERTY_ID = "528489903"; // Aged Lead Sales — BRSG account
+const PROPERTY_ID = "528489903"; // Work Aged Leads — BRSG account
 
 interface GA4Row {
   dimensionValues: { value: string }[];

@@ -1,5 +1,5 @@
 /**
- * Newsletter Content Calendar for Aged Lead Sales
+ * Newsletter Content Calendar for Work Aged Leads
  *
  * Cadence: 1 newsletter per week, sent every Tuesday at 9 AM ET
  * Planned on Sundays, preview sent to Bill for review on Sunday

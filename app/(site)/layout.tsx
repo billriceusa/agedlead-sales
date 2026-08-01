@@ -24,9 +24,9 @@ const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "Aged Lead Sales: Pricing, Provider Reviews & Playbooks",
+    default: "Work Aged Leads: Pricing, Provider Reviews & Playbooks",
     // No brand suffix. Google sources the SERP site name from the WebSite /
-    // Organization schema (both declare "Aged Lead Sales"), so appending it here
+    // Organization schema (both declare "Work Aged Leads"), so appending it here
     // was redundant — and its 18 chars pushed 212 of 246 page titles past the
     // ~60-char SERP budget, truncating them. Dropping it brings 182 back in range.
     template: "%s",
@@ -39,11 +39,11 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    siteName: "Aged Lead Sales",
+    siteName: "Work Aged Leads",
     url: baseUrl,
     images: [
       {
-        url: `/api/og?title=${encodeURIComponent("Aged Lead Sales: Pricing, Provider Reviews & Playbooks")}`,
+        url: `/api/og?title=${encodeURIComponent("Work Aged Leads: Pricing, Provider Reviews & Playbooks")}`,
         width: 1200,
         height: 630,
       },

@@ -1,7 +1,7 @@
 // Aged Leads Insights — lifecycle email engine (welcome + replenishment).
 //
 // A triggered, value-first email program layered on the harvested buyer list
-// ([[als_buyer_contacts]]). Co-branded: AgedLeadSales (Bill Rice's expertise) is
+// ([[als_buyer_contacts]]). Co-branded: Work Aged Leads (Bill Rice's expertise) is
 // the voice; AgedLeadStore is the single buy CTA. The "welcome" series is NOT a
 // transactional order receipt — AgedLeadStore already sends registration +
 // first-order email. This is subtle, never references a specific order, starts 3
