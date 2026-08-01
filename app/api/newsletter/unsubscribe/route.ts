@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { unsubscribeEverywhere } from "@/lib/unsubscribe";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -11,42 +12,29 @@ export async function GET(request: Request) {
     });
   }
 
-  const apiKey = process.env.RESEND_API_KEY;
-  const audienceId = process.env.RESEND_AUDIENCE_ID;
+  // Writes BOTH suppression stores. Resend alone is not enough: the
+  // lifecycle sender gates on als_buyer_contacts.unsubscribed in Postgres and
+  // never reads Resend, and after the 2026-08-01 list fold most of this
+  // audience are ALS buyers. See lib/unsubscribe.ts.
+  const result = await unsubscribeEverywhere(email);
 
-  if (apiKey && audienceId) {
-    try {
-      // Find the contact by email
-      const listRes = await fetch(
-        `https://api.resend.com/audiences/${audienceId}/contacts?email=${encodeURIComponent(email)}`,
-        { headers: { Authorization: `Bearer ${apiKey}` } }
-      );
+  console.log(
+    `[Newsletter] Unsubscribed ${result.email} — resend=${result.resend?.ok ?? "skipped"} ` +
+      `postgres=${result.postgres?.ok ?? "skipped"} (${result.postgres?.rows ?? 0} row(s))`
+  );
 
-      if (listRes.ok) {
-        const data = (await listRes.json()) as { data?: { id: string }[] };
-        const contact = data.data?.[0];
-
-        if (contact) {
-          // Update contact to unsubscribed
-          await fetch(
-            `https://api.resend.com/audiences/${audienceId}/contacts/${contact.id}`,
-            {
-              method: "PATCH",
-              headers: {
-                Authorization: `Bearer ${apiKey}`,
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({ unsubscribed: true }),
-            }
-          );
-        }
-      }
-    } catch (err) {
-      console.error("[Unsubscribe] Error:", err);
-    }
+  // Never show a success page over a failed write. If neither store took the
+  // opt-out, say so and give them a way through rather than telling them they
+  // are unsubscribed when they are not.
+  if (!result.suppressedSomewhere) {
+    return new NextResponse(
+      buildPage(
+        "We could not complete that",
+        "Something went wrong on our end and your request was not recorded. Please email bill@billricestrategy.com and it will be handled manually."
+      ),
+      { status: 500, headers: { "Content-Type": "text/html" } }
+    );
   }
-
-  console.log(`[Newsletter] Unsubscribed: ${email}`);
 
   return new NextResponse(
     buildPage(

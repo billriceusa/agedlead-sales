@@ -11,6 +11,7 @@ import {
   type JourneyName,
 } from "@/lib/als/lifecycle";
 import { ALS_LIFECYCLE_SEND_ENABLED, ALS_LIFECYCLE_LAUNCH_AT } from "@/lib/als/config";
+import { syncSuppressionToPostgres } from "@/lib/als/suppression-sync";
 
 export const maxDuration = 300;
 export const dynamic = "force-dynamic";
@@ -89,6 +90,41 @@ export async function GET(req: NextRequest) {
   }
 
   const startedAt = Date.now();
+
+  // Carry Resend's opt-outs into Postgres BEFORE deciding who to mail.
+  // runLifecycle() gates on als_buyer_contacts.unsubscribed and never reads
+  // Resend, so without this a broadcast unsubscribe does not stop lifecycle
+  // mail. The re-introduction broadcast uses Resend's own unsubscribe URL, so
+  // Resend-only opt-outs keep being created and this cannot be a one-time fix.
+  //
+  // Fails CLOSED. If Resend cannot be read we do not know who has opted out,
+  // and sending on a stale suppression list is the error that cannot be undone.
+  // Skipping a run is recoverable; the next run catches up.
+  let suppression = null;
+  if (live) {
+    try {
+      suppression = await syncSuppressionToPostgres(apiKey || "");
+      if (suppression.suppressed > 0) {
+        console.log(
+          `[als-lifecycle] suppression sync: ${suppression.suppressed} contact(s) ` +
+            `suppressed from Resend, ${suppression.journeysExited} journey(s) exited`
+        );
+      }
+    } catch (err) {
+      console.error("[als-lifecycle] suppression sync failed — not sending", err);
+      return NextResponse.json(
+        {
+          success: false,
+          live,
+          error:
+            "Suppression sync failed; refusing to send on an unverified opt-out list: " +
+            (err instanceof Error ? err.message : String(err)),
+        },
+        { status: 503 }
+      );
+    }
+  }
+
   try {
     const result = await runLifecycle(apiKey || "", { sendEnabled: live });
     console.log(
@@ -103,6 +139,7 @@ export async function GET(req: NextRequest) {
       live,
       sendEnabled: ALS_LIFECYCLE_SEND_ENABLED,
       launchAt: ALS_LIFECYCLE_LAUNCH_AT || null,
+      suppression,
       result,
     });
   } catch (err) {
