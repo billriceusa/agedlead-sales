@@ -1,0 +1,606 @@
+{
+  "runDate": "2026-08-01T06:02:06.928Z",
+  "month": "2026-08",
+  "providersScanned": 15,
+  "providersWithChanges": 13,
+  "newBenchmarksGenerated": 0,
+  "staleProviders": [],
+  "providerUpdates": [
+    {
+      "providerSlug": "aged-lead-store",
+      "providerName": "Aged Lead Store",
+      "pricingChanges": [
+        "Auto insurance leads 31-85 days old: $1.00 per lead (for ~1000 leads)",
+        "Auto insurance leads 86-365 days old: $0.30 per lead (for ~1000 leads)",
+        "Auto Insurance: $0.40-0.75 per lead, 86-365 days old",
+        "Life Insurance: $1.50-2.50 per lead, 15-85 days old",
+        "Pricing decreases with higher quantity ordered and with older lead age brackets"
+      ],
+      "policyChanges": [
+        "100% satisfaction guarantee: replacement or refund for leads with wrong numbers, disconnects, or leads not matching selected filters",
+        "System avoids sending duplicate leads - tracks previously ordered leads per account",
+        "Replacements offered for leads already insured by the purchasing agent's own company",
+        "Leads intended for use in email, direct mail, door knocking, or manual dialing not using regulated technologies to phones not on DNC lists"
+      ],
+      "newVerticals": [
+        "homeowners-insurance",
+        "u65",
+        "health-supplement",
+        "solar-installation"
+      ],
+      "newLeadTypes": [
+        "intent data"
+      ],
+      "notableChanges": [
+        "Self-service, on-demand platform with advanced filtering by state, age, phone type, zip code, area code, carrier, and recency of search",
+        "Filters allow inclusion/exclusion of specific insurance carriers",
+        "Phone options: include phone (default ~60% mobile/40% landline), landline only, cell only, or phone-only-where-available",
+        "Claims ~75% more callable leads than competitors due to internal/external phone validation",
+        "Leads include first/last name, address, city, phone (home/work/cell), email, IP address, date requested, homeownership status, policy expiration, carrier name, vehicle make/model/VIN, coverage details, marital status, occupation, job tenure, residence tenure, mileage, deductible, vehicle usage, alarm status, and more",
+        "White-glove custom order service available via phone for large/complex orders",
+        "Offers free sales resources: playbooks, blog, webinars, ebooks, and a weekly sales newsletter",
+        "Registration requires email, password, mobile number verification via text code and email verification code",
+        "Payment options include PayPal and credit card"
+      ],
+      "rawPricingData": [
+        {
+          "vertical": "auto-insurance",
+          "leadType": "aged",
+          "ageBracket": "31-85-days",
+          "priceRange": "$1.00 per lead"
+        },
+        {
+          "vertical": "auto-insurance",
+          "leadType": "aged",
+          "ageBracket": "86-365-days",
+          "priceRange": "$0.30-$0.75 per lead"
+        },
+        {
+          "vertical": "life-insurance",
+          "leadType": "aged",
+          "ageBracket": "15-85-days",
+          "priceRange": "$1.50-$2.50 per lead"
+        }
+      ]
+    },
+    {
+      "providerSlug": "aged-leads-depot",
+      "providerName": "Aged Leads Depot",
+      "pricingChanges": [],
+      "policyChanges": [],
+      "newVerticals": [
+        "homeowners-insurance",
+        "medicare",
+        "health-insurance-u65",
+        "aca-health",
+        "auto-warranty",
+        "home-warranty",
+        "debt-settlement",
+        "roofing",
+        "window",
+        "siding",
+        "home-security",
+        "dme",
+        "diabetic",
+        "mva",
+        "travel",
+        "business-opportunity"
+      ],
+      "newLeadTypes": [],
+      "notableChanges": [
+        "Company offers a free strategy call to discuss sales growth",
+        "Mentions virtual assistant/telemarketing service for $5/hour to handle call transfers",
+        "Payment options include online, over the phone, or by invoice",
+        "ACA leads reportedly achieve 15-20% closing rates according to agent reports",
+        "Aged leads positioned as significantly cheaper alternative to fresh/real-time leads across all verticals",
+        "Company phone number provided: 813-994-8874"
+      ],
+      "rawPricingData": []
+    },
+    {
+      "providerSlug": "badass-insurance-leads",
+      "providerName": "Badass Insurance Leads",
+      "pricingChanges": [
+        "$1 per lead for Aged English Leads",
+        "$1.85 per lead for Aged Spanish Leads"
+      ],
+      "policyChanges": [
+        "Minimum purchase is 100 leads (sold in increments of 100)",
+        "No refunds or credits offered - leads sold as-is (contradicts current profile's 'Credits for disconnected numbers' policy)",
+        "Leads are aged between 2 weeks/3 months and 12 months",
+        "Leads delivered via email within 24 hours in CSV/Excel format",
+        "Leads are exclusive - not resold to other agents once purchased on their site",
+        "Can purchase leads by city, county, or statewide",
+        "Data includes up to 39 columns including Name, Phone(s), Address, DOB",
+        "3-4 phone numbers (mobile & landline) provided per lead record",
+        "Leads cross-checked against national DNC list",
+        "TCPA compliant"
+      ],
+      "newVerticals": [
+        "IUL (Indexed Universal Life)"
+      ],
+      "newLeadTypes": [
+        "Spanish-language leads",
+        "Turning 65 Healthcare Leads"
+      ],
+      "notableChanges": [
+        "Company also offers Final Expense Live Transfers (mentioned in footer)",
+        "Company offers wholesale aged leads (separate offering)",
+        "Includes free custom phone script with each order",
+        "FAQ states 'Do you offer refunds or credits? No' - directly conflicts with current profile policy of 'Credits for disconnected numbers'",
+        "Leads are sourced from 3rd party vendors after being sold as fresh leads, then appended/verified multiple times",
+        "Company positions itself as combining top producing insurance agents with online marketing experts (22 years experience)"
+      ],
+      "rawPricingData": [
+        {
+          "vertical": "life-insurance",
+          "leadType": "aged",
+          "ageBracket": "3-12 months (English)",
+          "priceRange": "$1.00 per lead"
+        },
+        {
+          "vertical": "life-insurance",
+          "leadType": "aged, Spanish-language",
+          "ageBracket": "3-12 months",
+          "priceRange": "$1.85 per lead"
+        }
+      ]
+    },
+    {
+      "providerSlug": "brokers-data",
+      "providerName": "Brokers Data",
+      "pricingChanges": [
+        "Mortgage trigger leads priced as low as 20 cents each with free set-up and support",
+        "Discounts offered for wholesale and quantity buyers",
+        "Aggressive/wholesale pricing mentioned for business leads lists",
+        "Price match offered on turn key direct mail and aged mortgage leads (VA, FHA, CONV)"
+      ],
+      "policyChanges": [
+        "No contracts ever required, business earned invoice to invoice",
+        "Free consultation services offered",
+        "Free set-up and support for mortgage trigger leads",
+        "Credit bureau leads require Firm Offer of Credit and Permissible Purpose, with company credentialing/compliance approval prior to delivery",
+        "Credit bureau data restricted to verifiable Mortgage Companies, Lenders, Banking, and Automotive Dealerships",
+        "Data cannot be used to determine eligibility for credit, insurance, or employment",
+        "Aged internet leads resold up to 2 times",
+        "Refund Policy & T&C page referenced (separate from main return policy)",
+        "Business database updated at least every 30 days",
+        "Ailment/Diabetic lists are HIPAA compliant and opt-in/self-reported"
+      ],
+      "newVerticals": [
+        "automotive",
+        "business",
+        "real-estate",
+        "bankruptcy",
+        "credit-bureau/credit-services",
+        "renters",
+        "medicare/senior"
+      ],
+      "newLeadTypes": [
+        "trigger leads (mortgage and auto)",
+        "aged leads (up to 2x resold)",
+        "credit-score based leads",
+        "expiring loans/leases leads",
+        "year-make-model leads",
+        "consumer lists",
+        "pre-screened data",
+        "mortgage inbound calls",
+        "reverse mortgage leads",
+        "FHA mortgage leads",
+        "Fannie Mae/HARP mortgage leads",
+        "in-market alerts",
+        "mortgage mailing leads",
+        "ailment mailing lists",
+        "diabetic leads/lists",
+        "final expense lists",
+        "turning 65 leads",
+        "new mover leads",
+        "new business lists",
+        "short sale leads",
+        "tax lien lists",
+        "investor leads",
+        "direct mail leads",
+        "email marketing leads/lists",
+        "pay-per-call (PPC)",
+        "live transfer (mortgage inbound calls with 40-45% conversion)"
+      ],
+      "notableChanges": [
+        "Company offers direct mail solutions including custom printing, snap packs, double-sided postcards",
+        "Data hygiene services offered with quick turnaround",
+        "Mortgage inbound calls have conversion rates of 40-45%, generated organically and via online ads",
+        "SAN Number info page referenced, suggesting telemarketing compliance services",
+        "Business data compiled from public information, matched/verified monthly",
+        "Specialty 'Invitation to Apply' modeled lists available across multiple verticals"
+      ],
+      "rawPricingData": [
+        {
+          "vertical": "mortgage",
+          "leadType": "trigger",
+          "ageBracket": "real-time (day after inquiry)",
+          "priceRange": "$0.20 per lead (as low as)"
+        }
+      ]
+    },
+    {
+      "providerSlug": "datatoleads",
+      "providerName": "DataToLeads",
+      "pricingChanges": [
+        "Records/leads priced starting at $0.01 each",
+        "Platform subscription pricing at $299 per month for comprehensive data access",
+        "Comparison pricing cited: ZoomInfo ~$15,000/year, Apollo.io $1200/year for 2,400 cell phone leads (~$0.50/lead), UpLead $199/month for 400 cell phone leads",
+        "Get 100 Free Leads offer mentioned",
+        "Buy Data for $0.01 promotional offer"
+      ],
+      "policyChanges": [
+        "Aged lead lists can be saved and resold infinitely with lifelong access under subscription"
+      ],
+      "newVerticals": [
+        "real-estate/homeowner",
+        "general B2B (business lists across industries)",
+        "general B2C/consumer"
+      ],
+      "newLeadTypes": [
+        "business-list",
+        "business-email-list",
+        "business-phone-list",
+        "business-mailing-list",
+        "reverse-business-lookup",
+        "consumer-email-list",
+        "consumer-phone-list",
+        "consumer-mailing-list",
+        "homeowner-list",
+        "homeowner-email-list",
+        "homeowner-phone-list",
+        "homeowner-mailing-list",
+        "reverse-address-lookup",
+        "skip-traced-records",
+        "intent-leads"
+      ],
+      "notableChanges": [
+        "Platform also functions as a data marketplace/white-label SaaS solution allowing users to build and sell their own data products (compared to Apollo.io, Seamless.AI, Lusha)",
+        "Claims access to 335 million individuals in US consumer database",
+        "Over 80% of records include verified email addresses and cell phone numbers",
+        "Offers data enrichment and real estate skip tracing services",
+        "Company operates under MaaS Group Holdings LLC",
+        "Founder: Brian McManus; Brand Ambassador: Phil Alfaro",
+        "Positions itself as alternative to Apollo.io, ZoomInfo, UpLead, Seamless.AI, Lusha"
+      ],
+      "rawPricingData": [
+        {
+          "vertical": "general/B2B",
+          "leadType": "enriched/skip-traced records",
+          "ageBracket": "not specified",
+          "priceRange": "$0.01 per record"
+        },
+        {
+          "vertical": "general/B2B",
+          "leadType": "subscription/platform access",
+          "ageBracket": "not specified",
+          "priceRange": "$299 per month"
+        },
+        {
+          "vertical": "general/B2B",
+          "leadType": "cell phone leads (competitor comparison - Apollo.io)",
+          "ageBracket": "not specified",
+          "priceRange": "$1200/year for 2,400 leads (~$0.50/lead)"
+        },
+        {
+          "vertical": "general/B2B",
+          "leadType": "cell phone leads (competitor comparison - UpLead)",
+          "ageBracket": "not specified",
+          "priceRange": "$199/month for 400 leads"
+        }
+      ]
+    },
+    {
+      "providerSlug": "ileads",
+      "providerName": "iLeads",
+      "pricingChanges": [],
+      "policyChanges": [],
+      "newVerticals": [
+        "home-services",
+        "real-estate",
+        "solar",
+        "direct-mail",
+        "telemarketing"
+      ],
+      "newLeadTypes": [
+        "CRM/aged-lead-enrichment",
+        "watch-list"
+      ],
+      "notableChanges": [
+        "iLeads offers 'Revive' - a lead intelligence/scoring engine that classifies leads/CRM records as Fundable Now, Watch List, or Non-Fundable using property and mortgage data",
+        "ReviveIQ applies Revive logic to a client's own CRM and aged leads to identify fundable borrowers",
+        "Revive Conquest is a competitive/portfolio targeting product based on product type, equity position, and loan patterns",
+        "Revive intelligence is also applied to Insurance (identifying financially ready policyholders) and Solar (identifying homeowners with equity/readiness for financing)",
+        "Company positions itself as moving away from trigger-heavy lead strategies toward a 'post-trigger pipeline' using owned data and CRM enrichment",
+        "Other products mentioned: GateKeeper (real-time collateral/property checks), Performance (analytics on lead sources/campaigns/loan officers), RealTag & APIs (programmatic property/mortgage data access), Unified Homeowner Profile & Lists (audience/homeowner data)",
+        "Founded in 1996; serves Lending (origination and servicing), Insurance, Real Estate, Direct Mail, Telemarketing, and Home Services industries",
+        "No explicit pricing figures found on page; all pricing appears to be quote/demo-based (consistent with sales-required model)"
+      ],
+      "rawPricingData": []
+    },
+    {
+      "providerSlug": "lead-heroes",
+      "providerName": "Lead Heroes",
+      "pricingChanges": [
+        "Medicare Supplement leads discounted from $46 to $23",
+        "Turning 65 (T65) leads discounted from $50 to $25",
+        "Final Expense (FE) leads discounted from $40 to $20",
+        "DVH leads discounted from $15 to $8, with a separate offer of $12 per DVH lead",
+        "Minimum order of 30 leads required for discounted pricing",
+        "Virtual Assistants available for $9 per hour during AEP",
+        "Custom calling campaigns / callers as low as $10 per hour",
+        "Lead Heroes Pro: 3-month weekly lead flow program with minimum 20 leads per week, 12-week delivery, save 30% on every lead for 3 months",
+        "ESI Premier Agents: 50% off every lead"
+      ],
+      "policyChanges": [
+        "Minimum purchase of 30 leads required for DVH leads",
+        "Lead Heroes Pro leads are 100% exclusive, no recycling or reselling, for 3 months",
+        "ESI Premier Agent leads are 100% exclusive - never shared, never recycled, never resold",
+        "Response/service commitment: respond within 24 business hours",
+        "Large volume IMO/FMO discounts available",
+        "Virtual assistant/staffing ready in 7 days or less after consultation call"
+      ],
+      "newVerticals": [
+        "dental-vision-hearing"
+      ],
+      "newLeadTypes": [
+        "live-transfer",
+        "pre-set-appointments",
+        "custom-calling-campaigns"
+      ],
+      "notableChanges": [
+        "Company offers Virtual Assistant/Virtual Staffing hiring services separate from leads",
+        "Spanish speaking telemarketers/callers available for Final Expense and Medicare custom calling campaigns",
+        "Lead Heroes Pro program includes free access to 'Seven Figure CRM' and 'Seven Figure University'",
+        "Company includes free lead strategy call booking option",
+        "Company provides IMO/FMO Directory tool for agents to find uplines",
+        "Company offers sales training book, e-course/video series (50+ videos), and podcast (Heroes Huddle)",
+        "Affiliate program offering lifetime passive commissions",
+        "Medicare Marketing Map 2025 resource for checking Medicare Advantage penetration by county, recommending 30% or less penetration for telemarketing Medicare Supplement leads",
+        "Company founded in 2015 by Glen Shelton, operates a call center team based in Manila, Philippines",
+        "Savings claim: customers pay 30%-70% less than American-based call centers"
+      ],
+      "rawPricingData": [
+        {
+          "vertical": "medicare",
+          "leadType": "real-time",
+          "ageBracket": "",
+          "priceRange": "$23 (discounted from $46)"
+        },
+        {
+          "vertical": "medicare",
+          "leadType": "T65",
+          "ageBracket": "",
+          "priceRange": "$25 (discounted from $50)"
+        },
+        {
+          "vertical": "final-expense",
+          "leadType": "real-time",
+          "ageBracket": "",
+          "priceRange": "$20 (discounted from $40)"
+        },
+        {
+          "vertical": "dental-vision-hearing",
+          "leadType": "real-time",
+          "ageBracket": "",
+          "priceRange": "$8 (discounted from $15), also listed at $12 each"
+        }
+      ]
+    },
+    {
+      "providerSlug": "lead-tycoons",
+      "providerName": "Lead Tycoons",
+      "pricingChanges": [
+        "Business Loan Leads and Funding Leads/Data range from as little as $150 up to $2,500, depending on marketing budget, company size, and objectives"
+      ],
+      "policyChanges": [
+        "Quality control guarantee on all Lead Generation and Data Services products",
+        "Guarantee of 'Active Line' on phone numbers and 'Deliverable' emails at time of distribution",
+        "Success and conversions vary and are not guaranteed - dependent on client's internal sales processes, marketing, and reputation",
+        "Exclusive leads offered only in Real-Time environment (Online Inquiries, Live Calls, Appointments) for a limited period of time",
+        "Operates primarily on a per-order basis with objective of long-term partnerships",
+        "Live Transfer leads include pre-screening/eligibility questionnaires and guarantee 100% contact rate"
+      ],
+      "newVerticals": [],
+      "newLeadTypes": [
+        "real-time",
+        "live-transfer",
+        "appointment-leads",
+        "ucc-leads",
+        "ppp-loan-data",
+        "b2b-data-sets",
+        "web-leads"
+      ],
+      "notableChanges": [
+        "Company based in Orlando, Florida, entering its 6th year of service",
+        "Offers additional services: Local Citations for SEO, Press Release Distribution, Content Writing, B2B E-Mail Lists, Business Lists",
+        "Offers Micro Funding Leads as a product category",
+        "Emphasizes consultative, long-term partnership approach rather than purely transactional",
+        "24/7 customer support advertised",
+        "Numerous client testimonials emphasizing quality and customer service"
+      ],
+      "rawPricingData": [
+        {
+          "vertical": "mca-business-loans",
+          "leadType": "general (real-time, aged, data)",
+          "ageBracket": "not specified",
+          "priceRange": "$150-$2,500"
+        }
+      ]
+    },
+    {
+      "providerSlug": "leadpoint",
+      "providerName": "LeadPoint",
+      "pricingChanges": [],
+      "policyChanges": [],
+      "newVerticals": [],
+      "newLeadTypes": [],
+      "notableChanges": [
+        "Scraped content only contains contact information (HQ address in Plano, TX, phone number) and generic website navigation elements (Terms of Use, Privacy Policy, Contact Us form) with no pricing, policy, or product details."
+      ],
+      "rawPricingData": []
+    },
+    {
+      "providerSlug": "leadsdata",
+      "providerName": "LeadsData",
+      "pricingChanges": [],
+      "policyChanges": [
+        "Minimum onboarding volume of 1M events/month required",
+        "Time to first scored lead is less than 24 hours",
+        "Unlimited routing destinations",
+        "Full buyer-side controls",
+        "Data retention: 30 days hot storage, 7 years cold storage (S3 Object Lock)"
+      ],
+      "newVerticals": [
+        "B2B SaaS",
+        "finance",
+        "insurance",
+        "home services",
+        "fintech"
+      ],
+      "newLeadTypes": [
+        "scored/priced leads based on intent score and predicted LTV",
+        "tiered leads (Tier 2 pool)"
+      ],
+      "notableChanges": [
+        "This appears to be a lead decisioning/routing technology platform rather than a traditional lead provider - it processes and scores raw traffic into leads for buyers",
+        "Uses AI/ML models for intent scoring (0-100) and predicted LTV",
+        "Identity resolution across 12 graphs with confidence scoring",
+        "Routing rules based on intent score thresholds (e.g., intent >=90 AND vertical=finance routes to buyer_a)",
+        "Compliance certifications: SOC 2 Type II, GDPR, CCPA, TCPA, HIPAA-ready, ISO 27001",
+        "Tamper-evident audit log with SHA-256 provenance per record",
+        "Consent state tracking (explicit/missing) with automatic suppression if consent missing",
+        "Per-buyer model calibration with drift monitoring (auto-recalibration if drift > 0.03)",
+        "Part of larger 'Kluiq' network of AI-powered marketing/acquisition platforms",
+        "Claims +38% avg lift on sold lead price for performance teams",
+        "Claims +27pp match rate improvement vs legacy stack for aggregators",
+        "p99 routing latency of 47ms, 99.987% uptime trailing 90 days",
+        "Processes 1.24B events per 24h period"
+      ],
+      "rawPricingData": []
+    },
+    {
+      "providerSlug": "need-a-lead",
+      "providerName": "Need-A-Lead",
+      "pricingChanges": [],
+      "policyChanges": [],
+      "newVerticals": [],
+      "newLeadTypes": [],
+      "notableChanges": [
+        "[Failed to fetch: HTTP 403]"
+      ],
+      "rawPricingData": []
+    },
+    {
+      "providerSlug": "quotewizard",
+      "providerName": "QuoteWizard",
+      "pricingChanges": [],
+      "policyChanges": [],
+      "newVerticals": [
+        "home-insurance",
+        "renters-insurance"
+      ],
+      "newLeadTypes": [],
+      "notableChanges": [
+        "Site is operated under LendingTree, LLC, which owns QuoteWizard as a Marketing Lead Generator",
+        "Consumer-facing quote comparison site; content focuses on shopper testimonials and educational info rather than agent/lead-buyer pricing details",
+        "Highlights factors affecting insurance rates: bundling, discounts, low risk profile, carrier loyalty, and neighborhood",
+        "Service restricted to continental U.S., Alaska, and Hawaii",
+        "Includes Agent Portal login for insurance agents, indicating lead-buyer/agent access"
+      ],
+      "rawPricingData": []
+    },
+    {
+      "providerSlug": "smartfinancial",
+      "providerName": "SmartFinancial",
+      "pricingChanges": [],
+      "policyChanges": [],
+      "newVerticals": [
+        "home-insurance",
+        "renters-insurance",
+        "commercial-insurance",
+        "motorcycle-insurance"
+      ],
+      "newLeadTypes": [],
+      "notableChanges": [
+        "SmartFinancial describes itself as a digital insurance comparison engine providing real-time rates through carrier and agency partner relationships in all 50 states",
+        "Platform partners with over 200 insurance companies",
+        "Service is free for consumers to use",
+        "Company monitors and records website activity for informational and quality control purposes"
+      ],
+      "rawPricingData": []
+    },
+    {
+      "providerSlug": "synergy-direct-solution",
+      "providerName": "Synergy Direct Solution",
+      "pricingChanges": [
+        "Aged business loan leads, UCC leads, and trigger leads priced at 1-5 cents each"
+      ],
+      "policyChanges": [
+        "No minimum lead order required",
+        "Unqualified leads can be replaced (broader than just disconnected transfer credits)",
+        "Pricing is discussed directly with the sales team rather than published, and is matched to client goals/budget",
+        "TCPA-conscious approach including comparison against litigator lists and campaign review before delivery, but no guaranteed TCPA compliance"
+      ],
+      "newVerticals": [],
+      "newLeadTypes": [
+        "appointment-leads",
+        "web-leads/web-forms",
+        "ucc-leads",
+        "trigger-leads",
+        "real-time-leads",
+        "virtual-agents"
+      ],
+      "notableChanges": [
+        "Leads are generated internally via SEO, paid search, social, email, SMS, Google Adwords, and AI rather than resold from third parties",
+        "Leads are double-verified and pre-qualified by call center teams before handoff",
+        "Live transfer leads involve real-time call handoff after pre-qualification screening",
+        "Company also offers marketing services: website design, SEO, PPC/search engine marketing",
+        "Numerous client testimonials citing high conversion/close rates, e.g. 1 in 3 conversion rate and 50%+ application completion rate on live transfers"
+      ],
+      "rawPricingData": [
+        {
+          "vertical": "mca-business-loans",
+          "leadType": "aged",
+          "ageBracket": "not specified",
+          "priceRange": "$0.01-$0.05 each"
+        }
+      ]
+    },
+    {
+      "providerSlug": "the-leads-warehouse",
+      "providerName": "The Leads Warehouse",
+      "pricingChanges": [],
+      "policyChanges": [],
+      "newVerticals": [
+        "consumer-debt",
+        "federal-student-loan-debt",
+        "federal-income-tax-debt",
+        "credit-repair",
+        "precious-metals",
+        "motor-vehicle-accidents",
+        "tort",
+        "home-warranty",
+        "moving-services",
+        "aca-u65-health-insurance",
+        "ssdi",
+        "durable-medical-equipment",
+        "addiction"
+      ],
+      "newLeadTypes": [
+        "click-to-call"
+      ],
+      "notableChanges": [
+        "Site mentions 'Significant volume available', 'Exclusive leads in first position', 'CPAs lower than industry averages', and 'Next day delivery' as selling points",
+        "Company offers AI technology solutions for lead development, including scripting suggestions for AI agents and appointment scheduling assistance",
+        "Blog articles referenced discuss SSDI lead pricing and Auto Insurance lead pricing for 2026, but actual price figures are not included in scraped content",
+        "Data Append and Validation Services offered as part of Marketing Data Lists category",
+        "Business hours for sales conversations: Monday-Friday 8:00 a.m. to 5:00 p.m. PST"
+      ],
+      "rawPricingData": []
+    }
+  ],
+  "errors": []
+}
