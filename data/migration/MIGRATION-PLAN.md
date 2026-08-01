@@ -124,8 +124,17 @@ additive.
 3. Export Sanity datasets: `npx sanity dataset export production` for **both**
    `p7rbtajg` and `e9k38j42`. Store outside the repos. **Still open.** This is
    the content backstop the rollback path depends on.
-4. Export the Resend audience `d579bf1f-0467-45a3-ad6b-52460920a903`
-   (216 contacts, 32 unsubscribed). **Still open.**
+4. Export **both** Resend audiences. **Still open.**
+   - `d579bf1f-0467-45a3-ad6b-52460920a903` — `agedleadsales-newsletter`
+     (216 contacts, 32 unsubscribed)
+   - `8a35228e-149f-4b15-8e24-26a24e3d6e98` — `howtoworkleads-newsletter`
+
+   This item previously named only the first. There are two source lists and the
+   second was unrecorded. Both are the rollback backstop, and the unsubscribed
+   flags on both are the part that cannot be reconstructed if lost.
+
+   Destination audience, created 2026-08-01:
+   `43fe6675-cc8f-44f3-9c1c-70a094b2d47d` — `workagedleads.com`.
 5. Finish the in-flight disavow refresh on the `disavow-refresh` worktree; build
    a **merged, de-duplicated disavow** covering both source domains, ready to
    submit in Phase 5.
@@ -366,6 +375,23 @@ easy to miss.
    creates a stray project.
 4. Verify the Resend sending domain for workagedleads.com and begin warming it.
    Do not move sending until warmed.
+5. **Merge the two source audiences into `43fe6675-…`, then send the
+   re-introduction broadcast before anything else fires from the new domain.**
+   Copy, subject line, from-name, HTML and the full send sequence:
+   [`REINTRODUCTION-EMAIL.md`](./REINTRODUCTION-EMAIL.md).
+
+   Two constraints from that file that belong here because getting them wrong is
+   unrecoverable. **Carry the unsubscribed flag across on merge** — anyone who
+   opted out of either old list must arrive opted out. And **de-duplicate**;
+   subscribers on both lists exist.
+
+   The reason the broadcast goes first: nobody on either list subscribed to
+   "Work Aged Leads." Resuming the newsletter, the flagship course, or the ALS
+   lifecycle from an unfamiliar brand at an unfamiliar domain reads as a cold
+   send to an opted-in list, and complaints on the first send from a domain with
+   no reputation set inbox placement for every send after it. Hold the other
+   programs 48 hours and watch complaints and bounces before repointing
+   `RESEND_AUDIENCE_ID` and `RESEND_FROM_EMAIL`.
 
 ---
 
