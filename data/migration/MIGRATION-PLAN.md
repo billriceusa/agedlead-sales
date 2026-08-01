@@ -124,8 +124,22 @@ additive.
 3. Export Sanity datasets: `npx sanity dataset export production` for **both**
    `p7rbtajg` and `e9k38j42`. Store outside the repos. **Still open.** This is
    the content backstop the rollback path depends on.
-4. Export the Resend audience `d579bf1f-0467-45a3-ad6b-52460920a903`
-   (216 contacts, 32 unsubscribed). **Still open.**
+4. Export **every** source Resend audience. **Still open**, but lower risk than
+   it was: the merge only reads the sources and they survive intact as their own
+   rollback path.
+   - `d579bf1f-0467-45a3-ad6b-52460920a903` — `agedleadsales-newsletter` (219)
+   - `8a35228e-149f-4b15-8e24-26a24e3d6e98` — `howtoworkleads-newsletter` (38)
+   - `9657093e-99fe-4a34-9846-946be85b64f7` — `ALS Buyers — Purchasers` (1,029)
+   - `83613b84-c1fd-4362-9dd1-8914533e30f8` — `ALS Buyers — Inquiries` (1,245)
+   - `74476de7-677f-4686-bfb9-d6fe66a5d855` — `ALS Store Self-Serve` (31)
+
+   This item originally named only the first. The unsubscribed flags across all
+   five are the part that cannot be reconstructed if lost.
+
+   Destination audience, created 2026-08-01:
+   `43fe6675-cc8f-44f3-9c1c-70a094b2d47d` — `workagedleads.com`. Merged and
+   deduplicated: **2,435 distinct, ~2,368 sendable, 67 suppressed.** Suppression
+   is the union of Resend and Postgres — see below.
 5. Finish the in-flight disavow refresh on the `disavow-refresh` worktree; build
    a **merged, de-duplicated disavow** covering both source domains, ready to
    submit in Phase 5.
@@ -364,8 +378,37 @@ easy to miss.
    on this project), run `vercel deploy --prod --yes`. If deploying from a
    worktree, copy `.vercel/project.json` from the main checkout first, or Vercel
    creates a stray project.
-4. Verify the Resend sending domain for workagedleads.com and begin warming it.
-   Do not move sending until warmed.
+4. ~~Verify the Resend sending domain for workagedleads.com~~ **Done** —
+   `435a8cd1-0e4e-41c9-8227-1650e5e253f2`, verified, us-east-1.
+5. **Merge every source audience into `43fe6675-…`, then send the
+   re-introduction broadcast in stages before anything else fires from the new
+   domain.** Copy, subject line, headers, HTML, staging and the full send
+   sequence: [`REINTRODUCTION-EMAIL.md`](./REINTRODUCTION-EMAIL.md).
+
+   Two constraints from that file that belong here because getting them wrong is
+   unrecoverable. **Carry the unsubscribed flag across on merge** — anyone who
+   opted out of any source list must arrive opted out. And **de-duplicate**; 20
+   addresses sit on both the newsletter and an ALS program.
+
+   **The list is 2,435 distinct / ~2,368 sendable, and 90% of it never subscribed
+   to a newsletter.** Bill's 2026-08-01 decision folded the three ALS programs in
+   — 2,205 distinct addresses, only 20 of which were already on the newsletter
+   list. Those people consented at an Aged Lead Store checkout or inquiry form;
+   most have never seen either site.
+
+   Consent is not recognition, and it is recognition that decides whether someone
+   reports spam. That is why the broadcast goes first, and why it goes **in three
+   stages** — newsletter minority, then Purchasers, then Inquiries — rather than
+   the whole list at once from a domain with no sending history. **Stop signal: complaint
+   rate at or above 0.1%.**
+
+   Hold the newsletter, the flagship course and the ALS lifecycle until all three
+   stages are clean, then wait 48 hours before repointing `RESEND_AUDIENCE_ID`
+   and `RESEND_FROM_EMAIL`.
+
+   From is `bill@workagedleads.com`, send-only. **Set Reply-To explicitly to
+   `bill@billricestrategy.com`** — the inbox that already receives the `/contact`
+   form. Leaving it unset sends replies nowhere.
 
 ---
 
