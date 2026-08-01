@@ -7,7 +7,7 @@ const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 export const metadata: Metadata = {
   title: "Terms of Service",
   description:
-    "Terms of Service for Aged Lead Sales. Covers site usage, intellectual property, disclaimers, and liability limitations.",
+    "Terms of Service for Work Aged Leads. Covers site usage, intellectual property, disclaimers, and liability limitations.",
   alternates: { canonical: `${baseUrl}/terms` },
 };
 
@@ -41,7 +41,7 @@ export default function TermsPage() {
 
             <h2>1. About This Site</h2>
             <p>
-              Aged Lead Sales provides educational content, sales training
+              Work Aged Leads provides educational content, sales training
               resources, provider reviews, pricing benchmarks, and interactive
               tools related to aged lead purchasing and sales strategies. The
               Site is operated by Bill Rice (&quot;we,&quot; &quot;us,&quot; or
@@ -72,7 +72,7 @@ export default function TermsPage() {
             <p>
               All content on this Site &mdash; including articles, guides,
               playbooks, calculators, tools, data, design, and branding &mdash;
-              is owned by Aged Lead Sales and protected by copyright law. You
+              is owned by Work Aged Leads and protected by copyright law. You
               may:
             </p>
             <ul>
@@ -179,7 +179,7 @@ export default function TermsPage() {
 
             <h2>10. Limitation of Liability</h2>
             <p>
-              To the maximum extent permitted by law, Aged Lead Sales and its
+              To the maximum extent permitted by law, Work Aged Leads and its
               owner shall not be liable for any direct, indirect, incidental,
               consequential, or punitive damages arising from your use of or
               inability to use this Site, including but not limited to losses

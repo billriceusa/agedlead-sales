@@ -2,8 +2,8 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Aged Lead Sales",
-    short_name: "AgedLeadSales",
+    name: "Work Aged Leads",
+    short_name: "WorkAgedLeads",
     description:
       "Sales training, playbooks, and strategies for working aged leads in insurance, mortgage, and more.",
     start_url: "/",

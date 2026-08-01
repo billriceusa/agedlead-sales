@@ -187,7 +187,7 @@ export default function BillRicePage() {
               {" "}(2025).
             </p>
             <p>
-              At Aged Lead Sales, Bill writes the guides, playbooks, and
+              At Work Aged Leads, Bill writes the guides, playbooks, and
               training content based on his direct experience — not theory. When
               he writes about calling scripts, conversion rates, or outreach
               cadences, it comes from decades of doing it himself — including

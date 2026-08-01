@@ -8,7 +8,7 @@ import { CtaBanner } from "@/components/cta-banner";
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
 export const metadata: Metadata = {
-  title: "Free Resources — Aged Lead Sales",
+  title: "Free Resources — Work Aged Leads",
   description:
     "Free downloadable tools for sales professionals: follow-up cadence sheets, lead scripts, ROI scorecards, buying checklists, and route planners. No cost — just enter your email.",
   alternates: { canonical: `${baseUrl}/resources` },

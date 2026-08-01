@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     "Independent ratings of 15+ aged lead providers across mortgage, insurance, solar and more. Real pricing, 6-dimension scores, transparent methodology.",
   alternates: { canonical: `${baseUrl}/providers` },
   openGraph: {
-    title: "Lead Provider Directory | Aged Lead Sales",
+    title: "Lead Provider Directory | Work Aged Leads",
     description:
       "Compare lead providers with our independent ratings. 6-dimension scoring, honest editorial reviews, and transparent methodology.",
     url: `${baseUrl}/providers`,

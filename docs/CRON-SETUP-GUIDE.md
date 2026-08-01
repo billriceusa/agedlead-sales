@@ -292,7 +292,7 @@ Set all variables in the Vercel Dashboard (Settings > Environment Variables) or 
 | `CRON_SECRET` | `my-random-secret-string-here` | Any random string; Vercel sends this in the Authorization header |
 | `OPENAI_API_KEY` | `sk-...` | From OpenAI dashboard |
 | `RESEND_API_KEY` | `re_...` | From Resend dashboard |
-| `RESEND_FROM_EMAIL` | `Aged Lead Sales <newsletter@agedleadsales.com>` | Must be a verified Resend domain |
+| `RESEND_FROM_EMAIL` | `Work Aged Leads <newsletter@agedleadsales.com>` | Must be a verified Resend domain |
 
 ### Required for content publishing
 

@@ -1,4 +1,4 @@
-# Aged Lead Sales – Sales Training & Aged Lead Strategies
+# Work Aged Leads – Sales Training & Aged Lead Strategies
 
 A Next.js + Sanity.io SEO-driven affiliate content site that helps sales professionals learn how to incorporate aged leads into their sales operations. The site drives traffic to [AgedLeadStore.com](https://agedleadstore.com) where visitors can purchase aged leads across insurance, mortgage, legal, solar, and other verticals.
 

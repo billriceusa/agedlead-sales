@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     "Free calculators and interactive tools for sales professionals. ROI calculators, lead cost analysis, and prospecting tools — no sign-up required.",
   alternates: { canonical: `${baseUrl}/calculators` },
   openGraph: {
-    title: "Free Sales Calculators & Tools | Aged Lead Sales",
+    title: "Free Sales Calculators & Tools | Work Aged Leads",
     description:
       "5 free interactive tools: pipeline volume calculator, Know Your CPL, ROI calculator, lead cost calculator, and outreach cadence planner. No sign-up required.",
     url: `${baseUrl}/calculators`,

@@ -10,7 +10,7 @@ interface ShareableQuoteProps {
 
 export function ShareableQuote({
   quote,
-  attribution = "Aged Lead Sales",
+  attribution = "Work Aged Leads",
   pageUrl,
 }: ShareableQuoteProps) {
   const [copied, setCopied] = useState(false);

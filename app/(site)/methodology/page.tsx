@@ -266,7 +266,7 @@ export default function MethodologyPage() {
 
             <h2>Who We Are</h2>
             <p>
-              Aged Lead Sales is run by{" "}
+              Work Aged Leads is run by{" "}
               <Link href="/about/bill-rice">Bill Rice</Link>, who brings 30+
               years of experience in mortgage lending and sales operations.
               We&apos;re not an anonymous content farm — our reviews are backed by

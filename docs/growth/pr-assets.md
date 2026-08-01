@@ -12,16 +12,16 @@ if you need a new figure, pull it from those pages.
 **One-liner (≤160 chars, for platform profiles):**
 > Bill Rice has spent 30+ years building lead-conversion systems and has
 > personally worked millions of sales leads across insurance, mortgage, and solar.
-> He founded Aged Lead Sales.
+> He founded Work Aged Leads.
 
 **Short bio (source-request sign-off, ~40 words):**
-> Bill Rice is the founder of Aged Lead Sales (agedleadsales.com), an independent
+> Bill Rice is the founder of Work Aged Leads (agedleadsales.com), an independent
 > resource for buying and converting aged sales leads. He has 30+ years in lead
 > generation and has personally worked millions of leads across insurance,
 > mortgage, and solar.
 
 **Byline bio (end of contributed articles, ~55 words):**
-> Bill Rice is the founder of Aged Lead Sales, an independent platform that rates
+> Bill Rice is the founder of Work Aged Leads, an independent platform that rates
 > lead providers and benchmarks lead pricing across 15 verticals. Over 30+ years
 > in lead generation, he has personally worked millions of leads for insurance
 > agents, mortgage originators, and solar reps. He writes about the unit economics
@@ -51,7 +51,7 @@ genuinely fits.
 > 10% close on $50 leads. The mistake is buying aged leads and working them like
 > real-time leads.
 >
-> — Bill Rice, founder, Aged Lead Sales (agedleadsales.com)
+> — Bill Rice, founder, Work Aged Leads (agedleadsales.com)
 
 ### Answer B — "What should advisors/agents know before buying leads?"
 
@@ -66,7 +66,7 @@ genuinely fits.
 > Most "bad lead" complaints are really expectation problems — the buyer modeled
 > real-time economics onto a different product.
 >
-> — Bill Rice, founder, Aged Lead Sales (agedleadsales.com)
+> — Bill Rice, founder, Work Aged Leads (agedleadsales.com)
 
 ### Answer C — "Tips for improving sales-lead conversion?"
 
@@ -80,7 +80,7 @@ genuinely fits.
 > cost-per-acquisition across the whole batch rather than judging individual leads.
 > The economics only work at the batch level.
 >
-> — Bill Rice, founder, Aged Lead Sales (agedleadsales.com)
+> — Bill Rice, founder, Work Aged Leads (agedleadsales.com)
 
 ---
 
@@ -154,7 +154,7 @@ on unit economics: know your close rate, know your average deal value, back into
 your true cost ceiling, and measure across the batch. Do that, and "expensive vs.
 cheap" stops being a debate and becomes a calculation.
 
-*Bill Rice is the founder of Aged Lead Sales, an independent platform that rates
+*Bill Rice is the founder of Work Aged Leads, an independent platform that rates
 lead providers and benchmarks lead pricing across 15 verticals. Over 30+ years he
 has personally worked millions of leads for insurance, mortgage, and solar
 professionals.*
@@ -179,4 +179,4 @@ Bill to send.*
 > Want me to send the draft? Happy to tailor the examples to [mortgage
 > originators / P&C agents].
 >
-> Bill Rice · founder, Aged Lead Sales · agedleadsales.com
+> Bill Rice · founder, Work Aged Leads · agedleadsales.com

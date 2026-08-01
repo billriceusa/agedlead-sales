@@ -9,9 +9,9 @@ import { CtaBanner } from "@/components/cta-banner";
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
 export const metadata: Metadata = {
-  title: "Authors — Aged Lead Sales",
+  title: "Authors — Work Aged Leads",
   description:
-    "Meet the experts behind Aged Lead Sales. Bill Rice brings 30+ years of lead generation and fintech marketing experience to every article, playbook, and tool.",
+    "Meet the experts behind Work Aged Leads. Bill Rice brings 30+ years of lead generation and fintech marketing experience to every article, playbook, and tool.",
   alternates: { canonical: `${baseUrl}/authors` },
 };
 

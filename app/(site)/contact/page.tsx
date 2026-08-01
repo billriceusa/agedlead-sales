@@ -5,7 +5,7 @@ import { JsonLd, breadcrumbJsonLd } from "@/components/json-ld";
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
 export const metadata: Metadata = {
-  title: "Contact — Aged Lead Sales",
+  title: "Contact — Work Aged Leads",
   description:
     "Have a question about aged leads, need help choosing a provider, or want to discuss a partnership? Get in touch with Bill Rice.",
   alternates: { canonical: `${baseUrl}/contact` },

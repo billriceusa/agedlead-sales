@@ -45,7 +45,7 @@ export interface NewsletterContent {
   ctaUrl: string;
 }
 
-const NEWSLETTER_SYSTEM = `You are writing the Aged Lead Sales weekly newsletter on behalf of Bill Rice, a 25+ year veteran of the aged lead industry. Write with authority, warmth, and specificity.
+const NEWSLETTER_SYSTEM = `You are writing the Work Aged Leads weekly newsletter on behalf of Bill Rice, a 25+ year veteran of the aged lead industry. Write with authority, warmth, and specificity.
 
 Newsletter Context:
 - Audience: insurance agents, mortgage brokers, financial advisors, PI attorneys, solar reps, and other sales professionals who buy and work aged consumer leads
@@ -88,7 +88,7 @@ Follow this plan as a guide, but feel free to adjust if the blog content this we
 ## No Pre-Planned Newsletter for This Week
 Research what's most relevant for our audience right now and create a compelling theme. Consider seasonal factors, industry trends, or timely topics.`;
 
-  const prompt = `Write the content for this week's Aged Lead Sales newsletter.
+  const prompt = `Write the content for this week's Work Aged Leads newsletter.
 
 ${planContext}
 

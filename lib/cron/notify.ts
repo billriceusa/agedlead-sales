@@ -18,7 +18,7 @@ export async function sendWeeklyReport(
   const resend = new Resend(apiKey);
   const html = buildReportEmail(report);
   const status = statusLabel(report);
-  const subject = `[${status}] Aged Lead Sales Weekly Content — ${report.weekStartDate}`;
+  const subject = `[${status}] Work Aged Leads Weekly Content — ${report.weekStartDate}`;
 
   const { error } = await resend.emails.send({
     from: fromEmail,
@@ -171,7 +171,7 @@ function buildReportEmail(report: WeeklyReport): string {
   <div style="background: linear-gradient(135deg, ${color}, #1B4D3E); color: white; padding: 24px 32px; border-radius: 12px; margin-bottom: 24px;">
     <div style="display: inline-block; background: rgba(255,255,255,0.2); padding: 2px 10px; border-radius: 999px; font-size: 12px; font-weight: 700; letter-spacing: 0.5px;">${status}</div>
     <h1 style="margin: 8px 0 4px 0; font-size: 24px;">Weekly Content Report</h1>
-    <p style="margin: 0; opacity: 0.9;">Aged Lead Sales — Week of ${report.weekStartDate}</p>
+    <p style="margin: 0; opacity: 0.9;">Work Aged Leads — Week of ${report.weekStartDate}</p>
     <p style="margin: 8px 0 0 0; opacity: 0.7; font-size: 14px;">Automated run: ${report.runDate}</p>
     <p style="margin: 8px 0 0 0; font-size: 14px;">
       Created: <strong>${report.articlesCreated.length}</strong> &nbsp;·&nbsp;

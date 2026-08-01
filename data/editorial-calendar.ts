@@ -1,5 +1,5 @@
 /**
- * 12-Week Editorial Calendar for Aged Lead Sales
+ * 12-Week Editorial Calendar for Work Aged Leads
  *
  * Cadence: 3 posts/week (Monday, Wednesday, Friday)
  * Starting: March 17, 2026

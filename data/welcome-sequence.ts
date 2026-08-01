@@ -1,5 +1,5 @@
 /**
- * 5-Email Welcome Sequence for Aged Lead Sales Newsletter
+ * 5-Email Welcome Sequence for Work Aged Leads Newsletter
  *
  * Triggered when a new subscriber signs up. Each email delivers value,
  * builds trust, and drives traffic back to the site's best content.
@@ -16,7 +16,7 @@ export const welcomeSequence = [
       "The 5 numbers that determine whether aged leads work for you",
     body: `Hi {{firstName}},
 
-Welcome to Aged Lead Sales. You just joined a community of sales professionals who've figured out that $1 leads can outperform $50 leads — when you have the right system.
+Welcome to Work Aged Leads. You just joined a community of sales professionals who've figured out that $1 leads can outperform $50 leads — when you have the right system.
 
 Let's start with the fundamentals. Here are the **5 numbers that determine your aged lead ROI**:
 
@@ -30,7 +30,7 @@ Let's start with the fundamentals. Here are the **5 numbers that determine your 
 
 Talk soon,
 Bill Rice
-Aged Lead Sales`,
+Work Aged Leads`,
     cta: {
       text: "Calculate Your ROI",
       url: "https://agedleadsales.com/calculators/roi-calculator",
@@ -158,7 +158,7 @@ You now know the fundamentals: pricing, cadences, scripts, and ROI math. Here's 
 From here, you'll get our weekly newsletter with strategies, scripts, and industry insights every Tuesday. Welcome aboard.
 
 Bill Rice
-Aged Lead Sales`,
+Work Aged Leads`,
     cta: {
       text: "Browse All Free Tools",
       url: "https://agedleadsales.com/calculators",

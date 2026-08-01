@@ -52,7 +52,7 @@ export async function generateMetadata({
       canonical: `${baseUrl}/price-index/${verticalSlug}`,
     },
     openGraph: {
-      title: `${vertical.name} Lead Pricing | Aged Lead Sales`,
+      title: `${vertical.name} Lead Pricing | Work Aged Leads`,
       description: `How much do ${vertical.name.toLowerCase()} leads cost? See our quarterly verified benchmarks for aged, real-time, exclusive, and shared leads.`,
       url: `${baseUrl}/price-index/${verticalSlug}`,
       images: [
@@ -332,7 +332,7 @@ export default async function VerticalPriceIndexPage({
           <div className="flex flex-wrap items-center gap-3">
             <span className="text-sm text-zinc-500">Reference this data:</span>
             <CiteThisButton
-              citation={`${vertical.name} lead pricing benchmarks from the Aged Lead Sales Lead Price Index, a quarterly verified study (last verified ${verifiedLabel}). Source: ${baseUrl}/price-index/${verticalSlug}`}
+              citation={`${vertical.name} lead pricing benchmarks from the Work Aged Leads Lead Price Index, a quarterly verified study (last verified ${verifiedLabel}). Source: ${baseUrl}/price-index/${verticalSlug}`}
             />
           </div>
         </div>

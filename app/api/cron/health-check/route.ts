@@ -132,7 +132,7 @@ function buildAlertEmail(checks: HealthCheck[], now: Date): string {
 <html><head><meta charset="utf-8"></head>
 <body style="font-family: -apple-system, sans-serif; color: #1f2937; max-width: 640px; margin: 0 auto; padding: 20px;">
   <div style="background: linear-gradient(135deg, ${bannerColor}, #1B4D3E); color: white; padding: 24px; border-radius: 12px; margin-bottom: 20px;">
-    <h1 style="margin: 0 0 4px; font-size: 22px;">AgedLeadSales Cron Health</h1>
+    <h1 style="margin: 0 0 4px; font-size: 22px;">Work Aged Leads Cron Health</h1>
     <p style="margin: 0; opacity: 0.95;">${bannerLabel}</p>
     <p style="margin: 8px 0 0; opacity: 0.7; font-size: 13px;">${now.toISOString()}</p>
   </div>
@@ -164,14 +164,14 @@ export async function GET(request: Request) {
   if (failing.length > 0) {
     const apiKey = process.env.RESEND_API_KEY;
     const fromEmail =
-      process.env.RESEND_FROM_EMAIL || "AgedLeadSales <noreply@agedleadsales.com>";
+      process.env.RESEND_FROM_EMAIL || "Work Aged Leads <noreply@agedleadsales.com>";
     if (apiKey) {
       try {
         const resend = new Resend(apiKey);
         await resend.emails.send({
           from: fromEmail,
           to: ALERT_EMAIL,
-          subject: `[ALERT] ${failing.length} AgedLeadSales cron${failing.length > 1 ? "s" : ""} failing`,
+          subject: `[ALERT] ${failing.length} Work Aged Leads cron${failing.length > 1 ? "s" : ""} failing`,
           html: buildAlertEmail(checks, now),
         });
       } catch (err) {

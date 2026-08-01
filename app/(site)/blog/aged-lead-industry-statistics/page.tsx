@@ -106,25 +106,25 @@ export default function StatisticsPage() {
             <CopyableStatCard
               value={`${market.providerCount}+`}
               label="Providers independently rated"
-              source="Aged Lead Sales Provider Directory"
+              source="Work Aged Leads Provider Directory"
               sourceUrl={`${baseUrl}/providers`}
             />
             <CopyableStatCard
               value={`${market.verticalCount}`}
               label="Verticals with pricing benchmarks"
-              source="Aged Lead Sales Price Index"
+              source="Work Aged Leads Price Index"
               sourceUrl={`${baseUrl}/price-index`}
             />
             <CopyableStatCard
               value={`$${market.minDealValue}-$${market.maxDealValue.toLocaleString()}`}
               label="Deal value range across verticals"
-              source="Aged Lead Sales"
+              source="Work Aged Leads"
               sourceUrl={pageUrl}
             />
             <CopyableStatCard
               value={`${market.benchmarkDataPoints}+`}
               label="Verified price data points tracked"
-              source="Aged Lead Sales Price Index"
+              source="Work Aged Leads Price Index"
               sourceUrl={`${baseUrl}/price-index`}
             />
           </section>
@@ -205,13 +205,13 @@ export default function StatisticsPage() {
 
             <div className="mt-4">
               <CiteThisButton
-                citation={`According to Aged Lead Sales, aged leads (31-85 days) cost ${pricing.verticalPricing[0]?.savingsPercent || 70}-${pricing.verticalPricing[pricing.verticalPricing.length - 1]?.savingsPercent || 90}% less than real-time leads across ${pricing.verticalPricing.length} verticals. Source: ${pageUrl} (Updated ${lastUpdated})`}
+                citation={`According to Work Aged Leads, aged leads (31-85 days) cost ${pricing.verticalPricing[0]?.savingsPercent || 70}-${pricing.verticalPricing[pricing.verticalPricing.length - 1]?.savingsPercent || 90}% less than real-time leads across ${pricing.verticalPricing.length} verticals. Source: ${pageUrl} (Updated ${lastUpdated})`}
               />
             </div>
 
             <ShareableQuote
               quote={`Aged leads cost 70-90% less than real-time leads, but require a fundamentally different approach. A 2% conversion rate on $2 leads crushes a 10% rate on $50 leads. The math is overwhelmingly in your favor.`}
-              attribution="Bill Rice, Aged Lead Sales"
+              attribution="Bill Rice, Work Aged Leads"
               pageUrl={pageUrl}
             />
           </section>
@@ -331,7 +331,7 @@ export default function StatisticsPage() {
 
               <div className="mt-4">
                 <CiteThisButton
-                  citation={`According to Aged Lead Sales, a shared ${heroCurve.vertical.toLowerCase()} internet lead falls from $${heroCurve.realTimeMedian} real-time to $${heroCurve.stops[heroCurve.stops.length - 1].median} by the ${(AGE_BRACKET_LABELS[heroCurve.oldestBracket] || heroCurve.oldestBracket).toLowerCase()} bracket — a ${heroCurve.maxDecayPercent}% loss of value as the lead ages. Source: ${pageUrl} (Updated ${lastUpdated})`}
+                  citation={`According to Work Aged Leads, a shared ${heroCurve.vertical.toLowerCase()} internet lead falls from $${heroCurve.realTimeMedian} real-time to $${heroCurve.stops[heroCurve.stops.length - 1].median} by the ${(AGE_BRACKET_LABELS[heroCurve.oldestBracket] || heroCurve.oldestBracket).toLowerCase()} bracket — a ${heroCurve.maxDecayPercent}% loss of value as the lead ages. Source: ${pageUrl} (Updated ${lastUpdated})`}
                 />
               </div>
             </section>
@@ -446,7 +446,7 @@ export default function StatisticsPage() {
 
             <div className="mt-4">
               <CiteThisButton
-                citation={`Of ${market.providerCount} aged lead providers reviewed by Aged Lead Sales, only ${providers.transparencyBreakdown.transparent} (${Math.round((providers.transparencyBreakdown.transparent / market.providerCount) * 100)}%) offer fully transparent pricing. Source: ${pageUrl} (Updated ${lastUpdated})`}
+                citation={`Of ${market.providerCount} aged lead providers reviewed by Work Aged Leads, only ${providers.transparencyBreakdown.transparent} (${Math.round((providers.transparencyBreakdown.transparent / market.providerCount) * 100)}%) offer fully transparent pricing. Source: ${pageUrl} (Updated ${lastUpdated})`}
               />
             </div>
           </section>
@@ -534,13 +534,13 @@ export default function StatisticsPage() {
 
             <div className="mt-4">
               <CiteThisButton
-                citation={`The average contact rate on aged leads (31-85 days) is ${economics.avgAgedContactRate}% across ${market.verticalCount} verticals, with an average close rate of ${economics.avgAgedCloseRate}%. Source: Aged Lead Sales, ${pageUrl} (Updated ${lastUpdated})`}
+                citation={`The average contact rate on aged leads (31-85 days) is ${economics.avgAgedContactRate}% across ${market.verticalCount} verticals, with an average close rate of ${economics.avgAgedCloseRate}%. Source: Work Aged Leads, ${pageUrl} (Updated ${lastUpdated})`}
               />
             </div>
 
             <ShareableQuote
               quote={`The salespeople who win with aged leads are the ones who treat lead conversion as a system, not a lottery. Different scripts, different cadences, different expectations, different economics.`}
-              attribution="Bill Rice, Aged Lead Sales"
+              attribution="Bill Rice, Work Aged Leads"
               pageUrl={pageUrl}
             />
           </section>
@@ -602,13 +602,13 @@ export default function StatisticsPage() {
                 </p>
                 <p className="text-sm text-zinc-700 dark:text-zinc-300">
                   According to{" "}
-                  <em>Aged Lead Sales&apos; 2026 Industry Statistics</em>,
+                  <em>Work Aged Leads&apos; 2026 Industry Statistics</em>,
                   aged leads cost 70-90% less than real-time leads across 14
                   verticals.
                 </p>
                 <div className="mt-2">
                   <CiteThisButton
-                    citation={`According to Aged Lead Sales' 2026 Industry Statistics, aged leads cost 70-90% less than real-time leads across 14 verticals. (Source: ${pageUrl})`}
+                    citation={`According to Work Aged Leads' 2026 Industry Statistics, aged leads cost 70-90% less than real-time leads across 14 verticals. (Source: ${pageUrl})`}
                   />
                 </div>
               </div>
@@ -618,11 +618,11 @@ export default function StatisticsPage() {
                   HTML Attribution
                 </p>
                 <code className="block text-xs text-zinc-600 dark:text-zinc-400">
-                  {`<a href="${pageUrl}">Aged Lead Industry Statistics 2026</a> — Aged Lead Sales`}
+                  {`<a href="${pageUrl}">Aged Lead Industry Statistics 2026</a> — Work Aged Leads`}
                 </code>
                 <div className="mt-2">
                   <CiteThisButton
-                    citation={`<a href="${pageUrl}">Aged Lead Industry Statistics 2026</a> — Aged Lead Sales`}
+                    citation={`<a href="${pageUrl}">Aged Lead Industry Statistics 2026</a> — Work Aged Leads`}
                   />
                 </div>
               </div>

@@ -35,7 +35,7 @@ export async function generateMetadata({
     robots: thin ? { index: false, follow: true } : undefined,
     alternates: { canonical: `${baseUrl}/providers/best/${verticalSlug}` },
     openGraph: {
-      title: `${title} | Aged Lead Sales`,
+      title: `${title} | Work Aged Leads`,
       description: `Top-rated ${vertical.name.toLowerCase()} lead providers ranked by our 6-dimension scoring methodology.`,
       url: `${baseUrl}/providers/best/${verticalSlug}`,
       images: [

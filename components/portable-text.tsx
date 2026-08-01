@@ -35,7 +35,7 @@ const CONTENT_CHECKPOINTS = [
   {
     stat: "10-50x",
     context: "lower cost per lead with aged leads vs. real-time leads",
-    source: "Aged Lead Sales Price Index",
+    source: "Work Aged Leads Price Index",
     href: "/price-index",
   },
   {

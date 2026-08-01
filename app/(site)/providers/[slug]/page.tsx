@@ -80,7 +80,7 @@ export async function generateMetadata({
       description: `${name} provider profile — pricing model, lead types, compliance, and our 6-dimension ratings. Read our full in-depth ${name} review for the complete assessment.`,
       alternates: { canonical: `${baseUrl}/blog/${reviewSlug}` },
       openGraph: {
-        title: `${name} — Provider Profile | Aged Lead Sales`,
+        title: `${name} — Provider Profile | Work Aged Leads`,
         description: `${name} at a glance: pricing model, lead types, compliance, and transparent 6-dimension ratings.`,
         url: `${baseUrl}/providers/${slug}`,
         images: [
@@ -97,7 +97,7 @@ export async function generateMetadata({
     description: `Independent review and rating of ${name}. See our honest assessment, 6-dimension scores, and how they compare to other lead providers.`,
     alternates: { canonical: `${baseUrl}/providers/${slug}` },
     openGraph: {
-      title: `${name} Review | Aged Lead Sales`,
+      title: `${name} Review | Work Aged Leads`,
       description: `Independent ${name} review with transparent ratings across pricing, value, compliance, flexibility, platform, and reputation.`,
       url: `${baseUrl}/providers/${slug}`,
       images: [
@@ -243,7 +243,7 @@ export default async function ProviderProfilePage({
               },
               author: {
                 "@type": "Organization",
-                name: "Aged Lead Sales",
+                name: "Work Aged Leads",
                 url: baseUrl,
               },
               datePublished: p.lastVerified,

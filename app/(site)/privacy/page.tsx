@@ -7,7 +7,7 @@ const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
-    "How Aged Lead Sales collects, uses, and protects your data. Covers cookies, analytics, email subscriptions, and your rights.",
+    "How Work Aged Leads collects, uses, and protects your data. Covers cookies, analytics, email subscriptions, and your rights.",
   alternates: { canonical: `${baseUrl}/privacy` },
 };
 
@@ -34,7 +34,7 @@ export default function PrivacyPage() {
 
           <div className="prose prose-zinc dark:prose-invert max-w-none">
             <p>
-              Aged Lead Sales (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;)
+              Work Aged Leads (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;)
               operates the website agedleadsales.com. This Privacy Policy explains
               what information we collect, how we use it, and your choices
               regarding that information.

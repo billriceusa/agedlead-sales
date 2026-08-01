@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     "Aged leads cost a fraction of real-time leads but convert at lower rates. A data-backed comparison of price, contact rates, conversion, and cost-per-acquisition to help you choose.",
   alternates: { canonical: `${baseUrl}/compare/aged-vs-real-time-leads` },
   openGraph: {
-    title: "Aged Leads vs. Real-Time Leads | Aged Lead Sales",
+    title: "Aged Leads vs. Real-Time Leads | Work Aged Leads",
     description:
       "Price, contact rate, conversion, and cost-per-acquisition compared side by side — with real benchmark data by vertical.",
     url: `${baseUrl}/compare/aged-vs-real-time-leads`,
@@ -152,7 +152,7 @@ export default function AgedVsRealTimePage() {
       rows={ROWS}
       tableNote="Pricing ranges are directional and vary by vertical, lead age, and exclusivity. See the Price Index for quarterly-verified benchmarks."
       faqs={FAQS}
-      citation={`Aged Leads vs. Real-Time Leads comparison from Aged Lead Sales. Source: ${baseUrl}/compare/aged-vs-real-time-leads`}
+      citation={`Aged Leads vs. Real-Time Leads comparison from Work Aged Leads. Source: ${baseUrl}/compare/aged-vs-real-time-leads`}
       relatedTitle="Keep comparing"
       relatedLinks={[
         {
@@ -232,7 +232,7 @@ export default function AgedVsRealTimePage() {
           </table>
         </div>
         <p className="mt-3 text-xs text-zinc-500 dark:text-zinc-400">
-          Source: Aged Lead Sales benchmark defaults. Rates are directional
+          Source: Work Aged Leads benchmark defaults. Rates are directional
           planning figures, not guarantees — your results depend on your offer,
           script, and follow-up cadence.
         </p>

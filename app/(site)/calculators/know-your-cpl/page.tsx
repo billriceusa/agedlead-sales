@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     "Calculate your maximum cost per lead based on your vertical, close rate, and deal value. Compare aged vs. real-time lead ROI side by side.",
   alternates: { canonical: `${baseUrl}/calculators/know-your-cpl` },
   openGraph: {
-    title: "Know Your CPL Calculator | Aged Lead Sales",
+    title: "Know Your CPL Calculator | Work Aged Leads",
     description:
       "Input your business metrics, get personalized lead pricing recommendations. Compare aged vs. real-time ROI instantly.",
     url: `${baseUrl}/calculators/know-your-cpl`,
