@@ -7,7 +7,7 @@ const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 export const metadata: Metadata = {
   title: "Affiliate Disclosure",
   description:
-    "Full disclosure of affiliate relationships on Aged Lead Sales. How we earn revenue, how it does and does not influence our editorial content.",
+    "Full disclosure of affiliate relationships on Work Aged Leads. How we earn revenue, how it does and does not influence our editorial content.",
   alternates: { canonical: `${baseUrl}/affiliate-disclosure` },
 };
 
@@ -38,13 +38,13 @@ export default function AffiliateDisclosurePage() {
           <div className="prose prose-zinc dark:prose-invert max-w-none">
             <p>
               Transparency matters. Here is a complete and honest disclosure of
-              how Aged Lead Sales earns revenue and how those relationships do
+              how Work Aged Leads earns revenue and how those relationships do
               and do not affect our content.
             </p>
 
             <h2>How We Make Money</h2>
             <p>
-              Aged Lead Sales earns revenue through affiliate partnerships with
+              Work Aged Leads earns revenue through affiliate partnerships with
               lead providers. When you click a link to a provider on our site and
               make a purchase, we may earn a referral commission at no additional
               cost to you. This revenue funds the free tools, training content,
@@ -102,7 +102,10 @@ export default function AffiliateDisclosurePage() {
               </li>
               <li>
                 Affiliate links include UTM tracking parameters
-                (utm_source=agedleadsales, utm_medium=affiliate)
+                (utm_source=agedleadsales, utm_medium=affiliate). The source
+                value is a legacy attribution key from this site&apos;s
+                previous name and is kept unchanged so referral credit stays
+                intact
               </li>
               <li>
                 A disclosure notice appears above the footer on every page of
@@ -139,8 +142,8 @@ export default function AffiliateDisclosurePage() {
             <p>
               If you have questions about our affiliate relationships or believe
               a disclosure is missing, contact us at{" "}
-              <a href="mailto:bill@agedleadsales.com">
-                bill@agedleadsales.com
+              <a href="mailto:bill@workagedleads.com">
+                bill@workagedleads.com
               </a>
               .
             </p>
