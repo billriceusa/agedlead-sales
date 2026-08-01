@@ -33,6 +33,16 @@ const nextConfig: NextConfig = {
         permanent: false,
       },
 
+      // The home-improvement vertical had two lead-type pages: the canonical
+      // slug and a legacy one carrying all the content. The content moved to
+      // the canonical slug, so the legacy page has to stop resolving or the
+      // site publishes the same ~2,900 words at two URLs.
+      {
+        source: "/lead-types/home-services-leads",
+        destination: "/lead-types/home-improvement-leads",
+        permanent: true,
+      },
+
       // Specific deprecated /playbooks pages that still hold page-1 rankings get
       // remapped to MATCHING content (not the generic master) so the equity isn't
       // wasted on a topic mismatch. Must come BEFORE the catch-all (first match wins).

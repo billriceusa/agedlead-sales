@@ -217,8 +217,8 @@ Measured 2026-07-31 — rendered word count of the live page:
 
 | Destination | Words | Fold traffic arriving | `LEAD_TYPES` entry? |
 |---|---:|---|---|
-| `/lead-types/life-insurance-leads` | 313 | 52 clicks · 21,132 impr | No |
-| `/lead-types/home-improvement-leads` | 313 | 9 clicks · 2,647 impr | No |
+| `/lead-types/life-insurance-leads` | 313 → **3,417** | 52 clicks · 21,132 impr | **Yes** (PR #48) |
+| `/lead-types/home-improvement-leads` | 313 → **3,428** | 9 clicks · 2,647 impr | **Yes** (PR #49) |
 | `/lead-types/health-insurance-leads` | 312 | 2 clicks · 1,243 impr | No |
 | `/lead-types/auto-insurance-leads` | 310 | 0 clicks · 0 impr | No |
 | the other eight | 2,801–3,256 | — | Yes |
@@ -227,13 +227,24 @@ Measured 2026-07-31 — rendered word count of the live page:
 the at-risk impressions), then `home-improvement-leads`, then
 `health-insurance-leads`, then `auto-insurance-leads`.
 
-**`home-services-leads` is an orphan and the cheapest of the four.** The Sanity
-document was renamed to `home-improvement-leads` in Phase 1; the
-`data/lead-types.ts` entry was not. Today `/lead-types/home-services-leads`
-renders 3,030 words and is absent from the sitemap, while the sitemapped
-`/lead-types/home-improvement-leads` renders 313. Port the entry, delete the old
-key, and add a redirect row so the orphan does not survive cutover as a
-duplicate.
+**Word counts above are not all measured the same way.** The 313/310 figures and
+the 2,801–3,256 range came from an earlier extraction; the two rebuilt pages were
+measured against a production build with nav and footer stripped, which returns
+206 for an untouched shell rather than 313. Treat the before/after pairs as
+same-method comparisons and the cross-row comparisons as approximate.
+
+**~~`home-services-leads` is an orphan and the cheapest of the four.~~ Done in
+PR #49.** The Sanity document was renamed to `home-improvement-leads` in Phase 1;
+the `data/lead-types.ts` entry was not, so the deep content sat at the legacy
+slug — live, absent from the sitemap, and unlinked — while the sitemapped
+canonical slug rendered a shell. The entry now carries the canonical slug and
+`/lead-types/home-services-leads` 301s to it in `next.config.ts`, so the orphan
+does not survive cutover as a duplicate.
+
+One correction to what this section used to claim: the note in
+`data/lead-type-vertical-map.ts` said the `home-services-leads` page "no longer
+exists." It did — it returned 200 and rendered ~2,900 words. The comment is
+rewritten to describe the redirect instead.
 
 `averageCostPerLead` stays **unset** on the four new lead types. The reliable
 benchmarks for these verticals span mixed age brackets and produce misleading
