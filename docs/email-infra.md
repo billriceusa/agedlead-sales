@@ -62,9 +62,20 @@ Free-tool sub-links point at agedleadsales.com calculators (same UTM scheme).
 
 ## Resend (account: billrice Pro)
 
-- **Sending domains (verified):** `news.agedleadsales.com` (lifecycle), `agedleadsales.com`, `go.kaleidico.com` (Tier-1 promo).
+- **Sending domains (verified):** `news.agedleadsales.com` (lifecycle), `agedleadsales.com`, `go.kaleidico.com` (Tier-1 promo),
+  and `workagedleads.com` (verified 2026-08-01, warming — the post-cutover site sender).
 - **Audiences:** `ALS Aged-Lead Buyers — Purchasers` (809), `ALS Aged-Lead Buyers — Inquiries` (125),
   `Mortgage Lead-Buyers — Explicit (Tier 1)` (112), plus the separate `agedleadsales-newsletter`.
+
+> **This program is not the site newsletter, and the two must not be merged.**
+> The lifecycle audiences above are Aged Lead Store *buyers* — harvested from
+> orders and inquiry forms, a different consent basis from a newsletter signup.
+> The site newsletter is consolidating separately into the `workagedleads.com`
+> audience (`43fe6675-cc8f-44f3-9c1c-70a094b2d47d`) via
+> `npm run newsletter:migrate`; see `data/migration/MIGRATION-PLAN.md` § 2d.
+> Retiring the agedleadsales.com *site* does not retire this program —
+> `news.agedleadsales.com` keeps sending after cutover unless that is decided
+> on its own terms.
 - **Campaigns sent:** `Lead-Buyer Promo — Tier 1` broadcast (2026-06-09, 112 recipients,
   "Exclusive DSCR & Non-QM leads — $75/lead").
 - **Audience coverage gap (2026-06-18):** only **~918** of the **5,147** universe emails are loaded;
