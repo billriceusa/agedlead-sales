@@ -31,19 +31,54 @@ email list, and the agedleadstore.com link inventory repointed.
 
 ---
 
-## Status at a glance — 2026-07-31
+## Status at a glance — 2026-08-01
+
+Measured, not remembered. Sanity counts are from the `raw` perspective; live
+checks are against agedleadsales.com and workagedleads.com.
 
 | Phase | State |
 |---|---|
-| 0 — Pre-flight | Attribution question **answered** (see below). Items 2–6 open |
+| 0 — Pre-flight | D16/D17 **answered**. Rev-share baseline **closed by Bill** (assembled from agedleadstore.com GA4). Sanity export still open |
 | 1 — Content decisions | **Done.** 421 rows, zero unresolved |
-| 2a — Sanity content import | **Done.** 81 drafts staged, 76 published, mechanically clean |
-| 2b — Domain reference sweep | **Not started.** ~75 files still hard-code agedleadsales.com |
-| 2c — Redirects | **Done.** 45 rules, unmerged (PR #42) |
-| 3 — Soft launch | Not started. workagedleads.com still serves the GoDaddy lander |
+| 2a — Sanity content import | **Staged, not live.** 81 posts sit as **unpublished drafts**. 0 of them are published |
+| 2b — Domain reference sweep | In progress |
+| 2c — Redirects | **Done and merged.** On main |
+| 3 — Soft launch | **Not started.** workagedleads.com still serves the GoDaddy lander (`/lander`) |
 | 4 — Verification gate | Not started |
 | 5 — Cutover | Not started |
 | 6 — Post-cutover | Not started |
+
+### Correction to the 2a line
+
+The previous version read *"81 drafts staged, 76 published, mechanically clean,"*
+which reads as though 76 of the 81 went live. **None of them did.** The 76 is the
+pre-existing agedleadsales corpus — the same 76 in the content-inventory table
+above. Measured 2026-08-01:
+
+```
+publishedPosts 76   draftPosts 81
+draftsMissingImage 9   draftsMissingPublishedAt 2
+```
+
+**This is the largest open content risk in the migration.** 83 `MIGRATE`/`MERGE`
+rows land on `/blog/*`. Only 5 of those destinations are published, so **78
+resolve to 404 today** — verified live, e.g. `/blog/best-crm-aged-leads`,
+`/blog/aged-lead-pricing-guide`, `/blog/cost-per-lead-analysis` all return 404.
+
+Traffic redirecting into those 404s at cutover: **90 clicks and 17,044
+impressions**, which is **34% of howtoworkleads' mapped clicks**. It also
+includes `/blog/aged-lead-pricing-guide`, which holds **6 referring domains** —
+the strongest deep link on either site.
+
+Every one of the 78 is covered by an existing draft. Checked slug-by-slug: 78 of
+78 covered, **zero orphans**. Publishing the 81 closes the whole gap. The three
+drafts no redirect needs (`aged-lead-budget-allocation-roi-optimization`,
+`aged-lead-team-training-playbook-managers`,
+`summer-solar-aged-lead-activation-strategy`) already have same-host redirects in
+`next.config.ts` pointing at their renamed versions.
+
+**Publishing them is a Phase 3 gate, not a Phase 5 one** — the destinations have
+to exist before the verification gate can pass, and Phase 4 probes the map.
 
 ### Decisions answered since authoring
 
