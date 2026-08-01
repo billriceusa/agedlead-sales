@@ -5,6 +5,10 @@ workagedleads.com. `url-map.csv` is the single source of truth for the redirect
 map (Phase 2c), the cutover (Phase 5) and the agedleadstore.com link swap
 (Phase 6).
 
+**`MIGRATION-PLAN.md` in this directory is the plan** — phases, gates, rollback,
+point of no return, and current status. Read it before acting on anything here.
+This README covers the data files only.
+
 Regenerate with `node scripts/build-url-map.mjs`.
 
 ## Files
