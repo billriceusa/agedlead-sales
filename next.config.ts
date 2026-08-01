@@ -1,4 +1,6 @@
 import type { NextConfig } from "next";
+import { migrationRedirects } from "./lib/migration-redirects";
+import { affiliateUrl } from "./lib/affiliate";
 
 const nextConfig: NextConfig = {
   images: {
@@ -11,6 +13,26 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // howtoworkleads.com/lead-order was never a page — it is a CTA endpoint
+      // that 307s to the affiliate with UTM tagging, and 36 links across the
+      // corpus point at it (six on pages that survive the migration, two of
+      // them body copy in the cornerstone article). Recreated here so those
+      // links keep working after the consolidation.
+      //
+      // Deliberately NOT permanent: a 301 invites search engines to treat an
+      // affiliate exit as the canonical destination. The UTM source comes from
+      // lib/affiliate.ts, so it updates in one place at cutover — once Troy has
+      // confirmed whether affiliate credit is keyed to utm_source or the
+      // referring domain (Phase 0, still open).
+      {
+        source: "/lead-order",
+        destination: affiliateUrl({
+          campaign: "lead-order-redirect",
+          content: "legacy-htwl-endpoint",
+        }),
+        permanent: false,
+      },
+
       // Specific deprecated /playbooks pages that still hold page-1 rankings get
       // remapped to MATCHING content (not the generic master) so the equity isn't
       // wasted on a topic mismatch. Must come BEFORE the catch-all (first match wins).
@@ -52,9 +74,16 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
 
+      // workagedleads.com consolidation — path-level redirects generated from
+      // data/migration/url-map.csv. None of these sources start with
+      // /playbooks, so they cannot shadow (or be shadowed by) the rules above
+      // or the catch-all below. Edit the CSV, not this file.
+      ...migrationRedirects(),
+
       // Old plural /playbooks routes funnel into the new flagship /playbook master.
       // The 4 old Sanity-backed playbook pages are deprecated in favor of the
       // consolidated "Aged Lead Operator's System" flagship magnet.
+      // MUST stay last — /playbooks/:slug* is a catch-all.
       {
         source: "/playbooks",
         destination: "/playbook",
