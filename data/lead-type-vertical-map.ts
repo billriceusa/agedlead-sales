@@ -33,9 +33,11 @@ export const LEAD_TYPE_TO_VERTICAL: Record<string, string> = {
   "auto-insurance-leads": "auto-insurance",
   "health-insurance-leads": "health-insurance",
   "home-improvement-leads": "home-improvement",
-  // Legacy slug — the home-services-leads page no longer exists, but keep the
-  // mapping so the page resolves correctly if it is ever restored. Without it
-  // the fallback yields "home-services", which is not a real vertical.
+  // Legacy slug. The page 301s to home-improvement-leads in next.config.ts, so
+  // nothing should reach the lead-type route under this slug — but the slug
+  // still appears in older content and in the url-map, and any other caller of
+  // verticalForLeadType would otherwise fall back to "home-services", which is
+  // not a real vertical. Keep the mapping.
   "home-services-leads": "home-improvement",
 };
 
