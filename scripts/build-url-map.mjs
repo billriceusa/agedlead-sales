@@ -16,7 +16,8 @@
  *   - htwl-gsc-pages-2026-06-05.json   the prior window, retained so the prune
  *                             rule needs two observations rather than one
  *   - htwl-published-at.json  publish dates, for the new-content grace window
- *   - backlinks-2026-08-01.json  live referring domains per URL, both sites
+ *   - backlinks-2026-08-01.json  live inbound links per page, both sites, with
+ *                             the dofollow and spam flags the prune gate needs
  *
  * Usage: node scripts/build-url-map.mjs
  */
@@ -59,7 +60,7 @@ const priorGsc = JSON.parse(
 const GSC_WINDOW_END = "2026-07-29";
 
 /**
- * Live referring domains per URL, both sites (Ahrefs, 2026-08-01).
+ * Live inbound links per page, both sites (Ahrefs, 2026-08-01).
  *
  * Backlinks were not an input to this generator until 2026-08-01, and the
  * omission had teeth: the prune rule keys on search impressions alone, and a
@@ -71,27 +72,52 @@ const GSC_WINDOW_END = "2026-07-29";
  * metrics do not measure its inbound links. Check what points AT a page before
  * deleting it.
  *
- * www and non-www are summed per path — www 308s to the apex, so the two rows
- * describe one page.
+ * Two corrections to the first cut of this rule, both from the link-level pull
+ * that replaced the page-level one:
+ *
+ *   1. Not every link is worth a redirect. A link COUNTS here only when it is
+ *      dofollow and not flagged spam. These two profiles are roughly 95% PBN,
+ *      so a raw referring-domain count would block a legitimate prune every
+ *      time a spam network drops a link on a page — which, on this corpus,
+ *      is continuous. Of the seven rescued pages only two hold a link that
+ *      counts: kaleidico.com -> the real-time-lead-team page, and
+ *      ethanolle.com -> the modern-b2c-sales-funnel page.
+ *   2. Referring domains are counted DISTINCT across apex and www. The
+ *      page-level pull summed those two rows, which reported the single
+ *      ethanolle.com link as two referring domains.
  */
 const backlinkFile = JSON.parse(
   readFileSync(join(DIR, "backlinks-2026-08-01.json"), "utf8")
 );
 
-const refdomainsByUrl = (() => {
+const linksByPath = (() => {
   const out = {};
-  for (const [host, entries] of Object.entries(backlinkFile)) {
-    if (host.startsWith("_")) continue; // provenance keys
-    for (const { url, refdomains } of entries) {
-      const key = url.replace("://www.", "://").replace(/\/$/, "");
-      out[key] = (out[key] ?? 0) + refdomains;
+  for (const entries of Object.values(backlinkFile.links)) {
+    for (const link of entries) {
+      (out[link.path] ??= []).push(link);
     }
   }
   return out;
 })();
 
-/** Referring domains pointing at a source URL, www and apex combined. */
-const refdomains = (url) => refdomainsByUrl[url.replace(/\/$/, "")] ?? 0;
+const distinct = (links) => new Set(links.map((l) => l.from)).size;
+
+/** Distinct referring domains pointing at a source URL, apex and www combined. */
+const refdomains = (url) => {
+  const p = path(url);
+  if (p === "/") return backlinkFile.homepages[new URL(url).hostname.replace(/^www\./, "")]?.refdomains ?? 0;
+  return distinct(linksByPath[p] ?? []);
+};
+
+/**
+ * Referring domains whose link is dofollow and not flagged spam. This is the
+ * count the prune assertion keys on — see the assertion at the bottom.
+ */
+const qualifyingRefdomains = (url) => {
+  const p = path(url);
+  if (p === "/") return backlinkFile.homepages[new URL(url).hostname.replace(/^www\./, "")]?.qualifying ?? 0;
+  return distinct((linksByPath[p] ?? []).filter((l) => l.dofollow && !l.spam));
+};
 
 /**
  * Zero impressions only means "dead" if the page had a fair chance to be
@@ -235,11 +261,11 @@ const EXPLICIT = {
  * 404 and passes little. A bad destination is not better than a 404; it is the
  * same outcome with more clutter.
  *
- * Five of these are direct subject matches. The last two are weaker and are
- * marked so: the target site has no B2C-funnel or B2B-vs-B2C equivalent,
- * because it is a B2C-only property. They redirect to the site's canonical
- * multi-touch consumer process, which is the nearest real page rather than a
- * hub. Worth an editorial second opinion before cutover.
+ * Six of these are direct subject matches. The last one is weaker and marked
+ * so: the target site has no B2B-vs-B2C equivalent, because it is a B2C-only
+ * property. It redirects to the site's canonical multi-touch consumer process,
+ * which is the nearest real page rather than a hub — and its only inbound link
+ * is nofollow and spam-flagged, so nothing rides on the destination either way.
  */
 const LINKED_PRUNE_RESCUE = {
   // Direct subject matches.
@@ -263,12 +289,15 @@ const LINKED_PRUNE_RESCUE = {
     to: "/blog/scaling-aged-lead-operation-solo-agent-to-team",
     why: "building out a lead-handling team — same subject",
   },
-  // Weaker matches — no B2C-funnel equivalent exists on a B2C-only site.
+  // The anchor context decides this one. The referring article
+  // (ethanolle.com/pipeline-de-vente/, DR 31, dofollow) cites the page for its
+  // conversion-rate benchmarks — "taux de conversion finaux autour de 5 % à
+  // 15 %" — not for its cadence. Send it where those benchmarks now live.
   "/sales-process/the-modern-b2c-sales-funnel": {
-    to: "/guides/7-day-aged-lead-follow-up-cadence",
-    why: "nearest real page: the site's canonical structured multi-touch consumer process. Weak match — review before cutover",
-    weak: true,
+    to: "/blog/aged-lead-conversion-rates-by-industry-data-benchmarks",
+    why: "the referring article cites this page for conversion-rate benchmarks — same subject as the destination",
   },
+  // Weaker match — no B2B-vs-B2C equivalent exists on a B2C-only site.
   "/sales-process/b2c-vs-b2b-sales-process": {
     to: "/guides/7-day-aged-lead-follow-up-cadence",
     why: "nearest real page; the target site is B2C-only so the comparison has no equivalent. Weak match — review before cutover",
@@ -288,7 +317,14 @@ for (const url of readLines("htwl-sitemap.txt")) {
   const p = path(url);
   const { clicks, impr, pos } = perf(p);
   const slug = p.split("/").pop();
-  const base = { old_url: url, clicks, impr, pos: pos ?? "", refdomains: refdomains(url) };
+  const base = {
+    old_url: url,
+    clicks,
+    impr,
+    pos: pos ?? "",
+    refdomains: refdomains(url),
+    qualifying: qualifyingRefdomains(url),
+  };
 
   // Runs ahead of every prune branch: a page that would otherwise be dropped
   // but still holds inbound links gets a topic-matched destination instead.
@@ -299,7 +335,9 @@ for (const url of readLines("htwl-sitemap.txt")) {
       new_url: `${NEW_HOST}${rescue.to}`,
       action: "MERGE",
       risk: rescue.weak ? "medium" : "low",
-      notes: `pruned but holds ${base.refdomains} referring domain(s) — rescued: ${rescue.why}`,
+      notes:
+        `pruned but holds ${base.refdomains} referring domain(s), ` +
+        `${base.qualifying} dofollow and not spam — rescued: ${rescue.why}`,
     });
     continue;
   }
@@ -420,6 +458,7 @@ for (const url of readLines("alsales-sitemap.txt")) {
     impr: "",
     pos: "",
     refdomains: refdomains(url),
+    qualifying: qualifyingRefdomains(url),
     risk: "low",
     notes: "",
   });
@@ -427,28 +466,33 @@ for (const url of readLines("alsales-sitemap.txt")) {
 
 // ------------------------------------------------------------------------ emit
 /**
- * No pruned page may still hold inbound links. A PRUNE row emits no
+ * No pruned page may still hold a link worth keeping. A PRUNE row emits no
  * destination and 404s at cutover, so this is the check that stops the
  * generator from silently throwing away link equity — add a
  * LINKED_PRUNE_RESCUE entry, or deliberately drop the links and say so here.
+ *
+ * It keys on QUALIFYING referring domains — dofollow and not spam-flagged —
+ * not on the raw count. Both profiles are roughly 95% PBN, so gating on the
+ * raw count means a spam network can veto any prune it happens to have linked
+ * to, and on this corpus it would do that continuously.
  *
  * This fails the build rather than warning. A warning in a script nobody
  * watches is how the first seven got this far.
  */
 const droppedWithLinks = rows.filter(
-  (r) => r.action === "PRUNE" && Number(r.refdomains) > 0
+  (r) => r.action === "PRUNE" && Number(r.qualifying) > 0
 );
 if (droppedWithLinks.length) {
   const detail = droppedWithLinks
-    .map((r) => `  ${r.refdomains} refdomain(s)  ${r.old_url}`)
+    .map((r) => `  ${r.qualifying} qualifying of ${r.refdomains} refdomain(s)  ${r.old_url}`)
     .join("\n");
   throw new Error(
-    `${droppedWithLinks.length} PRUNE row(s) still hold live referring domains and would 404 at cutover:\n${detail}\n` +
+    `${droppedWithLinks.length} PRUNE row(s) still hold dofollow, non-spam referring domains and would 404 at cutover:\n${detail}\n` +
       `Give each a topic-matched destination in LINKED_PRUNE_RESCUE, or accept the loss explicitly.`
   );
 }
 
-const COLS = ["old_url", "new_url", "action", "risk", "clicks", "impr", "pos", "refdomains", "notes"];
+const COLS = ["old_url", "new_url", "action", "risk", "clicks", "impr", "pos", "refdomains", "qualifying", "notes"];
 const esc = (v) => {
   const s = String(v ?? "");
   return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
