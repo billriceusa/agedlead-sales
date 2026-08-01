@@ -19,7 +19,8 @@ export const BILL_RICE_URL = "https://billrice.com";
 export const BILL_RICE_NAME = "Bill Rice";
 
 /**
- * Identity profiles only — accounts that ARE Bill Rice. Verified 2026-07-29.
+ * Identity profiles only — accounts that ARE Bill Rice. Entries 1-5 verified
+ * 2026-07-29; substack.com/@billrice verified and added 2026-07-31.
  *
  * This site previously listed howtoworkleads.com/resources/about and
  * kaleidico.com/bill-rice/ here. Those are *pages about* Bill on sites he is
@@ -32,6 +33,7 @@ export const BILL_RICE_SAME_AS = [
   "https://x.com/billrice",
   "https://www.youtube.com/@billricestrategy",
   "https://medium.com/@billrice",
+  "https://substack.com/@billrice",
 ] as const;
 
 /** The reference node this site emits in place of a local Person description. */
