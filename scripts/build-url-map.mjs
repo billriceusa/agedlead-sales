@@ -449,18 +449,61 @@ for (const url of readLines("htwl-sitemap.txt")) {
 
 // --------------------------------------------------------------- agedleadsales
 // Target site: everything keeps its path, only the host changes.
-for (const url of readLines("alsales-sitemap.txt")) {
+//
+// Sourced from the sitemap UNION the GSC export UNION the backlink pull, not
+// the sitemap alone. This file documents itself as "every live URL across both
+// sites" and the Phase 4 verifier probes exactly these rows — so a URL missing
+// here is a URL the cutover gate never checks. 24 pages that GSC says earn
+// impressions are absent from the sitemap, and the sitemap alone would have
+// left the gate passing without ever looking at them.
+//
+// None of them is at risk: the host swap is a wildcard 301, so they carry
+// across whether or not they have a row. This is a verification-coverage fix,
+// not a traffic fix, and the notes column says which source found each row.
+const alsalesRows = new Map();
+const addAlsales = (url, source) => {
+  const p = path(url);
+  if (alsalesRows.has(p)) return;
+  alsalesRows.set(p, { url, source });
+};
+
+for (const url of readLines("alsales-sitemap.txt")) addAlsales(url, "sitemap");
+
+// GSC lists apex and www separately; both describe one page, and www 308s.
+const alsalesGscImpr = {};
+for (const line of readLines("alsales-gsc-pages-2026-07-29.csv").slice(1)) {
+  const [rawUrl, clicks, impr] = line.split(",");
+  if (!rawUrl?.startsWith("http")) continue;
+  const url = rawUrl.replace("://www.", "://");
+  const p = path(url);
+  const prev = alsalesGscImpr[p] ?? { clicks: 0, impr: 0 };
+  alsalesGscImpr[p] = {
+    clicks: prev.clicks + Number(clicks || 0),
+    impr: prev.impr + Number(impr || 0),
+  };
+  addAlsales(url, "gsc");
+}
+
+for (const link of backlinkFile.links["agedleadsales.com"]) {
+  addAlsales(`https://agedleadsales.com${link.path}`, "backlinks");
+}
+
+for (const [p, { url, source }] of alsalesRows) {
+  const { clicks, impr } = alsalesGscImpr[p] ?? { clicks: "", impr: "" };
   add({
     old_url: url,
-    new_url: `${NEW_HOST}${path(url)}`,
+    new_url: `${NEW_HOST}${p}`,
     action: "REHOST",
-    clicks: "",
-    impr: "",
+    clicks,
+    impr,
     pos: "",
     refdomains: refdomains(url),
     qualifying: qualifyingRefdomains(url),
     risk: "low",
-    notes: "",
+    notes:
+      source === "sitemap"
+        ? ""
+        : `not in the agedleadsales sitemap — found via ${source}; carried by the wildcard host redirect, and now inside the Phase 4 probe set`,
   });
 }
 
