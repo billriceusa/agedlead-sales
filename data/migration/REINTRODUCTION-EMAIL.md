@@ -3,151 +3,214 @@
 One-time broadcast. Goes out **before** normal sending resumes on the new domain,
 and before any lifecycle or course email fires from it.
 
-## Why this exists
+## The list is 2,435, and 90% of it never subscribed to a newsletter
 
-Nobody on either list subscribed to "Work Aged Leads." They subscribed to Aged
-Lead Sales or How To Work Leads. The moment sending moves, a merged list receives
-mail from an unfamiliar brand at an unfamiliar domain — which reads as a cold
-send even though every address on it is opted in.
+Measured against the Resend API on 2026-08-01, after Bill's decision to fold the
+ALS programs into one list:
 
-That matters more than usual here because a brand-new sending domain has no
-reputation to spend. Spam complaints on the first send are what decide inbox
-placement for every send after it. The fix is editorial, not technical: say who
-this is in the from-name, the subject line, and the first sentence.
+| Audience | Total | Sendable | Unsub |
+|---|---:|---:|---:|
+| `workagedleads.com` — merged newsletter | 250 | 218 | 32 |
+| `ALS Aged-Lead Buyers — Purchasers` | 1,029 | 1,023 | 6 |
+| `ALS Aged-Lead Buyers — Inquiries` | 1,245 | 1,236 | 9 |
+| `ALS Store Self-Serve — Inquiries` | 31 | 31 | 0 |
+| **One list, deduplicated** | **2,435** | **2,388** | **47** |
 
-The lists are small, which helps. The plan records the agedleadsales audience at
-**216 contacts, 32 unsubscribed** (Phase 0 item 4). At a few hundred addresses,
-domain warming is a much smaller problem than it would be at scale — the
-recognition problem is the real one.
+The three ALS programs hold 2,205 distinct addresses. Only **20** of them are
+already on the newsletter list, so folding them in adds **2,185 net new people**
+— and it means **90% of the one list has no newsletter relationship at all.**
+Their relationship is with Aged Lead Store: they bought leads, or asked about
+buying them, and opted into the newsletter during that process.
+
+That is the fact the copy has to be built around, and it is a different fact from
+the one this file was written against yesterday.
+
+> **Correction.** An earlier version of this file said "the lists are small,
+> which helps — at a couple hundred addresses, domain warming is a much smaller
+> problem than recognition." That was true of 250. It is not true of 2,388
+> sendable on a domain with no sending history. See **Staging** below.
+
+## Why this send exists
+
+Nobody on this list subscribed to "Work Aged Leads." The newsletter minority
+subscribed to Aged Lead Sales or How To Work Leads. The buyer majority
+subscribed at an Aged Lead Store checkout or inquiry form and has, in most cases,
+never seen either site.
+
+So the first send from the new domain reaches a list where almost everyone has
+consented and almost nobody will recognise the sender. Consent is not
+recognition, and it is recognition that decides whether someone hits report-spam.
+A new sending domain has no reputation to spend, and complaints on the first send
+set inbox placement for every send after it.
+
+The fix is editorial: name the relationship the reader actually has, in the
+from-name, the subject line, and the first two sentences.
 
 ## Audiences
 
 | Audience | ID |
 |---|---|
-| `workagedleads.com` (destination, created 2026-08-01) | `43fe6675-cc8f-44f3-9c1c-70a094b2d47d` |
-| `agedleadsales-newsletter` (source) | `d579bf1f-0467-45a3-ad6b-52460920a903` |
-| `howtoworkleads-newsletter` (source) | `8a35228e-149f-4b15-8e24-26a24e3d6e98` |
+| `workagedleads.com` (destination) | `43fe6675-cc8f-44f3-9c1c-70a094b2d47d` |
+| `agedleadsales-newsletter` (merged in) | `d579bf1f-0467-45a3-ad6b-52460920a903` |
+| `howtoworkleads-newsletter` (merged in) | `8a35228e-149f-4b15-8e24-26a24e3d6e98` |
+| `ALS Aged-Lead Buyers — Purchasers` | `9657093e-99fe-4a34-9846-946be85b64f7` |
+| `ALS Aged-Lead Buyers — Inquiries` | `83613b84-c1fd-4362-9dd1-8914533e30f8` |
+| `ALS Store Self-Serve — Inquiries` | `74476de7-677f-4686-bfb9-d6fe66a5d855` |
 
 > **Editor note — for Builder.** The Resend account holds audiences for several
-> other properties. The merge must target exactly these three IDs. Nothing else
-> in that account is in scope for this migration.
+> other properties. The migration should touch exactly these six IDs.
 
-> **Editor note — for Bill.** Phase 0 item 4 exports only the agedleadsales
-> audience. There are two source lists. The howtoworkleads one is unexported and
-> was not recorded anywhere until now. Both are the rollback backstop.
+## Headers
+
+```
+From:      Bill Rice <bill@workagedleads.com>
+Reply-To:  bill@billricestrategy.com
+```
+
+The person is the continuity. Every one of these audiences has had mail from
+Bill Rice; none has seen "Work Aged Leads."
+
+`bill@workagedleads.com` is send-only. Replies route to
+`bill@billricestrategy.com`, which is the inbox that already receives the
+`/contact` form. No new mailbox.
+
+> **Editor note.** Set the Reply-To explicitly on the broadcast. If it is left
+> unset, replies go to an address nobody monitors — which is the same failure the
+> trust pages had until PR #52.
+
+## Staging
+
+Do not send 2,388 in one shot from a domain with no history. Split by audience,
+oldest relationship first, and stop if complaints move:
+
+1. **Day 1 — the newsletter minority, 218 sendable.** These are the people most
+   likely to recognise the sender. They are the warm-up and the canary.
+2. **Day 3 — ALS Purchasers, ~1,023.** People who actually bought. Strongest
+   relationship on the buyer side.
+3. **Day 5 — ALS Inquiries + Self-Serve, the remainder.** Weakest relationship,
+   sent last, once the domain has two clean sends behind it.
+
+Between each stage, check complaint rate and hard bounces. **A complaint rate at
+or above 0.1% is the stop signal** — that is Google's published threshold, and
+crossing it on a new domain is expensive to undo. If it trips, stop and reassess
+rather than continuing on schedule.
+
+Nothing else — not the weekly newsletter, not the flagship course, not the ALS
+lifecycle — fires from the new domain until all three stages are clean.
 
 ## Sequence
 
-1. Verify workagedleads.com as a Resend sending domain. Do not proceed until it
-   verifies.
-2. Merge both source audiences into `43fe6675-…`. Carry the unsubscribed flag
-   across — anyone who opted out of either old list must arrive opted out. A
-   merge that resets suppression is the one mistake here that cannot be undone.
-3. De-duplicate. Subscribers on both lists exist and must not receive two copies.
-4. Send this broadcast. Nothing else.
-5. Watch complaints and bounces for 48 hours before resuming the weekly
-   newsletter, the flagship course, or the ALS lifecycle from the new domain.
-6. Only then repoint `RESEND_AUDIENCE_ID` and `RESEND_FROM_EMAIL`.
-
-## From name
-
-```
-Bill Rice <bill@workagedleads.com>
-```
-
-The person is the continuity. Both old lists received mail from Bill Rice;
-neither has ever seen "Work Aged Leads." Lead with the name that is already
-recognised.
-
-> **Editor note.** `bill@workagedleads.com` has to exist and accept replies
-> before this sends. The CTA below is a reply. It is also the contact address
-> now published on `/methodology` and `/affiliate-disclosure`.
+1. Verify `workagedleads.com` as a Resend sending domain. (Done —
+   `435a8cd1-0e4e-41c9-8227-1650e5e253f2`.)
+2. Merge all source audiences into `43fe6675-…`. **Carry the unsubscribed flag
+   across** — anyone who opted out of any source list must arrive opted out. A
+   merge that resets suppression is a re-subscribe, and it is the one error here
+   that cannot be undone.
+3. De-duplicate. 20 addresses sit on both the newsletter and an ALS program.
+4. Send this broadcast in the three stages above. Nothing else.
+5. Watch complaints and bounces for 48 hours after the final stage.
+6. Only then repoint `RESEND_AUDIENCE_ID` and `RESEND_FROM_EMAIL` and let the
+   other programs resume.
 
 ## Subject line
 
 **Primary:**
 
 ```
+Where your aged-lead emails come from now
+```
+
+**Alternate, if you want the brands named:**
+
+```
 Aged Lead Sales and How To Work Leads are now one thing
 ```
 
-**Alternate, if you want the new name in the subject:**
-
-```
-Same newsletter, new name: Work Aged Leads
-```
-
-I recommend the primary. It names both old brands, which is the entire job of
-this subject line — a reader scanning an inbox has to recognise something. The
-alternate leads with a name nobody knows yet and spends the recognition on the
-back half.
+I recommend the primary now that the list composition is known. The alternate
+names two brands that 90% of this list has never interacted with — it was the
+right subject when the list was 250 newsletter subscribers and it is the wrong
+one at 2,435. The primary works for a buyer and for a subscriber equally, because
+"aged-lead emails" is the thing all of them actually signed up for.
 
 ## Preview text
 
 ```
-Two sites merged. Same author, same archive, one address.
+Two sites merged into one. Same person, same archive, new address.
 ```
 
 ## Copy
 
 ---
 
-**Two things changed. One didn't.**
+**This is Bill Rice. The address changed; nothing else did.**
 
-Aged Lead Sales and How To Work Leads are now a single site: **Work Aged Leads**.
-Same author, same archive, one address.
+You are getting this because you either subscribed to one of my newsletters —
+Aged Lead Sales or How To Work Leads — or you opted in while buying or asking
+about leads at Aged Lead Store. Either way, this is the same person you heard
+from before, at a new address.
 
-If you signed up at How To Work Leads, you came for the sales side — scripts,
-cadences, CRM setup, the work of reaching someone weeks after they filled out a
-form. If you signed up at Aged Lead Sales, you came for the buying side — what
-leads actually cost, which providers sell them, and how the vendors compare.
+Here is what changed. Aged Lead Sales and How To Work Leads were two separate
+sites. One covered working leads: scripts, cadences, CRM setup, the work of
+reaching someone weeks after they filled out a form. The other covered buying
+them: what leads cost, which providers sell them, how the vendors compare.
 
-Both keep running. That is the reason to merge them rather than pick one. You
-can't judge what a lead is worth without knowing what it takes to work one, and
-you can't build a cadence without knowing what you paid. Keeping the two apart
-meant visiting two sites to answer one question.
+They are now one site, **Work Aged Leads**, and every article from both is at
+that one address. Old links redirect.
+
+The split never matched how the job works. You can't judge what a lead is worth
+without knowing what it takes to work one, and you can't build a cadence without
+knowing what you paid. Answering one question meant visiting two sites.
 
 **What this means for you:**
 
-- Nothing to do. You are on one list now instead of two. If you were on both,
-  the duplicates stop.
 - Mail now comes from workagedleads.com. Worth adding to your contacts so it
   keeps landing in your inbox.
-- Everything published on either site is at the new address. Old links redirect.
+- If you were on more than one of these lists, the duplicates stop.
+- Nothing else changes.
 
-**Hit reply and tell me what you're working on** — which vertical, and where your
-follow-up is breaking down. That is what decides what I write next.
+[**Start here →**]
 
-*Would rather not hear from me at the new address? Unsubscribe here. It takes one
-click and it is better for both of us than sending me to spam.*
+*Not what you signed up for? Unsubscribe — one click, and it is better for both
+of us than sending this to spam.*
 
 ---
 
+**CTA destination:** `/start-here` — "Start Here — Your Complete Guide to Working
+Aged Leads." It is the orientation page, which is the right landing for a list
+where most people have never seen the site.
+
 ## Notes on the copy
 
-**One job, one CTA.** The job is recognition: answer "who is this and why is it
-in my inbox" in the first two lines. The CTA is a reply.
+**One job, one CTA.** The job is recognition. The first line is the sender's
+name, not the new brand — for 90% of this list the brand is the unfamiliar part
+and the person is not.
 
-**Why a reply and not a link to the site.** On a domain with no sending history,
-replies are the strongest positive signal available for inbox placement, and this
-is the one send where the whole list is being asked to re-recognise the sender.
-A click-through to the new site would be the obvious CTA and it is the weaker
-one. Swap it if you disagree — it is a two-line change.
+**The second paragraph names the reason they are receiving it**, covering both
+origins in one sentence. Telling someone why an email is in their inbox is the
+single most effective anti-complaint move available, and on a list this
+heterogeneous it cannot be left implicit.
 
-**Why the unsubscribe line is prominent and not a CTA.** An easy visible exit
-converts a would-be spam complaint into a clean unsubscribe. On a new sending
-domain that trade is strongly in your favour. It sits below the CTA and in
-smaller type so it does not compete for the primary action.
+**The CTA is a link, not a reply.** Bill's call, and it is the right one: there
+is no monitored `bill@workagedleads.com` and no reason to create one for
+occasional replies. An earlier version of this file argued for a reply CTA on
+inbox-placement grounds. Superseded.
+
+**The unsubscribe line is prominent and is deliberately not the CTA.** An easy
+visible exit converts a would-be spam complaint into a clean unsubscribe. With
+2,185 people who have never seen this brand, that trade is worth more here than
+it would be on a warm list. It sits below the CTA and in smaller type.
 
 **What is deliberately not in here.** No subscriber counts, no "you asked for
-this," no claim about how often the newsletter goes out. Every factual claim in
-the copy is one I could verify: the two sites merged, both archives are at the
-new address, old links redirect, the two lists are becoming one.
+this," no claim about send frequency, no first-person claim about Bill reading
+replies. Every factual statement is one that can be verified: the two sites
+merged, both archives are at the new address, old links redirect, the lists are
+becoming one.
 
 ## HTML
 
-Matches the house template in `app/api/newsletter/route.ts` — 600px table, the
-same gradient header, same type scale. Paste into a Resend broadcast.
+Matches the house template in `app/api/newsletter/route.ts` — 600px table, same
+gradient header, same type scale. Paste into a Resend broadcast and set the
+Reply-To header.
 
 ```html
 <!DOCTYPE html>
@@ -166,19 +229,22 @@ same gradient header, same type scale. Paste into a Resend broadcast.
           </tr>
           <tr>
             <td style="padding: 32px;">
-              <p style="margin: 0 0 20px 0; font-size: 18px; font-weight: 700; color: #111827;">Two things changed. One didn&rsquo;t.</p>
+              <p style="margin: 0 0 20px 0; font-size: 18px; font-weight: 700; color: #111827;">This is Bill Rice. The address changed; nothing else did.</p>
 
               <p style="margin: 0 0 16px 0; font-size: 15px; line-height: 1.6; color: #374151;">
-                Aged Lead Sales and How To Work Leads are now a single site:
-                <strong style="color: #111827;">Work Aged Leads</strong>. Same author, same archive, one address.
+                You are getting this because you either subscribed to one of my newsletters &mdash; Aged Lead Sales or How To Work Leads &mdash; or you opted in while buying or asking about leads at Aged Lead Store. Either way, this is the same person you heard from before, at a new address.
               </p>
 
               <p style="margin: 0 0 16px 0; font-size: 15px; line-height: 1.6; color: #374151;">
-                If you signed up at How To Work Leads, you came for the sales side &mdash; scripts, cadences, CRM setup, the work of reaching someone weeks after they filled out a form. If you signed up at Aged Lead Sales, you came for the buying side &mdash; what leads actually cost, which providers sell them, and how the vendors compare.
+                Here is what changed. Aged Lead Sales and How To Work Leads were two separate sites. One covered working leads: scripts, cadences, CRM setup, the work of reaching someone weeks after they filled out a form. The other covered buying them: what leads cost, which providers sell them, how the vendors compare.
+              </p>
+
+              <p style="margin: 0 0 16px 0; font-size: 15px; line-height: 1.6; color: #374151;">
+                They are now one site, <strong style="color: #111827;">Work Aged Leads</strong>, and every article from both is at that one address. Old links redirect.
               </p>
 
               <p style="margin: 0 0 24px 0; font-size: 15px; line-height: 1.6; color: #374151;">
-                Both keep running. That is the reason to merge them rather than pick one. You can&rsquo;t judge what a lead is worth without knowing what it takes to work one, and you can&rsquo;t build a cadence without knowing what you paid. Keeping the two apart meant visiting two sites to answer one question.
+                The split never matched how the job works. You can&rsquo;t judge what a lead is worth without knowing what it takes to work one, and you can&rsquo;t build a cadence without knowing what you paid. Answering one question meant visiting two sites.
               </p>
 
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color: #f9fafb; border-left: 4px solid #2563eb; border-radius: 6px;">
@@ -186,23 +252,27 @@ same gradient header, same type scale. Paste into a Resend broadcast.
                   <td style="padding: 20px 24px;">
                     <p style="margin: 0 0 12px 0; font-size: 14px; font-weight: 700; color: #111827;">What this means for you</p>
                     <p style="margin: 0 0 10px 0; font-size: 14px; line-height: 1.6; color: #374151;">
-                      <strong>Nothing to do.</strong> You are on one list now instead of two. If you were on both, the duplicates stop.
-                    </p>
-                    <p style="margin: 0 0 10px 0; font-size: 14px; line-height: 1.6; color: #374151;">
                       <strong>Mail now comes from workagedleads.com.</strong> Worth adding to your contacts so it keeps landing in your inbox.
                     </p>
+                    <p style="margin: 0 0 10px 0; font-size: 14px; line-height: 1.6; color: #374151;">
+                      <strong>If you were on more than one of these lists, the duplicates stop.</strong>
+                    </p>
                     <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #374151;">
-                      <strong>Everything published on either site is at the new address.</strong> Old links redirect.
+                      <strong>Nothing else changes.</strong>
                     </p>
                   </td>
                 </tr>
               </table>
 
-              <p style="margin: 24px 0 0 0; font-size: 15px; line-height: 1.6; color: #374151;">
-                <strong style="color: #111827;">Hit reply and tell me what you&rsquo;re working on</strong> &mdash; which vertical, and where your follow-up is breaking down. That is what decides what I write next.
-              </p>
+              <table role="presentation" cellpadding="0" cellspacing="0" style="margin: 28px 0 0 0;">
+                <tr>
+                  <td style="border-radius: 6px; background-color: #2563eb;">
+                    <a href="https://workagedleads.com/start-here" style="display: inline-block; padding: 13px 32px; color: #ffffff; text-decoration: none; font-weight: 600; font-size: 15px;">Start here &rarr;</a>
+                  </td>
+                </tr>
+              </table>
 
-              <p style="margin: 24px 0 0 0; font-size: 15px; line-height: 1.6; color: #111827;">
+              <p style="margin: 28px 0 0 0; font-size: 15px; line-height: 1.6; color: #111827;">
                 &mdash; Bill
               </p>
             </td>
@@ -210,9 +280,9 @@ same gradient header, same type scale. Paste into a Resend broadcast.
           <tr>
             <td style="padding: 0 32px 28px;">
               <p style="margin: 0; font-size: 12px; line-height: 1.6; color: #6b7280; font-style: italic;">
-                Would rather not hear from me at the new address?
-                <a href="{{{RESEND_UNSUBSCRIBE_URL}}}" style="color: #6b7280;">Unsubscribe here</a>.
-                It takes one click and it is better for both of us than sending me to spam.
+                Not what you signed up for?
+                <a href="{{{RESEND_UNSUBSCRIBE_URL}}}" style="color: #6b7280;">Unsubscribe</a>
+                &mdash; one click, and it is better for both of us than sending this to spam.
               </p>
             </td>
           </tr>
@@ -225,6 +295,6 @@ same gradient header, same type scale. Paste into a Resend broadcast.
 ```
 
 > **Editor note.** `{{{RESEND_UNSUBSCRIBE_URL}}}` is Resend's broadcast
-> unsubscribe merge tag. Confirm it renders in a test send before the real one —
-> a broken unsubscribe on this particular email is the worst possible version of
-> this mistake.
+> unsubscribe merge tag. Confirm it renders in a test send before the real one.
+> On this particular email, to this particular list, a broken unsubscribe is the
+> worst available outcome.
