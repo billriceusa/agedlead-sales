@@ -287,7 +287,11 @@ async function main() {
   }
 
   const { contacts, stats } = mergeAudiences(sources, suppression);
-  const actions = planWrites(contacts, targetContacts);
+  const actions = planWrites(
+    contacts,
+    targetContacts,
+    suppression.flatMap((s) => s.emails),
+  );
   const summary = summarizePlan(actions);
 
   console.log(`Target: ${target.name} (${target.id}) — ${targetContacts.length} contacts today\n`);

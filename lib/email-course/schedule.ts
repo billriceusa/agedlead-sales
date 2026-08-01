@@ -1,6 +1,7 @@
 import { Resend } from "resend";
 import type { CourseModule, EmailContext, Vertical } from "./types";
 import { FROM_EMAIL } from "./shared";
+import { REPLY_TO_EMAIL } from "@/lib/resend";
 import { mortgageCourse } from "./mortgage";
 import { insuranceCourse } from "./insurance";
 import { homeServicesCourse } from "./home-services";
@@ -61,6 +62,7 @@ export async function scheduleCourse(
 
       const basePayload = {
         from: fromEmail,
+        replyTo: REPLY_TO_EMAIL,
         to: ctx.recipientEmail,
         subject: email.subject,
         html,

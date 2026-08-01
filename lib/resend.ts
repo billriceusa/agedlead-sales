@@ -1,5 +1,18 @@
 const RESEND_BASE = "https://api.resend.com";
 
+/**
+ * Where replies to subscriber mail go.
+ *
+ * The site sends from its own domain but nobody monitors an inbox there, so
+ * every reply is routed to the address Bill already reads. The ALS lifecycle
+ * program has done this since June (`ALS_LIFECYCLE_REPLY_TO` in lib/als/config)
+ * and this makes it the rule for the rest of the site's mail rather than a
+ * special case. Copy should not solicit replies, but a reply that arrives
+ * anyway has to land somewhere real.
+ */
+export const REPLY_TO_EMAIL =
+  process.env.RESEND_REPLY_TO || "bill@billricestrategy.com";
+
 export interface ResendBroadcast {
   id: string;
   name: string;

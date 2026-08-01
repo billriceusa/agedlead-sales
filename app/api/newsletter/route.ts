@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { isGoodOrigin, isHoneypotFilled } from "@/lib/anti-spam";
+import { REPLY_TO_EMAIL } from "@/lib/resend";
 
 const LEAD_MAGNET_DOWNLOADS: Record<string, { name: string; url: string }> = {
   "7-day-cadence": {
@@ -57,7 +58,7 @@ export async function POST(request: Request) {
     const apiKey = process.env.RESEND_API_KEY;
     const audienceId = process.env.RESEND_AUDIENCE_ID;
     const fromEmail =
-      process.env.RESEND_FROM_EMAIL || "Work Aged Leads <noreply@agedleadsales.com>";
+      process.env.RESEND_FROM_EMAIL || "Work Aged Leads <bill@workagedleads.com>";
 
     if (!apiKey) {
       console.warn("[Newsletter] RESEND_API_KEY not set");
@@ -155,6 +156,7 @@ export async function POST(request: Request) {
     try {
       await resend.emails.send({
         from: fromEmail,
+        replyTo: REPLY_TO_EMAIL,
         to: email,
         subject,
         html,

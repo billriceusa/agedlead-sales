@@ -244,6 +244,46 @@ describe("planWrites", () => {
     );
   });
 
+  test("suppresses a target contact that no source still carries", () => {
+    // ALS drops addresses that fail verification, so a person can sit on the
+    // target forever while appearing on no source. An opt-out still has to reach
+    // them.
+    const actions = planWrites(
+      [],
+      [
+        { id: "t1", email: "dropped@y.com", unsubscribed: false },
+        { id: "t2", email: "dropped-and-fine@y.com", unsubscribed: false },
+      ],
+      ["dropped@y.com"],
+    );
+
+    assert.equal(actions.length, 1);
+    assert.equal(actions[0].kind, "suppress");
+    assert.equal(actions[0].contact.email, "dropped@y.com");
+  });
+
+  test("the target-only pass never creates and never resubscribes", () => {
+    const actions = planWrites(
+      [],
+      [
+        { id: "t1", email: "already-out@y.com", unsubscribed: true },
+        { id: "t2", email: "still-sendable@y.com", unsubscribed: false },
+      ],
+      ["already-out@y.com", "still-sendable@y.com", "not-on-target@y.com"],
+    );
+
+    assert.equal(
+      actions.filter((a) => a.kind === "create").length,
+      0,
+      "a suppression list must never add an address to the target",
+    );
+    assert.deepEqual(
+      actions.map((a) => a.contact.email),
+      ["still-sendable@y.com"],
+      "an already-suppressed target row needs no write",
+    );
+  });
+
   test("does not emit a suppress it cannot execute", () => {
     const actions = planWrites(
       mergeAudiences([
