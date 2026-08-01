@@ -1,7 +1,7 @@
 import type { EmailContext, Vertical } from "./types";
 
 export const SITE_URL = "https://www.agedleadsales.com";
-export const FROM_EMAIL = "Bill Rice <bill@agedleadsales.com>";
+export const FROM_EMAIL = "Bill Rice <bill@workagedleads.com>";
 
 export interface ShellOptions {
   bodyHtml: string;

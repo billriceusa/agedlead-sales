@@ -249,10 +249,19 @@ export type WriteAction =
  * is someone who unsubscribed from the NEW list after the last run, and the
  * answer is to leave them alone. Re-adding them as subscribed is the one
  * mistake in this migration that cannot be walked back.
+ *
+ * `suppressedEmails` is the union of every external opt-out list, and it is
+ * checked against the TARGET as well as against the merged set. Source
+ * membership is not permanent — a contact can be dropped from a source audience
+ * (ALS drops addresses that fail verification, for instance) while staying on
+ * the target forever. Without this pass, such a person could opt out in
+ * Postgres and stay sendable on the new list because no source still carried
+ * them. Measured on the first ALS run: 4 target contacts were on no source.
  */
 export function planWrites(
   merged: MergedContact[],
   targetContacts: ResendContactRow[],
+  suppressedEmails: Iterable<string> = [],
 ): WriteAction[] {
   const target = new Map<string, ResendContactRow>();
   for (const row of targetContacts) {
@@ -260,7 +269,13 @@ export function planWrites(
     if (email) target.set(email, row);
   }
 
-  return merged.map((contact): WriteAction => {
+  const suppressed = new Set<string>();
+  for (const raw of suppressedEmails) {
+    const email = normalizeEmail(raw);
+    if (email) suppressed.add(email);
+  }
+
+  const actions = merged.map((contact): WriteAction => {
     const existing = target.get(contact.email);
 
     if (!existing) return { kind: "create", contact };
@@ -286,6 +301,30 @@ export function planWrites(
 
     return { kind: "unchanged", contact, reason: "already present and subscribed" };
   });
+
+  // Second pass: target rows that no source still carries. Only ever suppresses.
+  const planned = new Set(merged.map((c) => c.email));
+  for (const [email, row] of target) {
+    if (planned.has(email) || row.unsubscribed || !suppressed.has(email)) continue;
+    const contact: MergedContact = {
+      email,
+      firstName: firstNonEmpty(row.first_name),
+      lastName: firstNonEmpty(row.last_name),
+      unsubscribed: true,
+      sources: [],
+    };
+    actions.push(
+      row.id
+        ? { kind: "suppress", contact, targetContactId: row.id }
+        : {
+            kind: "unchanged",
+            contact,
+            reason: "needs suppressing but the target row has no id",
+          },
+    );
+  }
+
+  return actions;
 }
 
 export function summarizePlan(actions: WriteAction[]): {

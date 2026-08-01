@@ -10,6 +10,7 @@ import {
 import { buildNewsletterHtml } from "@/lib/cron/newsletter-email";
 import { commitFilesToGitHub } from "@/lib/cron/git-commit";
 import { recordCronRun } from "@/lib/cron/heartbeat";
+import { REPLY_TO_EMAIL } from "@/lib/resend";
 
 export const maxDuration = 300;
 export const dynamic = "force-dynamic";
@@ -120,6 +121,7 @@ async function sendPreviewEmail(
 
   const { error } = await resend.emails.send({
     from: fromEmail,
+    replyTo: REPLY_TO_EMAIL,
     to: REVIEW_EMAIL,
     subject: `[PREVIEW] ${subject}`,
     html: previewHtml,
@@ -155,6 +157,7 @@ async function scheduleBroadcast(
     body: JSON.stringify({
       audience_id: audienceId,
       from: fromEmail,
+      reply_to: REPLY_TO_EMAIL,
       subject,
       html,
       name: `Weekly Newsletter — ${new Date().toISOString().split("T")[0]}`,
@@ -272,7 +275,7 @@ export async function GET(request: Request) {
   // ── Step 4: Send preview to Bill ─────────────────────────────
   const resendApiKey = process.env.RESEND_API_KEY;
   const fromEmail =
-    process.env.RESEND_FROM_EMAIL || "Work Aged Leads <noreply@agedleadsales.com>";
+    process.env.RESEND_FROM_EMAIL || "Work Aged Leads <bill@workagedleads.com>";
 
   if (resendApiKey) {
     const resend = new Resend(resendApiKey);
