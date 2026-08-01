@@ -141,11 +141,12 @@ export default function AffiliateDisclosurePage() {
             <h2>Questions</h2>
             <p>
               If you have questions about our affiliate relationships or believe
-              a disclosure is missing, contact us at{" "}
-              <a href="mailto:bill@workagedleads.com">
-                bill@workagedleads.com
+              a disclosure is missing, use the{" "}
+              <Link href="/contact">contact form</Link> or email{" "}
+              <a href="mailto:bill@billricestrategy.com">
+                bill@billricestrategy.com
               </a>
-              .
+              . Both reach Bill directly.
             </p>
           </div>
         </div>

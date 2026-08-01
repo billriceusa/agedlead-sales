@@ -293,11 +293,12 @@ export default function MethodologyPage() {
             <h2>Contact Us</h2>
             <p>
               Have questions about our methodology? Think a provider profile
-              needs updating? Reach out at{" "}
-              <a href="mailto:bill@workagedleads.com">
-                bill@workagedleads.com
+              needs updating? Use the <Link href="/contact">contact form</Link>{" "}
+              or email{" "}
+              <a href="mailto:bill@billricestrategy.com">
+                bill@billricestrategy.com
               </a>
-              .
+              . Both reach Bill directly.
             </p>
           </div>
         </div>
