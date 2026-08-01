@@ -158,8 +158,8 @@ export default function NewsletterPage() {
               platform for mortgage lead buyers. He owned and operated Velocity
               Lending (DTC mortgage lender, 2016-2018) and has personally
               worked millions of aged leads across insurance, mortgage, solar,
-              and home improvement. He founded Work Aged Leads as an
-              independent lead buying intelligence platform.
+              and home improvement. Work Aged Leads is where he publishes what
+              actually converts them — independent of any lead seller.
             </p>
             <Link
               href="/about"

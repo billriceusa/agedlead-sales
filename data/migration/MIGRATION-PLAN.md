@@ -98,6 +98,43 @@ consolidate and make one better site. Bigger, better and easier to maintain."*
 Harvest is authorized for all four, and the bar is improvement over the source,
 not transcription of it.
 
+**D20 — the editorial line. Answered 2026-08-01 by Bill: option B.**
+
+**Work Aged Leads is the operator's site. Its subject is working the lead, not
+buying it.** Buying content — the price index, the provider directory, the
+comparisons — stays, and becomes the on-ramp that brings a buyer in the door.
+
+The question existed because the merge created a contradiction nobody had
+resolved. The site's inherited positioning said one thing and its corpus said
+another:
+
+```
+tagline  The independent lead buying intelligence platform   (buying)
+corpus   71 working-side posts vs 28 buying-side             (2.5:1 working)
+```
+
+All 157 published posts classified: working the lead 71 (45%), buying it 28
+(18%), compliance 13 (8%), other 45 (29%).
+
+Three reasons B rather than A:
+
+1. **It is the layer a vendor structurally cannot occupy** — this plan's own
+   stated reason for the project. agedleadstore.com's incentive is to sell more
+   leads; it can never credibly say buy fewer and work them harder. A would put
+   this site in a fight with agedleadstore.com over a commercial vocabulary it
+   already ranks #1 for at KD 0–7.
+2. **It inverts the affiliate conflict.** Under A, "marketing director of a lead
+   vendor reviews lead vendors" is something `/affiliate-disclosure` has to
+   manage. Under B, the same fact is a credential.
+3. **The corpus already voted**, 71 to 28.
+
+**What this binds going forward.** Every new page leads with what the reader
+does after the lead is in their CRM; price and provider material supports that
+rather than fronting it. The vertical pages carry a working-side thesis specific
+to their vertical — life insurance is trigger-driven so the record ripens; home
+improvement is seasonal so you buy counter-seasonally — and the buying advice
+falls out of the thesis rather than the reverse.
+
 ---
 
 ## Architecture decision: rename in place, do not rebuild

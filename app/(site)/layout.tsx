@@ -24,7 +24,7 @@ const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "Work Aged Leads: Pricing, Provider Reviews & Playbooks",
+    default: "Work Aged Leads: Scripts, Cadences & What Leads Cost",
     // No brand suffix. Google sources the SERP site name from the WebSite /
     // Organization schema (both declare "Work Aged Leads"), so appending it here
     // was redundant — and its 18 chars pushed 212 of 246 page titles past the
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     template: "%s",
   },
   description:
-    "Buy aged leads the smart way. Compare 15+ lead providers, see real price benchmarks, and get free playbooks that turn cheap aged leads into closed deals.",
+    "You bought the leads. Now work them. Scripts, cadences and CRM systems built for data that is 30 to 365 days old — plus what leads cost and who sells them.",
   alternates: {
     canonical: baseUrl,
   },
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     url: baseUrl,
     images: [
       {
-        url: `/api/og?title=${encodeURIComponent("Work Aged Leads: Pricing, Provider Reviews & Playbooks")}`,
+        url: `/api/og?title=${encodeURIComponent("Work Aged Leads: Scripts, Cadences & What Leads Cost")}`,
         width: 1200,
         height: 630,
       },
