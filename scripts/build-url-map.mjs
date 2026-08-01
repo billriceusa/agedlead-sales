@@ -16,6 +16,7 @@
  *   - htwl-gsc-pages-2026-06-05.json   the prior window, retained so the prune
  *                             rule needs two observations rather than one
  *   - htwl-published-at.json  publish dates, for the new-content grace window
+ *   - backlinks-2026-08-01.json  live referring domains per URL, both sites
  *
  * Usage: node scripts/build-url-map.mjs
  */
@@ -56,6 +57,41 @@ const priorGsc = JSON.parse(
  * scripts/refresh-gsc-input.mjs.
  */
 const GSC_WINDOW_END = "2026-07-29";
+
+/**
+ * Live referring domains per URL, both sites (Ahrefs, 2026-08-01).
+ *
+ * Backlinks were not an input to this generator until 2026-08-01, and the
+ * omission had teeth: the prune rule keys on search impressions alone, and a
+ * page can hold links while earning no impressions at all. Seven pruned pages
+ * turned out to hold live referring domains — one of them from kaleidico.com
+ * at DR 38 — and a PRUNE row emits no destination, so each would have 404'd.
+ *
+ * The lesson is the same one /lead-order already taught: a URL's search
+ * metrics do not measure its inbound links. Check what points AT a page before
+ * deleting it.
+ *
+ * www and non-www are summed per path — www 308s to the apex, so the two rows
+ * describe one page.
+ */
+const backlinkFile = JSON.parse(
+  readFileSync(join(DIR, "backlinks-2026-08-01.json"), "utf8")
+);
+
+const refdomainsByUrl = (() => {
+  const out = {};
+  for (const [host, entries] of Object.entries(backlinkFile)) {
+    if (host.startsWith("_")) continue; // provenance keys
+    for (const { url, refdomains } of entries) {
+      const key = url.replace("://www.", "://").replace(/\/$/, "");
+      out[key] = (out[key] ?? 0) + refdomains;
+    }
+  }
+  return out;
+})();
+
+/** Referring domains pointing at a source URL, www and apex combined. */
+const refdomains = (url) => refdomainsByUrl[url.replace(/\/$/, "")] ?? 0;
 
 /**
  * Zero impressions only means "dead" if the page had a fair chance to be
@@ -188,6 +224,58 @@ const EXPLICIT = {
   "/sales-process": null,
 };
 
+/**
+ * Pruned pages that hold live referring domains, rescued with a topic-matched
+ * destination so the link is not thrown away at cutover.
+ *
+ * The plan's rule applies here and constrains what counts as a rescue: never
+ * redirect to the homepage or a generic hub. `/playbooks/7-day-aged-lead-
+ * follow-up-cadence` was 301'd into the generic `/playbook` once already and
+ * the equity was wasted — Google treats a topically unrelated 301 as a soft
+ * 404 and passes little. A bad destination is not better than a 404; it is the
+ * same outcome with more clutter.
+ *
+ * Five of these are direct subject matches. The last two are weaker and are
+ * marked so: the target site has no B2C-funnel or B2B-vs-B2C equivalent,
+ * because it is a B2C-only property. They redirect to the site's canonical
+ * multi-touch consumer process, which is the nearest real page rather than a
+ * hub. Worth an editorial second opinion before cutover.
+ */
+const LINKED_PRUNE_RESCUE = {
+  // Direct subject matches.
+  "/blog/aged-lead-email-drip-campaigns": {
+    to: "/blog/email-outreach-aged-leads-templates",
+    why: "email outreach to aged leads — same subject",
+  },
+  "/blog/aged-leads-dnc-compliance": {
+    to: "/blog/tcpa-compliance-calling-aged-leads",
+    why: "DNC obligations are TCPA obligations — same subject",
+  },
+  "/blog/right-way-to-use-ai-lead-followup": {
+    to: "/blog/ai-guardrails-aged-lead-agents",
+    why: "responsible use of AI agents on lead follow-up — same subject",
+  },
+  "/blog/salesforce-leads-review": {
+    to: "/blog/aged-lead-crm-setup-guide",
+    why: "CRM selection and setup for aged leads — same job as a CRM review",
+  },
+  "/sales-process/how-to-build-a-real-time-internet-lead-team": {
+    to: "/blog/scaling-aged-lead-operation-solo-agent-to-team",
+    why: "building out a lead-handling team — same subject",
+  },
+  // Weaker matches — no B2C-funnel equivalent exists on a B2C-only site.
+  "/sales-process/the-modern-b2c-sales-funnel": {
+    to: "/guides/7-day-aged-lead-follow-up-cadence",
+    why: "nearest real page: the site's canonical structured multi-touch consumer process. Weak match — review before cutover",
+    weak: true,
+  },
+  "/sales-process/b2c-vs-b2b-sales-process": {
+    to: "/guides/7-day-aged-lead-follow-up-cadence",
+    why: "nearest real page; the target site is B2C-only so the comparison has no equivalent. Weak match — review before cutover",
+    weak: true,
+  },
+};
+
 const path = (u) => new URL(u).pathname.replace(/\/$/, "") || "/";
 const perf = (p) => gsc[p] ?? { clicks: 0, impr: 0, pos: null };
 const priorPerf = (p) => priorGsc[p] ?? { clicks: 0, impr: 0, pos: null };
@@ -200,7 +288,21 @@ for (const url of readLines("htwl-sitemap.txt")) {
   const p = path(url);
   const { clicks, impr, pos } = perf(p);
   const slug = p.split("/").pop();
-  const base = { old_url: url, clicks, impr, pos: pos ?? "" };
+  const base = { old_url: url, clicks, impr, pos: pos ?? "", refdomains: refdomains(url) };
+
+  // Runs ahead of every prune branch: a page that would otherwise be dropped
+  // but still holds inbound links gets a topic-matched destination instead.
+  const rescue = LINKED_PRUNE_RESCUE[p];
+  if (rescue && base.refdomains > 0) {
+    add({
+      ...base,
+      new_url: `${NEW_HOST}${rescue.to}`,
+      action: "MERGE",
+      risk: rescue.weak ? "medium" : "low",
+      notes: `pruned but holds ${base.refdomains} referring domain(s) — rescued: ${rescue.why}`,
+    });
+    continue;
+  }
 
   if (p.startsWith("/buying-leads/")) {
     if (FOLD_TO_HUB.has(slug)) {
@@ -317,13 +419,36 @@ for (const url of readLines("alsales-sitemap.txt")) {
     clicks: "",
     impr: "",
     pos: "",
+    refdomains: refdomains(url),
     risk: "low",
     notes: "",
   });
 }
 
 // ------------------------------------------------------------------------ emit
-const COLS = ["old_url", "new_url", "action", "risk", "clicks", "impr", "pos", "notes"];
+/**
+ * No pruned page may still hold inbound links. A PRUNE row emits no
+ * destination and 404s at cutover, so this is the check that stops the
+ * generator from silently throwing away link equity — add a
+ * LINKED_PRUNE_RESCUE entry, or deliberately drop the links and say so here.
+ *
+ * This fails the build rather than warning. A warning in a script nobody
+ * watches is how the first seven got this far.
+ */
+const droppedWithLinks = rows.filter(
+  (r) => r.action === "PRUNE" && Number(r.refdomains) > 0
+);
+if (droppedWithLinks.length) {
+  const detail = droppedWithLinks
+    .map((r) => `  ${r.refdomains} refdomain(s)  ${r.old_url}`)
+    .join("\n");
+  throw new Error(
+    `${droppedWithLinks.length} PRUNE row(s) still hold live referring domains and would 404 at cutover:\n${detail}\n` +
+      `Give each a topic-matched destination in LINKED_PRUNE_RESCUE, or accept the loss explicitly.`
+  );
+}
+
+const COLS = ["old_url", "new_url", "action", "risk", "clicks", "impr", "pos", "refdomains", "notes"];
 const esc = (v) => {
   const s = String(v ?? "");
   return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;

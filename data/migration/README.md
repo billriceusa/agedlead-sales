@@ -21,6 +21,7 @@ Regenerate with `node scripts/build-url-map.mjs`.
 | `htwl-gsc-pages.json` | Current GSC window, www/non-www/#fragment normalized |
 | `htwl-gsc-pages-2026-06-05.json` | The **prior** window. Keep it — prune eligibility is the intersection of the two |
 | `htwl-published-at.json` | publishedAt per slug, from the Sanity export |
+| `backlinks-2026-08-01.json` | Live referring domains per URL, both sites (Ahrefs). Prune eligibility now requires zero impressions **and** zero referring domains |
 
 ## url-map.csv columns
 
@@ -30,9 +31,30 @@ Regenerate with `node scripts/build-url-map.mjs`.
 |---|---|---|
 | `REHOST` | 246 | agedleadsales.com page, path unchanged, host swap only |
 | `MIGRATE` | 82 | howtoworkleads page moves across at the same path |
-| `PRUNE` | 48 | Dropped — generic theory, zero-impression, dead hubs |
+| `PRUNE` | 41 | Dropped — generic theory, zero-impression, dead hubs |
 | `FOLD` | 27 | `/buying-leads/*` and category hubs into `/lead-types/*` |
-| `MERGE` | 18 | Content merged into an existing target page, then 301 |
+| `MERGE` | 25 | Content merged into an existing target page, then 301 |
+
+## Backlinks are a prune input, and were not until 2026-08-01
+
+The prune rule keys on search impressions. A page can hold inbound links while
+earning no impressions at all, and seven pruned pages did — a `PRUNE` row emits
+no destination, so each would have 404'd at cutover and thrown its links away.
+One was linked from kaleidico.com at DR 38.
+
+`refdomains` is now a column, and the generator **fails the build** if any
+`PRUNE` row still holds referring domains. Rescues live in
+`LINKED_PRUNE_RESCUE` with a written reason each.
+
+The constraint on a rescue is the plan's own rule: topic-matched destination,
+never the homepage and never a generic hub. Google treats a topically unrelated
+301 as a soft 404, so a bad destination is the same outcome as deleting the page
+with extra clutter. Two of the seven are marked `weak` — the target site is
+B2C-only and has no B2C-funnel equivalent — and want an editorial second opinion
+before cutover.
+
+Same lesson `/lead-order` already taught: **a URL's search metrics do not
+measure its inbound links.** Check what points at a page before deleting it.
 
 Risk: 408 low, 9 medium, 4 high.
 
