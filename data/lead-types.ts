@@ -473,6 +473,143 @@ export const LEAD_TYPES: Record<string, LeadTypeData> = {
       `/providers/best/final-expense`,
   },
 
+  "life-insurance-leads": {
+    slug: "life-insurance-leads",
+    title: "Life Insurance Leads",
+    icon: "🛡️",
+    heroDescription:
+      "Consumers who asked about term, whole, or universal coverage and never got it. Life insurance is trigger-driven, and the triggers keep arriving long after the lead ages.",
+    metaTitle: "Aged Life Insurance Leads – Buy Life Leads by the Thousand",
+    metaDescription:
+      "Buy aged life insurance leads for $0.50–$2 each instead of $12–$40 real-time. Pricing by freshness tier, the filters that move close rates, and a compliant email-first cadence.",
+    primaryKeyword: "aged life insurance leads",
+    secondaryKeywords: [
+      "buy life insurance leads",
+      "cheap life insurance leads",
+      "bulk life insurance leads",
+      "term life insurance leads",
+      "exclusive life insurance leads",
+    ],
+    costRange: "$0.50 – $2.00",
+    whoItsFor: [
+      "Independent life agents building a pipeline on a fixed budget",
+      "Agencies feeding a team of dialers rather than one producer",
+      "Term writers who need volume to make a modest commission work",
+      "Mortgage protection and estate-planning specialists",
+      "Agents testing aged data before narrowing into IUL or final expense",
+    ],
+    whatYouGet: [
+      "Full name and contact information",
+      "Multiple phone numbers per record when appended (landline and mobile)",
+      "Coverage amount requested and product intent (when available)",
+      "Age, and household income range when available",
+      "Geographic location (state, zip code) for licensure matching",
+    ],
+    sections: {
+      whatAre:
+        "Aged life insurance leads are consumer records from people who requested life insurance information — typically 15 to 90-plus days ago — and were never reached or never closed. \"Life\" is the widest umbrella in insurance lead buying: the same batch covers term, whole life, universal, indexed universal life, mortgage protection, and final expense intent. Aged is a statement about time, not about quality. A 45-day-old life lead is the same person who, six weeks ago, was actively pricing coverage. They did not stop needing it; they got busy, screened an unknown number, or waited for a reason to act. What you are buying is a discount on timing, not a discount on intent.",
+      whyUse:
+        "Real-time life leads run $12 to $40 or more, and the agent who buys them is racing four other agents to the phone. Aged life leads run $0.50 to $2, which changes what you can afford to do: for the price of one exclusive real-time lead you can hold 10 to 40 records and stay in front of all of them for months. That matters more in life insurance than in almost any other vertical, because life insurance is bought on a trigger — a new baby, a new mortgage, a death in the family, a job change. Those triggers keep happening after the lead ages. Speed-to-lead wins the prospect who is ready today; patience wins the far larger group who become ready over the next ninety days. Aged data is the only way to afford being there when the trigger lands.",
+      howToWork:
+        "Work aged life leads email-first, and do not text them. Purchased data does not carry the prior express written consent the TCPA requires for SMS or automated dialing, and several states run their own mini-TCPA statutes on top of the federal rule. That constraint pushes you toward the sequence that converts aged data best anyway: open with a short, useful email that re-introduces you and gives a reason to talk; move anyone who replies to a scheduled needs review rather than a pitch; then apply polite persistence by manual dial to the records that showed a flicker of interest, spread across mornings and early evenings over days rather than stacked into one afternoon. Scrub against the National DNC Registry and your state lists every 31 days at minimum, honor opt-outs immediately, and keep your own record of consent, attempts, and opt-outs.",
+      script: {
+        opener:
+          '"Hi [Name], this is [Your Name]. You had looked into life insurance a while back — a lot of people who start that process never actually finish it. Did you end up getting coverage in place, or is that still on the list?"',
+        whyItWorks: [
+          "Names the real situation — most people who start never finish — instead of implying a relationship you do not have",
+          '"Still on the list" gives them a low-stakes way to say yes',
+          "Invites the trigger story: what prompted the original search, and whether it has changed",
+          "Works identically whether the record is 30 days old or 300",
+        ],
+      },
+      costComparison: {
+        realTime: "$12–$40 per lead",
+        aged: "$0.50–$2.00 per lead",
+        savings: "Roughly 90% lower per lead",
+      },
+      bestPractices: [
+        "Match state filters to your active life licensure exactly — carriers enforce it for commission payment",
+        "Email first, dial manually second, and never text purchased life data",
+        "Buy enough volume to make a cadence worth building — a few hundred records worked properly beats a few thousand ignored",
+        "Plan 5 to 7 contact attempts across different days and times before you retire a record",
+        "Filter on coverage amount and product intent — a $250,000 request and a $25,000 request are different conversations",
+        "Layer 3 to 5 filters when close rate matters more than lead count; expect cost per lead to rise 20 to 40 percent",
+        "Test any new vendor with 50 to 100 leads and skip-trace a sample before scaling",
+        "Re-scrub phone and DNC before every campaign — aged data degrades between capture and dial",
+        "Measure cost per issued policy, not cost per lead or close rate",
+      ],
+    },
+    deepDive: [
+      {
+        heading: "Life Insurance Is Trigger-Driven, Which Is Why Aged Data Works Here",
+        body: "Most arguments for aged leads are arguments about arithmetic: the leads are cheap, so buy more of them. That argument is true everywhere and decisive nowhere. The reason aged data works specifically in life insurance is different, and it is worth understanding because it changes how you work the list.\n\nLife insurance is almost never bought because a consumer woke up wanting it. It is bought because something happened — a baby, a mortgage closing, a diagnosis, a parent's funeral, a divorce, a new job with a coverage gap. The consumer who filled out a quote form was responding to one of those events. If nobody closed them, the event is still in their history and the gap is still open. More importantly, new triggers keep arriving. The person who ignored you in March because they were overwhelmed may be the person who calls you back in June because a colleague their age died.\n\nThat is a structural argument for patience rather than speed, and it is the opposite of how real-time leads are sold. Speed-to-lead is the right strategy for the small slice of prospects who are ready in the first ten minutes. Aged data is the right strategy for the much larger slice who become ready later — and at $0.50 to $2 a record, staying present for ninety days across a thousand people costs less than being first to twenty.",
+      },
+      {
+        heading: "What You Actually Pay, by Freshness Tier",
+        body: "Life insurance lead pricing varies more than almost any other vertical, because \"life\" spans a $25,000 final expense policy and a $250,000-plus permanent case. Price tracks freshness far more closely than it tracks quality.\n\nReal-time and near-fresh records, zero to seven days old, run $12 to $40 or more. They are worth it only when speed is genuinely your edge — a staffed phone room that can dial within minutes. The 15-to-30-day tier, at roughly $1.50 to $4, is the most common sweet spot for aged buyers: contact rates are still strong and the price has already fallen by an order of magnitude. From 30 to 60 days you are paying about $0.75 to $1.50, which is profitable with a structured multi-channel cadence and unprofitable without one. The 60-to-90-day tier runs $0.40 to $0.80 and suits volume operations with a real CRM behind them. Past 90 days, records go for $0.10 to $0.40 and are best treated as list-wash or skip-trace source material rather than a primary pipeline.\n\nTwo pricing effects surprise first-time buyers. Product-specific pulls — term-only, IUL, whole life, mortgage protection — generally price 15 to 30 percent above a generic life pull, because the underlying intent is cleaner and the conversation starts further along. And self-generated life leads from paid search or social routinely cost $40 to $200-plus per qualified lead before you have converted anything, which is the comparison that actually matters when you are deciding whether to buy data or buy traffic.",
+      },
+      {
+        heading: "The Filters That Move Close Rates, and the Ones That Do Not",
+        body: "Most platforms offer a dozen filter options and imply that all of them are equally useful. In practice a handful decide your outcome.\n\nState is non-negotiable and is not really a filter — it is a licensure requirement, and carriers enforce it when they pay commission. Age matters because the economics of life insurance concentrate between roughly 30 and 65: younger prospects often lack premium-paying ability, and older prospects push toward final expense products with different math. Requested coverage amount is the filter agents most often skip and most often should not — a prospect asking for $250,000 and one asking for $25,000 are different products, different underwriting, and different conversations. Household income around $50,000 and above tends to support meaningful term or permanent premium; below it, small whole life usually fits better. Smoker status drives the underwriting class and therefore the rate, and some vendors sell non-smoker-only pulls at a premium. Product intent — term, whole, universal, IUL, mortgage protection, final expense — is the single best predictor of a clean conversation. Homeowner status correlates strongly with mortgage protection and estate conversations. And existing coverage is underrated: a prospect who already owns term is a live candidate for a conversion, a permanent add-on, or a gap closure.\n\nThe trade is straightforward. Layering three to five filters typically raises your cost per lead by 20 to 40 percent, and can raise close rates by considerably more than that. Filter hard when your constraint is agent hours; filter lightly when your constraint is budget and you have the dialing capacity to work volume.",
+      },
+      {
+        heading: "A Seven-Point Vendor Check Before You Place an Order",
+        body: "Most bad aged-lead experiences trace back to one of seven things nobody asked about.\n\nFirst, sourcing transparency: ask where the leads originated — comparison sites, quote forms, landing pages. A vendor who can describe sourcing clearly is a vendor who has it. One who cannot is selling you a compliance problem. Second, age labeling: a batch sold as 30-to-60 days that turns out to be 200-plus days old is not a disappointment, it is fraud. Test-order 50 to 100 records and skip-trace a sample before you scale. Third, filtering you control yourself, at the dashboard or API level. If changing a state or product filter requires calling a rep, you will never build a repeatable buying operation. Fourth, delivery speed — same-day self-service beats 24-to-48-hour batch delivery, and in life insurance every hour a record sits in a queue costs you something. Fifth, a written replacement policy covering disconnected numbers, wrong parties, and opt-outs. Sixth, volume pricing that actually steps down at 500, 1,000, and 5,000 records; flat pricing at every volume tells you the vendor is not built for serious buyers. Seventh, compliance posture: ask about DNC scrubbing cadence, consent record availability, and whether they can produce an audit trail on request. Reputable vendors produce it. Cheap ones cannot.\n\nRun a 50-to-100-record test before committing to any new vendor. A test batch costs less than one bad month with a sloppy source, and it is the only way to learn what a vendor's data is actually like rather than what their landing page says.",
+      },
+      {
+        heading: "Cheap or Exclusive: What Each One Is Really Buying You",
+        body: "Two words drive most aged-life shopping, and they pull in opposite directions.\n\nCheap wins on math and only on math. Pennies-per-record bulk data pays off when you have the cadence and the CRM to work it systematically, and it is dead money when the records sit untouched in a spreadsheet. The honest test is capacity: how many contact attempts per week can you actually make? Buy to that number, not to your ambition.\n\nExclusive costs more because you are not competing with three other agents working the same record. That raises your effective contact-to-conversation rate, which frequently makes the higher per-lead price the cheaper option once you measure cost per issued policy rather than cost per lead. There is no universally correct answer here — there is only the correct answer for your follow-up capacity, and it changes as your team grows.\n\nThe sequence that works for most buyers: start with a small non-exclusive batch to prove your cadence exists and functions, measure cost per issued policy honestly, and only then decide whether exclusivity moves that number enough to justify the premium. Buying exclusive data before you have a working cadence is paying for an advantage you are not yet able to use.",
+      },
+      {
+        heading: "Compliance: Read This Before You Dial or Type",
+        body: "Aged life leads are purchased consumer data, not pre-consented contacts, and the distinction governs what you may legally do with them.\n\nDo not text purchased life data. SMS to a purchased record requires prior express written consent under the TCPA, and you do not have it — the consumer consented to whoever originally captured the form, not to you. Several states operate their own mini-TCPA statutes, so a campaign that survives federal scrutiny can still create state-level exposure. The FCC's one-to-one consent rule was vacated in early 2025 before it took effect, which changed the federal picture but did not change the state one. Dial manually rather than through an autodialer, and avoid pre-recorded messages on purchased data entirely.\n\nScrub against the National Do Not Call Registry and applicable state lists before every campaign — 31 days is the legal minimum refresh, not a best practice — and honor every opt-out immediately and permanently. Understand the inquiry and transaction exemption windows and do not stretch them. Keep your own records of consent documentation, contact attempts, and opt-outs; good documentation is inexpensive and is the only thing that helps you after the fact.\n\nTreat these constraints as a feature. They push you toward the email-first, manually-dialed, patient cadence that converts aged life data better than a blast would have anyway. This is educational guidance and not legal advice; requirements vary by state and change often, so confirm current rules and run your specific program past qualified counsel before launch.",
+      },
+      {
+        heading: "Where Life Sits Next to Final Expense and IUL",
+        body: "Agents new to aged data often buy the wrong vertical because the labels overlap. Life is the umbrella; final expense and IUL are specific products underneath it, and they behave differently enough to warrant separate buying decisions.\n\nGeneral life leads skew younger and more income-driven, usually with coverage requests of $100,000 or more, and the prospect is frequently price-shopping several products at once. Final expense leads are a narrower intent: small whole-life policies, typically $5,000 to $25,000, meant to cover burial and end-of-life costs. Those prospects skew 60 and older, are more price-sensitive, and tend to be more product-aware — they know what they are asking for. IUL sits at the opposite end: higher income, longer sales cycle, two to four conversations before a decision, and a materially higher lead price to match.\n\nThe practical implication is that life is the right place to start if you are testing aged data for the first time. One batch can feed a term writer, a final expense closer, and an IUL specialist, each working the records that match their product — which means you learn what aged data does for your process before you commit budget to a narrower and more expensive pull. Once you know your contact rate and your cost per issued policy on general life data, narrowing into a specific vertical becomes a measured decision rather than a guess.",
+      },
+    ],
+    faqs: [
+      {
+        question: "What are aged life insurance leads?",
+        answer:
+          "Aged life insurance leads are consumers who previously requested life insurance information — usually 15 to 90-plus days ago — and were never reached or never closed. They span term, whole life, universal, mortgage protection, and final expense intent. Age is a statement about how much time has passed, not about the quality of the interest. What you are buying is a discount on timing.",
+      },
+      {
+        question: "How much do aged life insurance leads cost?",
+        answer:
+          "Generally $0.50 to $2 per record, against $12 to $40 or more for real-time exclusive life leads. Price tracks freshness: 15-to-30-day records run roughly $1.50 to $4, 30-to-60-day records $0.75 to $1.50, 60-to-90-day records $0.40 to $0.80, and anything past 90 days $0.10 to $0.40. Product-specific pulls — term-only, IUL, mortgage protection — price 15 to 30 percent above a generic life pull.",
+      },
+      {
+        question: "What is a realistic close rate on aged life insurance leads?",
+        answer:
+          "Published benchmarks vary widely enough that a single number would mislead you — a one-call-and-done campaign and a disciplined ninety-day cadence produce results that differ by an order of magnitude on identical data. Expect a contact rate in the low double digits and treat everything downstream as a function of your cadence, not the lead. The metric worth tracking is cost per issued policy, which is where aged data consistently beats fresh at the same agent skill level.",
+      },
+      {
+        question: "Can I text aged life insurance leads?",
+        answer:
+          "No. Purchased data does not carry the prior express written consent the TCPA requires for SMS, because the consumer consented to whoever originally captured the form rather than to you. Several states also run their own mini-TCPA statutes. Work these records email-first and dial manually. This is educational guidance, not legal advice — confirm current requirements for your states before launching a campaign.",
+      },
+      {
+        question: "How is a life insurance lead different from a final expense lead?",
+        answer:
+          "Life insurance leads cover a broad intent set — term, whole, universal, IUL — often at coverage amounts of $100,000 or more, from prospects who skew younger and more income-driven. Final expense leads are specifically for small whole-life policies, typically $5,000 to $25,000, covering burial and end-of-life costs. Those prospects skew 60 and older, are more price-sensitive, and usually know exactly what they are asking for.",
+      },
+      {
+        question: "Which filters actually matter when buying life leads?",
+        answer:
+          "State is a licensure requirement, not an option — carriers enforce it when paying commission. After that: age (the economics concentrate between about 30 and 65), requested coverage amount, household income, smoker status, product intent, homeowner status, and existing coverage. Layering three to five filters typically raises cost per lead by 20 to 40 percent and can raise close rates by more. Filter hard when agent hours are your constraint; filter lightly when budget is.",
+      },
+      {
+        question: "How do I test a new life insurance lead vendor?",
+        answer:
+          "Order 50 to 100 records and skip-trace a sample before scaling. That is enough volume to evaluate contact rate, age labeling accuracy, and replacement responsiveness without a month of exposure to a bad source. Expect a modest premium on a small test order — that is normal. A vendor who refuses a small test order entirely is telling you how they will treat you as a larger customer later.",
+      },
+    ],
+    getCompareUrl: () =>
+      `/providers/best/life-insurance`,
+  },
+
   "iul-leads": {
     slug: "iul-leads",
     title: "IUL Leads",
