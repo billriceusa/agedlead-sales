@@ -262,24 +262,40 @@ export default function MethodologyPage() {
                 Our rating methodology and scoring criteria are published here
                 for full transparency.
               </li>
+              <li>
+                The sharpest conflict we carry is stated plainly: Bill Rice
+                serves as marketing director for{" "}
+                <Link href="/providers/aged-lead-store">Aged Lead Store</Link>,
+                which is one of the providers rated here. It is scored on the
+                same six dimensions as every other provider, and the
+                relationship is disclosed on every page where it is relevant.
+                Full detail is in our{" "}
+                <Link href="/affiliate-disclosure">affiliate disclosure</Link>.
+              </li>
             </ul>
 
             <h2>Who We Are</h2>
             <p>
-              Aged Lead Sales is run by{" "}
+              Work Aged Leads is run by{" "}
               <Link href="/about/bill-rice">Bill Rice</Link>, who brings 30+
               years of experience in mortgage lending and sales operations.
               We&apos;re not an anonymous content farm — our reviews are backed by
               real industry expertise and a commitment to helping lead buyers
               make informed decisions.
             </p>
+            <p>
+              This site is the merged archive of two sites Bill ran separately
+              — How To Work Leads, which covered working leads, and Aged Lead
+              Sales, which covered buying them. Both now publish here under one
+              name. See <Link href="/about">About</Link> for the full account.
+            </p>
 
             <h2>Contact Us</h2>
             <p>
               Have questions about our methodology? Think a provider profile
               needs updating? Reach out at{" "}
-              <a href="mailto:bill@agedleadsales.com">
-                bill@agedleadsales.com
+              <a href="mailto:bill@workagedleads.com">
+                bill@workagedleads.com
               </a>
               .
             </p>
