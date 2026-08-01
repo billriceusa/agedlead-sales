@@ -89,13 +89,14 @@ export default async function HomePage() {
         <div className="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
           <div className="max-w-3xl">
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
-              Grow Your Sales with{" "}
-              <span className="text-blue-400">Aged Leads</span>
+              You Bought the Leads.{" "}
+              <span className="text-blue-400">Now Work Them.</span>
             </h1>
             <p className="mt-6 text-lg leading-relaxed text-zinc-300 sm:text-xl">
-              Stop overpaying for real-time leads. Learn how to build a
-              high-volume, high-profit sales operation using aged leads — with
-              training, playbooks, and proven strategies for every industry.
+              Aged leads don&apos;t fail because the data is old. They fail
+              because they get worked like fresh leads. Scripts, cadences and
+              systems built for records that are 30 to 365 days old — plus what
+              they should cost and who sells them.
             </p>
             <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
               <Link

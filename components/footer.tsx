@@ -45,9 +45,9 @@ export function Footer() {
               Work Aged Leads
             </Link>
             <p className="mt-3 text-sm text-zinc-600 dark:text-zinc-400">
-              The independent lead buying intelligence platform. Compare
-              providers, benchmark pricing, and make informed decisions about
-              your lead spend.
+              Independent guidance on working aged leads — the scripts,
+              cadences and systems that convert them. Plus what leads cost and
+              who sells them.
             </p>
             <div className="mt-6">
               <NewsletterSignup
