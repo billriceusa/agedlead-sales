@@ -122,7 +122,7 @@ export async function POST(request: Request) {
           <tr>
             <td style="padding: 32px;">
               <p style="margin: 0 0 16px 0; color: #374151; font-size: 16px; line-height: 1.7;">Hey — Bill Rice here. Thanks for signing up.</p>
-              <p style="margin: 0 0 16px 0; color: #374151; font-size: 16px; line-height: 1.7;">I built Work Aged Leads because I got tired of watching salespeople fail with aged leads — not because aged leads don't work, but because the advice they're following comes from people who've never dialed one.</p>
+              <p style="margin: 0 0 16px 0; color: #374151; font-size: 16px; line-height: 1.7;">I built this site because I got tired of watching salespeople fail with aged leads — not because aged leads don't work, but because the advice they're following comes from people who've never dialed one.</p>
               <p style="margin: 0 0 16px 0; color: #374151; font-size: 16px; line-height: 1.7;">Here's what you'll get from me:</p>
               <ul style="margin: 0 0 16px 0; padding-left: 20px; color: #374151; font-size: 15px; line-height: 1.8;">
                 <li>Scripts that have been tested across millions of leads</li>

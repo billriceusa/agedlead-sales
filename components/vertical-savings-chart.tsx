@@ -57,7 +57,7 @@ export function VerticalSavingsChart({ rows }: Props) {
         </h2>
         <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
           Savings per lead buying aged (31–85 days, shared) vs real-time, by
-          vertical. Source: Work Aged Leads Lead Price Index.
+          vertical. Source: Work Aged Leads Price Index.
         </p>
       </figcaption>
 

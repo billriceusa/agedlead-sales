@@ -6,7 +6,7 @@ import { NewsletterSignup } from "@/components/newsletter-signup";
 export const metadata: Metadata = {
   title: "About Bill Rice: 30+ Years in Lead Generation",
   description:
-    "Work Aged Leads is built by Bill Rice — the expert who coined 'lead management,' built lead systems at Quicken Loans, and has personally worked millions of aged leads across insurance, mortgage, solar, and home improvement. Free training from someone who actually dials.",
+    "Aged Lead Sales is built by Bill Rice — the expert who coined 'lead management,' built lead systems at Quicken Loans, and has personally worked millions of aged leads across insurance, mortgage, solar, and home improvement. Free training from someone who actually dials.",
 };
 
 export default function AboutPage() {
@@ -15,7 +15,7 @@ export default function AboutPage() {
       <section className="bg-white py-16 dark:bg-zinc-950">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl font-bold text-zinc-900 dark:text-white">
-            About Work Aged Leads
+            About Aged Lead Sales
           </h1>
 
           <div className="mt-8 space-y-6 text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
@@ -176,7 +176,7 @@ export default function AboutPage() {
               <em>aged leads, worked correctly, can quickly build a large
               database marketing operation</em>
               . That discovery is the foundation of the training, playbooks,
-              and scripts you&apos;ll find at Work Aged Leads.
+              and scripts you&apos;ll find at Aged Lead Sales.
             </p>
 
             <h3 className="pt-2 text-xl font-semibold text-zinc-900 dark:text-white">
@@ -299,7 +299,7 @@ export default function AboutPage() {
               remember doing it.
             </p>
             <p>
-              I built Work Aged Leads to be the resource I wish existed when I
+              I built Aged Lead Sales to be the resource I wish existed when I
               was training sales teams. Specific. Tactical. Based on data from
               real campaigns. Every script on this site has been tested. Every
               framework has been used in production. Every number I cite comes
@@ -368,7 +368,7 @@ export default function AboutPage() {
               What You&apos;ll Find Here
             </h2>
             <p>
-              Every piece of content on Work Aged Leads is designed to be
+              Every piece of content on Aged Lead Sales is designed to be
               immediately actionable. Here&apos;s how the site is organized:
             </p>
             <ul className="list-disc space-y-3 pl-6">

@@ -335,7 +335,7 @@ export default async function PriceIndexPage() {
           <div className="flex flex-wrap items-center gap-3">
             <span className="text-sm text-zinc-500">Reference this data:</span>
             <CiteThisButton
-              citation={`Lead pricing benchmarks from the Work Aged Leads Lead Price Index, a quarterly verified study covering ${VERTICALS.length} verticals (last verified ${verifiedLabel}). Source: ${baseUrl}/price-index`}
+              citation={`Lead pricing benchmarks from the Work Aged Leads Price Index, a quarterly verified study covering ${VERTICALS.length} verticals (last verified ${verifiedLabel}). Source: ${baseUrl}/price-index`}
             />
           </div>
         </div>

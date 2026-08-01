@@ -7,7 +7,7 @@ const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 export const metadata: Metadata = {
   title: "Our Editorial Process",
   description:
-    "How Work Aged Leads researches, writes, reviews, and maintains content. Our commitment to accuracy, independence, and transparency.",
+    "How Aged Lead Sales researches, writes, reviews, and maintains content. Our commitment to accuracy, independence, and transparency.",
   alternates: { canonical: `${baseUrl}/editorial-process` },
 };
 
@@ -39,7 +39,7 @@ export default function EditorialProcessPage() {
           <div className="prose prose-zinc dark:prose-invert max-w-none">
             <h2>Who Writes Our Content</h2>
             <p>
-              All content on Work Aged Leads is written and reviewed by{" "}
+              All content on Aged Lead Sales is written and reviewed by{" "}
               <Link href="/about/bill-rice">Bill Rice</Link>, who brings 30+
               years of direct experience in lead generation, mortgage lending,
               insurance sales, and fintech marketing. Bill was Employee #7 at

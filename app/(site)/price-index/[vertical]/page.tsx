@@ -332,7 +332,7 @@ export default async function VerticalPriceIndexPage({
           <div className="flex flex-wrap items-center gap-3">
             <span className="text-sm text-zinc-500">Reference this data:</span>
             <CiteThisButton
-              citation={`${vertical.name} lead pricing benchmarks from the Work Aged Leads Lead Price Index, a quarterly verified study (last verified ${verifiedLabel}). Source: ${baseUrl}/price-index/${verticalSlug}`}
+              citation={`${vertical.name} lead pricing benchmarks from the Work Aged Leads Price Index, a quarterly verified study (last verified ${verifiedLabel}). Source: ${baseUrl}/price-index/${verticalSlug}`}
             />
           </div>
         </div>

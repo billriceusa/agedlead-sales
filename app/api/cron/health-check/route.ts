@@ -164,7 +164,7 @@ export async function GET(request: Request) {
   if (failing.length > 0) {
     const apiKey = process.env.RESEND_API_KEY;
     const fromEmail =
-      process.env.RESEND_FROM_EMAIL || "Work Aged Leads <noreply@agedleadsales.com>";
+      process.env.RESEND_FROM_EMAIL || "AgedLeadSales <noreply@agedleadsales.com>";
     if (apiKey) {
       try {
         const resend = new Resend(apiKey);
