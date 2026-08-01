@@ -138,7 +138,8 @@ additive.
 
    Destination audience, created 2026-08-01:
    `43fe6675-cc8f-44f3-9c1c-70a094b2d47d` — `workagedleads.com`. Merged and
-   deduplicated: **2,435 distinct, 2,388 sendable, 47 unsubscribed.**
+   deduplicated: **2,435 distinct, ~2,368 sendable, 67 suppressed.** Suppression
+   is the union of Resend and Postgres — see below.
 5. Finish the in-flight disavow refresh on the `disavow-refresh` worktree; build
    a **merged, de-duplicated disavow** covering both source domains, ready to
    submit in Phase 5.
@@ -389,7 +390,7 @@ easy to miss.
    opted out of any source list must arrive opted out. And **de-duplicate**; 20
    addresses sit on both the newsletter and an ALS program.
 
-   **The list is 2,435 distinct / 2,388 sendable, and 90% of it never subscribed
+   **The list is 2,435 distinct / ~2,368 sendable, and 90% of it never subscribed
    to a newsletter.** Bill's 2026-08-01 decision folded the three ALS programs in
    — 2,205 distinct addresses, only 20 of which were already on the newsletter
    list. Those people consented at an Aged Lead Store checkout or inquiry form;
@@ -398,7 +399,7 @@ easy to miss.
    Consent is not recognition, and it is recognition that decides whether someone
    reports spam. That is why the broadcast goes first, and why it goes **in three
    stages** — newsletter minority, then Purchasers, then Inquiries — rather than
-   2,388 at once from a domain with no sending history. **Stop signal: complaint
+   the whole list at once from a domain with no sending history. **Stop signal: complaint
    rate at or above 0.1%.**
 
    Hold the newsletter, the flagship course and the ALS lifecycle until all three

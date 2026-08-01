@@ -5,16 +5,16 @@ and before any lifecycle or course email fires from it.
 
 ## The list is 2,435, and 90% of it never subscribed to a newsletter
 
-Measured against the Resend API on 2026-08-01, after Bill's decision to fold the
-ALS programs into one list:
+Measured against the Resend API and the production Postgres on 2026-08-01, after
+Bill's decision to fold all three ALS programs into one list:
 
-| Audience | Total | Sendable | Unsub |
-|---|---:|---:|---:|
-| `workagedleads.com` — merged newsletter | 250 | 218 | 32 |
-| `ALS Aged-Lead Buyers — Purchasers` | 1,029 | 1,023 | 6 |
-| `ALS Aged-Lead Buyers — Inquiries` | 1,245 | 1,236 | 9 |
-| `ALS Store Self-Serve — Inquiries` | 31 | 31 | 0 |
-| **One list, deduplicated** | **2,435** | **2,388** | **47** |
+| Audience | Total |
+|---|---:|
+| `workagedleads.com` — merged newsletter | 250 |
+| `ALS Aged-Lead Buyers — Purchasers` | 1,029 |
+| `ALS Aged-Lead Buyers — Inquiries` | 1,245 |
+| `ALS Store Self-Serve — Inquiries` | 31 |
+| **One list, deduplicated** | **2,435** |
 
 The three ALS programs hold 2,205 distinct addresses. Only **20** of them are
 already on the newsletter list, so folding them in adds **2,185 net new people**
@@ -25,9 +25,41 @@ buying them, and opted into the newsletter during that process.
 That is the fact the copy has to be built around, and it is a different fact from
 the one this file was written against yesterday.
 
+### Sendable is not what a Resend-only count says
+
+**Suppression lives in two systems and the send has to honour the union of both.**
+
+`unsubscribeContact()` (`lib/als/lifecycle.ts:111`) writes
+`als_buyer_contacts.unsubscribed` in Postgres and never touches the Resend
+audience. So a Resend-only count reads people as sendable who have already
+clicked unsubscribe.
+
+Reconciled against both, 2026-08-01:
+
+| | count |
+|---|---:|
+| One list, distinct | 2,435 |
+| Opted out per Resend | 49 |
+| Opted out per Postgres (`als_buyer_contacts`) | 20 |
+| ...of those, **showing as sendable in Resend right now** | **18** |
+| **True suppression union** | **67** |
+| **True sendable** | **2,368** |
+
+> **Correction.** An earlier version of this file published **2,388 sendable /
+> 47 unsub** from a Resend-only read. That overstated sendable by 18 — eighteen
+> people who clicked unsubscribe would have received this broadcast. That is
+> precisely the failure the sequence below calls unrecoverable, and it was in my
+> own numbers.
+
+**These counts drift.** Both old sites keep capturing signups, and Builder's
+suppression-union work is landing as this is written — the Resend opt-out figure
+moved from 32 to 49 over the afternoon. Do not send against a frozen number.
+**Re-derive suppression as `Resend ∪ Postgres` immediately before each stage**
+and let the stage sizes fall out of that.
+
 > **Correction.** An earlier version of this file said "the lists are small,
 > which helps — at a couple hundred addresses, domain warming is a much smaller
-> problem than recognition." That was true of 250. It is not true of 2,388
+> problem than recognition." That was true of 250. It is not true of ~2,370
 > sendable on a domain with no sending history. See **Staging** below.
 
 ## Why this send exists
@@ -80,12 +112,12 @@ Bill Rice; none has seen "Work Aged Leads."
 
 ## Staging
 
-Do not send 2,388 in one shot from a domain with no history. Split by audience,
+Do not send the whole list in one shot from a domain with no history. Split by audience,
 oldest relationship first, and stop if complaints move:
 
-1. **Day 1 — the newsletter minority, 218 sendable.** These are the people most
+1. **Day 1 — the newsletter minority, ~218 sendable.** These are the people most
    likely to recognise the sender. They are the warm-up and the canary.
-2. **Day 3 — ALS Purchasers, ~1,023.** People who actually bought. Strongest
+2. **Day 3 — ALS Purchasers, ~1,020.** People who actually bought. Strongest
    relationship on the buyer side.
 3. **Day 5 — ALS Inquiries + Self-Serve, the remainder.** Weakest relationship,
    sent last, once the domain has two clean sends behind it.
