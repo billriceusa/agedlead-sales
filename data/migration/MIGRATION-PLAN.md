@@ -367,6 +367,53 @@ easy to miss.
 
 ---
 
+### 2d. Newsletter list consolidation · APPLIED 2026-08-01
+
+Five sources, one target. Sizes and suppression counts are in Phase 0 item 4 —
+this section is the mechanism, not the numbers, because the numbers drift daily
+as the ALS harvest cron runs.
+
+`npm run newsletter:migrate` folds every source into `43fe6675-…`. Dry run by
+default, `-- --apply` to write. It plans as a **diff against the target's current
+state**, so it is safe to run repeatedly and **must** be run again at cutover
+(Phase 5 step 9). Both retiring sites keep capturing signups until their forms
+stop serving, and the ALS harvest adds buyers daily; anyone who arrives after the
+last run exists only on a retiring list.
+
+**Suppression is read from two systems, not one.** The ALS lifecycle is a
+transactional sender that records opt-outs in Postgres —
+`unsubscribeContact()` in `lib/als/lifecycle.ts` sets
+`als_buyer_contacts.unsubscribed` and never writes to the Resend audience. So an
+ALS audience row can read `unsubscribed: false` for someone who has already
+unsubscribed. The script reads `als_buyer_contacts.unsubscribed` and unions it
+in, and **refuses to run** when an ALS audience is a source and `DATABASE_URL` is
+unset. Re-derive the union immediately before each broadcast stage rather than
+trusting a number written down earlier.
+
+**The invariant:** the only state transition this code can make on a person is
+subscribed → unsubscribed. Never the reverse, from any source, in any order.
+Anyone who opted out on the *target* is left alone even when a source still lists
+them as subscribed. That asymmetry is what the tests hold.
+
+**Rate limiting is part of correctness here, not politeness.** Resend allows 10
+requests/second. The ALS fold is ~2,200 sequential creates; unthrottled it 429s
+partway and leaves a partially migrated audience, which is indistinguishable
+from a finished one until someone counts. A run did in fact stop short at 2,237
+of 2,435 before the throttle went in.
+
+**Two loose ends this does not close:**
+
+1. `howtoworkleads.com` hard-codes its audience ID in
+   `apps/web/app/api/newsletter/route.ts` and `apps/web/app/api/download/route.ts`
+   — a different repo. Those routes keep writing to the retiring audience until
+   that site stops serving.
+2. `app/api/newsletter/unsubscribe` unsubscribes against whatever
+   `RESEND_AUDIENCE_ID` currently points at. After the env flip, an unsubscribe
+   link in an already-sent email lands on the new audience — correct, but only
+   because everyone was migrated. Another reason the re-run is not optional.
+
+---
+
 ## Phase 3 — Soft launch (noindexed)
 
 1. Add `workagedleads.com` to the Vercel project. Keep agedleadsales.com
@@ -460,9 +507,17 @@ Order matters.
    workagedleads.com, per the CSV.
 7. Submit Change of Address in GSC for **both** source properties.
 8. Re-run the lead-capture probe post-cutover. Do not assume Phase 4 still holds.
-9. Send the launch email to the active list from the warmed sending domain — the
-   consolidation is a genuine re-engagement hook.
-10. Update the UTM source in `lib/affiliate.ts` to the single new value.
+9. **Re-run the list consolidation before any send.** `npm run newsletter:migrate`
+   (dry run) → `-- --apply`. Not optional: both retiring sites capture signups
+   until their forms stop serving and the ALS harvest adds buyers daily, so
+   anyone who arrived since the last run exists only on a retiring list. See
+   § 2d. Re-derive the suppression union from the fresh run — do not reuse a
+   count written down earlier.
+10. Send the launch email in stages from the warmed sending domain, per
+    `REINTRODUCTION-EMAIL.md`. Then repoint `RESEND_AUDIENCE_ID` to
+    `43fe6675-…` and `RESEND_FROM_EMAIL` to the workagedleads.com sender, and
+    redeploy.
+11. Update the UTM source in `lib/affiliate.ts` to the single new value.
 
 **Keep both old domain registrations and their 301s indefinitely.** Every other
 referring domain still points at the old URLs.
