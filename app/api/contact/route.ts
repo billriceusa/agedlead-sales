@@ -5,6 +5,7 @@ import {
   isGoodOrigin,
   isHoneypotFilled,
 } from "@/lib/anti-spam";
+import { SITE_HOST } from "@/lib/site-url";
 
 export async function POST(request: Request) {
   try {
@@ -111,7 +112,7 @@ export async function POST(request: Request) {
           </tr>
           <tr>
             <td style="background-color:#f9fafb;padding:16px 32px;border-top:1px solid #e5e7eb;text-align:center;">
-              <p style="margin:0;color:#9ca3af;font-size:12px;">Sent from agedleadsales.com contact form</p>
+              <p style="margin:0;color:#9ca3af;font-size:12px;">Sent from ${SITE_HOST} contact form</p>
             </td>
           </tr>
         </table>

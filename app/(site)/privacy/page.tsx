@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { JsonLd, breadcrumbJsonLd } from "@/components/json-ld";
+import { CONTACT_EMAIL, SITE_HOST } from "@/lib/site-url";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
@@ -35,7 +36,7 @@ export default function PrivacyPage() {
           <div className="prose prose-zinc dark:prose-invert max-w-none">
             <p>
               Work Aged Leads (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;)
-              operates the website agedleadsales.com. This Privacy Policy explains
+              operates the website {SITE_HOST}. This Privacy Policy explains
               what information we collect, how we use it, and your choices
               regarding that information.
             </p>
@@ -94,7 +95,7 @@ export default function PrivacyPage() {
               </li>
               <li>
                 <strong>Communication</strong> &mdash; to respond to inquiries
-                sent to bill@agedleadsales.com
+                sent to {CONTACT_EMAIL}
               </li>
             </ul>
             <p>
@@ -236,7 +237,7 @@ export default function PrivacyPage() {
                 Google Analytics Opt-out Add-on
               </a>
               , and/or email us at{" "}
-              <a href="mailto:bill@agedleadsales.com">bill@agedleadsales.com</a>{" "}
+              <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>{" "}
               with the subject &quot;Do Not Sell or Share&quot; and we will honor
               your request.
             </p>
@@ -286,8 +287,8 @@ export default function PrivacyPage() {
             <p>
               For privacy-related questions or to exercise your rights, contact
               us at{" "}
-              <a href="mailto:bill@agedleadsales.com">
-                bill@agedleadsales.com
+              <a href={`mailto:${CONTACT_EMAIL}`}>
+                {CONTACT_EMAIL}
               </a>
               .
             </p>

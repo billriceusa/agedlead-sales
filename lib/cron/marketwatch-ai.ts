@@ -1,5 +1,6 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { SONNET_MODEL } from "./model-config";
+import { SITE_URL } from "@/lib/site-url";
 
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY || "",
@@ -53,7 +54,7 @@ export async function scrapeProviderWebsite(
     const response = await fetch(url, {
       headers: {
         "User-Agent":
-          "Mozilla/5.0 (compatible; AgedLeadSales/1.0; +https://agedleadsales.com)",
+          `Mozilla/5.0 (compatible; WorkAgedLeads/1.0; +${SITE_URL})`,
       },
       signal: AbortSignal.timeout(15000),
     });

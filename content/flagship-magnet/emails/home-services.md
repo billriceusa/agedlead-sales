@@ -2,7 +2,7 @@
 
 Emails delivered on Day 0, 2, 4, 7, and 10 after signup for the Home Services version of the flagship magnet.
 
-**Sender:** Bill Rice <bill@agedleadsales.com>
+**Sender:** Bill Rice <bill@workagedleads.com>
 **First-name merge tag:** `{{firstName}}`
 
 ---

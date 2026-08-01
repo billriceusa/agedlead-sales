@@ -1,13 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import { SITE_URL } from "@/lib/site-url";
 
 interface EmbedCodeProps {
   calculatorName: string;
   calculatorSlug: string;
 }
 
-const baseUrl = "https://agedleadsales.com";
+const baseUrl = SITE_URL;
 
 export function EmbedCode({ calculatorName, calculatorSlug }: EmbedCodeProps) {
   const [copied, setCopied] = useState(false);

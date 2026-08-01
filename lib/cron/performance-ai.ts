@@ -7,6 +7,7 @@ import {
   renderContentInventory,
 } from "./content-inventory";
 import { SONNET_MODEL } from "./model-config";
+import { SITE_HOST } from "@/lib/site-url";
 
 function getAnthropicClient(): Anthropic {
   const apiKey = process.env.ANTHROPIC_API_KEY;
@@ -125,7 +126,7 @@ ${gsc.ninetyDay.topQueries.slice(0, 10).map((q) => `- "${q.query}": ${q.clicks} 
   const response = await client.messages.create({
     model: SONNET_MODEL,
     max_tokens: 4096,
-    system: `You are a senior digital marketing analyst reviewing the daily performance of Work Aged Leads (agedleadsales.com), an SEO-driven affiliate content site targeting insurance agents, mortgage brokers, financial advisors, PI attorneys, and solar reps. The site promotes AgedLeadStore.com via affiliate links.
+    system: `You are a senior digital marketing analyst reviewing the daily performance of Work Aged Leads (${SITE_HOST}), an SEO-driven affiliate content site targeting insurance agents, mortgage brokers, financial advisors, PI attorneys, and solar reps. The site promotes AgedLeadStore.com via affiliate links.
 
 Analyze the 7-day rolling average vs 90-day average performance data and provide actionable insights. Focus on:
 - Traffic trends and anomalies

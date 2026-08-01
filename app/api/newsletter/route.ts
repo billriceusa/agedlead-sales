@@ -2,27 +2,28 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { isGoodOrigin, isHoneypotFilled } from "@/lib/anti-spam";
 import { REPLY_TO_EMAIL } from "@/lib/resend";
+import { SITE_URL, siteUrl } from "@/lib/site-url";
 
 const LEAD_MAGNET_DOWNLOADS: Record<string, { name: string; url: string }> = {
   "7-day-cadence": {
     name: "7-Day Follow-Up Cadence Cheat Sheet",
-    url: "https://www.agedleadsales.com/downloads/7-day-follow-up-cadence.pdf",
+    url: siteUrl("/downloads/7-day-follow-up-cadence.pdf"),
   },
   "scripts-bundle": {
     name: "Aged Lead Scripts Bundle",
-    url: "https://www.agedleadsales.com/downloads/aged-lead-scripts-bundle.pdf",
+    url: siteUrl("/downloads/aged-lead-scripts-bundle.pdf"),
   },
   "roi-scorecard": {
     name: "Weekly ROI Scorecard",
-    url: "https://www.agedleadsales.com/downloads/weekly-roi-scorecard.pdf",
+    url: siteUrl("/downloads/weekly-roi-scorecard.pdf"),
   },
   "lead-buying-checklist": {
     name: "Lead Buying Checklist",
-    url: "https://www.agedleadsales.com/downloads/lead-buying-checklist.pdf",
+    url: siteUrl("/downloads/lead-buying-checklist.pdf"),
   },
   "door-knocking-planner": {
     name: "Door-Knocking Route Planner",
-    url: "https://www.agedleadsales.com/downloads/door-knocking-route-planner.pdf",
+    url: siteUrl("/downloads/door-knocking-route-planner.pdf"),
   },
 };
 
@@ -130,19 +131,19 @@ export async function POST(request: Request) {
                 <li>Frameworks based on real campaign data, not theory</li>
                 <li>Weekly strategies for insurance, mortgage, solar, and more</li>
               </ul>
-              <p style="margin: 0 0 24px 0; color: #374151; font-size: 16px; line-height: 1.7;">Start here if you're new: <a href="https://www.agedleadsales.com/start-here" style="color: #2563eb; text-decoration: none; font-weight: 600;">Your Complete Guide to Working Aged Leads</a></p>
+              <p style="margin: 0 0 24px 0; color: #374151; font-size: 16px; line-height: 1.7;">Start here if you're new: <a href="${SITE_URL}/start-here" style="color: #2563eb; text-decoration: none; font-weight: 600;">Your Complete Guide to Working Aged Leads</a></p>
               <p style="margin: 0; color: #111827; font-weight: 600; font-size: 16px;">— Bill Rice</p>
             </td>
           </tr>
           <tr>
             <td style="background-color: #f9fafb; padding: 20px 32px; border-top: 1px solid #e5e7eb; text-align: center;">
               <p style="margin: 0 0 8px 0; color: #6b7280; font-size: 13px;">
-                <a href="https://www.agedleadsales.com" style="color: #2563eb; text-decoration: none; font-weight: 600;">Work Aged Leads</a> &nbsp;|&nbsp;
-                <a href="https://www.agedleadsales.com/playbook" style="color: #6b7280; text-decoration: none;">Playbook</a> &nbsp;|&nbsp;
-                <a href="https://www.agedleadsales.com/calculators" style="color: #6b7280; text-decoration: none;">Calculators</a>
+                <a href="${SITE_URL}" style="color: #2563eb; text-decoration: none; font-weight: 600;">Work Aged Leads</a> &nbsp;|&nbsp;
+                <a href="${SITE_URL}/playbook" style="color: #6b7280; text-decoration: none;">Playbook</a> &nbsp;|&nbsp;
+                <a href="${SITE_URL}/calculators" style="color: #6b7280; text-decoration: none;">Calculators</a>
               </p>
               <p style="margin: 0; color: #9ca3af; font-size: 12px;">
-                <a href="https://www.agedleadsales.com/api/newsletter/unsubscribe?email=${encodeURIComponent(email)}" style="color: #9ca3af; text-decoration: underline;">Unsubscribe</a>
+                <a href="${SITE_URL}/api/newsletter/unsubscribe?email=${encodeURIComponent(email)}" style="color: #9ca3af; text-decoration: underline;">Unsubscribe</a>
               </p>
             </td>
           </tr>

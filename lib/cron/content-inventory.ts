@@ -13,8 +13,10 @@
 // an empty inventory just means the analyst loses the guard for that run,
 // matching the rest of the cron's graceful-degradation style.
 
+import { SITE_URL } from "@/lib/site-url";
+
 const SITE_BASE_URL =
-  process.env.SITE_BASE_URL?.replace(/\/$/, "") || "https://agedleadsales.com";
+  process.env.SITE_BASE_URL?.replace(/\/$/, "") || SITE_URL;
 
 const MAX_URLS = 400;
 

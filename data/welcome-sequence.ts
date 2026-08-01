@@ -1,3 +1,5 @@
+import { SITE_URL } from "@/lib/site-url";
+
 /**
  * 5-Email Welcome Sequence for Work Aged Leads Newsletter
  *
@@ -26,14 +28,14 @@ Let's start with the fundamentals. Here are the **5 numbers that determine your 
 4. **Deal value** — Your commission or revenue per closed sale.
 5. **Follow-up consistency** — The #1 factor. Agents who make 5–7 touches convert 2–3x more than those who quit after 1–2.
 
-**Your first step:** Plug your numbers into our free [ROI Calculator](https://agedleadsales.com/calculators/roi-calculator) to see exactly what aged leads could produce for your business.
+**Your first step:** Plug your numbers into our free [ROI Calculator](${SITE_URL}/calculators/roi-calculator) to see exactly what aged leads could produce for your business.
 
 Talk soon,
 Bill Rice
 Work Aged Leads`,
     cta: {
       text: "Calculate Your ROI",
-      url: "https://agedleadsales.com/calculators/roi-calculator",
+      url: `${SITE_URL}/calculators/roi-calculator`,
     },
   },
   {
@@ -56,14 +58,14 @@ Here's the exact 7-day cadence our top-performing readers use:
 
 The key: mix channels. Phone alone won't cut it. But phone + text + email? That's a 30–50% boost in contact rate.
 
-**Tool recommendation:** Use our free [Outreach Cadence Planner](https://agedleadsales.com/calculators/outreach-cadence-planner) to build a custom cadence based on your capacity and channels.
+**Tool recommendation:** Use our free [Outreach Cadence Planner](${SITE_URL}/calculators/outreach-cadence-planner) to build a custom cadence based on your capacity and channels.
 
 Tomorrow: The scripts that turn contacts into conversations.
 
 Bill`,
     cta: {
       text: "Plan Your Cadence",
-      url: "https://agedleadsales.com/calculators/outreach-cadence-planner",
+      url: `${SITE_URL}/calculators/outreach-cadence-planner`,
     },
   },
   {
@@ -93,12 +95,12 @@ The **relevant hook** changes by industry:
 **Medicare:** "...I'm a local Medicare specialist and I wanted to check if your coverage is still working for you."
 
 The full scripts with objection handling for every industry are here:
-→ [Aged Lead Scripts That Actually Work](https://agedleadsales.com/blog/aged-lead-scripts-that-work)
+→ [Aged Lead Scripts That Actually Work](${SITE_URL}/blog/aged-lead-scripts-that-work)
 
 Bill`,
     cta: {
       text: "Get All the Scripts",
-      url: "https://agedleadsales.com/blog/aged-lead-scripts-that-work",
+      url: `${SITE_URL}/blog/aged-lead-scripts-that-work`,
     },
   },
   {
@@ -123,12 +125,12 @@ Here's the quick breakdown for 2026:
 **My recommendation for first-timers:** Start with 500 leads in the 30–60 day range. That's typically $750–$2,000 depending on your industry. Work them through a full 7-day cadence before judging results.
 
 The full pricing guide with ROI math for every vertical:
-→ [Aged Leads Cost 2026: Complete Pricing Guide](https://agedleadsales.com/blog/aged-leads-pricing-2026-complete-industry-guide)
+→ [Aged Leads Cost 2026: Complete Pricing Guide](${SITE_URL}/blog/aged-leads-pricing-2026-complete-industry-guide)
 
 Bill`,
     cta: {
       text: "See Full Pricing Guide",
-      url: "https://agedleadsales.com/blog/aged-leads-pricing-2026-complete-industry-guide",
+      url: `${SITE_URL}/blog/aged-leads-pricing-2026-complete-industry-guide`,
     },
   },
   {
@@ -140,20 +142,20 @@ Bill`,
 You now know the fundamentals: pricing, cadences, scripts, and ROI math. Here's your complete toolkit to put it all into action.
 
 **Free Calculators:**
-→ [ROI Calculator](https://agedleadsales.com/calculators/roi-calculator) — Compare aged vs real-time lead ROI
-→ [Lead Cost Calculator](https://agedleadsales.com/calculators/lead-cost-calculator) — Find your true cost per acquisition
-→ [Pipeline Calculator](https://agedleadsales.com/calculators/pipeline-calculator) — How many leads to hit your income goal
-→ [Cadence Planner](https://agedleadsales.com/calculators/outreach-cadence-planner) — Build your multi-channel follow-up plan
+→ [ROI Calculator](${SITE_URL}/calculators/roi-calculator) — Compare aged vs real-time lead ROI
+→ [Lead Cost Calculator](${SITE_URL}/calculators/lead-cost-calculator) — Find your true cost per acquisition
+→ [Pipeline Calculator](${SITE_URL}/calculators/pipeline-calculator) — How many leads to hit your income goal
+→ [Cadence Planner](${SITE_URL}/calculators/outreach-cadence-planner) — Build your multi-channel follow-up plan
 
 **Playbooks:**
-→ [7-Day Follow-Up Cadence](https://agedleadsales.com/playbooks/7-day-aged-lead-follow-up-cadence)
-→ [Tracking Aged Lead ROI](https://agedleadsales.com/playbooks/tracking-aged-lead-roi-metrics)
-→ [Mortgage Rate Shopping Playbook](https://agedleadsales.com/playbooks/mortgage-rate-shopping-playbook)
-→ [Final Expense Kitchen Table Close](https://agedleadsales.com/playbooks/final-expense-kitchen-table-close)
+→ [7-Day Follow-Up Cadence](${SITE_URL}/playbooks/7-day-aged-lead-follow-up-cadence)
+→ [Tracking Aged Lead ROI](${SITE_URL}/playbooks/tracking-aged-lead-roi-metrics)
+→ [Mortgage Rate Shopping Playbook](${SITE_URL}/playbooks/mortgage-rate-shopping-playbook)
+→ [Final Expense Kitchen Table Close](${SITE_URL}/playbooks/final-expense-kitchen-table-close)
 
 **The one thing most agents skip:** Setting up a CRM before buying leads. Even a free CRM (HubSpot, Close trial) will 2–3x your results because you never lose track of who to call next.
 
-→ [How to Build Your Follow-Up Machine](https://agedleadsales.com/blog/aged-lead-follow-up-machine-crm-dialer)
+→ [How to Build Your Follow-Up Machine](${SITE_URL}/blog/aged-lead-follow-up-machine-crm-dialer)
 
 From here, you'll get our weekly newsletter with strategies, scripts, and industry insights every Tuesday. Welcome aboard.
 
@@ -161,7 +163,7 @@ Bill Rice
 Work Aged Leads`,
     cta: {
       text: "Browse All Free Tools",
-      url: "https://agedleadsales.com/calculators",
+      url: `${SITE_URL}/calculators`,
     },
   },
 ];

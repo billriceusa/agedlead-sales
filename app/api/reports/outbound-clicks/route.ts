@@ -8,6 +8,7 @@
 
 import { NextResponse } from "next/server";
 import { getAccessToken } from "@/lib/cron/google-auth";
+import { SITE_HOST } from "@/lib/site-url";
 
 export const maxDuration = 60;
 export const dynamic = "force-dynamic";
@@ -123,7 +124,7 @@ export async function GET(request: Request) {
 
     return NextResponse.json({
       propertyId: PROPERTY_ID,
-      site: "agedleadsales.com",
+      site: SITE_HOST,
       generatedAt: new Date().toISOString(),
       windows: {
         last30d: { totalClicks: total30, dailyAvg: total30 / 30 },

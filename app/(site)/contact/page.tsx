@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ContactForm } from "./contact-form";
 import { JsonLd, breadcrumbJsonLd } from "@/components/json-ld";
+import { CONTACT_EMAIL } from "@/lib/site-url";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
@@ -46,10 +47,10 @@ export default function ContactPage() {
                   Email:{" "}
                 </span>
                 <a
-                  href="mailto:bill@agedleadsales.com"
+                  href={`mailto:${CONTACT_EMAIL}`}
                   className="text-blue-600 hover:text-blue-700 dark:text-blue-400"
                 >
-                  bill@agedleadsales.com
+                  {CONTACT_EMAIL}
                 </a>
               </li>
               <li>

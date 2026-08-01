@@ -1,5 +1,6 @@
 import { Geist } from "next/font/google";
 import "../globals.css";
+import { SITE_URL } from "@/lib/site-url";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,7 +23,7 @@ export default function EmbedLayout({
           <p className="mt-6 border-t border-zinc-200 pt-4 text-center text-xs text-zinc-400 dark:border-zinc-800">
             Powered by{" "}
             <a
-              href="https://agedleadsales.com/calculators?utm_source=embed&utm_medium=iframe"
+              href={`${SITE_URL}/calculators?utm_source=embed&utm_medium=iframe`}
               target="_blank"
               rel="noopener noreferrer"
               className="font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400"

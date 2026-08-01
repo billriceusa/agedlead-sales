@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { CtaBanner } from "@/components/cta-banner";
 import { LeadMagnetCta } from "@/components/lead-magnet-cta";
+import { siteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
   title: "Start Here — Your Complete Guide to Working Aged Leads",
@@ -17,13 +18,13 @@ const jsonLd = {
       "@type": "ListItem",
       position: 1,
       name: "Home",
-      item: "https://agedleadsales.com",
+      item: siteUrl("/"),
     },
     {
       "@type": "ListItem",
       position: 2,
       name: "Start Here",
-      item: "https://agedleadsales.com/start-here",
+      item: siteUrl("/start-here"),
     },
   ],
 };

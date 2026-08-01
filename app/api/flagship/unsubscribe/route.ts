@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { unsubscribeEverywhere } from "@/lib/unsubscribe";
+import { SITE_HOST, SITE_URL } from "@/lib/site-url";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -39,7 +40,7 @@ export async function GET(request: Request) {
   return new NextResponse(
     buildPage(
       "You've been unsubscribed",
-      "You won't receive any more emails from the Aged Lead Operator's System course. Note: emails already scheduled may arrive for up to 24 hours as Resend processes the suppression. If this was a mistake, you can re-subscribe at agedleadsales.com anytime."
+      `You won't receive any more emails from the Aged Lead Operator's System course. Note: emails already scheduled may arrive for up to 24 hours as Resend processes the suppression. If this was a mistake, you can re-subscribe at ${SITE_HOST} anytime.`
     ),
     { status: 200, headers: { "Content-Type": "text/html" } }
   );
@@ -64,7 +65,7 @@ function buildPage(title: string, message: string): string {
   <div class="card">
     <h1>${title}</h1>
     <p>${message}</p>
-    <a href="https://www.agedleadsales.com">Back to Work Aged Leads</a>
+    <a href="${SITE_URL}">Back to Work Aged Leads</a>
   </div>
 </body>
 </html>`;

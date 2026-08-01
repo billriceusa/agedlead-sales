@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { CtaBanner } from "@/components/cta-banner";
 import { NewsletterSignup } from "@/components/newsletter-signup";
+import { siteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
   title: "Newsletter — Weekly Aged Lead Strategies & Scripts",
   description:
     "Subscribe to the Work Aged Leads newsletter. Weekly strategies, scripts, and insights for sales professionals who work aged leads. Delivered every Tuesday morning by Bill Rice.",
-  alternates: { canonical: "https://agedleadsales.com/newsletter" },
+  alternates: { canonical: siteUrl("/newsletter") },
 };
 
 const jsonLd = {
@@ -18,13 +19,13 @@ const jsonLd = {
       "@type": "ListItem",
       position: 1,
       name: "Home",
-      item: "https://agedleadsales.com",
+      item: siteUrl("/"),
     },
     {
       "@type": "ListItem",
       position: 2,
       name: "Newsletter",
-      item: "https://agedleadsales.com/newsletter",
+      item: siteUrl("/newsletter"),
     },
   ],
 };
