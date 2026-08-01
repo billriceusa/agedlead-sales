@@ -1,5 +1,5 @@
 /**
- * Merge the two retiring newsletter audiences into the Work Aged Leads audience.
+ * Merge the retiring audiences into the Work Aged Leads audience.
  *
  * Why this is a module with tests rather than a one-off script: the consolidation
  * runs at least twice. Once now, to seed the new audience, and again on cutover
@@ -13,6 +13,15 @@
  * person is subscribed -> unsubscribed. It can never do the reverse, from any
  * source, in any order. That asymmetry is what `planWrites` encodes and what the
  * tests exist to hold.
+ *
+ * `mergeAudiences` therefore takes suppression lists as a first-class input,
+ * separate from the audiences. An audience row carries the opt-out state of the
+ * system that owns that audience — and for the ALS lifecycle audiences, that
+ * system is NOT Resend. `unsubscribeContact()` in lib/als/lifecycle.ts writes
+ * `als_buyer_contacts.unsubscribed` in Postgres and never touches the Resend
+ * audience, so a lifecycle opt-out is invisible in the row this merge reads.
+ * Measured 2026-08-01: 20 Postgres opt-outs, 15 Resend opt-outs, zero overlap.
+ * Merging the audiences alone would have resubscribed all 20.
  */
 
 /** A contact row as Resend's `GET /audiences/{id}/contacts` returns it. */
@@ -40,6 +49,20 @@ export interface MergedContact {
   sources: string[];
 }
 
+/**
+ * An opt-out record held somewhere other than the audience being merged.
+ *
+ * The ALS lifecycle program is the reason this exists: it is a transactional
+ * sender whose opt-out state lives in Postgres, so its Resend audience rows read
+ * `unsubscribed: false` for people who have already unsubscribed. Passing that
+ * set in here is what stops the merge from resubscribing them.
+ */
+export interface SuppressionSource {
+  /** Where these opt-outs came from, used to label the plan output. */
+  name: string;
+  emails: string[];
+}
+
 export interface SourceStats {
   name: string;
   rows: number;
@@ -47,8 +70,19 @@ export interface SourceStats {
   unsubscribed: number;
 }
 
+export interface SuppressionStats {
+  name: string;
+  /** Distinct usable addresses on the suppression list. */
+  listed: number;
+  /** How many of them appear on any source audience. */
+  matched: number;
+  /** How many the audiences had as subscribed and this list flipped. */
+  newlySuppressed: number;
+}
+
 export interface MergeStats {
   perSource: SourceStats[];
+  perSuppression: SuppressionStats[];
   distinct: number;
   onMoreThanOneSource: number;
   suppressed: number;
@@ -91,8 +125,16 @@ function firstNonEmpty(...values: (string | null | undefined)[]): string | null 
  * unsubscribed wins over subscribed regardless of which source it came from,
  * and the first non-empty name wins (so a source that captured a name beats one
  * that only captured an address, whatever order they are passed in).
+ *
+ * Suppression lists are applied last and are one-way: they can only turn a
+ * contact from subscribed to unsubscribed. An address on a suppression list but
+ * on no source audience is not migrated — there is nobody to suppress — but it
+ * is still counted so the plan output shows the list was read.
  */
-export function mergeAudiences(sources: AudienceSource[]): MergeResult {
+export function mergeAudiences(
+  sources: AudienceSource[],
+  suppression: SuppressionSource[] = [],
+): MergeResult {
   const byEmail = new Map<string, MergedContact>();
   const perSource: SourceStats[] = [];
   const skipped: { email: string; reason: string }[] = [];
@@ -144,6 +186,36 @@ export function mergeAudiences(sources: AudienceSource[]): MergeResult {
     });
   }
 
+  // Suppression is applied after every source has been folded in, and only ever
+  // sets the flag — there is no branch here that can clear it.
+  const perSuppression: SuppressionStats[] = [];
+  for (const list of suppression) {
+    const listed = new Set<string>();
+    let matched = 0;
+    let newlySuppressed = 0;
+
+    for (const raw of list.emails) {
+      const email = normalizeEmail(raw);
+      if (!isPlausibleEmail(email) || listed.has(email)) continue;
+      listed.add(email);
+
+      const contact = byEmail.get(email);
+      if (!contact) continue;
+      matched++;
+      if (!contact.unsubscribed) {
+        contact.unsubscribed = true;
+        newlySuppressed++;
+      }
+    }
+
+    perSuppression.push({
+      name: list.name,
+      listed: listed.size,
+      matched,
+      newlySuppressed,
+    });
+  }
+
   const contacts = [...byEmail.values()].sort((a, b) =>
     a.email.localeCompare(b.email),
   );
@@ -153,6 +225,7 @@ export function mergeAudiences(sources: AudienceSource[]): MergeResult {
     contacts,
     stats: {
       perSource,
+      perSuppression,
       distinct: contacts.length,
       onMoreThanOneSource: contacts.filter((c) => c.sources.length > 1).length,
       suppressed,

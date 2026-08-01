@@ -9,6 +9,17 @@ import {
   type ResendContactRow,
 } from "./merge";
 
+/** The property the whole migration rests on: a suppressed source contact must
+ * reach the target suppressed, and a target opt-out must survive every rerun. */
+function endToEndStates(
+  sources: Parameters<typeof mergeAudiences>[0],
+  suppression: Parameters<typeof mergeAudiences>[1],
+  target: ResendContactRow[],
+) {
+  const { contacts } = mergeAudiences(sources, suppression);
+  return planWrites(contacts, target);
+}
+
 function row(
   email: string,
   extra: Partial<ResendContactRow> = {},
@@ -67,6 +78,60 @@ describe("mergeAudiences", () => {
 
     assert.equal(contacts[0].firstName, "Bill");
     assert.equal(contacts[0].lastName, "Rice");
+  });
+
+  test("an external suppression list overrides a source that says subscribed", () => {
+    // The ALS case: the audience row reads subscribed because the opt-out was
+    // recorded in Postgres, not in Resend.
+    const { contacts, stats } = mergeAudiences(
+      [{ name: "als-purchasers", contacts: [row("optedout@y.com"), row("fine@y.com")] }],
+      [{ name: "postgres als_buyer_contacts", emails: ["OptedOut@Y.com "] }],
+    );
+
+    assert.equal(contacts.find((c) => c.email === "optedout@y.com")?.unsubscribed, true);
+    assert.equal(contacts.find((c) => c.email === "fine@y.com")?.unsubscribed, false);
+    assert.equal(stats.suppressed, 1);
+    assert.equal(stats.sendable, 1);
+    assert.deepEqual(stats.perSuppression, [
+      {
+        name: "postgres als_buyer_contacts",
+        listed: 1,
+        matched: 1,
+        newlySuppressed: 1,
+      },
+    ]);
+  });
+
+  test("a suppression list never resubscribes and never adds anyone", () => {
+    const { contacts, stats } = mergeAudiences(
+      [{ name: "als", contacts: [row("already@y.com", { unsubscribed: true })] }],
+      [
+        { name: "list", emails: ["already@y.com", "not-on-any-source@y.com", "junk"] },
+      ],
+    );
+
+    assert.deepEqual(
+      contacts.map((c) => c.email),
+      ["already@y.com"],
+      "suppression must not introduce an address the audiences do not carry",
+    );
+    assert.equal(contacts[0].unsubscribed, true);
+    assert.deepEqual(stats.perSuppression, [
+      { name: "list", listed: 2, matched: 1, newlySuppressed: 0 },
+    ]);
+  });
+
+  test("suppression lists union rather than override each other", () => {
+    const { stats } = mergeAudiences(
+      [{ name: "als", contacts: [row("a@y.com"), row("b@y.com"), row("c@y.com")] }],
+      [
+        { name: "postgres", emails: ["a@y.com"] },
+        { name: "resend-flags", emails: ["b@y.com"] },
+      ],
+    );
+
+    assert.equal(stats.suppressed, 2);
+    assert.equal(stats.sendable, 1);
   });
 
   test("skips unusable addresses instead of shipping them to the API", () => {
@@ -159,6 +224,24 @@ describe("planWrites", () => {
       suppress: 0,
       unchanged: merged.length,
     });
+  });
+
+  test("a Postgres-only opt-out lands on the target already suppressed", () => {
+    // End to end, this is the ALS bug: the audience says subscribed, Postgres
+    // says opted out, and the target has never seen the address.
+    const actions = endToEndStates(
+      [{ name: "als-purchasers", contacts: [row("buyer@y.com")] }],
+      [{ name: "postgres als_buyer_contacts", emails: ["buyer@y.com"] }],
+      [],
+    );
+
+    assert.equal(actions.length, 1);
+    assert.equal(actions[0].kind, "create");
+    assert.equal(
+      actions[0].contact.unsubscribed,
+      true,
+      "an opt-out recorded outside Resend must not be migrated as sendable",
+    );
   });
 
   test("does not emit a suppress it cannot execute", () => {
