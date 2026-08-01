@@ -21,11 +21,11 @@ Regenerate with `node scripts/build-url-map.mjs`.
 | `htwl-gsc-pages.json` | Current GSC window, www/non-www/#fragment normalized |
 | `htwl-gsc-pages-2026-06-05.json` | The **prior** window. Keep it — prune eligibility is the intersection of the two |
 | `htwl-published-at.json` | publishedAt per slug, from the Sanity export |
-| `backlinks-2026-08-01.json` | Live referring domains per URL, both sites (Ahrefs). Prune eligibility now requires zero impressions **and** zero referring domains |
+| `backlinks-2026-08-01.json` | Live inbound links per page, both sites (Ahrefs), with the dofollow and spam flags. Prune eligibility requires zero impressions **and** zero *qualifying* referring domains |
 
 ## url-map.csv columns
 
-`old_url, new_url, action, risk, clicks, impr, pos, notes`
+`old_url, new_url, action, risk, clicks, impr, pos, refdomains, qualifying, notes`
 
 | Action | Count | Meaning |
 |---|---|---|
@@ -42,16 +42,41 @@ earning no impressions at all, and seven pruned pages did — a `PRUNE` row emit
 no destination, so each would have 404'd at cutover and thrown its links away.
 One was linked from kaleidico.com at DR 38.
 
-`refdomains` is now a column, and the generator **fails the build** if any
-`PRUNE` row still holds referring domains. Rescues live in
-`LINKED_PRUNE_RESCUE` with a written reason each.
+`refdomains` and `qualifying` are now columns, and the generator **fails the
+build** if any `PRUNE` row still holds a qualifying referring domain. Rescues
+live in `LINKED_PRUNE_RESCUE` with a written reason each.
 
-The constraint on a rescue is the plan's own rule: topic-matched destination,
-never the homepage and never a generic hub. Google treats a topically unrelated
-301 as a soft 404, so a bad destination is the same outcome as deleting the page
-with extra clutter. Two of the seven are marked `weak` — the target site is
-B2C-only and has no B2C-funnel equivalent — and want an editorial second opinion
-before cutover.
+### Not every link is worth a redirect
+
+A referring domain **qualifies** only when its link is dofollow and not flagged
+spam. Both profiles are roughly 95% PBN, so gating on the raw count hands any
+spam network a veto over any prune it happens to have linked to — and on this
+corpus it would exercise that veto constantly. Of the seven rescued pages, only
+two hold a qualifying link: kaleidico.com → the real-time-lead-team page, and
+ethanolle.com → the modern-b2c-sales-funnel page. The other five are kept
+anyway; the gate is a floor, not a ceiling, and their destinations are sound.
+
+`refdomains` counts **distinct** domains across apex and www. The page-level
+pull this file replaced summed those two rows, which reported the single
+ethanolle.com link as two referring domains.
+
+### The constraint on a rescue
+
+The plan's own rule: topic-matched destination, never the homepage and never a
+generic hub. Google treats a topically unrelated 301 as a soft 404, so a bad
+destination is the same outcome as deleting the page with extra clutter.
+
+Anchor context decides the match where the subject is ambiguous.
+`/sales-process/the-modern-b2c-sales-funnel` first pointed at the 7-day cadence
+guide as the nearest real page; the referring article
+(`ethanolle.com/pipeline-de-vente/`, DR 31, dofollow) cites it for a
+conversion-rate range — *"taux de conversion finaux autour de 5 % à 15 %"* — so
+it goes to `/blog/aged-lead-conversion-rates-by-industry-data-benchmarks`
+instead.
+
+One rescue is still marked `weak`: `/sales-process/b2c-vs-b2b-sales-process`,
+because a B2C-only site has no B2B-vs-B2C equivalent. Its only inbound link is
+nofollow and spam-flagged, so nothing rides on the destination either way.
 
 Same lesson `/lead-order` already taught: **a URL's search metrics do not
 measure its inbound links.** Check what points at a page before deleting it.
