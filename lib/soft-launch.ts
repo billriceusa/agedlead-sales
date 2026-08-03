@@ -13,17 +13,30 @@
  * built with the wrong value is indexable with no way to tell from the outside.
  * A request-time hostname check cannot get that wrong.
  *
- * Failure mode is chosen: when `NOINDEX_HOSTS` is unset the migration host is
- * still suppressed. Forgetting to configure it leaves the site over-protected,
- * not exposed.
+ * Failure mode was chosen: while the default listed workagedleads.com,
+ * forgetting to configure `NOINDEX_HOSTS` left the site over-protected rather
+ * than exposed.
  *
- * To let workagedleads.com be indexed at cutover, set `NOINDEX_HOSTS` to an
- * empty string and redeploy. Removing this at cutover is Phase 5, not Phase 3.
+ * SOFT LAUNCH ENDED 2026-08-03. The default is now empty.
+ *
+ * The original plan was to end it by setting `NOINDEX_HOSTS=""` at cutover.
+ * That does not work: Vercel discards an empty-string environment variable, so
+ * the value never reaches the runtime and `parseNoindexHosts` sees `undefined`
+ * and falls back to the default — leaving the new host noindexed on the very
+ * deploy meant to release it, with nothing in the env to show why. Ending the
+ * soft launch in code removes the dependency on a value the platform cannot
+ * represent.
+ *
+ * The mechanism is intact. Set `NOINDEX_HOSTS` to suppress a host again; the
+ * unconditional `.vercel.app` rule in `shouldNoindexHost` is untouched.
  */
 
 /** Hosts suppressed when `NOINDEX_HOSTS` is not set. Compared bare — a leading
- * `www.` is stripped from both sides, so this covers apex and www together. */
-export const DEFAULT_NOINDEX_HOSTS = ["workagedleads.com"];
+ * `www.` is stripped from both sides, so this covers apex and www together.
+ *
+ * Empty since cutover: no production host on this project should be suppressed
+ * by default. Preview deployments are still covered, in `shouldNoindexHost`. */
+export const DEFAULT_NOINDEX_HOSTS: string[] = [];
 
 /** The value sent on a suppressed host. `nofollow` is included so link equity
  * is not attributed to the staging copy while both hosts serve the same pages. */
