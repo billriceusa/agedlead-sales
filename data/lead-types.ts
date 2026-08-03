@@ -1260,6 +1260,119 @@ export const LEAD_TYPES: Record<string, LeadTypeData> = {
       `/providers/best/medicare`,
   },
 
+  "health-insurance-leads": {
+    slug: "health-insurance-leads",
+    title: "Health Insurance Leads",
+    icon: "\u{1F3E5}",
+    heroDescription:
+      "ACA and marketplace shoppers who asked for a quote and never enrolled. In this vertical the enrollment calendar is a hard gate, not a preference \u2014 which changes what an aged record is worth and how you work it.",
+    metaTitle: "Aged Health Insurance Leads \u2013 Working ACA Leads Between Enrollment Windows",
+    metaDescription:
+      "Aged health insurance leads are cheap because the enrollment calendar gates them. Here is the trigger-detection cadence that works between OEP windows, what the records cost by freshness, and the compliance rules.",
+    primaryKeyword: "aged health insurance leads",
+    secondaryKeywords: [
+      "aged ACA leads",
+      "buy health insurance leads",
+      "U65 health leads",
+      "special enrollment period leads",
+      "marketplace insurance leads",
+    ],
+    costRange: "$1 \u2013 $30",
+    whoItsFor: [
+      "ACA and marketplace agents building a book between enrollment windows",
+      "Agencies that need year-round activity rather than a Q4 sprint",
+      "Agents licensed in several states who can work a wide geographic pull",
+      "Producers who also write Medicare and want an age-in pipeline",
+      "Anyone whose calendar empties out from February to October",
+    ],
+    whatYouGet: [
+      "Name, phone and email from a marketplace or comparison-site form",
+      "State \u2014 the field that decides whether you can write them at all",
+      "Age band and household size where the source form captured it",
+      "Original inquiry date, which tells you which enrollment window they were in",
+      "Current-coverage flag on some sources",
+    ],
+    sections: {
+      whatAre:
+        "Aged health insurance leads are consumer records from people who requested a quote on an ACA or marketplace plan \u2014 typically 30 to 365 days ago \u2014 and never enrolled with the agent who bought the lead first. Most originate on comparison sites, and most are U65: individuals and families shopping individual or family coverage rather than Medicare. The record itself is the same one that sold new for real-time money. What changed is the date on it, and in this vertical the date does more work than it does anywhere else.",
+      whyUse:
+        "Every other vertical treats lead age as probability decay \u2014 the person is a little less likely to answer, a little further from buying. Health insurance does not work that way. Enrollment is gated. Outside the annual Open Enrollment Period you can only enroll someone who has a qualifying life event, and that turns an aged record from a warm-to-cold gradient into something closer to a switch: they are eligible right now or they are not. That is why aged health leads are among the cheapest records on the market, and it is also why the same record is worth several times more in October than in March. Buy on that asymmetry rather than on the per-lead price. Freshness pricing by bracket is on the price index rather than restated here, because those numbers are maintained there and go stale in copy.",
+      howToWork:
+        "The gate changes the job. You are not running a persistence cadence to warm somebody up \u2014 you are running a trigger-detection cadence to find out whether anything has changed since they filled out the form. Lost a job, aged off a parent's plan, got married, had a baby, moved states, had income change: any of those opens a special enrollment period, and the window is short once it opens. So the opener asks about circumstances, not about insurance. Segment the file by state first, because a record you cannot write is worth nothing regardless of how good it is. Then work it on a slow, repeating cycle rather than a 14-day sprint, and load the whole file heavily ahead of Open Enrollment, when the gate opens for everybody at once.",
+      script: {
+        opener:
+          '"Hi [Name], this is [Your Name], licensed insurance agent in [State]. You looked at health coverage a while back \u2014 I am not calling to sell you anything today. I am checking whether anything has changed for you this year: job, household, income, a move. Any of those can open a window to change plans outside the normal season."',
+        whyItWorks: [
+          "Leads with the qualifying question, which is the only thing that decides whether a conversation is possible",
+          "Names the state and the license, which is what makes a health-insurance cold call credible",
+          "\"Not calling to sell you anything today\" is true when they are outside a window \u2014 and being true is what makes it work",
+          "Frames the SEP as something they might be missing rather than something you are pitching",
+        ],
+      },
+      costComparison: {
+        realTime: "$50\u2013$100 per lead",
+        aged: "$1\u2013$30 per lead by freshness",
+        savings: "See the price index for the by-bracket breakdown",
+      },
+      bestPractices: [
+        "Segment by state before anything else \u2014 an unlicensed state makes the record worthless to you",
+        "Open by asking what has changed, not by asking about insurance",
+        "Buy heavily ahead of Open Enrollment; the gate opens for the whole file at once",
+        "Work the out-of-window segment on a slow repeating cycle, not a 14-day sprint",
+        "Log the qualifying event and its date \u2014 SEP windows close fast once they open",
+        "Scrub against the DNC registry and a litigator list before every campaign",
+        "Never state or imply you represent the marketplace, CMS or a government program",
+      ],
+    },
+    deepDive: [
+      {
+        heading: "The Enrollment Calendar Is the Whole Strategy",
+        body: "Health insurance is the one vertical where the buying question and the working question have the same answer, and that answer is the calendar.\n\nOpen Enrollment for ACA marketplace plans runs a fixed annual window \u2014 broadly early November into January, with the exact dates set each year and some state exchanges running longer. Inside it, anyone can enroll or switch. Outside it, enrollment requires a special enrollment period triggered by a qualifying life event: losing other coverage, marriage, a birth or adoption, a permanent move, certain income changes. SEPs are time-limited from the date of the event, so the person who qualified six weeks ago may already be closed out. Confirm the current year's dates and rules before you build a campaign around them; they move, and they are not the sort of thing to take on trust from a lead-type page.\n\nWhat that means operationally is unusual. In most verticals you buy leads when you have budget and work them until they convert or die. Here, a file bought in June is mostly inert until you find the minority inside a window \u2014 and the same file becomes valuable to the entire book in November. The correct pattern is to accumulate cheaply in the off-season and be holding volume when the gate opens, not to buy in November when everyone else is bidding.\n\nThe corollary is that an aged health lead is not really a lower-quality lead. It is the same person, priced for the months when you cannot legally sell them anything. That is a discount on timing, not on the prospect."
+      },
+      {
+        heading: "Trigger Detection Beats Persistence",
+        body: "The standard aged-lead playbook is a multi-touch cadence designed to catch someone at a moment they are receptive. That is the right shape when the constraint is attention. It is the wrong shape when the constraint is eligibility.\n\nCalling an out-of-window prospect eight times in fourteen days does not make them enrollable. It makes them annoyed, and on a purchased health list it also raises your complaint exposure for no possible sale. What works is a slow, repeating check-in on a monthly or quarterly rhythm whose single job is to find out whether a qualifying event has happened. One touch, an honest question, and a note in the CRM with the date.\n\nThat reframes the metrics too. Contact rate matters less than it does elsewhere; what you are tracking is the share of contacts who surface a qualifying event, and how fast you convert those once found. A file that produces few conversations but reliably surfaces SEPs when they occur is doing its job.\n\nTwo practical notes. Record the event and its date, because the SEP clock starts at the event rather than at your call. And treat the run-up to Open Enrollment as the moment the whole file wakes up \u2014 that is when a year of patient, cheap accumulation converts, and it is worth having the outreach sequenced and the licensing current before it starts."
+      },
+      {
+        heading: "Compliance: Health Data Raises the Floor",
+        body: "Aged health insurance leads are purchased consumer records, not pre-consented contacts, so the baseline is the same as any purchased data: scrub against the National Do Not Call registry and a TCPA litigator list before every campaign, dial manually rather than through prohibited automated technology, honor opt-outs immediately, and respect calling windows. Several states run their own mini-TCPA statutes, so a campaign that is clean federally can still create state exposure.\n\nThis vertical adds two of its own. **You must be licensed in the state on the record**, and for marketplace business, registered and certified as required for the plan year. Calling a prospect in a state you cannot write is not just wasted effort \u2014 depending on what you say, it is unlicensed activity. **And you may not state or imply that you represent the marketplace, CMS, or any government program.** Marketing rules around health coverage are stricter than in most verticals and the language is scrutinised. Text messaging on purchased health data deserves particular care, since the prior express written consent SMS requires is exactly what a purchased record generally does not carry.\n\nRun your specific program past qualified compliance counsel before launch. The full cross-vertical framework, including the consent ladder, is in the free playbook."
+      }
+    ],
+    faqs: [
+      {
+        question: "Why are aged health insurance leads so cheap?",
+        answer:
+          "Because enrollment is gated. Outside Open Enrollment you can only enroll someone with a qualifying life event, so for much of the year most of the file cannot be written no matter how good the record is. The price reflects the months you cannot sell, not the quality of the prospect."
+      },
+      {
+        question: "Can I actually enroll someone from an aged lead?",
+        answer:
+          "Only inside Open Enrollment, or if they have had a qualifying life event that opens a special enrollment period \u2014 loss of coverage, marriage, a birth, a permanent move, certain income changes. SEP windows are time-limited from the date of the event, so the useful question on an aged record is not whether they still want coverage but whether anything has changed."
+      },
+      {
+        question: "When should I buy?",
+        answer:
+          "Ahead of Open Enrollment rather than during it. The gate opens for the whole file at once, and the point of buying aged is that accumulating cheaply in the off-season is affordable in a way that bidding in November is not."
+      },
+      {
+        question: "What cadence works between enrollment windows?",
+        answer:
+          "A slow repeating check-in \u2014 monthly or quarterly \u2014 whose only job is to detect a qualifying event. A compressed multi-touch sprint is the wrong tool here: it cannot create eligibility, and on purchased health data it raises complaint exposure for no possible sale."
+      },
+      {
+        question: "What do aged health insurance leads cost?",
+        answer:
+          "Roughly $1 to $30 per record depending on freshness, against $50 to $100 for real-time. The by-bracket breakdown with confidence levels is maintained on our price index rather than restated here, because those figures are refreshed on a schedule and copy goes stale."
+      },
+      {
+        question: "What compliance rules are specific to this vertical?",
+        answer:
+          "You must be licensed in the state on the record, and certified as required for marketplace business in that plan year. You may not state or imply that you represent the marketplace, CMS or any government program. Both sit on top of the ordinary purchased-data rules: DNC and litigator scrubs, manual dialing, immediate opt-out handling. Confirm your program with qualified counsel before launch."
+      }
+    ],
+    getCompareUrl: () =>
+      `/providers/best/health-insurance`,
+  },
   "home-improvement-leads": {
     slug: "home-improvement-leads",
     title: "Home Improvement Leads",

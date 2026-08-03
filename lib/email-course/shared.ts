@@ -1,5 +1,6 @@
 import type { EmailContext, Vertical } from "./types";
 import { SITE_URL } from "@/lib/site-url";
+import { rebrandNoticeHtml } from "@/lib/rebrand-notice";
 
 export { SITE_URL };
 export const FROM_EMAIL = "Bill Rice <bill@workagedleads.com>";
@@ -52,6 +53,7 @@ export function renderShell({ bodyHtml, ctx }: ShellOptions): string {
                 <a href="${SITE_URL}/playbook" style="color: #6b7280; text-decoration: none;">Playbooks</a> &nbsp;|&nbsp;
                 <a href="${SITE_URL}/calculators" style="color: #6b7280; text-decoration: none;">Calculators</a>
               </p>
+              ${rebrandNoticeHtml()}
               <p style="margin: 0; color: #9ca3af; font-size: 12px;">
                 <a href="${ctx.unsubscribeUrl}" style="color: #9ca3af; text-decoration: underline;">Unsubscribe</a>
               </p>
