@@ -4,6 +4,7 @@ import {
   parseNoindexHosts,
   shouldNoindexHost,
 } from "@/lib/soft-launch";
+import { legacyRedirectTarget } from "@/lib/legacy-host";
 
 /**
  * Keep the soft-launch domain out of the index while it serves the same pages
@@ -16,9 +17,19 @@ import {
 const NOINDEX_HOSTS = parseNoindexHosts(process.env.NOINDEX_HOSTS);
 
 export default function proxy(request: NextRequest) {
+  const host = request.headers.get("host");
+
+  // Cutover: the retiring host permanently redirects onto workagedleads.com.
+  // Runs before anything else — there is nothing to serve from the old host.
+  // The rule, and what it deliberately leaves alone, is in lib/legacy-host.ts.
+  const redirectTo = legacyRedirectTarget(host, request.url);
+  if (redirectTo) {
+    return NextResponse.redirect(redirectTo, 301);
+  }
+
   const response = NextResponse.next();
 
-  if (shouldNoindexHost(request.headers.get("host"), NOINDEX_HOSTS)) {
+  if (shouldNoindexHost(host, NOINDEX_HOSTS)) {
     response.headers.set("X-Robots-Tag", NOINDEX_HEADER);
   }
 

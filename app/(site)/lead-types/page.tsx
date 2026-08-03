@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { siteUrl } from "@/lib/site-url";
 import Link from "next/link";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { leadTypesQuery } from "@/sanity/lib/queries";
@@ -9,6 +10,7 @@ export const metadata: Metadata = {
   title: "Aged Lead Types: Mortgage, Insurance, Solar & More",
   description:
     "Browse aged leads by industry — mortgage, insurance, final expense, IUL, SSDI, MVA, solar, and Medicare. Compare providers, see pricing, and find the right leads for your book of business.",
+  alternates: { canonical: siteUrl("/lead-types") },
 };
 
 const LEAD_TYPE_DEFAULTS = [

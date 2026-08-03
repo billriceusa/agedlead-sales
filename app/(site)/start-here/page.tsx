@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "Start Here: How to Work Aged Leads",
   description:
     "You have a list of aged leads and they are not converting. This is the roadmap — the math, the cadence, and the systems that work on data 30 to 365 days old, across insurance, mortgage, solar and home improvement.",
+  alternates: { canonical: siteUrl("/start-here") },
 };
 
 const jsonLd = {
