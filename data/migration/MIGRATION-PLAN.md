@@ -31,54 +31,64 @@ email list, and the agedleadstore.com link inventory repointed.
 
 ---
 
-## Status at a glance — 2026-08-01
+## Status at a glance — 2026-08-03
 
-Measured, not remembered. Sanity counts are from the `raw` perspective; live
-checks are against agedleadsales.com and workagedleads.com.
+Measured, not remembered. Every line below was checked live today against
+workagedleads.com; the previous version of this table was 2026-08-01 and three
+of its rows are now wrong in the optimistic direction's favour.
 
 | Phase | State |
 |---|---|
-| 0 — Pre-flight | D16/D17 **answered**. Rev-share baseline **closed by Bill** (assembled from agedleadstore.com GA4). Sanity export still open |
+| 0 — Pre-flight | D16/D17 answered. Rev-share baseline closed by Bill. **Sanity export unverified** — stored outside the repos, cannot confirm from here |
 | 1 — Content decisions | **Done.** 421 rows, zero unresolved |
-| 2a — Sanity content import | **Staged, not live.** 81 posts sit as **unpublished drafts**. 0 of them are published |
-| 2b — Domain reference sweep | In progress |
-| 2c — Redirects | **Done and merged.** On main |
-| 3 — Soft launch | **Not started.** workagedleads.com still serves the GoDaddy lander (`/lander`) |
-| 4 — Verification gate | Not started |
-| 5 — Cutover | Not started |
+| 2a — Sanity content import | **Done and live.** The 81 drafts are published — every blog destination that 404'd on 08-01 now returns 200 |
+| 2b — Domain reference sweep | **Done and merged** (#59). `lib/site-url.ts` is the single source; `ALLOWED_HOSTS` carries both hosts |
+| 2c — Redirects | **Done and merged.** All 52 path-change rules verified correct on the new host |
+| 2d — List consolidation | **Applied.** 2,435 distinct / 2,368 sendable on `43fe6675-…` |
+| 3 — Soft launch | **Done.** workagedleads.com serves the real site behind `x-robots-tag: noindex, nofollow`, canonicalling to agedleadsales.com |
+| 4 — Verification gate | **Map half passes.** 108/108 destinations resolve, 52/52 path rules correct. Lead-capture probe not yet run |
+| 5 — Cutover | Not started. Steps 2–3 (GSC properties + service-account grant) done early, 2026-08-03 |
 | 6 — Post-cutover | Not started |
 
-### Correction to the 2a line
+### What changed since 2026-08-01, and what the old table got wrong
 
-The previous version read *"81 drafts staged, 76 published, mechanically clean,"*
-which reads as though 76 of the 81 went live. **None of them did.** The 76 is the
-pre-existing agedleadsales corpus — the same 76 in the content-inventory table
-above. Measured 2026-08-01:
+Three rows were stale in a way that would have caused bad decisions:
 
-```
-publishedPosts 76   draftPosts 81
-draftsMissingImage 9   draftsMissingPublishedAt 2
-```
+- *"Phase 3 not started — workagedleads.com still serves the GoDaddy lander."*
+  **Wrong now.** It serves the real site, noindexed. Soft launch is live.
+- *"81 posts sit as unpublished drafts, 78 destinations resolve to 404."*
+  **Closed.** Probed all 108 distinct redirect destinations from `url-map.csv`
+  today: **107 return 200**, and the one non-200 is `/lead-order`, whose 307 to
+  `agedleadstore.com/all-lead-types/` carrying `utm_source=agedleadsales` is the
+  deliberate D16 behaviour, not a defect.
+- *"2b in progress."* Merged.
 
-**This is the largest open content risk in the migration.** 83 `MIGRATE`/`MERGE`
-rows land on `/blog/*`. Only 5 of those destinations are published, so **78
-resolve to 404 today** — verified live, e.g. `/blog/best-crm-aged-leads`,
-`/blog/aged-lead-pricing-guide`, `/blog/cost-per-lead-analysis` all return 404.
+Verified the same day: all 52 rows whose path changes redirect **301/308 to
+exactly the mapped destination** on workagedleads.com. Zero served 200 instead
+of redirecting, zero landed anywhere other than the mapped URL.
 
-Traffic redirecting into those 404s at cutover: **90 clicks and 17,044
-impressions**, which is **34% of howtoworkleads' mapped clicks**. It also
-includes `/blog/aged-lead-pricing-guide`, which holds **6 referring domains** —
-the strongest deep link on either site.
+### What is actually left
 
-Every one of the 78 is covered by an existing draft. Checked slug-by-slug: 78 of
-78 covered, **zero orphans**. Publishing the 81 closes the whole gap. The three
-drafts no redirect needs (`aged-lead-budget-allocation-roi-optimization`,
-`aged-lead-team-training-playbook-managers`,
-`summer-solar-aged-lead-activation-strategy`) already have same-host redirects in
-`next.config.ts` pointing at their renamed versions.
+Ordered by what blocks what.
 
-**Publishing them is a Phase 3 gate, not a Phase 5 one** — the destinations have
-to exist before the verification gate can pass, and Phase 4 probes the map.
+1. **The merged disavow does not exist yet.** `data/backlink-audit/disavow.txt`
+   is 291 domains, agedleadsales.com only, last refreshed 2026-07-21. There is
+   no howtoworkleads.com list folded in. It has to be built AND submitted on the
+   **URL-prefix** property `https://workagedleads.com/` — the disavow tool does
+   not accept domain properties — **before** the 301s fire, because none of the
+   existing protection follows a redirect and both source profiles are ~95% PBN.
+   This is the highest-consequence item left.
+2. **Two fold destinations are still shells.** `/lead-types/health-insurance-leads`
+   renders 363 words and `/lead-types/auto-insurance-leads` 315, against 3,553
+   and 3,657 for the two that are done. Both are live redirect destinations.
+3. **The lead-capture probe has not been run on the new host.** `ALLOWED_HOSTS`
+   does contain workagedleads.com and its www — the single highest-risk line —
+   but `isGoodOrigin()` returns `{success: true}` on failure by design, so the
+   only proof is a real form POST landing a contact in Resend.
+4. **The re-introduction broadcast has not been sent.** Staged in three waves
+   with a 0.1% complaint stop signal — see `REINTRODUCTION-EMAIL.md`.
+5. **Two ALS opt-outs still live only in Resend**, not in Postgres, so the
+   lifecycle cron can still mail them. Was 15 on 08-01; #58 closed all but two.
 
 ### Decisions answered since authoring
 
