@@ -21,9 +21,18 @@ describe("normalizeHost", () => {
 });
 
 describe("shouldNoindexHost", () => {
-  test("suppresses the migration host on apex and www", () => {
-    assert.equal(shouldNoindexHost("workagedleads.com"), true);
-    assert.equal(shouldNoindexHost("www.workagedleads.com"), true);
+  test("no production host is suppressed by default after cutover", () => {
+    // The soft launch ended 2026-08-03. workagedleads.com is the live site now
+    // and must be indexable; a regression here deindexes it silently, and the
+    // only visible symptom is rankings that never arrive.
+    assert.equal(shouldNoindexHost("workagedleads.com"), false);
+    assert.equal(shouldNoindexHost("www.workagedleads.com"), false);
+  });
+
+  test("the mechanism still works when a host is named", () => {
+    const hosts = parseNoindexHosts("workagedleads.com");
+    assert.equal(shouldNoindexHost("workagedleads.com", hosts), true);
+    assert.equal(shouldNoindexHost("www.workagedleads.com", hosts), true);
   });
 
   test("NEVER suppresses the live indexed site", () => {
@@ -55,7 +64,10 @@ describe("parseNoindexHosts", () => {
     assert.deepEqual(parseNoindexHosts(undefined), DEFAULT_NOINDEX_HOSTS);
   });
 
-  test("an explicitly empty value suppresses nothing — the cutover switch", () => {
+  test("an explicitly empty value suppresses nothing", () => {
+    // Kept as a property of the parser, but it is no longer how cutover
+    // happens: Vercel discards an empty-string env var, so this value never
+    // reaches production. Ending the soft launch changed the default instead.
     assert.deepEqual(parseNoindexHosts(""), []);
     assert.equal(shouldNoindexHost("workagedleads.com", parseNoindexHosts("")), false);
   });
