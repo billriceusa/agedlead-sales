@@ -17,6 +17,7 @@ import { StickyToc } from "@/components/sticky-toc";
 import { NextReadBar } from "@/components/next-read-bar";
 import { ReactionButtons } from "@/components/reaction-buttons";
 import { PROVIDERS } from "@/data/providers";
+import { CONTACT_EMAIL } from "@/lib/site-url";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
@@ -329,7 +330,7 @@ export default async function BlogPostPage({ params }: Props) {
               </Link>
               . Found an error?{" "}
               <a
-                href="mailto:bill@agedleadsales.com"
+                href={`mailto:${CONTACT_EMAIL}`}
                 className="text-blue-600 hover:text-blue-700 dark:text-blue-400"
               >
                 Let us know

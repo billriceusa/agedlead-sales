@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { JsonLd, breadcrumbJsonLd } from "@/components/json-ld";
+import { CONTACT_EMAIL } from "@/lib/site-url";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
@@ -166,8 +167,8 @@ export default function EditorialProcessPage() {
             <p>
               We correct errors promptly. If you find inaccurate information,
               outdated data, or a broken link on this site, please email{" "}
-              <a href="mailto:bill@agedleadsales.com">
-                bill@agedleadsales.com
+              <a href={`mailto:${CONTACT_EMAIL}`}>
+                {CONTACT_EMAIL}
               </a>{" "}
               and we will investigate and update the content. We do not
               silently change substantive claims &mdash; material corrections are

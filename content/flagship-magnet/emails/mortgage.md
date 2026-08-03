@@ -4,7 +4,7 @@ Emails delivered on Day 0, 2, 4, 7, and 10 after signup for the Mortgage version
 
 Each email references the playbook + workbook PDFs (delivered at signup) and builds toward the Day 10 CTA to purchase aged leads.
 
-**Sender:** Bill Rice <bill@agedleadsales.com>
+**Sender:** Bill Rice <bill@workagedleads.com>
 **First-name merge tag:** `{{firstName}}` (optional; default to "there")
 
 ---

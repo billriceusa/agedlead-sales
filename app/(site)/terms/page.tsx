@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { JsonLd, breadcrumbJsonLd } from "@/components/json-ld";
+import { CONTACT_EMAIL, SITE_HOST } from "@/lib/site-url";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
@@ -34,7 +35,7 @@ export default function TermsPage() {
 
           <div className="prose prose-zinc dark:prose-invert max-w-none">
             <p>
-              By accessing and using agedleadsales.com (&quot;the Site&quot;),
+              By accessing and using {SITE_HOST} (&quot;the Site&quot;),
               you agree to these Terms of Service. If you do not agree, please
               do not use the Site.
             </p>
@@ -217,8 +218,8 @@ export default function TermsPage() {
             <h2>14. Contact</h2>
             <p>
               Questions about these Terms? Contact us at{" "}
-              <a href="mailto:bill@agedleadsales.com">
-                bill@agedleadsales.com
+              <a href={`mailto:${CONTACT_EMAIL}`}>
+                {CONTACT_EMAIL}
               </a>
               .
             </p>

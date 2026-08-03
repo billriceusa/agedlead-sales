@@ -799,4 +799,4 @@ You have the system. Go run it.
 
 ---
 
-*The Aged Lead Operator's System is published by Work Aged Leads. For corrections, updates, or to request a vertical-specific consultation, visit agedleadsales.com/contact.*
+*The Aged Lead Operator's System is published by Work Aged Leads. For corrections, updates, or to request a vertical-specific consultation, visit {{SITE_HOST}}/contact.*

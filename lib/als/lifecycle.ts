@@ -29,6 +29,7 @@ import {
   ALS_PUBLIC_APP_URL,
   ALS_AI_SERIES_ENABLED,
 } from "@/lib/als/config";
+import { SITE_HOST, SITE_URL } from "@/lib/site-url";
 
 const DAY_MS = 86_400_000;
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
@@ -75,7 +76,7 @@ function buyUrl(campaign: string, content: string): string {
   return `${ALS_BUY_URL}?${p.toString()}`;
 }
 
-// Link to Bill's free tools/calculators on agedleadsales.com (planning aids),
+// Link to Bill's free tools/calculators on the site (planning aids),
 // UTM-tagged. These are real, live pages: /calculators/{pipeline-calculator,
 // roi-calculator, lead-cost-calculator, know-your-cpl, outreach-cadence-planner}.
 function tool(path: string, campaign: string, content: string): string {
@@ -85,7 +86,7 @@ function tool(path: string, campaign: string, content: string): string {
     utm_campaign: campaign,
     utm_content: content,
   });
-  return `https://agedleadsales.com${path}?${p.toString()}`;
+  return `${SITE_URL}${path}?${p.toString()}`;
 }
 
 // --- Unsubscribe (per-recipient signed link, honored before every send) ---
@@ -200,7 +201,7 @@ const WELCOME: StepDef[] = [
         `Hi ${hi(c)} — let's talk numbers, because once you see this math you'll never look at a lead price the same way again.`,
         `Most agents shop on <i>cost per lead</i>. That's the wrong number. The only one that pays your bills is <b>cost per sale</b>.`,
         `Here it is in round numbers. A fresh lead might cost $50 and close 1 in 10 — about $500 a sale. An aged lead might cost a dollar or two and close closer to 1 in 30 — call it $30–60 a sale. Same effort per dial, a fraction of the cost per sale. You trade a little contact rate for a big cost advantage, and at volume that math is lopsided in your favor.`,
-        `Your real numbers will be different — that's exactly the point. Don't take my word for it; model your own. I built free calculators on agedleadsales.com so you can, before you spend a dollar:`,
+        `Your real numbers will be different — that's exactly the point. Don't take my word for it; model your own. I built free calculators on ${SITE_HOST} so you can, before you spend a dollar:`,
         `<b><a href="${tool("/calculators/pipeline-calculator", "welcome-e2", "pipeline-calc")}" style="color:#0b6bcb;">Pipeline Calculator</a></b> — enter your revenue goal and close rate; it tells you how many aged leads you actually need.<br>
          <b><a href="${tool("/calculators/roi-calculator", "welcome-e2", "roi-calc")}" style="color:#0b6bcb;">ROI Calculator</a></b> — model the return on a batch at your own numbers.`,
         `Run them once and you'll know exactly how to plan aged leads into your month — how many to buy, what to expect, what it costs to hit your goal. That's how "buying leads" becomes a budget line that pays.`,
@@ -255,7 +256,7 @@ const WELCOME: StepDef[] = [
         `In one of the largest studies ever done on lead conversion, <b>93% of the leads that eventually converted were reached within six attempts</b> — but the average agent stops after one or two. They call once, get voicemail, and write the lead off. The person who keeps showing up gets the sale.`,
         `I call it <b>polite persistence</b>. Not pestering — persistence with manners. You reach out again because you genuinely believe you can help, and you respect their time every time.`,
         `A humane two-week rhythm: a few calls the first week (vary the time) plus your warm-up email; a few more the second week plus one more short note; then a light monthly check-in for the ones who went quiet. Call when people answer — <a href="${tool("/blog/best-time-to-call-aged-insurance-leads", "welcome-e5", "deep-read")}" style="color:#0b6bcb;">late morning and late afternoon</a>. Dial by hand, list scrubbed (more on that next).`,
-        `If you'd rather not map it by hand, I built a free <a href="${tool("/calculators/outreach-cadence-planner", "welcome-e5", "cadence-planner")}" style="color:#0b6bcb;">outreach cadence planner</a> on agedleadsales.com — plug in your batch and it lays the touches out day by day.`,
+        `If you'd rather not map it by hand, I built a free <a href="${tool("/calculators/outreach-cadence-planner", "welcome-e5", "cadence-planner")}" style="color:#0b6bcb;">outreach cadence planner</a> on ${SITE_HOST} — plug in your batch and it lays the touches out day by day.`,
         `That's the whole campaign. Politely persistent, by phone and email, every name treated like the person it is.<br>— Bill`
       ),
   },

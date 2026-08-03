@@ -1,5 +1,6 @@
 import { ImageResponse } from "next/og";
 import type { NextRequest } from "next/server";
+import { SITE_HOST } from "@/lib/site-url";
 
 export const runtime = "edge";
 
@@ -106,7 +107,7 @@ export async function GET(request: NextRequest) {
                 color: "#000",
               }}
             >
-              A
+              W
             </div>
             <span
               style={{
@@ -124,7 +125,7 @@ export async function GET(request: NextRequest) {
               color: "#94a3b8",
             }}
           >
-            agedleadsales.com
+            {SITE_HOST}
           </span>
         </div>
       </div>

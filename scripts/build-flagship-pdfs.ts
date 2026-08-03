@@ -20,6 +20,7 @@ import { execSync } from "node:child_process";
 import { mkdirSync, readFileSync, writeFileSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import { SITE_HOST, SITE_URL } from "@/lib/site-url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
@@ -39,8 +40,18 @@ const VERTICALS: { slug: Vertical; label: string }[] = [
   { slug: "home-services", label: "Home Services" },
 ];
 
+/**
+ * Read a markdown source, substituting the site's own address.
+ *
+ * Markdown cannot interpolate, so a host written into playbook-master.md gets
+ * baked into a PDF a reader keeps offline — and the migration is exactly when
+ * that goes stale. Sources write `{{SITE_HOST}}` / `{{SITE_URL}}` instead, and
+ * the PDFs pick up the new address on the next `npm run build:pdfs`.
+ */
 function read(p: string): string {
-  return readFileSync(p, "utf-8");
+  return readFileSync(p, "utf-8")
+    .replaceAll("{{SITE_HOST}}", SITE_HOST)
+    .replaceAll("{{SITE_URL}}", SITE_URL);
 }
 
 marked.setOptions({ gfm: true, breaks: false });
@@ -268,14 +279,14 @@ function htmlShell(title: string, bodyHtml: string, cover: CoverCopy): string {
       }
     </div>
     <div class="footer">
-      <strong>Work Aged Leads</strong> · agedleadsales.com<br/>
+      <strong>Work Aged Leads</strong> · ${SITE_HOST}<br/>
       Not legal advice · Consult TCPA-literate counsel before running outreach
     </div>
   </section>
   <section class="content">
     ${bodyHtml}
     <div class="footer-strap">
-      Work Aged Leads · <a href="https://www.agedleadsales.com">agedleadsales.com</a> · Operator guidance, not legal advice. TCPA counsel recommended: <a href="https://www.henson-legal.com/">Henson Legal</a>.
+      Work Aged Leads · <a href="${SITE_URL}">${SITE_HOST}</a> · Operator guidance, not legal advice. TCPA counsel recommended: <a href="https://www.henson-legal.com/">Henson Legal</a>.
     </div>
   </section>
 </body>

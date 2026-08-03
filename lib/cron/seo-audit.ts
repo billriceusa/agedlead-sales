@@ -7,6 +7,7 @@ import type {
 } from "./types";
 import { SONNET_MODEL } from "./model-config";
 import { parseJsonResponse } from "./parse-json";
+import { SITE_HOST } from "@/lib/site-url";
 
 function getAnthropicClient(): Anthropic {
   const apiKey = process.env.ANTHROPIC_API_KEY;
@@ -46,7 +47,7 @@ const AUDIT_SYSTEM = `You are a senior technical SEO auditor and Google algorith
 - Schema.org structured data validation
 - Next.js and Vercel SEO best practices
 
-You are auditing an affiliate content site called Work Aged Leads (agedleadsales.com) that:
+You are auditing an affiliate content site called Work Aged Leads (${SITE_HOST}) that:
 - Promotes AgedLeadStore.com via affiliate links
 - Targets insurance agents, mortgage brokers, financial advisors, PI attorneys, and solar reps
 - Is built on Next.js 16 + Sanity.io + Vercel
@@ -90,7 +91,7 @@ Respond with valid JSON:
       "updateName": "Name of the update",
       "dateRange": "When it rolled out (e.g., 'January 2026' or 'December 2025 - January 2026')",
       "impactSummary": "2-3 sentence summary of what changed",
-      "relevanceToUs": "2-3 sentence assessment of how this specifically affects agedleadsales.com",
+      "relevanceToUs": "2-3 sentence assessment of how this specifically affects the site",
       "actionRequired": true/false
     }
   ]

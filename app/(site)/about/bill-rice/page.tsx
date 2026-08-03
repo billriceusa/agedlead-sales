@@ -165,17 +165,7 @@ export default function BillRicePage() {
               </a>
               , his AI-first agency with no employees — just AI agents and
               Bill, delivering strategy, content, presentations, sales, and
-              marketing in code. He also runs{" "}
-              <a
-                href="https://www.howtoworkleads.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 underline hover:text-blue-700 dark:text-blue-400"
-              >
-                How To Work Leads
-              </a>
-              , an educational platform for lead conversion best practices, and
-              is the author of{" "}
+              marketing in code. He is the author of{" "}
               <a
                 href="https://www.leadbuyerplaybook.com/"
                 target="_blank"
@@ -216,16 +206,6 @@ export default function BillRicePage() {
                   className="text-blue-600 underline hover:text-blue-700 dark:text-blue-400"
                 >
                   Kaleidico ↗
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.howtoworkleads.com/resources/about"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 underline hover:text-blue-700 dark:text-blue-400"
-                >
-                  How To Work Leads ↗
                 </a>
               </li>
               <li>

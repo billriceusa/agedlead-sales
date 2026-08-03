@@ -1,6 +1,7 @@
 import Anthropic from "@anthropic-ai/sdk";
 import type { NewsletterPlan } from "@/data/newsletter-calendar";
 import { SONNET_MODEL } from "./model-config";
+import { SITE_HOST } from "@/lib/site-url";
 
 function getAnthropicClient(): Anthropic {
   const apiKey = process.env.ANTHROPIC_API_KEY;
@@ -49,7 +50,7 @@ const NEWSLETTER_SYSTEM = `You are writing the Work Aged Leads weekly newsletter
 
 Newsletter Context:
 - Audience: insurance agents, mortgage brokers, financial advisors, PI attorneys, solar reps, and other sales professionals who buy and work aged consumer leads
-- Goal: deliver weekly value that keeps readers engaged, drives traffic to agedleadsales.com blog content, and positions AgedLeadStore.com as the go-to lead source
+- Goal: deliver weekly value that keeps readers engaged, drives traffic to ${SITE_HOST} blog content, and positions AgedLeadStore.com as the go-to lead source
 - Tone: direct, practical, conversational — never salesy or generic
 - Every tip should be actionable with specific frameworks, scripts, or publicly verifiable data points
 
