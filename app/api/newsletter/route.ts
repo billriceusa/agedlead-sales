@@ -3,6 +3,7 @@ import { Resend } from "resend";
 import { isGoodOrigin, isHoneypotFilled } from "@/lib/anti-spam";
 import { REPLY_TO_EMAIL } from "@/lib/resend";
 import { SITE_URL, siteUrl } from "@/lib/site-url";
+import { rebrandNoticeHtml } from "@/lib/rebrand-notice";
 
 const LEAD_MAGNET_DOWNLOADS: Record<string, { name: string; url: string }> = {
   "7-day-cadence": {
@@ -142,6 +143,7 @@ export async function POST(request: Request) {
                 <a href="${SITE_URL}/playbook" style="color: #6b7280; text-decoration: none;">Playbook</a> &nbsp;|&nbsp;
                 <a href="${SITE_URL}/calculators" style="color: #6b7280; text-decoration: none;">Calculators</a>
               </p>
+              ${rebrandNoticeHtml()}
               <p style="margin: 0; color: #9ca3af; font-size: 12px;">
                 <a href="${SITE_URL}/api/newsletter/unsubscribe?email=${encodeURIComponent(email)}" style="color: #9ca3af; text-decoration: underline;">Unsubscribe</a>
               </p>

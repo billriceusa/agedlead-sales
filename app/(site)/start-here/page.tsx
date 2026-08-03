@@ -5,9 +5,9 @@ import { LeadMagnetCta } from "@/components/lead-magnet-cta";
 import { siteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
-  title: "Start Here — Your Complete Guide to Working Aged Leads",
+  title: "Start Here: How to Work Aged Leads",
   description:
-    "New to aged leads? This guided onboarding page walks you through the math, the systems, and the strategies that make aged leads the most profitable lead source in insurance, mortgage, and solar sales.",
+    "You have a list of aged leads and they are not converting. This is the roadmap — the math, the cadence, and the systems that work on data 30 to 365 days old, across insurance, mortgage, solar and home improvement.",
 };
 
 const jsonLd = {
@@ -41,23 +41,23 @@ export default function StartHerePage() {
       <section className="bg-white py-16 dark:bg-zinc-950">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl font-bold text-zinc-900 dark:text-white">
-            New to Aged Leads? Start Here.
+            Start Here: How to Work Aged Leads
           </h1>
 
           <div className="mt-8 space-y-6 text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
             <p>
-              If you&apos;re here for the first time, let me save you months of
-              trial and error. I&apos;m{" "}
+              If you have a batch of aged leads sitting in a CRM and they
+              are not converting, this page is the roadmap. I&apos;m{" "}
               <Link
                 href="/about"
                 className="font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400"
               >
                 Bill Rice
               </Link>
-              , and I&apos;ve spent 25+ years building lead generation systems
+              , and I&apos;ve spent 30+ years building lead generation systems
               and personally working millions of leads across insurance,
-              mortgage, solar, and home improvement. This page is the roadmap I
-              wish someone had given me on day one.
+              mortgage, solar, and home improvement. Everything below is what I
+              would do with your list.
             </p>
 
             <p>

@@ -85,8 +85,11 @@ Ordered by what blocks what.
    does contain workagedleads.com and its www — the single highest-risk line —
    but `isGoodOrigin()` returns `{success: true}` on failure by design, so the
    only proof is a real form POST landing a contact in Resend.
-4. **The re-introduction broadcast has not been sent.** Staged in three waves
-   with a 0.1% complaint stop signal — see `REINTRODUCTION-EMAIL.md`.
+4. ~~**The re-introduction broadcast has not been sent.**~~ **Cancelled
+   2026-08-03 by Bill.** No broadcast. Sending simply moves to the new domain
+   and a transitional line in the email footer carries the recognition — see
+   `lib/rebrand-notice.ts`. `REINTRODUCTION-EMAIL.md` is deleted rather than
+   left in the repo describing a staged three-wave send nobody is going to run.
 5. **Two ALS opt-outs still live only in Resend**, not in Postgres, so the
    lifecycle cron can still mail them. Was 15 on 08-01; #58 closed all but two.
 
@@ -509,12 +512,13 @@ of 2,435 before the throttle went in.
    creates a stray project.
 4. ~~Verify the Resend sending domain for workagedleads.com~~ **Done** —
    `435a8cd1-0e4e-41c9-8227-1650e5e253f2`, verified, us-east-1.
-5. **Merge every source audience into `43fe6675-…`, then send the
-   re-introduction broadcast in stages before anything else fires from the new
-   domain.** Copy, subject line, headers, HTML, staging and the full send
-   sequence: [`REINTRODUCTION-EMAIL.md`](./REINTRODUCTION-EMAIL.md).
+5. **Merge every source audience into `43fe6675-…`.** No broadcast — Bill
+   cancelled it on 2026-08-03. Sending moves to the new domain and the
+   transitional footer line in `lib/rebrand-notice.ts` does the recognition
+   work, on all three newsletter surfaces. It is dated: remove after
+   **2026-11-01**.
 
-   Two constraints from that file that belong here because getting them wrong is
+   Two constraints on the merge itself, here because getting them wrong is
    unrecoverable. **Carry the unsubscribed flag across on merge** — anyone who
    opted out of any source list must arrive opted out. And **de-duplicate**; 20
    addresses sit on both the newsletter and an ALS program.
@@ -595,10 +599,11 @@ Order matters.
    anyone who arrived since the last run exists only on a retiring list. See
    § 2d. Re-derive the suppression union from the fresh run — do not reuse a
    count written down earlier.
-10. Send the launch email in stages from the warmed sending domain, per
-    `REINTRODUCTION-EMAIL.md`. Then repoint `RESEND_AUDIENCE_ID` to
-    `43fe6675-…` and `RESEND_FROM_EMAIL` to the workagedleads.com sender, and
-    redeploy.
+10. Repoint `RESEND_AUDIENCE_ID` to `43fe6675-…` **and** `RESEND_FROM_EMAIL`
+    to the workagedleads.com sender, and redeploy. **Both flip together** —
+    flipping one without the other splits the list again. No launch broadcast;
+    the next scheduled newsletter is the first send from the new domain and it
+    carries the footer notice.
 11. Update the UTM source in `lib/affiliate.ts` to the single new value.
 
 **Keep both old domain registrations and their 301s indefinitely.** Every other

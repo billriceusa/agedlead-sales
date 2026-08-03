@@ -1,5 +1,6 @@
 import type { NewsletterContent } from "./newsletter-ai";
 import { SITE_HOST } from "@/lib/site-url";
+import { rebrandNoticeHtml } from "@/lib/rebrand-notice";
 
 export function buildNewsletterHtml(
   content: NewsletterContent,
@@ -217,6 +218,7 @@ export function buildNewsletterHtml(
                     <p style="margin: 0 0 8px 0; color: #9ca3af; font-size: 12px;">
                       You're receiving this because you signed up at ${SITE_HOST}.
                     </p>
+                    ${rebrandNoticeHtml()}
                     <p style="margin: 0; color: #9ca3af; font-size: 12px;">
                       <a href="{{{RESEND_UNSUBSCRIBE_URL}}}" style="color: #9ca3af; text-decoration: underline;">Unsubscribe</a>
                     </p>
