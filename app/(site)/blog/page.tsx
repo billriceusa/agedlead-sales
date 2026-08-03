@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { siteUrl } from "@/lib/site-url";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { postsQuery } from "@/sanity/lib/queries";
 import { PostCard } from "@/components/post-card";
@@ -9,6 +10,7 @@ export const metadata: Metadata = {
   title: "Aged Lead Strategies, Scripts & Industry Data",
   description:
     "Proven aged-lead strategies, call scripts, and pricing data for insurance agents, mortgage brokers, and sales pros — turn low-cost aged leads into closed deals.",
+  alternates: { canonical: siteUrl("/blog") },
 };
 
 export default async function BlogPage() {

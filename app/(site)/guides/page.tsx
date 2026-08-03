@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { siteUrl } from "@/lib/site-url";
 import Link from "next/link";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { guidesQuery } from "@/sanity/lib/queries";
@@ -9,6 +10,7 @@ export const metadata: Metadata = {
   title: "Guides & Resources",
   description:
     "Comprehensive guides, checklists, and resources for sales professionals working with aged leads across insurance, mortgage, legal, and more.",
+  alternates: { canonical: siteUrl("/guides") },
 };
 
 export default async function GuidesPage() {

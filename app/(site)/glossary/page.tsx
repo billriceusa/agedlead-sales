@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { siteUrl } from "@/lib/site-url";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { glossaryTermsQuery } from "@/sanity/lib/queries";
 import { GlossarySearch } from "@/components/glossary-search";
@@ -9,6 +10,7 @@ export const metadata: Metadata = {
   title: "Sales & Lead Generation Glossary",
   description:
     "A comprehensive glossary of sales, insurance, mortgage, and lead generation terms. Learn the language of aged leads and prospecting.",
+  alternates: { canonical: siteUrl("/glossary") },
 };
 
 export default async function GlossaryPage() {

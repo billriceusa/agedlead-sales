@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { siteUrl } from "@/lib/site-url";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { playbooksQuery } from "@/sanity/lib/queries";
 import { PlaybookCard } from "@/components/playbook-card";
@@ -9,6 +10,7 @@ export const metadata: Metadata = {
   title: "Sales Playbooks",
   description:
     "Step-by-step sales playbooks and training guides for working aged leads. Strategies for insurance, mortgage, final expense, and more.",
+  alternates: { canonical: siteUrl("/playbooks") },
 };
 
 export default async function PlaybooksPage() {
