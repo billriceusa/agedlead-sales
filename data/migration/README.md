@@ -15,9 +15,9 @@ Regenerate with `node scripts/build-url-map.mjs`.
 
 | File | What |
 |---|---|
-| `url-map.csv` | 421 rows — every live URL across both sites, one row each |
+| `url-map.csv` | 445 rows — every live URL across both sites, one row each |
 | `htwl-sitemap.txt` | 175 howtoworkleads.com URLs (live sitemap, 2026-07-29) |
-| `alsales-sitemap.txt` | 246 agedleadsales.com URLs (live sitemap, 2026-07-29) |
+| `alsales-sitemap.txt` | 246 agedleadsales.com URLs (live sitemap, 2026-07-29). **Not the only source** — see below |
 | `htwl-gsc-pages.json` | Current GSC window, www/non-www/#fragment normalized |
 | `htwl-gsc-pages-2026-06-05.json` | The **prior** window. Keep it — prune eligibility is the intersection of the two |
 | `htwl-published-at.json` | publishedAt per slug, from the Sanity export |
@@ -29,11 +29,34 @@ Regenerate with `node scripts/build-url-map.mjs`.
 
 | Action | Count | Meaning |
 |---|---|---|
-| `REHOST` | 246 | agedleadsales.com page, path unchanged, host swap only |
+| `REHOST` | 270 | agedleadsales.com page, path unchanged, host swap only |
 | `MIGRATE` | 82 | howtoworkleads page moves across at the same path |
 | `PRUNE` | 41 | Dropped — generic theory, zero-impression, dead hubs |
 | `FOLD` | 27 | `/buying-leads/*` and category hubs into `/lead-types/*` |
 | `MERGE` | 25 | Content merged into an existing target page, then 301 |
+
+## The agedleadsales rows are sourced from three inputs, not one
+
+The generator originally read `alsales-sitemap.txt` alone. **24 pages that GSC
+says earn impressions are absent from that sitemap** — four calculators, three
+`/compare/` pages, `/start-here`, and several price-index and providers
+verticals — so they had no row.
+
+They were never at risk of 404ing: the host swap is a wildcard 301, so they
+carry across with or without a row. The problem was verification. This file
+documents itself as "every live URL across both sites" and the Phase 4 gate
+probes exactly these rows, so the gate would have passed without ever looking
+at them.
+
+Rows are now the union of `alsales-sitemap.txt`, `alsales-gsc-pages-*.csv` and
+the backlink pull, deduplicated by path with apex and www collapsed. The
+`notes` column names the source for any row the sitemap did not supply. The
+backlink pull contributed no additional rows on 2026-08-01, which is a useful
+cross-check rather than a redundant input — re-run it when either file is
+refreshed.
+
+Probed 2026-08-01: all 24 return the same status on `workagedleads.com` as on
+`agedleadsales.com` — 18 × 200 and 6 × 308, each landing on a live 200.
 
 ## Backlinks are a prune input, and were not until 2026-08-01
 
