@@ -24,12 +24,16 @@ export const ALS_AUDIENCE_INQUIRIES = "ALS Aged-Lead Buyers — Inquiries";
 // registration + first-order email). Positions aged leads as a consistent,
 // affordable revenue engine vs. real-time leads + referrals.
 //
-// From-name lockup "Bill Rice · Aged Leads Insights". Sender + reply-to are env
-// overridable so we can point at the isolated news.agedleadsales.com subdomain
-// once it's verified in Resend (until then this default uses the root domain).
+// From-name lockup "Bill Rice · Aged Leads Insights". Sender + reply-to stay env
+// overridable; the default now points at the isolated news.workagedleads.com
+// subdomain, verified in Resend 2026-08-05.
+//
+// Sending stays on an isolated subdomain deliberately: a 2,400-contact buyer
+// program and the site's transactional mail should not share a reputation, so
+// a bad week for one cannot take the other down with it.
 export const ALS_LIFECYCLE_FROM =
   process.env.ALS_LIFECYCLE_FROM ||
-  '"Bill Rice · Aged Leads Insights" <bill@agedleadsales.com>';
+  '"Bill Rice · Aged Leads Insights" <bill@news.workagedleads.com>';
 export const ALS_LIFECYCLE_REPLY_TO =
   process.env.ALS_LIFECYCLE_REPLY_TO || "bill@billricestrategy.com";
 
