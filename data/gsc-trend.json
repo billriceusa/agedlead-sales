@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-08-04T12:00:35.030Z",
+  "lastUpdated": "2026-08-05T01:09:14.121Z",
   "snapshots": [
     {
       "date": "2026-07-10",
@@ -3831,6 +3831,174 @@
       "property": "workagedleads",
       "status": "no-data",
       "rolling7d": null,
+      "topPages": [],
+      "topQueries": []
+    },
+    {
+      "date": "2026-08-05",
+      "property": "agedleadsales",
+      "status": "ok",
+      "rolling7d": {
+        "clicks": 29,
+        "impressions": 3918,
+        "ctr": 0.0074,
+        "position": 23.34
+      },
+      "topPages": [
+        {
+          "page": "https://agedleadsales.com/providers/the-leads-warehouse",
+          "clicks": 6,
+          "impressions": 114,
+          "ctr": 0.0526,
+          "position": 8.05
+        },
+        {
+          "page": "https://agedleadsales.com/lead-types/insurance-leads",
+          "clicks": 5,
+          "impressions": 313,
+          "ctr": 0.016,
+          "position": 19.66
+        },
+        {
+          "page": "https://agedleadsales.com/lead-types/mortgage-leads",
+          "clicks": 3,
+          "impressions": 300,
+          "ctr": 0.01,
+          "position": 41.03
+        },
+        {
+          "page": "https://agedleadsales.com/",
+          "clicks": 2,
+          "impressions": 81,
+          "ctr": 0.0247,
+          "position": 29.8
+        },
+        {
+          "page": "https://agedleadsales.com/blog/iul-leads-financial-advisors-playbook",
+          "clicks": 2,
+          "impressions": 71,
+          "ctr": 0.0282,
+          "position": 11.44
+        },
+        {
+          "page": "https://agedleadsales.com/blog/aged-home-improvement-leads-playbook",
+          "clicks": 1,
+          "impressions": 10,
+          "ctr": 0.1,
+          "position": 5.1
+        },
+        {
+          "page": "https://agedleadsales.com/blog/aged-lead-store-review-2026",
+          "clicks": 1,
+          "impressions": 195,
+          "ctr": 0.0051,
+          "position": 6.29
+        },
+        {
+          "page": "https://agedleadsales.com/blog/life-insurance-aged-lead-roi",
+          "clicks": 1,
+          "impressions": 4,
+          "ctr": 0.25,
+          "position": 7
+        },
+        {
+          "page": "https://agedleadsales.com/blog/mva-leads-personal-injury-intake-playbook",
+          "clicks": 1,
+          "impressions": 2,
+          "ctr": 0.5,
+          "position": 46
+        },
+        {
+          "page": "https://agedleadsales.com/blog/tcpa-compliance-calling-aged-leads",
+          "clicks": 1,
+          "impressions": 15,
+          "ctr": 0.0667,
+          "position": 8.93
+        }
+      ],
+      "topQueries": [
+        {
+          "query": "aged iul leads",
+          "clicks": 1,
+          "impressions": 6,
+          "ctr": 0.1667,
+          "position": 5.33
+        },
+        {
+          "query": "aged leads",
+          "clicks": 1,
+          "impressions": 55,
+          "ctr": 0.0182,
+          "position": 10.87
+        },
+        {
+          "query": "aged mortgage leads",
+          "clicks": 1,
+          "impressions": 31,
+          "ctr": 0.0323,
+          "position": 17.32
+        },
+        {
+          "query": "iul leads",
+          "clicks": 1,
+          "impressions": 25,
+          "ctr": 0.04,
+          "position": 16.28
+        },
+        {
+          "query": "the leads warehouse",
+          "clicks": 1,
+          "impressions": 19,
+          "ctr": 0.0526,
+          "position": 6.68
+        },
+        {
+          "query": "affordable health insurance leads",
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 40
+        },
+        {
+          "query": "aged auto insurance leads",
+          "clicks": 0,
+          "impressions": 4,
+          "ctr": 0,
+          "position": 5
+        },
+        {
+          "query": "aged data",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 47
+        },
+        {
+          "query": "aged direct mail final expense leads",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 18
+        },
+        {
+          "query": "aged final expense leads",
+          "clicks": 0,
+          "impressions": 27,
+          "ctr": 0,
+          "position": 14.41
+        }
+      ]
+    },
+    {
+      "date": "2026-08-05",
+      "property": "workagedleads",
+      "status": "ok",
+      "rolling7d": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": 0
+      },
       "topPages": [],
       "topQueries": []
     }
