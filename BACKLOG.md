@@ -6,6 +6,57 @@
 
 ---
 
+## 2026-08-05 — Where the merged domain's traffic is actually stuck
+<!-- added 2026-08-05 /brsg-session — measured from data/migration/url-map.csv (pre-cutover GSC clicks/impr/pos per source URL) + live HTML -->
+
+**Retracting the cannibalization finding filed earlier today.** It claimed the merge created 25
+topical collisions worth 4,833 impressions and recommended picking one canonical target per vertical.
+Checked properly, it does not hold:
+
+- The 25 "collisions" are destinations fed by **both** source domains — pages the merge *resolved*
+  onto one URL, not competition it created. Combined 16,907 impressions, now consolidated. That is
+  the design working.
+- Internal anchors already point from each `/blog/how-to-work-{x}-leads` to its matching
+  `/lead-types/{x}-leads` hub. Verified live on the MVA and SSDI pairs.
+- Titles are already split by intent — `Aged MVA Leads – …for Attorneys` vs `How to Work MVA Leads:
+  The Intake Specialist's Playbook`. Commercial hub vs informational how-to, which is correct.
+
+Slug-token overlap finds candidates, not competition. It should not have been reported as a finding
+before checking the anchors and titles it was proposing to change.
+
+**What the same data does show, which matters more.** Of the 353 live destinations, 88 carry position
+data covering 58,412 impressions:
+
+| position | pages | impressions | clicks | CTR | share of impr |
+|---|---|---|---|---|---|
+| 1–3 | 0 | — | — | — | — |
+| 4–10 | 27 | 8,465 | 52 | 0.61% | 14.5% |
+| 11–20 | 45 | 22,155 | 188 | 0.85% | 37.9% |
+| **21–40** | **13** | **25,957** | **87** | **0.34%** | **44.4%** |
+| 41+ | 3 | 1,835 | 4 | 0.22% | 3.1% |
+
+- [ ] **P1 [seo] — 44% of measurable impressions sit on page 3–4, and 81% of that is one page.**
+  `/lead-types/life-insurance-leads` carries **21,132 impressions at average position 33.6** for 52
+  clicks — 36% of every measured impression on the merged site, stranded past page 3. Why: 0.25% CTR
+  at position 33.6 is *normal for that position*, so this is not a title or snippet problem and no
+  amount of CTR work touches it. It is a ranking problem on a 14,467-word page that already has the
+  depth. Moving it from p33 to p15 is worth roughly 3–5× its clicks, and it is the largest single
+  lever on the site by an order of magnitude. Effort: M.
+- [ ] **P2 [seo] — nothing ranks 1–3.** Zero pages in the top three across 88 measured. The site's
+  entire click base comes from positions 4–20. Worth knowing before any content investment: the
+  ceiling here is a ranking ceiling. Effort: S (diagnosis).
+
+**Do not act on either yet, and that is the finding.** Consolidation of two domains' authority is
+precisely the intervention that moves a page-4 page, and it went live 4 days ago. Search Console has
+no data for the new property until ~2026-08-24 (21-day aggregation warmup). Stacking speculative
+on-page work now would contaminate the only clean read we will get of whether the merge worked.
+
+- [ ] **P1 [seo] — instrument the one page that answers the question.** Track weighted position for
+  `/lead-types/life-insurance-leads` weekly from the day `sc-domain:workagedleads.com` starts
+  reporting. Why: it is 36% of the impression base and it is the page whose movement distinguishes
+  "the merge consolidated authority" from "the merge did nothing". Re-run this whole table once GSC
+  aggregates and compare against the pre-cutover baseline above. Effort: S.
+
 ## 2026-08-05 — /blog page weight (deferred, deliberately)
 
 `/blog` serves **568 KB of HTML** against 94 KB for the homepage and 66 KB for
