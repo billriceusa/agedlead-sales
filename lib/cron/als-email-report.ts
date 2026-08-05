@@ -11,7 +11,9 @@
 //
 //   2. GA4 (agedleadsales.com property, via the same Vercel-OIDC → impersonated
 //      service account the other crons use) filtered to the email program's UTMs
-//      (utm_source=agedleadsales, utm_medium=email). This is the on-site
+//      (utm_source=workagedleads OR the pre-rebrand agedleadsales, medium=email
+//      — both, because GA4 keeps old sessions under the old source). This is
+//      the on-site
 //      footprint of the sends: sessions, engagement, key events, by journey and
 //      landing page. The buy-CTA → agedleadstore.com revenue lives in a separate
 //      (client) GA4 property; we read it ONLY if ALS_STORE_GA4_PROPERTY_ID is set
@@ -32,6 +34,7 @@ import {
   ALS_AUDIENCE_PURCHASERS,
   ALS_AUDIENCE_INQUIRIES,
 } from "@/lib/als/config";
+import { AFFILIATE_UTM_SOURCES } from "@/lib/utm";
 
 const REPORT_WINDOW_DAYS = 7;
 const MAX_SNAPSHOTS = 104; // ~2 years of weekly history
@@ -186,20 +189,31 @@ async function ga4RunReport(
   return res.json();
 }
 
-// Restrict to the lifecycle program's UTMs. source CONTAINS "agedleadsales"
-// (tolerates agedleadsales / agedleadsales.com), medium EXACT "email".
+// Restrict to the lifecycle program's UTMs, medium EXACT "email".
+//
+// Matches BOTH source values, and must keep doing so. The emitted source moved
+// from "agedleadsales" to "workagedleads" on 2026-08-05, and GA4 does not
+// rewrite history — sessions recorded under the old value stay under it. Match
+// only the new one and every pre-rebrand session vanishes from this report,
+// which reads as a traffic collapse rather than a query that stopped matching.
+// This is the filter's whole failure mode: it never errors, it just finds
+// nothing.
 function emailUtmFilter() {
   return {
     andGroup: {
       expressions: [
         {
-          filter: {
-            fieldName: "sessionSource",
-            stringFilter: {
-              matchType: "CONTAINS",
-              value: "agedleadsales",
-              caseSensitive: false,
-            },
+          orGroup: {
+            expressions: AFFILIATE_UTM_SOURCES.map((value) => ({
+              filter: {
+                fieldName: "sessionSource",
+                stringFilter: {
+                  matchType: "CONTAINS",
+                  value,
+                  caseSensitive: false,
+                },
+              },
+            })),
           },
         },
         {

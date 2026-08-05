@@ -102,10 +102,8 @@ export default function AffiliateDisclosurePage() {
               </li>
               <li>
                 Affiliate links include UTM tracking parameters
-                (utm_source=agedleadsales, utm_medium=affiliate). The source
-                value is a legacy attribution key from this site&apos;s
-                previous name and is kept unchanged so referral credit stays
-                intact
+                (utm_source=workagedleads, utm_medium=affiliate) so the
+                referring site can be credited for the visit
               </li>
               <li>
                 A disclosure notice appears above the footer on every page of

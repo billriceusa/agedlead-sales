@@ -317,7 +317,7 @@ Medicare: 60 days pre-AEP
 Final expense: 250-500 soft
 
 See aged insurance leads:
-https://agedleadstore.com/all-lead-types/?utm_source=agedleadsales&utm_medium=email&utm_campaign=flagship-insurance&utm_content=email-5
+https://agedleadstore.com/all-lead-types/?utm_source=workagedleads&utm_medium=email&utm_campaign=flagship-insurance&utm_content=email-5
 
 — Bill
 

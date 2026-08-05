@@ -3,7 +3,9 @@
  * Affiliate partners get utm_medium=affiliate; others get utm_medium=referral.
  */
 
-const UTM_SOURCE = "agedleadsales";
+import { AFFILIATE_UTM_SOURCE } from "./utm";
+
+const UTM_SOURCE = AFFILIATE_UTM_SOURCE;
 
 interface ProviderConfig {
   baseUrl: string;

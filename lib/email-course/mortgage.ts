@@ -306,7 +306,7 @@ Counsel recommendation: Henson Legal (https://www.henson-legal.com/). Budget $30
 Next move: test batch of 500-1,000 aged mortgage leads.
 
 See aged mortgage leads:
-https://agedleadstore.com/all-lead-types/?utm_source=agedleadsales&utm_medium=email&utm_campaign=flagship-mortgage&utm_content=email-5
+https://agedleadstore.com/all-lead-types/?utm_source=workagedleads&utm_medium=email&utm_campaign=flagship-mortgage&utm_content=email-5
 
 You're on the Tuesday list. Go fund some loans.
 

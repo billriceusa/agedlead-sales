@@ -1,5 +1,7 @@
+import { AFFILIATE_UTM_SOURCE } from "./utm";
+
 const AFFILIATE_BASE_URL = "https://agedleadstore.com";
-const UTM_SOURCE = "agedleadsales";
+const UTM_SOURCE = AFFILIATE_UTM_SOURCE;
 const UTM_MEDIUM = "affiliate";
 
 interface AffiliateLink {

@@ -30,6 +30,7 @@ import {
   ALS_AI_SERIES_ENABLED,
 } from "@/lib/als/config";
 import { SITE_HOST, SITE_URL } from "@/lib/site-url";
+import { AFFILIATE_UTM_SOURCE } from "@/lib/utm";
 
 const DAY_MS = 86_400_000;
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
@@ -68,7 +69,7 @@ function esc(s: string): string {
 // points at /all-lead-types/ for now.
 function buyUrl(campaign: string, content: string): string {
   const p = new URLSearchParams({
-    utm_source: "agedleadsales",
+    utm_source: AFFILIATE_UTM_SOURCE,
     utm_medium: "email",
     utm_campaign: campaign,
     utm_content: content,
@@ -81,7 +82,7 @@ function buyUrl(campaign: string, content: string): string {
 // roi-calculator, lead-cost-calculator, know-your-cpl, outreach-cadence-planner}.
 function tool(path: string, campaign: string, content: string): string {
   const p = new URLSearchParams({
-    utm_source: "agedleadsales",
+    utm_source: AFFILIATE_UTM_SOURCE,
     utm_medium: "email",
     utm_campaign: campaign,
     utm_content: content,

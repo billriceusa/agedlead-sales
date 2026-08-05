@@ -1,6 +1,7 @@
 import type { EmailContext, Vertical } from "./types";
 import { SITE_URL } from "@/lib/site-url";
 import { rebrandNoticeHtml } from "@/lib/rebrand-notice";
+import { AFFILIATE_UTM_SOURCE } from "@/lib/utm";
 
 export { SITE_URL };
 export const FROM_EMAIL = "Bill Rice <bill@workagedleads.com>";
@@ -96,7 +97,7 @@ export function signoff(): string {
 export function affiliateCtaBlock(vertical: Vertical, emailNumber: number): string {
   const campaign = `flagship-${vertical}`;
   const content = `email-${emailNumber}`;
-  const url = `https://agedleadstore.com/all-lead-types/?utm_source=agedleadsales&utm_medium=email&utm_campaign=${campaign}&utm_content=${content}`;
+  const url = `https://agedleadstore.com/all-lead-types/?utm_source=${AFFILIATE_UTM_SOURCE}&utm_medium=email&utm_campaign=${campaign}&utm_content=${content}`;
   const label = verticalLabel(vertical);
   return `
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin: 24px 0; background-color: #eff6ff; border: 1px solid #bfdbfe; border-radius: 10px;">

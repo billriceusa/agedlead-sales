@@ -137,7 +137,7 @@ Respond with ONLY valid JSON (no markdown fences, no commentary):
   ],
   "closingNote": "Personal sign-off",
   "ctaText": "Button text",
-  "ctaUrl": "https://agedleadstore.com/all-lead-types/?utm_source=agedleadsales&utm_medium=email&utm_campaign=weekly-newsletter&utm_content=${weekLabel}"
+  "ctaUrl": "https://agedleadstore.com/all-lead-types/?utm_source=workagedleads&utm_medium=email&utm_campaign=weekly-newsletter&utm_content=${weekLabel}"
 }`;
 
   const response = await client.messages.create({
