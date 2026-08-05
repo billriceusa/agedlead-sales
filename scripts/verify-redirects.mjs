@@ -141,6 +141,23 @@ async function checkPost(row, url) {
     };
   }
 
+  // A mapped destination is allowed to redirect onward by design: /lead-order
+  // is an affiliate link-out that hands off to agedleadstore.com, and that
+  // host answers 403 to automated clients. Arriving at the mapped URL is the
+  // contract; what it does next, and what a third party's bot policy returns,
+  // is not this gate's business.
+  const target = norm(row.newUrl);
+  if (norm(t.final) !== target) {
+    const arrival = t.chain.findIndex((c) => norm(c.to) === target);
+    if (arrival !== -1) {
+      const hops = arrival + 1;
+      if (hops > MAX_HOPS) {
+        return { ok: false, why: `${hops} hops to reach ${row.newUrl} (max ${MAX_HOPS})` };
+      }
+      return { ok: true, hops };
+    }
+  }
+
   if (t.status !== 200) {
     return { ok: false, why: `${t.status || t.error} at ${t.final}` };
   }

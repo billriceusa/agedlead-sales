@@ -72,6 +72,50 @@ describe("legacyRedirectTarget", () => {
     );
   });
 
+  test("a path whose page moved lands on the final URL in one hop", () => {
+    assert.equal(
+      legacyRedirectTarget(
+        "agedleadsales.com",
+        "https://agedleadsales.com/playbooks/mortgage-rate-shopping-playbook",
+      ),
+      "https://workagedleads.com/lead-types/mortgage-leads",
+    );
+    assert.equal(
+      legacyRedirectTarget(
+        "www.agedleadsales.com",
+        "https://www.agedleadsales.com/blog/summer-solar-aged-lead-activation-strategy",
+      ),
+      "https://workagedleads.com/blog/summer-solar-sales-aged-leads-q2-strategy",
+    );
+  });
+
+  test("a moved path matches with or without a trailing slash", () => {
+    assert.equal(
+      legacyRedirectTarget(
+        "agedleadsales.com",
+        "https://agedleadsales.com/playbooks/tracking-aged-lead-roi-metrics/",
+      ),
+      "https://workagedleads.com/calculators/roi-calculator",
+    );
+  });
+
+  test("a moved path still carries its query string", () => {
+    assert.equal(
+      legacyRedirectTarget(
+        "agedleadsales.com",
+        "https://agedleadsales.com/playbooks/mortgage-rate-shopping-playbook?utm_source=x",
+      ),
+      "https://workagedleads.com/lead-types/mortgage-leads?utm_source=x",
+    );
+  });
+
+  test("paths that did not move are untouched by the move table", () => {
+    assert.equal(
+      legacyRedirectTarget("agedleadsales.com", "https://agedleadsales.com/playbooks"),
+      "https://workagedleads.com/playbooks",
+    );
+  });
+
   test("howtoworkleads.com is not handled here — it is a different Vercel project", () => {
     assert.ok(!LEGACY_HOSTS.includes("howtoworkleads.com"));
     assert.equal(
