@@ -1,5 +1,5 @@
 import type { NextConfig } from "next";
-import { migrationRedirects } from "./lib/migration-redirects";
+import { migrationRedirects, legacyHostPathChanges } from "./lib/migration-redirects";
 import { affiliateUrl } from "./lib/affiliate";
 
 const nextConfig: NextConfig = {
@@ -43,9 +43,19 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
 
+      // On the retiring host only, send a path-changing URL straight to its
+      // final address instead of rewriting the path here and letting proxy.ts
+      // move the host afterwards. Two hops become one.
+      //
+      // MUST precede the same-path rules below: first match wins, and these
+      // are the host-qualified version of them. Generated from url-map.csv, so
+      // the pair cannot drift.
+      ...legacyHostPathChanges(),
+
       // Specific deprecated /playbooks pages that still hold page-1 rankings get
       // remapped to MATCHING content (not the generic master) so the equity isn't
       // wasted on a topic mismatch. Must come BEFORE the catch-all (first match wins).
+      // These stay path-relative: they also serve workagedleads.com itself.
       {
         // Ranks ~pos 6 for "follow-up cadence" intent — rebuilt as a real guide.
         source: "/playbooks/7-day-aged-lead-follow-up-cadence",

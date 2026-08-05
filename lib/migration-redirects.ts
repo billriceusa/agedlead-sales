@@ -25,6 +25,21 @@ export interface MigrationRedirect {
   permanent: true;
 }
 
+/** Host condition Next.js matches before applying a rule. */
+interface HostGuard {
+  type: "host";
+  value: string;
+}
+
+export interface HostScopedRedirect extends MigrationRedirect {
+  has: HostGuard[];
+}
+
+/** Matches the retiring host and its www form, and nothing else. */
+const RETIRING_HOST: HostGuard[] = [
+  { type: "host", value: "(www\\.)?agedleadsales\\.com" },
+];
+
 /** Minimal CSV row splitter — handles the quoted `notes` column. */
 function splitRow(line: string): string[] {
   const out: string[] = [];
@@ -90,4 +105,50 @@ export function migrationRedirects(): MigrationRedirect[] {
   }
 
   return rules;
+}
+
+/**
+ * The same path changes, but scoped to the retiring host and pointing at an
+ * absolute URL on the target.
+ *
+ * Without these, a path-changing URL on agedleadsales.com takes two hops: a
+ * rule above rewrites the path on the old host, and only then does the host
+ * swap in proxy.ts move it across. Sending the final URL from the first rule
+ * makes it one.
+ *
+ * This has to live in next.config.ts rather than proxy.ts. Next runs
+ * `redirects()` BEFORE middleware, so a path rule here always wins and any
+ * equivalent mapping in the middleware would be unreachable.
+ *
+ * Same shape as the cross-host table the howtoworkleads repo generates from
+ * this CSV — one idiom, both retiring hosts.
+ */
+export function legacyHostPathChanges(): HostScopedRedirect[] {
+  return migrationRedirects()
+    .filter((r) => legacyPathChangeSources().has(r.source))
+    .map((r) => ({
+      source: r.source,
+      has: RETIRING_HOST,
+      destination: `${NEW_HOST}${r.destination}`,
+      permanent: true as const,
+    }));
+}
+
+/** Sources whose old URL sat on the retiring host — the rest are howtoworkleads. */
+function legacyPathChangeSources(): Set<string> {
+  const csv = readFileSync(
+    join(process.cwd(), "data", "migration", "url-map.csv"),
+    "utf8"
+  );
+  const out = new Set<string>();
+  for (const line of csv.split("\n").slice(1)) {
+    if (!line.trim()) continue;
+    const [oldUrl, newUrl] = splitRow(line);
+    if (!newUrl) continue;
+    if (!oldUrl.startsWith("https://agedleadsales.com")) continue;
+    const from = toPath(oldUrl, RETIRED_HOSTS);
+    const to = toPath(newUrl, [NEW_HOST]);
+    if (from && to && from !== to) out.add(from);
+  }
+  return out;
 }
