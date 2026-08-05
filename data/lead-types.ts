@@ -29,6 +29,119 @@ export interface LeadTypeData {
 }
 
 export const LEAD_TYPES: Record<string, LeadTypeData> = {
+  "auto-insurance-leads": {
+    slug: "auto-insurance-leads",
+    title: "Auto Insurance Leads",
+    icon: "\u{1F697}",
+    heroDescription:
+      "Drivers who shopped coverage and bought \u2014 from someone else. Unlike most verticals, an aged auto record is not someone who never converted. It is someone whose policy renews on a clock, and the clock is the whole opportunity.",
+    metaTitle: "Aged Auto Insurance Leads \u2013 Working the Renewal Clock",
+    metaDescription:
+      "Aged auto insurance leads cost cents because the prospect already bought. Here is why the renewal cycle makes that an advantage, the cross-sell economics that carry the vertical, and the compliance floor.",
+    primaryKeyword: "aged auto insurance leads",
+    secondaryKeywords: [
+      "buy auto insurance leads",
+      "cheap car insurance leads",
+      "aged P&C leads",
+      "auto insurance lead generation",
+      "bundle insurance leads",
+    ],
+    costRange: "$0.25 \u2013 $0.50",
+    whoItsFor: [
+      "P&C agents who write auto and home and want the bundle, not the auto policy",
+      "Independent agencies with carrier appointments across several price tiers",
+      "Captive agents whose carrier just took a rate increase in their state",
+      "Producers who can work volume \u2014 this is a dialing list, not a lead list",
+      "Agencies measuring on retention and household count rather than first-policy premium",
+    ],
+    whatYouGet: [
+      "Name, phone and email from a comparison or quote form",
+      "State and ZIP \u2014 which decides both licensing and rate environment",
+      "Original inquiry date, which is your best estimate of their renewal month",
+      "Vehicle and driver detail where the source form captured it",
+      "Current-carrier flag on some sources, which is the most useful field on the record",
+    ],
+    sections: {
+      whatAre:
+        "Aged auto insurance leads are consumer records from people who requested auto quotes \u2014 typically 30 to 365 days ago \u2014 on a comparison site or carrier form. The defining fact about them is one most lead copy skips: almost all of them bought. Driving uninsured is illegal in nearly every state, so unlike a mortgage or health record, an aged auto lead is not a prospect who fell out of a funnel. It is a prospect who completed the purchase with a competitor. That sounds like bad news and is the reason the records sell for cents. It is also why the vertical works, because auto policies do not last \u2014 they renew every six or twelve months, and every renewal is a decision point you can be present for.",
+      whyUse:
+        "The price gap here is the widest of any vertical we track. Real-time auto leads run roughly $20 to $45 shared and $50 to $100 exclusive; aged records in the 31\u2013180 day brackets run about $0.25 to $0.50. That is not a 50% discount, it is two orders of magnitude, and it changes the operating model rather than just the budget line. At real-time prices you must convert to justify the spend, so you work each record carefully. At a quarter each you are buying dial volume, and the correct unit of analysis is cost per bound household rather than cost per lead. Current freshness brackets are maintained on the price index rather than restated here, because those figures are refreshed on a schedule and copy goes stale.",
+      howToWork:
+        "Work the renewal clock, not the inquiry. A record that is six or twelve months old is arriving at roughly the moment its policy comes up for renewal \u2014 which is the one window in the year when switching costs the prospect nothing and a rate increase is sitting in their inbox. That makes the inquiry date the most actionable field on the file, and it means an older record is often better timed than a fresher one. Open on rate rather than on coverage: everyone has coverage and nobody wants a coverage conversation, but almost everyone has an opinion about their premium going up. Then treat the auto policy as the door rather than the prize, because the economics of this vertical live in the bundle.",
+      script: {
+        opener:
+          '"Hi [Name], [Your Name] with [Agency] \u2014 licensed here in [State]. You compared auto rates a while back. I am not going to ask you to switch today; I am calling because most carriers took increases this year and renewals are where people find out. When does your policy renew? If you tell me the month I will check whether we beat it and call you back then."',
+        whyItWorks: [
+          "Concedes they already bought \u2014 which they did, and pretending otherwise loses the call in the first sentence",
+          "Asks for the renewal month, which is the single field that makes the record workable later",
+          "Leads with rate increases, the one thing about their policy they have actually noticed",
+          "Offers to call back at the right time instead of pushing a quote at the wrong one",
+        ],
+      },
+      costComparison: {
+        realTime: "$20\u2013$45 shared, $50\u2013$100 exclusive",
+        aged: "$0.25\u2013$0.50 in the 31\u2013180 day brackets",
+        savings: "See the price index for the by-bracket breakdown",
+      },
+      bestPractices: [
+        "Capture the renewal month on every contact \u2014 it converts a dead record into a dated one",
+        "Open on premium increases, not on coverage review",
+        "Quote the bundle; auto alone rarely justifies the acquisition effort",
+        "Buy volume and measure cost per bound household, not cost per lead",
+        "Prioritise states where your carriers just filed increases \u2014 rate shock does the persuading",
+        "Scrub against the DNC registry and a litigator list before every campaign",
+      ],
+    },
+    deepDive: [
+      {
+        heading: "They Already Bought \u2014 That Is the Point",
+        body: "Most aged-lead copy quietly implies the prospect is still shopping. In auto insurance that is close to never true, and building a cadence on the assumption wastes the file.\n\nEvery state but a couple requires financial responsibility to drive, so a person who requested auto quotes eight months ago is, with very high probability, insured today. The original agent who paid real-time money for that record either bound them or lost them to a competitor who did. Either way the shopping is over.\n\nWhat is not over is the policy term. Personal auto runs in six- or twelve-month terms, and at the end of each one the carrier issues a renewal with a new premium. That is a scheduled, recurring moment when the customer is re-exposed to price \u2014 and it is the only moment most people ever reconsider. A vertical where every prospect re-enters the market on a predictable cycle is unusually well suited to a cheap aged file, because you are not trying to create demand. You are trying to be holding the phone number when the renewal notice lands.\n\nThis is why the inquiry date matters more here than the lead's freshness score. A twelve-month-old record is not decayed; it is due."
+      },
+      {
+        heading: "The Bundle Is the Business",
+        body: "A single auto policy is a thin piece of business. Commission on one household's auto premium does not support much acquisition cost, which is exactly why real-time auto leads at $50 to $100 are a hard trade for most agencies and why the aged file at cents is interesting.\n\nThe economics change when auto is the entry point rather than the product. A household that brings auto plus home, or auto plus renters and an umbrella, is worth a multiple of the auto policy alone, and it retains far better \u2014 multi-line households are materially stickier than monoline ones, which is why carriers price the discount in the first place. So the metric that matters is not conversion rate on the file. It is bound households, lines per household, and what those households are still worth in year three.\n\nPractically: ask the home question on the first call, even when the prospect only wanted an auto number. Ask who writes it and when that renews too. An agent who books one auto policy from a $0.25 record has roughly broken even on effort; an agent who books auto plus home has bought a durable relationship for a quarter.\n\nThe cross-sell mechanics have their own write-up \u2014 see the auto-insurance cross-sell strategy post \u2014 and the vertical's provider landscape is covered in the directory."
+      },
+      {
+        heading: "Compliance: Ordinary Rules, High Volume",
+        body: "Aged auto leads are purchased consumer records, not pre-consented contacts. The baseline is the same as any purchased data: scrub against the National Do Not Call registry and a TCPA litigator list before every campaign, dial manually rather than through prohibited automated technology, honor opt-outs immediately, and observe calling windows in the prospect's own time zone. Several states run their own mini-TCPA statutes \u2014 Florida, Oklahoma, Washington, Maryland and Texas among them \u2014 so a campaign that is clean federally can still create state exposure.\n\nWhat makes this vertical worth extra care is not that the rules are stricter. It is the volume. Records at a quarter each invite very large files and very high dial counts, and every compliance defect scales with the list. A scrubbing gap that would produce one bad call on a 200-record file produces hundreds on a 50,000-record one. Build the scrub into the load process rather than the campaign process, so a file cannot be dialed before it has been cleaned.\n\nYou must also be appropriately licensed in the state on the record. And text messaging on purchased auto data deserves the same caution as anywhere else: SMS requires prior express written consent, which is precisely what a purchased record generally does not carry.\n\nRun your specific program past qualified compliance counsel before launch. The full cross-vertical framework, including the consent ladder, is in the free playbook."
+      }
+    ],
+    faqs: [
+      {
+        question: "Why are aged auto insurance leads so cheap?",
+        answer:
+          "Because the prospect almost certainly already bought. Auto coverage is legally required to drive, so a record from eight months ago is an insured person, not an open shopper. The price reflects that \u2014 roughly $0.25 to $0.50 against $20 to $100 for real-time. What it does not reflect is that their policy renews on a schedule, which is the part you are actually buying."
+      },
+      {
+        question: "If they already have insurance, what am I selling?",
+        answer:
+          "Timing and price at renewal. Personal auto runs in six- or twelve-month terms, and the renewal notice is the one moment most people reconsider. Your job on an aged file is to find out when that lands and to be there for it, rather than to talk somebody out of a policy mid-term."
+      },
+      {
+        question: "Is an older record worse?",
+        answer:
+          "Not in this vertical, and often the opposite. A six- or twelve-month-old inquiry is arriving near the prospect's renewal date. Freshness matters where you are racing other buyers to an open shopper; here you are waiting for a scheduled decision point, so the inquiry date is a timing signal rather than a decay curve."
+      },
+      {
+        question: "What cadence works?",
+        answer:
+          "One qualifying pass to capture the renewal month, then a dated callback near that month. That converts an undated file into a calendar. Running a compressed multi-touch sprint against people who are mid-term mostly generates annoyance, because nothing you say changes their situation until the policy comes up."
+      },
+      {
+        question: "What do aged auto insurance leads cost?",
+        answer:
+          "Roughly $0.25 to $0.50 per record in the 31\u2013180 day brackets, against about $20 to $45 shared and $50 to $100 exclusive for real-time. The by-bracket breakdown with confidence levels is maintained on our price index rather than restated here, because those figures are refreshed on a schedule."
+      },
+      {
+        question: "Should I quote just auto?",
+        answer:
+          "Usually not. Commission on a single auto policy barely supports the acquisition effort, while a multi-line household is worth a multiple of it and retains far better. Treat the auto quote as the reason for the call and the bundle as the reason for the campaign."
+      }
+    ],
+    getCompareUrl: () =>
+      `/providers/best/auto-insurance`,
+  },
+
   "mortgage-leads": {
     slug: "mortgage-leads",
     title: "Mortgage Leads",
