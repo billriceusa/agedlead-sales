@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-08-05T01:09:14.121Z",
+  "lastUpdated": "2026-08-05T01:14:02.154Z",
   "snapshots": [
     {
       "date": "2026-07-10",
@@ -3992,13 +3992,8 @@
     {
       "date": "2026-08-05",
       "property": "workagedleads",
-      "status": "ok",
-      "rolling7d": {
-        "clicks": 0,
-        "impressions": 0,
-        "ctr": 0,
-        "position": 0
-      },
+      "status": "no-data",
+      "rolling7d": null,
       "topPages": [],
       "topQueries": []
     }
