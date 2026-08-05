@@ -6,6 +6,30 @@
 
 ---
 
+## 2026-08-05 — /blog page weight (deferred, deliberately)
+
+`/blog` serves **568 KB of HTML** against 94 KB for the homepage and 66 KB for
+`/playbook`. `postsQuery` selects every post with full `mainImage` objects and
+all three relation sets, and the index renders the lot, so the RSC payload
+carries the entire archive on every visit. Server time is fine (TTFB 0.16 s) —
+this is payload and mobile parse cost, not a server problem.
+
+**Not fixed during the 2026-08-05 cutover repair, on purpose.** The obvious fix
+is pagination, and pagination changes URLs and internal crawl paths on a site
+that is three days into a domain consolidation and still having its signals
+re-attributed by Google. Shipping a crawl-path change into that, at the end of a
+long session, risks more than the 568 KB costs.
+
+When it is picked up, the low-risk order is:
+1. Trim the query first — select only the image asset reference rather than the
+   whole `mainImage` object, and drop relations the cards do not render. This is
+   payload-only and changes no URLs.
+2. Measure again. If that alone gets it under ~150 KB, stop.
+3. Only then consider pagination, and keep every post reachable from a crawlable
+   link, not just from the sitemap.
+
+---
+
 ## 2026-07-31 — Striking-distance pass: the constraint is on-page, not authority
 <!-- added 2026-07-31 (Scout, #owned-sites) — measured GSC + live SERP -->
 
