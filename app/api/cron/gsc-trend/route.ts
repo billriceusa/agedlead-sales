@@ -6,7 +6,7 @@ import {
   serializeGscTrend,
   type GscPropertyKey,
 } from "@/lib/cron/gsc-trend";
-import { activeProperties } from "@/lib/cron/gsc-properties";
+import { activeProperties, inWarmup } from "@/lib/cron/gsc-properties";
 import { commitFilesToGitHub } from "@/lib/cron/git-commit";
 import { recordCronRun } from "@/lib/cron/heartbeat";
 
@@ -40,22 +40,27 @@ export async function GET(request: Request) {
   const results: {
     key: GscPropertyKey;
     label: string;
+    warmup: boolean;
     gsc?: GSCReport;
     error?: string;
   }[] = [];
 
   for (const prop of properties) {
+    const base = {
+      key: prop.key,
+      label: prop.label,
+      warmup: inWarmup(prop, reportDate),
+    };
     try {
       const gsc = await fetchGSCReport(prop.gscSiteUrl);
       if (gsc.available) {
-        results.push({ key: prop.key, label: prop.label, gsc });
+        results.push({ ...base, gsc });
       } else {
-        results.push({ key: prop.key, label: prop.label, error: gsc.error });
+        results.push({ ...base, error: gsc.error });
       }
     } catch (err) {
       results.push({
-        key: prop.key,
-        label: prop.label,
+        ...base,
         error: err instanceof Error ? err.message : String(err),
       });
     }
@@ -91,14 +96,19 @@ export async function GET(request: Request) {
         trend,
         r.gsc!,
         reportDate,
-        r.key
+        r.key,
+        r.warmup
       );
       trend = next;
       anyChanged = anyChanged || changed;
+
+      const row = next.snapshots.find(
+        (s) => s.date === reportDate && s.property === r.key
+      );
       summary.push(
-        r.gsc!.sevenDay.hasData
-          ? `${r.key}: ${r.gsc!.sevenDay.metrics.clicks} clk / ${r.gsc!.sevenDay.metrics.impressions} impr`
-          : `${r.key}: no-data`
+        row?.status === "no-data"
+          ? `${r.key}: no-data`
+          : `${r.key}: ${r.gsc!.sevenDay.metrics.clicks} clk / ${r.gsc!.sevenDay.metrics.impressions} impr`
       );
     }
     for (const r of results.filter((x) => !x.gsc)) {

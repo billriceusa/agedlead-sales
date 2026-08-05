@@ -112,11 +112,20 @@ export async function fetchGscTrend(): Promise<GscTrend | null> {
 function buildSnapshot(
   gsc: GSCReport,
   date: string,
-  property: GscPropertyKey
+  property: GscPropertyKey,
+  warmup = false
 ): GscTrendSnapshot {
-  // The gate. Search Console answering 200-with-no-rows is not a measurement,
-  // and writing it as one is permanent — the file is the historical record.
-  if (!gsc.sevenDay.hasData) {
+  // The gate. Search Console answering with nothing is not a measurement, and
+  // writing it as one is permanent — the file is the historical record.
+  //
+  // Two shapes of "nothing". An empty rows array, and — because these queries
+  // carry no dimensions — a single aggregate row of zeros, which is what a
+  // property returns before it has been aggregated. The second is only
+  // distinguishable from a real quiet week by knowing the property is new.
+  const readNothing =
+    gsc.sevenDay.metrics.clicks === 0 && gsc.sevenDay.metrics.impressions === 0;
+
+  if (!gsc.sevenDay.hasData || (warmup && readNothing)) {
     return {
       date,
       property,
@@ -164,9 +173,10 @@ export function appendGscSnapshot(
   existing: GscTrend | null,
   gsc: GSCReport,
   date: string,
-  property: GscPropertyKey = LEGACY_PROPERTY
+  property: GscPropertyKey = LEGACY_PROPERTY,
+  warmup = false
 ): { trend: GscTrend; changed: boolean } {
-  const snapshot = buildSnapshot(gsc, date, property);
+  const snapshot = buildSnapshot(gsc, date, property, warmup);
 
   // Keyed on (date, property). On date alone, the second property written each
   // day would silently overwrite the first — destroying the side-by-side

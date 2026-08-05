@@ -68,6 +68,37 @@ test("a 200 with no rows is never recorded as a measured zero", () => {
   assert.deepEqual(row.topPages, []);
 });
 
+test("an all-zero row on a warming-up property is no-data, not a zero", () => {
+  // These queries carry no dimensions, so GSC answers with one aggregate row.
+  // A property it has not aggregated yet returns that row full of zeros — the
+  // case that wrote workagedleads.com into the record as a dead site.
+  const { trend } = appendGscSnapshot(
+    null,
+    reportWithData(0, 0),
+    "2026-08-05",
+    "workagedleads",
+    true // within the verification warmup window
+  );
+
+  const row = trend.snapshots[0];
+  assert.equal(row.status, "no-data");
+  assert.equal(row.rolling7d, null);
+});
+
+test("an all-zero row on an established property stays a real zero", () => {
+  const { trend } = appendGscSnapshot(
+    null,
+    reportWithData(0, 0),
+    "2026-08-05",
+    "agedleadsales",
+    false // not in warmup — this is a measurement
+  );
+
+  const row = trend.snapshots[0];
+  assert.equal(row.status, "ok");
+  assert.equal(row.rolling7d?.impressions, 0);
+});
+
 test("a genuine quiet week stays expressible as a real zero", () => {
   const { trend } = appendGscSnapshot(
     null,

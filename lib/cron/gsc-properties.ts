@@ -17,6 +17,25 @@ export interface GscPropertyConfig {
   label: string;
   /** Stop reading this property after this date. History for it is retained. */
   retiredAfter?: string; // YYYY-MM-DD
+  /**
+   * Date the property was verified in Search Console (YYYY-MM-DD).
+   *
+   * These queries carry no dimensions, so the API answers with a single
+   * aggregate row — an all-zero row, never an empty result — for a property it
+   * has not aggregated yet. The response alone cannot distinguish that from a
+   * genuinely silent week. Knowing when we started asking can.
+   */
+  verifiedOn?: string;
+}
+
+/** Days after verification during which an all-zero week means nothing. */
+export const GSC_WARMUP_DAYS = 21;
+
+/** True while an all-zero read on this property should be read as "no reading". */
+export function inWarmup(prop: GscPropertyConfig, today: string): boolean {
+  if (!prop.verifiedOn) return false;
+  const ms = Date.parse(today) - Date.parse(prop.verifiedOn);
+  return Math.floor(ms / 86_400_000) <= GSC_WARMUP_DAYS;
 }
 
 export const GSC_PROPERTIES: GscPropertyConfig[] = [
@@ -32,6 +51,7 @@ export const GSC_PROPERTIES: GscPropertyConfig[] = [
     key: "workagedleads",
     gscSiteUrl: "sc-domain:workagedleads.com",
     label: "Work Aged Leads",
+    verifiedOn: "2026-08-03",
   },
 ];
 
