@@ -31,12 +31,31 @@ export interface GSCDeviceData {
 }
 
 export interface GSCPeriodData {
+  /**
+   * False when Search Console answered 200 with no rows. The metrics below are
+   * then zeros for rendering convenience ONLY — they are not a measurement and
+   * must never be persisted as one. Anything writing to a durable record has to
+   * branch on this first; see buildSnapshot() in lib/cron/gsc-trend.ts.
+   */
+  hasData: boolean;
   metrics: GSCMetrics;
   dailyAverage: GSCMetrics;
   topQueries: GSCQueryData[];
   topPages: GSCPageData[];
   devices: GSCDeviceData[];
 }
+
+/**
+ * A period read that either produced rows or did not.
+ *
+ * "No rows" is not zero traffic. A property verified moments ago returns an
+ * empty rows array with a 200, which is how workagedleads.com came to be
+ * recorded as 0 clicks / 0 impressions the day after cutover — a fabricated
+ * measurement, indistinguishable from a real collapse, written permanently.
+ */
+type GSCPeriodResult =
+  | { hasData: true; metrics: GSCMetrics }
+  | { hasData: false };
 
 export interface GSCReport {
   sevenDay: GSCPeriodData;
@@ -88,7 +107,7 @@ async function fetchPeriodMetrics(
   siteUrl: string,
   token: string,
   days: number
-): Promise<GSCMetrics> {
+): Promise<GSCPeriodResult> {
   const range = dateRange(days);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -100,7 +119,7 @@ async function fetchPeriodMetrics(
 
   const rows = data.rows || [];
   if (rows.length === 0) {
-    return { clicks: 0, impressions: 0, ctr: 0, position: 0 };
+    return { hasData: false };
   }
 
   let totalClicks = 0;
@@ -118,10 +137,13 @@ async function fetchPeriodMetrics(
   }
 
   return {
-    clicks: totalClicks,
-    impressions: totalImpressions,
-    ctr: totalImpressions > 0 ? totalClicks / totalImpressions : 0,
-    position: positionCount > 0 ? totalPosition / positionCount : 0,
+    hasData: true,
+    metrics: {
+      clicks: totalClicks,
+      impressions: totalImpressions,
+      ctr: totalImpressions > 0 ? totalClicks / totalImpressions : 0,
+      position: positionCount > 0 ? totalPosition / positionCount : 0,
+    },
   };
 }
 
@@ -216,8 +238,19 @@ function toDailyAverage(metrics: GSCMetrics, days: number): GSCMetrics {
   };
 }
 
-export async function fetchGSCReport(): Promise<GSCReport> {
-  const siteUrl = process.env.GSC_SITE_URL;
+/**
+ * `available` means the fetch and auth succeeded — NOT that there was data.
+ * Check `sevenDay.hasData` for that. Auth failures and 403s still throw and
+ * land in the catch below, which is why a lost grant can never masquerade as
+ * a quiet week.
+ *
+ * Pass the property explicitly. It used to read GSC_SITE_URL itself, which
+ * made tracking two properties through a domain migration impossible.
+ */
+export async function fetchGSCReport(
+  siteUrlArg?: string
+): Promise<GSCReport> {
+  const siteUrl = siteUrlArg ?? process.env.GSC_SITE_URL;
   if (!siteUrl) {
     return {
       sevenDay: emptyPeriod(),
@@ -246,17 +279,23 @@ export async function fetchGSCReport(): Promise<GSCReport> {
       fetchDeviceBreakdown(siteUrl, token, 7),
     ]);
 
+    const zero: GSCMetrics = { clicks: 0, impressions: 0, ctr: 0, position: 0 };
+    const seven = sevenDayMetrics.hasData ? sevenDayMetrics.metrics : zero;
+    const ninety = ninetyDayMetrics.hasData ? ninetyDayMetrics.metrics : zero;
+
     return {
       sevenDay: {
-        metrics: sevenDayMetrics,
-        dailyAverage: toDailyAverage(sevenDayMetrics, 7),
+        hasData: sevenDayMetrics.hasData,
+        metrics: seven,
+        dailyAverage: toDailyAverage(seven, 7),
         topQueries: sevenDayQueries,
         topPages: sevenDayPages,
         devices,
       },
       ninetyDay: {
-        metrics: ninetyDayMetrics,
-        dailyAverage: toDailyAverage(ninetyDayMetrics, 90),
+        hasData: ninetyDayMetrics.hasData,
+        metrics: ninety,
+        dailyAverage: toDailyAverage(ninety, 90),
         topQueries: ninetyDayQueries,
         topPages: [],
         devices: [],
@@ -275,6 +314,7 @@ export async function fetchGSCReport(): Promise<GSCReport> {
 
 function emptyPeriod(): GSCPeriodData {
   return {
+    hasData: false,
     metrics: { clicks: 0, impressions: 0, ctr: 0, position: 0 },
     dailyAverage: { clicks: 0, impressions: 0, ctr: 0, position: 0 },
     topQueries: [],

@@ -4,7 +4,9 @@ import {
   fetchGscTrend,
   appendGscSnapshot,
   serializeGscTrend,
+  type GscPropertyKey,
 } from "@/lib/cron/gsc-trend";
+import { activeProperties } from "@/lib/cron/gsc-properties";
 import { commitFilesToGitHub } from "@/lib/cron/git-commit";
 import { recordCronRun } from "@/lib/cron/heartbeat";
 
@@ -30,13 +32,42 @@ export async function GET(request: Request) {
 
   const startTime = Date.now();
   const reportDate = new Date().toISOString().split("T")[0];
+  const properties = activeProperties(reportDate);
 
-  // ── Fetch GSC ────────────────────────────────────────────────
-  let gsc: GSCReport;
-  try {
-    gsc = await fetchGSCReport();
-  } catch (err) {
-    const msg = `GSC fetch failed: ${err instanceof Error ? err.message : err}`;
+  // ── Fetch each property ──────────────────────────────────────
+  // One property's bad day must never suppress another's good one, so each is
+  // fetched independently and failures are recorded per property.
+  const results: {
+    key: GscPropertyKey;
+    label: string;
+    gsc?: GSCReport;
+    error?: string;
+  }[] = [];
+
+  for (const prop of properties) {
+    try {
+      const gsc = await fetchGSCReport(prop.gscSiteUrl);
+      if (gsc.available) {
+        results.push({ key: prop.key, label: prop.label, gsc });
+      } else {
+        results.push({ key: prop.key, label: prop.label, error: gsc.error });
+      }
+    } catch (err) {
+      results.push({
+        key: prop.key,
+        label: prop.label,
+        error: err instanceof Error ? err.message : String(err),
+      });
+    }
+  }
+
+  // Every property unreadable is a real failure — auth, network, or a revoked
+  // grant. Nothing is written, and health-check's staleness alarm picks it up.
+  const usable = results.filter((r) => r.gsc);
+  if (usable.length === 0) {
+    const msg = `GSC unavailable for all properties: ${results
+      .map((r) => `${r.key}: ${r.error}`)
+      .join("; ")}`;
     console.error(`[GscTrend] ${msg}`);
     await recordCronRun({
       name: "gsc-trend",
@@ -47,26 +78,39 @@ export async function GET(request: Request) {
     return NextResponse.json({ success: false, error: msg }, { status: 500 });
   }
 
-  if (!gsc.available) {
-    const msg = `GSC not available: ${gsc.error}`;
-    console.warn(`[GscTrend] ${msg}`);
-    await recordCronRun({
-      name: "gsc-trend",
-      status: "failed",
-      detail: msg,
-      durationMs: Date.now() - startTime,
-    });
-    return NextResponse.json({ success: false, error: msg }, { status: 500 });
-  }
-
-  // ── Append snapshot + commit if changed ──────────────────────
+  // ── Append one snapshot per readable property, commit once ───
   let committed = false;
   let daysTracked = 0;
+  const summary: string[] = [];
   try {
-    const existingTrend = await fetchGscTrend();
-    const { trend, changed } = appendGscSnapshot(existingTrend, gsc, reportDate);
-    daysTracked = trend.snapshots.length;
-    if (changed) {
+    let trend = await fetchGscTrend();
+    let anyChanged = false;
+
+    for (const r of usable) {
+      const { trend: next, changed } = appendGscSnapshot(
+        trend,
+        r.gsc!,
+        reportDate,
+        r.key
+      );
+      trend = next;
+      anyChanged = anyChanged || changed;
+      summary.push(
+        r.gsc!.sevenDay.hasData
+          ? `${r.key}: ${r.gsc!.sevenDay.metrics.clicks} clk / ${r.gsc!.sevenDay.metrics.impressions} impr`
+          : `${r.key}: no-data`
+      );
+    }
+    for (const r of results.filter((x) => !x.gsc)) {
+      summary.push(`${r.key}: unreadable (${r.error})`);
+    }
+
+    // usable is non-empty (checked above), so the loop ran at least once.
+    if (!trend) throw new Error("no trend produced despite a readable property");
+
+    daysTracked = new Set(trend.snapshots.map((s) => s.date)).size;
+
+    if (anyChanged) {
       await commitFilesToGitHub(
         [
           {
@@ -74,7 +118,7 @@ export async function GET(request: Request) {
             content: serializeGscTrend(trend, new Date().toISOString()),
           },
         ],
-        `chore(gsc): trend snapshot — ${reportDate}\n\n${gsc.sevenDay.metrics.clicks} clicks / ${gsc.sevenDay.metrics.impressions} impressions (7d rolling).`
+        `chore(gsc): trend snapshot — ${reportDate}\n\n${summary.join("; ")}`
       );
       committed = true;
       console.log(`[GscTrend] Snapshot committed (${daysTracked} days tracked)`);
@@ -96,8 +140,8 @@ export async function GET(request: Request) {
   const duration = Date.now() - startTime;
   await recordCronRun({
     name: "gsc-trend",
-    status: "ok",
-    detail: `${gsc.sevenDay.metrics.clicks} clk / ${gsc.sevenDay.metrics.impressions} impr (7d); ${daysTracked} days tracked; committed=${committed}`,
+    status: usable.length === results.length ? "ok" : "partial",
+    detail: `${summary.join("; ")}; ${daysTracked} days tracked; committed=${committed}`,
     durationMs: duration,
   });
 
@@ -106,6 +150,7 @@ export async function GET(request: Request) {
     reportDate,
     committed,
     daysTracked,
+    properties: summary,
     duration,
   });
 }

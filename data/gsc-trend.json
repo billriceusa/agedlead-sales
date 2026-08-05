@@ -3828,12 +3828,9 @@
     },
     {
       "date": "2026-08-04",
-      "rolling7d": {
-        "clicks": 0,
-        "impressions": 0,
-        "ctr": 0,
-        "position": 0
-      },
+      "property": "workagedleads",
+      "status": "no-data",
+      "rolling7d": null,
       "topPages": [],
       "topQueries": []
     }

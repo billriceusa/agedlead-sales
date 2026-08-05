@@ -36,10 +36,31 @@ export interface GscTrendQuery {
   position: number;
 }
 
+/** Stable join key for a property, so a row survives the site URL changing. */
+export type GscPropertyKey = "agedleadsales" | "workagedleads";
+
+/** The property every pre-2026-08-05 row was written against. */
+export const LEGACY_PROPERTY: GscPropertyKey = "agedleadsales";
+
 export interface GscTrendSnapshot {
   date: string; // YYYY-MM-DD
+  /**
+   * Absent on rows written before the consolidation, which were all
+   * agedleadsales.com by construction. Read a missing key as LEGACY_PROPERTY;
+   * the old rows are deliberately left untouched rather than back-filled.
+   */
+  property?: GscPropertyKey;
+  /**
+   * "ok"      — Search Console returned rows; rolling7d is a measurement.
+   * "no-data" — it answered 200 with nothing. rolling7d is null.
+   *
+   * A real quiet week is {status:"ok", rolling7d:{clicks:0,…}}. That is a
+   * different fact from "we have no reading", and conflating the two is what
+   * made the day after cutover look like a traffic collapse.
+   */
+  status?: "ok" | "no-data";
   /** Rolling 7-day window totals — the smoothed headline series. */
-  rolling7d: GscTrendMetrics;
+  rolling7d: GscTrendMetrics | null;
   topPages: GscTrendPage[];
   topQueries: GscTrendQuery[];
 }
@@ -47,6 +68,11 @@ export interface GscTrendSnapshot {
 export interface GscTrend {
   lastUpdated: string;
   snapshots: GscTrendSnapshot[];
+}
+
+/** Legacy rows carry no property; they were all the one property. */
+export function snapshotProperty(s: GscTrendSnapshot): GscPropertyKey {
+  return s.property ?? LEGACY_PROPERTY;
 }
 
 function round(n: number, dp = 4): number {
@@ -83,10 +109,29 @@ export async function fetchGscTrend(): Promise<GscTrend | null> {
   }
 }
 
-function buildSnapshot(gsc: GSCReport, date: string): GscTrendSnapshot {
+function buildSnapshot(
+  gsc: GSCReport,
+  date: string,
+  property: GscPropertyKey
+): GscTrendSnapshot {
+  // The gate. Search Console answering 200-with-no-rows is not a measurement,
+  // and writing it as one is permanent — the file is the historical record.
+  if (!gsc.sevenDay.hasData) {
+    return {
+      date,
+      property,
+      status: "no-data",
+      rolling7d: null,
+      topPages: [],
+      topQueries: [],
+    };
+  }
+
   const m = gsc.sevenDay.metrics;
   return {
     date,
+    property,
+    status: "ok",
     rolling7d: {
       clicks: m.clicks || 0,
       impressions: m.impressions || 0,
@@ -118,26 +163,53 @@ function buildSnapshot(gsc: GSCReport, date: string): GscTrendSnapshot {
 export function appendGscSnapshot(
   existing: GscTrend | null,
   gsc: GSCReport,
-  date: string
+  date: string,
+  property: GscPropertyKey = LEGACY_PROPERTY
 ): { trend: GscTrend; changed: boolean } {
-  const snapshot = buildSnapshot(gsc, date);
-  const snapshots = (existing?.snapshots ?? []).filter((s) => s.date !== date);
+  const snapshot = buildSnapshot(gsc, date, property);
 
-  const prior = existing?.snapshots.find((s) => s.date === date);
+  // Keyed on (date, property). On date alone, the second property written each
+  // day would silently overwrite the first — destroying the side-by-side
+  // continuity that tracking two properties exists to provide.
+  const sameRow = (s: GscTrendSnapshot) =>
+    s.date === date && snapshotProperty(s) === property;
+
+  const snapshots = (existing?.snapshots ?? []).filter((s) => !sameRow(s));
+  const prior = existing?.snapshots.find(sameRow);
   const identical = prior && JSON.stringify(prior) === JSON.stringify(snapshot);
 
   snapshots.push(snapshot);
-  snapshots.sort((a, b) => a.date.localeCompare(b.date));
-  const trimmed =
-    snapshots.length > MAX_SNAPSHOTS ? snapshots.slice(-MAX_SNAPSHOTS) : snapshots;
+  snapshots.sort(
+    (a, b) =>
+      a.date.localeCompare(b.date) ||
+      snapshotProperty(a).localeCompare(snapshotProperty(b))
+  );
 
   return {
     trend: {
       lastUpdated: existing?.lastUpdated ?? "",
-      snapshots: trimmed,
+      snapshots: trimToRecentDates(snapshots, MAX_SNAPSHOTS),
     },
     changed: !identical,
   };
+}
+
+/**
+ * Retain the most recent N *dates*, not N rows.
+ *
+ * MAX_SNAPSHOTS has always meant "about a year of history". Trimming by row
+ * count would quietly halve that to six months the moment a second property
+ * starts writing a row a day — a regression introduced by the very feature
+ * meant to protect the history.
+ */
+export function trimToRecentDates(
+  snapshots: GscTrendSnapshot[],
+  maxDates: number
+): GscTrendSnapshot[] {
+  const dates = [...new Set(snapshots.map((s) => s.date))].sort();
+  if (dates.length <= maxDates) return snapshots;
+  const keepFrom = dates[dates.length - maxDates];
+  return snapshots.filter((s) => s.date >= keepFrom);
 }
 
 export function serializeGscTrend(trend: GscTrend, nowIso: string): string {

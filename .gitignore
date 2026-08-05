@@ -39,3 +39,7 @@ next-env.d.ts
 
 # flagship PDF build intermediates
 /.flagship-pdf-tmp/
+
+# Claude Code local state — worktrees, scratch env pulls, session files.
+# Never committable: .claude/tmp/ holds pulled production env.
+.claude/
