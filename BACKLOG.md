@@ -22,11 +22,15 @@ future metadata audit needs both checks.
 all in one file. Worst were health-insurance (74-char title / 213-char description), home-improvement
 (208) and auto-insurance (204). Every hub is now inside 60/160, verified live.
 
-- [ ] **P2 [seo] — ~88 Sanity-authored pages still over the limit**, mostly `/blog/how-to-work-*`.
-  Worst: window-replacement (87), bank-statement-loan (86), plumbing (83). These are Sanity fields, so
-  it is a patch-and-publish pass like the truncation fix, not a code change. Prioritise by impressions
-  — the list is reproducible by crawling the sitemap and measuring `<title>` / `meta description`.
-  Effort: M.
+- [x] **~~P2 — ~88 Sanity-authored pages still over the limit~~ — DONE in `41ff552`.** Queried Sanity
+  directly rather than re-crawling, which found the true set: **62 documents, 44 titles over 60 chars
+  and 36 descriptions over 160.** All rewritten to fit, published, and rebuilt. Worst titles were
+  window-replacement (87), bank-statement-loan (86), plumbing (83); worst descriptions lead-data
+  hygiene (192), remove-landlines (186), is-it-legal (185).
+  Two unsourced claims were dropped rather than shortened, since the sentence was being rewritten
+  anyway: the Q2 post asserted *"60% of spring home closings start as dead fall leads"* and a
+  *"$300 fresh vs $25 aged at 4% conversion"* comparison. The argument stays, the invented precision
+  does not ([[shared/feedback_no_fabricated_data]]).
 
 **Ruled out this pass: retargeting the hubs' keyword fields.** Ahrefs (US, 2026-08-06) shows every hub
 except life insurance aimed at an `aged X leads` modifier at 40–150/mo while the head terms run

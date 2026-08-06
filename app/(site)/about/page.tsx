@@ -7,7 +7,7 @@ import { NewsletterSignup } from "@/components/newsletter-signup";
 export const metadata: Metadata = {
   title: "About Bill Rice: 30+ Years in Lead Generation",
   description:
-    "Work Aged Leads is built by Bill Rice — the expert who coined 'lead management,' built lead systems at Quicken Loans, and has personally worked millions of aged leads across insurance, mortgage, solar, and home improvement. Free training from someone who actually dials.",
+    "Work Aged Leads is built by Bill Rice, who coined 'lead management,' built lead systems at Quicken Loans, and has personally worked millions of aged leads.",
   alternates: { canonical: siteUrl("/about") },
 };
 

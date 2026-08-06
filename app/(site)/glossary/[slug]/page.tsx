@@ -13,6 +13,7 @@ import {
 } from "@/components/json-ld";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { GLOSSARY_TERMS } from "@/data/glossary-terms";
+import { fitMetaDescription } from "@/lib/meta-description";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
@@ -35,7 +36,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const name = cmsTerm?.term || staticTerm?.term || "";
   const def = cmsTerm?.definition || staticTerm?.definition || "";
   const title = cmsTerm?.seo?.metaTitle || `What is ${name}? — Definition`;
-  const description = cmsTerm?.seo?.metaDescription || def;
+  // The fallback is the full term definition, which runs 200+ characters on
+  // most terms — Google cut the end off all of them. Authored descriptions are
+  // capped too: the guard is worth more than the one-off cleanup.
+  const description = fitMetaDescription(cmsTerm?.seo?.metaDescription || def);
 
   return {
     title,

@@ -18,6 +18,7 @@ import { NextReadBar } from "@/components/next-read-bar";
 import { ReactionButtons } from "@/components/reaction-buttons";
 import { PROVIDERS } from "@/data/providers";
 import { CONTACT_EMAIL } from "@/lib/site-url";
+import { fitMetaDescription } from "@/lib/meta-description";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
@@ -32,7 +33,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!post) return {};
 
   const title = post.seo?.metaTitle || post.title;
-  const description = post.seo?.metaDescription || post.excerpt;
+  // Capped so an over-long authored description, or an excerpt used as the
+  // fallback, cannot ship copy Google will cut. 62 documents were over the
+  // limit before 2026-08-06; the guard is what stops it recurring.
+  const description = fitMetaDescription(post.seo?.metaDescription || post.excerpt);
   const ogImageUrl = post.mainImage
     ? urlForImage(post.mainImage)?.width(1200).height(630).url()
     : `${baseUrl}/api/og?title=${encodeURIComponent(post.title)}&type=blog`;
