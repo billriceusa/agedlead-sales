@@ -6,6 +6,53 @@
 
 ---
 
+## 2026-08-06 — Internal link equity was pointed away from the demand (fixed), and what's left on life insurance
+<!-- added 2026-08-06 /session — internal links counted by crawling all 329 live pages; impressions from data/migration/url-map.csv -->
+
+**Fixed in `dd29568`.** The footer renders on all 329 pages, so its "Lead Types" list *is* the site's
+internal link budget. It was allocated backwards:
+
+| hub | internal links | impressions |
+|---|---|---|
+| mortgage | 329 | 1,966 |
+| iul | 329 | 3,935 |
+| insurance | 329 | 2,526 |
+| final-expense | 329 | 1,582 |
+| **life-insurance** | **31** | **21,132** |
+
+Life insurance carries more demand than all four listed hubs **combined** (21,132 vs 10,009), had a
+tenth of their internal links, and sits at average position 33.6. Footer reordered by measured demand;
+life insurance and home improvement added, nothing dropped. Ranking lever, not a CTR one — expect
+movement in average position over weeks, if at all.
+
+**Correcting the 2026-08-05 entry below.** It described `/lead-types/life-insurance-leads` as *"a
+14,467-word page that already has the depth"* and concluded the only problem was rank. Measured live,
+that page renders **3,742 words including nav and footer** — and it is *shorter than the blog post in
+its own cluster*, `/blog/how-to-work-life-insurance-leads` at 5,510 (same measurement method, same
+day). The 14,467 figure belongs to a different URL and a different measurement. The page does not
+already have the depth, so "ranking problem only" was the wrong conclusion.
+
+- [ ] **P1 [content] — deepen `/lead-types/life-insurance-leads`. The single biggest lever on the
+  site.** It inherited **20,714 impressions of explicit commercial intent** from
+  `howtoworkleads.com/buying-leads/buy-life-insurance-leads` (a FOLD), and now answers that intent
+  with a hub thinner than its own supporting article. It also deep-links to the partner's strongest
+  buy page — *"Buy Aged Life Insurance Leads for Agents — From $0.25"* — so rank gained here converts
+  rather than leaking. Mechanics: **every lead-type page renders from `data/lead-types.ts`; all 12
+  Sanity `leadType.body` fields are null**, so depth is added in that file, mirroring the
+  `health-insurance-leads` block. Effort: L. Needs real pricing/benchmark inputs — do not pad it with
+  generated filler ([[shared/feedback_no_fabricated_data]]).
+- [ ] **P2 [seo] — check life-insurance cannibalisation before writing.** `/lead-types/insurance-leads`
+  carries an H2 "Aged Insurance Leads by Line: Auto, Home, Life, and Health" and competes for the same
+  terms. Decide the split (commercial hub vs by-line overview) first, or the new depth fights an
+  existing page. Effort: S.
+- [ ] **P3 [content] — no `leadType` covers general legal work.** Five untagged posts (bankruptcy,
+  debt, debt settlement, family law, workers' comp) are attorney-intake content, and Troy sells
+  **Legal Leads** — but our only legal lead types are MVA and SSDI, so tagging them would be
+  semantically wrong. A general "Legal Leads" hub would give those five posts a correct deep link.
+  Do it as a real page, not a stub: a bare `leadType` renders thin chrome. Effort: M.
+
+---
+
 ## 2026-08-06 — Affiliate CTAs deep-link for the first time (fixed)
 <!-- added 2026-08-06 /session — measured from live HTML on all 329 sitemap URLs + partner URL verification -->
 
