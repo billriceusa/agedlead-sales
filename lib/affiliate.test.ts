@@ -7,20 +7,34 @@ describe("storeCategoryPath", () => {
     // The bug this replaces looked up a Title Case string in a lowercase-slug
     // map, so it silently missed on all 102 posts that set leadTypes and every
     // affiliate click landed on the generic catalogue.
-    assert.equal(storeCategoryPath("Mortgage Leads"), "/mortgage-leads/");
     assert.equal(storeCategoryPath("Auto Insurance Leads"), "/auto-insurance-leads/");
     assert.equal(storeCategoryPath("Life Insurance Leads"), "/life-insurance-leads/");
+    assert.equal(storeCategoryPath("Health Insurance Leads"), "/health-insurance-leads/");
   });
 
-  test("uses the partner's slug, not ours, where they diverge", () => {
-    // Verified 200 on 2026-08-06. The intuitive guesses are wrong:
-    // /final-expense-leads/ redirects, /solar-leads/ lands on a blog post.
-    assert.equal(storeCategoryPath("Final Expense Leads"), "/online-final-expense-leads/");
-    assert.equal(storeCategoryPath("Solar Leads"), "/solar-installation-leads/");
+  test("points at the BUY page, never the article that shares its name", () => {
+    // The partner publishes an article and a buy page under parallel slugs, so
+    // a 200 does not mean a purchase page. /mortgage-leads/ is a tag archive
+    // ("Mortgage Leads Archives") and /home-improvement-leads/ is an article.
+    // The authority is the "Buy Aged Leads" nav dropdown.
+    assert.equal(
+      storeCategoryPath("Mortgage Leads"),
+      "/mortgage-leads-purchase-refinance/",
+    );
+    assert.equal(
+      storeCategoryPath("Home Improvement Leads"),
+      "/buy-home-improvement-leads-lp/",
+    );
     assert.equal(
       storeCategoryPath("IUL Leads"),
       "/indexed-universal-life-insurance-leads/",
     );
+  });
+
+  test("final expense follows the partner's own menu onto life insurance", () => {
+    // Looks wrong, is right: their dropdown points Final Expense Leads at
+    // /life-insurance-leads/, because final expense is life insurance.
+    assert.equal(storeCategoryPath("Final Expense Leads"), "/life-insurance-leads/");
   });
 
   test("attorney-intake products share the legal category", () => {
@@ -28,10 +42,12 @@ describe("storeCategoryPath", () => {
     assert.equal(storeCategoryPath("SSDI Leads"), "/legal-leads/");
   });
 
-  test("Medicare falls back rather than pointing at a 404", () => {
-    // The partner has no Medicare category — /medicare-leads/ is a 404. A
-    // worse landing page beats a broken one on the money link.
-    assert.equal(storeCategoryPath("Medicare Leads"), undefined);
+  test("verticals the partner does not sell fall back to the catalogue", () => {
+    // No Medicare, solar, or generic-insurance buy page exists. The catalogue
+    // is broader but it sells; the same-named articles do not.
+    for (const t of ["Medicare Leads", "Solar Leads", "Insurance Leads"]) {
+      assert.equal(storeCategoryPath(t), undefined, t);
+    }
     assert.equal(
       affiliateUrl({ path: storeCategoryPath("Medicare Leads"), campaign: "c", content: "x" }),
       affiliateUrl({ campaign: "c", content: "x" }),
@@ -39,9 +55,12 @@ describe("storeCategoryPath", () => {
   });
 
   test("accepts a slug or a bare vertical, so old call sites keep working", () => {
-    assert.equal(storeCategoryPath("mortgage-leads"), "/mortgage-leads/");
-    assert.equal(storeCategoryPath("mortgage"), "/mortgage-leads/");
-    assert.equal(storeCategoryPath("home-services"), "/home-improvement-leads/");
+    assert.equal(
+      storeCategoryPath("mortgage-leads"),
+      "/mortgage-leads-purchase-refinance/",
+    );
+    assert.equal(storeCategoryPath("mortgage"), "/mortgage-leads-purchase-refinance/");
+    assert.equal(storeCategoryPath("home-services"), "/buy-home-improvement-leads-lp/");
     assert.equal(storeCategoryPath("auto"), "/auto-insurance-leads/");
   });
 

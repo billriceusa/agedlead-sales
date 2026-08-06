@@ -26,43 +26,64 @@ export function affiliateRegisterUrl(campaign: string, content: string): string 
 }
 
 /**
- * Lead type → the matching Aged Lead Store category page.
+ * Lead type → the matching Aged Lead Store landing page.
  *
  * Keyed by the Sanity `leadType.title` normalised to a slug ("Mortgage Leads"
  * → "mortgage-leads"), because that title is what every caller actually has.
  *
- * EVERY path here was verified 200 with zero redirects on 2026-08-06. Do not
- * add an entry without checking it the same way — this is the money link, and
- * a 404 here costs a sale rather than losing a ranking. Note the partner's
- * slugs do NOT mirror ours: final expense is `/online-final-expense-leads/`,
- * solar is `/solar-installation-leads/`, and IUL is spelled out. The obvious
- * guesses (`/medicare-leads/`, `/home-services-leads/`) are 404s, and
- * `/solar-leads/` redirects to a blog post rather than a category.
+ * THE AUTHORITATIVE SOURCE IS THE PARTNER'S "Buy Aged Leads" NAV DROPDOWN, on
+ * any page of agedleadstore.com. Those are the pages they have chosen to sell
+ * from. Re-derive this map from that menu; do not infer it from URL patterns.
  *
- * Medicare is deliberately ABSENT: the partner has no Medicare category (only
- * `/u65-leads/`, `/aca-leads/`, `/obamacare-leads/`, none of which is the same
- * product). Anything unmapped falls back to the full catalogue, which is a
- * worse landing page but never a broken one.
+ * A 200 is NOT sufficient verification, and this map got it wrong once by
+ * treating it as if it were. agedleadstore.com publishes an article and a
+ * buy page under confusingly parallel slugs, so several plausible guesses
+ * return 200 while being editorial content:
+ *
+ *   /insurance-leads/            200  "Insurance Leads Generation Tips…"      (article)
+ *   /mortgage-leads/             200  "Mortgage Leads Archives"               (tag archive)
+ *   /home-improvement-leads/     200  "…Everything You Need to Know"          (article)
+ *   /online-final-expense-leads/ 200  "Converting Online Final Expense Leads…" (article)
+ *   /solar-installation-leads/   200  "Aged Solar Installation Leads: What…"  (article)
+ *
+ * Sending purchase intent to any of those is a silent conversion leak — the
+ * link works, the visitor lands on a blog post, and nothing looks broken.
+ * Check the nav AND the page title before adding an entry.
+ *
+ * Two mappings look wrong and are not: the partner's own menu points **Final
+ * Expense Leads** at `/life-insurance-leads/` (final expense is life
+ * insurance), and Home Improvement at a dedicated `-lp` landing page.
+ *
+ * Medicare and Solar are deliberately ABSENT — the partner sells neither from
+ * this menu. Unmapped types fall back to the full catalogue: a broader landing
+ * page, but a real one that sells.
+ *
+ * Verified 200 with zero redirects on 2026-08-06.
  */
 const STORE_CATEGORY_PATHS: Record<string, string> = {
-  "mortgage-leads": "/mortgage-leads/",
-  "insurance-leads": "/insurance-leads/",
+  "mortgage-leads": "/mortgage-leads-purchase-refinance/",
   "auto-insurance-leads": "/auto-insurance-leads/",
   "health-insurance-leads": "/health-insurance-leads/",
   "life-insurance-leads": "/life-insurance-leads/",
-  "final-expense-leads": "/online-final-expense-leads/",
+  // Per the partner's menu — final expense IS life insurance to them.
+  "final-expense-leads": "/life-insurance-leads/",
   "iul-leads": "/indexed-universal-life-insurance-leads/",
   // MVA (motor-vehicle accident) and SSDI are both attorney-intake products.
   "mva-leads": "/legal-leads/",
   "ssdi-leads": "/legal-leads/",
-  "solar-leads": "/solar-installation-leads/",
-  "home-improvement-leads": "/home-improvement-leads/",
+  "home-improvement-leads": "/buy-home-improvement-leads-lp/",
   // Legacy slug: the lead-type route 301s to home-improvement-leads, but older
   // content still carries this label.
-  "home-services-leads": "/home-improvement-leads/",
+  "home-services-leads": "/buy-home-improvement-leads-lp/",
+  "aca-leads": "/aca-leads/",
+  "obamacare-leads": "/obamacare-leads/",
+  "homeowners-insurance-leads": "/homeowner-insurance-leads/",
   // Short aliases kept for the pre-2026-08 call sites that passed bare keys.
   auto: "/auto-insurance-leads/",
-  home: "/home-improvement-leads/",
+  home: "/buy-home-improvement-leads-lp/",
+  // "insurance-leads" (the generic bucket), "medicare-leads" and "solar-leads"
+  // are intentionally unmapped — the partner has no generic-insurance, Medicare
+  // or solar buy page. They fall back to /all-lead-types/.
 };
 
 /**
