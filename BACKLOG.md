@@ -32,19 +32,50 @@ its own cluster*, `/blog/how-to-work-life-insurance-leads` at 5,510 (same measur
 day). The 14,467 figure belongs to a different URL and a different measurement. The page does not
 already have the depth, so "ranking problem only" was the wrong conclusion.
 
-- [ ] **P1 [content] — deepen `/lead-types/life-insurance-leads`. The single biggest lever on the
-  site.** It inherited **20,714 impressions of explicit commercial intent** from
-  `howtoworkleads.com/buying-leads/buy-life-insurance-leads` (a FOLD), and now answers that intent
-  with a hub thinner than its own supporting article. It also deep-links to the partner's strongest
-  buy page — *"Buy Aged Life Insurance Leads for Agents — From $0.25"* — so rank gained here converts
-  rather than leaking. Mechanics: **every lead-type page renders from `data/lead-types.ts`; all 12
-  Sanity `leadType.body` fields are null**, so depth is added in that file, mirroring the
-  `health-insurance-leads` block. Effort: L. Needs real pricing/benchmark inputs — do not pad it with
-  generated filler ([[shared/feedback_no_fabricated_data]]).
-- [ ] **P2 [seo] — check life-insurance cannibalisation before writing.** `/lead-types/insurance-leads`
-  carries an H2 "Aged Insurance Leads by Line: Auto, Home, Life, and Health" and competes for the same
-  terms. Decide the split (commercial hub vs by-line overview) first, or the new depth fights an
-  existing page. Effort: S.
+**~~P1 deepen the life-insurance hub~~ — researched and REJECTED; done differently in `8299036`.**
+The SERP argued against the plan. Measured 2026-08-06:
+
+| | position | words | DR |
+|---|---|---|---|
+| QuoteWizard | **1** | **830** | 68 |
+| agedleadstore.com | 4 | 2,229 | 32 |
+| gainaltitude.ai | 5 | — | **24, one backlink** |
+| ours | 33.6 | **3,742** | — |
+
+**The page that wins has 830 words. Ours is already 4.5× longer than the winner**, so adding 5,000
+more would have been padding. A DR-24 page with a single backlink at #5 is what a winnable-on-page
+SERP looks like — this was never an authority or a depth problem.
+
+The actual gap was **keyword targeting**. Ahrefs, US: *life insurance leads* **1,900/mo KD 2** (parent
+topic) vs *aged life insurance leads* **150/mo KD 4** — which is what the page led with, leaving 12.6×
+the volume on the table. That an aged-leads page can win the head term is settled by
+agedleadstore.com ranking #4 with exactly that kind of page. Retargeted primary/secondary keywords,
+metaTitle and metaDescription at the parent topic; also picked up *life insurance leads for agents*
+(300/mo, **KD 1**).
+
+**Pricing was wrong in the direction that costs money.** The page stated `$0.50–$2.00` aged against
+`$12–$40` real-time. The marketplace publishes **$0.40** at 86–365 days and **$0.25** beyond, and our
+own `data/price-benchmarks.ts` sampling puts shared real-time at a **$22 median ($15–$30, n=5)**,
+exclusive at **$50 ($30–$75, n=4)**, and aged 31–85 days at **$1.25 ($0.62–$1.88, n=4)**. So the page
+advertised a worse floor than the vendor it links to and understated the saving at the top. `whyUse`
+now runs on our own multi-provider sampling rather than a vendor rate card — **that independence is
+the one asset this page has that the pages outranking it do not** — with per-bracket figures left to
+the price index per the convention already stated in `data/lead-types.ts`.
+
+**Cannibalisation resolved (was P2).** `/lead-types/insurance-leads` carried `"life insurance leads"`
+in its secondaries, so two of our own pages chased one head term. The generic hub keeps the
+multi-line and cross-sell angle; the head term belongs to the vertical hub.
+
+> **Caveat on the 33.6.** That is pre-cutover data for the old `howtoworkleads.com` URL that folded
+> into this page. The new page's true position is unmeasured until GSC finishes aggregating
+> (~2026-08-24). Re-measure before drawing conclusions from any of this.
+
+- [ ] **P2 [seo] — re-measure life insurance after GSC warms up (~2026-08-24)** and confirm the
+  retarget moved it. If it is still deep on page 3+ *with* head-term targeting and correct pricing,
+  then the remaining gap is genuinely off-page and the answer is links, not content. Effort: S.
+- [ ] **P3 [seo] — the same keyword audit has not been run on the other 11 hubs.** Life insurance was
+  targeting a 150/mo modifier over a 1,900/mo parent topic; nothing suggests it is the only one. Pull
+  parent topic vs current `primaryKeyword` for each. Effort: M.
 - [ ] **P3 [content] — no `leadType` covers general legal work.** Five untagged posts (bankruptcy,
   debt, debt settlement, family law, workers' comp) are attorney-intake content, and Troy sells
   **Legal Leads** — but our only legal lead types are MVA and SSDI, so tagging them would be
