@@ -39,7 +39,7 @@ const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 export const metadata: Metadata = {
   title: "Lead Price Index — What Should You Pay for Leads?",
   description:
-    "Quarterly verified pricing benchmarks for aged leads, real-time leads, and live transfers across 15 verticals. Fair market values from published pricing, quote requests, and market analysis.",
+    "Quarterly verified pricing benchmarks for aged leads, real-time leads, and live transfers across 15 verticals, from published pricing and quotes.",
   alternates: { canonical: `${baseUrl}/price-index` },
   openGraph: {
     title: "Lead Price Index | Work Aged Leads",

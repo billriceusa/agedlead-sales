@@ -10,7 +10,7 @@ const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 export const metadata: Metadata = {
   title: "Free Resources — Work Aged Leads",
   description:
-    "Free downloadable tools for sales professionals: follow-up cadence sheets, lead scripts, ROI scorecards, buying checklists, and route planners. No cost — just enter your email.",
+    "Free tools for sales pros: follow-up cadence sheets, lead scripts, ROI scorecards, buying checklists, and route planners. Just enter your email.",
   alternates: { canonical: `${baseUrl}/resources` },
 };
 

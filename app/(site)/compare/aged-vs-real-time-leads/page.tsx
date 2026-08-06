@@ -20,7 +20,7 @@ const pct = (n: number) => {
 export const metadata: Metadata = {
   title: "Aged Leads vs. Real-Time Leads: Which Should You Buy?",
   description:
-    "Aged leads cost a fraction of real-time leads but convert at lower rates. A data-backed comparison of price, contact rates, conversion, and cost-per-acquisition to help you choose.",
+    "Aged leads cost a fraction of real-time but convert lower. A data-backed comparison of price, contact rate, conversion, and cost per acquisition.",
   alternates: { canonical: `${baseUrl}/compare/aged-vs-real-time-leads` },
   openGraph: {
     title: "Aged Leads vs. Real-Time Leads | Work Aged Leads",

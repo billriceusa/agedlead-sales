@@ -77,7 +77,10 @@ export async function generateMetadata({
   if (reviewSlug) {
     return {
       title: `${name}: Pricing, Ratings & Provider Profile`,
-      description: `${name} provider profile — pricing model, lead types, compliance, and our 6-dimension ratings. Read our full in-depth ${name} review for the complete assessment.`,
+      // Kept short enough that even a long provider name stays inside the
+      // ~160 characters Google renders — this interpolates the name twice at
+      // 177 characters for "Aged Lead Store" alone.
+      description: `${name} provider profile: pricing model, lead types, compliance, and our 6-dimension ratings, with a link to the full review.`,
       alternates: { canonical: `${baseUrl}/blog/${reviewSlug}` },
       openGraph: {
         title: `${name} — Provider Profile | Work Aged Leads`,
@@ -94,7 +97,7 @@ export async function generateMetadata({
 
   return {
     title: `${name} Review: Pricing, Ratings & Verdict`,
-    description: `Independent review and rating of ${name}. See our honest assessment, 6-dimension scores, and how they compare to other lead providers.`,
+    description: `Independent review and rating of ${name}: honest assessment, 6-dimension scores, and how they compare to other providers.`,
     alternates: { canonical: `${baseUrl}/providers/${slug}` },
     openGraph: {
       title: `${name} Review | Work Aged Leads`,

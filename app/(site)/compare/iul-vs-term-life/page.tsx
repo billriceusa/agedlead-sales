@@ -11,7 +11,7 @@ const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 export const metadata: Metadata = {
   title: "IUL vs. Term Life Insurance: Which Is Right for Your Client?",
   description:
-    "Indexed Universal Life (IUL) vs. term life insurance compared — premiums, cash value, duration, market exposure, and complexity. A plain-English guide for agents working life insurance leads.",
+    "Indexed Universal Life vs. term life compared: premiums, cash value, duration, market exposure, and complexity, in plain English for agents.",
   alternates: { canonical: `${baseUrl}/compare/iul-vs-term-life` },
   openGraph: {
     title: "IUL vs. Term Life Insurance | Work Aged Leads",
