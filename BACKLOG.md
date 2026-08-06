@@ -6,6 +6,44 @@
 
 ---
 
+## 2026-08-06 — Affiliate CTAs deep-link for the first time (fixed)
+<!-- added 2026-08-06 /session — measured from live HTML on all 329 sitemap URLs + partner URL verification -->
+
+**Fixed in `356a68f`.** `InlineTextCta` resolved its destination from a lowercase-slug map, but every
+caller passes a Sanity `leadType.title` ("Mortgage Leads", not "mortgage"), so the lookup could never
+match. Two consequences, both verified live first:
+
+- **Every component-generated affiliate link resolved to `/all-lead-types/`** — the generic catalogue —
+  on a site whose entire IA is organised by lead type. Sampled before the fix on blog posts *and* on
+  `/lead-types/mortgage-leads`, where buyer intent is unambiguous.
+- The unmatched title also flowed into the label, appending "leads" to a string already ending in
+  "Leads". **102 of 154 posts set `leadTypes`**, so ~102 published pages read *"Looking for aged
+  Mortgage Leads leads?"*
+
+**The naive fix would have been worse than the bug.** Checking the paths against the partner before
+wiring the lookup up: `/medicare-leads/` **404**, `/home-services-leads/` **404**, `/solar-leads/`
+redirects to a **blog post**, `/final-expense-leads/` redirects. The broken lookup had been masking
+three dead destinations; repairing it naively would have routed paying traffic into 404s.
+
+Map rebuilt from the partner's own catalogue, every entry verified 200 with zero redirects. Medicare is
+deliberately unmapped — Aged Lead Store has no Medicare category — and falls back to the catalogue.
+
+Result across all 329 pages: **14 distinct affiliate destinations, 0 broken**, 122 of 352 emissions now
+land on a matching category. Lead-type pages also gained their first in-body affiliate CTA; their
+mid-page banner passes `buttonHref`, which sets `useAffiliate` false, so the only affiliate link had
+been the sitewide footer one.
+
+- [ ] **P2 [affiliate] — 230 of 352 emissions still go to `/all-lead-types/`.** Most are correct (the
+  sitewide footer CTA on non-vertical pages), but **52 of 154 posts have no `leadTypes` set** and
+  therefore cannot deep-link. Tagging those 52 is a pure-upside content-ops task: no new writing, and
+  it converts a generic catalogue landing into a matched category page. Effort: S.
+- [ ] **P2 [affiliate] — no Medicare category at the partner.** `/u65-leads/`, `/aca-leads/` and
+  `/obamacare-leads/` exist but are different products. Medicare is a real vertical here
+  (`/lead-types/medicare-leads`, plus Medicare posts), so this is worth one question to Troy: is there
+  a Medicare landing page we should be sending to? Until then it correctly falls back. Effort: XS.
+
+---
+
 ## 2026-08-06 — Truncated SEO metadata on 12 posts (fixed), and why publishing didn't ship it
 <!-- added 2026-08-06 /session — measured from live HTML across all 329 sitemap URLs + Sanity p7rbtajg/production -->
 
