@@ -9,6 +9,8 @@ import { makeGlossaryLinker } from "@/components/glossary-static";
 import { PostCard } from "@/components/post-card";
 import { PlaybookCard } from "@/components/playbook-card";
 import { CtaBanner } from "@/components/cta-banner";
+import { InlineTextCta } from "@/components/inline-text-cta";
+import { storeCategoryPath } from "@/lib/affiliate";
 import { JsonLd, breadcrumbJsonLd, faqJsonLd } from "@/components/json-ld";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { NewsletterSignup } from "@/components/newsletter-signup";
@@ -275,6 +277,14 @@ export default async function LeadTypePage({ params }: Props) {
                 {linkGlossary(data.sections.howToWork)}
               </p>
 
+              {/* The only affiliate link in the body of a commercial page.
+                  Placed after the cost comparison and the how-to-work intro —
+                  the reader has seen the price advantage and how the work is
+                  done, which is where intent peaks. The banners above and
+                  below this are an internal compare link and the sitewide
+                  footer CTA respectively. */}
+              <InlineTextCta campaign="lead-type" leadType={title} />
+
               {/* Script */}
               <div className="mb-8 rounded-xl border-2 border-blue-200 bg-blue-50 p-6 dark:border-blue-900 dark:bg-blue-950/50">
                 <h3 className="mb-3 text-lg font-semibold text-zinc-900 dark:text-white">
@@ -503,8 +513,14 @@ export default async function LeadTypePage({ params }: Props) {
         </div>
       </section>
 
-      {/* Bottom CTA */}
-      <CtaBanner />
+      {/* Bottom CTA — deep-linked to this vertical's category at the partner
+          rather than the full catalogue. Falls back to /all-lead-types/ for a
+          lead type the partner has no category for (Medicare). */}
+      <CtaBanner
+        campaign="lead-type"
+        affiliateContent={slug}
+        affiliatePath={storeCategoryPath(title)}
+      />
     </>
   );
 }

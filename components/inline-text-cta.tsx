@@ -1,24 +1,17 @@
 import Link from "next/link";
-import { affiliateUrl } from "@/lib/affiliate";
+import { affiliateUrl, storeCategoryPath, agedLeadLabel } from "@/lib/affiliate";
 import { TrackedAffiliateLink } from "./tracked-affiliate-link";
 
 interface InlineTextCtaProps {
   campaign?: string;
+  /**
+   * A Sanity `leadType.title` ("Mortgage Leads") or a slug. Both work — see
+   * `storeCategoryPath`. Omit it and the CTA points at the full catalogue.
+   */
   leadType?: string;
   content?: string;
   affiliate?: boolean;
 }
-
-const LEAD_TYPE_PATHS: Record<string, string> = {
-  mortgage: "/mortgage-leads/",
-  insurance: "/insurance-leads/",
-  "final-expense": "/final-expense-leads/",
-  medicare: "/medicare-leads/",
-  auto: "/auto-insurance-leads/",
-  home: "/home-services-leads/",
-  "home-services": "/home-services-leads/",
-  solar: "/solar-leads/",
-};
 
 export function InlineTextCta({
   campaign = "inline-cta",
@@ -26,9 +19,7 @@ export function InlineTextCta({
   content = "inline-text",
   affiliate = true,
 }: InlineTextCtaProps) {
-  const verticalLabel = leadType
-    ? `aged ${leadType.replace("-", " ")} leads`
-    : "aged leads";
+  const verticalLabel = agedLeadLabel(leadType);
 
   if (!affiliate) {
     return (
@@ -47,11 +38,9 @@ export function InlineTextCta({
     );
   }
 
-  const path = leadType ? LEAD_TYPE_PATHS[leadType] : undefined;
+  const path = storeCategoryPath(leadType);
   const href = affiliateUrl({ path, campaign, content });
-  const linkText = leadType
-    ? `Browse ${verticalLabel} at Aged Lead Store`
-    : "Browse aged leads at Aged Lead Store";
+  const linkText = `Browse ${verticalLabel} at Aged Lead Store`;
 
   return (
     <p className="mb-8 rounded-lg border-l-4 border-blue-500 bg-blue-50 px-4 py-3 text-sm leading-relaxed text-zinc-700 dark:bg-blue-950/30 dark:text-zinc-300">
