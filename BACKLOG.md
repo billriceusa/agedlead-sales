@@ -25,22 +25,36 @@ wiring the lookup up: `/medicare-leads/` **404**, `/home-services-leads/` **404*
 redirects to a **blog post**, `/final-expense-leads/` redirects. The broken lookup had been masking
 three dead destinations; repairing it naively would have routed paying traffic into 404s.
 
-Map rebuilt from the partner's own catalogue, every entry verified 200 with zero redirects. Medicare is
-deliberately unmapped — Aged Lead Store has no Medicare category — and falls back to the catalogue.
+**Corrected same day in `14bfb5e` — the first fix pointed at the wrong pages.** `356a68f` verified every
+destination returned 200 and treated that as proof. It isn't. Aged Lead Store publishes an article and
+a buy page under confusingly parallel slugs, so five paths resolved fine while being editorial content:
+`/insurance-leads/` is "Insurance Leads Generation Tips…", `/mortgage-leads/` is a **tag archive**, and
+`/home-improvement-leads/`, `/online-final-expense-leads/` and `/solar-installation-leads/` are
+articles. **77 of the 122 deep links were landing purchase intent on blog posts** — a quieter failure
+than the 404s the check was written to avoid, because nothing looks broken.
 
-Result across all 329 pages: **14 distinct affiliate destinations, 0 broken**, 122 of 352 emissions now
-land on a matching category. Lead-type pages also gained their first in-body affiliate CTA; their
-mid-page banner passes `buttonHref`, which sets `useAffiliate` false, so the only affiliate link had
-been the sitewide footer one.
+**The authority is the partner's "Buy Aged Leads" nav dropdown**, on any page of agedleadstore.com —
+the pages they have chosen to sell from. Never infer these from URL patterns, and never accept a 200 as
+verification; check the nav and the page title. Map re-derived from that menu and re-verified.
 
-- [ ] **P2 [affiliate] — 230 of 352 emissions still go to `/all-lead-types/`.** Most are correct (the
-  sitewide footer CTA on non-vertical pages), but **52 of 154 posts have no `leadTypes` set** and
-  therefore cannot deep-link. Tagging those 52 is a pure-upside content-ops task: no new writing, and
-  it converts a generic catalogue landing into a matched category page. Effort: S.
-- [ ] **P2 [affiliate] — no Medicare category at the partner.** `/u65-leads/`, `/aca-leads/` and
-  `/obamacare-leads/` exist but are different products. Medicare is a real vertical here
-  (`/lead-types/medicare-leads`, plus Medicare posts), so this is worth one question to Troy: is there
-  a Medicare landing page we should be sending to? Until then it correctly falls back. Effort: XS.
+Result across all 329 pages: **0 broken destinations**, and deep links now land on buy pages. Lead-type
+pages also gained their first in-body affiliate CTA; their mid-page banner passes `buttonHref`, which
+sets `useAffiliate` false, so the only affiliate link had been the sitewide footer one.
+
+- [ ] **P2 [affiliate] — 52 of 154 posts have no `leadTypes` set** and therefore cannot deep-link;
+  they fall back to the catalogue. Tagging them is pure upside: no new writing, and it converts a
+  generic landing into a buy page for the matching vertical. Effort: S.
+- [ ] **P2 [content] — three verticals the partner SELLS that this site has no page for.** Their buy
+  menu carries **ACA Leads**, **Obamacare Leads** and **Homeowners Insurance Leads**; we have no
+  matching `leadType`, so nothing can route there. Each is a lead-type page plus supporting posts
+  against demand that is already monetisable. Already mapped in `lib/affiliate.ts` — they start
+  working the moment a lead type exists. Effort: M each.
+- [ ] **P2 [affiliate] — ask Troy about the gaps and the thin buy pages.** (a) Medicare, solar and
+  generic insurance have no buy page in the menu, yet Medicare and solar are real verticals here — is
+  there a landing page we should be sending to? (b) Several menu destinations are still informational
+  (`/health-insurance-leads/`, `/legal-leads/` and `/indexed-universal-life-insurance-leads/` are all
+  "Everything You Need to Know" pages) — if better-converting pages exist on their side, they are
+  worth more than anything we can do on ours. Effort: XS.
 
 ---
 
