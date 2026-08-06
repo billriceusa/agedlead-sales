@@ -300,12 +300,18 @@ export const LEAD_TYPES: Record<string, LeadTypeData> = {
     metaDescription:
       "Buy aged insurance leads for pennies on the dollar. Auto, home, health, and life insurance leads from consumers who requested quotes. Build your pipeline affordably.",
     primaryKeyword: "aged insurance leads",
+    // Deliberately does NOT target "life insurance leads" or "auto insurance
+    // leads". Both are head terms owned by their own hubs
+    // (/lead-types/life-insurance-leads, /lead-types/auto-insurance-leads),
+    // and listing them here had this page competing with them for the same
+    // query. This hub owns the multi-line bucket and the cross-sell angle —
+    // the reason to be here is the household, not one policy.
     secondaryKeywords: [
       "buy insurance leads",
       "cheap insurance leads",
       "insurance lead generation",
-      "life insurance leads",
-      "auto insurance leads",
+      "multi line insurance leads",
+      "insurance leads for agents",
     ],
     costRange: "$0.25 – $2.00",
     whoItsFor: [
@@ -592,18 +598,31 @@ export const LEAD_TYPES: Record<string, LeadTypeData> = {
     icon: "🛡️",
     heroDescription:
       "Consumers who asked about term, whole, or universal coverage and never got it. Life insurance is trigger-driven, and the triggers keep arriving long after the lead ages.",
-    metaTitle: "Aged Life Insurance Leads – Buy Life Leads by the Thousand",
+    // Targeted at the PARENT topic "life insurance leads" (1,900 US/mo, KD 2),
+    // not the "aged" modifier (150/mo). The page previously led with the
+    // modifier and left 12.6x the volume on the table. That an aged-leads page
+    // can win the head term is not a theory: agedleadstore.com ranks #4 for it
+    // with exactly that kind of page.
+    metaTitle: "Life Insurance Leads for Agents: Real Pricing by Tier",
     metaDescription:
-      "Buy aged life insurance leads for $0.50–$2 each instead of $12–$40 real-time. Pricing by freshness tier, the filters that move close rates, and a compliant email-first cadence.",
-    primaryKeyword: "aged life insurance leads",
+      "Independent pricing for life insurance leads: aged records sample at a $1.25 median against $22-$50 real-time. Freshness tiers, filters, and cadence.",
+    primaryKeyword: "life insurance leads",
     secondaryKeywords: [
+      // Ordered by US volume/difficulty from Ahrefs, 2026-08-06. The first
+      // three are KD 1-3 with real volume — the cheapest wins on the page.
+      "life insurance leads for agents",
       "buy life insurance leads",
+      "best life insurance leads",
+      "aged life insurance leads",
+      "life insurance leads cost",
       "cheap life insurance leads",
       "bulk life insurance leads",
       "term life insurance leads",
-      "exclusive life insurance leads",
     ],
-    costRange: "$0.50 – $2.00",
+    // Full purchasable span. The floor is the oldest bracket, not the mid one —
+    // the previous "$0.50" floor was above what the marketplace actually
+    // charges, which advertised a worse deal than the page links to.
+    costRange: "$0.25 – $2.00",
     whoItsFor: [
       "Independent life agents building a pipeline on a fixed budget",
       "Agencies feeding a team of dialers rather than one producer",
@@ -622,7 +641,7 @@ export const LEAD_TYPES: Record<string, LeadTypeData> = {
       whatAre:
         "Aged life insurance leads are consumer records from people who requested life insurance information — typically 15 to 90-plus days ago — and were never reached or never closed. \"Life\" is the widest umbrella in insurance lead buying: the same batch covers term, whole life, universal, indexed universal life, mortgage protection, and final expense intent. Aged is a statement about time, not about quality. A 45-day-old life lead is the same person who, six weeks ago, was actively pricing coverage. They did not stop needing it; they got busy, screened an unknown number, or waited for a reason to act. What you are buying is a discount on timing, not a discount on intent.",
       whyUse:
-        "Real-time life leads run $12 to $40 or more, and the agent who buys them is racing four other agents to the phone. Aged life leads run $0.50 to $2, which changes what you can afford to do: for the price of one exclusive real-time lead you can hold 10 to 40 records and stay in front of all of them for months. That matters more in life insurance than in almost any other vertical, because life insurance is bought on a trigger — a new baby, a new mortgage, a death in the family, a job change. Those triggers keep happening after the lead ages. Speed-to-lead wins the prospect who is ready today; patience wins the far larger group who become ready over the next ninety days. Aged data is the only way to afford being there when the trigger lands.",
+        "Most pages quoting these numbers are quoting their own rate card. Ours comes from sampling several providers a bracket at a time, and the spread is wider than the marketing on either side suggests. Shared real-time life leads sample at a $22 median across five providers, roughly $15 to $30; exclusive real-time runs a $50 median across four, roughly $30 to $75. Aged records in the 31–to–85-day bracket sample at a $1.25 median across four providers, about $0.62 to $1.88, and the oldest brackets go lower still — published marketplace pricing reaches $0.40 per record at 86 to 365 days and $0.25 beyond that. Freshness brackets live on the price index rather than being restated in full here, because those figures refresh on a schedule and copy goes stale. What the spread means in practice: for the price of one exclusive real-time lead you can hold 40 to 200 aged records and stay in front of all of them for months. That matters more in life insurance than in almost any other vertical, because life insurance is bought on a trigger — a new baby, a new mortgage, a death in the family, a job change. Those triggers keep happening after the lead ages. Speed-to-lead wins the prospect who is ready today; patience wins the far larger group who become ready over the next ninety days. Aged data is the only way to afford being there when the trigger lands.",
       howToWork:
         "Work aged life leads email-first, and do not text them. Purchased data does not carry the prior express written consent the TCPA requires for SMS or automated dialing, and several states run their own mini-TCPA statutes on top of the federal rule. That constraint pushes you toward the sequence that converts aged data best anyway: open with a short, useful email that re-introduces you and gives a reason to talk; move anyone who replies to a scheduled needs review rather than a pitch; then apply polite persistence by manual dial to the records that showed a flicker of interest, spread across mornings and early evenings over days rather than stacked into one afternoon. Scrub against the National DNC Registry and your state lists every 31 days at minimum, honor opt-outs immediately, and keep your own record of consent, attempts, and opt-outs.",
       script: {
