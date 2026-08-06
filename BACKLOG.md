@@ -6,6 +6,55 @@
 
 ---
 
+## 2026-08-06 — 97 pages ship metadata Google truncates (hubs fixed, blog queued)
+<!-- added 2026-08-06 /session — measured from live HTML on all 329 sitemap URLs -->
+
+**Audited every page for metadata longer than Google displays: 45 titles over 60 characters and 71
+descriptions over 160 — 97 pages, carrying 22,539 impressions.** Each loses the end of its message in
+the SERP.
+
+This is the same class as the ellipsis truncation fixed earlier today, and **the earlier sweep missed
+it by construction**: that scan looked for a literal trailing `…`, which only finds metadata something
+else already cut. Over-length copy looks perfectly fine in source and gets cut by Google instead. Any
+future metadata audit needs both checks.
+
+**Fixed in `b5a6e24`: all 12 lead-type hubs**, the commercial pages and the highest-impression subset,
+all in one file. Worst were health-insurance (74-char title / 213-char description), home-improvement
+(208) and auto-insurance (204). Every hub is now inside 60/160, verified live.
+
+- [ ] **P2 [seo] — ~88 Sanity-authored pages still over the limit**, mostly `/blog/how-to-work-*`.
+  Worst: window-replacement (87), bank-statement-loan (86), plumbing (83). These are Sanity fields, so
+  it is a patch-and-publish pass like the truncation fix, not a code change. Prioritise by impressions
+  — the list is reproducible by crawling the sitemap and measuring `<title>` / `meta description`.
+  Effort: M.
+
+**Ruled out this pass: retargeting the hubs' keyword fields.** Ahrefs (US, 2026-08-06) shows every hub
+except life insurance aimed at an `aged X leads` modifier at 40–150/mo while the head terms run
+500–1,400/mo at KD 0–6:
+
+| hub targets | vol | KD | head term | vol | KD |
+|---|---|---|---|---|---|
+| aged mortgage leads | 70 | 0 | mortgage leads | 1,300 | 6 |
+| aged insurance leads | 150 | **22** | insurance leads | 1,400 | **4** |
+| aged solar leads | 150 | 0 | solar leads | 1,200 | 6 |
+| aged health insurance leads | 100 | 7 | health insurance leads | 800 | 2 |
+| aged auto insurance leads | 60 | 3 | auto insurance leads | 700 | 1 |
+| aged medicare leads | 90 | 0 | medicare leads | 600 | 3 |
+| aged final expense leads | 100 | 1 | final expense leads | 500 | 3 |
+
+`insurance-leads` is the standout — it targeted a term **9× smaller and 5× harder** than the head term.
+**But `primaryKeyword` and `secondaryKeywords` in `data/lead-types.ts` are inert.** Nothing reads them;
+the only matches elsewhere belong to the content cron's unrelated `ArticleBrief` type. The template
+renders `metaTitle`/`metaDescription` only, and every one of those already contains its head term.
+Rewriting the fields would have looked like progress and changed nothing, so it was not shipped.
+
+- [ ] **P3 [seo] — decide whether the hubs should lead with the head term rather than the modifier.**
+  Every title currently opens with "Aged …". That is on-brand and not disqualifying — agedleadstore.com
+  ranks #4 for "life insurance leads" with a title opening "Buy Aged …" — so this is a judgement call
+  about positioning, not a defect. Test on one hub before changing twelve. Effort: S.
+
+---
+
 ## 2026-08-06 — Internal link equity was pointed away from the demand (fixed), and what's left on life insurance
 <!-- added 2026-08-06 /session — internal links counted by crawling all 329 live pages; impressions from data/migration/url-map.csv -->
 
