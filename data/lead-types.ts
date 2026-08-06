@@ -37,7 +37,7 @@ export const LEAD_TYPES: Record<string, LeadTypeData> = {
       "Drivers who shopped coverage and bought \u2014 from someone else. Unlike most verticals, an aged auto record is not someone who never converted. It is someone whose policy renews on a clock, and the clock is the whole opportunity.",
     metaTitle: "Aged Auto Insurance Leads \u2013 Working the Renewal Clock",
     metaDescription:
-      "Aged auto insurance leads cost cents because the prospect already bought. Here is why the renewal cycle makes that an advantage, the cross-sell economics that carry the vertical, and the compliance floor.",
+      "Aged auto insurance leads cost cents because the prospect already bought. Why the renewal clock makes that an advantage, and the bundle economics.",
     primaryKeyword: "aged auto insurance leads",
     secondaryKeywords: [
       "buy auto insurance leads",
@@ -150,7 +150,7 @@ export const LEAD_TYPES: Record<string, LeadTypeData> = {
       "Aged mortgage leads connect you with homebuyers and refinancers who previously expressed interest in mortgage products — at a fraction of the cost of real-time leads.",
     metaTitle: "Aged Mortgage Leads – Buy Affordable Mortgage Leads",
     metaDescription:
-      "Buy aged mortgage leads for $0.50–$3 each. Connect with homebuyers and refinancers who expressed interest in mortgage products. 80-90% cheaper than real-time leads.",
+      "Buy aged mortgage leads for $0.50\u2013$3 each \u2014 homebuyers and refinancers who asked about a loan and never closed. 80-90% cheaper than real-time.",
     primaryKeyword: "aged mortgage leads",
     secondaryKeywords: [
       "buy mortgage leads",
@@ -296,9 +296,9 @@ export const LEAD_TYPES: Record<string, LeadTypeData> = {
     icon: "🛡️",
     heroDescription:
       "Aged insurance leads give agents access to consumers who previously requested quotes for auto, home, health, or life insurance — at 80-90% less than real-time leads.",
-    metaTitle: "Aged Insurance Leads – Affordable Leads for Insurance Agents",
+    metaTitle: "Insurance Leads for Agents: Aged Multi-Line Pricing",
     metaDescription:
-      "Buy aged insurance leads for pennies on the dollar. Auto, home, health, and life insurance leads from consumers who requested quotes. Build your pipeline affordably.",
+      "Aged insurance leads across auto, home, health and life for pennies on the dollar. The cross-sell math that makes a multi-line household pay.",
     primaryKeyword: "aged insurance leads",
     // Deliberately does NOT target "life insurance leads" or "auto insurance
     // leads". Both are head terms owned by their own hubs
@@ -455,9 +455,9 @@ export const LEAD_TYPES: Record<string, LeadTypeData> = {
     icon: "⚰️",
     heroDescription:
       "Aged final expense leads connect you with seniors who explored burial insurance and end-of-life planning — one of the highest-converting verticals for aged lead campaigns.",
-    metaTitle: "Aged Final Expense Leads – Affordable Burial Insurance Leads",
+    metaTitle: "Aged Final Expense Leads \u2013 Affordable Burial Leads",
     metaDescription:
-      "Buy aged final expense leads at a fraction of real-time cost. Connect with seniors who expressed interest in burial insurance. High-converting vertical for agents.",
+      "Buy aged final expense leads at a fraction of real-time cost. Seniors who asked about burial insurance, and the cadence that converts them.",
     primaryKeyword: "aged final expense leads",
     secondaryKeywords: [
       "buy final expense leads",
@@ -883,7 +883,7 @@ export const LEAD_TYPES: Record<string, LeadTypeData> = {
       "Aged SSDI leads connect disability attorneys and advocates with individuals who previously sought help with Social Security Disability Insurance claims.",
     metaTitle: "Aged SSDI Leads – Social Security Disability Leads",
     metaDescription:
-      "Buy aged SSDI leads from individuals seeking disability claim assistance. Connect with people who need legal representation for Social Security Disability cases.",
+      "Buy aged SSDI leads from people seeking disability claim help. Intake criteria, qualification screens, and the cadence that signs cases.",
     primaryKeyword: "aged SSDI leads",
     secondaryKeywords: [
       "SSDI disability leads",
@@ -1009,7 +1009,7 @@ export const LEAD_TYPES: Record<string, LeadTypeData> = {
     icon: "🚗",
     heroDescription:
       "Aged MVA leads connect personal injury attorneys with individuals who were involved in motor vehicle accidents and sought legal representation.",
-    metaTitle: "Aged MVA Leads – Motor Vehicle Accident Leads for Attorneys",
+    metaTitle: "Aged MVA Leads for Attorneys \u2013 Accident Case Intake",
     metaDescription:
       "Buy aged MVA leads from individuals involved in auto accidents seeking legal representation. Affordable leads for personal injury attorneys and law firms.",
     primaryKeyword: "aged MVA leads",
@@ -1272,7 +1272,7 @@ export const LEAD_TYPES: Record<string, LeadTypeData> = {
       "Aged Medicare leads connect you with seniors exploring Medicare supplement plans, Medicare Advantage, and Part D options — a growing market with high demand.",
     metaTitle: "Aged Medicare Leads – Affordable Medicare Supplement Leads",
     metaDescription:
-      "Buy aged Medicare leads from seniors exploring Medicare supplement, Advantage, and Part D plans. Connect with eligible seniors at a fraction of real-time lead costs.",
+      "Buy aged Medicare leads \u2014 seniors exploring Supplement, Advantage and Part D. A fraction of real-time cost, with the CMS rules that apply.",
     primaryKeyword: "aged Medicare leads",
     secondaryKeywords: [
       "buy Medicare leads",
@@ -1398,9 +1398,9 @@ export const LEAD_TYPES: Record<string, LeadTypeData> = {
     icon: "\u{1F3E5}",
     heroDescription:
       "ACA and marketplace shoppers who asked for a quote and never enrolled. In this vertical the enrollment calendar is a hard gate, not a preference \u2014 which changes what an aged record is worth and how you work it.",
-    metaTitle: "Aged Health Insurance Leads \u2013 Working ACA Leads Between Enrollment Windows",
+    metaTitle: "Aged Health Insurance Leads \u2013 Working ACA Between OEP",
     metaDescription:
-      "Aged health insurance leads are cheap because the enrollment calendar gates them. Here is the trigger-detection cadence that works between OEP windows, what the records cost by freshness, and the compliance rules.",
+      "Aged health insurance leads are cheap because the enrollment calendar gates them. The trigger-detection cadence that works between OEP windows.",
     primaryKeyword: "aged health insurance leads",
     secondaryKeywords: [
       "aged ACA leads",
@@ -1513,7 +1513,7 @@ export const LEAD_TYPES: Record<string, LeadTypeData> = {
       "Homeowners who priced a roof, a remodel, windows, or an HVAC system and never booked it. Most of these projects have a season — an aged record is often early, not dead.",
     metaTitle: "Aged Home Improvement Leads – Buy Contractor Leads in Bulk",
     metaDescription:
-      "Buy aged home improvement leads for roofing, windows, siding, HVAC and remodels at $0.75–$10 instead of $50–$200 real-time. Seasonal buying, a two-step estimate cadence, and the compliance rules by trade.",
+      "Buy aged home improvement leads for roofing, windows, HVAC and remodels \u2014 $0.75\u2013$10 vs $50\u2013$200 real-time. Seasonal buying and a two-step cadence.",
     primaryKeyword: "aged home improvement leads",
     secondaryKeywords: [
       "buy home improvement leads",
