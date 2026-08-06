@@ -2,11 +2,30 @@ import Link from "next/link";
 import { NewsletterSignup } from "./newsletter-signup";
 
 const footerLinks = {
+  // Ordered by measured search demand, because this list IS the site's internal
+  // link equity: the footer renders on all 329 pages, so anything here gets 329
+  // internal links and anything omitted gets whatever contextual links exist.
+  //
+  // That was badly mismatched until 2026-08-06. Life insurance carries 21,132
+  // impressions — more than the four hubs that were listed here COMBINED
+  // (10,009) — and had 31 internal links against their 329, while sitting at
+  // average position 33.6. The site was pushing its whole internal signal at
+  // its smaller verticals and starving its biggest one.
+  //
+  // Impressions per hub at the time of writing (source:
+  // data/migration/url-map.csv, pre-cutover GSC):
+  //   life-insurance 21,132 · iul 3,935 · home-improvement 2,647
+  //   insurance 2,526 · mortgage 1,966 · final-expense 1,582
+  //
+  // Re-check that ranking before reordering; do not add a hub here just
+  // because it is new.
   "Lead Types": [
-    { name: "Mortgage Leads", href: "/lead-types/mortgage-leads" },
-    { name: "Insurance Leads", href: "/lead-types/insurance-leads" },
-    { name: "Final Expense Leads", href: "/lead-types/final-expense-leads" },
+    { name: "Life Insurance Leads", href: "/lead-types/life-insurance-leads" },
     { name: "IUL Leads", href: "/lead-types/iul-leads" },
+    { name: "Home Improvement Leads", href: "/lead-types/home-improvement-leads" },
+    { name: "Insurance Leads", href: "/lead-types/insurance-leads" },
+    { name: "Mortgage Leads", href: "/lead-types/mortgage-leads" },
+    { name: "Final Expense Leads", href: "/lead-types/final-expense-leads" },
     { name: "All Lead Types", href: "/lead-types" },
   ],
   Resources: [
