@@ -6,7 +6,29 @@
 
 ---
 
-## 2026-08-06 — 97 pages ship metadata Google truncates (hubs fixed, blog queued)
+## 2026-08-06 — 97 pages shipped metadata Google truncates — ALL CLEARED
+<!-- closed 2026-08-06 /session — verified live: 0 of 329 pages out of spec -->
+
+**Final state, measured live across all 329 sitemap URLs: titles over 60 chars 45 → 0, descriptions
+over 160 → 0, pages missing a description 0.** Cleared in four passes:
+
+| pass | what | commit |
+|---|---|---|
+| 12 lead-type hubs (code) | `data/lead-types.ts` | `b5a6e24` |
+| 62 Sanity documents | 44 titles + 36 descriptions | `41ff552` |
+| generated descriptions (code) | glossary fallback cap + blog guard | `d20cc87` |
+| last 7 hardcoded | compare/price-index/lead-types/resources/provider | `2bdedc9` |
+
+**Two of the four passes were code, not content, and neither was visible from the content side.** The
+~29 glossary pages were never authored long — the template falls back to the full term definition with
+no cap. The provider profile interpolates the provider name *twice*, so its length depends on the
+name. A content-only sweep would have "fixed" both by editing text that was never the problem, and
+they would have come straight back.
+
+`lib/meta-description.ts` now caps the glossary and blog surfaces, so this cannot silently recur from
+either. It cuts on a sentence boundary before falling back to a word boundary — the thing being
+avoided is a description that stops mid-word, which is the defect fixed in 12 posts earlier the same
+day. 9 tests.
 <!-- added 2026-08-06 /session — measured from live HTML on all 329 sitemap URLs -->
 
 **Audited every page for metadata longer than Google displays: 45 titles over 60 characters and 71
