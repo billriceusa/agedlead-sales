@@ -54,11 +54,15 @@ export function affiliateRegisterUrl(campaign: string, content: string): string 
  * Expense Leads** at `/life-insurance-leads/` (final expense is life
  * insurance), and Home Improvement at a dedicated `-lp` landing page.
  *
- * Medicare and Solar are deliberately ABSENT — the partner sells neither from
- * this menu. Unmapped types fall back to the full catalogue: a broader landing
- * page, but a real one that sells.
+ * Medicare and Solar are absent BY DECISION, not by oversight. Troy is not
+ * selling either at the moment (confirmed by Bill, 2026-08-06), so they route
+ * to the full catalogue on purpose. Do not "fix" this by inventing a path —
+ * revisit it only when Troy starts selling them and a page appears in the menu
+ * above. The generic "Insurance Leads" bucket is unmapped for a different
+ * reason: there is no generic-insurance buy page to point at.
  *
- * Verified 200 with zero redirects on 2026-08-06.
+ * Verified 200 with zero redirects on 2026-08-06, and the destination set was
+ * reviewed and confirmed correct by Bill the same day.
  */
 const STORE_CATEGORY_PATHS: Record<string, string> = {
   "mortgage-leads": "/mortgage-leads-purchase-refinance/",

@@ -43,8 +43,11 @@ describe("storeCategoryPath", () => {
   });
 
   test("verticals the partner does not sell fall back to the catalogue", () => {
-    // No Medicare, solar, or generic-insurance buy page exists. The catalogue
-    // is broader but it sells; the same-named articles do not.
+    // Medicare and solar are a BUSINESS decision — Troy is not selling either
+    // right now (confirmed 2026-08-06), so the catalogue is the intended
+    // destination, not a stopgap. "Insurance Leads" is unmapped because no
+    // generic-insurance buy page exists. In every case the catalogue sells;
+    // the identically-named articles do not.
     for (const t of ["Medicare Leads", "Solar Leads", "Insurance Leads"]) {
       assert.equal(storeCategoryPath(t), undefined, t);
     }

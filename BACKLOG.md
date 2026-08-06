@@ -44,17 +44,21 @@ sets `useAffiliate` false, so the only affiliate link had been the sitewide foot
 - [ ] **P2 [affiliate] — 52 of 154 posts have no `leadTypes` set** and therefore cannot deep-link;
   they fall back to the catalogue. Tagging them is pure upside: no new writing, and it converts a
   generic landing into a buy page for the matching vertical. Effort: S.
-- [ ] **P2 [content] — three verticals the partner SELLS that this site has no page for.** Their buy
-  menu carries **ACA Leads**, **Obamacare Leads** and **Homeowners Insurance Leads**; we have no
-  matching `leadType`, so nothing can route there. Each is a lead-type page plus supporting posts
-  against demand that is already monetisable. Already mapped in `lib/affiliate.ts` — they start
-  working the moment a lead type exists. Effort: M each.
-- [ ] **P2 [affiliate] — ask Troy about the gaps and the thin buy pages.** (a) Medicare, solar and
-  generic insurance have no buy page in the menu, yet Medicare and solar are real verticals here — is
-  there a landing page we should be sending to? (b) Several menu destinations are still informational
-  (`/health-insurance-leads/`, `/legal-leads/` and `/indexed-universal-life-insurance-leads/` are all
-  "Everything You Need to Know" pages) — if better-converting pages exist on their side, they are
-  worth more than anything we can do on ours. Effort: XS.
+**Destination set reviewed and confirmed correct by Bill, 2026-08-06.** Medicare and solar route to
+`/all-lead-types/` **by decision, not by gap** — Troy is not selling either vertical at the moment.
+Do not "fix" this by inventing a path; revisit only if it appears in the partner's buy menu.
+
+- [ ] **P3 [content] — Medicare + solar traffic is currently unmonetisable.** 23 URLs carrying **2,181
+  impressions / 12 clicks (2.5% of the corpus)** point at verticals Troy does not sell. Small enough
+  not to act on, and the pages still earn topical authority — but do not commission *new* Medicare or
+  solar content while that holds, and re-check before any content investment there. Effort: n/a
+  (a hold, not a task).
+- [ ] **P3 [content] — three verticals the partner SELLS that this site has no page for:** **ACA**,
+  **Obamacare**, **Homeowners Insurance**. All three are mapped in `lib/affiliate.ts` and start
+  working the moment a `leadType` exists. Ranked P3 rather than P2 because it is net-new, not a
+  harvest: existing coverage is 1 URL at 0 impressions for ACA/Obamacare and 2 URLs at 263
+  impressions for homeowners. Real demand on the partner's side, but no traffic here to convert yet.
+  Effort: M each.
 
 ---
 
