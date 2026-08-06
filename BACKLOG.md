@@ -6,6 +6,40 @@
 
 ---
 
+## 2026-08-06 — Truncated SEO metadata on 12 posts (fixed), and why publishing didn't ship it
+<!-- added 2026-08-06 /session — measured from live HTML across all 329 sitemap URLs + Sanity p7rbtajg/production -->
+
+**Fixed.** 12 blog posts shipped `seo.metaTitle` hard-cut at exactly 58 characters and
+`seo.metaDescription` at 158, both mid-word with an ellipsis appended, written by the retired content
+generator and stored in Sanity. `app/(site)/blog/[slug]/page.tsx` reads those fields verbatim, so the
+truncation went straight to the SERP.
+
+Worst case was `/blog/aged-lead-store-review-2026` — the Aged Lead Store review, the highest
+commercial-intent page in the affiliate relationship — rendering as *"Aged Lead Store Review (2026):
+Honest Assessment of the L…"* at **position 6.1, 253 impressions, 0.76% CTR**. Same site, same intent,
+**worse** position: `/providers/the-leads-warehouse` sits at 7.9 and earns **3.42% CTR**. A competitor's
+review out-earned our own affiliate partner's review by 4.3× at a lower rank.
+
+All 12 rewritten (titles ≤60 chars, descriptions ≤155, complete sentences), published, and verified
+live — 0 of 329 pages now ship truncated metadata.
+
+- [ ] **P1 [content-ops] — a Sanity publish does not reach the live site.** This is the finding that
+  outlasts the batch above. `sanity/lib/fetch.ts` calls `client.fetch` with no cache options, the blog
+  route exports no `revalidate`, and there is no webhook or on-demand revalidation route anywhere in
+  `app/api`. Pages are baked at build, so publishing changes nothing until someone happens to deploy.
+  Proof: after publishing all 12, **7 updated and 5 kept serving build-time HTML** — it took an empty
+  commit (`9cbebaf`) to finish the job. The failure mode is silent and looks like the edit didn't save.
+  Every editorial change is exposed to this, including anything Bill publishes by hand. Fix: add an
+  on-demand revalidation route plus a Sanity webhook, or set an explicit `revalidate` on the content
+  routes. Effort: S–M.
+- [ ] **P2 [seo] — audit the rest of the generator's output.** The truncation was a systematic defect
+  in generated posts, not a one-off. Titles were cut at 58 and descriptions at 158 — suspiciously close
+  to display limits, so whatever wrote them was "optimizing" length and cutting mid-word instead of
+  writing to fit. Worth checking what else that generator emitted (H1s, excerpts, OG tags, schema
+  fields) for the same pattern before trusting any of it. Effort: S.
+
+---
+
 ## 2026-08-05 — Where the merged domain's traffic is actually stuck
 <!-- added 2026-08-05 /brsg-session — measured from data/migration/url-map.csv (pre-cutover GSC clicks/impr/pos per source URL) + live HTML -->
 
