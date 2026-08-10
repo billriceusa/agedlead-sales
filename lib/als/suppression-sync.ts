@@ -37,14 +37,29 @@ const RESEND_BASE = "https://api.resend.com";
 
 /**
  * Every audience whose opt-out flag must stop ALS lifecycle mail: the three
- * buyer audiences and the consolidated list they were folded into on
- * 2026-08-01. An opt-out anywhere on the one list stops everything.
+ * buyer audiences, the two retired site newsletters, and the consolidated list
+ * they were all folded into on 2026-08-01. An opt-out anywhere on the one list
+ * stops everything.
+ *
+ * This list must stay in step with DEFAULT_SOURCES in
+ * scripts/migrate-newsletter-audience.ts. Anything merged INTO the consolidated
+ * audience has to be readable FROM here, or an unsubscribe recorded on a source
+ * never reaches the lifecycle. The two newsletters were merge sources from the
+ * start and were missing here until 2026-08-10.
+ *
+ * DELIBERATELY ABSENT: "Mortgage Lead-Buyers — Explicit (Tier 1)"
+ * (278a89f9-b915-437a-9242-91085a65a0e9, 112 contacts). That is a Kaleidico
+ * list — its one campaign sent from go.kaleidico.com — not a Work Aged Leads
+ * one. It is not a merge source and must not become one: folding it would mix
+ * a separate entity's consent basis into this program. See docs/email-infra.md.
  */
 export const SUPPRESSION_AUDIENCES: { name: string; id: string }[] = [
   { name: "workagedleads.com", id: "43fe6675-cc8f-44f3-9c1c-70a094b2d47d" },
-  { name: "ALS Buyers — Purchasers", id: "9657093e-99fe-4a34-9846-946be85b64f7" },
-  { name: "ALS Buyers — Inquiries", id: "83613b84-c1fd-4362-9dd1-8914533e30f8" },
-  { name: "ALS Store Self-Serve", id: "74476de7-677f-4686-bfb9-d6fe66a5d855" },
+  { name: "ALS Aged-Lead Buyers — Purchasers", id: "9657093e-99fe-4a34-9846-946be85b64f7" },
+  { name: "ALS Aged-Lead Buyers — Inquiries", id: "83613b84-c1fd-4362-9dd1-8914533e30f8" },
+  { name: "ALS Store Self-Serve — Inquiries", id: "74476de7-677f-4686-bfb9-d6fe66a5d855" },
+  { name: "agedleadsales-newsletter", id: "d579bf1f-0467-45a3-ad6b-52460920a903" },
+  { name: "howtoworkleads-newsletter", id: "8a35228e-149f-4b15-8e24-26a24e3d6e98" },
 ];
 
 export interface SuppressionSyncResult {

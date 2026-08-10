@@ -26,6 +26,10 @@
     {
       "path": "/api/cron/gsc-trend",
       "schedule": "0 12 * * *"
+    },
+    {
+      "path": "/api/cron/weekly-newsletter",
+      "schedule": "0 14 * * 0"
     }
   ]
 }
