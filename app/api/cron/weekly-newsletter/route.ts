@@ -110,12 +110,15 @@ async function sendPreviewEmail(
   resend: Resend,
   fromEmail: string,
   subject: string,
-  html: string
+  html: string,
+  weekLabel: string
 ): Promise<{ success: boolean; error?: string }> {
   const previewHtml = `
     <div style="background: #fefce8; border: 2px solid #f59e0b; border-radius: 8px; padding: 16px; margin: 0 auto 24px; max-width: 600px; font-family: -apple-system, sans-serif;">
-      <p style="margin: 0 0 4px 0; font-weight: 700; color: #92400e;">Newsletter Preview for Review</p>
-      <p style="margin: 0; color: #78350f; font-size: 14px;">This is the newsletter scheduled to send to subscribers on Tuesday. Review and reply with any changes needed.</p>
+      <p style="margin: 0 0 4px 0; font-weight: 700; color: #92400e;">Newsletter draft — NOT scheduled, NOT sent</p>
+      <p style="margin: 0 0 8px; color: #78350f; font-size: 14px;">Nothing goes to the list until someone runs the send command. Reply with changes, or approve to send.</p>
+      <p style="margin: 0; color: #78350f; font-size: 13px;">To send this exact issue:</p>
+      <pre style="margin: 6px 0 0; padding: 8px 10px; background: #fff7ed; border: 1px solid #fed7aa; border-radius: 6px; font-size: 12px; overflow-x: auto;">npm run newsletter:send -- --date ${weekLabel} --confirm</pre>
     </div>
     ${html}`;
 
@@ -133,85 +136,25 @@ async function sendPreviewEmail(
   return { success: true };
 }
 
-async function scheduleBroadcast(
-  audienceId: string,
-  fromEmail: string,
-  subject: string,
-  html: string,
-  scheduledAt: string
-): Promise<{ success: boolean; broadcastId?: string; error?: string }> {
-  const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) {
-    return { success: false, error: "RESEND_API_KEY not set" };
-  }
-
-  const headers = {
-    Authorization: `Bearer ${apiKey}`,
-    "Content-Type": "application/json",
-  };
-
-  // Step 1: Create the broadcast
-  const createRes = await fetch("https://api.resend.com/broadcasts", {
-    method: "POST",
-    headers,
-    body: JSON.stringify({
-      audience_id: audienceId,
-      from: fromEmail,
-      reply_to: REPLY_TO_EMAIL,
-      subject,
-      html,
-      name: `Weekly Newsletter — ${new Date().toISOString().split("T")[0]}`,
-    }),
-  });
-
-  if (!createRes.ok) {
-    const body = await createRes.text();
-    return {
-      success: false,
-      error: `Create broadcast: ${createRes.status}: ${body}`,
-    };
-  }
-
-  const { id: broadcastId } = (await createRes.json()) as { id: string };
-
-  // Step 2: Schedule the broadcast
-  const sendRes = await fetch(
-    `https://api.resend.com/broadcasts/${broadcastId}/send`,
-    {
-      method: "POST",
-      headers,
-      body: JSON.stringify({ scheduled_at: scheduledAt }),
-    }
-  );
-
-  if (!sendRes.ok) {
-    const body = await sendRes.text();
-    return {
-      success: false,
-      error: `Schedule broadcast: ${sendRes.status}: ${body}`,
-    };
-  }
-
-  return { success: true, broadcastId };
-}
-
 export async function GET(request: Request) {
   const authHeader = request.headers.get("authorization");
   if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  // Auto-send DISABLED 2026-06-23 by owner directive — no cron auto-publishing on
-  // BRSG sites. AI-generated weekly newsletter is no longer auto-broadcast to the
-  // subscriber list. Also unscheduled in vercel.json. To re-enable, set
-  // CRON_PUBLISH_DISABLED="false" in the environment AND restore the vercel.json cron.
-  if (process.env.CRON_PUBLISH_DISABLED !== "false") {
-    return NextResponse.json({
-      disabled: true,
-      reason: "weekly-newsletter auto-send disabled by owner directive (2026-06-23)",
-    });
-  }
-
+  // THIS ROUTE CANNOT SEND TO SUBSCRIBERS. It drafts, previews to Bill, and
+  // archives. Nothing more.
+  //
+  // History: auto-send was disabled 2026-06-23 by owner directive behind a
+  // CRON_PUBLISH_DISABLED env flag, because the route emailed Bill a "preview"
+  // and scheduled the live broadcast in the SAME run — the preview was never a
+  // gate, just a courtesy copy of something already going out.
+  //
+  // Restored 2026-08-10 with the gate made structural instead of configurable:
+  // the broadcast code path is gone from this file entirely. There is no env
+  // var that makes this route mail the list, which is a stronger guarantee than
+  // a flag someone can flip by accident. Sending is a separate, deliberate,
+  // human-run step — `npm run newsletter:send -- --date <YYYY-MM-DD> --confirm`.
   const startTime = Date.now();
   const errors: string[] = [];
   const weekDates = getWeekDates();
@@ -284,7 +227,8 @@ export async function GET(request: Request) {
         resend,
         fromEmail,
         content.subject,
-        newsletterHtml
+        newsletterHtml,
+        weekDates.weekLabel
       );
       if (preview.success) {
         console.log(`[Newsletter] Preview sent to ${REVIEW_EMAIL}`);
@@ -303,45 +247,11 @@ export async function GET(request: Request) {
     errors.push("RESEND_API_KEY not set — preview email not sent");
   }
 
-  // ── Step 5: Schedule broadcast for Tuesday ───────────────────
-  const audienceId = process.env.RESEND_AUDIENCE_ID;
-  let broadcastId: string | undefined;
-
-  if (resendApiKey && audienceId) {
-    try {
-      const scheduledAt = `${weekDates.tuesday}T14:00:00.000Z`; // 9 AM ET = 14:00 UTC
-      console.log(
-        `[Newsletter] Scheduling broadcast to audience ${audienceId} for ${scheduledAt}`
-      );
-      const result = await scheduleBroadcast(
-        audienceId,
-        fromEmail,
-        content.subject,
-        newsletterHtml,
-        scheduledAt
-      );
-      if (result.success) {
-        broadcastId = result.broadcastId;
-        console.log(
-          `[Newsletter] Broadcast scheduled: ${broadcastId}`
-        );
-      } else {
-        const msg = `Broadcast scheduling failed: ${result.error}`;
-        console.error(msg);
-        errors.push(msg);
-      }
-    } catch (err) {
-      const msg = `Broadcast error: ${err instanceof Error ? err.message : err}`;
-      console.error(msg);
-      errors.push(msg);
-    }
-  } else {
-    const msg = audienceId
-      ? "RESEND_API_KEY not set — broadcast not scheduled"
-      : "RESEND_AUDIENCE_ID not set — broadcast not scheduled";
-    console.warn(`[Newsletter] ${msg}`);
-    errors.push(msg);
-  }
+  // ── Step 5: (removed) ────────────────────────────────────────
+  // Scheduling a live broadcast used to happen here, in the same run that
+  // emailed the "preview". That is the whole reason this cron was switched off
+  // on 2026-06-23. Sending now lives in scripts/send-newsletter.ts and is run
+  // by a human against an archived, already-reviewed issue.
 
   // ── Step 6: Commit newsletter content to GitHub ──────────────
   const reportData = {
@@ -352,7 +262,12 @@ export async function GET(request: Request) {
     focusVertical: plan?.focusVertical || "AI-selected",
     subject: content.subject,
     previewText: content.previewText,
-    broadcastId: broadcastId || null,
+    // The rendered HTML archived alongside this file is the ONLY thing
+    // scripts/send-newsletter.ts will mail. Regenerating would produce
+    // different AI copy than the issue Bill approved, which would defeat the
+    // review gate — so the approved bytes are what get stored and sent.
+    html: `${weekDates.weekLabel}.html`,
+    sent: false,
     featuredArticle: content.featuredArticle,
     quickTips: content.quickTips.map((t) => t.title),
     industryInsight: content.industryInsight.headline,
@@ -409,7 +324,7 @@ export async function GET(request: Request) {
     detail:
       errors.length > 0
         ? errors.join("; ")
-        : `subject="${content.subject}" broadcastId=${broadcastId ?? "n/a"}`,
+        : `subject="${content.subject}" drafted, not sent`,
     durationMs: duration,
   });
 
@@ -418,9 +333,9 @@ export async function GET(request: Request) {
     duration,
     weekOf: weekDates.weekLabel,
     subject: content.subject,
-    broadcastId,
     previewSentTo: REVIEW_EMAIL,
-    scheduledFor: weekDates.tuesday,
+    sent: false,
+    sendCommand: `npm run newsletter:send -- --date ${weekDates.weekLabel} --confirm`,
     errors,
   });
 }
@@ -434,7 +349,8 @@ function buildReportHtml(
     focusVertical: string;
     subject: string;
     previewText: string;
-    broadcastId: string | null;
+    html: string;
+    sent: boolean;
     featuredArticle: { title: string; slug: string };
     quickTips: string[];
     industryInsight: string;
@@ -467,8 +383,8 @@ function buildReportHtml(
     <tr><td style="padding: 8px 0; font-weight: 600; border-top: 1px solid #e5e7eb;">Preview</td><td style="padding: 8px 0; border-top: 1px solid #e5e7eb;">${report.previewText}</td></tr>
     <tr><td style="padding: 8px 0; font-weight: 600; border-top: 1px solid #e5e7eb;">Theme</td><td style="padding: 8px 0; border-top: 1px solid #e5e7eb;">${report.theme}</td></tr>
     <tr><td style="padding: 8px 0; font-weight: 600; border-top: 1px solid #e5e7eb;">Vertical</td><td style="padding: 8px 0; border-top: 1px solid #e5e7eb;">${report.focusVertical}</td></tr>
-    <tr><td style="padding: 8px 0; font-weight: 600; border-top: 1px solid #e5e7eb;">Send Date</td><td style="padding: 8px 0; border-top: 1px solid #e5e7eb;">${weekDates.tuesday} at 9:00 AM ET</td></tr>
-    <tr><td style="padding: 8px 0; font-weight: 600; border-top: 1px solid #e5e7eb;">Broadcast ID</td><td style="padding: 8px 0; border-top: 1px solid #e5e7eb;">${report.broadcastId || "Not scheduled"}</td></tr>
+    <tr><td style="padding: 8px 0; font-weight: 600; border-top: 1px solid #e5e7eb;">Target send</td><td style="padding: 8px 0; border-top: 1px solid #e5e7eb;">${weekDates.tuesday} at 9:00 AM ET</td></tr>
+    <tr><td style="padding: 8px 0; font-weight: 600; border-top: 1px solid #e5e7eb;">Status</td><td style="padding: 8px 0; border-top: 1px solid #e5e7eb; color: #b45309; font-weight: 600;">Drafted — nothing scheduled, nothing sent</td></tr>
     <tr><td style="padding: 8px 0; font-weight: 600; border-top: 1px solid #e5e7eb;">Featured</td><td style="padding: 8px 0; border-top: 1px solid #e5e7eb;">${report.featuredArticle.title}</td></tr>
   </table>
 
@@ -478,7 +394,9 @@ function buildReportHtml(
   <h3 style="margin: 0 0 8px; font-size: 16px;">Industry Insight</h3>
   <p style="margin: 0 0 20px;">${report.industryInsight}</p>
 
-  <p style="color: #6b7280; font-size: 13px;">A preview copy of the newsletter was sent separately. Reply to this email with any changes needed before Tuesday.</p>
+  <p style="color: #6b7280; font-size: 13px;">A preview copy of the newsletter was sent separately. This issue is <strong>not scheduled</strong> — it goes nowhere until someone runs:</p>
+  <pre style="padding: 10px 12px; background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 6px; font-size: 12px; overflow-x: auto;">npm run newsletter:migrate -- --apply   # fold in the week's new buyers
+npm run newsletter:send -- --date ${report.weekOf} --confirm</pre>
 
   ${errorsHtml}
 

@@ -33,6 +33,7 @@ import {
 import {
   ALS_AUDIENCE_PURCHASERS,
   ALS_AUDIENCE_INQUIRIES,
+  ALS_LIFECYCLE_FROM,
 } from "@/lib/als/config";
 import { AFFILIATE_UTM_SOURCES } from "@/lib/utm";
 
@@ -557,6 +558,20 @@ function esc(s: string): string {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
+/**
+ * The host the lifecycle actually sends from, read off the live config.
+ *
+ * This header used to be the hard-coded string "news.agedleadsales.com". The
+ * sender moved to news.workagedleads.com at the 2026-08 cutover and the label
+ * did not, so the report confidently described a retired domain for a week —
+ * long enough to send someone diagnosing an unrelated revenue question down the
+ * wrong path. Derive it instead: a label that reads config cannot drift from it.
+ */
+function lifecycleSenderHost(): string {
+  const match = ALS_LIFECYCLE_FROM.match(/<[^@>]+@([^>]+)>/);
+  return match ? match[1] : ALS_LIFECYCLE_FROM;
+}
+
 function num(n: number): string {
   return Math.round(n).toLocaleString("en-US");
 }
@@ -705,7 +720,7 @@ export function buildAlsEmailReportEmail(report: AlsEmailReport): string {
   <div style="background:linear-gradient(135deg,#166534,#1B4D3E);color:white;padding:24px 32px;border-radius:12px;margin-bottom:24px;">
     <div style="display:inline-block;background:rgba(255,255,255,0.2);padding:2px 10px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:0.5px;">AGED LEADS INSIGHTS</div>
     <h1 style="margin:8px 0 4px;font-size:24px;">Weekly Email Program Report</h1>
-    <p style="margin:0;opacity:0.9;">Lifecycle sends from news.agedleadsales.com → agedleadstore.com</p>
+    <p style="margin:0;opacity:0.9;">Lifecycle sends from ${esc(lifecycleSenderHost())} → agedleadstore.com</p>
     <p style="margin:8px 0 0;opacity:0.7;font-size:14px;">${esc(report.reportDate)} · ${esc(priorNote)}</p>
   </div>
 
