@@ -75,6 +75,10 @@ const STORE_CATEGORY_PATHS: Record<string, string> = {
   // MVA (motor-vehicle accident) and SSDI are both attorney-intake products.
   "mva-leads": "/legal-leads/",
   "ssdi-leads": "/legal-leads/",
+  // The category itself. Same destination as its two sub-verticals — the
+  // partner sells all legal intake from one page, verified in their nav and
+  // by page title ("Legal Leads: Everything You Need to Know") on 2026-08-12.
+  "legal-leads": "/legal-leads/",
   "home-improvement-leads": "/buy-home-improvement-leads-lp/",
   // Legacy slug: the lead-type route 301s to home-improvement-leads, but older
   // content still carries this label.

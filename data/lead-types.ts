@@ -875,6 +875,145 @@ export const LEAD_TYPES: Record<string, LeadTypeData> = {
       `/providers/best/annuity-iul`,
   },
 
+  // The umbrella guide for the "legal" vertical. Deliberately a hub, not a
+  // ninth sibling: MVA and SSDI keep their own dedicated guides (and their own
+  // head terms), and this page targets the category term — "aged legal leads",
+  // "attorney leads" — then routes down to the specific guide. Keep it that
+  // way; duplicating the MVA/SSDI depth here would just split their rankings.
+  "legal-leads": {
+    slug: "legal-leads",
+    title: "Legal Leads",
+    icon: "🏛️",
+    heroDescription:
+      "Aged legal leads connect law firms and legal intake teams with consumers who asked for help with a legal matter — bankruptcy, family law, workers' compensation, injury, and disability claims — at a fraction of real-time intake cost.",
+    metaTitle: "Aged Legal Leads – Attorney & Legal Intake Leads",
+    metaDescription:
+      "Buy aged legal leads for $1–$5 each. Bankruptcy, family law, workers' comp, personal injury, and SSDI prospects who requested legal help. 90%+ cheaper than real-time.",
+    primaryKeyword: "aged legal leads",
+    secondaryKeywords: [
+      "attorney leads",
+      "buy legal leads",
+      "law firm leads",
+      "legal intake leads",
+      "bankruptcy leads",
+      "family law leads",
+    ],
+    costRange: "$1.00 – $5.00",
+    whoItsFor: [
+      "Law firms building a predictable intake pipeline",
+      "Legal intake and case-management teams",
+      "Bankruptcy and debt-relief attorneys",
+      "Family law and divorce practices",
+      "Workers' compensation and employment attorneys",
+      "Personal injury and disability firms",
+    ],
+    whatYouGet: [
+      "Full name and contact information",
+      "Matter type (bankruptcy, family law, injury, disability, employment)",
+      "Approximate date the issue arose",
+      "Geographic location (state, zip code) for jurisdiction matching",
+      "Case-relevant detail captured on the original form, when available",
+    ],
+    sections: {
+      whatAre:
+        "Aged legal leads are consumer records from people who filled out an online form asking for help with a legal matter — a bankruptcy filing, a divorce or custody question, a workplace injury, an accident claim, or a disability application — typically 30 to 180 days ago. They described a real problem and handed over their contact information, but many were never reached, were priced out by the first firm they spoke to, or simply weren't ready to act yet. Because the record is older it costs a fraction of a real-time legal lead, which lets a firm build an intake pipeline on a budget that would buy only a handful of live calls.",
+      whyUse:
+        "Legal problems rarely resolve on the consumer's first impulse. People sit with a debt problem for months before filing, put off a custody petition until a deadline forces it, and try to handle a workers' comp or insurance claim alone until it's denied. That delay is precisely why aged legal leads work: the list is a population of people whose problem has not gone away. Real-time legal leads run $50–$200+ each and are sold to several firms at once, so you're paying premium prices to race competitors to someone who may still be in the thinking-about-it stage. Aged legal leads cost $1–$5, and a meaningful share of them have since hit the wall that turns a curious consumer into a client.",
+      howToWork:
+        "Legal intake is a different craft from sales. These are people in financial distress, family upheaval, or physical pain, and they are wary of being hustled. Open by referencing the help they asked for and ask an open question about whether the matter got resolved — not a pitch. Screen hard for jurisdiction first, because a lead outside the states you're licensed in is worth nothing no matter how good the facts are. Then qualify on the specifics that decide whether a matter is viable in your practice area, explain your fee structure plainly, and move fast once someone is engaged: a same-day or next-day follow-up is what keeps a promising intake from drifting to the next firm.",
+      script: {
+        opener:
+          '"Hi [Name], this is [Your Name] from [Firm]. You had reached out a while back about [matter type] — I wanted to check in and see whether you got that sorted out, or whether you\'re still dealing with it?"',
+        whyItWorks: [
+          "References the specific help they asked for, so it doesn't read as a cold pitch",
+          "Doesn't pretend a prior relationship or an existing case exists",
+          'Open-ended framing gives them an easy, no-pressure out',
+          "Surfaces the people whose problem got worse rather than better — the ones ready to retain",
+        ],
+      },
+      costComparison: {
+        realTime: "$50–$200 per lead",
+        aged: "$1.00–$5.00 per lead",
+        savings: "Save 90-97% per lead",
+      },
+      bestPractices: [
+        "Filter by state before anything else — you can only serve matters in jurisdictions where you're licensed",
+        "Route each record to the right practice area; a bankruptcy prospect worked by a family law script converts at zero",
+        "Explain your fee structure in the first conversation — contingency, flat fee, or consultation — and remove the cost question early",
+        "Let real deadlines drive urgency: statutes of limitations, filing windows, and claim-appeal periods are legitimate; manufactured pressure is not",
+        "Keep non-attorney intake staff to fact-gathering, never legal advice",
+        "Document the matter details while the call is fresh — thin notes turn a good conversation into an unsignable case",
+        "Pull a fresh phone and DNC scrub before every campaign — aged data degrades between capture and dial",
+        "Track cost per signed matter and matter value, not cost per lead",
+      ],
+    },
+    deepDive: [
+      {
+        heading: "The Legal Verticals Aged Data Actually Covers",
+        body: "\"Legal leads\" is a category, not a product, and the practice areas inside it behave very differently. Knowing which one you're buying is the difference between a working pipeline and a list of strangers.\n\nBankruptcy and debt-distress matters come from consumers being pursued by creditors, facing foreclosure, or drowning in unsecured debt. They are among the most delay-prone prospects in the category — filing is an admission most people resist for months — which is exactly what makes the aged record valuable. Family law covers divorce, custody, and support disputes, where the trigger is usually an external event rather than a decision, so timing is everything and re-contact catches the moment it arrives. Workers' compensation and employment matters come from injured or mistreated workers who often try the employer-and-insurer route first and seek counsel only after a denial or a lowball. Personal injury and motor-vehicle accident leads follow a similar denial-then-retain arc, and disability and SSDI claims are shaped by an initial denial rate high enough that rejection is the norm rather than the exception.\n\nBecause the intake questions, the fee structures, and the urgency drivers differ so much across these, treat practice area as the first sort on any legal list you buy. We keep dedicated guides for the two largest sub-verticals — motor vehicle accident and SSDI — and this page is the map to the rest.",
+      },
+      {
+        heading: "Jurisdiction Is the First Filter, Not the Last",
+        body: "The single most common way firms waste money on legal leads is buying nationally and discovering afterward that most of the list sits outside the states where they can practice. Legal services are licensed state by state, and a superb fact pattern in a state you aren't admitted in is worth nothing to you — at best a referral, at worst a wasted call and an irritated consumer.\n\nSo filter on geography before you filter on anything else. Buy the states you're licensed in, and if you have a multi-state footprint, weight the buy toward the jurisdictions where your intake and case-handling capacity actually is. Where you do intend to refer matters out, know before you dial what your referral arrangement is and whether it's permitted — fee-sharing between attorneys is governed by professional-conduct rules, and arrangements that are fine in one state can be improper in another.\n\nThe practical version: geography, then practice area, then case-specific qualification. Firms that invert that order end up with high contact rates and no signable matters, which reads like a lead-quality problem when it is really a targeting problem.",
+      },
+      {
+        heading: "Qualifying a Legal Matter: What Actually Decides Viability",
+        body: "Signing everyone who answers is how a legal intake operation goes busy and unprofitable at the same time. Qualification is where the money is, and the criteria are practice-area specific.\n\nIn bankruptcy and debt matters, what decides viability is the debt picture: how much unsecured debt, what kind of creditor pressure, whether there's a home or wages at risk, and whether income and assets point toward one chapter or another. In family law, it's jurisdiction and residency, whether a petition has already been filed, whether children and support are in play, and the other party's posture. In workers' compensation, it's whether the injury was reported and when, whether the claim was filed within the state's window, the current medical treatment status, and whether the claim has already been denied. In injury matters, it's documented injuries, active treatment, reasonably clear liability, and whether there is insurance coverage to recover against. In disability claims, it's work history and credits, the medical evidence, and where in the application-or-appeal cycle they sit.\n\nAcross all of them, two questions cut through: is there a real, documentable matter here, and is there a mechanism by which the client's problem gets resolved and the firm gets paid? An intake that can't answer both is a referral or a decline, not a case.",
+      },
+      {
+        heading: "The Real Math: Cost Per Signed Matter",
+        body: "Legal economics are driven by the value of a signed matter, not by lead volume, so the metric that matters is cost per signed matter measured against what a matter is worth in your practice. Here is the shape of it, as an illustration to re-run with your own numbers.\n\nSuppose a firm buys 1,000 aged legal leads at $3 each — $3,000. At a 10% contact rate you reach roughly 100 people. Filter those for jurisdiction, practice-area fit, and genuine viability and suppose you sign 2%, or about 20 matters, at roughly $150 of lead cost per signed matter. Against a flat-fee bankruptcy or family law engagement, that acquisition cost is modest; against a contingency matter that resolves favorably, it is negligible. Compare the alternative: reaching those same 1,000 consumers through real-time legal leads at $50–$200 each would cost $50,000 or more, and you'd be sharing each one with competing firms.\n\nThe levers are contact rate and selection discipline. A patient, respectful, multi-touch cadence lifts how many people you reach; rigorous qualification ensures the matters you sign are ones you can actually resolve. Because fee revenue only materializes on matters that conclude, a cheap lead that becomes a well-screened, well-documented case is worth far more than a stack of marginal intakes.",
+      },
+      {
+        heading: "Five Mistakes That Destroy Aged Legal Lead ROI",
+        body: "First, buying outside your licensed jurisdictions. It is the most expensive and most common error in the category, and no amount of intake skill recovers from it.\n\nSecond, running one script across every practice area. A bankruptcy prospect and a custody prospect share nothing but the word \"legal\" — the questions, the urgency, and the fee conversation are entirely different, and a generic script converts neither.\n\nThird, manufacturing urgency. Legal deadlines are real and raising them is in the client's interest, but high-pressure tactics on distressed, wary consumers backfire and can cross professional-conduct lines.\n\nFourth, letting non-attorney staff drift from fact-gathering into legal advice. It's an unauthorized-practice risk, and it produces intake notes that mislead the attorney who picks the matter up.\n\nFifth, treating legal like any other vertical on compliance. It carries state bar advertising and solicitation rules on top of everything that applies to consumer outreach generally, and this is the vertical where getting that wrong is most costly.",
+      },
+      {
+        heading: "Working Aged Legal Leads Compliantly in 2026",
+        body: "Aged legal leads are consumer data records, not pre-consented contacts, so treat outreach as cold contact and build compliance in before you dial. The federal baseline is the same as every vertical: scrub each campaign against the National Do Not Call Registry and a TCPA litigator list, honor opt-outs immediately, respect calling windows, and use manual dialing rather than prohibited automated dialing technology. The FCC's one-to-one consent rule was vacated in early 2025 before it took effect, and several states run active mini-TCPA statutes, so a campaign that is clean federally can still create state-level exposure.\n\nLegal then adds a second layer that most verticals don't have. State bar rules govern how firms may solicit prospective clients, what disclosures advertising must carry, and in some states how soon after an incident contact is permitted — and several jurisdictions have specific anti-solicitation statutes with serious penalties for improper solicitation. Never guarantee an outcome or a settlement amount, keep non-attorney intake to gathering facts rather than giving advice, and confirm that purchasing and contacting consumer legal leads is permitted and properly disclosed in every state you work.\n\nThe honest takeaway: legal can be one of the most profitable aged-lead categories because a single signed matter can outweigh an entire batch's cost, but the compliance surface is among the largest of any vertical. Build DNC and TCPA scrubbing, bar-compliant scripting, and anti-solicitation review into the workflow, confirm the current rules in each state you target, and run your specific program past qualified legal-ethics counsel before launch. For the broader cross-vertical framework — the operating modes and the consent ladder — see the free playbook.",
+      },
+    ],
+    faqs: [
+      {
+        question: "What is an aged legal lead?",
+        answer:
+          "An aged legal lead is a consumer record from someone who filled out a form asking for help with a legal matter — bankruptcy, family law, workers' compensation, injury, or a disability claim — typically 30 to 180+ days ago. They described a real problem and left contact details, but were never reached, weren't ready to act, or were priced out by the first firm they spoke with.",
+      },
+      {
+        question: "Which practice areas do aged legal leads cover?",
+        answer:
+          "Most commonly bankruptcy and debt-distress matters, family law (divorce, custody, support), workers' compensation and employment, personal injury and motor vehicle accidents, and Social Security disability. The intake questions and fee structures differ sharply between them, so practice area should be your first sort after jurisdiction. We keep dedicated guides for the two largest sub-verticals — MVA and SSDI.",
+      },
+      {
+        question: "How much do aged legal leads cost compared to real-time?",
+        answer:
+          "Aged legal leads typically run $1–$5 per record, against $50–$200+ for real-time legal leads that are sold to several firms at once — a 90-97% saving. Because a single signed matter can be worth many multiples of an entire batch, the metric that matters is cost per signed matter, not cost per lead.",
+      },
+      {
+        question: "Can I buy legal leads for states where I'm not licensed?",
+        answer:
+          "You shouldn't work them. Legal services are licensed state by state, so a strong matter in a state you aren't admitted in isn't a case you can take. Filter on geography before anything else. If you intend to refer matters out instead, confirm the arrangement first — attorney fee-sharing is governed by professional-conduct rules that vary by state.",
+      },
+      {
+        question: "Why do people wait so long to contact a lawyer?",
+        answer:
+          "Because most legal problems get worse before people accept they need counsel. Consumers resist filing bankruptcy for months, try to handle a workers' comp or insurance claim alone until it's denied, and delay family law petitions until a deadline forces the issue. That delay is what makes an aged record valuable — the underlying problem hasn't gone away, and re-contact catches the people who've finally hit the wall.",
+      },
+      {
+        question: "Are there special compliance rules for legal lead outreach?",
+        answer:
+          "Yes, and they're stricter than most verticals. On top of the usual federal baseline — DNC and TCPA litigator scrubbing, honoring opt-outs, calling windows, manual dialing — legal carries state bar advertising and client-solicitation rules, and some states have specific anti-solicitation statutes with serious penalties. Never guarantee an outcome, keep non-attorney intake to fact-gathering, and get legal-ethics counsel's sign-off on your program before launch.",
+      },
+      {
+        question: "Where can I buy aged legal leads?",
+        answer:
+          "Several established providers sell aged legal and attorney-intake leads, usually filterable by practice area, matter date, and geography. Because this vertical is heavily regulated, weigh consent documentation and clear sourcing alongside data quality, lead age, and refund policies. Our independent provider directory rates lead sellers across these dimensions so you can match a provider to your firm.",
+      },
+    ],
+    getCompareUrl: () =>
+      `/providers/best/legal`,
+  },
+
   "ssdi-leads": {
     slug: "ssdi-leads",
     title: "SSDI Leads",

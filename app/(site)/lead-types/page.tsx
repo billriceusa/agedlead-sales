@@ -9,7 +9,7 @@ import { CtaBanner } from "@/components/cta-banner";
 export const metadata: Metadata = {
   title: "Aged Lead Types: Mortgage, Insurance, Solar & More",
   description:
-    "Browse aged leads by industry: mortgage, insurance, final expense, IUL, SSDI, MVA, solar, and Medicare. Compare providers, pricing, and fit.",
+    "Browse aged leads by industry: mortgage, insurance, final expense, IUL, legal, SSDI, MVA, solar, and Medicare. Compare providers, pricing, and fit.",
   alternates: { canonical: siteUrl("/lead-types") },
 };
 
@@ -41,6 +41,13 @@ const LEAD_TYPE_DEFAULTS = [
     slug: "iul-leads",
     shortDescription:
       "Indexed Universal Life leads from consumers exploring cash-value life insurance.",
+  },
+  {
+    icon: "🏛️",
+    title: "Legal Leads",
+    slug: "legal-leads",
+    shortDescription:
+      "Bankruptcy, family law, workers' comp, injury, and disability prospects who asked for legal help.",
   },
   {
     icon: "⚖️",

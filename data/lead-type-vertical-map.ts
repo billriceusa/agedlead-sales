@@ -24,6 +24,10 @@ export const LEAD_TYPE_TO_VERTICAL: Record<string, string> = {
   // they map to the "legal" vertical (same as mva-leads), NOT life-insurance.
   "ssdi-leads": "legal",
   "mva-leads": "legal",
+  // The umbrella guide for the legal vertical — bankruptcy, family law and
+  // workers' comp had no lead type at all before this, so their posts fell back
+  // to the generic catalogue CTA.
+  "legal-leads": "legal",
   "solar-leads": "solar",
   "medicare-leads": "medicare",
   // Added for the workagedleads.com consolidation so leadType covers the same
@@ -64,7 +68,11 @@ export const VERTICAL_TO_LEAD_TYPE: Record<string, string> = {
   "home-improvement": "home-improvement-leads",
   "final-expense": "final-expense-leads",
   "annuity-iul": "iul-leads",
-  legal: "mva-leads",
+  // The umbrella guide, not mva-leads: /price-index/legal and
+  // /providers/best/legal cover the whole vertical (bankruptcy, family law,
+  // workers' comp, injury, disability), so the category hub is the honest
+  // destination. MVA keeps its own guide and its own head term.
+  legal: "legal-leads",
   solar: "solar-leads",
   medicare: "medicare-leads",
 };
