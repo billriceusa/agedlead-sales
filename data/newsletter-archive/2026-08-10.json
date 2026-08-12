@@ -7,7 +7,7 @@
   "subject": "Clean List, Smart System: Your August Playbook",
   "previewText": "A working system, a compliance update, and 3 tips you won't find on the blog.",
   "html": "2026-08-10.html",
-  "sent": false,
+  "sent": true,
   "featuredArticle": {
     "title": "How to Work Aged Leads: The Complete System for Maximum ROI",
     "slug": "how-to-work-aged-leads-the-complete-system-for-maximum-roi",
@@ -19,5 +19,7 @@
     "The Two-Minute Rule for Aged Voicemails"
   ],
   "industryInsight": "The one-to-one consent rule is gone — but put January 2027 on your calendar",
-  "errors": []
+  "errors": [],
+  "sentAt": "2026-08-12T15:44:12.400Z",
+  "broadcastId": "a830c99a-ef9f-4eb9-bd1d-a3723a0b831a"
 }
