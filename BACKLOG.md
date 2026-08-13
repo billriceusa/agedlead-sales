@@ -6,6 +6,51 @@
 
 ---
 
+## 2026-08-13 — Two monitors were lying, and the backlog believed them
+<!-- added 2026-08-13 /session — every claim below probed live: production HTTP, production Sanity, Vercel, Resend -->
+
+Nothing on this site is broken. Three of the open P1s were already resolved, and the one "failing
+cron" never failed. The through-line is that **every stale item here came from trusting a signal
+instead of measuring the thing** — a GSC row that described a state that no longer existed, and a
+health check asserting a cadence the code had deliberately stopped honouring.
+
+**`marketwatch` is not failing, and never was.** It ran 2026-08-01 and recorded
+`ok: scanned=15 changed=13 pricingSignals=7`. What alerts daily is `checkMarketwatch` in
+`app/api/cron/health-check`, which asserted that `priceBenchmark` docs stay under 35 days old and
+named the cron when they didn't. That coupling was severed *on purpose* — see the 2026-06 entry below,
+already marked done: marketwatch stopped synthesizing benchmarks because single-provider LLM guesses
+were polluting the public index, and `upsertPriceBenchmarks` has had **no callers** since. Nothing
+writes `priceBenchmark` on a schedule any more; the Lead Price Index is a quarterly hand-published
+study, last landed 2026-06-01. The monitor was measuring a human process on a cron's clock and blaming
+the cron. Fixed in *"fix(health-check): stop blaming the marketwatch cron"*: rethresholded to 100 days,
+renamed to "Lead Price Index study", and the message now says plainly that a stale index is a
+publishing task. Verified against production Sanity — **all four checks pass, where one failed daily.**
+
+- [ ] **P2 [reliability] — `upsertPriceBenchmarks` and `getExistingBenchmarks` are unreachable.** Left
+  in place rather than deleted, because removing the only benchmark-writing path is Bill's call. They
+  are a footgun: wiring either back up republishes the LLM estimates that were removed on purpose.
+  Either delete them or leave a refusal-guard at the top. Effort: S.
+- [ ] **P2 [content] — the Lead Price Index is due.** Last study 2026-06-01, covering 2026-03 → 2026-06
+  (106 docs). Q3 has not been published. The new check goes red ~2026-09-09 if it still hasn't. This is
+  the *real* version of the alert that has been firing all along, and it is a writing task, not a code
+  one. Note `components/price-trend-chart` needs 3+ real months per vertical, so the longer this slips
+  the more verticals silently drop their trend chart. Effort: M (human research).
+
+**What was already fixed, and got closed today rather than re-worked:** the truncated-metadata sweep
+(re-counted: **0** of 154 published posts carry an ellipsis — closed by `a2b0b1c`, the backlog just
+never recorded it), the apex/www host split (all four hosts converge on the apex with a correct
+self-referential canonical), and the legal-leads gap (shipped `e375a43`). Each is marked in place below.
+
+**Measured state, for the next session.** Affiliate sessions into agedleadstore.com are **4.3/day**
+(30 over Aug 6–12, GA4 property 357329146) against an 11.4/day pre-consolidation baseline, and the
+`howtoworkleads/website` source has now dropped out entirely — consolidation is completing, volume has
+not recovered. GSC on the retired property: 5,098 impressions/wk, 32 clicks, **CTR 0.63% at average
+position 20.9**. That is a *position* constraint, not a CTR one, and no title work touches it.
+`sc-domain:workagedleads.com` still returns `no-data` — the 21-day aggregation warmup ends ~2026-08-24,
+and until then this site is being measured through a property it no longer publishes to.
+
+---
+
 ## 2026-08-06 — 97 pages shipped metadata Google truncates — ALL CLEARED
 <!-- closed 2026-08-06 /session — verified live: 0 of 329 pages out of spec -->
 
@@ -151,11 +196,19 @@ multi-line and cross-sell angle; the head term belongs to the vertical hub.
 - [ ] **P3 [seo] — the same keyword audit has not been run on the other 11 hubs.** Life insurance was
   targeting a 150/mo modifier over a 1,900/mo parent topic; nothing suggests it is the only one. Pull
   parent topic vs current `primaryKeyword` for each. Effort: M.
-- [ ] **P3 [content] — no `leadType` covers general legal work.** Five untagged posts (bankruptcy,
-  debt, debt settlement, family law, workers' comp) are attorney-intake content, and Troy sells
-  **Legal Leads** — but our only legal lead types are MVA and SSDI, so tagging them would be
-  semantically wrong. A general "Legal Leads" hub would give those five posts a correct deep link.
-  Do it as a real page, not a stub: a bare `leadType` renders thin chrome. Effort: M.
+- [x] **P3 [content] — no `leadType` covers general legal work. DONE 2026-08-13 (`e375a43`).** Built
+  `/lead-types/legal-leads` as a real umbrella guide, not a stub: 6 deep-dive sections, 7 FAQs, FAQPage
+  + BreadcrumbList JSON-LD, 136,927 bytes live. Deliberately a hub rather than a ninth sibling — MVA
+  and SSDI keep their own guides and their own head terms, so duplicating that depth here would just
+  split their rankings. `legal` now maps to the umbrella instead of `mva-leads`, and
+  `lib/lead-type-cluster.test.ts` pins the round-trip so the cluster link cannot silently vanish the
+  way `home-services-leads` did.
+  **Tagged 3 of the 5 posts, not 5.** Bankruptcy, family law and workers' comp are attorney intake and
+  now deep-link to `/legal-leads/`. The two debt posts target debt-relief and credit-counselling firms,
+  not attorneys, and the partner has no debt buy page anywhere in their catalogue — tagging them would
+  point a debt buyer at an attorney-intake page, which is the silent conversion leak `lib/affiliate.ts`
+  warns about. Left untagged they fall back to `/all-lead-types/`, where the buyer can filter. Verified
+  live: `how-to-work-debt-leads` serves 4× `/all-lead-types/` as intended.
 
 ---
 
@@ -194,9 +247,15 @@ Result across all 329 pages: **0 broken destinations**, and deep links now land 
 pages also gained their first in-body affiliate CTA; their mid-page banner passes `buttonHref`, which
 sets `useAffiliate` false, so the only affiliate link had been the sitewide footer one.
 
-- [ ] **P2 [affiliate] — 52 of 154 posts have no `leadTypes` set** and therefore cannot deep-link;
+- [ ] **P2 [affiliate] — 47 of 154 posts have no `leadTypes` set** and therefore cannot deep-link;
   they fall back to the catalogue. Tagging them is pure upside: no new writing, and it converts a
   generic landing into a buy page for the matching vertical. Effort: S.
+  <!-- was 52; re-counted in Sanity 2026-08-13: 154 published posts, 107 tagged, 47 untagged. The 5
+  closed by the legal-leads cluster above account for 3 of the difference (the 2 debt posts stay
+  untagged by decision). Note the remaining 47 are not all tag-able — a large share are
+  vertical-agnostic (scripts, compliance, CRM, deliverability) with no correct buy page to point at.
+  Count the genuinely-mappable subset before sizing this. -->
+
 **Destination set reviewed and confirmed correct by Bill, 2026-08-06.** Medicare and solar route to
 `/all-lead-types/` **by decision, not by gap** — Troy is not selling either vertical at the moment.
 Do not "fix" this by inventing a path; revisit only if it appears in the partner's buy menu.
@@ -241,6 +300,26 @@ live — 0 of 329 pages now ship truncated metadata.
   Every editorial change is exposed to this, including anything Bill publishes by hand. Fix: add an
   on-demand revalidation route plus a Sanity webhook, or set an explicit `revalidate` on the content
   routes. Effort: S–M.
+  **FIXED 2026-08-13 (`8075ec7`, *"fix(sanity): make a Studio publish actually reach the live
+  site"*).** Both halves, at the one chokepoint:
+  `sanityFetch` now tags every query and bounds staleness at 5 minutes, and `POST /api/revalidate`
+  collapses that to zero when the Studio fires a webhook. The build proves it — `/blog`, `/lead-types`,
+  `/glossary`, `/guides`, `/playbook`, `/price-index`, `/providers`, `/authors` and `/sitemap.xml` now
+  report a revalidate window across **31 routes**; every one was static-forever before.
+  Two details worth keeping: the route uses `revalidateTag(tag, { expire: 0 })`, not the usual `"max"`
+  profile — `max` only marks the tag stale and serves stale-while-revalidate, so the first visitor
+  after a publish would still get the old page. And `lib/sanity-cache.test.ts` asserts no route under
+  `app/` reads Sanity outside `sanityFetch`, because a page that bypasses it renders perfectly and
+  simply freezes at build-time content — the same silent failure, reintroduced.
+  **Still to do (Bill, one-time):** add the Sanity webhook — Manage → API → Webhooks → URL
+  `https://workagedleads.com/api/revalidate`, triggers create/update/delete on dataset `production`,
+  header `Authorization: Bearer <CRON_SECRET>`. Without it the 5-minute window still holds, so this is
+  the fast path, not the fix.
+
+- [x] **P1 [seo] — apex/www host split. VERIFIED RESOLVED 2026-08-13**, no code change needed. Probed
+  live: `www.workagedleads.com` → 308 → apex on both `/` and the IUL blog route, and both retired
+  domains still 301 to the apex. The GSC rows showing two hosts were the old property's recrawl lag,
+  not a live split. See the duplicate entry under 2026-07-31 below.
 - [ ] **P2 [seo] — audit the rest of the generator's output.** The truncation was a systematic defect
   in generated posts, not a one-off. Titles were cut at 58 and descriptions at 158 — suspiciously close
   to display limits, so whatever wrote them was "optimizing" length and cutting mid-word instead of
@@ -382,6 +461,20 @@ Query → pages, same GSC pull. Every one of these is one query split across mul
 - [ ] **P1 — Resolve query cannibalization on the four terms above.** Pick one canonical target per
   query, point internal anchors at it, and differentiate the competing pages' titles/H1s so they stop
   bidding against each other. Highest-impression cluster on the site.
+  **HELD until GSC reports — do not action before ~2026-08-24.** Reviewed 2026-08-13 and deliberately
+  left open. Two reasons, and the second is the binding one:
+  1. This table is a **pre-consolidation** read. It was pulled 2026-07-31 against `agedleadsales.com`,
+     three days before the two domains merged on 08-03. The per-URL impression split it describes is
+     not necessarily the split that exists now.
+  2. The 2026-08-05 entry above already ruled on this class of work: consolidating two domains'
+     authority is precisely the intervention that moves these pages, and stacking speculative on-page
+     changes now contaminates the only clean read we get of whether the merge worked. That entry says
+     *"Do not act on either yet, and that is the finding."* It applies here for the same reason.
+  Note this is a **different** finding from the slug-token cannibalization retracted on 2026-08-05 —
+  that one was destinations the merge resolved, mistaken for competition it created. This one is
+  query-level with real per-URL positions, so it is likely real. Re-pull the same query→page table from
+  `sc-domain:workagedleads.com` once it reports, confirm the collisions survived the merge, and only
+  then pick canonical targets.
 
 ### Defect — apex/www host split on a ranking page
 
@@ -390,8 +483,19 @@ Query → pages, same GSC pull. Every one of these is one query split across mul
 `https://www.agedleadsales.com/blog/iul-leads-financial-advisors-playbook` (19 impr, pos 15.1).
 Same split pattern found on proinvestorhub.com the same day.
 
-- [ ] **P1 — Confirm the www → apex redirect and canonical on this route**, then request reindex.
-  Two hosts splitting one page's signals on a term already in striking distance.
+- [x] **P1 — Confirm the www → apex redirect and canonical on this route. DONE 2026-08-13 — already
+  correct, no change needed.** Probed all four hosts on this exact path; every one converges on the
+  apex and the served canonical is self-referential:
+  | host | | |
+  |---|---|---|
+  | `www.workagedleads.com` | 308 | → apex |
+  | `www.agedleadsales.com` | 301 | → apex |
+  | `agedleadsales.com` | 301 | → apex |
+  | `workagedleads.com` | 200 | `<link rel="canonical" href="https://workagedleads.com/blog/iul-leads-financial-advisors-playbook">` |
+  The two hosts in the GSC row were the retired property's recrawl lag, not a live split — the signals
+  are not being divided today. Nothing to fix; reindexing will resolve on its own as the old property
+  ages out. Worth remembering that a GSC row can describe a state that no longer exists, which is the
+  same trap as the truncated-metadata batch above.
 
 ### RESOLVED 2026-07-31 — D6 answered, and the opportunity is smaller than I filed it
 
@@ -511,6 +615,11 @@ Shipped this session:
 Still open from this session:
 
 - [ ] **5 Sanity post metaTitles/metaDescriptions still truncated — needs Bill's go-ahead.** A seeding pass clipped values to satisfy the 60/160 caps, shipping **10 metaTitles and 12 metaDescriptions ending in a literal `…`** that Google renders verbatim — including the site's best-ranked page (`aged-lead-store-review-2026`, position 6.25, 251 impr/wk, showing "…Honest Assessment of the L…" and converting at only **1.59% CTR** against a ~5–7% expectation for that position). Rewrites are drafted and dry-run clean for all 17 affected posts; the write was blocked by the permission gate because it mutates live production Sanity. Rollback snapshot of all 76 posts saved. The schema now rejects ellipsis-terminated values so this cannot recur. **Action:** approve the Sanity write. *Effort: S.*
+  **CLOSED 2026-08-13 — already done, no approval needed.** Re-measured every published post in
+  production Sanity: **154 posts, 0 ellipsis-terminated `metaTitle`, `metaDescription` or `title`.**
+  The write went in with `a2b0b1c`; this entry was never updated, so it sat here asking Bill to approve
+  something that had already shipped. It was very nearly picked up as a session's focus. When an item
+  says "blocked on approval", re-measure before acting on it — the block may have lifted months ago.
 
 ## Done
 
