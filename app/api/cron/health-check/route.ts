@@ -37,21 +37,48 @@ function daysBetween(fromIso: string, to: Date): number {
   return Math.round((to.getTime() - from) / 86400000);
 }
 
-async function checkMarketwatch(client: ReturnType<typeof getSanityClient>, now: Date): Promise<HealthCheck> {
+// Benchmark freshness is a *content* signal about the Lead Price Index study,
+// not a health signal about the marketwatch cron. Those came apart when the
+// cron deliberately stopped synthesizing benchmarks (single-provider LLM
+// guesses were polluting the public index — see app/api/cron/marketwatch, and
+// note upsertPriceBenchmarks now has no callers). Nothing writes priceBenchmark
+// on a schedule any more; the study is published by hand.
+//
+// The old check asserted a 35-day bound and blamed the cron by name when it
+// tripped. Since the last study landed 2026-06-01 that fired every single day,
+// and the accusation was false every time — the cron ran fine on 2026-08-01
+// (scanned=15 changed=13 pricingSignals=7). It got recorded in BACKLOG.md as
+// "marketwatch cron failing since ~2026-08-01", which it never was. A monitor
+// that names the wrong culprit is worse than no monitor.
+//
+// So: measure the study on the study's own quarterly cadence, and let the
+// marketwatch heartbeat below be the only thing that speaks for the cron.
+const PRICE_INDEX_MAX_AGE_DAYS = 100;
+
+async function checkPriceIndexStudy(
+  client: ReturnType<typeof getSanityClient>,
+  now: Date
+): Promise<HealthCheck> {
   const latest = await client.fetch<{ _updatedAt: string } | null>(
     `*[_type == "priceBenchmark"] | order(_updatedAt desc)[0]{ _updatedAt }`
   );
   if (!latest) {
-    return { name: "Marketwatch benchmarks", ok: false, detail: "No priceBenchmark docs exist" };
+    return {
+      name: "Lead Price Index study",
+      ok: false,
+      detail: "No priceBenchmark docs exist",
+    };
   }
   const age = daysBetween(latest._updatedAt, now);
-  const ok = age <= 35;
+  const ok = age <= PRICE_INDEX_MAX_AGE_DAYS;
   return {
-    name: "Marketwatch benchmarks",
+    name: "Lead Price Index study",
     ok,
     detail: ok
-      ? `Latest benchmark updated ${age}d ago`
-      : `Benchmarks are ${age}d old — monthly marketwatch cron may have failed`,
+      ? `Latest benchmark published ${age}d ago`
+      : `Benchmarks are ${age}d old — the quarterly Lead Price Index study is due. ` +
+        `This is a human publishing task, not a cron failure; marketwatch only ` +
+        `surfaces pricing signals to verify.`,
     lastSeen: latest._updatedAt,
     ageDays: age,
   };
@@ -154,7 +181,7 @@ export async function GET(request: Request) {
   const client = getSanityClient();
 
   const [contentChecks, heartbeatChecks] = await Promise.all([
-    Promise.all([checkMarketwatch(client, now)]),
+    Promise.all([checkPriceIndexStudy(client, now)]),
     checkCronHeartbeats(client, now),
   ]);
 
