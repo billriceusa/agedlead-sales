@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-08-16T12:01:42.534Z",
+  "lastUpdated": "2026-08-17T12:01:39.213Z",
   "snapshots": [
     {
       "date": "2026-07-10",
@@ -5678,6 +5678,218 @@
           "impressions": 1,
           "ctr": 0,
           "position": 55
+        }
+      ]
+    },
+    {
+      "date": "2026-08-17",
+      "property": "agedleadsales",
+      "status": "ok",
+      "rolling7d": {
+        "clicks": 26,
+        "impressions": 6107,
+        "ctr": 0.0043,
+        "position": 20.25
+      },
+      "topPages": [
+        {
+          "page": "https://agedleadsales.com/lead-types/iul-leads",
+          "clicks": 2,
+          "impressions": 78,
+          "ctr": 0.0256,
+          "position": 14.1
+        },
+        {
+          "page": "https://agedleadsales.com/lead-types/medicare-leads",
+          "clicks": 2,
+          "impressions": 96,
+          "ctr": 0.0208,
+          "position": 32.36
+        },
+        {
+          "page": "https://agedleadsales.com/lead-types/ssdi-leads",
+          "clicks": 2,
+          "impressions": 66,
+          "ctr": 0.0303,
+          "position": 22.03
+        },
+        {
+          "page": "https://agedleadsales.com/providers",
+          "clicks": 2,
+          "impressions": 419,
+          "ctr": 0.0048,
+          "position": 23.58
+        },
+        {
+          "page": "https://agedleadsales.com/providers/best/health-insurance",
+          "clicks": 2,
+          "impressions": 328,
+          "ctr": 0.0061,
+          "position": 28.01
+        },
+        {
+          "page": "https://agedleadsales.com/",
+          "clicks": 1,
+          "impressions": 113,
+          "ctr": 0.0088,
+          "position": 33.48
+        },
+        {
+          "page": "https://agedleadsales.com/blog/aged-lead-scripts-that-work",
+          "clicks": 1,
+          "impressions": 8,
+          "ctr": 0.125,
+          "position": 11.63
+        },
+        {
+          "page": "https://agedleadsales.com/blog/dnc-scrubbing-on-a-budget",
+          "clicks": 1,
+          "impressions": 35,
+          "ctr": 0.0286,
+          "position": 25.09
+        },
+        {
+          "page": "https://agedleadsales.com/blog/economics-of-aged-leads",
+          "clicks": 1,
+          "impressions": 2,
+          "ctr": 0.5,
+          "position": 3
+        },
+        {
+          "page": "https://agedleadsales.com/blog/how-to-work-aged-leads-the-complete-system-for-maximum-roi",
+          "clicks": 1,
+          "impressions": 11,
+          "ctr": 0.0909,
+          "position": 6.55
+        }
+      ],
+      "topQueries": [
+        {
+          "query": "aged iul leads",
+          "clicks": 1,
+          "impressions": 3,
+          "ctr": 0.3333,
+          "position": 3.33
+        },
+        {
+          "query": "aged medicare leads",
+          "clicks": 1,
+          "impressions": 13,
+          "ctr": 0.0769,
+          "position": 13.23
+        },
+        {
+          "query": "debt settlement leads pricing",
+          "clicks": 1,
+          "impressions": 3,
+          "ctr": 0.3333,
+          "position": 8
+        },
+        {
+          "query": "lead tycoons",
+          "clicks": 1,
+          "impressions": 1,
+          "ctr": 1,
+          "position": 42
+        },
+        {
+          "query": "$1 life insurance leads",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 1
+        },
+        {
+          "query": "$29 final expense leads",
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 29.5
+        },
+        {
+          "query": "afff lawsuit mass tort case leads",
+          "clicks": 0,
+          "impressions": 11,
+          "ctr": 0,
+          "position": 19.64
+        },
+        {
+          "query": "afff mass tort case leads",
+          "clicks": 0,
+          "impressions": 7,
+          "ctr": 0,
+          "position": 20
+        },
+        {
+          "query": "affordable aged life leads",
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 29.67
+        },
+        {
+          "query": "affordable health insurance leads",
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 39
+        }
+      ]
+    },
+    {
+      "date": "2026-08-17",
+      "property": "workagedleads",
+      "status": "ok",
+      "rolling7d": {
+        "clicks": 0,
+        "impressions": 8,
+        "ctr": 0,
+        "position": 52
+      },
+      "topPages": [
+        {
+          "page": "https://workagedleads.com/lead-types/mortgage-leads",
+          "clicks": 0,
+          "impressions": 6,
+          "ctr": 0,
+          "position": 68
+        },
+        {
+          "page": "https://workagedleads.com/providers/best/final-expense",
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 4
+        }
+      ],
+      "topQueries": [
+        {
+          "query": "best mortgage refinance companies for leads",
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 75.5
+        },
+        {
+          "query": "buy mortgage leads",
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 54.5
+        },
+        {
+          "query": "mortgage leads purchase",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 60
+        },
+        {
+          "query": "purchase mortgage lead",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 88
         }
       ]
     }
