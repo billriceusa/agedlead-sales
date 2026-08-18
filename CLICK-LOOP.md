@@ -1,0 +1,287 @@
+# The Click Loop — workagedleads.com growth operating cycle
+
+**Created:** 2026-08-18
+**Supersedes:** the consolidation-recovery workstream in `data/migration/MIGRATION-PLAN.md`
+(cutover complete 2026-08-03; Change of Address is unavailable — see "Why we stopped waiting").
+**Status:** proposed, awaiting Bill's go on Iteration 0.
+
+---
+
+## Goal
+
+**Maximize monthly outbound clicks from workagedleads.com to agedleadstore.com.**
+
+That is the paid event. It is the only number this loop optimizes. Traffic, rankings,
+impressions, and email opens are inputs — they get measured, but they never get to be
+the goal, because none of them pay.
+
+**Scoreboard:** `GET /api/reports/outbound-clicks` (Bearer `CRON_SECRET`), GA4 property
+`528489903`, `eventName=click` filtered to `linkDomain=agedleadstore.com`. Already built,
+already working. No new instrumentation.
+
+**Baseline to beat:** 5.4 affiliate sessions/day (Aug 4–17), down from 14–16.5/day
+pre-cutover. **Recovering to 15/day is the first milestone**, not the ceiling.
+
+---
+
+## Why we stopped waiting on Google
+
+The consolidation is mechanically correct — 20/20 top old URLs single-hop 301 to their
+exact mapped counterparts. But Google has not recrawled them (top pages last crawled
+2026-07-31, 07-06, 07-02 — all before the Aug 3 cutover), and **Change of Address errors
+out**, so the accelerator that exists for precisely this situation is not available to us.
+
+The redirects stay in place and the transfer will complete on Google's schedule. We stop
+spending effort on it. `sc-domain:workagedleads.com` is already onboarding on its own
+(rolling-7d impressions 1 → 2 → 3 → 8 → 45 since Aug 14). That runs in the background.
+
+Everything in this document is designed to produce clicks **without** waiting for that.
+
+---
+
+## What the data says before we plan anything
+
+Three findings reshaped this plan. Each is measured, not assumed.
+
+### 1. The blog engine is not producing clicks
+
+**76 published posts** produced **34 clicks** across the whole domain in 80 days
+(`data/gsc-baseline-2026-06-05.json`, 2026-03-14 → 2026-06-01: 34 clicks / 6,744
+impressions / 0.5% CTR / avg position ~27).
+
+That is the central strategic fact. Adding post #77 is the lowest-expected-value action
+available. **The loop stops feeding the blog as a volume play.**
+
+### 2. The demand that exists is merchant-intent, not informational
+
+Ranked by clicks in the baseline capture, the top queries are:
+
+| query | clicks | intent |
+|---|---:|---|
+| aged lead store reviews | 3 | **merchant review** |
+| aged mortgage leads | 1 | commercial |
+| aged leads | 1 | commercial |
+| agedleadstore | 1 | **merchant navigational** |
+| aged leads store | 1 | **merchant navigational** |
+| iul leads | 1 | commercial |
+
+Top clicked pages tell the same story: `/providers/aged-lead-store` (3),
+`/providers` (2), `/blog/aged-lead-store-review-2026` (2).
+
+**People are searching for the merchant we get paid to refer, by name.** That is the
+highest-intent, lowest-cost, least-authority-dependent traffic on the internet for this
+business — and it converts to an outbound click at a far higher rate than any explainer post.
+
+A second cluster is explicitly **price-shopping**: "leads price", "insurance leads cost",
+"exclusive life insurance leads price". Which brings us to:
+
+### 3. The flagship data asset died in June
+
+`priceBenchmark` documents in Sanity (project `p7rbtajg`, dataset `production`):
+
+| month | docs |
+|---|---:|
+| 2026-03 | 42 |
+| 2026-04 | 45 |
+| 2026-05 | 9 |
+| 2026-06 | 10 |
+| 2026-07 | **0** |
+| 2026-08 | **0** |
+
+The cause is **not** a broken cron. It is a missing human step, and that distinction
+matters because it changes the fix entirely:
+
+- **July** was a genuine crash: `marketwatch` called retired model
+  `claude-sonnet-4-20250514` → 404 on all 14 providers. Already fixed in
+  `lib/cron/model-config.ts` (now `claude-sonnet-5`). One month lost.
+- **August is working as designed.** `app/api/cron/marketwatch/route.ts:156` documents a
+  deliberate decision: *"The Lead Price Index is a quarterly human-verified study, not an
+  LLM-estimated feed."* Auto-synthesis was removed because single-provider LLM guesses
+  polluted the public index. The cron's job is now to **monitor and surface** pricing
+  signals for a human to verify and publish. `newBenchmarksGenerated = 0` is correct.
+
+That decision was right. But the human half never ran. The cron has been faithfully
+collecting pricing signals from **7 providers every month** — April, May, June, August —
+and nobody has turned them into published benchmarks since June. The Q3 study is overdue,
+and there is no scheduler or prompt that would ever surface that fact.
+
+This is the classic failure mode: a documented cadence with no owner and no trigger. The
+raw material is already sitting in `data/marketwatch-reports/2026-08.json`, verified-ready.
+
+The Aged Lead Price Index is the one asset on this site no competitor publishes. It serves
+proven price-shopping demand and is the natural thing for an LLM to cite. It is two months
+stale for want of a scheduled human hour.
+
+---
+
+## The Loop
+
+**Cadence:** weekly build iteration. Monthly engine review.
+
+Weekly is the fastest cadence at which the scoreboard can actually move. Anything faster
+measures noise.
+
+### Each iteration, six steps
+
+**1. READ the scoreboard.**
+Pull `/api/reports/outbound-clicks` for 7d and 28d. Record clicks to agedleadstore.com,
+plus clicks leaking to the other 14 hosts in `data/partner-hosts.ts`. Append one row to
+`data/loop/ledger.json`.
+
+**2. PICK by expected value, not by interest.**
+Score every candidate in the backlog:
+
+```
+expected monthly ALS clicks  =  D  ×  P  ×  C
+
+D = monthly search demand for the target cluster   (Ahrefs / GSC)
+P = achievable organic CTR at a realistic position for a new page on this domain
+C = measured page → agedleadstore.com click rate for that page archetype
+```
+
+`C` is where the leverage lives, and it varies by an order of magnitude across
+archetypes. Merchant-review and comparison pages convert to outbound clicks at multiples
+of what an explainer post does. **Take the top-scoring item. One asset per iteration,
+finished, not three started.**
+
+**3. BUILD** from the rotating engine deck below.
+
+**4. WIRE** — non-negotiable checklist, every asset:
+- Affiliate CTA in three positions: above fold, mid-body, close. `lib/affiliate.ts`
+  only — never a hand-written URL.
+- Internal links **in** from at least two existing pages that already earn impressions.
+- Schema: `Product`/`Review` for merchant pages, `Dataset` for price-index pages,
+  `FAQPage` where a real FAQ exists.
+- `/methodology` link wherever a number appears. Credibility is the moat on a review site.
+
+**5. DISTRIBUTE — this is the part that doesn't wait on Google.**
+- Email the 2,373 mailable contacts. This is the only lever with same-day effect.
+- Calculator embed offered to relevant hosts (`/(embed)/calculators/[name]/embed`
+  already exists and is unused).
+- Data releases pitched to trade newsletters and communities.
+
+**6. MEASURE and kill.**
+Two full iterations after publish, check the asset's own outbound clicks. Under 3
+clicks/month → stop investing in that archetype. Log the kill in the ledger. No asset
+class survives on narrative.
+
+### Monthly engine review
+
+Reallocate the next four iterations across engines by measured clicks-per-asset. The
+engine with the best clicks-per-hour gets more slots. This is what keeps the loop from
+degenerating back into "publish more posts."
+
+---
+
+## The four engines
+
+Rotation exists so we don't over-index on whichever one is easiest to write.
+
+### Engine A — Merchant intelligence *(start here)*
+
+Review, comparison, and "best" pages targeting merchant and competitor brand queries.
+Highest intent, lowest word count, least dependent on domain authority, highest `C`.
+
+Seeded from actual demand and the 15 hosts already in `data/partner-hosts.ts`:
+- Refresh and expand `/providers/aged-lead-store` and `/blog/aged-lead-store-review-2026`
+  — these already earn the most clicks on the site with zero recent investment.
+- `aged-lead-store-vs-{competitor}` for each of the 14 partner hosts. One exists
+  (`vs-badass-insurance-leads`); 13 do not.
+- `/providers/best/{vertical}` for verticals not yet covered.
+- Capture competitor-brand queries surfacing in GSC ("goat leads life insurance", etc.).
+
+**Editorial guardrail:** ALS is the default recommendation only where the benchmark data
+supports it. Independence is the reason these pages rank and convert — the moment they
+read as paid placement, both die. Non-monetized providers keep honest coverage.
+
+### Engine B — Live data *(the moat)*
+
+- **Revive the Price Index.** Publish the overdue Q3 study from signals already collected,
+  then hold the quarterly cadence with a real scheduler behind it.
+- **Monthly Aged Lead Price Index release** — a dated, citable report per month. This is
+  the pitchable artifact and the LLM-citation magnet.
+- Expand `/blog/aged-lead-industry-statistics` into a maintained statistics hub with
+  per-stat anchors.
+- Publish coverage honestly: 10 benchmark rows is thin. Grow rows before growing claims.
+
+### Engine C — Tools
+
+Five calculators exist (`know-your-cpl`, `lead-cost-calculator`,
+`outreach-cadence-planner`, `pipeline-calculator`, `roi-calculator`) and the embed route
+is built and unused.
+
+- Every calculator result screen ends in a specific ALS recommendation — a lead type and
+  volume derived from the user's own inputs, not a generic banner.
+- Launch the embed program: embeddable widget with attribution link. Referral traffic
+  plus earned links, neither of which needs a Google ranking.
+- New tools only where a price-shopping query exists that a calculator answers better
+  than prose.
+
+### Engine D — Experiences
+
+Interactive, gated where it earns an email, always ending in a personalized ALS
+recommendation.
+
+- Lead-buying readiness assessment → scored result → matched lead type → ALS link.
+- "Grade my aged-lead operation" diagnostic drawing on the flagship playbook's
+  Fresh-Consent Ladder framing.
+- Feeds the list, which feeds step 5, which is the fast lane.
+
+---
+
+## Iteration 0 — unblocks (before the loop can run honestly)
+
+Four items. Each is a prerequisite, not an improvement.
+
+| # | Item | Why it blocks the loop |
+|---|---|---|
+| 1 | **Run the overdue Q3 Lead Price Index study.** The cron already collected pricing signals from 7 providers/month (Apr, May, Jun, Aug) — the input exists. Verify and publish benchmarks for 2026-07 and 2026-08, then give the quarterly study an actual scheduler and an owner so it can't silently lapse again. Do **not** re-enable auto-synthesis; the human-verified design is correct. | Engine B has no product while the index is stale, and a documented cadence with no trigger will lapse again by Q4. |
+| 2 | **Add `pagePath` to the outbound-clicks report.** One dimension added to an existing GA4 query — read-side only, no tracking changes. | Step 2's `C` term and step 6's kill rule are both unmeasurable without knowing which page sent each click. |
+| 3 | **Restart the newsletter** per the approved email plan (preview-only cron, explicit send path, audience reconciliation of the 173-contact backlog). | Step 5 is the only same-day traffic lever. It is currently dark. |
+| 4 | **Create `data/loop/ledger.json`** — one row per iteration: date, asset shipped, engine, expected clicks, measured clicks at +2 and +8 weeks, verdict. | Without a ledger the monthly review has no input and the loop drifts. |
+
+Items 1, 2, and 4 are code and I can do them. Item 3 is code plus one Bill approval on
+the first send.
+
+---
+
+## Autonomy
+
+Per the `hold` convention in `claude-config/routines/autonomy-register.md`, and consistent
+with workagedleads.com being autonomy-2 (draft):
+
+| Step | Mode |
+|---|---|
+| Scoreboard read, ledger append | **auto** |
+| Candidate scoring and ranking | **auto** |
+| Asset build | **hold** — drafted, Bill approves |
+| Publish to production | **hold** — never auto-publish |
+| Newsletter send | **hold** — explicit confirm, per the email plan |
+| Kill decisions | **hold** — logged with evidence, Bill confirms |
+
+No auto-publishing. That was removed deliberately in `f759ff6` and this loop does not
+reintroduce it.
+
+---
+
+## Flag conditions
+
+Interrupt Bill mid-cycle only for these:
+
+- Outbound clicks to agedleadstore.com fall below 3/day on a 7-day average.
+- A quarter closes with no Price Index study published (the lapse that just cost two months).
+- Outbound clicks to non-monetized partner hosts exceed clicks to agedleadstore.com.
+- A published asset's affiliate CTA resolves to a non-buy page, or UTMs are stripped.
+
+---
+
+## Out of scope
+
+- **Tracking and attribution.** In place and working. Untouched. The one exception is
+  Iteration 0 item 2, which changes a report query, not instrumentation.
+- **Further Change-of-Address attempts.** Confirmed dead. Redirects stay; we stop pushing.
+- **Lifecycle email journeys**, send caps, and the `news.workagedleads.com` sender —
+  working, untouched.
+- **Blog volume as a growth strategy.** 76 posts, 34 clicks. The archive gets maintained
+  and internally linked; it does not get fed.
+- **Backlink Batch 3** (1,312 links) — still needs Bill's scope call, unrelated to this loop.
