@@ -44,5 +44,49 @@
       "notes": "Site's most-cited asset (CiteThisButton, Dataset JSON-LD, CC-licensed) had no route to a purchase — every outbound link was internal. Added InlineTextCta after the pricing tables and a compact CtaBanner after the economics section. Two placements not three: a reference page that reads as a sales pitch stops being cited. UTM content values after-pricing / after-economics distinguish the placements. Verified in built HTML; destination returns 200 with a browser UA (bot-blocked for curl default). Page's lastUpdated is still 2026-04-08 — that is the Q3 study's job, not this one."
     }
   ],
+  "scoreboardReadings": [
+    {
+      "readAt": "2026-08-18T20:19:31Z",
+      "window": "last30d",
+      "totalOutboundClicks": 130,
+      "affiliateClicks": 69,
+      "affiliateDailyAvg": 2.3,
+      "leakageClicks": 61,
+      "note": "First reading from the per-page attribution built in iteration 0. Affiliate daily average of 2.30 is BELOW the 3/day flag threshold in CLICK-LOOP.md — but this counts GA4 outbound click events, while the 5.4/day baseline counts sessions arriving at agedleadstore.com. Different denominators; do not read one as a decline against the other. Trend this series against itself going forward.",
+      "topPages": [
+        { "path": "/providers/aged-lead-store", "clicks": 39, "views": 90, "clickRate": 0.4333 },
+        { "path": "/start-here", "clicks": 4, "views": 98, "clickRate": 0.0408 },
+        { "path": "/blog/aged-lead-store-review-2026", "clicks": 2, "views": 20, "clickRate": 0.1 },
+        { "path": "/lead-types/mortgage-leads", "clicks": 2, "views": 150, "clickRate": 0.0133 },
+        { "path": "/lead-types", "clicks": 2, "views": 159, "clickRate": 0.0126 },
+        { "path": "/lead-types/insurance-leads", "clicks": 1, "views": 161, "clickRate": 0.0062 },
+        { "path": "/lead-types/final-expense-leads", "clicks": 1, "views": 159, "clickRate": 0.0063 }
+      ],
+      "leakageTop": [
+        { "domain": "datatoleads.com", "clicks": 10 },
+        { "domain": "leadsdata.com", "clicks": 10 },
+        { "domain": "smartfinancial.com", "clicks": 7 },
+        { "domain": "ileads.com", "clicks": 6 }
+      ]
+    }
+  ],
+  "nextPick": {
+    "iteration": 2,
+    "engine": "merchant-intelligence",
+    "candidate": "Above-the-fold, deep-linked affiliate door on /lead-types/[slug] and /lead-types",
+    "rationale": "The scoreboard separates D from C cleanly. /providers/aged-lead-store converts at 43.33% on 90 views and supplies 39 of 69 affiliate clicks. The four biggest lead-type pages carry 629 views but convert at ~0.95%. They are not short of CTAs — they already render three (two CtaBanner, one InlineTextCta) versus the provider page's one. What the provider page has and they lack is a prominent outbound door above the fold ('Visit Website' hero, providers/[slug]/page.tsx:297). Intent is also higher there, so the gap will not fully close.",
+    "expected": {
+      "D": 629,
+      "P": null,
+      "C": 0.05,
+      "clicksPerMonth": 31,
+      "basis": "629 views/mo on the top four lead-type pages. Modelling C at 5% — still 8x below the provider page's measured 43% — yields ~31 clicks vs 6 today, i.e. +25/mo against a 69-click base (+36%). Deliberately conservative; treat 5% as the hypothesis to test, not a forecast."
+    },
+    "alsoConsidered": [
+      "Leakage recapture: 61 of 130 outbound clicks (47%) go to the 14 non-monetized hosts, mostly via the same 'Visit Website' hero on competitor profile pages. NOT a candidate for removal — those links are what make the reviews independent, and pruning link-out endpoints is explicitly off-limits. The defensible version is offering the ALS alternative alongside, where the benchmark data supports it.",
+      "Price-index pages convert well (life-insurance 8.33%, medicare 12.50%, auto-insurance 10.00%) on almost no traffic (8-24 views). High C, no D. Fixing that is a traffic problem, which is what the Q3 study and its nine trend charts address.",
+      "Comparison pages draw ~2 views each despite being indexed. Not worth investment until they earn impressions."
+    ]
+  },
   "kills": []
 }
