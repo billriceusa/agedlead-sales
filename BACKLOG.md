@@ -6,6 +6,96 @@
 
 ---
 
+## 2026-08-18 — The consolidation is not failing. It is waiting on a crawl.
+
+<!-- added 2026-08-18 — every claim probed live: production HTTP, GSC URL Inspection, GSC trend data, ALS GA4, Ahrefs -->
+
+Affiliate sessions into agedleadstore.com are down roughly half and have not recovered 15 days
+post-cutover. That decline is real and worth taking seriously. But it is **not** evidence that the
+consolidation was wrong, and the redirect layer is not at fault. The transfer is stalled one step
+earlier than anyone was looking: **Google has not recrawled the old URLs, so it has never seen the
+301s.**
+
+**The mechanics are correct.** All 20 of the highest-traffic old URLs were probed live: every one
+returns a single-hop 301/308 to its exact page-level counterpart from `data/migration/url-map.csv`.
+Zero homepage dumping, zero chains, zero 404s. `robots.txt` is open, the new sitemap serves 330 URLs,
+and the affiliate CTAs on the money pages still deep-link to the correct agedleadstore.com product
+pages with `utm_source=workagedleads&utm_medium=affiliate` intact. Nothing in this repo is broken.
+
+**The stall, with proof.** GSC URL Inspection on the three highest-traffic migrated pages:
+
+| old URL | last crawled | Google-selected canonical |
+|---|---|---|
+| `/buying-leads/buy-iul-leads` | 2026-07-31 | still itself |
+| `/buying-leads/buy-life-insurance-leads` | 2026-07-06 | still itself |
+| `/blog/aged-lead-pricing-guide` | 2026-07-02 | still itself |
+
+Every one was last crawled **before** the 2026-08-03 cutover. Google is still serving stale index
+entries for the old domains and still treating each old URL as its own canonical. That single fact
+explains the whole picture: the old properties keep the impressions, the new domain gets almost none,
+and users who do click an old SERP entry are redirected correctly but contribute nothing to the new
+domain's authority.
+
+**The transfer has begun.** `sc-domain:workagedleads.com` went from `no-data` to reporting on
+2026-08-14, and rolling-7d impressions are compounding: **1 → 2 → 3 → 8 → 45** (Aug 14→18). Position
+is deep (63.8) exactly as expected for URLs Google is seeing for the first time. Meanwhile
+`agedleadsales.com` still holds ~5,800 impressions/7d and its **position has improved** through the
+migration (22.95 on 08-02 → 20.06 on 08-18). The equity is intact and sitting in the old property,
+not lost. Ahrefs still shows 0 organic keywords for the new domain vs 18 for the old — the expected
+lag for a 15-day-old domain, and the lagging indicator agreeing with the leading one.
+
+**Measured decline (ALS GA4 property 357329146, the commission scoreboard):** combined
+`agedleadsales` + `howtoworkleads` + `workagedleads` sessions ran ~14–16.5/day over 07-04→08-02 and
+**5.4/day** over 08-04→08-17. That independently reproduces the 5.6/day figure in the email plan.
+
+### P1 — accelerate the crawl (Search Console operations, Bill only)
+
+These are the levers that actually move the stalled step. None of them are code.
+
+- [ ] **File Change of Address: `sc-domain:agedleadsales.com` → `sc-domain:workagedleads.com`.**
+      The single highest-leverage action available. Both properties are verified under the same
+      identity — the trend cron reads both successfully every day — so the tool's precondition is
+      met. This tells Google directly that the whole site moved and prioritizes recrawl.
+- [ ] **File Change of Address for `howtoworkleads.com` → workagedleads.com.** Verified in a
+      *different* Google account than agedleadsales (it appears as `siteOwner` under the account that
+      also holds myperfectmortgage/kaleidicoventures). Change of Address requires both properties in
+      the same account, so **workagedleads.com must first be verified in whichever account owns
+      howtoworkleads.com.** Confirm which account that is before filing.
+- [ ] **Request Indexing on the top ~15 new-domain money pages** via URL Inspection. Manual and
+      tedious, but it forces a crawl instead of waiting for one. Start with the pages carrying the
+      most old-domain clicks: `/lead-types/iul-leads`, `/lead-types/life-insurance-leads`,
+      `/lead-types/mortgage-leads`, `/lead-types/insurance-leads`, `/lead-types/final-expense-leads`,
+      `/providers/aged-lead-store`, `/blog/aged-lead-pricing-guide`.
+- [ ] **Confirm the new sitemap is submitted** in the workagedleads GSC property
+      (`https://workagedleads.com/sitemap.xml`, 330 URLs, serving fresh `lastmod`).
+
+### P2 — the old sitemaps cannot help Google find the redirects
+
+`https://agedleadsales.com/sitemap.xml` and `https://howtoworkleads.com/sitemap.xml` both redirect to
+the *new* sitemap. Google's site-move guidance is to keep the **old** sitemap serving the **old**
+URLs, so the crawler has a fresh list of exactly the URLs whose 301s it needs to discover. Right now
+it has none, which is part of why the recrawl is so slow.
+
+The redirect is a Vercel domain-level rule, not `vercel.json` or `middleware.ts`, so a path exception
+cannot be made from this repo. `data/migration/alsales-sitemap.txt` (246 URLs) and
+`htwl-sitemap.txt` (175 URLs) already hold the exact lists if this is worth doing. Judgment call:
+Change of Address probably makes it unnecessary — do that first and re-measure before adding
+redirect complexity.
+
+### P2 — no instrument on the new domain outside the cron
+
+`sc-domain:workagedleads.com` returns 403 to the GSC MCP identity and GA4 `528489903` returns 403 to
+the GA4 service account, so the only visibility into the new domain is `data/gsc-trend.json`. That is
+why the consolidation looked invisible. The trend cron is the one honest instrument — it is working,
+and it is what caught the 08-14 turn-on. Same root cause as the long-standing "GA4 service-account
+access to the six BRSG properties" loop.
+
+`howtoworkleads.com` is not in `GSC_PROPERTIES` at all, so the third domain's drain is untracked.
+Worth adding once it is known which account can read it — do not add it blind, an unreadable property
+would make the cron report a per-property failure daily.
+
+---
+
 ## 2026-08-13 — Two monitors were lying, and the backlog believed them
 <!-- added 2026-08-13 /session — every claim below probed live: production HTTP, production Sanity, Vercel, Resend -->
 
