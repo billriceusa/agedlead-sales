@@ -14,6 +14,35 @@
       "rationale": "Recover to the pre-cutover rate. First milestone, not the ceiling."
     }
   },
-  "iterations": [],
+  "iterations": [
+    {
+      "iteration": 0,
+      "date": "2026-08-18",
+      "engine": "unblock",
+      "asset": "scoreboard + ledger + price-index research brief",
+      "targetCluster": null,
+      "expected": null,
+      "measured": { "at2w": null, "at8w": null },
+      "verdict": "n/a",
+      "notes": "Per-page affiliate attribution added to /api/reports/outbound-clicks (affiliate.byPage30d, clickRate, leakage). Ledger created. scripts/price-index-gap.ts generates the Q3 study brief. Newsletter restart was found already complete and running — the 2026-08-10 issue sent 2026-08-12 as broadcast a830c99a."
+    },
+    {
+      "iteration": 1,
+      "date": "2026-08-18",
+      "engine": "merchant-intelligence",
+      "asset": "/blog/aged-lead-industry-statistics",
+      "targetCluster": "price-shopping + statistics citation",
+      "expected": {
+        "D": null,
+        "P": null,
+        "C": null,
+        "clicksPerMonth": null,
+        "basis": "No prior estimate possible — the page had zero affiliate links, so its C was structurally 0 and any traffic it earned converted at 0. This is a wiring fix, not a demand bet. First real expected-value scores start at iteration 2, once affiliate.byPage30d has data."
+      },
+      "measured": { "at2w": null, "at8w": null },
+      "verdict": "pending",
+      "notes": "Site's most-cited asset (CiteThisButton, Dataset JSON-LD, CC-licensed) had no route to a purchase — every outbound link was internal. Added InlineTextCta after the pricing tables and a compact CtaBanner after the economics section. Two placements not three: a reference page that reads as a sales pitch stops being cited. UTM content values after-pricing / after-economics distinguish the placements. Verified in built HTML; destination returns 200 with a browser UA (bot-blocked for curl default). Page's lastUpdated is still 2026-04-08 — that is the Q3 study's job, not this one."
+    }
+  ],
   "kills": []
 }

@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { StatCard } from "@/components/stat-card";
 import { CopyableStatCard } from "@/components/copyable-stat-card";
 import { ShareableQuote } from "@/components/shareable-quote";
 import { CiteThisButton } from "@/components/cite-this-button";
+import { CtaBanner } from "@/components/cta-banner";
+import { InlineTextCta } from "@/components/inline-text-cta";
 import { ExpandableDeepDive } from "@/components/expandable-deep-dive";
 import { JsonLd, breadcrumbJsonLd } from "@/components/json-ld";
 import {
@@ -215,6 +216,15 @@ export default function StatisticsPage() {
               pageUrl={pageUrl}
             />
           </section>
+
+          {/* Affiliate path. This page is the site's most-cited asset and had
+              no route to a purchase at all — every outbound link was internal.
+              Two contextual placements rather than the usual three: a reader
+              arrives here to check a number, and a page that reads as a sales
+              pitch stops being the thing people cite. This one lands right
+              after the pricing tables, where "what does it cost" has just been
+              answered. */}
+          <InlineTextCta campaign="statistics" content="after-pricing" />
 
           {/* Price Decay Curve */}
           {heroCurve && (
@@ -544,6 +554,14 @@ export default function StatisticsPage() {
               pageUrl={pageUrl}
             />
           </section>
+
+          {/* Second and final placement — after the economics section, where a
+              reader has seen price, decay, providers, and unit economics. The
+              compact variant is deliberate: the full-bleed gradient banner used
+              elsewhere would overwhelm a reference page. */}
+          <div className="mb-16">
+            <CtaBanner variant="compact" campaign="statistics" affiliateContent="after-economics" />
+          </div>
 
           {/* Methodology */}
           <section className="mb-16">
