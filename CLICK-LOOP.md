@@ -100,17 +100,25 @@ matters because it changes the fix entirely:
   polluted the public index. The cron's job is now to **monitor and surface** pricing
   signals for a human to verify and publish. `newBenchmarksGenerated = 0` is correct.
 
-That decision was right. But the human half never ran. The cron has been faithfully
-collecting pricing signals from **7 providers every month** — April, May, June, August —
-and nobody has turned them into published benchmarks since June. The Q3 study is overdue,
-and there is no scheduler or prompt that would ever surface that fact.
+That decision was right, and a trigger does exist — `checkMarketwatch` in `health-check`
+was re-thresholded to 100 days and renamed "Lead Price Index study", so it goes red around
+**2026-09-09**. The study is due, not yet alarming. It is a writing task, not a code one.
 
-This is the classic failure mode: a documented cadence with no owner and no trigger. The
-raw material is already sitting in `data/marketwatch-reports/2026-08.json`, verified-ready.
+What was not visible until now is the size of the prize. `components/price-trend-chart.tsx:53`
+renders nothing below **3 reliable months**, and reliable-month counts per vertical are:
 
-The Aged Lead Price Index is the one asset on this site no competitor publishes. It serves
-proven price-shopping demand and is the natural thing for an LLM to cite. It is two months
-stale for want of a scheduled human hour.
+| reliable months | verticals |
+|---|---|
+| 3 (chart renders) | `life-insurance`, `mca-business-loans` |
+| 2 (**no chart**) | `auto-insurance`, `debt-settlement`, `final-expense`, `health-insurance`, `home-improvement`, `legal`, `medicare`, `mortgage`, `solar` |
+
+**Nine of eleven verticals are exactly one verified month away from a trend chart.** The
+Q3 study is not maintenance — it is the single action that turns on a differentiated visual
+across nine price pages at once, aimed squarely at the price-shopping query cluster.
+
+The Aged Lead Price Index is the one asset on this site no competitor publishes, and the
+natural thing for an LLM to cite. It is one quarter of research away from being twice the
+asset it is today.
 
 ---
 
@@ -235,7 +243,7 @@ Four items. Each is a prerequisite, not an improvement.
 
 | # | Item | Why it blocks the loop |
 |---|---|---|
-| 1 | **Run the overdue Q3 Lead Price Index study.** The cron already collected pricing signals from 7 providers/month (Apr, May, Jun, Aug) — the input exists. Verify and publish benchmarks for 2026-07 and 2026-08, then give the quarterly study an actual scheduler and an owner so it can't silently lapse again. Do **not** re-enable auto-synthesis; the human-verified design is correct. | Engine B has no product while the index is stale, and a documented cadence with no trigger will lapse again by Q4. |
+| 1 | **Q3 Lead Price Index study.** Scoped by `npm run price-index:gap` → `data/loop/price-index-q3-gap.md`: which cells to re-price per vertical, and the pricing signals already collected. The study itself is **human research** — the collected signals do not clear the 2-provider trust gate on their own, and synthesizing from them would recreate exactly the junk removed in 2026-06. Publishing one verified month unlocks trend charts on 9 verticals. | Engine B's flagship asset is stale, and 9 price pages are rendering without their differentiating visual. |
 | 2 | **Add `pagePath` to the outbound-clicks report.** One dimension added to an existing GA4 query — read-side only, no tracking changes. | Step 2's `C` term and step 6's kill rule are both unmeasurable without knowing which page sent each click. |
 | 3 | **Restart the newsletter** per the approved email plan (preview-only cron, explicit send path, audience reconciliation of the 173-contact backlog). | Step 5 is the only same-day traffic lever. It is currently dark. |
 | 4 | **Create `data/loop/ledger.json`** — one row per iteration: date, asset shipped, engine, expected clicks, measured clicks at +2 and +8 weeks, verdict. | Without a ledger the monthly review has no input and the loop drifts. |

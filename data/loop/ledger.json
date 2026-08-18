@@ -1,0 +1,19 @@
+{
+  "goal": "Maximize monthly outbound clicks from workagedleads.com to agedleadstore.com",
+  "metric": "affiliate.last30d.clicks from GET /api/reports/outbound-clicks",
+  "baseline": {
+    "capturedOn": "2026-08-18",
+    "window": "2026-08-04 to 2026-08-17",
+    "affiliateSessionsPerDay": 5.4,
+    "priorWindow": "2026-07-04 to 2026-08-02",
+    "priorSessionsPerDay": 14.1,
+    "note": "Prior figure excludes a 73-session spike on 2026-07-07; including it the prior rate is 16.5/day. Post-cutover decline is real and independently reproduces the 5.6/day figure in the email plan.",
+    "milestone": {
+      "target": 15,
+      "unit": "affiliate clicks/day",
+      "rationale": "Recover to the pre-cutover rate. First milestone, not the ceiling."
+    }
+  },
+  "iterations": [],
+  "kills": []
+}

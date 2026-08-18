@@ -15,6 +15,11 @@ export const dynamic = "force-dynamic";
 
 const PROPERTY_ID = "528489903"; // Work Aged Leads — BRSG account
 
+// The monetized destination. Clicks to any other partner host in
+// data/partner-hosts.ts are editorial, not revenue — the Click Loop scores
+// pages on this domain alone.
+const AFFILIATE_DOMAIN = "agedleadstore.com";
+
 interface GA4Row {
   dimensionValues: { value: string }[];
   metricValues: { value: string }[];
@@ -105,6 +110,97 @@ async function fetchTopLinks(
     .filter((r) => r.url && r.count > 0);
 }
 
+// ── Click Loop scoreboard ────────────────────────────────────────────
+// Which page sent each affiliate click, and at what rate. `byDomain` and
+// `topLinks` above answer "where did clicks go"; these answer "which page
+// earned them", which is the input the Click Loop selects and kills on
+// (see CLICK-LOOP.md, steps 2 and 6).
+//
+// Read-side only — this adds dimensions to existing GA4 queries. No tracking
+// or instrumentation changes.
+
+const ALS_CLICK_FILTER = {
+  andGroup: {
+    expressions: [
+      CLICK_FILTER,
+      {
+        filter: {
+          fieldName: "linkDomain",
+          stringFilter: { value: AFFILIATE_DOMAIN },
+        },
+      },
+    ],
+  },
+};
+
+async function fetchAffiliateClicksByPage(
+  token: string,
+  days: 30 | 90
+): Promise<Map<string, number>> {
+  const data = await runGA4Report(token, {
+    dateRanges: [{ startDate: `${days}daysAgo`, endDate: "today" }],
+    dimensions: [{ name: "pagePath" }],
+    metrics: [{ name: "eventCount" }],
+    dimensionFilter: ALS_CLICK_FILTER,
+    orderBys: [{ metric: { metricName: "eventCount" }, desc: true }],
+    limit: 250,
+  });
+  const out = new Map<string, number>();
+  for (const r of data.rows || []) {
+    const path = r.dimensionValues[0]?.value;
+    const count = Number(r.metricValues[0]?.value || 0);
+    if (path && count > 0) out.set(path, count);
+  }
+  return out;
+}
+
+async function fetchPageViews(
+  token: string,
+  days: 30 | 90
+): Promise<Map<string, number>> {
+  const data = await runGA4Report(token, {
+    dateRanges: [{ startDate: `${days}daysAgo`, endDate: "today" }],
+    dimensions: [{ name: "pagePath" }],
+    metrics: [{ name: "screenPageViews" }],
+    orderBys: [{ metric: { metricName: "screenPageViews" }, desc: true }],
+    limit: 500,
+  });
+  const out = new Map<string, number>();
+  for (const r of data.rows || []) {
+    const path = r.dimensionValues[0]?.value;
+    const views = Number(r.metricValues[0]?.value || 0);
+    if (path && views > 0) out.set(path, views);
+  }
+  return out;
+}
+
+export interface PageScore {
+  path: string;
+  affiliateClicks: number;
+  views: number;
+  /** Affiliate clicks per view. The `C` term in the Click Loop's scoring rule. */
+  clickRate: number | null;
+}
+
+function buildPageScores(
+  clicks: Map<string, number>,
+  views: Map<string, number>
+): PageScore[] {
+  return [...clicks.entries()]
+    .map(([path, affiliateClicks]) => {
+      const v = views.get(path) ?? 0;
+      return {
+        path,
+        affiliateClicks,
+        views: v,
+        // A rate needs a denominator. Report null rather than a fabricated 0
+        // when GA4 has clicks for a path but no matching pageview row.
+        clickRate: v > 0 ? affiliateClicks / v : null,
+      };
+    })
+    .sort((a, b) => b.affiliateClicks - a.affiliateClicks);
+}
+
 export async function GET(request: Request) {
   const authHeader = request.headers.get("authorization");
   if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
@@ -113,14 +209,34 @@ export async function GET(request: Request) {
 
   try {
     const token = await getAccessToken();
-    const [total30, total90, byDomain30, byDomain90, topLinks30] =
-      await Promise.all([
-        fetchTotal(token, 30),
-        fetchTotal(token, 90),
-        fetchByDomain(token, 30),
-        fetchByDomain(token, 90),
-        fetchTopLinks(token, 30),
-      ]);
+    const [
+      total30,
+      total90,
+      byDomain30,
+      byDomain90,
+      topLinks30,
+      alsByPage30,
+      views30,
+    ] = await Promise.all([
+      fetchTotal(token, 30),
+      fetchTotal(token, 90),
+      fetchByDomain(token, 30),
+      fetchByDomain(token, 90),
+      fetchTopLinks(token, 30),
+      fetchAffiliateClicksByPage(token, 30),
+      fetchPageViews(token, 30),
+    ]);
+
+    const pageScores30 = buildPageScores(alsByPage30, views30);
+    const affiliateTotal30 = pageScores30.reduce(
+      (sum, p) => sum + p.affiliateClicks,
+      0
+    );
+    // Clicks going to the 14 non-monetized partner hosts. A flag condition in
+    // CLICK-LOOP.md fires when this exceeds the affiliate total.
+    const leakage30 = byDomain30
+      .filter((d) => d.domain !== AFFILIATE_DOMAIN)
+      .reduce((sum, d) => sum + d.count, 0);
 
     return NextResponse.json({
       propertyId: PROPERTY_ID,
@@ -135,6 +251,17 @@ export async function GET(request: Request) {
         last90d: byDomain90,
       },
       topLinks30d: topLinks30,
+      // The Click Loop scoreboard.
+      affiliate: {
+        domain: AFFILIATE_DOMAIN,
+        last30d: {
+          clicks: affiliateTotal30,
+          dailyAvg: affiliateTotal30 / 30,
+          // Non-monetized outbound clicks over the same window.
+          leakageClicks: leakage30,
+        },
+        byPage30d: pageScores30,
+      },
     });
   } catch (err) {
     return NextResponse.json(
