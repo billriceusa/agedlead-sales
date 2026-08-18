@@ -14,7 +14,8 @@
     "disavow:merged": "tsx scripts/build-merged-disavow.ts",
     "newsletter:migrate": "tsx scripts/migrate-newsletter-audience.ts",
     "newsletter:send": "tsx scripts/send-newsletter.ts",
-    "als:sync-suppression": "tsx scripts/sync-als-suppression.ts"
+    "als:sync-suppression": "tsx scripts/sync-als-suppression.ts",
+    "price-index:gap": "tsx scripts/price-index-gap.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.80.0",
