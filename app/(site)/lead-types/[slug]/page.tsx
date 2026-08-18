@@ -10,6 +10,7 @@ import { PostCard } from "@/components/post-card";
 import { PlaybookCard } from "@/components/playbook-card";
 import { CtaBanner } from "@/components/cta-banner";
 import { InlineTextCta } from "@/components/inline-text-cta";
+import { HeroAffiliateDoor } from "@/components/hero-affiliate-door";
 import { storeCategoryPath } from "@/lib/affiliate";
 import { JsonLd, breadcrumbJsonLd, faqJsonLd } from "@/components/json-ld";
 import { Breadcrumbs } from "@/components/breadcrumbs";
@@ -116,20 +117,19 @@ export default async function LeadTypePage({ params }: Props) {
                   per lead
                 </p>
               )}
-              <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-                <Link
-                  href={compareHref}
-                  className="rounded-lg bg-blue-600 px-8 py-3 text-center font-semibold text-white transition-colors hover:bg-blue-700"
-                >
-                  Compare {title} Providers
-                </Link>
-                <Link
-                  href={`/price-index/${verticalSlug}`}
-                  className="rounded-lg border border-zinc-600 px-8 py-3 text-center font-semibold text-white transition-colors hover:bg-zinc-800"
-                >
-                  {title} Pricing
-                </Link>
-              </div>
+              {/* Iteration 2 (2026-08-18). Both hero buttons used to be
+                  internal, so the highest-traffic commercial pages on the site
+                  had no affiliate path above the fold and converted at ~0.95%
+                  against the provider page's 43.33%. The door goes first; the
+                  compare and pricing routes keep their position as secondary. */}
+              <HeroAffiliateDoor
+                leadType={title}
+                campaign="lead-type"
+                secondary={[
+                  { label: `Compare ${title} Providers`, href: compareHref },
+                  { label: `${title} Pricing`, href: `/price-index/${verticalSlug}` },
+                ]}
+              />
             </div>
             {imageUrl && (
               <div className="overflow-hidden rounded-xl lg:max-w-md">

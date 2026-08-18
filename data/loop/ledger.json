@@ -43,6 +43,23 @@
       "verdict": "pending",
       "notes": "Site's most-cited asset (CiteThisButton, Dataset JSON-LD, CC-licensed) had no route to a purchase — every outbound link was internal. Added InlineTextCta after the pricing tables and a compact CtaBanner after the economics section. Two placements not three: a reference page that reads as a sales pitch stops being cited. UTM content values after-pricing / after-economics distinguish the placements. Verified in built HTML; destination returns 200 with a browser UA (bot-blocked for curl default). Page's lastUpdated is still 2026-04-08 — that is the Q3 study's job, not this one."
     }
+    {
+      "iteration": 2,
+      "date": "2026-08-18",
+      "engine": "merchant-intelligence",
+      "asset": "components/hero-affiliate-door.tsx on /lead-types and /lead-types/[slug]",
+      "targetCluster": "commercial lead-type queries (aged mortgage leads, aged insurance leads, final expense leads, iul leads)",
+      "expected": {
+        "D": 629,
+        "P": null,
+        "C": 0.05,
+        "clicksPerMonth": 31,
+        "basis": "629 views/mo across the top four lead-type pages converting at ~0.95% today. Modelling C at 5% — 8x below the provider page's measured 43.33% — gives ~31 clicks vs 6, i.e. +25/mo on a 69-click base. A hypothesis to test, not a forecast: intent on a guide page is genuinely lower than on a provider review, and the gap will not fully close."
+      },
+      "measured": { "at2w": null, "at8w": null },
+      "verdict": "pending",
+      "notes": "Both hero buttons on these pages were internal (/compare, /price-index), so the site's highest-traffic commercial pages had no affiliate path above the fold. The mid-page CtaBanner also passes buttonHref, which sets useAffiliate=false — it is an internal compare link sitting exactly where intent peaks. Added a deep-linked door as the primary hero action; compare and pricing keep their position as secondary. Deep links verified per page: mortgage-leads -> /mortgage-leads-purchase-refinance/, final-expense-leads -> /life-insurance-leads/. insurance-leads correctly falls back to /all-lead-types/ — the partner has no generic-insurance buy page and that mapping is deliberate (lib/affiliate.ts, confirmed by Bill 2026-08-06). Destinations re-verified: 200, zero redirects, real buy pages ('Aged Mortgage Leads', 'Buy Aged Life Insurance Leads for Agents — From $0.25'). rel=nofollow sponsored and disclosure present on every instance. Measure via utm_content=hero-door."
+    }
   ],
   "scoreboardReadings": [
     {

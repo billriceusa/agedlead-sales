@@ -5,6 +5,7 @@ import { sanityFetch } from "@/sanity/lib/fetch";
 import { leadTypesQuery } from "@/sanity/lib/queries";
 import { LeadTypeCard } from "@/components/lead-type-card";
 import { CtaBanner } from "@/components/cta-banner";
+import { HeroAffiliateDoor } from "@/components/hero-affiliate-door";
 
 export const metadata: Metadata = {
   title: "Aged Lead Types: Mortgage, Insurance, Solar & More",
@@ -107,6 +108,21 @@ export default async function LeadTypesPage() {
                 See how aged leads compare to real-time leads &rarr;
               </Link>
             </p>
+
+            {/* Iteration 2 (2026-08-18). The hub carried 159 views at 1.26% and
+                had no affiliate path above the card grid — the copy promised
+                "links to purchase leads at AgedLeadStore.com" and then made the
+                reader pick a lead type first. No leadType here on purpose: a
+                visitor on the hub has not chosen a vertical, so the full
+                catalogue is the honest destination. */}
+            <HeroAffiliateDoor
+              campaign="lead-types-hub"
+              tone="light"
+              secondary={[
+                { label: "Compare Providers", href: "/providers" },
+                { label: "Check Pricing", href: "/price-index" },
+              ]}
+            />
           </div>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
