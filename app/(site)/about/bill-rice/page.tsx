@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { JsonLd, personPageJsonLd, breadcrumbJsonLd } from "@/components/json-ld";
 import { Breadcrumbs } from "@/components/breadcrumbs";
+import { CtaBanner } from "@/components/cta-banner";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
@@ -222,6 +223,10 @@ export default function BillRicePage() {
           </div>
         </div>
       </section>
+
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <CtaBanner campaign="about-bill-rice" affiliateContent="page-end" />
+      </div>
     </>
   );
 }

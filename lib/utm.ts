@@ -29,3 +29,44 @@ export const AFFILIATE_UTM_SOURCES = [
   AFFILIATE_UTM_SOURCE,
   AFFILIATE_UTM_SOURCE_LEGACY,
 ] as const;
+
+/**
+ * The value emitted by howtoworkleads.com before it was folded in.
+ *
+ * This one is easy to forget and expensive to forget. howtoworkleads.com was
+ * the original property and carried the overwhelming majority of attributed
+ * revenue — $18,303.25 in March 2026 and $9,282.60 in July 2026, against
+ * $616.50 for both newer sources combined in August. It is not a rounding
+ * error; for most of 2026 it IS the revenue.
+ *
+ * It is separate from AFFILIATE_UTM_SOURCES on purpose. That list feeds the
+ * lifecycle-email report, which pairs it with medium EXACT "email"; adding a
+ * third source there would quietly move that report's numbers for no reason.
+ * Attribution and invoicing need the wider net, so they get their own list.
+ */
+export const AFFILIATE_UTM_SOURCE_LEGACY_HTWL = "howtoworkleads";
+
+/**
+ * Every source value that has EVER represented one of Bill's properties.
+ *
+ * For attribution and invoicing ONLY. Two rules come with it, and both were
+ * learned by getting them wrong:
+ *
+ * 1. Match on SOURCE, never on medium. howtoworkleads.com tagged its outbound
+ *    links `utm_medium=website`, not `affiliate`. A filter that pins
+ *    medium="affiliate" returns $0.00 for every month before the rebrand while
+ *    looking perfectly healthy.
+ *
+ * 2. Sum all three. GA4 does not rewrite history, so a single window can hold
+ *    sessions under two or three different source values at once — August 2026
+ *    is split across `workagedleads` ($361.50) and `agedleadsales` ($255.00)
+ *    because the source flipped mid-month on 2026-08-04.
+ *
+ * The failure mode of getting either wrong is the dangerous kind: the query
+ * does not error, it just finds less money.
+ */
+export const AFFILIATE_ATTRIBUTION_SOURCES = [
+  AFFILIATE_UTM_SOURCE,
+  AFFILIATE_UTM_SOURCE_LEGACY,
+  AFFILIATE_UTM_SOURCE_LEGACY_HTWL,
+] as const;

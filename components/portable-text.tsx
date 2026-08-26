@@ -9,6 +9,8 @@ import {
   injectGlossaryLinks,
   type GlossaryEntry,
 } from "@/lib/glossary-linker";
+import { normalizeAffiliateHref } from "@/lib/affiliate-link-normalizer";
+import { TrackedAffiliateLink } from "./tracked-affiliate-link";
 
 const MID_ARTICLE_CTAS = [
   {
@@ -153,7 +155,10 @@ export function buildHeadingIdMap(
   return map;
 }
 
-function buildComponents(headingIds?: Map<string, string>): PortableTextComponents {
+function buildComponents(
+  headingIds?: Map<string, string>,
+  campaign: string = "article"
+): PortableTextComponents {
   return {
     block: {
       h1: ({ children }) => (
@@ -221,16 +226,42 @@ function buildComponents(headingIds?: Map<string, string>): PortableTextComponen
           {children}
         </code>
       ),
-      link: ({ children, value }) => (
-        <a
-          href={value?.href}
-          target={value?.href?.startsWith("http") ? "_blank" : undefined}
-          rel={value?.href?.startsWith("http") ? "noopener noreferrer" : undefined}
-          className="text-blue-600 underline decoration-blue-600/30 transition-colors hover:text-blue-700 hover:decoration-blue-700/50 dark:text-blue-400 dark:decoration-blue-400/30"
-        >
-          {children}
-        </a>
-      ),
+      link: ({ children, value }) => {
+        const linkClass =
+          "text-blue-600 underline decoration-blue-600/30 transition-colors hover:text-blue-700 hover:decoration-blue-700/50 dark:text-blue-400 dark:decoration-blue-400/30";
+
+        // Body links to the partner are re-tagged at render time. Authors paste
+        // bare URLs and stale ?ref= params; a crawl on 2026-08-26 found 72 such
+        // links earning no attribution at all. Normalising here fixes every one
+        // and keeps the next paste from reopening the leak.
+        const affiliateHref = normalizeAffiliateHref(value?.href, {
+          campaign,
+          content: "body-link",
+        });
+        if (affiliateHref) {
+          return (
+            <TrackedAffiliateLink
+              href={affiliateHref}
+              ctaId={`body-link-${campaign}`}
+              ctaLocation="article-body"
+              className={linkClass}
+            >
+              {children}
+            </TrackedAffiliateLink>
+          );
+        }
+
+        return (
+          <a
+            href={value?.href}
+            target={value?.href?.startsWith("http") ? "_blank" : undefined}
+            rel={value?.href?.startsWith("http") ? "noopener noreferrer" : undefined}
+            className={linkClass}
+          >
+            {children}
+          </a>
+        );
+      },
       glossaryTerm: ({ children, value }) => (
         <GlossaryTooltip
           term={value?.term || ""}
@@ -356,7 +387,7 @@ export function PortableText({ value, campaign = "article", glossary, headingIds
       ? injectGlossaryLinks(value, glossary)
       : value;
 
-  const ptComponents = headingIds ? buildComponents(headingIds) : buildComponents();
+  const ptComponents = buildComponents(headingIds, campaign);
 
   if (!processedValue || processedValue.length < MIN_BLOCKS_FOR_CTAS) {
     return <PortableTextComponent components={ptComponents} value={processedValue} />;

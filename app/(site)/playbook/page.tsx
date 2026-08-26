@@ -6,6 +6,7 @@ import { JsonLd, breadcrumbJsonLd } from "@/components/json-ld";
 import { PostCard } from "@/components/post-card";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { postsByCategorySlugsQuery } from "@/sanity/lib/queries";
+import { CtaBanner } from "@/components/cta-banner";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
@@ -166,6 +167,12 @@ export default async function PlaybookIndexPage() {
           </div>
         </section>
       )}
+
+      {/* Highest-priority pages in the sitemap (0.95) and they carried no route
+          to the partner at all. */}
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <CtaBanner campaign="playbook-hub" affiliateContent="hub" />
+      </div>
     </>
   );
 }

@@ -9,6 +9,8 @@ import { JsonLd, breadcrumbJsonLd, faqJsonLd } from "@/components/json-ld";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { glossaryTooltipQuery } from "@/sanity/lib/queries";
 import { makeGlossaryLinker } from "@/components/glossary-static";
+import { CtaBanner } from "@/components/cta-banner";
+import { storeCategoryPath } from "@/lib/affiliate";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
@@ -212,6 +214,19 @@ export default async function FlagshipVerticalPage({ params }: PageProps) {
                 See all editions
               </Link>
             </p>
+          </div>
+
+          {/* Compact, and deliberately placed AFTER the signup form and the
+              cross-sell: this page's first job is the email capture. A reader
+              who has scrolled past both has declined the gate, and sending them
+              nowhere is the worse outcome. */}
+          <div className="mt-12">
+            <CtaBanner
+              variant="compact"
+              campaign={config.affiliateCampaign}
+              affiliateContent="landing-footer"
+              affiliatePath={storeCategoryPath(config.slug)}
+            />
           </div>
         </div>
       </section>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { JsonLd, breadcrumbJsonLd } from "@/components/json-ld";
+import { CtaBanner } from "@/components/cta-banner";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
@@ -303,6 +304,11 @@ export default function MethodologyPage() {
           </div>
         </div>
       </section>
+
+      {/* The page that earns the site's credibility, and it had no exit. */}
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <CtaBanner campaign="methodology" affiliateContent="page-end" />
+      </div>
     </>
   );
 }

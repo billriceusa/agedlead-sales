@@ -20,6 +20,8 @@ import { leadTypeForVertical } from "@/data/lead-type-vertical-map";
 import { ProviderCompareSelector } from "@/components/provider-compare-selector";
 import { TrackedOutboundLink } from "@/components/tracked-outbound-link";
 import { providerWebsiteUrl, isAffiliateProvider } from "@/lib/provider-links";
+import { TrackedAffiliateLink } from "@/components/tracked-affiliate-link";
+import { affiliateUrl, storeCategoryPath } from "@/lib/affiliate";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
@@ -308,6 +310,25 @@ export default async function ProviderProfilePage({
                     Visit Website
                     <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" /></svg>
                   </TrackedOutboundLink>
+                )}
+                {/* On a competitor's own profile the hero offered exactly one
+                    exit, and it was theirs. Their link stays — this is their
+                    profile and the site's value is that it reads straight — but
+                    the reader now also gets the partner path from the same row
+                    rather than only from the banner at the very bottom. */}
+                {!isAffiliateProvider(p.slug) && (
+                  <TrackedAffiliateLink
+                    href={affiliateUrl({
+                      path: storeCategoryPath(leadTypeForVertical(p.verticals?.[0])),
+                      campaign: `provider-${p.slug}`,
+                      content: "hero-alternative",
+                    })}
+                    ctaId={`provider-alt-${p.slug}`}
+                    ctaLocation="provider-profile-hero"
+                    className="inline-flex items-center gap-1.5 rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
+                  >
+                    Compare at Aged Lead Store
+                  </TrackedAffiliateLink>
                 )}
                 <ProviderCompareSelector
                   currentSlug={p.slug}

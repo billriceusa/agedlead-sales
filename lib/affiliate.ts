@@ -21,9 +21,11 @@ export function affiliateUrl({ path = "/all-lead-types/", campaign, content }: A
   return `${base}?${params.toString()}`;
 }
 
-export function affiliateRegisterUrl(campaign: string, content: string): string {
-  return affiliateUrl({ path: "/register", campaign, content });
-}
+// affiliateRegisterUrl() was removed on 2026-08-26. It built
+// agedleadstore.com/register, which 404s, and had zero callers — so it was a
+// live trap for the next person who reached for the "obvious" register link.
+// Registration happens through the marketing landing pages, which each carry
+// 8-16 links into store.agedleadstore.com/customers/simple_register.
 
 /**
  * Lead type → the matching Aged Lead Store landing page.

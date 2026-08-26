@@ -14,6 +14,8 @@ import {
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { GLOSSARY_TERMS } from "@/data/glossary-terms";
 import { fitMetaDescription } from "@/lib/meta-description";
+import { CtaBanner } from "@/components/cta-banner";
+import { storeCategoryPath } from "@/lib/affiliate";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
@@ -212,6 +214,19 @@ export default async function GlossaryTermPage({ params }: Props) {
           </div>
         </section>
       )}
+
+      {/* Every glossary term is a buying-intent page with no exit until now: 77
+          of the 78 term pages carried zero link to the partner. Deep-linked
+          where the category maps to a category page (mortgage, legal), and to
+          the full catalogue otherwise — including "insurance", which has no
+          generic buy page by design. */}
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <CtaBanner
+          campaign="glossary-term"
+          affiliateContent={slug}
+          affiliatePath={storeCategoryPath(category)}
+        />
+      </div>
     </>
   );
 }
