@@ -54,12 +54,20 @@ export function affiliateRegisterUrl(campaign: string, content: string): string 
  * Expense Leads** at `/life-insurance-leads/` (final expense is life
  * insurance), and Home Improvement at a dedicated `-lp` landing page.
  *
- * Medicare and Solar are absent BY DECISION, not by oversight. Troy is not
- * selling either at the moment (confirmed by Bill, 2026-08-06), so they route
- * to the full catalogue on purpose. Do not "fix" this by inventing a path —
- * revisit it only when Troy starts selling them and a page appears in the menu
- * above. The generic "Insurance Leads" bucket is unmapped for a different
+ * Medicare is absent BY DECISION, not by oversight. Troy is not selling it, so
+ * it routes to the full catalogue on purpose. Do not "fix" this by inventing a
+ * path. The generic "Insurance Leads" bucket is unmapped for a different
  * reason: there is no generic-insurance buy page to point at.
+ *
+ * SOLAR IS NOW STOCKED. The 2026-08-06 note here said Troy sold neither
+ * Medicare nor solar; the card grid at /all-lead-types/ carried a Solar
+ * Installation card on 2026-08-27, so that half is out of date. It still falls
+ * back to the catalogue because there is no *marketing* buy page for it — the
+ * card links straight into the storefront at
+ * store.agedleadstore.com/solar_installation/leads, which this map (marketing
+ * paths only) has no slot for. The newsletter already deep-links it via
+ * lib/newsletter/store-links.ts. Giving the site's solar lead-type page the
+ * same treatment is a live opportunity, not a bug to paper over.
  *
  * Verified 200 with zero redirects on 2026-08-06, and the destination set was
  * reviewed and confirmed correct by Bill the same day.

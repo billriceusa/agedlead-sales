@@ -168,15 +168,48 @@ ages.
 
 ---
 
-## 6. Decisions needed from Bill
+## 6. Decisions — all five made (Bill, 2026-08-27)
 
-| # | Decision | Recommendation |
+| # | Decision | Outcome |
 |---|---|---|
-| **MEMO 1** | Three CTA placements, or keep one? | **Three.** This is the 2.1× lever. |
-| **MEMO 2** | Vertical self-select strip vs. segmented sends? | **Self-select.** Keeps one send; preserves the standing decision. |
-| **MEMO 3** | Which 4 verticals in the strip? | Mortgage, final expense, auto, legal — but this should follow Troy's current inventory, not our guess. |
-| **MEMO 4** | Displace the Flagship Playbook Strip? | **Yes.** It is prime real estate pointing at our own site. |
-| **MEMO 5** | Cadence — hold weekly? | **Weekly.** The arithmetic above assumes it. |
+| **MEMO 1** | Three CTA placements, or keep one? | **Three.** Shipped. |
+| **MEMO 2** | Vertical self-select strip vs. segmented sends? | **Self-select.** One unsegmented send stands. |
+| **MEMO 3** | Which verticals in the strip? | **All nine cards** on `/all-lead-types/`. Bill: "simply a mapping to this page's cards, which doesn't change often." |
+| **MEMO 4** | Displace the Flagship Playbook Strip? | **Yes.** Replaced by the vertical strip; the playbook keeps its footer nav link. |
+| **MEMO 5** | Cadence — hold weekly? | **Weekly.** |
+
+### What the card grid changed
+
+Reading Troy's inventory properly turned up three things our code had wrong:
+
+1. **The cards link to the storefront, not the marketing pages.** Every card
+   points at `store.agedleadstore.com/{segment}/leads` — the ordering app —
+   skipping the marketing page the site's own `lib/affiliate.ts` map uses.
+   That is one fewer click before an order. Verified safe: that host is
+   tracked in the **same** GA4 property commission is computed from
+   (`357329146` — 7,610 sessions / 47,524 pageviews over the window), so the
+   shorter path does not break attribution.
+2. **Solar is stocked.** `lib/affiliate.ts` carried a note saying Troy sold
+   neither Medicare nor solar, "confirmed 2026-08-06." The grid has a Solar
+   Installation card. Medicare is still genuinely absent; the solar half was
+   stale. Comment corrected; the site's solar lead-type page still falls back
+   to the catalogue and is now a live deep-link opportunity.
+3. **The closing CTA quoted a price we cannot support.** It read "Aged leads
+   from $0.25." The cheapest card on the grid is $0.40–0.75. Removed rather
+   than re-quoted — see below.
+
+**Prices are deliberately not in the email.** They are a strong self-select
+signal, but hard-coding them means a price change silently mails a wrong
+number to 2,584 buyers. The storefront shows live pricing on landing.
+
+### A 200 cannot validate these links
+
+`store.agedleadstore.com/bogus_vertical/leads` returns **200**, not 404 — the
+storefront serves a page for any slug. What separates a real vertical from a
+typo is the body: the nine real verticals rendered 85–90 KB and named their own
+vertical ~11 times each; the bogus slug rendered 30 KB. Recorded in
+`lib/newsletter/store-links.ts` so the next person does not check a status code
+and call it verified.
 
 ### The one input we do not have
 

@@ -362,8 +362,9 @@
     <p class="eyebrow">Work Aged Leads &middot; Email Strategy Session</p>
     <h1>The Link Budget</h1>
     <p class="standfirst">
-      The newsletter already out-earns the website per unit of effort. It spends
-      twenty of its twenty-one links sending readers home.
+      The newsletter already out-earns the website per unit of effort. It spent
+      twenty of its twenty-one links sending readers home. As of 2026-08-27,
+      twelve of them go to the store instead.
     </p>
     <div class="meta">
       <span><b>Session</b> 2026-08-27</span>
@@ -397,6 +398,26 @@
       <div class="budget-legend">
         <span class="leg"><span class="swatch home"></span><b>20</b>&nbsp;back to workagedleads.com</span>
         <span class="leg"><span class="swatch money"></span><b>1</b>&nbsp;to agedleadstore.com &mdash; generic catalogue, 79% page depth</span>
+      </div>
+    </div>
+
+    <div class="budget">
+      <div class="budget-head">
+        <span class="budget-title">After &mdash; shipped 2026-08-27</span>
+        <span class="budget-count">21 total &middot; rendered from the live template</span>
+      </div>
+      <div class="marks" role="img" aria-label="Twenty-one link marks: twelve now point to the store, nine back to the site.">
+        <span class="mark money"></span><span class="mark money"></span><span class="mark money"></span>
+        <span class="mark money"></span><span class="mark money"></span><span class="mark money"></span>
+        <span class="mark money"></span><span class="mark money"></span><span class="mark money"></span>
+        <span class="mark money"></span><span class="mark money"></span><span class="mark money"></span>
+        <span class="mark"></span><span class="mark"></span><span class="mark"></span>
+        <span class="mark"></span><span class="mark"></span><span class="mark"></span>
+        <span class="mark"></span><span class="mark"></span><span class="mark"></span>
+      </div>
+      <div class="budget-legend">
+        <span class="leg"><span class="swatch money"></span><b>12</b>&nbsp;to the store &mdash; first one at 20% page depth</span>
+        <span class="leg"><span class="swatch home"></span><b>9</b>&nbsp;back to workagedleads.com</span>
       </div>
     </div>
 
@@ -612,6 +633,57 @@
 
   <!-- == 5 == -->
   <section>
+    <h3>What reading Troy&rsquo;s card grid changed</h3>
+    <p>
+      Mapping the strip to the nine cards on
+      <code>/all-lead-types/</code> turned up three things our code had wrong.
+    </p>
+    <ol class="steps">
+      <li>
+        <strong>The cards link to the storefront, not the marketing pages.</strong>
+        Every card points at <code>store.agedleadstore.com/{segment}/leads</code> &mdash;
+        the ordering app &mdash; skipping the marketing page our own
+        <code>lib/affiliate.ts</code> map uses. One fewer click before an order.
+        Verified safe: that host is tracked in the <em>same</em> GA4 property
+        commission is computed from (7,610 sessions / 47,524 pageviews over the
+        window), so the shorter path does not cost attribution.
+      </li>
+      <li>
+        <strong>Solar is stocked.</strong> <code>lib/affiliate.ts</code> carried a
+        note saying Troy sold neither Medicare nor solar, &ldquo;confirmed
+        2026-08-06.&rdquo; The grid has a Solar Installation card. Medicare is
+        still genuinely absent; the solar half had gone stale.
+      </li>
+      <li>
+        <strong>The closing CTA quoted a price we cannot support.</strong> It read
+        &ldquo;Aged leads from $0.25.&rdquo; The cheapest card on the grid is
+        $0.40&ndash;0.75. Removed rather than re-quoted.
+      </li>
+    </ol>
+
+    <div class="callout warn-c">
+      <span class="label">A 200 cannot validate these links</span>
+      <p>
+        <code>store.agedleadstore.com/bogus_vertical/leads</code> returns
+        <strong>200</strong>, not 404 &mdash; the storefront serves a page for any
+        slug. What separates a real vertical from a typo is the body: the nine
+        real verticals rendered 85&ndash;90&nbsp;KB and named their own vertical
+        ~11 times each; the bogus slug rendered 30&nbsp;KB. Recorded in the code
+        so the next person does not check a status code and call it verified.
+      </p>
+    </div>
+
+    <div class="callout">
+      <span class="label">Prices deliberately left out of the email</span>
+      <p>
+        They are a strong self-select signal, but hard-coding them means a price
+        change silently mails a wrong number to 2,584 buyers. The storefront
+        shows live pricing on landing.
+      </p>
+    </div>
+  </section>
+
+  <section>
     <h2><span class="num">05</span>Three attribution defects</h2>
     <p class="sub">
       Two of these would have made the change look like it did nothing.
@@ -688,34 +760,34 @@
   <!-- == 7 == -->
   <section>
     <h2><span class="num">07</span>Decisions</h2>
-    <p class="sub">Five calls. Recommendations attached to each.</p>
+    <p class="sub">All five made by Bill, 2026-08-27. Shipped the same day.</p>
 
     <div class="memo">
       <span class="tag">MEMO 1</span>
       <div>
         <p class="q">Three CTA placements, or keep one?</p>
-        <p class="a"><b>Three.</b> This is the 2.1&times; lever &mdash; everything else in this document is downstream of it.</p>
+        <p class="a"><b>Three &mdash; shipped.</b> Above-fold, nine-vertical strip, closing.</p>
       </div>
     </div>
     <div class="memo">
       <span class="tag">MEMO 2</span>
       <div>
         <p class="q">Vertical self-select strip, or segmented sends?</p>
-        <p class="a"><b>Self-select.</b> Keeps one send and preserves the standing decision.</p>
+        <p class="a"><b>Self-select.</b> One unsegmented send stands.</p>
       </div>
     </div>
     <div class="memo">
       <span class="tag">MEMO 3</span>
       <div>
-        <p class="q">Which four verticals go in the strip?</p>
-        <p class="a">Mortgage, final expense, auto, legal &mdash; but this should follow <b>Troy's current inventory</b>, not our guess. Worth one message to him.</p>
+        <p class="q">Which verticals go in the strip?</p>
+        <p class="a"><b>All nine cards</b> on /all-lead-types/ &mdash; Bill: &ldquo;simply a mapping to this page&rsquo;s cards, which doesn&rsquo;t change often.&rdquo;</p>
       </div>
     </div>
     <div class="memo">
       <span class="tag">MEMO 4</span>
       <div>
         <p class="q">Displace the Flagship Playbook Strip?</p>
-        <p class="a"><b>Yes.</b> It is prime real estate at 66% depth pointing at our own site.</p>
+        <p class="a"><b>Yes.</b> Replaced by the vertical strip; the playbook keeps its footer nav link.</p>
       </div>
     </div>
     <div class="memo">

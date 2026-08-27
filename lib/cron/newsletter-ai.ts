@@ -43,7 +43,6 @@ export interface NewsletterContent {
   }[];
   closingNote: string;
   ctaText: string;
-  ctaUrl: string;
 }
 
 const NEWSLETTER_SYSTEM = `You are writing the Work Aged Leads weekly newsletter on behalf of Bill Rice, a 25+ year veteran of the aged lead industry. Write with authority, warmth, and specificity.
@@ -136,8 +135,7 @@ Respond with ONLY valid JSON (no markdown fences, no commentary):
     { "title": "Post Title", "slug": "post-slug", "oneLiner": "Brief summary" }
   ],
   "closingNote": "Personal sign-off",
-  "ctaText": "Button text",
-  "ctaUrl": "https://agedleadstore.com/all-lead-types/?utm_source=workagedleads&utm_medium=email&utm_campaign=weekly-newsletter&utm_content=${weekLabel}"
+  "ctaText": "Button text"
 }`;
 
   const response = await client.messages.create({
