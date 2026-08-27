@@ -17,7 +17,8 @@
  * at the end is the one to key into FreshBooks.
  */
 
-import { writeFileSync, mkdirSync } from "node:fs";
+import { spawnSync } from "node:child_process";
+import { writeFileSync, mkdirSync, existsSync, statSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { GoogleAuth } from "google-auth-library";
 
@@ -114,6 +115,62 @@ function esc(s: string): string {
     .replace(/"/g, "&quot;");
 }
 
+/**
+ * Print the backing document to PDF, because the PDF is what actually gets
+ * attached to the FreshBooks invoice.
+ *
+ * Headless Chrome, with `--no-pdf-header-footer` deliberately: Chrome's default
+ * footer stamps the source `file:///Users/billrice/...` path across the bottom
+ * of every page, and this document goes to the partner.
+ *
+ * Returns null rather than throwing if no browser is installed. The HTML and
+ * CSV are already on disk at that point and the commission figure is already
+ * computed — refusing to finish over a missing convenience would be worse than
+ * telling the caller to print it themselves. A refusal here would also be
+ * indistinguishable from the reconciliation guards, which mean something.
+ */
+function renderPdf(htmlPath: string, pdfPath: string): string | null {
+  const candidates = [
+    process.env.CHROME_BIN,
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+    "/Applications/Chromium.app/Contents/MacOS/Chromium",
+    "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge",
+  ].filter((p): p is string => Boolean(p));
+  const chrome = candidates.find((p) => existsSync(p));
+  if (!chrome) {
+    console.warn(
+      `\n  ! No Chrome/Chromium found, so no PDF was written. Open the HTML and\n` +
+        `    print to PDF, or set CHROME_BIN. Looked in:\n` +
+        candidates.map((p) => `      ${p}`).join("\n")
+    );
+    return null;
+  }
+
+  const res = spawnSync(
+    chrome,
+    [
+      "--headless",
+      "--disable-gpu",
+      "--no-pdf-header-footer",
+      `--print-to-pdf=${pdfPath}`,
+      `file://${htmlPath}`,
+    ],
+    { encoding: "utf8", timeout: 60_000 }
+  );
+
+  // Chrome exits 0 and chatters unrelated warnings to stderr even on success,
+  // so trust the artifact, not the exit code: a non-empty file is the proof.
+  if (!existsSync(pdfPath) || statSync(pdfPath).size === 0) {
+    console.warn(
+      `\n  ! Chrome did not produce a PDF (exit ${res.status}). HTML and CSV are\n` +
+        `    still written; print the HTML manually.\n` +
+        (res.stderr ? `    ${res.stderr.trim().split("\n").slice(-3).join("\n    ")}\n` : "")
+    );
+    return null;
+  }
+  return pdfPath;
+}
+
 function renderCsv(basis: InvoiceBasis): string {
   const lines = ["date,transaction_id,source_medium,attributed_revenue_usd"];
   for (const o of basis.orders) {
@@ -204,7 +261,34 @@ function renderHtml(basis: InvoiceBasis, label: string): string {
   .method code{font-family:ui-monospace,Menlo,monospace;font-size:12.5px;background:#f2f5f7;padding:1px 4px;border-radius:3px}
   .method li{margin:6px 0}
   footer{margin-top:38px;padding-top:16px;border-top:1px solid var(--rule);font-size:12px;color:var(--muted)}
-  @media print{body{padding:0}.box{break-inside:avoid}}
+  /* Print is the primary delivery format — this document is attached to a
+     FreshBooks invoice as a PDF. A short window must land on one page; the
+     method notes spilling three orphan lines onto a second sheet reads as
+     careless on something a partner receives. Long windows (the Apr-Jul
+     catch-up carries 35 orders) legitimately paginate. */
+  @page{size:letter;margin:14mm 13mm}
+  @media print{
+    body{padding:0;font-size:14px}
+    .box{break-inside:avoid;padding:15px 20px;margin-bottom:18px}
+    /* Per-ROW, not per-table: the orders table runs to 35 rows on a catch-up
+       window and is taller than a sheet, so a whole-table break-inside:avoid would
+       be an unsatisfiable hint that just strands a blank page ahead of it.
+       (Rule written without backticks on purpose: this CSS lives inside a
+       template literal.)
+       Repeat the header on each page instead. */
+    tr{break-inside:avoid}
+    thead{display:table-header-group}
+    tfoot{display:table-row-group}
+    th,td{padding:6px 10px}
+    h1{font-size:21px}
+    .sub{margin-bottom:18px}
+    .amt{font-size:29px}
+    h2{margin:18px 0 7px}
+    .method{font-size:11.6px;line-height:1.5}
+    .method li{margin:3px 0}
+    .method code{font-size:11px}
+    footer{margin-top:18px;padding-top:11px}
+  }
 </style>
 </head>
 <body>
@@ -345,6 +429,7 @@ async function main() {
   const csvPath = join(args.out, `affiliate-commission-${slug}.csv`);
   writeFileSync(htmlPath, renderHtml(basis, label), "utf8");
   writeFileSync(csvPath, renderCsv(basis), "utf8");
+  const pdfPath = renderPdf(htmlPath, join(args.out, `affiliate-commission-${slug}.pdf`));
 
   const pad = (s: string) => s.padStart(13);
   console.log(`\n  ${label}   (${args.start} to ${args.end})`);
@@ -362,7 +447,8 @@ async function main() {
     `  ${`COMMISSION @ ${(basis.rate * 100).toFixed(0)}%`.padEnd(34)}  ${pad(usd(basis.commission))}`
   );
   for (const w of basis.warnings) console.log(`\n  ! ${w}`);
-  console.log(`\n  ${htmlPath}\n  ${csvPath}\n`);
+  console.log(`\n  ${htmlPath}\n  ${csvPath}`);
+  console.log(pdfPath ? `  ${pdfPath}   <- attach this to FreshBooks\n` : "");
 }
 
 main().catch((err) => {
