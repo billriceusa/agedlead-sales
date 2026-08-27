@@ -211,16 +211,54 @@ vertical ~11 times each; the bogus slug rendered 30 KB. Recorded in
 `lib/newsletter/store-links.ts` so the next person does not check a status code
 and call it verified.
 
-### The one input we do not have
+### 7. Revenue per referred session — a candidate rate, with one open question
 
-Ranking channels by *revenue* rather than *sessions* requires
-revenue-per-store-session — conversion rate and commission. That number is not
-in GA4, the repo, or any system readable from here. Everything above is
-denominated in sessions because that is the honest unit available.
+The missing input has a first estimate. ALS's books carry an **Affiliate Rev
+Share** line: $0 for every month of 2025 and Jan–Feb 2026, then **$2,918 in
+March 2026**.
 
-**Phase 0: get effective revenue per referred session from Troy.** Until then
-"the #1 affiliate revenue channel" is being measured by its best available
-proxy, not by revenue itself.
+March 2026 referral sessions into agedleadstore.com (GA4 `357329146`,
+independently re-queried 2026-08-27):
+
+| Source / medium | Sessions |
+|---|---:|
+| howtoworkleads / website | 352 |
+| howtoworkleads / blog | 9 |
+| agedleadsales / affiliate | 11 |
+| agedleadsales / email | 1 |
+| **Total** | **373** |
+
+**$2,918 ÷ 373 = $7.82 per referred session.**
+
+| Scenario | Sessions/mo | Revenue/mo |
+|---|---:|---:|
+| Today (newsletter effectively dark) | 186 | $1,455 |
+| Newsletter weekly, old design | 260 | $2,033 |
+| **Target (36/send)** | **342** | **$2,674** |
+
+**Incremental from this rebuild: +156 sessions/mo → +$1,220/mo, ~$14,600/yr.**
+
+The most useful thing this reveals: **the 342-session target is not blue-sky
+growth. March 2026 already did 373.** Affiliate volume roughly halved through
+the consolidation, and we are at ~186/month now. So the target is *recovery to
+a level already achieved* — through a channel that does not wait on Google.
+That is a materially stronger claim than a 2.1× lift argued from first
+principles.
+
+**The open question, and it halves the forecast if it goes the other way.**
+March 2026 is the *first* month rev share appears at all. If that $2,918 was a
+true-up covering Q1 rather than March alone, the real rate is ~$2.61/session
+and the target case drops to **$892/month**. The P&L cannot settle it.
+
+> **Ask Troy:** "Was the March affiliate rev-share payment for March only, or
+> catch-up for Q1?"
+
+Other limits, stated plainly: **n = 1 month**. The line is labelled
+HowToWorkLeads, so it may exclude the 12 agedleadsales sessions (that only
+moves the rate to $8.08). And the P&L stops at March — a later file
+(*Next Wave Marketing Strategies Inc. Financials 7-31-26.xlsx*, attached to
+Troy's 2026-08-08 "ALS July books" email) would carry Apr–Jul and is the better
+input. Re-run this with that line before treating $7.82 as settled.
 
 ---
 
