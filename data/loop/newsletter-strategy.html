@@ -70,7 +70,7 @@
   .wrap { max-width: 940px; margin: 0 auto; padding: 0 28px 96px; }
   .measure { max-width: 68ch; }
 
-  /* ── masthead ─────────────────────────────── */
+  /* -- masthead ------------------------------- */
   .masthead {
     border-bottom: 2px solid var(--ink);
     padding: 56px 0 20px;
@@ -107,7 +107,7 @@
   }
   .meta b { color: var(--ink-soft); font-weight: 500; }
 
-  /* ── sections ─────────────────────────────── */
+  /* -- sections ------------------------------- */
   section { margin: 0 0 60px; }
   h2 {
     font-family: "Zilla Slab", Georgia, serif;
@@ -148,7 +148,7 @@
     word-break: break-word;
   }
 
-  /* ── the link budget ──────────────────────── */
+  /* -- the link budget ------------------------ */
   .budget {
     background: var(--surface);
     border: 1px solid var(--rule);
@@ -195,7 +195,7 @@
   .swatch.money { background: var(--money); }
   .leg b { font-family: "IBM Plex Mono", monospace; font-variant-numeric: tabular-nums; }
 
-  /* ── tables ───────────────────────────────── */
+  /* -- tables --------------------------------- */
   .tw { overflow-x: auto; margin: 0 0 20px; }
   table {
     width: 100%; border-collapse: collapse;
@@ -222,7 +222,7 @@
   tr.hi td:first-child { box-shadow: inset 3px 0 0 var(--money); padding-left: 12px; }
   .note { color: var(--ink-soft); font-size: .88rem; }
 
-  /* ── callout ──────────────────────────────── */
+  /* -- callout -------------------------------- */
   .callout {
     background: var(--surface);
     border: 1px solid var(--rule);
@@ -240,7 +240,7 @@
     color: var(--ink-faint); display: block; margin-bottom: 9px;
   }
 
-  /* ── stat row ─────────────────────────────── */
+  /* -- stat row ------------------------------- */
   .stats {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(168px, 1fr));
@@ -264,7 +264,7 @@
     font-size: .845rem; color: var(--ink-soft); display: block;
   }
 
-  /* ── pipeline / order list ────────────────── */
+  /* -- pipeline / order list ------------------ */
   .flow {
     font-family: "IBM Plex Mono", ui-monospace, monospace;
     font-size: .8rem; line-height: 2.15;
@@ -308,7 +308,7 @@
     background: var(--ink-faint);
   }
 
-  /* ── decisions ────────────────────────────── */
+  /* -- decisions ------------------------------ */
   .memo {
     display: grid;
     grid-template-columns: auto 1fr;
@@ -330,7 +330,7 @@
   .memo .a { margin: 0; color: var(--ink-soft); font-size: .945rem; }
   .memo .a b { color: var(--money); font-weight: 700; }
 
-  /* ── footer ───────────────────────────────── */
+  /* -- footer --------------------------------- */
   .prov {
     border-top: 1px solid var(--rule);
     padding-top: 26px; margin-top: 68px;
@@ -359,7 +359,7 @@
 <div class="wrap">
 
   <header class="masthead">
-    <p class="eyebrow">Work Aged Leads · Email Strategy Session</p>
+    <p class="eyebrow">Work Aged Leads &middot; Email Strategy Session</p>
     <h1>The Link Budget</h1>
     <p class="standfirst">
       The newsletter already out-earns the website per unit of effort. It spends
@@ -372,7 +372,7 @@
     </div>
   </header>
 
-  <!-- ══ 1 ══ -->
+  <!-- == 1 == -->
   <section>
     <h2><span class="num">01</span>The finding</h2>
     <p class="sub">
@@ -382,7 +382,7 @@
     <div class="budget">
       <div class="budget-head">
         <span class="budget-title">Links in one issue</span>
-        <span class="budget-count">21 total &nbsp;·&nbsp; 2026-08-10 and 2026-08-17, identical</span>
+        <span class="budget-count">21 total &nbsp;&middot;&nbsp; 2026-08-10 and 2026-08-17, identical</span>
       </div>
       <div class="marks" role="img" aria-label="Twenty-one link marks: twenty point back to workagedleads.com, one points to the store.">
         <span class="mark"></span><span class="mark"></span><span class="mark"></span>
@@ -396,13 +396,13 @@
       </div>
       <div class="budget-legend">
         <span class="leg"><span class="swatch home"></span><b>20</b>&nbsp;back to workagedleads.com</span>
-        <span class="leg"><span class="swatch money"></span><b>1</b>&nbsp;to agedleadstore.com — generic catalogue, 79% page depth</span>
+        <span class="leg"><span class="swatch money"></span><b>1</b>&nbsp;to agedleadstore.com &mdash; generic catalogue, 79% page depth</span>
       </div>
     </div>
 
     <p>
       The one store link points at <code>/all-lead-types/</code>, the full
-      catalogue, and sits at line 190 of a 241-line template — after six
+      catalogue, and sits at line 190 of a 241-line template &mdash; after six
       sections that all point back to our own site. Meanwhile
       <code>lib/affiliate.ts</code> maps <strong>15 store buy pages</strong> by
       lead type. The newsletter uses <strong>none</strong> of them.
@@ -413,11 +413,11 @@
     </p>
   </section>
 
-  <!-- ══ 2 ══ -->
+  <!-- == 2 == -->
   <section>
     <h2><span class="num">02</span>What one send is worth</h2>
     <p class="sub">
-      GA4 property <code>357329146</code>, 2026-06-01 → 2026-08-26 (87 days).
+      GA4 property <code>357329146</code>, 2026-06-01 &rarr; 2026-08-26 (87 days).
       Sessions arriving at agedleadstore.com.
     </p>
 
@@ -447,7 +447,7 @@
           <tr class="hi">
             <td><strong>Weekly newsletter</strong></td>
             <td class="n"><strong>17</strong></td>
-            <td class="n">—</td>
+            <td class="n">&mdash;</td>
             <td class="note"><strong>One single send</strong>, 2026-08-12</td>
           </tr>
         </tbody>
@@ -459,7 +459,7 @@
       <p>
         One email produced <strong>17 sessions</strong>. The whole website
         produces <strong>5.1 per day</strong>. That single send was worth
-        roughly <strong>3.3 days of total site output</strong> — from one
+        roughly <strong>3.3 days of total site output</strong> &mdash; from one
         buried, generic link.
       </p>
     </div>
@@ -474,13 +474,13 @@
       <p>
         A fourth row, <code>agedleadstore / email / registration_no_order</code>,
         shows 130 sessions. That is Aged Lead Store mailing <em>its own</em>
-        registrants — Troy's traffic, not a channel we operate. Counting it
+        registrants &mdash; Troy's traffic, not a channel we operate. Counting it
         would overstate our contribution by about 30%.
       </p>
     </div>
   </section>
 
-  <!-- ══ 3 ══ -->
+  <!-- == 3 == -->
   <section>
     <h2><span class="num">03</span>What has to be true to win</h2>
     <p class="sub">
@@ -507,14 +507,14 @@
     </div>
 
     <p>
-      Weekly sends at today's yield give <strong>74/month</strong> — already
+      Weekly sends at today's yield give <strong>74/month</strong> &mdash; already
       half the entire website's output. Getting to 36 per send puts the
       newsletter at 156/month; add the lifecycle drip's 32 and email reaches
       <strong>188/month against the site's 154</strong>. Email becomes the #1
       channel.
     </p>
 
-    <h3>The 2.1× is not a guess — the site already proves it</h3>
+    <h3>The 2.1&times; is not a guess &mdash; the site already proves it</h3>
     <p>
       The same audience, on our own domain, responds to banner placements far
       more than to inline text links:
@@ -545,13 +545,13 @@
     </div>
 
     <p>
-      Banners outperform inline links by <strong>2.4×</strong> on-domain. The
+      Banners outperform inline links by <strong>2.4&times;</strong> on-domain. The
       newsletter currently has <strong>zero</strong> banner placements above 79%
       depth. We are asking the email to do what the site already knows how to do.
     </p>
   </section>
 
-  <!-- ══ 4 ══ -->
+  <!-- == 4 == -->
   <section>
     <h2><span class="num">04</span>The CTA architecture</h2>
     <p class="sub">
@@ -561,15 +561,15 @@
 
     <h3>Today</h3>
     <div class="flow">
-      Header → Intro → Featured Article → Quick Tips → Industry Insight<br>
-      &nbsp;&nbsp;→ This Week on the Blog → Flagship Playbook Strip → <span class="cta">[STORE CTA]</span> → Closing → Footer
+      Header &rarr; Intro &rarr; Featured Article &rarr; Quick Tips &rarr; Industry Insight<br>
+      &nbsp;&nbsp;&rarr; This Week on the Blog &rarr; Flagship Playbook Strip &rarr; <span class="cta">[STORE CTA]</span> &rarr; Closing &rarr; Footer
     </div>
 
     <h3>Proposed</h3>
     <div class="flow">
-      Header → Intro → <span class="new">[STORE CTA — above the fold]</span> → Featured Article → Quick Tips<br>
-      &nbsp;&nbsp;→ Industry Insight → This Week on the Blog → <span class="new">[VERTICAL SELF-SELECT STRIP]</span><br>
-      &nbsp;&nbsp;→ <span class="cta">[STORE CTA]</span> → Closing → Footer
+      Header &rarr; Intro &rarr; <span class="new">[STORE CTA &mdash; above the fold]</span> &rarr; Featured Article &rarr; Quick Tips<br>
+      &nbsp;&nbsp;&rarr; Industry Insight &rarr; This Week on the Blog &rarr; <span class="new">[VERTICAL SELF-SELECT STRIP]</span><br>
+      &nbsp;&nbsp;&rarr; <span class="cta">[STORE CTA]</span> &rarr; Closing &rarr; Footer
     </div>
 
     <ol class="steps">
@@ -592,7 +592,7 @@
     </ol>
 
     <div class="callout">
-      <span class="label">Recommendation — don't segment the list</span>
+      <span class="label">Recommendation &mdash; don't segment the list</span>
       <p>
         The audience is 2,584: Purchasers (~1,038), Inquiries (~1,267),
         newsletter-only (~226), store self-serve (~71). Genuinely different
@@ -610,7 +610,7 @@
     </div>
   </section>
 
-  <!-- ══ 5 ══ -->
+  <!-- == 5 == -->
   <section>
     <h2><span class="num">05</span>Three attribution defects</h2>
     <p class="sub">
@@ -628,7 +628,7 @@
 
     <h3>b. <code>utm_content</code> carries the date, not the placement</h3>
     <p>
-      Today it is <code>utm_content=2026-08-10</code> — which tells you
+      Today it is <code>utm_content=2026-08-10</code> &mdash; which tells you
       <em>which issue</em>, never <em>which link</em>. With three placements you
       could not tell which one earned the click. Fix:
       <code>utm_content={date}-{placement}</code>, giving
@@ -640,14 +640,14 @@
     <h3>c. Resend exposes no engagement data through its API</h3>
     <p>
       The broadcast endpoint returns no <code>delivered</code>,
-      <code>opened</code>, or <code>clicked</code> fields — open and click rates
+      <code>opened</code>, or <code>clicked</code> fields &mdash; open and click rates
       exist only in the Resend dashboard. GA4 store sessions are therefore the
       only programmatically verifiable measure of newsletter performance. Treat
       the GA4 row as the scoreboard and dashboard opens as context.
     </p>
   </section>
 
-  <!-- ══ 6 ══ -->
+  <!-- == 6 == -->
   <section>
     <h2><span class="num">06</span>The repeatable process</h2>
     <p class="sub">
@@ -656,14 +656,14 @@
     </p>
 
     <ul class="plain">
-      <li><strong>2026-08-10</strong> — drafted 08-10, sent 08-12. Two days late.</li>
-      <li><strong>2026-08-17</strong> — drafted 08-16, never sent, retired 08-27.</li>
+      <li><strong>2026-08-10</strong> &mdash; drafted 08-10, sent 08-12. Two days late.</li>
+      <li><strong>2026-08-17</strong> &mdash; drafted 08-16, never sent, retired 08-27.</li>
     </ul>
 
     <p>
       The Sunday cron drafts and previews correctly. The weak link is the manual
       send: no deadline, no reminder, no signal when an issue is sitting in
-      limbo. An archived draft looks sendable forever — only the date ages.
+      limbo. An archived draft looks sendable forever &mdash; only the date ages.
     </p>
 
     <ol class="steps">
@@ -685,7 +685,7 @@
     </ol>
   </section>
 
-  <!-- ══ 7 ══ -->
+  <!-- == 7 == -->
   <section>
     <h2><span class="num">07</span>Decisions</h2>
     <p class="sub">Five calls. Recommendations attached to each.</p>
@@ -694,7 +694,7 @@
       <span class="tag">MEMO 1</span>
       <div>
         <p class="q">Three CTA placements, or keep one?</p>
-        <p class="a"><b>Three.</b> This is the 2.1× lever — everything else in this document is downstream of it.</p>
+        <p class="a"><b>Three.</b> This is the 2.1&times; lever &mdash; everything else in this document is downstream of it.</p>
       </div>
     </div>
     <div class="memo">
@@ -708,7 +708,7 @@
       <span class="tag">MEMO 3</span>
       <div>
         <p class="q">Which four verticals go in the strip?</p>
-        <p class="a">Mortgage, final expense, auto, legal — but this should follow <b>Troy's current inventory</b>, not our guess. Worth one message to him.</p>
+        <p class="a">Mortgage, final expense, auto, legal &mdash; but this should follow <b>Troy's current inventory</b>, not our guess. Worth one message to him.</p>
       </div>
     </div>
     <div class="memo">
@@ -727,7 +727,7 @@
     </div>
   </section>
 
-  <!-- ══ 8 ══ -->
+  <!-- == 8 == -->
   <section>
     <h2><span class="num">08</span>The one input we don't have</h2>
     <p class="sub">Stated plainly, because it changes what "#1" means.</p>
@@ -735,7 +735,7 @@
     <div class="callout warn-c">
       <p>
         Ranking channels by <strong>revenue</strong> rather than
-        <strong>sessions</strong> requires revenue per referred store session —
+        <strong>sessions</strong> requires revenue per referred store session &mdash;
         conversion rate and commission. That number is not in GA4, not in the
         repo, and not in any system readable from here. Every figure in this
         document is denominated in sessions because that is the honest unit
@@ -752,12 +752,12 @@
   <footer class="prov">
     <h2>Provenance</h2>
     <ul class="plain">
-      <li>Channel figures — GA4 property <code>357329146</code>, 2026-06-01 → 2026-08-26, dimensions <code>sessionSource</code> / <code>sessionMedium</code> / <code>sessionCampaignName</code>.</li>
-      <li>Link counts — <code>grep -oE 'href="[^"]+"'</code> over <code>data/newsletter-archive/2026-08-{10,17}.html</code>.</li>
-      <li>CTA depth — <code>lib/cron/newsletter-email.ts</code>, CTA block at line 190 of 241.</li>
-      <li>Store buy-page map — <code>lib/affiliate.ts</code>, <code>STORE_CATEGORY_PATHS</code>, 15 entries.</li>
-      <li>Audience size — <code>npm run newsletter:migrate</code>, 2026-08-27: 2,677 total / 2,584 sendable / 93 unsubscribed.</li>
-      <li>Not measurable — <code>workagedleads.com</code> GA4 (<code>528489903</code>) returned 403 to this service account, so clicks <em>into the site</em> from email could not be counted. That is the open GA4-access loop, and it is why section 02 counts only store-side sessions.</li>
+      <li>Channel figures &mdash; GA4 property <code>357329146</code>, 2026-06-01 &rarr; 2026-08-26, dimensions <code>sessionSource</code> / <code>sessionMedium</code> / <code>sessionCampaignName</code>.</li>
+      <li>Link counts &mdash; <code>grep -oE 'href="[^"]+"'</code> over <code>data/newsletter-archive/2026-08-{10,17}.html</code>.</li>
+      <li>CTA depth &mdash; <code>lib/cron/newsletter-email.ts</code>, CTA block at line 190 of 241.</li>
+      <li>Store buy-page map &mdash; <code>lib/affiliate.ts</code>, <code>STORE_CATEGORY_PATHS</code>, 15 entries.</li>
+      <li>Audience size &mdash; <code>npm run newsletter:migrate</code>, 2026-08-27: 2,677 total / 2,584 sendable / 93 unsubscribed.</li>
+      <li>Not measurable &mdash; <code>workagedleads.com</code> GA4 (<code>528489903</code>) returned 403 to this service account, so clicks <em>into the site</em> from email could not be counted. That is the open GA4-access loop, and it is why section 02 counts only store-side sessions.</li>
     </ul>
   </footer>
 
