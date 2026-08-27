@@ -1,0 +1,764 @@
+<title>The Link Budget</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;500;600;700&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+  :root {
+    --ground:    #f6f7fa;
+    --surface:   #ffffff;
+    --surface-2: #eef1f7;
+    --ink:       #131a2b;
+    --ink-soft:  #59637a;
+    --ink-faint: #8b95ab;
+    --accent:    #1e40af;
+    --money:     #047857;
+    --money-bg:  #e7f4ee;
+    --warn:      #b45309;
+    --warn-bg:   #fbf1e3;
+    --rule:      #dce2ee;
+    --rule-soft: #e9edf5;
+    --shadow:    0 1px 2px rgba(19,26,43,.05), 0 8px 24px -12px rgba(19,26,43,.18);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:    #0c111d;
+      --surface:   #141b2b;
+      --surface-2: #1b2437;
+      --ink:       #e6eaf4;
+      --ink-soft:  #97a2ba;
+      --ink-faint: #6b7691;
+      --accent:    #7da2f0;
+      --money:     #34d399;
+      --money-bg:  #122b25;
+      --warn:      #e0a45c;
+      --warn-bg:   #2c2214;
+      --rule:      #26304a;
+      --rule-soft: #1d2639;
+      --shadow:    0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground:    #0c111d;
+    --surface:   #141b2b;
+    --surface-2: #1b2437;
+    --ink:       #e6eaf4;
+    --ink-soft:  #97a2ba;
+    --ink-faint: #6b7691;
+    --accent:    #7da2f0;
+    --money:     #34d399;
+    --money-bg:  #122b25;
+    --warn:      #e0a45c;
+    --warn-bg:   #2c2214;
+    --rule:      #26304a;
+    --rule-soft: #1d2639;
+    --shadow:    0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "Source Sans 3", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: 17px;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 940px; margin: 0 auto; padding: 0 28px 96px; }
+  .measure { max-width: 68ch; }
+
+  /* ── masthead ─────────────────────────────── */
+  .masthead {
+    border-bottom: 2px solid var(--ink);
+    padding: 56px 0 20px;
+    margin-bottom: 44px;
+  }
+  .eyebrow {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 11.5px;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 0 0 18px;
+  }
+  h1 {
+    font-family: "Zilla Slab", Georgia, serif;
+    font-weight: 700;
+    font-size: clamp(2.4rem, 6vw, 3.5rem);
+    line-height: 1.04;
+    letter-spacing: -.015em;
+    margin: 0 0 16px;
+    text-wrap: balance;
+  }
+  .standfirst {
+    font-size: 1.16rem;
+    color: var(--ink-soft);
+    margin: 0 0 22px;
+    max-width: 60ch;
+  }
+  .meta {
+    display: flex; flex-wrap: wrap; gap: 10px 26px;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 12px; color: var(--ink-faint);
+    padding-top: 6px;
+  }
+  .meta b { color: var(--ink-soft); font-weight: 500; }
+
+  /* ── sections ─────────────────────────────── */
+  section { margin: 0 0 60px; }
+  h2 {
+    font-family: "Zilla Slab", Georgia, serif;
+    font-size: 1.62rem; font-weight: 600;
+    letter-spacing: -.01em;
+    margin: 0 0 6px; text-wrap: balance;
+    display: flex; align-items: baseline; gap: 13px;
+  }
+  h2 .num {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: .72rem; font-weight: 500;
+    color: var(--accent);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 3px 7px;
+    flex: none;
+  }
+  h3 {
+    font-family: "Source Sans 3", sans-serif;
+    font-size: 1.02rem; font-weight: 700;
+    margin: 32px 0 8px; color: var(--ink);
+  }
+  .sub {
+    color: var(--ink-soft); font-size: .95rem;
+    margin: 0 0 26px; padding-bottom: 16px;
+    border-bottom: 1px solid var(--rule-soft);
+    max-width: 68ch;
+  }
+  p { margin: 0 0 16px; max-width: 68ch; }
+  strong { font-weight: 700; }
+  code {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: .855em;
+    background: var(--surface-2);
+    border-radius: 3px;
+    padding: .1em .38em;
+    color: var(--ink);
+    word-break: break-word;
+  }
+
+  /* ── the link budget ──────────────────────── */
+  .budget {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 30px 32px 26px;
+    box-shadow: var(--shadow);
+    margin: 0 0 26px;
+  }
+  .budget-head {
+    display: flex; flex-wrap: wrap;
+    justify-content: space-between; align-items: baseline;
+    gap: 8px 20px; margin-bottom: 20px;
+  }
+  .budget-title {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 11.5px; letter-spacing: .11em;
+    text-transform: uppercase; color: var(--ink-faint);
+  }
+  .budget-count {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 12px; color: var(--ink-soft);
+    font-variant-numeric: tabular-nums;
+  }
+  .marks { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 22px; }
+  .mark {
+    width: 30px; height: 42px;
+    border-radius: 3px;
+    background: var(--surface-2);
+    border: 1px solid var(--rule);
+  }
+  .mark.money {
+    background: var(--money);
+    border-color: var(--money);
+    position: relative;
+    box-shadow: 0 0 0 4px var(--money-bg);
+  }
+  .budget-legend {
+    display: flex; flex-wrap: wrap; gap: 12px 28px;
+    padding-top: 18px; border-top: 1px solid var(--rule-soft);
+  }
+  .leg { display: flex; align-items: center; gap: 9px; font-size: .9rem; }
+  .swatch { width: 13px; height: 13px; border-radius: 2px; flex: none; }
+  .swatch.home  { background: var(--surface-2); border: 1px solid var(--rule); }
+  .swatch.money { background: var(--money); }
+  .leg b { font-family: "IBM Plex Mono", monospace; font-variant-numeric: tabular-nums; }
+
+  /* ── tables ───────────────────────────────── */
+  .tw { overflow-x: auto; margin: 0 0 20px; }
+  table {
+    width: 100%; border-collapse: collapse;
+    font-size: .945rem; min-width: 460px;
+  }
+  th {
+    text-align: left;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 10.5px; font-weight: 500;
+    letter-spacing: .1em; text-transform: uppercase;
+    color: var(--ink-faint);
+    padding: 0 14px 9px 0;
+    border-bottom: 1px solid var(--rule);
+    white-space: nowrap;
+  }
+  td {
+    padding: 12px 14px 12px 0;
+    border-bottom: 1px solid var(--rule-soft);
+    vertical-align: baseline;
+  }
+  th.n, td.n { text-align: right; font-variant-numeric: tabular-nums; padding-right: 0; }
+  td.n { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+  tr.hi td { background: var(--money-bg); }
+  tr.hi td:first-child { box-shadow: inset 3px 0 0 var(--money); padding-left: 12px; }
+  .note { color: var(--ink-soft); font-size: .88rem; }
+
+  /* ── callout ──────────────────────────────── */
+  .callout {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 7px 7px 0;
+    padding: 22px 26px;
+    margin: 0 0 24px;
+  }
+  .callout.money-c { border-left-color: var(--money); }
+  .callout.warn-c  { border-left-color: var(--warn); }
+  .callout p:last-child { margin-bottom: 0; }
+  .callout .label {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 10.5px; letter-spacing: .11em; text-transform: uppercase;
+    color: var(--ink-faint); display: block; margin-bottom: 9px;
+  }
+
+  /* ── stat row ─────────────────────────────── */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(168px, 1fr));
+    gap: 14px; margin: 0 0 26px;
+  }
+  .stat {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 7px;
+    padding: 18px 20px;
+  }
+  .stat .v {
+    font-family: "Zilla Slab", Georgia, serif;
+    font-size: 2.05rem; font-weight: 600; line-height: 1.05;
+    font-variant-numeric: tabular-nums;
+    display: block; margin-bottom: 5px;
+  }
+  .stat.is-money .v { color: var(--money); }
+  .stat.is-warn  .v { color: var(--warn); }
+  .stat .k {
+    font-size: .845rem; color: var(--ink-soft); display: block;
+  }
+
+  /* ── pipeline / order list ────────────────── */
+  .flow {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: .8rem; line-height: 2.15;
+    background: var(--surface-2);
+    border: 1px solid var(--rule);
+    border-radius: 7px;
+    padding: 16px 20px; margin: 0 0 22px;
+    overflow-x: auto;
+  }
+  .flow .cta   { color: var(--warn); font-weight: 600; }
+  .flow .new   { color: var(--money); font-weight: 600; }
+  .flow .dim   { color: var(--ink-faint); }
+
+  ol.steps, ul.plain { padding-left: 0; list-style: none; margin: 0 0 20px; }
+  ol.steps { counter-reset: s; }
+  ol.steps > li {
+    counter-increment: s;
+    position: relative;
+    padding-left: 38px;
+    margin-bottom: 16px;
+    max-width: 66ch;
+  }
+  ol.steps > li::before {
+    content: counter(s);
+    position: absolute; left: 0; top: 1px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: .72rem; font-weight: 600;
+    color: var(--accent);
+    border: 1px solid var(--rule);
+    border-radius: 50%;
+    width: 24px; height: 24px;
+    display: grid; place-items: center;
+  }
+  ul.plain > li {
+    position: relative; padding-left: 20px;
+    margin-bottom: 10px; max-width: 66ch;
+  }
+  ul.plain > li::before {
+    content: ""; position: absolute; left: 2px; top: .62em;
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--ink-faint);
+  }
+
+  /* ── decisions ────────────────────────────── */
+  .memo {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0 20px;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 7px;
+    padding: 20px 24px;
+    margin-bottom: 12px;
+  }
+  .memo .tag {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 10.5px; font-weight: 600; letter-spacing: .08em;
+    color: var(--surface); background: var(--accent);
+    border-radius: 3px; padding: 4px 8px;
+    height: fit-content; white-space: nowrap;
+  }
+  .memo .q { font-weight: 700; margin: 0 0 6px; }
+  .memo .a { margin: 0; color: var(--ink-soft); font-size: .945rem; }
+  .memo .a b { color: var(--money); font-weight: 700; }
+
+  /* ── footer ───────────────────────────────── */
+  .prov {
+    border-top: 1px solid var(--rule);
+    padding-top: 26px; margin-top: 68px;
+    font-size: .87rem; color: var(--ink-soft);
+  }
+  .prov h2 { font-size: 1.05rem; margin-bottom: 14px; }
+  .prov ul.plain > li { margin-bottom: 7px; }
+
+  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:focus-visible, .mark:focus-visible {
+    outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+  @media (max-width: 620px) {
+    body { font-size: 16px; }
+    .wrap { padding: 0 18px 72px; }
+    .budget { padding: 22px 20px 20px; }
+    .mark { width: 26px; height: 36px; }
+    .memo { grid-template-columns: 1fr; gap: 12px; }
+    .memo .tag { justify-self: start; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="eyebrow">Work Aged Leads · Email Strategy Session</p>
+    <h1>The Link Budget</h1>
+    <p class="standfirst">
+      The newsletter already out-earns the website per unit of effort. It spends
+      twenty of its twenty-one links sending readers home.
+    </p>
+    <div class="meta">
+      <span><b>Session</b> 2026-08-27</span>
+      <span><b>Goal</b> make email the #1 affiliate channel</span>
+      <span><b>Scoreboard</b> sessions into agedleadstore.com</span>
+    </div>
+  </header>
+
+  <!-- ══ 1 ══ -->
+  <section>
+    <h2><span class="num">01</span>The finding</h2>
+    <p class="sub">
+      Every issue is built from the same template. Here is where its links go.
+    </p>
+
+    <div class="budget">
+      <div class="budget-head">
+        <span class="budget-title">Links in one issue</span>
+        <span class="budget-count">21 total &nbsp;·&nbsp; 2026-08-10 and 2026-08-17, identical</span>
+      </div>
+      <div class="marks" role="img" aria-label="Twenty-one link marks: twenty point back to workagedleads.com, one points to the store.">
+        <span class="mark"></span><span class="mark"></span><span class="mark"></span>
+        <span class="mark"></span><span class="mark"></span><span class="mark"></span>
+        <span class="mark"></span><span class="mark"></span><span class="mark"></span>
+        <span class="mark"></span><span class="mark"></span><span class="mark"></span>
+        <span class="mark"></span><span class="mark"></span><span class="mark"></span>
+        <span class="mark"></span><span class="mark"></span><span class="mark"></span>
+        <span class="mark"></span><span class="mark"></span>
+        <span class="mark money"></span>
+      </div>
+      <div class="budget-legend">
+        <span class="leg"><span class="swatch home"></span><b>20</b>&nbsp;back to workagedleads.com</span>
+        <span class="leg"><span class="swatch money"></span><b>1</b>&nbsp;to agedleadstore.com — generic catalogue, 79% page depth</span>
+      </div>
+    </div>
+
+    <p>
+      The one store link points at <code>/all-lead-types/</code>, the full
+      catalogue, and sits at line 190 of a 241-line template — after six
+      sections that all point back to our own site. Meanwhile
+      <code>lib/affiliate.ts</code> maps <strong>15 store buy pages</strong> by
+      lead type. The newsletter uses <strong>none</strong> of them.
+    </p>
+    <p>
+      This is not a traffic problem. It is a placement problem, and it is
+      fixable in one file.
+    </p>
+  </section>
+
+  <!-- ══ 2 ══ -->
+  <section>
+    <h2><span class="num">02</span>What one send is worth</h2>
+    <p class="sub">
+      GA4 property <code>357329146</code>, 2026-06-01 → 2026-08-26 (87 days).
+      Sessions arriving at agedleadstore.com.
+    </p>
+
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th>Channel</th>
+            <th class="n">Sessions</th>
+            <th class="n">Per month</th>
+            <th>Note</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Site link-outs</td>
+            <td class="n">440</td>
+            <td class="n">154</td>
+            <td class="note">The entire website, all pages</td>
+          </tr>
+          <tr>
+            <td>Lifecycle drip</td>
+            <td class="n">91</td>
+            <td class="n">32</td>
+            <td class="note">Daily cron, per-contact journeys</td>
+          </tr>
+          <tr class="hi">
+            <td><strong>Weekly newsletter</strong></td>
+            <td class="n"><strong>17</strong></td>
+            <td class="n">—</td>
+            <td class="note"><strong>One single send</strong>, 2026-08-12</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout money-c">
+      <span class="label">The number that matters</span>
+      <p>
+        One email produced <strong>17 sessions</strong>. The whole website
+        produces <strong>5.1 per day</strong>. That single send was worth
+        roughly <strong>3.3 days of total site output</strong> — from one
+        buried, generic link.
+      </p>
+    </div>
+
+    <p>
+      Email is already the highest-leverage channel we have. It is simply being
+      run as a content newsletter rather than a revenue one.
+    </p>
+
+    <div class="callout warn-c">
+      <span class="label">Excluded on purpose</span>
+      <p>
+        A fourth row, <code>agedleadstore / email / registration_no_order</code>,
+        shows 130 sessions. That is Aged Lead Store mailing <em>its own</em>
+        registrants — Troy's traffic, not a channel we operate. Counting it
+        would overstate our contribution by about 30%.
+      </p>
+    </div>
+  </section>
+
+  <!-- ══ 3 ══ -->
+  <section>
+    <h2><span class="num">03</span>What has to be true to win</h2>
+    <p class="sub">
+      To be the #1 channel, the newsletter has to beat 154 sessions/month.
+    </p>
+
+    <div class="stats">
+      <div class="stat">
+        <span class="v">17</span>
+        <span class="k">Sessions per send, today</span>
+      </div>
+      <div class="stat is-money">
+        <span class="v">36</span>
+        <span class="k">Sessions per send needed</span>
+      </div>
+      <div class="stat is-warn">
+        <span class="v">2.1&times;</span>
+        <span class="k">The required lift</span>
+      </div>
+      <div class="stat is-money">
+        <span class="v">188</span>
+        <span class="k">Email per month, if hit</span>
+      </div>
+    </div>
+
+    <p>
+      Weekly sends at today's yield give <strong>74/month</strong> — already
+      half the entire website's output. Getting to 36 per send puts the
+      newsletter at 156/month; add the lifecycle drip's 32 and email reaches
+      <strong>188/month against the site's 154</strong>. Email becomes the #1
+      channel.
+    </p>
+
+    <h3>The 2.1× is not a guess — the site already proves it</h3>
+    <p>
+      The same audience, on our own domain, responds to banner placements far
+      more than to inline text links:
+    </p>
+
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th>Site placement</th>
+            <th class="n">Sessions (87d)</th>
+            <th>Form</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="hi">
+            <td><code>cta-banner</code></td>
+            <td class="n">209</td>
+            <td class="note">Standalone banner block</td>
+          </tr>
+          <tr>
+            <td><code>blog-post</code></td>
+            <td class="n">88</td>
+            <td class="note">Inline text links in body copy</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>
+      Banners outperform inline links by <strong>2.4×</strong> on-domain. The
+      newsletter currently has <strong>zero</strong> banner placements above 79%
+      depth. We are asking the email to do what the site already knows how to do.
+    </p>
+  </section>
+
+  <!-- ══ 4 ══ -->
+  <section>
+    <h2><span class="num">04</span>The CTA architecture</h2>
+    <p class="sub">
+      One file: <code>lib/cron/newsletter-email.ts</code>. Three placements
+      instead of one.
+    </p>
+
+    <h3>Today</h3>
+    <div class="flow">
+      Header → Intro → Featured Article → Quick Tips → Industry Insight<br>
+      &nbsp;&nbsp;→ This Week on the Blog → Flagship Playbook Strip → <span class="cta">[STORE CTA]</span> → Closing → Footer
+    </div>
+
+    <h3>Proposed</h3>
+    <div class="flow">
+      Header → Intro → <span class="new">[STORE CTA — above the fold]</span> → Featured Article → Quick Tips<br>
+      &nbsp;&nbsp;→ Industry Insight → This Week on the Blog → <span class="new">[VERTICAL SELF-SELECT STRIP]</span><br>
+      &nbsp;&nbsp;→ <span class="cta">[STORE CTA]</span> → Closing → Footer
+    </div>
+
+    <ol class="steps">
+      <li>
+        <strong>Above the fold.</strong> A store CTA immediately after the
+        intro. The reader who opens, skims, and leaves currently never sees a
+        store link at all.
+      </li>
+      <li>
+        <strong>Vertical self-select strip.</strong> Replace the generic
+        catalogue link with four lead-type deep links built from
+        <code>storeCategoryPath()</code>. The reader picks their own vertical.
+        This displaces the Flagship Playbook Strip, which currently occupies
+        prime real estate at 66% depth with three buttons pointing at our own
+        site.
+      </li>
+      <li>
+        <strong>Closing CTA.</strong> Keep the existing one, where it is.
+      </li>
+    </ol>
+
+    <div class="callout">
+      <span class="label">Recommendation — don't segment the list</span>
+      <p>
+        The audience is 2,584: Purchasers (~1,038), Inquiries (~1,267),
+        newsletter-only (~226), store self-serve (~71). Genuinely different
+        intents, and the instinct is to split the send.
+      </p>
+      <p>
+        <strong>Don't.</strong> The lifecycle drip already segments
+        behaviourally; splitting the broadcast multiplies the approval burden on
+        the one step that has already failed twice; and a self-select strip
+        recovers most of the deep-link upside at a fraction of the operational
+        cost. This keeps the standing "one unsegmented send" decision intact
+        rather than reversing it. Revisit only after the CTA change has been
+        measured.
+      </p>
+    </div>
+  </section>
+
+  <!-- ══ 5 ══ -->
+  <section>
+    <h2><span class="num">05</span>Three attribution defects</h2>
+    <p class="sub">
+      Two of these would have made the change look like it did nothing.
+    </p>
+
+    <h3>a. The success check reads the wrong row</h3>
+    <p>
+      The standing plan says to measure by comparing
+      <code>workagedleads / affiliate</code> against the 5.6/day baseline. But
+      newsletter clicks land under <code>workagedleads / <strong>email</strong></code>.
+      That check would show zero newsletter impact forever, no matter how well
+      the newsletter performed.
+    </p>
+
+    <h3>b. <code>utm_content</code> carries the date, not the placement</h3>
+    <p>
+      Today it is <code>utm_content=2026-08-10</code> — which tells you
+      <em>which issue</em>, never <em>which link</em>. With three placements you
+      could not tell which one earned the click. Fix:
+      <code>utm_content={date}-{placement}</code>, giving
+      <code>2026-08-10-hero</code>, <code>2026-08-10-vertical-mortgage</code>,
+      <code>2026-08-10-footer</code>. Keeps issue-level rollup, adds
+      placement-level truth.
+    </p>
+
+    <h3>c. Resend exposes no engagement data through its API</h3>
+    <p>
+      The broadcast endpoint returns no <code>delivered</code>,
+      <code>opened</code>, or <code>clicked</code> fields — open and click rates
+      exist only in the Resend dashboard. GA4 store sessions are therefore the
+      only programmatically verifiable measure of newsletter performance. Treat
+      the GA4 row as the scoreboard and dashboard opens as context.
+    </p>
+  </section>
+
+  <!-- ══ 6 ══ -->
+  <section>
+    <h2><span class="num">06</span>The repeatable process</h2>
+    <p class="sub">
+      The design is sound. The execution has failed twice, both times at the
+      same step.
+    </p>
+
+    <ul class="plain">
+      <li><strong>2026-08-10</strong> — drafted 08-10, sent 08-12. Two days late.</li>
+      <li><strong>2026-08-17</strong> — drafted 08-16, never sent, retired 08-27.</li>
+    </ul>
+
+    <p>
+      The Sunday cron drafts and previews correctly. The weak link is the manual
+      send: no deadline, no reminder, no signal when an issue is sitting in
+      limbo. An archived draft looks sendable forever — only the date ages.
+    </p>
+
+    <ol class="steps">
+      <li>
+        <strong>A <code>killed</code> flag with a refusal guard.</strong>
+        Shipped this session. <code>scripts/send-newsletter.ts</code> now exits
+        1 on a retired issue, so no one can revive it by reaching for the newest
+        archive file.
+      </li>
+      <li>
+        <strong>An expiry line in the preview email.</strong> "Send by Wednesday
+        or this issue retires." A draft with no deadline is a draft that rots.
+      </li>
+      <li>
+        <strong>A <code>newsletter:status</code> check.</strong> Report any
+        archive that is neither sent nor killed, wired into the existing
+        health-check, so limbo is visible rather than silent.
+      </li>
+    </ol>
+  </section>
+
+  <!-- ══ 7 ══ -->
+  <section>
+    <h2><span class="num">07</span>Decisions</h2>
+    <p class="sub">Five calls. Recommendations attached to each.</p>
+
+    <div class="memo">
+      <span class="tag">MEMO 1</span>
+      <div>
+        <p class="q">Three CTA placements, or keep one?</p>
+        <p class="a"><b>Three.</b> This is the 2.1× lever — everything else in this document is downstream of it.</p>
+      </div>
+    </div>
+    <div class="memo">
+      <span class="tag">MEMO 2</span>
+      <div>
+        <p class="q">Vertical self-select strip, or segmented sends?</p>
+        <p class="a"><b>Self-select.</b> Keeps one send and preserves the standing decision.</p>
+      </div>
+    </div>
+    <div class="memo">
+      <span class="tag">MEMO 3</span>
+      <div>
+        <p class="q">Which four verticals go in the strip?</p>
+        <p class="a">Mortgage, final expense, auto, legal — but this should follow <b>Troy's current inventory</b>, not our guess. Worth one message to him.</p>
+      </div>
+    </div>
+    <div class="memo">
+      <span class="tag">MEMO 4</span>
+      <div>
+        <p class="q">Displace the Flagship Playbook Strip?</p>
+        <p class="a"><b>Yes.</b> It is prime real estate at 66% depth pointing at our own site.</p>
+      </div>
+    </div>
+    <div class="memo">
+      <span class="tag">MEMO 5</span>
+      <div>
+        <p class="q">Hold the weekly cadence?</p>
+        <p class="a"><b>Weekly.</b> The arithmetic in section 03 assumes it.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 8 ══ -->
+  <section>
+    <h2><span class="num">08</span>The one input we don't have</h2>
+    <p class="sub">Stated plainly, because it changes what "#1" means.</p>
+
+    <div class="callout warn-c">
+      <p>
+        Ranking channels by <strong>revenue</strong> rather than
+        <strong>sessions</strong> requires revenue per referred store session —
+        conversion rate and commission. That number is not in GA4, not in the
+        repo, and not in any system readable from here. Every figure in this
+        document is denominated in sessions because that is the honest unit
+        available.
+      </p>
+      <p>
+        <strong>Phase 0: get effective revenue per referred session from
+        Troy.</strong> Until then, "the #1 affiliate revenue channel" is being
+        measured by its best available proxy rather than by revenue itself.
+      </p>
+    </div>
+  </section>
+
+  <footer class="prov">
+    <h2>Provenance</h2>
+    <ul class="plain">
+      <li>Channel figures — GA4 property <code>357329146</code>, 2026-06-01 → 2026-08-26, dimensions <code>sessionSource</code> / <code>sessionMedium</code> / <code>sessionCampaignName</code>.</li>
+      <li>Link counts — <code>grep -oE 'href="[^"]+"'</code> over <code>data/newsletter-archive/2026-08-{10,17}.html</code>.</li>
+      <li>CTA depth — <code>lib/cron/newsletter-email.ts</code>, CTA block at line 190 of 241.</li>
+      <li>Store buy-page map — <code>lib/affiliate.ts</code>, <code>STORE_CATEGORY_PATHS</code>, 15 entries.</li>
+      <li>Audience size — <code>npm run newsletter:migrate</code>, 2026-08-27: 2,677 total / 2,584 sendable / 93 unsubscribed.</li>
+      <li>Not measurable — <code>workagedleads.com</code> GA4 (<code>528489903</code>) returned 403 to this service account, so clicks <em>into the site</em> from email could not be counted. That is the open GA4-access loop, and it is why section 02 counts only store-side sessions.</li>
+    </ul>
+  </footer>
+
+</div>

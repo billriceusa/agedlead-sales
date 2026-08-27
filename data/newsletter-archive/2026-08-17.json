@@ -8,6 +8,9 @@
   "previewText": "Labor Day is your deadline. Here's how to get leads dial-ready before the fall rush.",
   "html": "2026-08-17.html",
   "sent": false,
+  "killed": true,
+  "killedAt": "2026-08-27",
+  "killedReason": "Retired unsent by Bill, 2026-08-27. Stale — the subject pitched an August cleanup and would have landed in the last days of August. Structurally unmonetised: 21 links, 20 of them back to workagedleads.com, and the single agedleadstore.com link was the generic /all-lead-types/ catalogue at 79% page depth. Superseded by the CTA architecture in data/loop/newsletter-strategy.md.",
   "featuredArticle": {
     "title": "How to Work Aged Leads: The Complete System for Maximum ROI",
     "slug": "how-to-work-aged-leads-the-complete-system-for-maximum-roi",

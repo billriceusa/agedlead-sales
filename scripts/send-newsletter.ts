@@ -54,6 +54,9 @@ interface ArchivedIssue {
   sent?: boolean;
   sentAt?: string;
   broadcastId?: string;
+  killed?: boolean;
+  killedAt?: string;
+  killedReason?: string;
 }
 
 function flag(args: string[], name: string): string | undefined {
@@ -84,6 +87,20 @@ async function main() {
 
   const issue = JSON.parse(readFileSync(jsonPath, "utf8")) as ArchivedIssue;
   const html = readFileSync(htmlPath, "utf8");
+
+  // A retired issue. Distinct from `sent`: this one never went out and never
+  // should. An archived draft looks sendable forever — the date is the only
+  // thing that ages, and nothing in the file records that a human read it and
+  // said no. Without this flag the natural recovery from "which issue do I
+  // send?" is to reach for the newest archive, which is exactly the mistake.
+  if (issue.killed) {
+    console.error(
+      `Issue ${date} was retired${issue.killedAt ? ` on ${issue.killedAt.slice(0, 10)}` : ""} and must not be sent.\n` +
+        `${issue.killedReason ? `Reason: ${issue.killedReason}\n` : ""}` +
+        `Draft a new issue rather than reviving this one.`,
+    );
+    process.exit(1);
+  }
 
   // Idempotence. Resend will happily create a second broadcast over the same
   // audience, and the subscribers are the ones who notice.
