@@ -16,6 +16,8 @@
     "newsletter:send": "tsx scripts/send-newsletter.ts",
     "als:sync-suppression": "tsx scripts/sync-als-suppression.ts",
     "price-index:gap": "tsx scripts/price-index-gap.ts",
+    "price-index:worksheet": "tsx scripts/price-index-worksheet.ts",
+    "price-index:import": "tsx scripts/price-index-import.ts",
     "loop:check": "tsx scripts/check-loop-ledger.ts"
   },
   "dependencies": {
