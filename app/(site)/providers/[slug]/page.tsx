@@ -18,6 +18,7 @@ import { getProvider, PROVIDERS } from "@/data/providers";
 import { getVertical } from "@/data/verticals";
 import { leadTypeForVertical } from "@/data/lead-type-vertical-map";
 import { ProviderCompareSelector } from "@/components/provider-compare-selector";
+import { TrackedInternalLink } from "@/components/tracked-internal-link";
 import { TrackedOutboundLink } from "@/components/tracked-outbound-link";
 import { providerWebsiteUrl, isAffiliateProvider } from "@/lib/provider-links";
 
@@ -293,7 +294,44 @@ export default async function ProviderProfilePage({
               <p className="mt-5 max-w-2xl text-lg leading-relaxed text-zinc-300">
                 {p.shortDescription}
               </p>
+              {/*
+                Iteration 3 (Click Loop) — provider-profile leak recovery.
+
+                Every provider profile rendered one above-the-fold action:
+                "Visit Website". On the 14 non-affiliate profiles that action is
+                an unmonetized exit, and it was the site's largest single source
+                of leakage — 61 of 130 outbound clicks in the 2026-08-18 reading
+                went to competitor domains (datatoleads 10, leadsdata 10,
+                smartfinancial 7, ileads 6), against 69 affiliate clicks.
+
+                The monetized alternative already existed and was buried: all 14
+                `aged-lead-store-vs-*` head-to-heads are built and in the
+                sitemap, but the only crawlable link to them sat in RelatedLinks
+                at the very bottom of this 559-line page. The hero's other
+                control, ProviderCompareSelector, is a <select> + router.push()
+                that emits no <a href> and takes two interactions.
+
+                So this is a wiring fix, not a demand bet — same class as
+                iteration 1. The competitor link is NOT removed or hidden:
+                editorial integrity on a review site is the asset, and a review
+                that won't link to its subject reads as captured. It is demoted
+                from sole action to secondary action.
+
+                The affiliate profile keeps its hero exactly as it was — there
+                "Visit Website" IS the money action and converts at 43.33%.
+              */}
               <div className="mt-8 flex flex-wrap items-center gap-3">
+                {!isAffiliateProvider(p.slug) && (
+                  <TrackedInternalLink
+                    href={`/compare/${["aged-lead-store", p.slug].sort().join("-vs-")}`}
+                    ctaId={`compare-vs-als-${p.slug}`}
+                    ctaLocation="provider-profile-hero"
+                    className="inline-flex items-center gap-1.5 rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
+                  >
+                    Compare with Aged Lead Store
+                    <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+                  </TrackedInternalLink>
+                )}
                 {p.website && (
                   <TrackedOutboundLink
                     href={providerWebsiteUrl(p.website, {
