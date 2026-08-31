@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-08-30T12:00:05.357Z",
+  "lastUpdated": "2026-08-31T12:00:05.466Z",
   "snapshots": [
     {
       "date": "2026-07-10",
@@ -9836,6 +9836,316 @@
           "impressions": 1,
           "ctr": 0,
           "position": 67
+        }
+      ]
+    },
+    {
+      "date": "2026-08-31",
+      "property": "agedleadsales",
+      "status": "ok",
+      "rolling7d": {
+        "clicks": 39,
+        "impressions": 4866,
+        "ctr": 0.008,
+        "position": 20.15
+      },
+      "topPages": [
+        {
+          "page": "https://agedleadsales.com/blog/aged-lead-store-review-2026",
+          "clicks": 4,
+          "impressions": 288,
+          "ctr": 0.0139,
+          "position": 4.96
+        },
+        {
+          "page": "https://agedleadsales.com/lead-types/insurance-leads",
+          "clicks": 4,
+          "impressions": 555,
+          "ctr": 0.0072,
+          "position": 19.59
+        },
+        {
+          "page": "https://agedleadsales.com/",
+          "clicks": 3,
+          "impressions": 107,
+          "ctr": 0.028,
+          "position": 23.8
+        },
+        {
+          "page": "https://agedleadsales.com/lead-types/iul-leads",
+          "clicks": 3,
+          "impressions": 87,
+          "ctr": 0.0345,
+          "position": 14.82
+        },
+        {
+          "page": "https://agedleadsales.com/lead-types/mortgage-leads",
+          "clicks": 3,
+          "impressions": 244,
+          "ctr": 0.0123,
+          "position": 35.16
+        },
+        {
+          "page": "https://agedleadsales.com/blog/iul-leads-financial-advisors-playbook",
+          "clicks": 2,
+          "impressions": 95,
+          "ctr": 0.0211,
+          "position": 9.31
+        },
+        {
+          "page": "https://agedleadsales.com/lead-types/final-expense-leads",
+          "clicks": 2,
+          "impressions": 362,
+          "ctr": 0.0055,
+          "position": 16.25
+        },
+        {
+          "page": "https://agedleadsales.com/lead-types/mva-leads",
+          "clicks": 2,
+          "impressions": 166,
+          "ctr": 0.012,
+          "position": 19.19
+        },
+        {
+          "page": "https://www.agedleadsales.com/providers/lead-heroes",
+          "clicks": 2,
+          "impressions": 149,
+          "ctr": 0.0134,
+          "position": 6.78
+        },
+        {
+          "page": "https://agedleadsales.com/blog/aged-leads-vs-real-time-leads-cost-comparison",
+          "clicks": 1,
+          "impressions": 9,
+          "ctr": 0.1111,
+          "position": 5.89
+        }
+      ],
+      "topQueries": [
+        {
+          "query": "iul leads",
+          "clicks": 2,
+          "impressions": 45,
+          "ctr": 0.0444,
+          "position": 15.27
+        },
+        {
+          "query": "aged insurance leads",
+          "clicks": 1,
+          "impressions": 50,
+          "ctr": 0.02,
+          "position": 13.56
+        },
+        {
+          "query": "aged iul leads",
+          "clicks": 1,
+          "impressions": 6,
+          "ctr": 0.1667,
+          "position": 4.67
+        },
+        {
+          "query": "aged medicare leads",
+          "clicks": 1,
+          "impressions": 11,
+          "ctr": 0.0909,
+          "position": 15.91
+        },
+        {
+          "query": "aged solar leads",
+          "clicks": 1,
+          "impressions": 16,
+          "ctr": 0.0625,
+          "position": 12.56
+        },
+        {
+          "query": "agedleadstore",
+          "clicks": 1,
+          "impressions": 50,
+          "ctr": 0.02,
+          "position": 8.22
+        },
+        {
+          "query": "lead heroes",
+          "clicks": 1,
+          "impressions": 41,
+          "ctr": 0.0244,
+          "position": 7.02
+        },
+        {
+          "query": "the leads warehouse reviews",
+          "clicks": 1,
+          "impressions": 6,
+          "ctr": 0.1667,
+          "position": 1.5
+        },
+        {
+          "query": "40. non-compliance management workflow",
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 60.5
+        },
+        {
+          "query": "accident leads",
+          "clicks": 0,
+          "impressions": 4,
+          "ctr": 0,
+          "position": 26
+        }
+      ]
+    },
+    {
+      "date": "2026-08-31",
+      "property": "workagedleads",
+      "status": "ok",
+      "rolling7d": {
+        "clicks": 1,
+        "impressions": 407,
+        "ctr": 0.0025,
+        "position": 67.17
+      },
+      "topPages": [
+        {
+          "page": "https://workagedleads.com/blog",
+          "clicks": 1,
+          "impressions": 6,
+          "ctr": 0.1667,
+          "position": 5.83
+        },
+        {
+          "page": "https://workagedleads.com/blog/aged-lead-industry-statistics",
+          "clicks": 0,
+          "impressions": 6,
+          "ctr": 0,
+          "position": 4
+        },
+        {
+          "page": "https://workagedleads.com/blog/how-to-work-iul-leads",
+          "clicks": 0,
+          "impressions": 15,
+          "ctr": 0,
+          "position": 40.47
+        },
+        {
+          "page": "https://workagedleads.com/blog/how-to-work-landscaping-leads",
+          "clicks": 0,
+          "impressions": 10,
+          "ctr": 0,
+          "position": 53.1
+        },
+        {
+          "page": "https://workagedleads.com/blog/how-to-work-mva-leads",
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 22
+        },
+        {
+          "page": "https://workagedleads.com/blog/lead-velocity-optimization-guide",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 9
+        },
+        {
+          "page": "https://workagedleads.com/glossary/cost-per-acquisition",
+          "clicks": 0,
+          "impressions": 15,
+          "ctr": 0,
+          "position": 85
+        },
+        {
+          "page": "https://workagedleads.com/lead-types/insurance-leads",
+          "clicks": 0,
+          "impressions": 4,
+          "ctr": 0,
+          "position": 68.5
+        },
+        {
+          "page": "https://workagedleads.com/lead-types/iul-leads",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 81
+        },
+        {
+          "page": "https://workagedleads.com/lead-types/life-insurance-leads",
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 62.33
+        }
+      ],
+      "topQueries": [
+        {
+          "query": "affordable health insurance leads",
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 85
+        },
+        {
+          "query": "aged final expense leads",
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 30.67
+        },
+        {
+          "query": "aged medical insurance leads provider",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 33
+        },
+        {
+          "query": "aged medicare leads",
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 29.33
+        },
+        {
+          "query": "aged medicare supplement leads",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 11
+        },
+        {
+          "query": "best burial insurance leads",
+          "clicks": 0,
+          "impressions": 6,
+          "ctr": 0,
+          "position": 82.33
+        },
+        {
+          "query": "best exclusive health insurance leads",
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 87.5
+        },
+        {
+          "query": "best final expense leads",
+          "clicks": 0,
+          "impressions": 11,
+          "ctr": 0,
+          "position": 52.27
+        },
+        {
+          "query": "best final expense leads for telesales",
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 65.5
+        },
+        {
+          "query": "best final expense leads spanish",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 38
         }
       ]
     }
