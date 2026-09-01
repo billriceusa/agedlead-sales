@@ -71,35 +71,38 @@
       "measured": {
         "at2w": {
           "readAt": "2026-09-01",
-          "window": "2026-08-19 to 2026-08-31 (13d), vs 2026-08-05 to 2026-08-17 (13d)",
-          "source": "GA4 357329146, sessionMedium=affiliate by sessionManualAdContent",
-          "heroDoorSessions": 41,
-          "affiliateSessionsPre": 49,
-          "affiliateSessionsPost": 54,
-          "netSessions": 5,
-          "netPerMonth": 11.5,
-          "expectedPerMonth": 25,
-          "displacedPlacements": {
-            "primary": [
-              19,
-              3
-            ],
-            "visit-website-hero": [
-              17,
-              2
-            ],
-            "inline-text": [
-              10,
-              1
-            ]
+          "correctionOf": "An earlier reading the same day concluded 'redistribution, not creation' and set the verdict to do-not-extend. That was wrong, and it was wrong for a specific reason worth recording: it measured ONLY store-side sessions, because the site-side denominator was believed unreadable after GA4 528489903 returned 403. The 403 is real but it only affects the local MCP's OAuth identity. Production reads that exact property fine through the WIF service account brsg-analytics-reader@brsg-mcp, and the site's own /api/reports/outbound-clicks endpoint serves the per-page views and clicks. The denominator was one authenticated request away the whole time.",
+          "siteSide": {
+            "source": "GET https://workagedleads.com/api/reports/outbound-clicks (GA4 528489903, last 30d)",
+            "targetPages": "/lead-types/{mortgage,insurance,final-expense,iul}-leads",
+            "baselineViews": 629,
+            "baselineClicks": 6,
+            "baselineRate": 0.0095,
+            "measuredViews": 304,
+            "measuredClicks": 22,
+            "measuredRate": 0.0724,
+            "allLeadTypes": {
+              "views": 536,
+              "clicks": 42,
+              "rate": 0.0784
+            },
+            "siteWideAffiliateClicks30d": 86,
+            "priorSiteWideAffiliateClicks30d": 69
           },
-          "note": "hero-door took 41 of 54 post-window affiliate sessions, but the three placements it sits above fell from 46 to 6. Net movement is +5 sessions over 13 days (~+11/mo) against a predicted +25/mo. This is REDISTRIBUTION, not creation: the door captures the click higher on the page rather than producing an additional one.",
-          "limit": "Site-side GA4 (528489903) still returns 403 to this service account, so lead-type pageviews - the denominator - could not be read. If site traffic FELL in the post window (plausible mid-crawl-transition), the same clicks from fewer visitors would be a genuine click-rate gain. Direction is unknown, so the 5% conversion hypothesis is neither confirmed nor refuted. Resolving the 403 is what makes iteration 2 conclusively measurable."
+          "storeSide": {
+            "source": "GA4 357329146, sessionMedium=affiliate, 13d post vs 13d pre",
+            "heroDoorSessions": 41,
+            "affiliateSessionsPre": 49,
+            "affiliateSessionsPost": 54
+          },
+          "note": "The hypothesis was that a hero door would lift conversion on lead-type pages from 0.95% to ~5%. Measured 7.24% on the four target pages - the bet BEAT its own conservative case. Critically, absolute clicks rose 6 -> 22 while views FELL 629 -> 304, so this is not a shrinking-denominator artifact: the pages did more with half the traffic. Site-wide affiliate clicks rose 69 -> 86 (+25%) over the same collapse.",
+          "theTension": "Site-side clicks rose 25% but store-side sessions rose only 10% (49 -> 54). Two scoreboards, two answers. Commission is computed store-side, so the store number is the one that pays - but the site number is the one that isolates whether a design change worked. Track both and never quote one as the other. Part of the gap is the provider page giving back share: 39 clicks / 43.33% before, 28 clicks / 35.44% now.",
+          "theRealHeadline": "Lead-type page views fell 629 -> 304 in two weeks, a >50% traffic collapse, which is the crawl transition still biting. Conversion work is now clearly succeeding on a shrinking base. That does not argue against more conversion work; it argues that conversion alone cannot outrun the traffic loss."
         },
         "at8w": null
       },
       "verdict": "keep",
-      "notes": "Both hero buttons on these pages were internal (/compare, /price-index), so the site's highest-traffic commercial pages had no affiliate path above the fold. The mid-page CtaBanner also passes buttonHref, which sets useAffiliate=false — it is an internal compare link sitting exactly where intent peaks. Added a deep-linked door as the primary hero action; compare and pricing keep their position as secondary. Deep links verified per page: mortgage-leads -> /mortgage-leads-purchase-refinance/, final-expense-leads -> /life-insurance-leads/. insurance-leads correctly falls back to /all-lead-types/ — the partner has no generic-insurance buy page and that mapping is deliberate (lib/affiliate.ts, confirmed by Bill 2026-08-06). Destinations re-verified: 200, zero redirects, real buy pages ('Aged Mortgage Leads', 'Buy Aged Life Insurance Leads for Agents — From $0.25'). rel=nofollow sponsored and disclosure present on every instance. Measure via utm_content=hero-door. MEASURED 2026-09-01: keep the door (earlier capture is strictly safer than a buried CTA, and it costs nothing), but do NOT roll this pattern onto more pages expecting +25/mo each. The read across iterations 1 and 2 together is that this site's binding constraint is D, not C - more doors mostly reshuffle the same clicks. Spend the next iterations on creating visitors, not re-routing them."
+      "notes": "Both hero buttons on these pages were internal (/compare, /price-index), so the site's highest-traffic commercial pages had no affiliate path above the fold. The mid-page CtaBanner also passes buttonHref, which sets useAffiliate=false — it is an internal compare link sitting exactly where intent peaks. Added a deep-linked door as the primary hero action; compare and pricing keep their position as secondary. Deep links verified per page: mortgage-leads -> /mortgage-leads-purchase-refinance/, final-expense-leads -> /life-insurance-leads/. insurance-leads correctly falls back to /all-lead-types/ — the partner has no generic-insurance buy page and that mapping is deliberate (lib/affiliate.ts, confirmed by Bill 2026-08-06). Destinations re-verified: 200, zero redirects, real buy pages ('Aged Mortgage Leads', 'Buy Aged Life Insurance Leads for Agents — From $0.25'). rel=nofollow sponsored and disclosure present on every instance. Measure via utm_content=hero-door. MEASURED 2026-09-01 (corrected): the door WORKED and beat its own hypothesis - 0.95% -> 7.24% on the four target pages, 6 -> 22 absolute clicks against a halving of traffic. An earlier same-day reading called it redistribution and said do-not-extend; that read used store-side sessions only, because the site-side denominator was wrongly believed unreadable. Extending the pattern to other commercial page types is now justified on evidence. Keep measuring at the STORE for revenue and at the SITE for design effect - the two moved 10% and 25% respectively over the same window."
     }
   ],
   "scoreboardReadings": [
@@ -184,13 +187,73 @@
       "priorWindowDailyAvg": 3.77,
       "milestoneTarget": 15,
       "note": "4.15/day against a 15/day milestone. Newsletter contribution in this window was ZERO (workagedleads/email = 0 sessions post vs 16 pre) - the list has been dark since the 2026-08-12 send, so the entire measured figure comes from organic site traffic alone."
+    },
+    {
+      "readAt": "2026-09-01T15:00:00Z",
+      "window": "last30d",
+      "source": "GET /api/reports/outbound-clicks — the same series as the 2026-08-18 reading, so these two ARE comparable to each other",
+      "totalOutboundClicks": 149,
+      "affiliateClicks": 86,
+      "affiliateDailyAvg": 2.87,
+      "leakageClicks": 63,
+      "priorReading": {
+        "affiliateClicks": 69,
+        "affiliateDailyAvg": 2.3,
+        "leakageClicks": 61,
+        "readAt": "2026-08-18"
+      },
+      "note": "Affiliate clicks 69 -> 86 (+25%) and daily average 2.30 -> 2.87 in 14 days, achieved while lead-type page traffic more than halved. Leakage flat at 61 -> 63, so the gain is not recaptured leakage. Still well under the 15/day milestone, and the gap is now demonstrably a traffic gap rather than a conversion gap.",
+      "topPages": [
+        {
+          "path": "/providers/aged-lead-store",
+          "clicks": 28,
+          "views": 79,
+          "clickRate": 0.3544
+        },
+        {
+          "path": "/lead-types/final-expense-leads",
+          "clicks": 7,
+          "views": 66,
+          "clickRate": 0.1061
+        },
+        {
+          "path": "/lead-types/life-insurance-leads",
+          "clicks": 7,
+          "views": 32,
+          "clickRate": 0.2188
+        },
+        {
+          "path": "/lead-types/insurance-leads",
+          "clicks": 6,
+          "views": 80,
+          "clickRate": 0.075
+        },
+        {
+          "path": "/lead-types",
+          "clicks": 5,
+          "views": 112,
+          "clickRate": 0.0446
+        },
+        {
+          "path": "/lead-types/mortgage-leads",
+          "clicks": 5,
+          "views": 74,
+          "clickRate": 0.0676
+        },
+        {
+          "path": "/lead-types/iul-leads",
+          "clicks": 4,
+          "views": 84,
+          "clickRate": 0.0476
+        }
+      ]
     }
   ],
   "nextPick": {
     "iteration": 3,
     "engine": "demand",
     "candidate": "Weekly newsletter on the three-CTA template (shipped fc11fa2, unsent)",
-    "rationale": "Iterations 1 and 2 both tested conversion (C) on existing traffic. Iteration 1 returned zero; iteration 2 returned +5 sessions net and mostly moved clicks around. Two independent reads say C is not where the headroom is - D is. Email is the only lever that creates visitors without waiting on the stalled crawl: the single 2026-08-12 send produced 17 sessions, and workagedleads/email measured exactly 0 in this window because nothing was mailed. The template now carries 12 store links against 9 site links with the first at 20% page depth.",
+    "rationale": "Iteration 1 returned zero and is killed. Iteration 2 succeeded on conversion - 0.95% -> 7.24%, beating its 5% case - but site-wide affiliate clicks still sit at 2.87/day against a 15/day milestone, because lead-type page views more than HALVED (629 -> 304) over the same fortnight. Conversion is no longer the binding constraint; traffic is. Email is the only lever that creates visitors without waiting on the stalled crawl: the single 2026-08-12 send produced 17 sessions, and workagedleads/email measured exactly 0 in the last window because nothing was mailed. The 2026-08-31 issue is drafted and seed-verified on the new template - 12 store links against 17 site links, first at 17% page depth.",
     "expected": {
       "D": 2584,
       "P": null,
@@ -199,9 +262,9 @@
       "basis": "17 sessions on the old one-link template x 4.3 sends/mo = 74/mo at parity, before any lift from the CTA rebuild. That alone would roughly double the 4.15/day site figure. Treat 17/send as the floor, since it was measured on a template with a single store link at 79% page depth."
     },
     "alsoConsidered": [
-      "Resolving the 528489903 GA4 403. Not an iteration - it produces no clicks - but it is the reason iteration 2's verdict has to stay 'partial'. Every future C-side experiment is unmeasurable without it.",
-      "Rolling hero-door onto more page types. Explicitly NOT recommended on this evidence: the measured effect was redistribution, so replicating it would buy far less than the +25/mo the model assumed.",
-      "Leakage recapture (61 of 130 outbound clicks). Unchanged from iteration 2's assessment, and still off-limits as removal - those links are what make the reviews independent."
+      "Extend the hero door to other commercial page types. NOW JUSTIFIED - the earlier same-day note saying do-not-extend was based on a mis-measurement and is withdrawn. Ranked below the newsletter only because the door multiplies traffic the site is currently losing, while the newsletter supplies traffic that does not depend on the crawl.",
+      "GSC Change of Address for agedleadsales.com -> workagedleads.com. Bill-only, UI-only, and on this evidence the single highest-leverage action available: the traffic collapse is the crawl stall, and this is the lever built to fix exactly that.",
+      "Leakage recapture (63 of 149 outbound clicks). Flat since the last reading and still off-limits as removal - those links are what make the reviews independent."
     ]
   },
   "kills": [
