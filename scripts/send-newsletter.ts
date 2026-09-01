@@ -40,6 +40,7 @@ import {
   sendSingleEmail,
   REPLY_TO_EMAIL,
 } from "../lib/resend";
+import { checkIssueHtml } from "../lib/newsletter/issue-gate";
 
 const ARCHIVE_DIR = join(process.cwd(), "data", "newsletter-archive");
 
@@ -112,6 +113,31 @@ async function main() {
     );
     process.exit(1);
   }
+
+  // Re-read the bytes about to be mailed, rather than trusting whatever ran
+  // when they were written.
+  //
+  // This is the gate that would have stopped 2026-08-10, which quoted "$0.30"
+  // and "Aged leads from $0.25" and went to the list on 2026-08-12 under
+  // broadcast a830c99a. The price guard existed at the time; it was wired into
+  // the draft script, and this issue came from the cron. Checking at the moment
+  // of transmission is the only check that covers every archive regardless of
+  // which path produced it — including hand-edited files and everything
+  // archived before the guard was written.
+  //
+  // Seeds are gated too. "Let me just send myself the bad one" is how a gate
+  // stops being a gate.
+  const gate = checkIssueHtml(html);
+  if (!gate.ok) {
+    console.error(`Refusing to send ${date}.\n\n${gate.reason}\n`);
+    console.error(
+      `This issue is already archived, so fixing the copy means editing\n` +
+        `  ${htmlPath}\n` +
+        `directly, or retiring it (set "killed": true) and drafting a new one.`,
+    );
+    process.exit(1);
+  }
+  for (const w of gate.warnings) console.warn(`Warning: ${w}`);
 
   const apiKey = (process.env.RESEND_API_KEY || "").trim();
   const audienceId = (process.env.RESEND_AUDIENCE_ID || "").trim();

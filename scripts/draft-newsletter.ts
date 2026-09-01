@@ -48,7 +48,7 @@ import {
   type NewsletterContent,
 } from "../lib/cron/newsletter-ai";
 import { buildNewsletterHtml } from "../lib/cron/newsletter-email";
-import { scanForPriceClaims, priceClaimError } from "../lib/newsletter/price-guard";
+import { checkIssueHtml } from "../lib/newsletter/issue-gate";
 
 const ARCHIVE_DIR = join(process.cwd(), "data", "newsletter-archive");
 
@@ -109,17 +109,19 @@ async function fetchRecentPosts(): Promise<RecentPost[]> {
   );
 }
 
+/**
+ * Delegates to the shared gate so this script, the Sunday cron and the sender
+ * all apply the same policy. It used to hold its own copy of the check — which
+ * is how the cron came to have none at all.
+ */
 function assertNoLeadPriceClaim(html: string): void {
-  const { blocking, warnings } = scanForPriceClaims(html);
-  if (blocking.length > 0) {
-    console.error(`\nRefusing to archive: ${priceClaimError(blocking)}`);
+  const gate = checkIssueHtml(html);
+  if (!gate.ok) {
+    console.error(`\nRefusing to archive: ${gate.reason}`);
     process.exit(1);
   }
-  if (warnings.length > 0) {
-    console.warn(
-      `Note: dollar amounts present (${warnings.join(", ")}). ` +
-        `Allowed only as sourced fresh-lead costs — eyeball them in the seed copy.`,
-    );
+  for (const w of gate.warnings) {
+    console.warn(`Note: ${w}`);
   }
 }
 
