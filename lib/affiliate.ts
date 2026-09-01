@@ -4,6 +4,31 @@ const AFFILIATE_BASE_URL = "https://agedleadstore.com";
 const UTM_SOURCE = AFFILIATE_UTM_SOURCE;
 const UTM_MEDIUM = "affiliate";
 
+/** The monetized host. Every click here pays; every other outbound host does not. */
+export const AFFILIATE_DOMAIN = "agedleadstore.com";
+
+/**
+ * True for the monetized host and any subdomain of it.
+ *
+ * The partner sells across two hosts: on-site CTAs built here link to the apex
+ * `agedleadstore.com`, while the newsletter's vertical strip
+ * (`lib/newsletter/store-links.ts`) deep-links to
+ * `store.agedleadstore.com/{segment}/leads`. GA4 reports those as two different
+ * `linkDomain` values.
+ *
+ * Anything comparing a reported domain against the affiliate host must use this
+ * rather than `===`. An exact comparison gets both halves of the scoreboard
+ * wrong in the same direction it is measured: storefront clicks drop out of the
+ * affiliate total, and — because leakage is defined as "every domain that is not
+ * the affiliate domain" — those same clicks get counted as leakage to a
+ * competitor. CLICK-LOOP.md fires a flag condition when leakage exceeds the
+ * affiliate total, so the bug could raise an alarm *because* the newsletter was
+ * working.
+ */
+export function isAffiliateDomain(domain: string): boolean {
+  return domain === AFFILIATE_DOMAIN || domain.endsWith(`.${AFFILIATE_DOMAIN}`);
+}
+
 interface AffiliateLink {
   path?: string;
   campaign: string;
