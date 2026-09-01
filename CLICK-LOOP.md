@@ -2,7 +2,8 @@
 
 **Created:** 2026-08-18
 **Supersedes:** the consolidation-recovery workstream in `data/migration/MIGRATION-PLAN.md`
-(cutover complete 2026-08-03; Change of Address is unavailable — see "Why we stopped waiting").
+(cutover complete 2026-08-03; Change of Address failed through August and was finally filed
+successfully 2026-09-01 for both old domains — see "Why we stopped waiting", now partly superseded).
 **Status:** proposed, awaiting Bill's go on Iteration 0.
 
 ---
@@ -30,6 +31,14 @@ The consolidation is mechanically correct — 20/20 top old URLs single-hop 301 
 exact mapped counterparts. But Google has not recrawled them (top pages last crawled
 2026-07-31, 07-06, 07-02 — all before the Aug 3 cutover), and **Change of Address errors
 out**, so the accelerator that exists for precisely this situation is not available to us.
+
+> **Update 2026-09-01 — the accelerator is now in place.** Bill re-filed and both moves passed
+> validation; `workagedleads.com` lists `agedleadsales.com` and `howtoworkleads.com` as moving
+> sites. The paragraph above stands as the reasoning that was correct at the time, and the loop
+> below is deliberately *not* being rewritten around this: CoA prioritizes recrawl, it does not
+> deliver clicks on a schedule we control, and a strategy that only works if Google cooperates is
+> the one this document was written to replace. Measure on 2026-09-15 (baseline in `BACKLOG.md`);
+> until it demonstrably moves the new domain off position 65, plan as if it had not been filed.
 
 The redirects stay in place and the transfer will complete on Google's schedule. We stop
 spending effort on it. `sc-domain:workagedleads.com` is already onboarding on its own
@@ -287,7 +296,12 @@ Interrupt Bill mid-cycle only for these:
 
 - **Tracking and attribution.** In place and working. Untouched. The one exception is
   Iteration 0 item 2, which changes a report query, not instrumentation.
-- **Further Change-of-Address attempts.** Confirmed dead. Redirects stay; we stop pushing.
+- **Further Change-of-Address attempts.** ~~Confirmed dead.~~ **Resolved 2026-09-01** — Bill
+  re-filed and both passed. `workagedleads.com` now shows `agedleadsales.com` and
+  `howtoworkleads.com` as moving sites. Nothing further to push; the open item is measuring it on
+  2026-09-15 (baseline in `BACKLOG.md`). Everything below was designed to produce clicks *without*
+  this, and that stays true — CoA prioritizes recrawl, it does not deliver traffic on a schedule
+  we control.
 - **Lifecycle email journeys**, send caps, and the `news.workagedleads.com` sender —
   working, untouched.
 - **Blog volume as a growth strategy.** 76 posts, 34 clicks. The archive gets maintained
