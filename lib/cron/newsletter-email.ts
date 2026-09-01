@@ -205,7 +205,14 @@ export function buildNewsletterHtml(
               ? `
           <tr>
             <td style="padding: 0 32px 32px;">
-              <h2 style="margin: 0 0 12px 0; font-size: 18px; color: #111827;">This Week on the Blog</h2>
+              <!-- "From the Blog", not "This Week on the Blog". The digest is
+                   the ten most recent Sanity posts, whatever their age — on
+                   2026-08-31 the newest was 2026-08-01 and the oldest listed
+                   was 2026-07-11, so a "this week" header was simply false and
+                   would have been false in every issue during any publishing
+                   gap. The header must stay true without anyone remembering to
+                   check the publish dates. -->
+              <h2 style="margin: 0 0 12px 0; font-size: 18px; color: #111827;">From the Blog</h2>
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
                 ${digestHtml}
               </table>
