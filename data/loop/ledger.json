@@ -22,7 +22,10 @@
       "asset": "scoreboard + ledger + price-index research brief",
       "targetCluster": null,
       "expected": null,
-      "measured": { "at2w": null, "at8w": null },
+      "measured": {
+        "at2w": null,
+        "at8w": null
+      },
       "verdict": "n/a",
       "notes": "Per-page affiliate attribution added to /api/reports/outbound-clicks (affiliate.byPage30d, clickRate, leakage). Ledger created. scripts/price-index-gap.ts generates the Q3 study brief. Newsletter restart was found already complete and running — the 2026-08-10 issue sent 2026-08-12 as broadcast a830c99a."
     },
@@ -39,9 +42,18 @@
         "clicksPerMonth": null,
         "basis": "No prior estimate possible — the page had zero affiliate links, so its C was structurally 0 and any traffic it earned converted at 0. This is a wiring fix, not a demand bet. First real expected-value scores start at iteration 2, once affiliate.byPage30d has data."
       },
-      "measured": { "at2w": null, "at8w": null },
-      "verdict": "pending",
-      "notes": "Site's most-cited asset (CiteThisButton, Dataset JSON-LD, CC-licensed) had no route to a purchase — every outbound link was internal. Added InlineTextCta after the pricing tables and a compact CtaBanner after the economics section. Two placements not three: a reference page that reads as a sales pitch stops being cited. UTM content values after-pricing / after-economics distinguish the placements. Verified in built HTML; destination returns 200 with a browser UA (bot-blocked for curl default). Page's lastUpdated is still 2026-04-08 — that is the Q3 study's job, not this one."
+      "measured": {
+        "at2w": {
+          "readAt": "2026-09-01",
+          "window": "2026-08-19 to 2026-08-31 (13d), vs 2026-08-05 to 2026-08-17 (13d)",
+          "source": "GA4 357329146, sessionManualAdContent",
+          "sessions": 0,
+          "note": "Neither after-pricing nor after-economics appears in GA4 at all. Verified this is real absence and not a key mismatch: app/(site)/blog/aged-lead-industry-statistics/page.tsx:227 passes content=\"after-pricing\" and :563 passes affiliateContent=\"after-economics\", so the values would have been emitted had anyone clicked."
+        },
+        "at8w": null
+      },
+      "verdict": "kill",
+      "notes": "Site's most-cited asset (CiteThisButton, Dataset JSON-LD, CC-licensed) had no route to a purchase — every outbound link was internal. Added InlineTextCta after the pricing tables and a compact CtaBanner after the economics section. Two placements not three: a reference page that reads as a sales pitch stops being cited. UTM content values after-pricing / after-economics distinguish the placements. Verified in built HTML; destination returns 200 with a browser UA (bot-blocked for curl default). Page's lastUpdated is still 2026-04-08 — that is the Q3 study's job, not this one. MEASURED 2026-09-01: zero sessions from both placements in 13 days. The page earns citations, not purchases — its readers are researchers looking for a number to quote, not buyers. Do not add a third placement; the constraint is audience intent, not CTA count."
     },
     {
       "iteration": 2,
@@ -56,9 +68,38 @@
         "clicksPerMonth": 31,
         "basis": "629 views/mo across the top four lead-type pages converting at ~0.95% today. Modelling C at 5% — 8x below the provider page's measured 43.33% — gives ~31 clicks vs 6, i.e. +25/mo on a 69-click base. A hypothesis to test, not a forecast: intent on a guide page is genuinely lower than on a provider review, and the gap will not fully close."
       },
-      "measured": { "at2w": null, "at8w": null },
-      "verdict": "pending",
-      "notes": "Both hero buttons on these pages were internal (/compare, /price-index), so the site's highest-traffic commercial pages had no affiliate path above the fold. The mid-page CtaBanner also passes buttonHref, which sets useAffiliate=false — it is an internal compare link sitting exactly where intent peaks. Added a deep-linked door as the primary hero action; compare and pricing keep their position as secondary. Deep links verified per page: mortgage-leads -> /mortgage-leads-purchase-refinance/, final-expense-leads -> /life-insurance-leads/. insurance-leads correctly falls back to /all-lead-types/ — the partner has no generic-insurance buy page and that mapping is deliberate (lib/affiliate.ts, confirmed by Bill 2026-08-06). Destinations re-verified: 200, zero redirects, real buy pages ('Aged Mortgage Leads', 'Buy Aged Life Insurance Leads for Agents — From $0.25'). rel=nofollow sponsored and disclosure present on every instance. Measure via utm_content=hero-door."
+      "measured": {
+        "at2w": {
+          "readAt": "2026-09-01",
+          "window": "2026-08-19 to 2026-08-31 (13d), vs 2026-08-05 to 2026-08-17 (13d)",
+          "source": "GA4 357329146, sessionMedium=affiliate by sessionManualAdContent",
+          "heroDoorSessions": 41,
+          "affiliateSessionsPre": 49,
+          "affiliateSessionsPost": 54,
+          "netSessions": 5,
+          "netPerMonth": 11.5,
+          "expectedPerMonth": 25,
+          "displacedPlacements": {
+            "primary": [
+              19,
+              3
+            ],
+            "visit-website-hero": [
+              17,
+              2
+            ],
+            "inline-text": [
+              10,
+              1
+            ]
+          },
+          "note": "hero-door took 41 of 54 post-window affiliate sessions, but the three placements it sits above fell from 46 to 6. Net movement is +5 sessions over 13 days (~+11/mo) against a predicted +25/mo. This is REDISTRIBUTION, not creation: the door captures the click higher on the page rather than producing an additional one.",
+          "limit": "Site-side GA4 (528489903) still returns 403 to this service account, so lead-type pageviews - the denominator - could not be read. If site traffic FELL in the post window (plausible mid-crawl-transition), the same clicks from fewer visitors would be a genuine click-rate gain. Direction is unknown, so the 5% conversion hypothesis is neither confirmed nor refuted. Resolving the 403 is what makes iteration 2 conclusively measurable."
+        },
+        "at8w": null
+      },
+      "verdict": "keep",
+      "notes": "Both hero buttons on these pages were internal (/compare, /price-index), so the site's highest-traffic commercial pages had no affiliate path above the fold. The mid-page CtaBanner also passes buttonHref, which sets useAffiliate=false — it is an internal compare link sitting exactly where intent peaks. Added a deep-linked door as the primary hero action; compare and pricing keep their position as secondary. Deep links verified per page: mortgage-leads -> /mortgage-leads-purchase-refinance/, final-expense-leads -> /life-insurance-leads/. insurance-leads correctly falls back to /all-lead-types/ — the partner has no generic-insurance buy page and that mapping is deliberate (lib/affiliate.ts, confirmed by Bill 2026-08-06). Destinations re-verified: 200, zero redirects, real buy pages ('Aged Mortgage Leads', 'Buy Aged Life Insurance Leads for Agents — From $0.25'). rel=nofollow sponsored and disclosure present on every instance. Measure via utm_content=hero-door. MEASURED 2026-09-01: keep the door (earlier capture is strictly safer than a buried CTA, and it costs nothing), but do NOT roll this pattern onto more pages expecting +25/mo each. The read across iterations 1 and 2 together is that this site's binding constraint is D, not C - more doors mostly reshuffle the same clicks. Spend the next iterations on creating visitors, not re-routing them."
     }
   ],
   "scoreboardReadings": [
@@ -71,39 +112,104 @@
       "leakageClicks": 61,
       "note": "First reading from the per-page attribution built in iteration 0. Affiliate daily average of 2.30 is BELOW the 3/day flag threshold in CLICK-LOOP.md — but this counts GA4 outbound click events, while the 5.4/day baseline counts sessions arriving at agedleadstore.com. Different denominators; do not read one as a decline against the other. Trend this series against itself going forward.",
       "topPages": [
-        { "path": "/providers/aged-lead-store", "clicks": 39, "views": 90, "clickRate": 0.4333 },
-        { "path": "/start-here", "clicks": 4, "views": 98, "clickRate": 0.0408 },
-        { "path": "/blog/aged-lead-store-review-2026", "clicks": 2, "views": 20, "clickRate": 0.1 },
-        { "path": "/lead-types/mortgage-leads", "clicks": 2, "views": 150, "clickRate": 0.0133 },
-        { "path": "/lead-types", "clicks": 2, "views": 159, "clickRate": 0.0126 },
-        { "path": "/lead-types/insurance-leads", "clicks": 1, "views": 161, "clickRate": 0.0062 },
-        { "path": "/lead-types/final-expense-leads", "clicks": 1, "views": 159, "clickRate": 0.0063 }
+        {
+          "path": "/providers/aged-lead-store",
+          "clicks": 39,
+          "views": 90,
+          "clickRate": 0.4333
+        },
+        {
+          "path": "/start-here",
+          "clicks": 4,
+          "views": 98,
+          "clickRate": 0.0408
+        },
+        {
+          "path": "/blog/aged-lead-store-review-2026",
+          "clicks": 2,
+          "views": 20,
+          "clickRate": 0.1
+        },
+        {
+          "path": "/lead-types/mortgage-leads",
+          "clicks": 2,
+          "views": 150,
+          "clickRate": 0.0133
+        },
+        {
+          "path": "/lead-types",
+          "clicks": 2,
+          "views": 159,
+          "clickRate": 0.0126
+        },
+        {
+          "path": "/lead-types/insurance-leads",
+          "clicks": 1,
+          "views": 161,
+          "clickRate": 0.0062
+        },
+        {
+          "path": "/lead-types/final-expense-leads",
+          "clicks": 1,
+          "views": 159,
+          "clickRate": 0.0063
+        }
       ],
       "leakageTop": [
-        { "domain": "datatoleads.com", "clicks": 10 },
-        { "domain": "leadsdata.com", "clicks": 10 },
-        { "domain": "smartfinancial.com", "clicks": 7 },
-        { "domain": "ileads.com", "clicks": 6 }
+        {
+          "domain": "datatoleads.com",
+          "clicks": 10
+        },
+        {
+          "domain": "leadsdata.com",
+          "clicks": 10
+        },
+        {
+          "domain": "smartfinancial.com",
+          "clicks": 7
+        },
+        {
+          "domain": "ileads.com",
+          "clicks": 6
+        }
       ]
+    },
+    {
+      "readAt": "2026-09-01T00:00:00Z",
+      "window": "2026-08-19 to 2026-08-31 (13d)",
+      "source": "GA4 357329146 (store-side sessions, NOT the site-side click events in the 2026-08-18 reading - different denominators, do not compare the two series)",
+      "affiliateSessions": 54,
+      "affiliateDailyAvg": 4.15,
+      "priorWindowAffiliateSessions": 49,
+      "priorWindowDailyAvg": 3.77,
+      "milestoneTarget": 15,
+      "note": "4.15/day against a 15/day milestone. Newsletter contribution in this window was ZERO (workagedleads/email = 0 sessions post vs 16 pre) - the list has been dark since the 2026-08-12 send, so the entire measured figure comes from organic site traffic alone."
     }
   ],
   "nextPick": {
-    "iteration": 2,
-    "engine": "merchant-intelligence",
-    "candidate": "Above-the-fold, deep-linked affiliate door on /lead-types/[slug] and /lead-types",
-    "rationale": "The scoreboard separates D from C cleanly. /providers/aged-lead-store converts at 43.33% on 90 views and supplies 39 of 69 affiliate clicks. The four biggest lead-type pages carry 629 views but convert at ~0.95%. They are not short of CTAs — they already render three (two CtaBanner, one InlineTextCta) versus the provider page's one. What the provider page has and they lack is a prominent outbound door above the fold ('Visit Website' hero, providers/[slug]/page.tsx:297). Intent is also higher there, so the gap will not fully close.",
+    "iteration": 3,
+    "engine": "demand",
+    "candidate": "Weekly newsletter on the three-CTA template (shipped fc11fa2, unsent)",
+    "rationale": "Iterations 1 and 2 both tested conversion (C) on existing traffic. Iteration 1 returned zero; iteration 2 returned +5 sessions net and mostly moved clicks around. Two independent reads say C is not where the headroom is - D is. Email is the only lever that creates visitors without waiting on the stalled crawl: the single 2026-08-12 send produced 17 sessions, and workagedleads/email measured exactly 0 in this window because nothing was mailed. The template now carries 12 store links against 9 site links with the first at 20% page depth.",
     "expected": {
-      "D": 629,
+      "D": 2584,
       "P": null,
-      "C": 0.05,
-      "clicksPerMonth": 31,
-      "basis": "629 views/mo on the top four lead-type pages. Modelling C at 5% — still 8x below the provider page's measured 43% — yields ~31 clicks vs 6 today, i.e. +25/mo against a 69-click base (+36%). Deliberately conservative; treat 5% as the hypothesis to test, not a forecast."
+      "C": null,
+      "clicksPerMonth": 74,
+      "basis": "17 sessions on the old one-link template x 4.3 sends/mo = 74/mo at parity, before any lift from the CTA rebuild. That alone would roughly double the 4.15/day site figure. Treat 17/send as the floor, since it was measured on a template with a single store link at 79% page depth."
     },
     "alsoConsidered": [
-      "Leakage recapture: 61 of 130 outbound clicks (47%) go to the 14 non-monetized hosts, mostly via the same 'Visit Website' hero on competitor profile pages. NOT a candidate for removal — those links are what make the reviews independent, and pruning link-out endpoints is explicitly off-limits. The defensible version is offering the ALS alternative alongside, where the benchmark data supports it.",
-      "Price-index pages convert well (life-insurance 8.33%, medicare 12.50%, auto-insurance 10.00%) on almost no traffic (8-24 views). High C, no D. Fixing that is a traffic problem, which is what the Q3 study and its nine trend charts address.",
-      "Comparison pages draw ~2 views each despite being indexed. Not worth investment until they earn impressions."
+      "Resolving the 528489903 GA4 403. Not an iteration - it produces no clicks - but it is the reason iteration 2's verdict has to stay 'partial'. Every future C-side experiment is unmeasurable without it.",
+      "Rolling hero-door onto more page types. Explicitly NOT recommended on this evidence: the measured effect was redistribution, so replicating it would buy far less than the +25/mo the model assumed.",
+      "Leakage recapture (61 of 130 outbound clicks). Unchanged from iteration 2's assessment, and still off-limits as removal - those links are what make the reviews independent."
     ]
   },
-  "kills": []
+  "kills": [
+    {
+      "iteration": 1,
+      "asset": "/blog/aged-lead-industry-statistics affiliate CTAs",
+      "killedOn": "2026-09-01",
+      "reason": "Zero sessions from after-pricing and after-economics in 13 days. Killing the BET, not the code: the two placements stay (they cost nothing and do not harm citation value), but the statistics page is retired as a monetization target. Its readers want a number to quote, not leads to buy."
+    }
+  ]
 }
