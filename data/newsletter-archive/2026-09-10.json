@@ -8,7 +8,9 @@
   "subject": "Where I actually restock before Q4",
   "previewText": "Nine verticals, one link each. Pick yours — or ignore this one.",
   "html": "2026-09-10.html",
-  "sent": false,
+  "sent": true,
   "draftedBy": "scripts/draft-offer-email.ts",
-  "errors": []
+  "errors": [],
+  "sentAt": "2026-09-02T15:17:23.500Z",
+  "broadcastId": "b1f22965-89da-4150-8162-ce3b25d7eb6d"
 }
