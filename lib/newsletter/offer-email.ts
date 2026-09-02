@@ -25,8 +25,35 @@ import { STORE_VERTICALS, storeUrl, catalogueUrl } from "./store-links";
  * line and never open it. That is the design, not a shortcoming: an offer that
  * is easy to ignore is what keeps the newsletter worth opening.
  *
+ * POSITIONING — THE READER'S PIPELINE, NOT BILL'S HABITS
+ *
+ * The first version of this email opened with "the question I get more than any
+ * other is where I actually buy", and then "I buy from Aged Lead Store". Both
+ * were invented. **Bill is not currently an active lead buyer** (confirmed
+ * 2026-09-02, after that version had already mailed), so the email asserted a
+ * first-person purchasing habit that does not exist. The repo's AI newsletter
+ * prompt has forbidden fabricated first-person experience for months; this
+ * template is hand-written and so inherited none of it — the same shape as the
+ * price guard that lived on the draft path and not the send path.
+ *
+ * The correct frame is the reader's, not Bill's. The audience is salespeople
+ * who are hungry for opportunities and need them at a budget they can sustain.
+ * So the argument is: you can only convert what is in front of you, running dry
+ * kills a quarter, and aged leads are affordable enough to buy CONSISTENTLY —
+ * a steady restock you keep making, rather than one big order and nothing after
+ * it. Affordability framed as sustainability, never as "cheap".
+ *
+ * Bill's authority here comes from 25+ years building lead programs and working
+ * millions of leads. It does not come from being a current customer, and the
+ * copy must never borrow that.
+ *
  * DELIBERATELY ABSENT
  *
+ * - **No first-person purchasing claims.** Enforced by test.
+ * - **No paragraph-length affiliate confession.** Disclosure is required and
+ *   stays — one short clause beside the links. The earlier draft gave it a
+ *   whole paragraph, which made the arrangement the subject of the email
+ *   instead of the reader's pipeline. Disclose and move on.
  * - **No prices.** Partner pricing is Troy's to publish and it moves;
  *   `lib/newsletter/issue-gate.ts` blocks a send that quotes one, and it exists
  *   because the 2026-08-10 issue quoted "$0.25" against a real $0.40 floor and
@@ -51,8 +78,8 @@ export interface OfferContent {
 export const OFFER_CAMPAIGN = "direct-offer";
 
 export const OFFER_CONTENT: OfferContent = {
-  subject: "Where I actually restock before Q4",
-  previewText: "Nine verticals, one link each. Pick yours — or ignore this one.",
+  subject: "Don't go into Q4 with a thin pipeline",
+  previewText: "Nine verticals, one link each. Restock what you're short on.",
 };
 
 /**
@@ -87,20 +114,20 @@ export function buildOfferHtml(label: string, siteUrl: string): string {
 
           <tr>
             <td style="background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%); padding: 28px 32px;">
-              <h1 style="margin: 0; color: #ffffff; font-size: 22px; font-weight: 800;">Where I actually restock</h1>
-              <p style="margin: 6px 0 0 0; color: rgba(255,255,255,0.85); font-size: 14px;">One email, one job. Back to the usual Tuesday next week.</p>
+              <h1 style="margin: 0; color: #ffffff; font-size: 22px; font-weight: 800;">Go into Q4 with a full pipeline</h1>
+              <p style="margin: 6px 0 0 0; color: rgba(255,255,255,0.85); font-size: 14px;">Nine verticals — restock whatever you're running short on.</p>
             </td>
           </tr>
 
           <tr>
             <td style="padding: 32px 32px 8px;">
-              <p style="margin: 0 0 16px 0; color: #374151; font-size: 16px; line-height: 1.7;">Q4 is the last real selling window of the year. The people who do well in it walk into October with a pipeline already built, not one they start building in November.</p>
+              <p style="margin: 0 0 16px 0; color: #374151; font-size: 16px; line-height: 1.7;">Q4 is the last real selling window of the year, and the people who do well in it walk into October with a pipeline already built — not one they start building in November.</p>
 
-              <p style="margin: 0 0 16px 0; color: #374151; font-size: 16px; line-height: 1.7;">The question I get more than any other is where I actually buy. So here is the plain answer, with the part most people leave out.</p>
+              <p style="margin: 0 0 16px 0; color: #374151; font-size: 16px; line-height: 1.7;">The thing that quietly kills a quarter is running dry. You can only convert what is actually in front of you, and a month with nothing to call is a month that cannot produce, no matter how good you are on the phone.</p>
 
-              <p style="margin: 0 0 24px 0; color: #374151; font-size: 16px; line-height: 1.7;">I buy from <strong>Aged Lead Store</strong>, and I am an affiliate — if you buy through these links I earn a commission at no extra cost to you. That is exactly why I am telling you before you click rather than in the footer afterward. Everything I have written about how to work these leads stands on its own; you can use all of it and buy nowhere near them.</p>
+              <p style="margin: 0 0 24px 0; color: #374151; font-size: 16px; line-height: 1.7;">That is what aged leads are good for. Not that they are cheap — that they are affordable enough to buy <em>consistently</em>. A steady monthly restock you can actually sustain beats one big order in January and nothing after it, because the return comes from always having opportunities in front of you rather than from any single batch.</p>
 
-              <p style="margin: 0 0 20px 0; color: #111827; font-size: 16px; line-height: 1.7; font-weight: 600;">Pick your vertical and see what is actually in stock right now:</p>
+              <p style="margin: 0 0 20px 0; color: #111827; font-size: 16px; line-height: 1.7; font-weight: 600;">Pick your vertical and see what is in stock right now:</p>
             </td>
           </tr>
 
@@ -114,9 +141,9 @@ export function buildOfferHtml(label: string, siteUrl: string): string {
 
           <tr>
             <td style="padding: 20px 32px 8px;">
-              <p style="margin: 0 0 20px 0; color: #6b7280; font-size: 14px; line-height: 1.6;">Not listed? <a href="${catalogueUrl(label, "catalogue", OFFER_CAMPAIGN)}" style="color: #2563eb; text-decoration: none; font-weight: 600;">Browse everything they carry</a>.</p>
+              <p style="margin: 0 0 20px 0; color: #6b7280; font-size: 14px; line-height: 1.6;">Not listed? <a href="${catalogueUrl(label, "catalogue", OFFER_CAMPAIGN)}" style="color: #2563eb; text-decoration: none; font-weight: 600;">Browse the full catalogue</a>. <span style="color: #9ca3af;">Affiliate links — we may earn a commission at no cost to you.</span></p>
 
-              <p style="margin: 0 0 16px 0; color: #374151; font-size: 16px; line-height: 1.7;">If you would rather run the numbers before you spend anything, the <a href="${siteUrl}/calculators/know-your-cpl?utm_source=newsletter&amp;utm_medium=email&amp;utm_campaign=${OFFER_CAMPAIGN}&amp;utm_content=${label}-calculator" style="color: #2563eb; text-decoration: none; font-weight: 600;">cost-per-lead calculator</a> will tell you what a lead is worth against your own close rate and commission. That one is free and has no link to anybody's store.</p>
+              <p style="margin: 0 0 16px 0; color: #374151; font-size: 16px; line-height: 1.7;">Not sure what you can afford to pay per lead? The <a href="${siteUrl}/calculators/know-your-cpl?utm_source=newsletter&amp;utm_medium=email&amp;utm_campaign=${OFFER_CAMPAIGN}&amp;utm_content=${label}-calculator" style="color: #2563eb; text-decoration: none; font-weight: 600;">cost-per-lead calculator</a> works it out from your own close rate and commission, so you can size a monthly buy you will still be making in March.</p>
 
               <p style="margin: 0 0 4px 0; color: #111827; font-weight: 600; font-size: 16px;">— Bill Rice</p>
             </td>

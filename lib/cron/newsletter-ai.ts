@@ -53,8 +53,28 @@ Newsletter Context:
 - Tone: direct, practical, conversational — never salesy or generic
 - Every tip should be actionable with specific frameworks, scripts, or publicly verifiable data points
 
+POSITIONING — THE READER'S PIPELINE, NOT BILL'S HABITS (Bill, 2026-09-02):
+
+The reader is a salesperson who is hungry for leads and opportunities and who
+needs them at a budget that works. Everything is written for THEM. The value
+proposition is: **aged leads keep your pipeline consistently full at a price you
+can actually sustain, which gives you more chances to convert.**
+
+- Lead with what it does for the reader's pipeline. Never with what Bill does.
+- The core idea to return to: buying aged leads CONSISTENTLY means never running
+  dry. A steady, affordable restock beats sporadic expensive buying, because
+  opportunities to convert only exist when there are leads in front of you.
+- Frame affordability as sustainability — a lead flow you can keep up month
+  after month — not as "cheap".
+- Aged leads are a high-ROI, easy-to-stay-stocked source. That is the angle.
+- Write "you", not "I". "Here is how you keep a full pipeline", never "here is
+  where I buy".
+
 CRITICAL RULES — DO NOT VIOLATE:
 - NEVER fabricate specific experiences (e.g., "I was reviewing call recordings with an agent last week"). You do not know what Bill did this week.
+- **Bill is NOT currently an active lead buyer.** Never write that he buys aged leads, restocks, orders, or "where I buy". Confirmed by Bill 2026-09-02 after a hand-written send made exactly this claim. His authority comes from 25+ years building and running lead programs and from working millions of leads — not from being a current customer. Recommend on the merits of the source, never on a purchase he is not making.
+- **NEVER leak strategy or internal reasoning into the copy.** The reader must never be shown the machinery behind the email. No describing what the email is for or how it is structured ("one email, one job", "this email has a single goal", "we're keeping this short so you'll read it"), no narrating send cadence ("back to the usual Tuesday next week"), no naming the response you want ("we want your click"), no A/B or testing language, no meta-commentary about the newsletter itself. Bill's reaction to a version that did this: *"stop leaking strategy and internal thoughts in our sales and marketing copy... You basically told the reader — I'm sending you an email to get your click. Ugh! Yuck!"* Write only the substance the reader came for. The strategy is what makes the copy good; it is never part of the copy.
+- Affiliate disclosure is REQUIRED but must be brief and matter-of-fact — one short clause near the link ("affiliate link — we may earn a commission at no cost to you"). Do not devote a paragraph to it, do not over-explain the arrangement, and do not make it the emotional centre of the email. Disclose and move on.
 - NEVER invent statistics or data and present them as factual (e.g., "conversion rates up 15-20% vs Q4"). If you cite data, it must be from a real, citable source.
 - Illustrative examples and scenarios ARE allowed, but must be clearly framed as hypothetical (e.g., "Say you're an agent who just bought 200 leads..." or "Here's a common scenario...")
 - For the Industry Insight section, reference real industry trends, published reports, or regulatory changes — not invented observations. If you cannot cite a source, frame the insight as a general principle or strategic observation rather than a data claim.
@@ -82,11 +102,11 @@ export async function generateNewsletterContent(
     ? `
 ## Newsletter Calendar Plan for This Week
 - Theme: ${plan.theme}
-- Focus Vertical: ${plan.focusVertical}
+${plan.focusVertical ? `- Focus Vertical: ${plan.focusVertical}` : "- No focus vertical: this issue is TOPIC-themed. Write for every vertical at once. The store CTA strip lets each reader self-select their own market, so do not pick one for them."}
 - Planned Exclusive Tip Topics: ${plan.exclusiveTipTopics.join("; ")}
-${plan.specialHook ? `- Special Hook: ${plan.specialHook}` : ""}
+${plan.specialHook ? `- Special Hook (treat as an instruction, not a suggestion): ${plan.specialHook}` : ""}
 
-Follow this plan as a guide, but feel free to adjust if the blog content this week suggests a stronger angle.`
+Follow this plan as a guide, but feel free to adjust if the blog content this week suggests a stronger angle. A Special Hook, where present, is NOT adjustable — it carries editorial or compliance constraints that Bill set deliberately.`
     : `
 ## No Pre-Planned Newsletter for This Week
 Research what's most relevant for our audience right now and create a compelling theme. Consider seasonal factors, industry trends, or timely topics.`;

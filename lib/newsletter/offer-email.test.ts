@@ -86,15 +86,79 @@ describe("buildOfferHtml", () => {
     assert.ok(buildOfferHtml(LABEL, SITE).includes("{{{RESEND_UNSUBSCRIBE_URL}}}"));
   });
 
-  test("discloses the affiliate relationship before the first store link", () => {
+  test("makes no first-person claim about buying leads", () => {
+    // Bill is NOT currently an active lead buyer (confirmed 2026-09-02). The
+    // first version of this email said "where I actually buy" and "I buy from
+    // Aged Lead Store" — both invented, and both mailed before anyone caught
+    // it. The AI newsletter prompt has banned fabricated first-person
+    // experience for months; this template is hand-written and inherited none
+    // of that, exactly like the price guard that only ran on the draft path.
     const html = buildOfferHtml(LABEL, SITE);
-    const disclosure = html.indexOf("I am an affiliate");
-    const firstStoreLink = html.indexOf("agedleadstore.com");
-    assert.ok(disclosure > -1, "no affiliate disclosure in body");
+    const claims = [
+      /\bI buy\b/i,
+      /\bI (?:re)?stock\b/i,
+      /\bI order\b/i,
+      /\bI purchase\b/i,
+      /\bwhere I (?:actually )?(?:buy|shop|restock)\b/i,
+      /\bI am an affiliate\b/i,
+      /\bI'm an affiliate\b/i,
+      /\bmy (?:lead )?(?:orders?|buys?|supplier)\b/i,
+    ];
+    for (const re of claims) {
+      assert.equal(re.test(html), false, `first-person purchasing claim matched ${re}`);
+    }
+  });
+
+  test("discloses the affiliate relationship, briefly", () => {
+    // Disclosure is required and must stay. But the earlier draft gave it a
+    // whole paragraph, which made the commission arrangement the subject of
+    // the email instead of the reader's pipeline. Present, short, near the
+    // links — not the emotional centre.
+    const html = buildOfferHtml(LABEL, SITE);
+    assert.match(html, /affiliate link/i, "no affiliate disclosure present");
+    assert.match(html, /at no cost to you/i, "disclosure omits the no-cost clause");
+    const mentions = (html.match(/affiliate/gi) ?? []).length;
     assert.ok(
-      disclosure < firstStoreLink,
-      "disclosure must appear above the first store link, not after it",
+      mentions <= 3,
+      `affiliate mentioned ${mentions} times — disclose once or twice, do not dwell`,
     );
+  });
+
+  test("is written to the reader, not about Bill", () => {
+    // The value proposition is the READER's pipeline. Bill's authority comes
+    // from 25+ years building lead programs, not from being a customer.
+    const html = buildOfferHtml(LABEL, SITE);
+    const body = html.replace(/<[^>]+>/g, " ");
+    const you = (body.match(/\b(?:you|your)\b/gi) ?? []).length;
+    const i = (body.match(/\bI\b/g) ?? []).length;
+    assert.ok(you > i, `reader-centric check: "you" ${you} vs "I" ${i}`);
+  });
+
+  test("leaks no strategy or internal reasoning to the reader", () => {
+    // The subhead once read "One email, one job. Back to the usual Tuesday next
+    // week." — design notes printed at the top of a sales email. Bill: "You
+    // basically told the reader — I'm sending you an email to get your click.
+    // Ugh! Yuck!" The reader must never be shown the machinery.
+    const html = buildOfferHtml(LABEL, SITE);
+    const leaks = [
+      /one email,? one job/i,
+      /\bthis email (?:is|has|does|exists)/i,
+      /\bback to the usual\b/i,
+      /\b(?:we|I) (?:want|need) (?:your|a) click/i,
+      /\bcall.to.action\b/i,
+      /\bwe(?:'re| are) testing\b/i,
+      /\bour (?:strategy|goal|objective) (?:here|with this)/i,
+      /\bkeeping this short so\b/i,
+      /\bthe (?:point|purpose) of this email\b/i,
+    ];
+    for (const re of leaks) {
+      assert.equal(re.test(html), false, `strategy leak matched ${re}`);
+    }
+  });
+
+  test("makes the consistency argument, not a cheapness argument", () => {
+    const html = buildOfferHtml(LABEL, SITE);
+    assert.match(html, /consistent|steady|sustain/i, "missing the consistency framing");
   });
 
   test("has a subject and preview text", () => {
