@@ -18,5 +18,8 @@
     "The Scheduling Link Consent Hack"
   ],
   "industryInsight": "Solar Installation Peak Season Impact",
-  "errors": []
+  "errors": [],
+  "killed": true,
+  "killedAt": "2026-09-02T15:51:27.632Z",
+  "killedReason": "Stopped by Bill from the Sunday preview email."
 }
