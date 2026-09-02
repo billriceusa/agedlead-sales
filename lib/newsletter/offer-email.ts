@@ -115,7 +115,7 @@ export function buildOfferHtml(label: string, siteUrl: string): string {
           <tr>
             <td style="background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%); padding: 28px 32px;">
               <h1 style="margin: 0; color: #ffffff; font-size: 22px; font-weight: 800;">Go into Q4 with a full pipeline</h1>
-              <p style="margin: 6px 0 0 0; color: rgba(255,255,255,0.85); font-size: 14px;">One email, one job. Back to the usual Tuesday next week.</p>
+              <p style="margin: 6px 0 0 0; color: rgba(255,255,255,0.85); font-size: 14px;">Nine verticals — restock whatever you're running short on.</p>
             </td>
           </tr>
 
@@ -125,7 +125,7 @@ export function buildOfferHtml(label: string, siteUrl: string): string {
 
               <p style="margin: 0 0 16px 0; color: #374151; font-size: 16px; line-height: 1.7;">The thing that quietly kills a quarter is running dry. You can only convert what is actually in front of you, and a month with nothing to call is a month that cannot produce, no matter how good you are on the phone.</p>
 
-              <p style="margin: 0 0 24px 0; color: #374151; font-size: 16px; line-height: 1.7;">That is the case for aged leads. Not that they are cheap — that they are affordable enough to buy <em>consistently</em>. A steady monthly restock you can actually sustain beats one big order in January and nothing after it, because the ROI comes from always having opportunities in the pipeline rather than from any single batch.</p>
+              <p style="margin: 0 0 24px 0; color: #374151; font-size: 16px; line-height: 1.7;">That is what aged leads are good for. Not that they are cheap — that they are affordable enough to buy <em>consistently</em>. A steady monthly restock you can actually sustain beats one big order in January and nothing after it, because the return comes from always having opportunities in front of you rather than from any single batch.</p>
 
               <p style="margin: 0 0 20px 0; color: #111827; font-size: 16px; line-height: 1.7; font-weight: 600;">Pick your vertical and see what is in stock right now:</p>
             </td>

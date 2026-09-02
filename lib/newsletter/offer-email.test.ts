@@ -134,6 +134,28 @@ describe("buildOfferHtml", () => {
     assert.ok(you > i, `reader-centric check: "you" ${you} vs "I" ${i}`);
   });
 
+  test("leaks no strategy or internal reasoning to the reader", () => {
+    // The subhead once read "One email, one job. Back to the usual Tuesday next
+    // week." — design notes printed at the top of a sales email. Bill: "You
+    // basically told the reader — I'm sending you an email to get your click.
+    // Ugh! Yuck!" The reader must never be shown the machinery.
+    const html = buildOfferHtml(LABEL, SITE);
+    const leaks = [
+      /one email,? one job/i,
+      /\bthis email (?:is|has|does|exists)/i,
+      /\bback to the usual\b/i,
+      /\b(?:we|I) (?:want|need) (?:your|a) click/i,
+      /\bcall.to.action\b/i,
+      /\bwe(?:'re| are) testing\b/i,
+      /\bour (?:strategy|goal|objective) (?:here|with this)/i,
+      /\bkeeping this short so\b/i,
+      /\bthe (?:point|purpose) of this email\b/i,
+    ];
+    for (const re of leaks) {
+      assert.equal(re.test(html), false, `strategy leak matched ${re}`);
+    }
+  });
+
   test("makes the consistency argument, not a cheapness argument", () => {
     const html = buildOfferHtml(LABEL, SITE);
     assert.match(html, /consistent|steady|sustain/i, "missing the consistency framing");
