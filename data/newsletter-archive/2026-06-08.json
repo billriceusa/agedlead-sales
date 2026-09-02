@@ -18,5 +18,8 @@
     "Channel Performance Tracking"
   ],
   "industryInsight": "Summer Solar Demand Surge Creates Aged Lead Opportunity",
-  "errors": []
+  "errors": [],
+  "killed": true,
+  "killedAt": "2026-09-02T15:57:46.315Z",
+  "killedReason": "Stopped by Bill from the Sunday preview email."
 }
