@@ -18,5 +18,8 @@
     "Medicare Lead Aging Sweet Spot"
   ],
   "industryInsight": "Medicare Advantage Lead Costs Stabilizing",
-  "errors": []
+  "errors": [],
+  "killed": true,
+  "killedAt": "2026-09-02T15:57:29.438Z",
+  "killedReason": "Stopped by Bill from the Sunday preview email."
 }
