@@ -1,28 +1,57 @@
 /**
  * Newsletter Content Calendar for Work Aged Leads
  *
- * Cadence: 1 newsletter per week, sent every Tuesday at 9 AM ET
- * Planned on Sundays, preview sent to Bill for review on Sunday
+ * Cadence: one issue per week, Tuesday. The Sunday cron drafts it and emails
+ * Bill a preview; `scripts/send-newsletter.ts` is the only thing that can mail
+ * the list. `sendDate` is the TUESDAY — that is the value the cron matches on.
  *
- * Newsletter Structure:
- *   - Personal intro from Bill Rice (2-3 paragraphs)
- *   - Featured article spotlight (best blog post this week)
+ * Newsletter structure:
+ *   - Personal intro from Bill Rice
+ *   - Featured article spotlight
  *   - 2-3 exclusive quick tips (not published on the blog)
- *   - This week on the blog (digest of all posts)
+ *   - This week on the blog
  *   - Industry data point or trend
- *   - CTA to browse aged leads on AgedLeadStore.com
+ *   - Store CTAs (hero, vertical self-select strip, footer)
  *
- * Theme Rotation:
- *   Themes give each newsletter a cohesive focus while still including
- *   the weekly blog digest. The AI may override themes when timely
- *   opportunities arise (rate changes, enrollment periods, etc.)
+ * ── WHY THIS FILE WAS REBUILT (2026-09-02) ──
+ *
+ * The previous calendar ran 2026-03-17 -> 2026-06-02 and then simply ran out.
+ * Because `findCurrentPlan` fell back to a +/-7-day window and then to `null`,
+ * every issue from 2026-06-08 onward was drafted with NO plan and archived with
+ * `theme: "AI-generated"` — thirteen consecutive weeks in which the model chose
+ * its own subject and nothing anywhere said the calendar had expired. An empty
+ * calendar and a working calendar produced identical-looking output.
+ *
+ * Two things changed alongside this rebuild:
+ *   1. Matching is EXACT on `sendDate`. The old +/-7-day fuzz could silently
+ *      serve the *previous* week's plan for a send, which is worse than serving
+ *      none — you get a stale theme that looks deliberate.
+ *   2. Expiry is LOUD. The draft script and the Sunday preview both say, in
+ *      words, when no plan matched and how many issues remain. See
+ *      `calendarStatus()` below.
+ *
+ * ── TOPIC-THEMED, NOT VERTICAL-ROTATED (Bill, 2026-09-01) ──
+ *
+ * The old calendar rotated a `focusVertical` (Insurance, Mortgage, ...). Q4 is
+ * organised by TOPIC instead — the job the reader is trying to do that week.
+ * `focusVertical` is therefore optional and omitted throughout. The store CTA
+ * strip already lets every reader self-select their own vertical, which does
+ * that job better than guessing one for the whole list.
+ *
+ * History is not kept here. The archive in `data/newsletter-archive/` is the
+ * record of what actually shipped; this file is forward-looking only.
  */
 
 export interface NewsletterPlan {
   week: number;
+  /** The Tuesday, YYYY-MM-DD. Matched EXACTLY — see the note above. */
   sendDate: string;
   theme: string;
-  focusVertical: string;
+  /**
+   * Legacy vertical rotation. Optional and unused in Q4 by decision; kept so
+   * older tooling and archived records still type-check.
+   */
+  focusVertical?: string;
   exclusiveTipTopics: string[];
   specialHook?: string;
   status: "sent" | "scheduled" | "planned";
@@ -32,7 +61,6 @@ export const NEWSLETTER_THEMES = [
   "The Numbers Game",
   "Scripts That Close",
   "Channel Deep Dive",
-  "Vertical Spotlight",
   "Compliance Corner",
   "Tech & Tools",
   "Scaling Up",
@@ -42,162 +70,271 @@ export const NEWSLETTER_THEMES = [
 ] as const;
 
 export const NEWSLETTER_CALENDAR: NewsletterPlan[] = [
-  // ── WEEK 1 ──
   {
     week: 1,
-    sendDate: "2026-03-17",
-    theme: "The Aged Lead Mindset",
-    focusVertical: "General",
+    sendDate: "2026-09-08",
+    theme: "Tech & Tools",
     exclusiveTipTopics: [
-      "Why your first 200 leads are practice, not profit",
-      "The one CRM field that tells you everything about your pipeline",
-      "How to evaluate a new batch of aged leads in 60 seconds",
+      "Know Your CPL: what you can actually afford to pay per lead, given your close rate",
+      "The Pipeline Calculator: reverse-engineer a revenue target into dials per day",
+      "The Lead Price Index: what the market pays right now, by vertical and lead age",
     ],
-    specialHook: "Launch issue — welcome readers and set expectations",
+    specialHook:
+      "VALUE-FIRST TOOLS ISSUE. Bill's call 2026-09-02: most of this list does not know these tools exist. Walk through the free calculators, the Lead Price Index, the glossary and the provider comparisons — what each one answers and when to reach for it. This issue follows the 2026-09-10 direct offer send, so it is deliberately a GIVE: teach the tools, do not push the store. Keep the standard store CTAs but let the tools carry the issue.",
     status: "planned",
   },
-  // ── WEEK 2 ──
   {
     week: 2,
-    sendDate: "2026-03-24",
-    theme: "Scripts That Close",
-    focusVertical: "Insurance",
+    sendDate: "2026-09-15",
+    theme: "The Numbers Game",
     exclusiveTipTopics: [
-      "The 3-second opener that keeps aged leads on the phone",
-      "Why 'I'm calling about your request' beats 'I have a great offer'",
-      "The voicemail trick that doubles your callback rate",
+      "Work backwards: your Q4 revenue target divided by close rate is your lead volume",
+      "Why lead COST is the least important number in the equation",
+      "The break-even table every buyer should build before their next order",
     ],
+    specialHook:
+      "Q4 planning math. Pairs naturally with the pipeline calculator introduced last week.",
     status: "planned",
   },
-  // ── WEEK 3 ──
   {
     week: 3,
-    sendDate: "2026-03-31",
-    theme: "Channel Deep Dive",
-    focusVertical: "Multi-vertical",
+    sendDate: "2026-09-22",
+    theme: "Scripts That Close",
     exclusiveTipTopics: [
-      "Email vs text vs call: the optimal first touch by lead age",
-      "The direct mail piece that costs $0.50 and gets 4% response",
-      "Why Tuesday mornings are your highest-contact window",
+      "The opener that works when the lead filled the form four months ago",
+      "How to reference the original inquiry without sounding like a stalker",
+      "The three-sentence voicemail that gets returned",
     ],
+    specialHook:
+      "Aged-specific scripting — the objection is always 'that was a while ago'.",
     status: "planned",
   },
-  // ── WEEK 4 ──
   {
     week: 4,
-    sendDate: "2026-04-07",
-    theme: "ROI Breakdown",
-    focusVertical: "Mortgage",
+    sendDate: "2026-09-29",
+    theme: "Seasonal Strategy",
     exclusiveTipTopics: [
-      "The real cost-per-deal math for aged mortgage leads",
-      "How to track ROI without a spreadsheet PhD",
-      "When to double your lead spend (and when to cut it in half)",
+      "The October reset: re-segment your unworked leads before Q4 starts",
+      "Which aged leads deserve a second cadence and which are genuinely dead",
+      "Setting a weekly buy rhythm instead of one big quarterly order",
     ],
+    specialHook: "Last issue before Q4. Housekeeping and pipeline posture.",
     status: "planned",
   },
-  // ── WEEK 5 ──
   {
     week: 5,
-    sendDate: "2026-04-14",
-    theme: "Vertical Spotlight",
-    focusVertical: "Solar",
+    sendDate: "2026-10-06",
+    theme: "Seasonal Strategy",
     exclusiveTipTopics: [
-      "Solar aged leads peak in spring — here's why",
-      "The satellite roof trick that pre-qualifies before you knock",
-      "Financing objection handling: 3 responses that work",
+      "Medicare AEP opens October 15 — what that does to lead supply and price",
+      "ACA open enrollment starts November 1: staffing the phone for the surge",
+      "Why the weeks BEFORE an enrollment window are the cheapest place to buy",
     ],
+    specialHook:
+      "Enrollment-season timing. Dates are load-bearing here — AEP Oct 15-Dec 7, ACA opens Nov 1. Verify both against CMS before publishing; do not let the model restate them from memory.",
     status: "planned",
   },
-  // ── WEEK 6 ──
   {
     week: 6,
-    sendDate: "2026-04-21",
-    theme: "Compliance Corner",
-    focusVertical: "General",
+    sendDate: "2026-10-13",
+    theme: "Channel Deep Dive",
     exclusiveTipTopics: [
-      "The DNC scrub step most agents skip (and the $500 fine per call)",
-      "Manual dial vs power dial: the compliance difference explained",
-      "Your 5-record compliance checklist before every campaign",
+      "Email first, call second: why the order matters more on aged data",
+      "The best hours to dial by vertical, and the evidence behind them",
+      "How many touches before you stop — and what the data actually says",
     ],
     status: "planned",
   },
-  // ── WEEK 7 ──
   {
     week: 7,
-    sendDate: "2026-04-28",
-    theme: "Scaling Up",
-    focusVertical: "Insurance",
+    sendDate: "2026-10-20",
+    theme: "Compliance Corner",
     exclusiveTipTopics: [
-      "The economics of your first hire (it's cheaper than you think)",
-      "Lead distribution: round-robin vs cherry-pick vs weighted",
-      "The one metric that tells you if your team is ready to scale",
+      "Where the FCC one-to-one consent rule actually landed",
+      "State mini-TCPA statutes worth knowing before you dial",
+      "Documenting consent on purchased data: what to keep and for how long",
     ],
+    specialHook:
+      "COMPLIANCE — HIGHEST CARE. Do not let the model generate novel legal claims. Restate only the canon already carried across this repo's flagship assets: FCC 1:1 rule VACATED Jan 2025 and repealed Aug 2025; revocation-all delayed to Jan 2027; active state mini-TCPAs in FL (FTSA), OK (OTSA), WA (HB 1497), MD and TX; Henson Legal is the named TCPA counsel. Every claim must trace to statute, CFR or an agency order — law-firm alerts are marketing, not sources. Bill reviews this issue personally before it sends.",
     status: "planned",
   },
-  // ── WEEK 8 ──
   {
     week: 8,
-    sendDate: "2026-05-05",
-    theme: "Tech & Tools",
-    focusVertical: "Multi-vertical",
+    sendDate: "2026-10-27",
+    theme: "Scripts That Close",
     exclusiveTipTopics: [
-      "Free CRM vs paid CRM: the real cost comparison",
-      "The dialer setup that triples your daily contact volume",
-      "3 Chrome extensions every lead caller should install",
+      "The 7-day cadence, hour by hour",
+      "What to change on touch four when the first three got nothing",
+      "The re-engagement text that does not read as spam",
     ],
     status: "planned",
   },
-  // ── WEEK 9 ──
   {
     week: 9,
-    sendDate: "2026-05-12",
-    theme: "The Numbers Game",
-    focusVertical: "Final Expense",
+    sendDate: "2026-11-03",
+    theme: "Scaling Up",
     exclusiveTipTopics: [
-      "Final expense benchmarks: what good numbers actually look like",
-      "The 50-dial minimum that separates closers from quitters",
-      "Why your contact rate matters more than your close rate",
+      "CRM hygiene before year-end: the five fields that decide whether you can measure anything",
+      "Disposition codes that tell you something useful",
+      "Why 'no answer' is not a disposition",
     ],
     status: "planned",
   },
-  // ── WEEK 10 ──
   {
     week: 10,
-    sendDate: "2026-05-19",
-    theme: "Seasonal Strategy",
-    focusVertical: "Medicare",
+    sendDate: "2026-11-10",
+    theme: "ROI Breakdown",
     exclusiveTipTopics: [
-      "Pre-AEP preparation: what to do now for October success",
-      "Building your Medicare aged lead pipeline before the rush",
-      "The SEP strategy that most Medicare agents ignore",
+      "Cost per acquisition, honestly — including the hours you do not bill yourself for",
+      "Comparing aged against real-time on CPA rather than on lead price",
+      "The one report to run monthly, and what a healthy one looks like",
     ],
     status: "planned",
   },
-  // ── WEEK 11 ──
   {
     week: 11,
-    sendDate: "2026-05-26",
+    sendDate: "2026-11-17",
     theme: "Scripts That Close",
-    focusVertical: "Legal (MVA/SSDI)",
     exclusiveTipTopics: [
-      "The empathy-first opener that PI firms swear by",
-      "Why 'How are you doing?' is the most powerful intake question",
-      "The statute-of-limitations close that creates ethical urgency",
+      "The objection library: the eight you will actually hear",
+      "'I already bought' — the highest-value objection there is",
+      "How to end a call so the follow-up is expected rather than intrusive",
     ],
     status: "planned",
   },
-  // ── WEEK 12 ──
   {
     week: 12,
-    sendDate: "2026-06-02",
-    theme: "The Aged Lead Mindset",
-    focusVertical: "General",
+    sendDate: "2026-11-24",
+    theme: "Seasonal Strategy",
     exclusiveTipTopics: [
-      "The 12-week review: what the data says about your first quarter",
-      "Compounding returns: why month 3 is always better than month 1",
-      "Planning your next 90 days with aged leads",
+      "Thanksgiving week: fewer dials, better ones",
+      "Why the days either side of a holiday have unusually high contact rates",
+      "Setting up December before you take time off",
     ],
-    specialHook: "End-of-quarter review — recap and look ahead",
+    specialHook: "Thanksgiving is Nov 26. Keep this issue short — people are travelling.",
+    status: "planned",
+  },
+  {
+    week: 13,
+    sendDate: "2026-12-01",
+    theme: "The Aged Lead Mindset",
+    exclusiveTipTopics: [
+      "December is not dead — who is actually answering the phone this month",
+      "The year-end urgency that is real, and the kind you should not manufacture",
+      "Buying in December for a January start",
+    ],
+    status: "planned",
+  },
+  {
+    week: 14,
+    sendDate: "2026-12-08",
+    theme: "The Numbers Game",
+    exclusiveTipTopics: [
+      "Building your 2027 lead budget from this year's actual close rate",
+      "How to phase a budget so one bad month does not end the program",
+      "What to renegotiate with your provider before January",
+    ],
+    status: "planned",
+  },
+  {
+    week: 15,
+    sendDate: "2026-12-15",
+    theme: "ROI Breakdown",
+    exclusiveTipTopics: [
+      "The year in review: pull your own numbers and read them honestly",
+      "Which vertical actually paid you, as opposed to which felt busiest",
+      "The one change that would have made the biggest difference this year",
+    ],
+    specialHook: "Annual retrospective. Encourage readers to run their own numbers in the calculators.",
+    status: "planned",
+  },
+  {
+    week: 16,
+    sendDate: "2026-12-22",
+    theme: "Seasonal Strategy",
+    exclusiveTipTopics: [
+      "The quiet-week playbook: what to do when nobody picks up",
+      "Cleaning and re-scoring your list while the phones are slow",
+      "Writing next year's scripts while this year is still fresh",
+    ],
+    specialHook: "Christmas week. Short, practical, low-pressure. No selling.",
+    status: "planned",
+  },
+  {
+    week: 17,
+    sendDate: "2026-12-29",
+    theme: "Scaling Up",
+    exclusiveTipTopics: [
+      "Set up January: the first week decides the quarter",
+      "Your opening buy of the year, sized from your own capacity",
+      "The weekly rhythm to hold yourself to in Q1",
+    ],
+    specialHook: "Final issue of 2026. Forward-looking; sets up the Q1 calendar.",
     status: "planned",
   },
 ];
+
+/**
+ * The plan for a given send date, matched EXACTLY.
+ *
+ * Exact by design. The previous implementation fell back to any plan within
+ * seven days, which meant a send could quietly inherit the PREVIOUS week's
+ * theme — a stale issue that reads as deliberate. A miss should be visible, so
+ * it returns undefined and `calendarStatus()` explains why.
+ */
+export function findPlanForDate(sendDate: string): NewsletterPlan | undefined {
+  return NEWSLETTER_CALENDAR.find((p) => p.sendDate === sendDate);
+}
+
+export interface CalendarStatus {
+  plan?: NewsletterPlan;
+  /** True when this date has a plan. */
+  matched: boolean;
+  /** Planned issues still ahead of this date, this one excluded. */
+  remaining: number;
+  /** The last date this calendar covers. */
+  lastDate: string;
+  /** One line, safe to drop straight into a preview email or a console. */
+  message: string;
+}
+
+/**
+ * Why this exists: the calendar expired on 2026-06-02 and ran empty for
+ * thirteen weeks without a single signal. Silence was the bug. Every caller
+ * that drafts an issue should print this.
+ */
+export function calendarStatus(sendDate: string): CalendarStatus {
+  const plan = findPlanForDate(sendDate);
+  const lastDate =
+    NEWSLETTER_CALENDAR.length > 0
+      ? NEWSLETTER_CALENDAR[NEWSLETTER_CALENDAR.length - 1].sendDate
+      : "(empty)";
+  const remaining = NEWSLETTER_CALENDAR.filter((p) => p.sendDate > sendDate).length;
+
+  if (plan) {
+    const tail =
+      remaining === 0
+        ? ` This is the LAST issue on the calendar — extend it before next week.`
+        : remaining <= 3
+          ? ` Only ${remaining} issue(s) left after this one (through ${lastDate}) — extend the calendar soon.`
+          : ` ${remaining} issue(s) remain, through ${lastDate}.`;
+    return {
+      plan,
+      matched: true,
+      remaining,
+      lastDate,
+      message: `Calendar: "${plan.theme}" for ${sendDate}.${tail}`,
+    };
+  }
+
+  return {
+    matched: false,
+    remaining,
+    lastDate,
+    message:
+      `NO CALENDAR PLAN for ${sendDate}. The model will invent its own theme, ` +
+      `which is what happened silently for 13 weeks after the last calendar ran ` +
+      `out on 2026-06-02. This calendar covers through ${lastDate}. ` +
+      `Add an entry in data/newsletter-calendar.ts before sending.`,
+  };
+}

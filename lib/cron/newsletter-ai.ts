@@ -82,11 +82,11 @@ export async function generateNewsletterContent(
     ? `
 ## Newsletter Calendar Plan for This Week
 - Theme: ${plan.theme}
-- Focus Vertical: ${plan.focusVertical}
+${plan.focusVertical ? `- Focus Vertical: ${plan.focusVertical}` : "- No focus vertical: this issue is TOPIC-themed. Write for every vertical at once. The store CTA strip lets each reader self-select their own market, so do not pick one for them."}
 - Planned Exclusive Tip Topics: ${plan.exclusiveTipTopics.join("; ")}
-${plan.specialHook ? `- Special Hook: ${plan.specialHook}` : ""}
+${plan.specialHook ? `- Special Hook (treat as an instruction, not a suggestion): ${plan.specialHook}` : ""}
 
-Follow this plan as a guide, but feel free to adjust if the blog content this week suggests a stronger angle.`
+Follow this plan as a guide, but feel free to adjust if the blog content this week suggests a stronger angle. A Special Hook, where present, is NOT adjustable — it carries editorial or compliance constraints that Bill set deliberately.`
     : `
 ## No Pre-Planned Newsletter for This Week
 Research what's most relevant for our audience right now and create a compelling theme. Consider seasonal factors, industry trends, or timely topics.`;

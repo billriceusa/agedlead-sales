@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { createClient } from "next-sanity";
 import { Resend } from "resend";
-import { NEWSLETTER_CALENDAR } from "@/data/newsletter-calendar";
+import { calendarStatus, type CalendarStatus } from "@/data/newsletter-calendar";
 import {
   generateNewsletterContent,
   type RecentPost,
@@ -93,19 +93,16 @@ async function fetchRecentPosts(): Promise<RecentPost[]> {
   }
 }
 
-function findCurrentPlan(weekLabel: string) {
-  const exactMatch = NEWSLETTER_CALENDAR.find(
-    (p) => p.sendDate === weekLabel || p.sendDate === weekLabel
-  );
-  if (exactMatch) return exactMatch;
-
-  const weekDate = new Date(weekLabel);
-  return NEWSLETTER_CALENDAR.find((p) => {
-    const planDate = new Date(p.sendDate);
-    const diff = Math.abs(weekDate.getTime() - planDate.getTime());
-    return diff < 7 * 24 * 60 * 60 * 1000; // within 7 days
-  });
-}
+// Plan lookup moved to data/newsletter-calendar.ts (`calendarStatus`), matched
+// EXACTLY. What stood here matched anything within seven days — and since plans
+// are weekly, that window could return the PREVIOUS week's plan for a send. A
+// stale theme reads as deliberate, so it is worse than no theme at all. It also
+// had a copy/paste tell: `p.sendDate === weekLabel || p.sendDate === weekLabel`.
+//
+// The bigger failure it hid: the calendar expired 2026-06-02 and 13 consecutive
+// issues drafted with no plan, archived as theme "AI-generated", with nothing
+// anywhere saying so. `calendarStatus()` now returns a sentence about it, and
+// the preview email below prints it.
 
 async function sendPreviewEmail(
   resend: Resend,
@@ -113,8 +110,22 @@ async function sendPreviewEmail(
   subject: string,
   html: string,
   weekLabel: string,
-  gate: IssueGate
+  gate: IssueGate,
+  cal: CalendarStatus
 ): Promise<{ success: boolean; error?: string }> {
+  // The calendar line. An expired calendar produced 13 issues on themes the
+  // model invented for itself, and the preview email looked exactly the same
+  // every one of those weeks. It does not look the same any more.
+  const calendarBanner = cal.matched
+    ? `
+    <div style="background: #f0fdf4; border: 1px solid #86efac; border-radius: 8px; padding: 12px 16px; margin: 0 auto 16px; max-width: 600px; font-family: -apple-system, sans-serif;">
+      <p style="margin: 0; color: #166534; font-size: 13px;">${cal.message}</p>
+    </div>`
+    : `
+    <div style="background: #fff7ed; border: 2px solid #ea580c; border-radius: 8px; padding: 16px; margin: 0 auto 16px; max-width: 600px; font-family: -apple-system, sans-serif;">
+      <p style="margin: 0 0 4px 0; font-weight: 700; color: #9a3412;">NO CALENDAR PLAN — the theme below is the model's own</p>
+      <p style="margin: 0; color: #9a3412; font-size: 13px;">${cal.message}</p>
+    </div>`;
   // On a blocking failure the issue is archived with killed:true, so the send
   // command below would simply be refused. Printing it anyway would send Bill
   // to a dead end and read like the gate had not fired.
@@ -133,7 +144,7 @@ async function sendPreviewEmail(
       <p style="margin: 0; color: #7f1d1d; font-size: 13px;">Partner pricing changes without notice and a broadcast cannot be recalled. Edit the archived HTML to compare cost structure in words, or draft a fresh issue.</p>
     </div>`;
 
-  const previewHtml = `${banner}
+  const previewHtml = `${calendarBanner}${banner}
     ${html}`;
 
   const { error } = await resend.emails.send({
@@ -182,16 +193,9 @@ export async function GET(request: Request) {
   const recentPosts = await fetchRecentPosts();
   console.log(`[Newsletter] Found ${recentPosts.length} recent posts`);
 
-  const plan = findCurrentPlan(weekDates.tuesday);
-  if (plan) {
-    console.log(
-      `[Newsletter] Found calendar plan: "${plan.theme}" (${plan.focusVertical})`
-    );
-  } else {
-    console.log(
-      "[Newsletter] No calendar plan found — AI will research and create theme"
-    );
-  }
+  const calStatus = calendarStatus(weekDates.tuesday);
+  const plan = calStatus.plan;
+  console.log(`[Newsletter] ${calStatus.message}`);
 
   // ── Step 2: Generate newsletter content ──────────────────────
   let content: NewsletterContent;
@@ -267,7 +271,8 @@ export async function GET(request: Request) {
         content.subject,
         newsletterHtml,
         weekDates.weekLabel,
-        gate
+        gate,
+        calStatus
       );
       if (preview.success) {
         console.log(`[Newsletter] Preview sent to ${REVIEW_EMAIL}`);
@@ -297,8 +302,16 @@ export async function GET(request: Request) {
     runDate: new Date().toISOString(),
     weekOf: weekDates.weekLabel,
     sendDate: weekDates.tuesday,
+    // "AI-generated" here is the tell that the calendar had no entry for this
+    // date. Thirteen consecutive issues carried it after the calendar expired
+    // on 2026-06-02 and nobody noticed, because nothing read this field back.
+    // `calendarStatus.message` is now archived beside it and printed in the
+    // preview, so the same silence cannot recur.
     theme: plan?.theme || "AI-generated",
-    focusVertical: plan?.focusVertical || "AI-selected",
+    focusVertical: plan?.focusVertical || "topic-themed",
+    calendarStatus: calStatus.message,
+    calendarMatched: calStatus.matched,
+    calendarRemaining: calStatus.remaining,
     subject: content.subject,
     previewText: content.previewText,
     // The rendered HTML archived alongside this file is the ONLY thing

@@ -41,7 +41,7 @@ loadEnv();
 import { writeFileSync, existsSync, mkdirSync } from "node:fs";
 import { join } from "node:path";
 import { createClient } from "next-sanity";
-import { NEWSLETTER_CALENDAR } from "../data/newsletter-calendar";
+import { calendarStatus } from "../data/newsletter-calendar";
 import {
   generateNewsletterContent,
   type RecentPost,
@@ -77,16 +77,10 @@ function getWeekDates(): { tuesday: string; weekLabel: string } {
   return { tuesday: fmt(tuesday), weekLabel: fmt(monday) };
 }
 
-function findCurrentPlan(sendDate: string) {
-  const exact = NEWSLETTER_CALENDAR.find((p) => p.sendDate === sendDate);
-  if (exact) return exact;
-  const target = new Date(sendDate);
-  return NEWSLETTER_CALENDAR.find(
-    (p) =>
-      Math.abs(new Date(p.sendDate).getTime() - target.getTime()) <
-      7 * 24 * 60 * 60 * 1000,
-  );
-}
+// Plan lookup lives in data/newsletter-calendar.ts now — matched EXACTLY, with
+// `calendarStatus()` reporting a miss in words. The +/-7-day fallback that used
+// to live here could serve the PREVIOUS week's plan for a send, which reads as
+// deliberate and is worse than serving none.
 
 async function fetchRecentPosts(): Promise<RecentPost[]> {
   const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
@@ -172,8 +166,9 @@ async function main() {
   const posts = await fetchRecentPosts();
   console.log(`Sanity     : ${posts.length} recent posts`);
 
-  const plan = findCurrentPlan(sendDate);
-  console.log(`Calendar   : ${plan ? `"${plan.theme}" (${plan.focusVertical})` : "no plan — AI picks the theme"}`);
+  const status = calendarStatus(sendDate);
+  const plan = status.plan;
+  console.log(`Calendar   : ${status.message}`);
 
   console.log("Generating copy...");
   const content: NewsletterContent = await generateNewsletterContent(
@@ -196,7 +191,7 @@ async function main() {
     weekOf: weekLabel,
     sendDate,
     theme: plan?.theme || "AI-generated",
-    focusVertical: plan?.focusVertical || "AI-selected",
+    focusVertical: plan?.focusVertical || "topic-themed",
     subject: content.subject,
     previewText: content.previewText,
     html: `${weekLabel}.html`,
