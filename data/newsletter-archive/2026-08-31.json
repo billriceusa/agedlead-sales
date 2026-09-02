@@ -1,23 +1,26 @@
 {
-  "runDate": "2026-08-30T14:00:57.442Z",
+  "runDate": "2026-09-01T14:52:19.919Z",
   "weekOf": "2026-08-31",
   "sendDate": "2026-09-01",
   "theme": "AI-generated",
   "focusVertical": "AI-selected",
-  "subject": "While They Rest, You Restock the Pipeline",
-  "previewText": "Labor Day week is a gift for agents who know what to do with it. Here's the playbook.",
+  "subject": "Your Labor Day List Cleanup (Before Q4 Hits)",
+  "previewText": "Scrub, segment, and script your way into a stronger fourth quarter.",
   "html": "2026-08-31.html",
-  "sent": false,
+  "sent": true,
   "featuredArticle": {
     "title": "How to Work Aged Leads: The Complete System for Maximum ROI",
     "slug": "how-to-work-aged-leads-the-complete-system-for-maximum-roi",
-    "spotlight": "If you've been buying expensive fresh leads and wondering why your CPA keeps climbing, this is the piece to send yourself right now. It lays out the full system — scripts, follow-up cadences, and the actual economics — that turn a $2 aged lead into a better ROI than a $40 exclusive one. This is the framework I've used for two and a half decades, written down in one place."
+    "spotlight": "If you've never sat down and mapped out an actual system for working aged leads — not just dialing until you're tired — this is worth a slow read. It walks through the full economics of aged leads plus the scripts and follow-up cadence that turn a cheap list into your highest-margin lead source."
   },
   "quickTips": [
-    "The 'Tuesday After' Rule",
-    "The Summer Reactivation Text",
-    "The 3-Bucket September Sort"
+    "Tag leads by age tier before you dial",
+    "The reactivation text that outperforms a cold call",
+    "Stack your calls on Wednesday and Thursday afternoons"
   ],
-  "industryInsight": "The One-to-One Consent Rule Is Dead — For Now",
-  "errors": []
+  "industryInsight": "The consent rule fight isn't over — and it affects how you buy",
+  "draftedBy": "scripts/draft-newsletter.ts",
+  "errors": [],
+  "sentAt": "2026-09-01T19:11:30.887Z",
+  "broadcastId": "d27c5c9b-a961-4ca2-bb71-98007af79d72"
 }

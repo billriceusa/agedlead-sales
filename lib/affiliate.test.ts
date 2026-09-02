@@ -1,6 +1,39 @@
 import { test, describe } from "node:test";
 import assert from "node:assert/strict";
-import { affiliateUrl, storeCategoryPath, agedLeadLabel } from "./affiliate";
+import {
+  affiliateUrl,
+  storeCategoryPath,
+  agedLeadLabel,
+  isAffiliateDomain,
+} from "./affiliate";
+
+describe("isAffiliateDomain", () => {
+  test("matches the apex and the storefront subdomain", () => {
+    // The partner sells across two hosts. On-site CTAs link to the apex; the
+    // newsletter's nine-vertical strip deep-links to
+    // store.agedleadstore.com/{segment}/leads. GA4 reports those as two
+    // different linkDomain values, so the scoreboard has to accept both.
+    assert.equal(isAffiliateDomain("agedleadstore.com"), true);
+    assert.equal(isAffiliateDomain("store.agedleadstore.com"), true);
+  });
+
+  test("does not match a host that merely ends with the same string", () => {
+    // The GA4 query has to use ENDS_WITH because GA4 offers no "this host or a
+    // subdomain of it" matcher. This predicate is the precise one, and it is
+    // what the leakage roll-up uses.
+    assert.equal(isAffiliateDomain("notagedleadstore.com"), false);
+    assert.equal(isAffiliateDomain("agedleadstore.com.evil.example"), false);
+  });
+
+  test("scores real competitor hosts as not-affiliate", () => {
+    // Live leakage destinations from the 2026-09-01 reading — 63 of 150
+    // outbound clicks. Deliberate: independent reviews are what make the
+    // provider pages worth reading. They must never count as revenue.
+    for (const d of ["datatoleads.com", "leadsdata.com", "ileads.com", "agedleadsdepot.com"]) {
+      assert.equal(isAffiliateDomain(d), false, d);
+    }
+  });
+});
 
 describe("storeCategoryPath", () => {
   test("resolves a Sanity leadType title — the form every caller actually passes", () => {

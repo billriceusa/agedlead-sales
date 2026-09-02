@@ -4,6 +4,31 @@ const AFFILIATE_BASE_URL = "https://agedleadstore.com";
 const UTM_SOURCE = AFFILIATE_UTM_SOURCE;
 const UTM_MEDIUM = "affiliate";
 
+/** The monetized host. Every click here pays; every other outbound host does not. */
+export const AFFILIATE_DOMAIN = "agedleadstore.com";
+
+/**
+ * True for the monetized host and any subdomain of it.
+ *
+ * The partner sells across two hosts: on-site CTAs built here link to the apex
+ * `agedleadstore.com`, while the newsletter's vertical strip
+ * (`lib/newsletter/store-links.ts`) deep-links to
+ * `store.agedleadstore.com/{segment}/leads`. GA4 reports those as two different
+ * `linkDomain` values.
+ *
+ * Anything comparing a reported domain against the affiliate host must use this
+ * rather than `===`. An exact comparison gets both halves of the scoreboard
+ * wrong in the same direction it is measured: storefront clicks drop out of the
+ * affiliate total, and — because leakage is defined as "every domain that is not
+ * the affiliate domain" — those same clicks get counted as leakage to a
+ * competitor. CLICK-LOOP.md fires a flag condition when leakage exceeds the
+ * affiliate total, so the bug could raise an alarm *because* the newsletter was
+ * working.
+ */
+export function isAffiliateDomain(domain: string): boolean {
+  return domain === AFFILIATE_DOMAIN || domain.endsWith(`.${AFFILIATE_DOMAIN}`);
+}
+
 interface AffiliateLink {
   path?: string;
   campaign: string;
@@ -54,12 +79,20 @@ export function affiliateRegisterUrl(campaign: string, content: string): string 
  * Expense Leads** at `/life-insurance-leads/` (final expense is life
  * insurance), and Home Improvement at a dedicated `-lp` landing page.
  *
- * Medicare and Solar are absent BY DECISION, not by oversight. Troy is not
- * selling either at the moment (confirmed by Bill, 2026-08-06), so they route
- * to the full catalogue on purpose. Do not "fix" this by inventing a path —
- * revisit it only when Troy starts selling them and a page appears in the menu
- * above. The generic "Insurance Leads" bucket is unmapped for a different
+ * Medicare is absent BY DECISION, not by oversight. Troy is not selling it, so
+ * it routes to the full catalogue on purpose. Do not "fix" this by inventing a
+ * path. The generic "Insurance Leads" bucket is unmapped for a different
  * reason: there is no generic-insurance buy page to point at.
+ *
+ * SOLAR IS NOW STOCKED. The 2026-08-06 note here said Troy sold neither
+ * Medicare nor solar; the card grid at /all-lead-types/ carried a Solar
+ * Installation card on 2026-08-27, so that half is out of date. It still falls
+ * back to the catalogue because there is no *marketing* buy page for it — the
+ * card links straight into the storefront at
+ * store.agedleadstore.com/solar_installation/leads, which this map (marketing
+ * paths only) has no slot for. The newsletter already deep-links it via
+ * lib/newsletter/store-links.ts. Giving the site's solar lead-type page the
+ * same treatment is a live opportunity, not a bug to paper over.
  *
  * Verified 200 with zero redirects on 2026-08-06, and the destination set was
  * reviewed and confirmed correct by Bill the same day.

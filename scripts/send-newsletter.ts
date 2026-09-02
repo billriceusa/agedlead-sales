@@ -40,6 +40,7 @@ import {
   sendSingleEmail,
   REPLY_TO_EMAIL,
 } from "../lib/resend";
+import { checkIssueHtml } from "../lib/newsletter/issue-gate";
 
 const ARCHIVE_DIR = join(process.cwd(), "data", "newsletter-archive");
 
@@ -54,6 +55,9 @@ interface ArchivedIssue {
   sent?: boolean;
   sentAt?: string;
   broadcastId?: string;
+  killed?: boolean;
+  killedAt?: string;
+  killedReason?: string;
 }
 
 function flag(args: string[], name: string): string | undefined {
@@ -85,6 +89,20 @@ async function main() {
   const issue = JSON.parse(readFileSync(jsonPath, "utf8")) as ArchivedIssue;
   const html = readFileSync(htmlPath, "utf8");
 
+  // A retired issue. Distinct from `sent`: this one never went out and never
+  // should. An archived draft looks sendable forever — the date is the only
+  // thing that ages, and nothing in the file records that a human read it and
+  // said no. Without this flag the natural recovery from "which issue do I
+  // send?" is to reach for the newest archive, which is exactly the mistake.
+  if (issue.killed) {
+    console.error(
+      `Issue ${date} was retired${issue.killedAt ? ` on ${issue.killedAt.slice(0, 10)}` : ""} and must not be sent.\n` +
+        `${issue.killedReason ? `Reason: ${issue.killedReason}\n` : ""}` +
+        `Draft a new issue rather than reviving this one.`,
+    );
+    process.exit(1);
+  }
+
   // Idempotence. Resend will happily create a second broadcast over the same
   // audience, and the subscribers are the ones who notice.
   if (issue.sent) {
@@ -95,6 +113,31 @@ async function main() {
     );
     process.exit(1);
   }
+
+  // Re-read the bytes about to be mailed, rather than trusting whatever ran
+  // when they were written.
+  //
+  // This is the gate that would have stopped 2026-08-10, which quoted "$0.30"
+  // and "Aged leads from $0.25" and went to the list on 2026-08-12 under
+  // broadcast a830c99a. The price guard existed at the time; it was wired into
+  // the draft script, and this issue came from the cron. Checking at the moment
+  // of transmission is the only check that covers every archive regardless of
+  // which path produced it — including hand-edited files and everything
+  // archived before the guard was written.
+  //
+  // Seeds are gated too. "Let me just send myself the bad one" is how a gate
+  // stops being a gate.
+  const gate = checkIssueHtml(html);
+  if (!gate.ok) {
+    console.error(`Refusing to send ${date}.\n\n${gate.reason}\n`);
+    console.error(
+      `This issue is already archived, so fixing the copy means editing\n` +
+        `  ${htmlPath}\n` +
+        `directly, or retiring it (set "killed": true) and drafting a new one.`,
+    );
+    process.exit(1);
+  }
+  for (const w of gate.warnings) console.warn(`Warning: ${w}`);
 
   const apiKey = (process.env.RESEND_API_KEY || "").trim();
   const audienceId = (process.env.RESEND_AUDIENCE_ID || "").trim();

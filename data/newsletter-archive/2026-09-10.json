@@ -1,0 +1,14 @@
+{
+  "runDate": "2026-09-02T13:41:07.233Z",
+  "weekOf": "2026-09-10",
+  "sendDate": "2026-09-10",
+  "theme": "Direct offer — vertical self-select",
+  "focusVertical": "reader-selected",
+  "campaign": "direct-offer",
+  "subject": "Where I actually restock before Q4",
+  "previewText": "Nine verticals, one link each. Pick yours — or ignore this one.",
+  "html": "2026-09-10.html",
+  "sent": false,
+  "draftedBy": "scripts/draft-offer-email.ts",
+  "errors": []
+}

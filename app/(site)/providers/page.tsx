@@ -3,6 +3,7 @@ import { sanityFetch } from "@/sanity/lib/fetch";
 import { providersLastVerifiedQuery } from "@/sanity/lib/queries";
 import { ProviderCard } from "@/components/provider-card";
 import { CtaBanner } from "@/components/cta-banner";
+import { HeroAffiliateDoor } from "@/components/hero-affiliate-door";
 import { JsonLd, breadcrumbJsonLd } from "@/components/json-ld";
 import { PROVIDERS } from "@/data/providers";
 import { getVertical } from "@/data/verticals";
@@ -105,26 +106,29 @@ export default async function ProvidersPage() {
             dimensions with a transparent, published methodology. Updated
             monthly.
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link
-              href="/compare"
-              className="inline-flex items-center rounded-lg bg-white/10 px-4 py-2.5 text-sm font-medium text-white backdrop-blur-sm transition-colors hover:bg-white/20"
-            >
-              Head-to-head comparisons &rarr;
-            </Link>
-            <Link
-              href="/price-index"
-              className="inline-flex items-center rounded-lg bg-white/10 px-4 py-2.5 text-sm font-medium text-white backdrop-blur-sm transition-colors hover:bg-white/20"
-            >
-              Lead Price Index &rarr;
-            </Link>
-            <Link
-              href="/methodology"
-              className="inline-flex items-center rounded-lg bg-white/10 px-4 py-2.5 text-sm font-medium text-white backdrop-blur-sm transition-colors hover:bg-white/20"
-            >
-              Our Methodology &rarr;
-            </Link>
-          </div>
+          {/* Iteration 4 (2026-09-01). This hub carried 165 views at 0.61% —
+              the most-visited page on the site and the worst-converting one.
+              Its only affiliate path was a single CtaBanner at the very bottom,
+              below fifteen provider cards that each link out to a competitor,
+              so a reader at peak intent was offered every destination except
+              the one that pays.
+
+              The precedent is the lead-types hub directly: 159 views at 1.26%
+              before this same door, 5.31% after (see lead-types/page.tsx:112).
+
+              No leadType — a visitor on a directory has not chosen a vertical,
+              so the full catalogue is the honest destination. The three
+              internal routes keep their position as secondary; they are how
+              this page earns the trust that makes the door work at all, and
+              the individual reviews stay untouched. */}
+          <HeroAffiliateDoor
+            campaign="providers-hub"
+            secondary={[
+              { label: "Head-to-head comparisons", href: "/compare" },
+              { label: "Lead Price Index", href: "/price-index" },
+              { label: "Our Methodology", href: "/methodology" },
+            ]}
+          />
         </div>
       </section>
 

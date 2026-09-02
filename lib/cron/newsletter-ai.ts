@@ -43,7 +43,6 @@ export interface NewsletterContent {
   }[];
   closingNote: string;
   ctaText: string;
-  ctaUrl: string;
 }
 
 const NEWSLETTER_SYSTEM = `You are writing the Work Aged Leads weekly newsletter on behalf of Bill Rice, a 25+ year veteran of the aged lead industry. Write with authority, warmth, and specificity.
@@ -59,7 +58,10 @@ CRITICAL RULES — DO NOT VIOLATE:
 - NEVER invent statistics or data and present them as factual (e.g., "conversion rates up 15-20% vs Q4"). If you cite data, it must be from a real, citable source.
 - Illustrative examples and scenarios ARE allowed, but must be clearly framed as hypothetical (e.g., "Say you're an agent who just bought 200 leads..." or "Here's a common scenario...")
 - For the Industry Insight section, reference real industry trends, published reports, or regulatory changes — not invented observations. If you cannot cite a source, frame the insight as a general principle or strategic observation rather than a data claim.
-- General knowledge from Bill's documented background (25+ years, Quicken Loans, coined "lead management", worked millions of leads) can be referenced. Specific invented anecdotes cannot.`;
+- General knowledge from Bill's documented background (25+ years, Quicken Loans, coined "lead management", worked millions of leads) can be referenced. Specific invented anecdotes cannot.
+- NEVER quote a per-lead price, a price range, or a price floor for aged leads — no "$0.25 leads", no "leads from 30 cents", no "$0.40-$2.00 range". This includes prices used illustratively or as an aside. The partner's live pricing changes without notice, and a number baked into a broadcast is mailed to thousands of buyers who will hold us to it. Compare COST STRUCTURE in words instead ("a fraction of what fresh leads cost", "pennies on the dollar versus real-time"), and let the store page show the actual number.
+- Fresh/real-time lead costs from published industry sources may be cited WITH the source named, since those are not our prices to misstate.
+- NEVER imply a post is new unless its publishedAt date is within the last 7 days. The post list below carries real dates — read them. Publishing gaps happen, and "we just published" about a month-old article is a claim the reader can check in one click. Say "worth revisiting" or just describe the piece.`;
 
 export async function generateNewsletterContent(
   plan: NewsletterPlan | null,
@@ -136,16 +138,33 @@ Respond with ONLY valid JSON (no markdown fences, no commentary):
     { "title": "Post Title", "slug": "post-slug", "oneLiner": "Brief summary" }
   ],
   "closingNote": "Personal sign-off",
-  "ctaText": "Button text",
-  "ctaUrl": "https://agedleadstore.com/all-lead-types/?utm_source=workagedleads&utm_medium=email&utm_campaign=weekly-newsletter&utm_content=${weekLabel}"
+  "ctaText": "Button text"
 }`;
 
   const response = await client.messages.create({
     model: SONNET_MODEL,
-    max_tokens: 4096,
+    // 4096 was not enough headroom. The issue JSON carries a featured article,
+    // several quick tips, an industry insight and a weekly digest, and a
+    // slightly wordier-than-usual draft runs past 4k mid-string. The failure
+    // then surfaces as `Unterminated string in JSON at position N` from the
+    // parse below, which reads like the model emitted malformed JSON rather
+    // than like the response was cut off — see the stop_reason guard.
+    max_tokens: 8192,
     system: NEWSLETTER_SYSTEM,
     messages: [{ role: "user", content: prompt }],
   });
+
+  // Truncation is not a parse problem, and it must not be reported as one.
+  // A cut-off response is still syntactically fine right up to the cut, so
+  // JSON.parse blames whatever character happened to be last. Checking
+  // stop_reason names the real cause at the point it happens.
+  if (response.stop_reason === "max_tokens") {
+    throw new Error(
+      `Newsletter generation hit the ${8192}-token cap and was truncated mid-response. ` +
+        `The output is incomplete, not malformed — raise max_tokens or shorten the prompt. ` +
+        `Do NOT "fix" this by making the JSON parser more forgiving.`,
+    );
+  }
 
   const textBlock = response.content.find((b) => b.type === "text");
   if (!textBlock || textBlock.type !== "text") {

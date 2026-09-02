@@ -1,12 +1,47 @@
 import type { NewsletterContent } from "./newsletter-ai";
 import { SITE_HOST } from "@/lib/site-url";
 import { rebrandNoticeHtml } from "@/lib/rebrand-notice";
+import { STORE_VERTICALS, storeUrl, catalogueUrl } from "@/lib/newsletter/store-links";
 
 export function buildNewsletterHtml(
   content: NewsletterContent,
   siteUrl: string,
   weekLabel: string
 ): string {
+  // Three store placements, not one. The issue that shipped before carried 21
+  // links, 20 of them back to our own site, and its single store link sat at
+  // 79% page depth — so a reader who opened, skimmed and left never saw one.
+  // Measured 2026-08-27: one such send produced 17 store sessions against the
+  // whole site's 5.1/day, which is why placement is the lever here.
+  const heroStoreUrl = catalogueUrl(weekLabel, "hero");
+  const footerStoreUrl = catalogueUrl(weekLabel, "footer");
+
+  // Self-select rather than list segmentation: one unsegmented send, and the
+  // reader picks their own vertical. Rendered as a 3-column table because
+  // flex and grid are unreliable in Outlook.
+  const verticalRows = STORE_VERTICALS.reduce<(typeof STORE_VERTICALS)[]>((rows, v, i) => {
+    if (i % 3 === 0) rows.push([]);
+    rows[rows.length - 1].push(v);
+    return rows;
+  }, []);
+
+  const verticalStripHtml = verticalRows
+    .map(
+      (row) => `
+                      <tr>
+                        ${row
+                          .map(
+                            (v) => `<td width="33%" style="padding: 0 4px 8px 0;"><a href="${storeUrl(
+                              weekLabel,
+                              `vertical-${v.key}`,
+                              v.segment
+                            )}" style="display: block; background-color: rgba(255,255,255,0.12); color: #ffffff; padding: 10px 8px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 13px; border: 1px solid rgba(255,255,255,0.25); text-align: center;">${v.label}</a></td>`
+                          )
+                          .join("")}
+                        ${row.length < 3 ? `<td width="33%"></td>`.repeat(3 - row.length) : ""}
+                      </tr>`
+    )
+    .join("");
   const introHtml = content.personalIntro
     .split("\n\n")
     .map((p) => `<p style="margin: 0 0 16px 0; line-height: 1.7;">${p}</p>`)
@@ -89,8 +124,30 @@ export function buildNewsletterHtml(
 
           <!-- Personal Intro -->
           <tr>
-            <td class="content" style="padding: 32px;">
+            <td class="content" style="padding: 32px 32px 20px;">
               ${introHtml}
+            </td>
+          </tr>
+
+          <!-- Store CTA 1 of 3: above the fold -->
+          <tr>
+            <td style="padding: 0 32px 28px;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border: 1px solid #a7f3d0; background-color: #ecfdf5; border-radius: 8px;">
+                <tr>
+                  <td style="padding: 16px 20px;">
+                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td style="color: #065f46; font-size: 14px; line-height: 1.5; padding-right: 12px;">
+                          <strong style="color: #064e3b;">Need leads this week?</strong> Browse current aged inventory and pricing.
+                        </td>
+                        <td width="130" style="text-align: right;">
+                          <a href="${heroStoreUrl}" style="display: inline-block; background-color: #059669; color: #ffffff; padding: 10px 18px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 14px; white-space: nowrap;">Shop Leads &rarr;</a>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
             </td>
           </tr>
 
@@ -148,7 +205,14 @@ export function buildNewsletterHtml(
               ? `
           <tr>
             <td style="padding: 0 32px 32px;">
-              <h2 style="margin: 0 0 12px 0; font-size: 18px; color: #111827;">This Week on the Blog</h2>
+              <!-- "From the Blog", not "This Week on the Blog". The digest is
+                   the ten most recent Sanity posts, whatever their age — on
+                   2026-08-31 the newest was 2026-08-01 and the oldest listed
+                   was 2026-07-11, so a "this week" header was simply false and
+                   would have been false in every issue during any publishing
+                   gap. The header must stay true without anyone remembering to
+                   check the publish dates. -->
+              <h2 style="margin: 0 0 12px 0; font-size: 18px; color: #111827;">From the Blog</h2>
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
                 ${digestHtml}
               </table>
@@ -157,37 +221,34 @@ export function buildNewsletterHtml(
               : ""
           }
 
-          <!-- Flagship Playbook Strip (persistent) -->
+          <!-- Store CTA 2 of 3: vertical self-select strip -->
           <tr>
             <td style="padding: 0 32px 32px;">
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background: linear-gradient(135deg, #0f1e33 0%, #1e3a5f 60%, #2463c9 100%); border-radius: 10px; overflow: hidden;">
                 <tr>
                   <td style="padding: 24px 24px 20px 24px;">
-                    <p style="margin: 0 0 4px 0; color: #93c5fd; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px;">Free · Playbook + Workbook + Email Course</p>
-                    <p style="margin: 0 0 8px 0; color: #ffffff; font-size: 19px; font-weight: 700;">The Aged Lead Operator&rsquo;s System</p>
-                    <p style="margin: 0 0 16px 0; color: rgba(255,255,255,0.85); font-size: 14px; line-height: 1.55;">Haven&rsquo;t grabbed it yet? The full operator&rsquo;s manual &mdash; scripts, unit economics, cadence, nurture, and 2026 TCPA compliance &mdash; tuned to your vertical.</p>
-                    <table role="presentation" cellpadding="0" cellspacing="0">
-                      <tr>
-                        <td style="padding-right: 6px;"><a href="${siteUrl}/playbook/mortgage" style="display: inline-block; background-color: rgba(255,255,255,0.12); color: #ffffff; padding: 8px 14px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 13px; border: 1px solid rgba(255,255,255,0.25);">Mortgage &rarr;</a></td>
-                        <td style="padding-right: 6px;"><a href="${siteUrl}/playbook/insurance" style="display: inline-block; background-color: rgba(255,255,255,0.12); color: #ffffff; padding: 8px 14px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 13px; border: 1px solid rgba(255,255,255,0.25);">Insurance &rarr;</a></td>
-                        <td><a href="${siteUrl}/playbook/home-services" style="display: inline-block; background-color: rgba(255,255,255,0.12); color: #ffffff; padding: 8px 14px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 13px; border: 1px solid rgba(255,255,255,0.25);">Home Services &rarr;</a></td>
-                      </tr>
+                    <p style="margin: 0 0 4px 0; color: #93c5fd; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px;">Buy Aged Leads</p>
+                    <p style="margin: 0 0 8px 0; color: #ffffff; font-size: 19px; font-weight: 700;">Pick your vertical</p>
+                    <p style="margin: 0 0 16px 0; color: rgba(255,255,255,0.85); font-size: 14px; line-height: 1.55;">Straight to current inventory and live pricing &mdash; no digging.</p>
+                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+                      ${verticalStripHtml}
                     </table>
+                    <p style="margin: 12px 0 0 0;"><a href="${catalogueUrl(weekLabel, "vertical-all")}" style="color: #bfdbfe; font-size: 13px; text-decoration: underline;">See all lead types &rarr;</a></p>
                   </td>
                 </tr>
               </table>
             </td>
           </tr>
 
-          <!-- CTA -->
+          <!-- Store CTA 3 of 3: closing -->
           <tr>
             <td style="padding: 0 32px 32px;">
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background: linear-gradient(135deg, #059669 0%, #10b981 100%); border-radius: 10px;">
                 <tr>
                   <td style="padding: 28px 24px; text-align: center;">
                     <h2 style="margin: 0 0 8px 0; color: #ffffff; font-size: 20px; font-weight: 700;">Ready to Fill Your Pipeline?</h2>
-                    <p style="margin: 0 0 18px 0; color: rgba(255,255,255,0.9); font-size: 15px;">Aged leads from $0.25 — insurance, mortgage, solar, legal & more</p>
-                    <a href="${content.ctaUrl}" style="display: inline-block; background-color: #ffffff; color: #059669; padding: 12px 32px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 15px;">${content.ctaText}</a>
+                    <p style="margin: 0 0 18px 0; color: rgba(255,255,255,0.9); font-size: 15px;">Aged leads across insurance, mortgage, home services and solar</p>
+                    <a href="${footerStoreUrl}" style="display: inline-block; background-color: #ffffff; color: #059669; padding: 12px 32px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 15px;">${content.ctaText}</a>
                   </td>
                 </tr>
               </table>

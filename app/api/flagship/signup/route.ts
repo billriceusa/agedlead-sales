@@ -7,11 +7,14 @@ import {
   isGoodOrigin,
   isHoneypotFilled,
 } from "@/lib/anti-spam";
+// This route used to read NEXT_PUBLIC_SITE_URL with its own
+// `|| "https://www.agedleadsales.com"` fallback — the only `www.` variant in
+// the repo, and a bypass of the one module whose entire purpose is to be the
+// single place the site's own address is written down. It builds the playbook,
+// workbook and unsubscribe URLs, so a drift here mails dead links.
+import { SITE_URL } from "@/lib/site-url";
 
 const VALID_VERTICALS: Vertical[] = ["mortgage", "insurance", "home-services"];
-
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://www.agedleadsales.com";
 
 function isVertical(v: unknown): v is Vertical {
   return typeof v === "string" && (VALID_VERTICALS as string[]).includes(v);

@@ -8,6 +8,7 @@ import {
   type NewsletterContent,
 } from "@/lib/cron/newsletter-ai";
 import { buildNewsletterHtml } from "@/lib/cron/newsletter-email";
+import { checkIssueHtml, type IssueGate } from "@/lib/newsletter/issue-gate";
 import { commitFilesToGitHub } from "@/lib/cron/git-commit";
 import { recordCronRun } from "@/lib/cron/heartbeat";
 import { REPLY_TO_EMAIL } from "@/lib/resend";
@@ -111,22 +112,35 @@ async function sendPreviewEmail(
   fromEmail: string,
   subject: string,
   html: string,
-  weekLabel: string
+  weekLabel: string,
+  gate: IssueGate
 ): Promise<{ success: boolean; error?: string }> {
-  const previewHtml = `
+  // On a blocking failure the issue is archived with killed:true, so the send
+  // command below would simply be refused. Printing it anyway would send Bill
+  // to a dead end and read like the gate had not fired.
+  const banner = gate.ok
+    ? `
     <div style="background: #fefce8; border: 2px solid #f59e0b; border-radius: 8px; padding: 16px; margin: 0 auto 24px; max-width: 600px; font-family: -apple-system, sans-serif;">
       <p style="margin: 0 0 4px 0; font-weight: 700; color: #92400e;">Newsletter draft — NOT scheduled, NOT sent</p>
       <p style="margin: 0 0 8px; color: #78350f; font-size: 14px;">Nothing goes to the list until someone runs the send command. Reply with changes, or approve to send.</p>
       <p style="margin: 0; color: #78350f; font-size: 13px;">To send this exact issue:</p>
       <pre style="margin: 6px 0 0; padding: 8px 10px; background: #fff7ed; border: 1px solid #fed7aa; border-radius: 6px; font-size: 12px; overflow-x: auto;">npm run newsletter:send -- --date ${weekLabel} --confirm</pre>
-    </div>
+    </div>`
+    : `
+    <div style="background: #fef2f2; border: 2px solid #dc2626; border-radius: 8px; padding: 16px; margin: 0 auto 24px; max-width: 600px; font-family: -apple-system, sans-serif;">
+      <p style="margin: 0 0 4px 0; font-weight: 700; color: #991b1b;">QUARANTINED — this issue cannot be sent</p>
+      <p style="margin: 0 0 8px; color: #7f1d1d; font-size: 14px;">It quotes a per-lead price (${gate.blocking.join(", ")}). The archive was written with <code>killed: true</code>, so the send command will refuse it.</p>
+      <p style="margin: 0; color: #7f1d1d; font-size: 13px;">Partner pricing changes without notice and a broadcast cannot be recalled. Edit the archived HTML to compare cost structure in words, or draft a fresh issue.</p>
+    </div>`;
+
+  const previewHtml = `${banner}
     ${html}`;
 
   const { error } = await resend.emails.send({
     from: fromEmail,
     replyTo: REPLY_TO_EMAIL,
     to: REVIEW_EMAIL,
-    subject: `[PREVIEW] ${subject}`,
+    subject: gate.ok ? `[PREVIEW] ${subject}` : `[QUARANTINED] ${subject}`,
     html: previewHtml,
   });
 
@@ -215,6 +229,30 @@ export async function GET(request: Request) {
     `[Newsletter] Built HTML email (${(newsletterHtml.length / 1024).toFixed(1)} KB)`
   );
 
+  // ── Step 3.5: Gate the issue ─────────────────────────────────
+  //
+  // This cron produced 2026-08-10, which quoted "$0.30" and "Aged leads from
+  // $0.25" and was mailed on 2026-08-12. The price guard existed; it was wired
+  // into scripts/draft-newsletter.ts, a command a human runs by choice, and
+  // never into this route — the one that actually writes archives.
+  //
+  // A blocking hit QUARANTINES rather than aborts. The archive is still
+  // committed, because a stack trace cannot tell you why the model wrote a
+  // price and the bad draft can. It is written with killed:true, which reuses
+  // the already-tested refusal in scripts/send-newsletter.ts rather than
+  // inventing a second kind of "do not send" flag.
+  const gate = checkIssueHtml(newsletterHtml);
+  if (!gate.ok) {
+    console.error(`[Newsletter] QUARANTINED — ${gate.blocking.join(", ")}`);
+    errors.push(
+      `QUARANTINED (price guard): ${gate.blocking.join(", ")} — archived with killed:true, not sendable.`
+    );
+  }
+  for (const w of gate.warnings) {
+    console.warn(`[Newsletter] ${w}`);
+    errors.push(`Warning: ${w}`);
+  }
+
   // ── Step 4: Send preview to Bill ─────────────────────────────
   const resendApiKey = process.env.RESEND_API_KEY;
   const fromEmail =
@@ -228,7 +266,8 @@ export async function GET(request: Request) {
         fromEmail,
         content.subject,
         newsletterHtml,
-        weekDates.weekLabel
+        weekDates.weekLabel,
+        gate
       );
       if (preview.success) {
         console.log(`[Newsletter] Preview sent to ${REVIEW_EMAIL}`);
@@ -268,6 +307,16 @@ export async function GET(request: Request) {
     // review gate — so the approved bytes are what get stored and sent.
     html: `${weekDates.weekLabel}.html`,
     sent: false,
+    // Set only on a blocking gate failure. send-newsletter.ts already refuses
+    // any issue carrying this flag, so quarantine needs no new code there.
+    ...(gate.ok
+      ? {}
+      : {
+          killed: true,
+          killedAt: new Date().toISOString(),
+          killedReason: `AUTO-QUARANTINE (price guard): ${gate.blocking.join(", ")}`,
+        }),
+    priceGuard: { blocking: gate.blocking, warnings: gate.warnings },
     featuredArticle: content.featuredArticle,
     quickTips: content.quickTips.map((t) => t.title),
     industryInsight: content.industryInsight.headline,

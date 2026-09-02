@@ -9,6 +9,7 @@
 import { NextResponse } from "next/server";
 import { getAccessToken } from "@/lib/cron/google-auth";
 import { SITE_HOST } from "@/lib/site-url";
+import { AFFILIATE_DOMAIN, isAffiliateDomain } from "@/lib/affiliate";
 
 export const maxDuration = 60;
 export const dynamic = "force-dynamic";
@@ -18,7 +19,13 @@ const PROPERTY_ID = "528489903"; // Work Aged Leads — BRSG account
 // The monetized destination. Clicks to any other partner host in
 // data/partner-hosts.ts are editorial, not revenue — the Click Loop scores
 // pages on this domain alone.
-const AFFILIATE_DOMAIN = "agedleadstore.com";
+// The monetized destination, and the "is this it?" predicate. Both live in
+// lib/affiliate.ts so the storefront-subdomain rule has exactly one definition —
+// see the doc comment there for why `===` was wrong in two directions at once.
+//
+// Nothing has been lost yet: the storefront deep-links first shipped in the
+// 2026-08-31 issue, which mailed 2026-09-01. This is fixed before the clicks it
+// would have mis-scored arrive.
 
 interface GA4Row {
   dimensionValues: { value: string }[];
@@ -126,7 +133,13 @@ const ALS_CLICK_FILTER = {
       {
         filter: {
           fieldName: "linkDomain",
-          stringFilter: { value: AFFILIATE_DOMAIN },
+          // ENDS_WITH, not the default EXACT, so `store.agedleadstore.com`
+          // deep-links count. See isAffiliateDomain(). GA4 has no "this host or
+          // a subdomain of it" matcher, so ENDS_WITH is the closest available;
+          // it would also match a hypothetical `notagedleadstore.com`, which
+          // cannot occur because every outbound link on this site is authored
+          // by us.
+          stringFilter: { matchType: "ENDS_WITH", value: AFFILIATE_DOMAIN },
         },
       },
     ],
@@ -235,7 +248,7 @@ export async function GET(request: Request) {
     // Clicks going to the 14 non-monetized partner hosts. A flag condition in
     // CLICK-LOOP.md fires when this exceeds the affiliate total.
     const leakage30 = byDomain30
-      .filter((d) => d.domain !== AFFILIATE_DOMAIN)
+      .filter((d) => !isAffiliateDomain(d.domain))
       .reduce((sum, d) => sum + d.count, 0);
 
     return NextResponse.json({

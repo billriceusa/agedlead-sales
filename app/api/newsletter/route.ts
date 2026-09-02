@@ -3,6 +3,7 @@ import { Resend } from "resend";
 import { isGoodOrigin, isHoneypotFilled } from "@/lib/anti-spam";
 import { REPLY_TO_EMAIL } from "@/lib/resend";
 import { SITE_URL, siteUrl } from "@/lib/site-url";
+import { affiliateUrl } from "@/lib/affiliate";
 import { rebrandNoticeHtml } from "@/lib/rebrand-notice";
 
 const LEAD_MAGNET_DOWNLOADS: Record<string, { name: string; url: string }> = {
@@ -86,6 +87,26 @@ export async function POST(request: Request) {
     // Send welcome email (with lead magnet download if applicable)
     const magnet = leadMagnet ? LEAD_MAGNET_DOWNLOADS[leadMagnet] : null;
 
+    // The one store link in this email.
+    //
+    // This is the highest-intent unmonetized moment on the site: someone has
+    // just asked for a guide about buying aged leads and is reading a mail they
+    // requested. It carried a download button, a /start-here link and footer
+    // nav, and nothing that could earn anything.
+    //
+    // Placed AFTER the download and the orientation link, not before. The
+    // promise of this email is the file; leading with a buy button would make
+    // the magnet read as bait, which is the one thing that would cost more than
+    // the click is worth. No price is stated — partner pricing is theirs to
+    // publish, and lib/newsletter/issue-gate.ts exists because we got that
+    // wrong before.
+    const storeBlock = `
+              <p style="margin: 0 0 24px 0; color: #374151; font-size: 16px; line-height: 1.7;">And when you're ready to put it to work, this is where I buy: <a href="${affiliateUrl(
+                // utm_content is the magnet slug, so the report can say which
+                // download earns clicks rather than just that the welcome mail does.
+                { campaign: "lead-magnet-welcome", content: leadMagnet || "no-magnet" },
+              )}" style="color: #2563eb; text-decoration: none; font-weight: 600;">browse aged leads at Aged Lead Store</a>. <span style="color: #6b7280; font-size: 14px;">(Affiliate link — I may earn a commission at no cost to you.)</span></p>`;
+
     const subject = magnet
       ? `Your download: ${magnet.name}`
       : "Welcome to Work Aged Leads";
@@ -133,6 +154,7 @@ export async function POST(request: Request) {
                 <li>Weekly strategies for insurance, mortgage, solar, and more</li>
               </ul>
               <p style="margin: 0 0 24px 0; color: #374151; font-size: 16px; line-height: 1.7;">Start here if you're new: <a href="${SITE_URL}/start-here" style="color: #2563eb; text-decoration: none; font-weight: 600;">Your Complete Guide to Working Aged Leads</a></p>
+              ${storeBlock}
               <p style="margin: 0; color: #111827; font-weight: 600; font-size: 16px;">— Bill Rice</p>
             </td>
           </tr>

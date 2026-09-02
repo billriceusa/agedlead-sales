@@ -1,0 +1,97 @@
+vertical,leadAgeBracket,exclusivity,leadType,targetMonth,providerName,priceLow,priceHigh,sourceUrl,observedDate,notes
+auto-insurance,real-time,exclusive,internet-form,2026-08,,,,,,"prior 2026-04: $50-$100 (median $75, n=4)"
+auto-insurance,real-time,exclusive,internet-form,2026-08,,,,,,
+auto-insurance,real-time,exclusive,internet-form,2026-08,,,,,,
+auto-insurance,real-time,shared,internet-form,2026-08,,,,,,"prior 2026-04: $20-$45 (median $32, n=5)"
+auto-insurance,real-time,shared,internet-form,2026-08,,,,,,
+auto-insurance,real-time,shared,internet-form,2026-08,,,,,,
+debt-settlement,31-85-days,shared,internet-form,2026-08,,,,,,"prior 2026-04: $1-$8 (median $4, n=3)"
+debt-settlement,31-85-days,shared,internet-form,2026-08,,,,,,
+debt-settlement,31-85-days,shared,internet-form,2026-08,,,,,,
+debt-settlement,real-time,shared,internet-form,2026-08,,,,,,"prior 2026-04: $20-$50 (median $35, n=3)"
+debt-settlement,real-time,shared,internet-form,2026-08,,,,,,
+debt-settlement,real-time,shared,internet-form,2026-08,,,,,,
+final-expense,31-85-days,exclusive,direct-mail,2026-08,,,,,,"prior 2026-04: $8-$25 (median $15, n=3)"
+final-expense,31-85-days,exclusive,direct-mail,2026-08,,,,,,
+final-expense,31-85-days,exclusive,direct-mail,2026-08,,,,,,
+final-expense,real-time,exclusive,internet-form,2026-08,,,,,,"prior 2026-04: $30-$50 (median $40, n=4)"
+final-expense,real-time,exclusive,internet-form,2026-08,,,,,,
+final-expense,real-time,exclusive,internet-form,2026-08,,,,,,
+final-expense,real-time,exclusive,live-transfer,2026-08,,,,,,"prior 2026-04: $50-$80 (median $65, n=3)"
+final-expense,real-time,exclusive,live-transfer,2026-08,,,,,,
+final-expense,real-time,exclusive,live-transfer,2026-08,,,,,,
+final-expense,real-time,shared,internet-form,2026-08,,,,,,"prior 2026-04: $15-$30 (median $22, n=5)"
+final-expense,real-time,shared,internet-form,2026-08,,,,,,
+final-expense,real-time,shared,internet-form,2026-08,,,,,,
+health-insurance,real-time,exclusive,internet-form,2026-08,,,,,,"prior 2026-04: $50-$100 (median $75, n=3)"
+health-insurance,real-time,exclusive,internet-form,2026-08,,,,,,
+health-insurance,real-time,exclusive,internet-form,2026-08,,,,,,
+health-insurance,real-time,shared,internet-form,2026-08,,,,,,"prior 2026-04: $20-$40 (median $30, n=4)"
+health-insurance,real-time,shared,internet-form,2026-08,,,,,,
+health-insurance,real-time,shared,internet-form,2026-08,,,,,,
+home-improvement,31-85-days,shared,internet-form,2026-08,,,,,,"prior 2026-04: $0.6-$1.5 (median $1.05, n=3)"
+home-improvement,31-85-days,shared,internet-form,2026-08,,,,,,
+home-improvement,31-85-days,shared,internet-form,2026-08,,,,,,
+home-improvement,real-time,shared,internet-form,2026-08,,,,,,"prior 2026-04: $15-$40 (median $25, n=3)"
+home-improvement,real-time,shared,internet-form,2026-08,,,,,,
+home-improvement,real-time,shared,internet-form,2026-08,,,,,,
+legal,31-85-days,shared,internet-form,2026-08,,,,,,"prior 2026-04: $15-$100 (median $50, n=2)"
+legal,31-85-days,shared,internet-form,2026-08,,,,,,
+legal,31-85-days,shared,internet-form,2026-08,,,,,,
+legal,real-time,exclusive,internet-form,2026-08,,,,,,"prior 2026-04: $300-$800 (median $550, n=3)"
+legal,real-time,exclusive,internet-form,2026-08,,,,,,
+legal,real-time,exclusive,internet-form,2026-08,,,,,,
+legal,real-time,exclusive,live-transfer,2026-08,,,,,,"prior 2026-04: $100-$200 (median $150, n=2)"
+legal,real-time,exclusive,live-transfer,2026-08,,,,,,
+legal,real-time,exclusive,live-transfer,2026-08,,,,,,
+legal,real-time,shared,internet-form,2026-08,,,,,,"prior 2026-04: $150-$400 (median $275, n=3)"
+legal,real-time,shared,internet-form,2026-08,,,,,,
+legal,real-time,shared,internet-form,2026-08,,,,,,
+medicare,31-85-days,shared,internet-form,2026-08,,,,,,"prior 2026-04: $1.5-$8 (median $4, n=3)"
+medicare,31-85-days,shared,internet-form,2026-08,,,,,,
+medicare,31-85-days,shared,internet-form,2026-08,,,,,,
+medicare,real-time,exclusive,internet-form,2026-08,,,,,,"prior 2026-04: $75-$150 (median $110, n=3)"
+medicare,real-time,exclusive,internet-form,2026-08,,,,,,
+medicare,real-time,exclusive,internet-form,2026-08,,,,,,
+medicare,real-time,exclusive,live-transfer,2026-08,,,,,,"prior 2026-04: $50-$100 (median $75, n=3)"
+medicare,real-time,exclusive,live-transfer,2026-08,,,,,,
+medicare,real-time,exclusive,live-transfer,2026-08,,,,,,
+medicare,real-time,shared,internet-form,2026-08,,,,,,"prior 2026-04: $30-$60 (median $45, n=4)"
+medicare,real-time,shared,internet-form,2026-08,,,,,,
+medicare,real-time,shared,internet-form,2026-08,,,,,,
+mortgage,181-365-days,shared,internet-form,2026-08,,,,,,"prior 2026-04: $0.25-$3 (median $1, n=3)"
+mortgage,181-365-days,shared,internet-form,2026-08,,,,,,
+mortgage,181-365-days,shared,internet-form,2026-08,,,,,,
+mortgage,31-85-days,shared,internet-form,2026-08,,,,,,"prior 2026-04: $2-$8 (median $4, n=5)"
+mortgage,31-85-days,shared,internet-form,2026-08,,,,,,
+mortgage,31-85-days,shared,internet-form,2026-08,,,,,,
+mortgage,31-85-days,shared,trigger-credit,2026-08,,,,,,"prior 2026-04: $0.15-$0.5 (median $0.35, n=3)"
+mortgage,31-85-days,shared,trigger-credit,2026-08,,,,,,
+mortgage,31-85-days,shared,trigger-credit,2026-08,,,,,,
+mortgage,8-30-days,shared,internet-form,2026-08,,,,,,"prior 2026-04: $3-$15 (median $7, n=4)"
+mortgage,8-30-days,shared,internet-form,2026-08,,,,,,
+mortgage,8-30-days,shared,internet-form,2026-08,,,,,,
+mortgage,86-180-days,shared,internet-form,2026-08,,,,,,"prior 2026-04: $0.5-$5 (median $2, n=4)"
+mortgage,86-180-days,shared,internet-form,2026-08,,,,,,
+mortgage,86-180-days,shared,internet-form,2026-08,,,,,,
+mortgage,real-time,exclusive,internet-form,2026-08,,,,,,"prior 2026-04: $50-$200 (median $100, n=5)"
+mortgage,real-time,exclusive,internet-form,2026-08,,,,,,
+mortgage,real-time,exclusive,internet-form,2026-08,,,,,,
+mortgage,real-time,exclusive,live-transfer,2026-08,,,,,,"prior 2026-04: $75-$175 (median $120, n=4)"
+mortgage,real-time,exclusive,live-transfer,2026-08,,,,,,
+mortgage,real-time,exclusive,live-transfer,2026-08,,,,,,
+mortgage,real-time,shared,internet-form,2026-08,,,,,,"prior 2026-04: $20-$100 (median $45, n=6)"
+mortgage,real-time,shared,internet-form,2026-08,,,,,,
+mortgage,real-time,shared,internet-form,2026-08,,,,,,
+solar,31-85-days,shared,internet-form,2026-08,,,,,,"prior 2026-04: $3-$15 (median $8, n=3)"
+solar,31-85-days,shared,internet-form,2026-08,,,,,,
+solar,31-85-days,shared,internet-form,2026-08,,,,,,
+solar,real-time,exclusive,internet-form,2026-08,,,,,,"prior 2026-04: $120-$300 (median $200, n=3)"
+solar,real-time,exclusive,internet-form,2026-08,,,,,,
+solar,real-time,exclusive,internet-form,2026-08,,,,,,
+solar,real-time,exclusive,live-transfer,2026-08,,,,,,"prior 2026-04: $80-$120 (median $100, n=3)"
+solar,real-time,exclusive,live-transfer,2026-08,,,,,,
+solar,real-time,exclusive,live-transfer,2026-08,,,,,,
+solar,real-time,shared,internet-form,2026-08,,,,,,"prior 2026-04: $60-$150 (median $100, n=4)"
+solar,real-time,shared,internet-form,2026-08,,,,,,
+solar,real-time,shared,internet-form,2026-08,,,,,,

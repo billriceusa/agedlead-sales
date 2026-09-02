@@ -52,15 +52,74 @@ lag for a 15-day-old domain, and the lagging indicator agreeing with the leading
 
 These are the levers that actually move the stalled step. None of them are code.
 
-- [ ] **File Change of Address: `sc-domain:agedleadsales.com` → `sc-domain:workagedleads.com`.**
-      The single highest-leverage action available. Both properties are verified under the same
-      identity — the trend cron reads both successfully every day — so the tool's precondition is
-      met. This tells Google directly that the whole site moved and prioritizes recrawl.
-- [ ] **File Change of Address for `howtoworkleads.com` → workagedleads.com.** Verified in a
-      *different* Google account than agedleadsales (it appears as `siteOwner` under the account that
-      also holds myperfectmortgage/kaleidicoventures). Change of Address requires both properties in
-      the same account, so **workagedleads.com must first be verified in whichever account owns
-      howtoworkleads.com.** Confirm which account that is before filing.
+- [x] **DONE 2026-09-01 — Change of Address filed and accepted for BOTH old domains**
+      (`agedleadsales.com` → `workagedleads.com`, `howtoworkleads.com` → `workagedleads.com`).
+      Bill filed them after earlier attempts had failed; this time validation passed.
+
+      History, because it explains why this entry was a mess. It failed repeatedly in August;
+      `CLICK-LOOP.md` wrote it off on 2026-08-18 ("Confirmed dead. Redirects stay; we stop
+      pushing."), while this file kept it open as "the single highest-leverage action available"
+      — a claim inferred from the trend cron reading both properties, not from the tool ever
+      succeeding. The two files disagreed and the optimistic one drove the plan.
+
+      **Why the retry worked is not established.** The most likely reason is simply that the
+      site side finally satisfied the validator and a retry landed: as of today every redirect a
+      validator would follow is a literal cross-domain 301, which was not true in early August
+      (`howtoworkleads.com` emitted a 308 via `permanent: true` until the homepage rule was
+      switched to `statusCode: 301` — see memory
+      `tools/feedback_gsc_change_of_address_needs_literal_301.md`). Google's own community
+      guidance on this error is also "wait 24–48 hours and try again," so elapsed time may be
+      doing the work. Do not record a cause we did not test.
+
+      Measured 2026-09-01, every redirect is objectively correct:
+
+      | fetched | result |
+      |---|---|
+      | `https://agedleadsales.com/` | **301** → `https://workagedleads.com/` |
+      | `https://www.agedleadsales.com/` | **301** → `https://workagedleads.com/` |
+      | `https://howtoworkleads.com/` | **301** → `https://workagedleads.com/` |
+      | `https://www.howtoworkleads.com/` | **301** → `https://workagedleads.com/` |
+      | `http://agedleadsales.com/` | **308** → `https://agedleadsales.com/` (same domain) |
+      | `http://howtoworkleads.com/` | **308** → `https://howtoworkleads.com/` (same domain) |
+
+      Page-level 301s preserve the path, canonicals point at the new domain, the sitemap serves
+      330 `workagedleads.com` URLs, robots allows. Nothing on the site side is broken.
+
+      The `http://` rows stay recorded because they are the standing hazard: Google documents
+      `http://example.com` as a **domain-level property in its own right**, and Vercel 308s that
+      form to *itself* at the edge before any application code runs. A validator landing there
+      never observes "old homepage 301s to new homepage" and returns `Validation failed. Couldn't
+      fetch the page.` — an error that reads like an outage and is not one. The edge 308 cannot be
+      changed from this repo. If a future domain move stalls on that error, this is the first
+      thing to check, and the `https://` URL-prefix properties (domain-level, therefore eligible)
+      are the fallback to file from.
+
+- [ ] **Measure the Change of Address at +2 weeks — 2026-09-15.** This is the whole point of
+      having filed it, and nothing else on this list tells us whether it took. Baseline captured
+      2026-09-01, the day of filing (7-day rolling, from `data/gsc-trend.json` plus the GSC
+      property for howtoworkleads):
+
+      | property | clicks | impressions | avg position |
+      |---|---:|---:|---:|
+      | `agedleadsales.com` (retiring) | 37 | 4,217 | 20.1 |
+      | `howtoworkleads.com` (retiring) | ~4/day | ~600/day | ~22 |
+      | **`workagedleads.com`** (live) | **1** | **338** | **65.0** |
+
+      Success looks like the two retiring rows draining into the third — old-domain impressions
+      falling while `workagedleads.com` impressions rise and its average position moves from 65
+      toward the ~20 the old domains hold. Watch position, not just clicks: position is the
+      earliest signal that Google has begun crediting the new host.
+
+      Do **not** read a flat two weeks as failure. Change of Address prioritizes recrawl; it does
+      not move rankings on a schedule we control, and Google honors the signal for roughly 180
+      days. The redirects were always doing the consolidation on their own — this is an
+      accelerator, and it was never a requirement.
+
+- [ ] **Add `howtoworkleads.com` to `GSC_PROPERTIES` in `lib/cron/gsc-properties.ts`.** It is a
+      third pool of live search equity (~600 impressions/day) now under an active Change of
+      Address, and the trend cron does not watch it — so the drain will only be half visible in
+      `data/gsc-trend.json`. It can be read manually from the GSC property in the meantime, which
+      is why this is not a blocker for the 09-15 measurement.
 - [ ] **Request Indexing on the top ~15 new-domain money pages** via URL Inspection. Manual and
       tedious, but it forces a crawl instead of waiting for one. Start with the pages carrying the
       most old-domain clicks: `/lead-types/iul-leads`, `/lead-types/life-insurance-leads`,
