@@ -56,25 +56,47 @@ const STOREFRONT = "https://store.agedleadstore.com";
 const CATALOGUE = "https://agedleadstore.com/all-lead-types/";
 
 /**
+ * The default campaign for links built here.
+ *
+ * Kept as the default so every existing caller keeps emitting exactly what it
+ * emitted before. Anything that is NOT the Tuesday newsletter must pass its own
+ * campaign — a one-off offer send tagged `weekly-newsletter` would be averaged
+ * into the newsletter's trend line and neither could be read afterwards.
+ */
+const DEFAULT_CAMPAIGN = "weekly-newsletter";
+
+/**
  * Build a tagged store URL.
  *
  * `utm_content` carries BOTH the issue and the placement — `2026-08-31-hero`,
  * `2026-08-31-vertical-mortgage`, `2026-08-31-footer`. The issue date alone
  * (what shipped before) tells you which email earned a click but never which
  * link, which makes a multi-placement layout unmeasurable.
+ *
+ * `campaign` separates one *send* from another the same way `utm_content`
+ * separates one link from another within a send.
  */
-export function storeUrl(weekLabel: string, placement: string, segment?: string): string {
+export function storeUrl(
+  weekLabel: string,
+  placement: string,
+  segment?: string,
+  campaign: string = DEFAULT_CAMPAIGN,
+): string {
   const base = segment ? `${STOREFRONT}/${segment}/leads` : CATALOGUE;
   const params = new URLSearchParams({
     utm_source: AFFILIATE_UTM_SOURCE,
     utm_medium: "email",
-    utm_campaign: "weekly-newsletter",
+    utm_campaign: campaign,
     utm_content: `${weekLabel}-${placement}`,
   });
   return `${base}?${params.toString()}`;
 }
 
 /** The catalogue fallback, for readers whose vertical isn't stocked. */
-export function catalogueUrl(weekLabel: string, placement: string): string {
-  return storeUrl(weekLabel, placement);
+export function catalogueUrl(
+  weekLabel: string,
+  placement: string,
+  campaign: string = DEFAULT_CAMPAIGN,
+): string {
+  return storeUrl(weekLabel, placement, undefined, campaign);
 }

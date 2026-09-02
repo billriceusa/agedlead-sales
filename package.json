@@ -14,6 +14,7 @@
     "disavow:merged": "tsx scripts/build-merged-disavow.ts",
     "newsletter:migrate": "tsx scripts/migrate-newsletter-audience.ts",
     "newsletter:draft": "tsx scripts/draft-newsletter.ts",
+    "offer:draft": "tsx scripts/draft-offer-email.ts",
     "newsletter:send": "tsx scripts/send-newsletter.ts",
     "als:sync-suppression": "tsx scripts/sync-als-suppression.ts",
     "price-index:gap": "tsx scripts/price-index-gap.ts",
