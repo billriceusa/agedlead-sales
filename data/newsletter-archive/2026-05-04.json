@@ -18,5 +18,8 @@
     "3 Chrome Extensions Every Lead Caller Needs"
   ],
   "industryInsight": "Medicare Advantage Lead Prices Up 40% Post-TPMO",
-  "errors": []
+  "errors": [],
+  "killed": true,
+  "killedAt": "2026-09-02T15:57:18.881Z",
+  "killedReason": "Stopped by Bill from the Sunday preview email."
 }
