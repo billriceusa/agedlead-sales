@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { PriceBenchmarkTable } from "@/components/price-benchmark-table";
 import { PriceTrendChart, type PriceTrendPoint } from "@/components/price-trend-chart";
+import { PriceDisclosurePanel } from "@/components/price-disclosure-panel";
 import { CtaBanner } from "@/components/cta-banner";
 import { RelatedLinks } from "@/components/related-links";
 import { CiteThisButton } from "@/components/cite-this-button";
@@ -247,12 +248,28 @@ export default async function VerticalPriceIndexPage({
             </div>
           </div>
 
-          {/* Observed price trend (renders only with 3+ real months) */}
-          <PriceTrendChart
-            points={trendPoints}
-            verticalName={vertical.name}
-            seriesLabel={trendSeriesLabel}
-          />
+          {/*
+            Observed price trend, or an explanation of its absence.
+
+            PriceTrendChart returns null below three verified months, which is
+            correct — two points is not a trend — but that left a silent hole on
+            nine of eleven vertical pages. The Q3 study tried to close it from
+            public sources and filled zero of twelve cells, because one provider
+            in fifteen publishes a comparable per-lead price. The panel says so
+            and names who does, which is worth more to a reader than a blank.
+          */}
+          {trendPoints.length >= 3 ? (
+            <PriceTrendChart
+              points={trendPoints}
+              verticalName={vertical.name}
+              seriesLabel={trendSeriesLabel}
+            />
+          ) : (
+            <PriceDisclosurePanel
+              verticalName={vertical.name}
+              monthsAvailable={trendPoints.length}
+            />
+          )}
 
           {/* Price Tables by Group */}
           {groups.length > 0 ? (
