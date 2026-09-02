@@ -53,6 +53,40 @@ export const ALS_LIFECYCLE_SEND_CAP = Number(
   process.env.ALS_LIFECYCLE_SEND_CAP || "150"
 );
 
+/**
+ * Slots inside the daily cap held for the replenishment journey.
+ *
+ * WHY THIS EXISTS (Bill, 2026-09-02)
+ *
+ * Sends were selected oldest-due-first and truncated at the cap. With a backlog
+ * of ~715 due against 150/day, replenishment queued behind welcome and
+ * ai-series purely by age — and those are not equal in value:
+ *
+ *   replenish-r1   6 sessions -> $420.00   $70.00/session
+ *   welcome-e2    23 sessions ->   $0.00    $0.00/session
+ *
+ * (GA4 357329146, 2026-06-01 to 2026-09-02.) $70/session emails were waiting
+ * behind $0/session emails, which is why replenishment produced 6 store
+ * sessions in a quarter while 326 buyers sat eligible for it. Someone who
+ * already bought and is running low is the purest buying signal in the system;
+ * making them wait on an education backlog wastes the one moment that converts.
+ *
+ * A FLOOR, NOT A CEILING. If fewer replenishment emails are due than the
+ * reserve, the spare slots go to the value track rather than idling — and if
+ * the value track is short, replenishment backfills past its reserve. Nothing
+ * is throttled that could otherwise send; only the ORDER of contention changes.
+ *
+ * The education arc is not abandoned, just slightly slower under contention.
+ * That was the deliberate "value track first" policy and it still holds for
+ * everyone not signalling intent.
+ *
+ * Raise `ALS_LIFECYCLE_SEND_CAP` to clear the backlog faster once the sending
+ * domain has proven itself; this reserve scales with it and needs no change.
+ */
+export const ALS_LIFECYCLE_REPLENISH_RESERVE = Number(
+  process.env.ALS_LIFECYCLE_REPLENISH_RESERVE || "50"
+);
+
 // AI-for-aged-leads series gate. Ships dark — the series enrolls/sends only when
 // this is "true". Flip on after the AI copy is approved. Independent of
 // ALS_LIFECYCLE_SEND_ENABLED, which still gates ALL sending.

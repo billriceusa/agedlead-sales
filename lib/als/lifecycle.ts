@@ -25,6 +25,7 @@ import {
   ALS_LIFECYCLE_FROM,
   ALS_LIFECYCLE_REPLY_TO,
   ALS_LIFECYCLE_SEND_CAP,
+  ALS_LIFECYCLE_REPLENISH_RESERVE,
   ALS_UNSUB_SECRET,
   ALS_PUBLIC_APP_URL,
   ALS_AI_SERIES_ENABLED,
@@ -45,6 +46,67 @@ const WELCOME_START_DAYS = 3; // first welcome email fires this many days after 
 
 // Caps so the first launch over the existing list ramps instead of blasting.
 const ENROLL_CAP = 400;
+
+/**
+ * How many due rows to load before allocating the daily cap.
+ *
+ * Must exceed the cap, and comfortably exceed the backlog, or the reserve is
+ * meaningless: the previous code applied `.limit(cap)` in SQL, so when the
+ * value track had an older backlog the replenishment rows were never loaded at
+ * all and no downstream ordering could reach them. Sized well above the ~715
+ * observed on 2026-09-02 so the allocation sees the whole queue.
+ */
+const DUE_SCAN_LIMIT = 5000;
+
+/**
+ * Split one run's send budget between replenishment and the value track.
+ *
+ * Pure and exported so it can be tested without a database. The rules, in
+ * order, and each exists for a reason:
+ *
+ * 1. Replenishment takes up to `reserve` slots first. Without this, plain
+ *    oldest-due-first buried $70/session emails under a $0/session backlog.
+ * 2. The value track fills whatever remains.
+ * 3. Either side backfills slots the other did not use. The reserve is a FLOOR
+ *    on contention, never a throttle — a run still sends exactly `cap`, or
+ *    everything due when that is fewer. A reserve that left slots idle would
+ *    make the backlog worse, not better.
+ * 4. The final batch is ordered oldest-due-first, so within the chosen set the
+ *    longest-waiting contact still goes first.
+ *
+ * `input` is assumed already sorted by due date ascending.
+ */
+export function allocateDueSlots<T extends { journey: string; nextDueAt?: Date | null }>(
+  input: T[],
+  cap: number,
+  reserve: number,
+): { selected: T[]; replenishCount: number; valueCount: number } {
+  const safeCap = Math.max(0, cap);
+  const safeReserve = Math.min(Math.max(0, reserve), safeCap);
+
+  const replenish = input.filter((r) => r.journey === "replenishment");
+  const value = input.filter((r) => r.journey !== "replenishment");
+
+  const takeReplenish = replenish.slice(0, safeReserve);
+  const takeValue = value.slice(0, Math.max(0, safeCap - takeReplenish.length));
+
+  // Rule 3 — hand unused slots back rather than idling them.
+  const spare = safeCap - takeReplenish.length - takeValue.length;
+  const backfill =
+    spare > 0
+      ? replenish.slice(takeReplenish.length, takeReplenish.length + spare)
+      : [];
+
+  const selected = [...takeReplenish, ...backfill, ...takeValue].sort(
+    (a, b) => (a.nextDueAt?.getTime() ?? 0) - (b.nextDueAt?.getTime() ?? 0),
+  );
+
+  return {
+    selected,
+    replenishCount: takeReplenish.length + backfill.length,
+    valueCount: takeValue.length,
+  };
+}
 
 // ---------------------------------------------------------------------------
 // Rendering
@@ -663,6 +725,10 @@ export interface LifecycleResult {
   sent: number;
   completed: number;
   reorderExits: number;
+  /** Due rows loaded before cap allocation — shows the size of the backlog. */
+  dueScanned: number;
+  /** How many of this run's slots went to replenishment. */
+  replenishReserved: number;
   errors: string[];
   plan?: LifecyclePlan; // included on dry runs
 }
@@ -788,7 +854,9 @@ async function enrollReplenishment(): Promise<number> {
 
 export async function runLifecycle(
   apiKey: string,
-  opts: { sendEnabled: boolean; sendCap?: number } = { sendEnabled: false }
+  opts: { sendEnabled: boolean; sendCap?: number; replenishReserve?: number } = {
+    sendEnabled: false,
+  }
 ): Promise<LifecycleResult> {
   const result: LifecycleResult = {
     sendEnabled: opts.sendEnabled,
@@ -798,6 +866,8 @@ export async function runLifecycle(
     sent: 0,
     completed: 0,
     reorderExits: 0,
+    dueScanned: 0,
+    replenishReserved: 0,
     errors: [],
   };
 
@@ -814,14 +884,28 @@ export async function runLifecycle(
   result.enrolledAiSeries = await enrollAiSeries();
   result.enrolledReplenishment = await enrollReplenishment();
 
-  // 2. Advance due steps, oldest-due first, capped.
+  // 2. Advance due steps, oldest-due first, capped — with a reserved share for
+  //    replenishment. See ALS_LIFECYCLE_REPLENISH_RESERVE for the reasoning:
+  //    plain oldest-due-first put $70/session emails behind $0/session ones.
+  //
+  //    The scan deliberately reaches PAST the cap. Selecting inside the cap was
+  //    the bug — replenishment rows were never even loaded when the value track
+  //    had an older backlog, so no amount of reordering downstream could have
+  //    seen them.
   const cap = opts.sendCap ?? ALS_LIFECYCLE_SEND_CAP;
-  const due = await db
+  const reserve = Math.min(
+    opts.replenishReserve ?? ALS_LIFECYCLE_REPLENISH_RESERVE,
+    cap,
+  );
+  const dueScan = await db
     .select({
       jid: alsBuyerJourneys.id,
       journey: alsBuyerJourneys.journey,
       step: alsBuyerJourneys.step,
       anchorAt: alsBuyerJourneys.anchorAt,
+      // Selected so allocateDueSlots can re-sort the chosen batch oldest-first.
+      // SQL already orders by it, but the allocation interleaves two buckets.
+      nextDueAt: alsBuyerJourneys.nextDueAt,
       contactId: alsBuyerJourneys.contactId,
       email: alsBuyerContacts.email,
       unsubscribed: alsBuyerContacts.unsubscribed,
@@ -841,7 +925,13 @@ export async function runLifecycle(
       )
     )
     .orderBy(asc(alsBuyerJourneys.nextDueAt))
-    .limit(cap);
+    .limit(DUE_SCAN_LIMIT);
+
+  const { selected, replenishCount } = allocateDueSlots(dueScan, cap, reserve);
+  const due = selected;
+
+  result.dueScanned = dueScan.length;
+  result.replenishReserved = replenishCount;
 
   for (const row of due) {
     const journey = row.journey as JourneyName;
