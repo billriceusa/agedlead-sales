@@ -41,6 +41,12 @@ The playbook lays it all out — scripts, cadence, unit economics, compliance. T
 
 Tomorrow I'll send you the setup side — tech stack, operational flow, and the cheapest way to get running. For now: get the mindset right, and read Part I.
 
+Nothing to buy yet — read Part I first. When you do want inventory to practise on, this is where it lives.
+
+[**See aged mortgage leads →**](https://agedleadstore.com/mortgage-leads-purchase-refinance/?utm_source=workagedleads&utm_medium=email&utm_campaign=flagship-mortgage&utm_content=email-1)
+
+*Affiliate link — we may earn a commission at no cost to you.*
+
 — Bill
 
 **Download:** [Playbook (PDF)](LINK) · [Workbook (PDF)](LINK)
@@ -85,6 +91,12 @@ Open Worksheet 2 in the workbook and fill it out. It walks you through your volu
 One thing specific to mortgage: even in Setup A, pay for a compliant DNC scrubber. Mortgage is one of the most TCPA-targeted verticals — a $100 monthly scrub fee protects you from $500–$1,500 per-call violations that will end your operation.
 
 Day 4's email: scripts. The exact words to say on the first call to a 90-day-old refi lead. Get ready.
+
+A cheap stack only helps if the lead flow is affordable too. That is the whole argument for aged.
+
+[**See aged mortgage leads →**](https://agedleadstore.com/mortgage-leads-purchase-refinance/?utm_source=workagedleads&utm_medium=email&utm_campaign=flagship-mortgage&utm_content=email-2)
+
+*Affiliate link — we may earn a commission at no cost to you.*
 
 — Bill
 
@@ -138,6 +150,12 @@ If they say "got it handled": probe — "Nice, who'd you end up with?" Half the 
 
 Day 7's email: what to do with the 85% who don't close in the first 2 weeks. That's the nurture game — and it's where the hidden profit is.
 
+A cadence needs leads to run against. A small batch is enough to test whether yours works.
+
+[**See aged mortgage leads →**](https://agedleadstore.com/mortgage-leads-purchase-refinance/?utm_source=workagedleads&utm_medium=email&utm_campaign=flagship-mortgage&utm_content=email-3)
+
+*Affiliate link — we may earn a commission at no cost to you.*
+
 — Bill
 
 **Download:** [Playbook (PDF)](LINK) · [Workbook (PDF)](LINK)
@@ -179,6 +197,12 @@ That's your second business. And for most mortgage operators, it eventually prod
 3. Schedule Freddie Mac PMMS rate-move alerts so you know when to fire the trigger nurture.
 
 Day 10's email: compliance. Specifically, the TCPA stuff that will either kill your operation or become your competitive moat — depending on how seriously you take it.
+
+Working the long tail only pays if the top of the funnel stays stocked.
+
+[**See aged mortgage leads →**](https://agedleadstore.com/mortgage-leads-purchase-refinance/?utm_source=workagedleads&utm_medium=email&utm_campaign=flagship-mortgage&utm_content=email-4)
+
+*Affiliate link — we may earn a commission at no cost to you.*
 
 — Bill
 
@@ -244,7 +268,7 @@ If your unit economics check out (Worksheet 1), your tech stack is tiered correc
 
 When you're ready, start with a test batch of 500–1,000 aged mortgage leads. The largest cleanest-consent marketplace is **AgedLeadStore** — they sort by age, state, credit bucket, and sub-vertical (refi, purchase, HELOC, reverse), and they'll confirm your name on the consent record before you run SMS.
 
-[**See aged mortgage leads →**](https://agedleadstore.com/all-lead-types/?utm_source=agedleadsales&utm_medium=email&utm_campaign=flagship-mortgage&utm_content=email-5)
+[**See aged mortgage leads →**](https://agedleadstore.com/mortgage-leads-purchase-refinance/?utm_source=workagedleads&utm_medium=email&utm_campaign=flagship-mortgage&utm_content=email-5)
 
 From here, you'll be on my weekly list — every Tuesday I send one tactical idea to sharpen your operation. Short, useful, no fluff. Open them.
 

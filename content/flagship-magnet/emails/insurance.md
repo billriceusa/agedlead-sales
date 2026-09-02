@@ -46,6 +46,12 @@ The playbook gives you the scripts and cadence. The workbook makes you put in yo
 
 Tomorrow: setting up the operation. For now — get the mindset right.
 
+Nothing to buy yet — read Part I first. When you do want inventory to practise on, this is where it lives.
+
+[**See aged insurance leads →**](https://agedleadstore.com/all-lead-types/?utm_source=workagedleads&utm_medium=email&utm_campaign=flagship-insurance&utm_content=email-1)
+
+*Affiliate link — we may earn a commission at no cost to you.*
+
 — Bill
 
 **Download:** [Playbook (PDF)](LINK) · [Workbook (PDF)](LINK)
@@ -93,6 +99,12 @@ Open Worksheet 2 in the workbook. Pick your tier honestly. Name the trigger that
 If you sell multiple lines, run separate unit-economics for each — auto and final expense have very different CPL ceilings and need separate budgets.
 
 Day 4: scripts. Different sub-verticals, different scripts.
+
+A cheap stack only helps if the lead flow is affordable too. That is the whole argument for aged.
+
+[**See aged insurance leads →**](https://agedleadstore.com/all-lead-types/?utm_source=workagedleads&utm_medium=email&utm_campaign=flagship-insurance&utm_content=email-2)
+
+*Affiliate link — we may earn a commission at no cost to you.*
 
 — Bill
 
@@ -154,6 +166,12 @@ Works because it's timely, useful, and CMS-compliant.
 
 Day 7: the nurture game — and where the hidden profit hides in insurance.
 
+A cadence needs leads to run against. A small batch is enough to test whether yours works.
+
+[**See aged insurance leads →**](https://agedleadstore.com/all-lead-types/?utm_source=workagedleads&utm_medium=email&utm_campaign=flagship-insurance&utm_content=email-3)
+
+*Affiliate link — we may earn a commission at no cost to you.*
+
 — Bill
 
 **Download:** [Playbook (PDF)](LINK) · [Workbook (PDF)](LINK)
@@ -203,6 +221,12 @@ Every insurance product has a renewal cycle. Every renewal cycle is a re-buying 
 3. Set calendar triggers tied to renewal cycles, AEP, and OEP for every line you sell.
 
 Day 10: compliance. In insurance, compliance failures end careers. Don't skim this one.
+
+Working the long tail only pays if the top of the funnel stays stocked.
+
+[**See aged insurance leads →**](https://agedleadstore.com/all-lead-types/?utm_source=workagedleads&utm_medium=email&utm_campaign=flagship-insurance&utm_content=email-4)
+
+*Affiliate link — we may earn a commission at no cost to you.*
 
 — Bill
 
@@ -267,7 +291,7 @@ Start with a test batch. For auto/home, 500–1,000 leads. For Medicare, build a
 
 **AgedLeadStore** sells aged leads in every insurance sub-vertical — with consent documentation that meets post-2023 FCC rules and filters for state, age bracket, and demographic cohort.
 
-[**Browse aged insurance leads →**](https://agedleadstore.com/all-lead-types/?utm_source=agedleadsales&utm_medium=email&utm_campaign=flagship-insurance&utm_content=email-5)
+[**Browse aged insurance leads →**](https://agedleadstore.com/all-lead-types/?utm_source=workagedleads&utm_medium=email&utm_campaign=flagship-insurance&utm_content=email-5)
 
 You're on my weekly list now. Tuesday mornings — one tactical idea to sharpen your operation. Open them.
 

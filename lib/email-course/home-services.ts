@@ -7,6 +7,7 @@ import {
   list,
   signoff,
   affiliateCtaBlock,
+  affiliateCtaText,
 } from "./shared";
 
 const email1: CourseEmail = {
@@ -30,6 +31,7 @@ ${list([
   "Skim the sub-vertical section for your line (roofing, solar, windows, HVAC, remodel, pest, foundation)",
 ])}
 ${para("Tomorrow: tech stack and field-crew capacity planning.")}
+${affiliateCtaBlock("home-services", 1)}
 ${signoff()}
 `,
     }),
@@ -47,6 +49,8 @@ This week:
 3. Skim sub-vertical section for your line
 
 Tomorrow: tech + field capacity.
+
+${affiliateCtaText("home-services", 1)}
 
 — Bill
 
@@ -90,6 +94,7 @@ ${list([
   "If lead volume would overwhelm capacity, adjust purchase plan",
 ])}
 ${para("Day 4: scripts. Home services has a specific funnel dynamic most playbooks miss.")}
+${affiliateCtaBlock("home-services", 2)}
 ${signoff()}
 `,
     }),
@@ -121,6 +126,8 @@ This week:
 3. Adjust purchase plan if capacity-bound
 
 Day 4: scripts.
+
+${affiliateCtaText("home-services", 2)}
 
 — Bill
 
@@ -161,6 +168,7 @@ ${list([
 ])}
 ${para("<strong>The neighborhood play:</strong> when you book a job on a street, soft-touch every aged lead in that zip. Highest-converting outreach play in home services.")}
 ${para("Day 7: turning unreached aged leads into next year's pipeline.")}
+${affiliateCtaBlock("home-services", 3)}
 ${signoff()}
 `,
     }),
@@ -191,6 +199,8 @@ This week:
 Neighborhood play: soft-touch every aged lead in a zip when you book a job there. Highest-converting outreach in home services.
 
 Day 7: nurture.
+
+${affiliateCtaText("home-services", 3)}
 
 — Bill
 
@@ -233,6 +243,7 @@ ${list([
   "Set up zip-keyed nurture to automate the neighborhood touch",
 ])}
 ${para("Day 10: compliance. State-specific rules and post-storm moratoriums will bite you if you're not watching.")}
+${affiliateCtaBlock("home-services", 4)}
 ${signoff()}
 `,
     }),
@@ -262,6 +273,8 @@ This week:
 3. Zip-keyed nurture
 
 Day 10: compliance.
+
+${affiliateCtaText("home-services", 4)}
 
 — Bill
 
@@ -345,6 +358,8 @@ See aged home services leads:
 https://agedleadstore.com/all-lead-types/?utm_source=workagedleads&utm_medium=email&utm_campaign=flagship-home-services&utm_content=email-5
 
 Go book some estimates.
+
+${affiliateCtaText("home-services", 5)}
 
 — Bill
 
