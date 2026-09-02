@@ -103,6 +103,24 @@
       },
       "verdict": "keep",
       "notes": "Both hero buttons on these pages were internal (/compare, /price-index), so the site's highest-traffic commercial pages had no affiliate path above the fold. The mid-page CtaBanner also passes buttonHref, which sets useAffiliate=false — it is an internal compare link sitting exactly where intent peaks. Added a deep-linked door as the primary hero action; compare and pricing keep their position as secondary. Deep links verified per page: mortgage-leads -> /mortgage-leads-purchase-refinance/, final-expense-leads -> /life-insurance-leads/. insurance-leads correctly falls back to /all-lead-types/ — the partner has no generic-insurance buy page and that mapping is deliberate (lib/affiliate.ts, confirmed by Bill 2026-08-06). Destinations re-verified: 200, zero redirects, real buy pages ('Aged Mortgage Leads', 'Buy Aged Life Insurance Leads for Agents — From $0.25'). rel=nofollow sponsored and disclosure present on every instance. Measure via utm_content=hero-door. MEASURED 2026-09-01 (corrected): the door WORKED and beat its own hypothesis - 0.95% -> 7.24% on the four target pages, 6 -> 22 absolute clicks against a halving of traffic. An earlier same-day reading called it redistribution and said do-not-extend; that read used store-side sessions only, because the site-side denominator was wrongly believed unreadable. Extending the pattern to other commercial page types is now justified on evidence. Keep measuring at the STORE for revenue and at the SITE for design effect - the two moved 10% and 25% respectively over the same window."
+    },
+    {
+      "iteration": 4,
+      "date": "2026-09-02",
+      "engine": "merchant-intelligence",
+      "asset": "components/header.tsx - persistent store door in the site header (utm_campaign=header-nav)",
+      "targetCluster": "every page on the site; Header renders site-wide from app/(site)/layout.tsx",
+      "rationale": "The 2026-09-02 scoreboard reading above found that 99% of May's and 91% of July's attributed store revenue came from a link in the RETIRED site's header, and that this site has no store link in its header at all. What stood in that slot was a blue 'Find Providers' button pointing at /providers - an internal page that duplicated the 'Providers' nav item three places to its left and converts at 0.61%, the worst on the site. The swap costs no navigation. This is a restoration of a placement with a measured record, not a new bet.",
+      "hypothesis": "A header store door is PULLED by a reader who has decided to buy, where a banner under an article is PUSHED at one who has not. If posture is what separates $95/session from $1/session, restoring the header link should lift store-side sessions materially and should carry a higher revenue-per-session than cta-banner.",
+      "expected": {
+        "D": 1107,
+        "P": null,
+        "C": null,
+        "basis": "1,107 site pageviews over the last 30d (GA4 528489903 via /api/reports/outbound-clicks). The header renders on all of them; the previous best single placement, /providers/aged-lead-store, reaches only 83. No click-rate forecast is stated on purpose - the point of this iteration is that clicks were the wrong unit. Judge it on store-side sessions and revenue under utm_campaign=header-nav in GA4 357329146."
+      },
+      "killRule": "If utm_campaign=header-nav shows no measurable store-side session lift by 2026-09-16, revert to the internal button. A header slot is prime real estate and should not be spent on a link that does not earn.",
+      "measureAt": "2026-09-16",
+      "verdict": "pending"
     }
   ],
   "scoreboardReadings": [
@@ -247,6 +265,76 @@
           "clickRate": 0.0476
         }
       ]
+    },
+    {
+      "readAt": "2026-09-02",
+      "source": "GA4 357329146 (store-side), dimensions sessionSource/sessionMedium/sessionCampaignName, metrics sessions/totalRevenue/transactions",
+      "headline": "Attributed store REVENUE is concentrated in one placement type, and site-side clicks do not track it.",
+      "why_this_matters": "This ledger's stated metric is `affiliate.last30d.clicks` — outbound clicks measured on the SITE property. Read revenue by placement on the STORE property and that metric turns out to be nearly uncorrelated with the money. In July 2026, `agedleadsales/affiliate/cta-banner` sent 91 sessions and produced $100.50 (1 txn), while `howtoworkleads/website/header-nav` sent 96 sessions — a comparable number of clicks — and produced $9,132.60 (6 txn). Optimizing clicks treats those as equal. They are not: ~$1/session against ~$95. RECOMMEND changing this loop's metric to store-side attributed revenue. Left unchanged here because the goal line is Bill's call, not a silent edit.",
+      "monthlyAttributed": [
+        {
+          "month": "2026-05",
+          "sessions": 331,
+          "revenue": 16945.8,
+          "transactions": 11
+        },
+        {
+          "month": "2026-06",
+          "sessions": 314,
+          "revenue": 1329.95,
+          "transactions": 7
+        },
+        {
+          "month": "2026-07",
+          "sessions": 569,
+          "revenue": 10053.6,
+          "transactions": 11
+        },
+        {
+          "month": "2026-08",
+          "sessions": 155,
+          "revenue": 616.5,
+          "transactions": 3
+        }
+      ],
+      "byPlacement": [
+        {
+          "month": "2026-05",
+          "placement": "howtoworkleads / website / cta",
+          "sessions": 79,
+          "revenue": 16834.6,
+          "transactions": 10,
+          "shareOfMonthRevenue": 0.993,
+          "revenuePerSession": 213.09
+        },
+        {
+          "month": "2026-07",
+          "placement": "howtoworkleads / website / header-nav",
+          "sessions": 96,
+          "revenue": 9132.6,
+          "transactions": 6,
+          "shareOfMonthRevenue": 0.908,
+          "revenuePerSession": 95.13
+        },
+        {
+          "month": "2026-07",
+          "placement": "agedleadsales / affiliate / cta-banner",
+          "sessions": 91,
+          "revenue": 100.5,
+          "transactions": 1,
+          "revenuePerSession": 1.1
+        },
+        {
+          "month": "2026-07",
+          "placement": "agedleadsales / affiliate / blog-post",
+          "sessions": 57,
+          "revenue": 0.0,
+          "transactions": 0,
+          "revenuePerSession": 0.0
+        }
+      ],
+      "consolidationEffect": "howtoworkleads.com was retired into workagedleads.com on 2026-08-03. The `header-nav` placement went from 96 sessions (July) to 2 (Aug 1 - Sep 2), and the `cta` placement disappeared entirely. No workagedleads placement replaced them: the surviving campaigns (lead-type 38, provider-aged-lead-store 21, lead-types-hub 19, cta-banner 17, weekly-newsletter 17) produced $150 between them. That is the whole revenue decline.",
+      "sessionConversionIsStable": "Session -> transaction held at 1.9-3.3% across all four months, so the collapse is not a store-side conversion problem. Sessions, and the KIND of session, are the lever."
     }
   ],
   "nextPick": {
