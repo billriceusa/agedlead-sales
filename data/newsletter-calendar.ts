@@ -57,11 +57,25 @@ export interface NewsletterPlan {
   status: "sent" | "scheduled" | "planned";
 }
 
+/**
+ * "Compliance Corner" was deliberately REMOVED from this list on 2026-09-02.
+ *
+ * Bill's call, and it is a scope decision rather than a topic preference: once
+ * these issues send on an opt-out window, a compliance issue means AI-restated
+ * law reaching thousands of licensed agents with no guaranteed human read. The
+ * house rule is that compliance claims verify to statute, CFR or an agency
+ * order — never to a model's restatement of them — and that rule cannot be
+ * enforced by a prompt.
+ *
+ * The compliance material still exists and still differentiates the site; it
+ * lives in the flagship playbook and on-site pages, where Bill writes and
+ * reviews it directly. If a compliance issue is ever wanted here, it should be
+ * hand-written and excluded from auto-send, not scheduled.
+ */
 export const NEWSLETTER_THEMES = [
   "The Numbers Game",
   "Scripts That Close",
   "Channel Deep Dive",
-  "Compliance Corner",
   "Tech & Tools",
   "Scaling Up",
   "The Aged Lead Mindset",
@@ -148,14 +162,14 @@ export const NEWSLETTER_CALENDAR: NewsletterPlan[] = [
   {
     week: 7,
     sendDate: "2026-10-20",
-    theme: "Compliance Corner",
+    theme: "The Numbers Game",
     exclusiveTipTopics: [
-      "Where the FCC one-to-one consent rule actually landed",
-      "State mini-TCPA statutes worth knowing before you dial",
-      "Documenting consent on purchased data: what to keep and for how long",
+      "Testing a new lead source without betting the quarter on it",
+      "How small a test batch can be before it tells you nothing",
+      "The three numbers that decide whether you scale a source or cut it",
     ],
     specialHook:
-      "COMPLIANCE — HIGHEST CARE. Do not let the model generate novel legal claims. Restate only the canon already carried across this repo's flagship assets: FCC 1:1 rule VACATED Jan 2025 and repealed Aug 2025; revocation-all delayed to Jan 2027; active state mini-TCPAs in FL (FTSA), OK (OTSA), WA (HB 1497), MD and TX; Henson Legal is the named TCPA counsel. Every claim must trace to statute, CFR or an agency order — law-firm alerts are marketing, not sources. Bill reviews this issue personally before it sends.",
+      "Operational testing methodology — sample size, controls, and reading a result honestly. Pairs with the calculators from week 1.",
     status: "planned",
   },
   {
