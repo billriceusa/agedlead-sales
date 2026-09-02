@@ -121,6 +121,29 @@
       "killRule": "If utm_campaign=header-nav shows no measurable store-side session lift by 2026-09-16, revert to the internal button. A header slot is prime real estate and should not be spent on a link that does not earn.",
       "measureAt": "2026-09-16",
       "verdict": "pending"
+    },
+    {
+      "iteration": 5,
+      "date": "2026-09-02",
+      "engine": "tools",
+      "asset": "components/calculators/{know-your-cpl,pipeline-calculator}.tsx - store door in the result area",
+      "targetCluster": "/calculators/know-your-cpl and /calculators/pipeline-calculator",
+      "rationale": "Same defect as the header, found the same way. Live 30d: pipeline-calculator 72 views / 1 affiliate click (1.4%), know-your-cpl 62 / 1 (1.6%) - 134 views between them at ~1.5%, against 6-21% on lead-type pages that carry a hero door. Neither result area had a store link. know-your-cpl's 'Recommendation' block told the reader aged leads win for their inputs AND how many leads/month they need, then offered two links to other pages on this site. pipeline-calculator offered one link to /providers, the worst-converting page on the site (0.6%).",
+      "hypothesis": "A calculator result is a PULL moment by construction - the reader supplied the inputs and asked for the answer - so a door here should behave like the header and lead-type doors rather than like a pushed banner.",
+      "expected": {
+        "D": 134,
+        "P": null,
+        "C": 0.05,
+        "basis": "134 views/mo across the two pages converting at ~1.5% today. Modelling C at 5% - the same figure used for iteration 2, which then measured 7.24% - gives ~7 clicks vs 2. Small in absolute terms; the site only has ~1,107 views/mo total, which is the real constraint and is not something a door can fix."
+      },
+      "implementation": {
+        "know-your-cpl": "Deep-links to the reader's own selected vertical via storeCategoryPath(). Unstocked verticals (medicare, debt-settlement - unmapped by decision) return undefined and fall back to the full catalogue, while utm_content still records the vertical (result-medicare), so demand for verticals the partner does NOT stock becomes measurable.",
+        "pipeline-calculator": "Catalogue only. Its inputs are income, deal value, contact rate, close rate and lead cost - nothing that identifies a market - so no vertical is inferred. Guessing one from deal value would be a coin flip dressed as personalisation.",
+        "editorial": "Internal /providers and /price-index links kept, demoted to secondary. Both blocks carry their own disclosure line: the know-your-cpl block is titled 'Recommendation' and reads as editorial advice, which is the single place an unmarked affiliate link would be least honest."
+      },
+      "killRule": "If calculator-know-your-cpl and calculator-pipeline show no store-side sessions by 2026-09-30, revert both to internal-only CTAs. A calculator that sells badly is still a good lead magnet and a good embed; it does not need a door.",
+      "measureAt": "2026-09-30",
+      "verdict": "pending"
     }
   ],
   "scoreboardReadings": [

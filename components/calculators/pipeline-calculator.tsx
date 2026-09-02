@@ -3,6 +3,8 @@
 import { useState, useEffect, useCallback } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
+import { affiliateUrl } from "@/lib/affiliate";
+import { TrackedAffiliateLink } from "@/components/tracked-affiliate-link";
 
 export function PipelineCalculator() {
   const searchParams = useSearchParams();
@@ -182,15 +184,48 @@ export function PipelineCalculator() {
         </button>
       </div>
 
-      {/* CTA */}
+      {/*
+        CTA — the outbound door plus the independent comparison.
+
+        This carried a single internal link to /providers, which is the
+        worst-converting page on the site (163 views, 0.6% outbound). A reader
+        who has just worked out how many leads a month their income target
+        needs is at peak intent, and the only thing offered was another page
+        here. Same pattern the site header had; see `components/header.tsx`.
+
+        No vertical is inferred. This calculator takes income, deal value,
+        contact rate, close rate and lead cost — nothing that identifies a
+        market — so the honest destination is the full catalogue, exactly as
+        `HeroAffiliateDoor` does when `leadType` is omitted. Guessing a vertical
+        from deal value would be a coin flip dressed as personalisation.
+
+        The /providers link stays, as the secondary. It is the independent half.
+      */}
       <div className="mt-6 rounded-xl border border-blue-200 bg-blue-50 p-5 text-center dark:border-blue-900 dark:bg-blue-950/50">
         <p className="mb-3 font-semibold text-zinc-900 dark:text-white">
           Ready to fill your pipeline?
         </p>
-        <Link href="/providers"
-          className="inline-block rounded-lg bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-blue-700">
-          Compare Lead Providers
-        </Link>
+        <div className="flex flex-wrap justify-center gap-3">
+          <TrackedAffiliateLink
+            href={affiliateUrl({
+              campaign: "calculator-pipeline",
+              content: "result-door",
+            })}
+            ctaId="calculator-result-door"
+            ctaLocation="pipeline-calculator"
+            className="inline-block rounded-lg bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
+          >
+            Browse Aged Leads at Aged Lead Store &rarr;
+          </TrackedAffiliateLink>
+          <Link href="/providers"
+            className="inline-block rounded-lg border border-zinc-300 bg-white px-6 py-2.5 text-sm font-medium text-zinc-700 transition-colors hover:bg-zinc-50 dark:border-zinc-700 dark:bg-transparent dark:text-zinc-300 dark:hover:bg-zinc-800">
+            Compare Lead Providers
+          </Link>
+        </div>
+        <p className="mt-3 text-xs text-zinc-500 dark:text-zinc-500">
+          Affiliate link — we may earn a commission at no cost to you, and it
+          never affects our ratings.
+        </p>
       </div>
     </div>
   );

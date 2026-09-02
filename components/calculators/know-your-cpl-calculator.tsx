@@ -9,6 +9,8 @@ import {
   formatPrice,
   type PriceBenchmarkData,
 } from "@/data/price-benchmarks";
+import { affiliateUrl, storeCategoryPath, agedLeadLabel } from "@/lib/affiliate";
+import { TrackedAffiliateLink } from "@/components/tracked-affiliate-link";
 
 function getAgedBenchmark(
   verticalSlug: string
@@ -396,10 +398,49 @@ export function KnowYourCplCalculator() {
             </>
           )}
         </p>
+        {/*
+          The outbound door, deep-linked to the reader's own vertical.
+
+          This block is the peak-intent moment on the page and it carried no
+          store link at all: a reader who had just been told aged leads win for
+          their numbers, and exactly how many they need per month, was offered
+          two links to other pages on this site. That is the same mistake the
+          site header made — see the note in `components/header.tsx`, where the
+          store-side scoreboard showed a header/nav link earning ~$95/session
+          against ~$1 for a pushed banner. A calculator result is a pull moment
+          by construction: the reader supplied the inputs and asked for the
+          answer.
+
+          `storeCategoryPath` returns undefined for a vertical the partner does
+          not stock (medicare and debt-settlement are unmapped by decision, not
+          oversight), and `affiliateUrl` then falls back to the full catalogue.
+          So an unstocked vertical degrades to a real page rather than a guess.
+
+          The internal provider and pricing links are kept, demoted to
+          secondary. They are the independent half of the site and removing them
+          to make room for an affiliate link is exactly the trade this site does
+          not make.
+
+          The disclosure line is not redundant with the site-wide one. This
+          block is titled "Recommendation" and reads as editorial advice, which
+          is the single place an unmarked affiliate link would be least honest.
+        */}
         <div className="mt-4 flex flex-wrap gap-3">
+          <TrackedAffiliateLink
+            href={affiliateUrl({
+              path: storeCategoryPath(vertical),
+              campaign: "calculator-know-your-cpl",
+              content: `result-${vertical}`,
+            })}
+            ctaId="calculator-result-door"
+            ctaLocation="know-your-cpl"
+            className="inline-flex items-center rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700"
+          >
+            Browse {agedLeadLabel(selectedVertical?.name)} &rarr;
+          </TrackedAffiliateLink>
           <Link
             href={`/providers/best/${vertical}`}
-            className="inline-flex items-center rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700"
+            className="inline-flex items-center rounded-lg border border-zinc-300 px-4 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800"
           >
             Best {selectedVertical?.name} Providers &rarr;
           </Link>
@@ -416,6 +457,15 @@ export function KnowYourCplCalculator() {
             Share Results
           </button>
         </div>
+        <p className="mt-3 text-xs text-zinc-500 dark:text-zinc-500">
+          Aged Lead Store is an affiliate partner — we may earn a commission at
+          no cost to you. It never affects which provider this tool recommends;
+          the ratings behind{" "}
+          <Link href="/methodology" className="underline hover:text-zinc-700 dark:hover:text-zinc-300">
+            our methodology
+          </Link>{" "}
+          are scored independently.
+        </p>
       </div>
     </div>
   );
