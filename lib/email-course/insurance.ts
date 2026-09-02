@@ -7,6 +7,7 @@ import {
   list,
   signoff,
   affiliateCtaBlock,
+  affiliateCtaText,
 } from "./shared";
 
 const email1: CourseEmail = {
@@ -30,6 +31,7 @@ ${list([
   "If you sell Medicare or final expense, skim the sub-vertical section for your line — compliance is different",
 ])}
 ${para("Tomorrow: setting up the operation.")}
+${affiliateCtaBlock("insurance", 1)}
 ${signoff()}
 `,
     }),
@@ -47,6 +49,8 @@ This week:
 3. Medicare/final expense: skim sub-vertical section (different compliance)
 
 Tomorrow: setup.
+
+${affiliateCtaText("insurance", 1)}
 
 — Bill
 
@@ -85,6 +89,7 @@ ${list([
   "Name the trigger that tells you to upgrade",
 ])}
 ${para("Day 4: scripts. Different sub-verticals, different scripts.")}
+${affiliateCtaBlock("insurance", 2)}
 ${signoff()}
 `,
     }),
@@ -108,6 +113,8 @@ This week:
 3. Name upgrade trigger
 
 Day 4: scripts.
+
+${affiliateCtaText("insurance", 2)}
 
 — Bill
 
@@ -150,6 +157,7 @@ ${list([
 ])}
 ${para("<strong>Critical:</strong> if you sell Medicare, stop here and build a separate Medicare workflow before running outreach.")}
 ${para("Day 7: the nurture game.")}
+${affiliateCtaBlock("insurance", 3)}
 ${signoff()}
 `,
     }),
@@ -180,6 +188,8 @@ This week:
 Critical: Medicare needs separate workflow. SOA + recorded enrollment.
 
 Day 7: nurture.
+
+${affiliateCtaText("insurance", 3)}
 
 — Bill
 
@@ -216,6 +226,7 @@ ${list([
   "Set calendar triggers tied to renewal cycles, AEP, and OEP",
 ])}
 ${para("Day 10: compliance. In insurance, compliance failures end careers. Don't skim it.")}
+${affiliateCtaBlock("insurance", 4)}
 ${signoff()}
 `,
     }),
@@ -239,6 +250,8 @@ This week:
 3. Set renewal/AEP/OEP triggers
 
 Day 10: compliance.
+
+${affiliateCtaText("insurance", 4)}
 
 — Bill
 
@@ -318,6 +331,8 @@ Final expense: 250-500 soft
 
 See aged insurance leads:
 https://agedleadstore.com/all-lead-types/?utm_source=workagedleads&utm_medium=email&utm_campaign=flagship-insurance&utm_content=email-5
+
+${affiliateCtaText("insurance", 5)}
 
 — Bill
 

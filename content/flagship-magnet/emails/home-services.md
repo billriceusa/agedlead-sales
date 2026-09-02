@@ -47,6 +47,12 @@ The playbook gives you the cadence, the two-step funnel (contact → estimate �
 
 Tomorrow: tech stack and your field-crew capacity planning.
 
+Nothing to buy yet — read Part I first. When you do want inventory to practise on, this is where it lives.
+
+[**See aged home services leads →**](https://agedleadstore.com/buy-home-improvement-leads-lp/?utm_source=workagedleads&utm_medium=email&utm_campaign=flagship-home-services&utm_content=email-1)
+
+*Affiliate link — we may earn a commission at no cost to you.*
+
 — Bill
 
 **Download:** [Playbook (PDF)](LINK) · [Workbook (PDF)](LINK)
@@ -106,6 +112,12 @@ Then work backward:
 
 Day 4: scripts. Home services has a specific funnel dynamic that most outbound playbooks miss.
 
+A cheap stack only helps if the lead flow is affordable too. That is the whole argument for aged.
+
+[**See aged home services leads →**](https://agedleadstore.com/buy-home-improvement-leads-lp/?utm_source=workagedleads&utm_medium=email&utm_campaign=flagship-home-services&utm_content=email-2)
+
+*Affiliate link — we may earn a commission at no cost to you.*
+
 — Bill
 
 **Download:** [Playbook (PDF)](LINK) · [Workbook (PDF)](LINK)
@@ -162,6 +174,12 @@ If "still dragging" or "haven't moved yet":
 
 Day 7: turning unreached aged leads into next year's pipeline.
 
+A cadence needs leads to run against. A small batch is enough to test whether yours works.
+
+[**See aged home services leads →**](https://agedleadstore.com/buy-home-improvement-leads-lp/?utm_source=workagedleads&utm_medium=email&utm_campaign=flagship-home-services&utm_content=email-3)
+
+*Affiliate link — we may earn a commission at no cost to you.*
+
 — Bill
 
 **Download:** [Playbook (PDF)](LINK) · [Workbook (PDF)](LINK)
@@ -213,6 +231,12 @@ The neighborhood-proof play is unique to home services. **Maintain a zip-keyed n
 3. Set up zip-keyed nurture so you can fire the neighborhood-proof touch
 
 Day 10: compliance. In home services, state-specific rules and post-storm moratoriums will bite you if you're not watching.
+
+Working the long tail only pays if the top of the funnel stays stocked.
+
+[**See aged home services leads →**](https://agedleadstore.com/buy-home-improvement-leads-lp/?utm_source=workagedleads&utm_medium=email&utm_campaign=flagship-home-services&utm_content=email-4)
+
+*Affiliate link — we may earn a commission at no cost to you.*
 
 — Bill
 
@@ -281,7 +305,7 @@ Start tight: a single-zip or multi-zip cluster so your field reps aren't crossin
 
 **AgedLeadStore** sells aged home-services leads by sub-vertical (roofing, solar, windows, HVAC, remodel, pest, foundation) with geography filters for zip-level targeting. Consent records included.
 
-[**Browse aged home services leads →**](https://agedleadstore.com/all-lead-types/?utm_source=agedleadsales&utm_medium=email&utm_campaign=flagship-home-services&utm_content=email-5)
+[**Browse aged home services leads →**](https://agedleadstore.com/buy-home-improvement-leads-lp/?utm_source=workagedleads&utm_medium=email&utm_campaign=flagship-home-services&utm_content=email-5)
 
 You're on the Tuesday list. One tactical idea a week. Short, useful, no fluff.
 

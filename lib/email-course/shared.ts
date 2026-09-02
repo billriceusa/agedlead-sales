@@ -2,6 +2,10 @@ import type { EmailContext, Vertical } from "./types";
 import { SITE_URL } from "@/lib/site-url";
 import { rebrandNoticeHtml } from "@/lib/rebrand-notice";
 import { AFFILIATE_UTM_SOURCE } from "@/lib/utm";
+// Maps a vertical to the partner's buy page. "insurance" is UNMAPPED by
+// decision — there is no generic-insurance buy page to point at — so it falls
+// back to the full catalogue rather than to a guess.
+import { storeCategoryPath } from "@/lib/affiliate";
 
 export { SITE_URL };
 export const FROM_EMAIL = "Bill Rice <bill@workagedleads.com>";
@@ -94,21 +98,65 @@ export function signoff(): string {
   return `<p style="margin: 0; color: #111827; font-weight: 600; font-size: 16px;">— Bill</p>`;
 }
 
+/**
+ * The store link for a course email.
+ *
+ * WHY THE COPY CHANGES BY EMAIL NUMBER
+ *
+ * This block used to appear once, in email 5. Putting the identical banner in
+ * all five would read as the same ad stapled to five lessons — which is the
+ * "push" placement the store-side data says earns almost nothing ($0.96/session
+ * for `cta-banner` against $59-70 for surfaces a reader chooses to use).
+ *
+ * So each email's line ties the link to what that email just taught. A reader
+ * who has been told to build a 14-day cadence and is then shown where to get
+ * leads to run it against is being helped, not sold at. Same link, different
+ * reason, and only the reason makes it a pull.
+ *
+ * Deep-links to the reader's own vertical where the partner stocks it; verticals
+ * they do not stock fall back to the full catalogue rather than a guess.
+ *
+ * The disclosure is one clause and it always ships. Required, and brief on
+ * purpose — a paragraph of it makes the commission arrangement the subject of
+ * the email instead of the reader's pipeline.
+ */
+const CTA_LINES: Record<number, string> = {
+  1: "Nothing to buy yet — read Part I first. When you do want inventory to practise on, this is where it lives.",
+  2: "A cheap stack only helps if the lead flow is affordable too. That is the whole argument for aged.",
+  3: "A cadence needs leads to run against. A small batch is enough to test whether yours works.",
+  4: "Working the long tail only pays if the top of the funnel stays stocked.",
+  5: "When you're ready to run leads, start with a test batch — enough volume to measure, not so much that a bad assumption hurts.",
+};
+
 export function affiliateCtaBlock(vertical: Vertical, emailNumber: number): string {
   const campaign = `flagship-${vertical}`;
   const content = `email-${emailNumber}`;
-  const url = `https://agedleadstore.com/all-lead-types/?utm_source=${AFFILIATE_UTM_SOURCE}&utm_medium=email&utm_campaign=${campaign}&utm_content=${content}`;
+  const path = storeCategoryPath(vertical) ?? "/all-lead-types/";
+  const url = `https://agedleadstore.com${path}?utm_source=${AFFILIATE_UTM_SOURCE}&utm_medium=email&utm_campaign=${campaign}&utm_content=${content}`;
   const label = verticalLabel(vertical);
+  const line = CTA_LINES[emailNumber] ?? CTA_LINES[5];
   return `
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin: 24px 0; background-color: #eff6ff; border: 1px solid #bfdbfe; border-radius: 10px;">
       <tr>
         <td style="padding: 20px 24px; text-align: center;">
-          <p style="margin: 0 0 10px 0; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: #1e40af;">Your Next Move</p>
-          <p style="margin: 0 0 14px 0; color: #1f2937; font-size: 15px; line-height: 1.5;">When you're ready to run leads, start with a test batch of aged ${label.toLowerCase()} leads.</p>
-          <a href="${url}" style="display: inline-block; background-color: #2563eb; color: #ffffff; padding: 10px 22px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 14px;">See aged ${label.toLowerCase()} leads →</a>
+          <p style="margin: 0 0 14px 0; color: #1f2937; font-size: 15px; line-height: 1.5;">${line}</p>
+          <a href="${url}" style="display: inline-block; background-color: #2563eb; color: #ffffff; padding: 10px 22px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 14px;">See aged ${label.toLowerCase()} leads &rarr;</a>
+          <p style="margin: 12px 0 0 0; color: #6b7280; font-size: 12px;">Affiliate link — we may earn a commission at no cost to you.</p>
         </td>
       </tr>
     </table>`;
+}
+
+/** Plain-text twin of {@link affiliateCtaBlock}, for the text/plain part. */
+export function affiliateCtaText(vertical: Vertical, emailNumber: number): string {
+  const campaign = `flagship-${vertical}`;
+  const content = `email-${emailNumber}`;
+  const path = storeCategoryPath(vertical) ?? "/all-lead-types/";
+  const url = `https://agedleadstore.com${path}?utm_source=${AFFILIATE_UTM_SOURCE}&utm_medium=email&utm_campaign=${campaign}&utm_content=${content}`;
+  const line = CTA_LINES[emailNumber] ?? CTA_LINES[5];
+  return `${line}
+See aged ${verticalLabel(vertical).toLowerCase()} leads: ${url}
+(Affiliate link — we may earn a commission at no cost to you.)`;
 }
 
 export function verticalLabel(vertical: Vertical): string {

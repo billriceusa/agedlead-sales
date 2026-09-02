@@ -7,6 +7,7 @@ import {
   list,
   signoff,
   affiliateCtaBlock,
+  affiliateCtaText,
 } from "./shared";
 
 const email1: CourseEmail = {
@@ -30,6 +31,7 @@ ${list([
   "Hit reply and tell me your max-viable CPL — I'll sanity-check it",
 ])}
 ${para("Tomorrow I'll send you the setup side — tech stack, operational flow, and the cheapest way to get running.")}
+${affiliateCtaBlock("mortgage", 1)}
 ${signoff()}
 `,
     }),
@@ -47,6 +49,8 @@ This week:
 3. Reply with your max-viable CPL — I'll sanity-check
 
 Tomorrow: setup and tech stack.
+
+${affiliateCtaText("mortgage", 1)}
 
 — Bill
 
@@ -81,6 +85,7 @@ ${list([
   "Even in Setup A, pay for a compliant DNC scrubber — mortgage is one of the most TCPA-targeted verticals",
 ])}
 ${para("Day 4's email: scripts. The exact words for your first call to a 90-day-old refi lead.")}
+${affiliateCtaBlock("mortgage", 2)}
 ${signoff()}
 `,
     }),
@@ -102,6 +107,8 @@ This week:
 3. Pay for DNC scrubber even in Setup A
 
 Day 4: scripts.
+
+${affiliateCtaText("mortgage", 2)}
 
 — Bill
 
@@ -145,6 +152,7 @@ ${list([
 ])}
 ${para("Have Freddie Mac PMMS open during every dial. Rate-move scripts only work with current data.")}
 ${para("Day 7: what to do with the 85% who don't close in the first 2 weeks.")}
+${affiliateCtaBlock("mortgage", 3)}
 ${signoff()}
 `,
     }),
@@ -180,6 +188,8 @@ Have Freddie Mac PMMS open during every dial.
 
 Day 7: nurture.
 
+${affiliateCtaText("mortgage", 3)}
+
 — Bill
 
 Playbook: ${ctx.playbookUrl}
@@ -214,6 +224,7 @@ ${list([
   "Set Freddie Mac PMMS rate-move alerts",
 ])}
 ${para("Day 10: compliance. The stuff that either kills your operation or becomes your moat.")}
+${affiliateCtaBlock("mortgage", 4)}
 ${signoff()}
 `,
     }),
@@ -237,6 +248,8 @@ This week:
 3. Set Freddie Mac alerts
 
 Day 10: compliance.
+
+${affiliateCtaText("mortgage", 4)}
 
 — Bill
 
@@ -309,6 +322,8 @@ See aged mortgage leads:
 https://agedleadstore.com/all-lead-types/?utm_source=workagedleads&utm_medium=email&utm_campaign=flagship-mortgage&utm_content=email-5
 
 You're on the Tuesday list. Go fund some loans.
+
+${affiliateCtaText("mortgage", 5)}
 
 — Bill
 
