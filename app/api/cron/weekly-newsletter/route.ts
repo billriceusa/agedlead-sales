@@ -12,6 +12,7 @@ import { checkIssueHtml, type IssueGate } from "@/lib/newsletter/issue-gate";
 import { commitFilesToGitHub } from "@/lib/cron/git-commit";
 import { recordCronRun } from "@/lib/cron/heartbeat";
 import { REPLY_TO_EMAIL } from "@/lib/resend";
+import { killUrl } from "@/lib/newsletter/kill-token";
 
 export const maxDuration = 300;
 export const dynamic = "force-dynamic";
@@ -129,12 +130,32 @@ async function sendPreviewEmail(
   // On a blocking failure the issue is archived with killed:true, so the send
   // command below would simply be refused. Printing it anyway would send Bill
   // to a dead end and read like the gate had not fired.
+  // The review window, stated plainly. This banner used to say "NOT scheduled,
+  // NOT sent" and hand over a terminal command. Since 2026-09-02 the issue
+  // SENDS BY ITSELF on Tuesday unless it is stopped, so the banner has to say
+  // that — a preview that understates what happens next is how an unreviewed
+  // issue reaches thousands of people.
+  const stopLink = (() => {
+    try {
+      return killUrl(getSiteUrl(), weekLabel);
+    } catch {
+      // CRON_SECRET missing — cannot sign a token. Say so rather than render a
+      // dead link that looks like a working one.
+      return null;
+    }
+  })();
+
   const banner = gate.ok
     ? `
     <div style="background: #fefce8; border: 2px solid #f59e0b; border-radius: 8px; padding: 16px; margin: 0 auto 24px; max-width: 600px; font-family: -apple-system, sans-serif;">
-      <p style="margin: 0 0 4px 0; font-weight: 700; color: #92400e;">Newsletter draft — NOT scheduled, NOT sent</p>
-      <p style="margin: 0 0 8px; color: #78350f; font-size: 14px;">Nothing goes to the list until someone runs the send command. Reply with changes, or approve to send.</p>
-      <p style="margin: 0; color: #78350f; font-size: 13px;">To send this exact issue:</p>
+      <p style="margin: 0 0 4px 0; font-weight: 700; color: #92400e;">Scheduled to send Tuesday 9am ET unless you stop it</p>
+      <p style="margin: 0 0 12px; color: #78350f; font-size: 14px;">Do nothing and this goes to the list on Tuesday. If it should not, use the button — one click, no login, and it cannot be undone by accident.</p>
+      ${
+        stopLink
+          ? `<p style="margin: 0 0 12px;"><a href="${stopLink}" style="display: inline-block; background: #dc2626; color: #ffffff; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 14px;">Stop this issue</a></p>`
+          : `<p style="margin: 0 0 12px; color: #991b1b; font-size: 13px; font-weight: 600;">No stop link — CRON_SECRET is not set on this deployment, so the token could not be signed. Kill it by hand if needed.</p>`
+      }
+      <p style="margin: 0; color: #78350f; font-size: 13px;">To send it early instead:</p>
       <pre style="margin: 6px 0 0; padding: 8px 10px; background: #fff7ed; border: 1px solid #fed7aa; border-radius: 6px; font-size: 12px; overflow-x: auto;">npm run newsletter:send -- --date ${weekLabel} --confirm</pre>
     </div>`
     : `
