@@ -20,5 +20,8 @@
   "industryInsight": "FTC Ramping Up Lead Gen Enforcement",
   "errors": [
     "Broadcast scheduling failed: Schedule broadcast: 422: {\"statusCode\":422,\"message\":\"The audience you are sending has no contacts. Before sending the Broadcast, add contacts to the audience\",\"name\":\"validation_error\"}"
-  ]
+  ],
+  "killed": true,
+  "killedAt": "2026-09-02T15:57:08.458Z",
+  "killedReason": "Stopped by Bill from the Sunday preview email."
 }
