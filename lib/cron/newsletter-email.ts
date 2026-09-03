@@ -3,6 +3,34 @@ import { SITE_HOST } from "@/lib/site-url";
 import { rebrandNoticeHtml } from "@/lib/rebrand-notice";
 import { STORE_VERTICALS, storeUrl, catalogueUrl } from "@/lib/newsletter/store-links";
 
+/**
+ * Tag a link back to our own site so the newsletter's traffic is attributable.
+ *
+ * The store links have carried UTMs all along; the site links did not. Fifteen
+ * of the issue's twenty-seven links pointed home untagged, so every blog read
+ * the newsletter drove landed in GA4 as direct or organic and the weekly
+ * report's `sessionMedium=email` filter could never see it. The newsletter was
+ * doing work it got no credit for, which is indistinguishable from doing none.
+ *
+ * `utm_content` carries issue AND placement, the same convention the store
+ * links use (`lib/newsletter/store-links.ts`), so a footer click is separable
+ * from a featured-article click rather than both collapsing into one row.
+ */
+function siteLink(
+  siteUrl: string,
+  path: string,
+  weekLabel: string,
+  placement: string,
+): string {
+  const params = new URLSearchParams({
+    utm_source: "newsletter",
+    utm_medium: "email",
+    utm_campaign: "weekly-newsletter",
+    utm_content: `${weekLabel}-${placement}`,
+  });
+  return `${siteUrl}${path}?${params.toString()}`;
+}
+
 export function buildNewsletterHtml(
   content: NewsletterContent,
   siteUrl: string,
@@ -64,7 +92,7 @@ export function buildNewsletterHtml(
       (post) => `
         <tr>
           <td style="padding: 12px 0; border-bottom: 1px solid #f3f4f6;">
-            <a href="${siteUrl}/blog/${post.slug}" style="color: #1e40af; font-weight: 600; text-decoration: none; font-size: 15px;">${post.title}</a>
+            <a href="${siteLink(siteUrl, `/blog/${post.slug}`, weekLabel, "digest")}" style="color: #1e40af; font-weight: 600; text-decoration: none; font-size: 15px;">${post.title}</a>
             <p style="margin: 4px 0 0 0; color: #6b7280; font-size: 14px; line-height: 1.5;">${post.oneLiner}</p>
           </td>
         </tr>`
@@ -163,10 +191,10 @@ export function buildNewsletterHtml(
                 <tr>
                   <td style="padding: 20px;">
                     <h2 style="margin: 0 0 10px 0; font-size: 20px; color: #111827; line-height: 1.3;">
-                      <a href="${siteUrl}/blog/${content.featuredArticle.slug}" style="color: #111827; text-decoration: none;">${content.featuredArticle.title}</a>
+                      <a href="${siteLink(siteUrl, `/blog/${content.featuredArticle.slug}`, weekLabel, "featured-title")}" style="color: #111827; text-decoration: none;">${content.featuredArticle.title}</a>
                     </h2>
                     <p style="margin: 0 0 16px 0; color: #374151; font-size: 15px; line-height: 1.6;">${content.featuredArticle.spotlight}</p>
-                    <a href="${siteUrl}/blog/${content.featuredArticle.slug}" style="display: inline-block; background-color: #1e40af; color: #ffffff; padding: 10px 24px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 14px;">Read the Full Article &rarr;</a>
+                    <a href="${siteLink(siteUrl, `/blog/${content.featuredArticle.slug}`, weekLabel, "featured-button")}" style="display: inline-block; background-color: #1e40af; color: #ffffff; padding: 10px 24px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 14px;">Read the Full Article &rarr;</a>
                   </td>
                 </tr>
               </table>
@@ -270,11 +298,11 @@ export function buildNewsletterHtml(
                 <tr>
                   <td style="text-align: center;">
                     <p style="margin: 0 0 8px 0; color: #6b7280; font-size: 13px;">
-                      <a href="${siteUrl}" style="color: #1e40af; text-decoration: none; font-weight: 600;">Work Aged Leads</a> &nbsp;|&nbsp;
-                      <a href="${siteUrl}/blog" style="color: #6b7280; text-decoration: none;">Blog</a> &nbsp;|&nbsp;
-                      <a href="${siteUrl}/playbook" style="color: #6b7280; text-decoration: none;">Playbook</a> &nbsp;|&nbsp;
-                      <a href="${siteUrl}/glossary" style="color: #6b7280; text-decoration: none;">Glossary</a> &nbsp;|&nbsp;
-                      <a href="${siteUrl}/calculators" style="color: #6b7280; text-decoration: none;">Calculators</a>
+                      <a href="${siteLink(siteUrl, "", weekLabel, "footer-home")}" style="color: #1e40af; text-decoration: none; font-weight: 600;">Work Aged Leads</a> &nbsp;|&nbsp;
+                      <a href="${siteLink(siteUrl, "/blog", weekLabel, "footer-blog")}" style="color: #6b7280; text-decoration: none;">Blog</a> &nbsp;|&nbsp;
+                      <a href="${siteLink(siteUrl, "/playbook", weekLabel, "footer-playbook")}" style="color: #6b7280; text-decoration: none;">Playbook</a> &nbsp;|&nbsp;
+                      <a href="${siteLink(siteUrl, "/glossary", weekLabel, "footer-glossary")}" style="color: #6b7280; text-decoration: none;">Glossary</a> &nbsp;|&nbsp;
+                      <a href="${siteLink(siteUrl, "/calculators", weekLabel, "footer-calculators")}" style="color: #6b7280; text-decoration: none;">Calculators</a>
                     </p>
                     <p style="margin: 0 0 8px 0; color: #9ca3af; font-size: 12px;">
                       You're receiving this because you signed up at ${SITE_HOST}.

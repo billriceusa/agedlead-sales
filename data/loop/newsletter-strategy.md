@@ -118,21 +118,44 @@ than reversing it.
 
 ---
 
-## 4. Attribution defects to fix
+## 4. Attribution defects — ALL FIXED 2026-09-02
 
-**a) The verification step reads the wrong row.** The standing plan says to
+**a) The verification step read the wrong row. FIXED.** This plan used to say
 measure success by comparing `workagedleads / affiliate` against the 5.6/day
-baseline. Newsletter clicks land under `workagedleads / **email**`. That check
-would show zero newsletter impact forever, no matter how well the newsletter
-performed.
+baseline. Newsletter clicks land under `workagedleads / **email**`, so that
+check would have shown zero newsletter impact **forever**, no matter how well
+the newsletter performed — and it would have read as a failed experiment rather
+than a broken query.
 
-**b) `utm_content` carries the issue date, not the placement.** Today:
-`utm_content=2026-08-10`. That tells you *which issue*, never *which link*.
-With three placements you cannot tell which one earned the click.
+**The correct check is `sessionMedium = email`.** `lib/cron/als-email-report.ts`
+already filters on exactly that, so the code was right and this document was
+wrong; the risk was that someone would implement what the plan said. If you are
+measuring newsletter impact, medium is `email`. Affiliate medium belongs to
+on-site CTAs (`lib/affiliate.ts`), which is a different question entirely.
 
-Fix: `utm_content={date}-{placement}` — e.g. `2026-08-10-hero`,
-`2026-08-10-vertical-mortgage`, `2026-08-10-footer`. Keeps issue-level
-rollup, adds placement-level truth.
+**b) `utm_content` carried the issue date, not the placement. FIXED.**
+It now carries both — `2026-08-31-hero`, `2026-08-31-vertical-mortgage`,
+`2026-08-31-footer` (`lib/newsletter/store-links.ts`). Issue-level rollup
+survives; placement-level truth is added.
+
+Read it back at `GET /api/reports/store-revenue`, which reports
+`sessionManualAdContent` **against revenue** rather than sessions. That matters:
+the 2026-09-02 reading found placements with near-identical session counts and
+~86x different revenue, so a placement report measured in sessions would have
+ranked them as equals.
+
+**c) Site links in the newsletter were untagged. FIXED.** Fifteen of the issue's
+twenty-seven links pointed back at our own site with no UTMs, so any blog read
+the newsletter drove arrived as direct or organic and the `sessionMedium=email`
+filter in (a) could never see it — the newsletter was doing work it got no
+credit for, which looks identical to doing none. `siteLink()` in
+`lib/cron/newsletter-email.ts` now tags all of them with the same
+`{issue}-{placement}` convention.
+
+Because of that, `als-email-report.ts` moved its landing-page dimension from
+`landingPagePlusQueryString` to `landingPage`. With UTMs present the
+query-string variant splits one article into a row per issue per placement, and
+a top-10 fills with fragments of the same page.
 
 **c) Resend exposes no engagement data via API.** The broadcast endpoint
 returns no `delivered` / `opened` / `clicked` fields — open and click rates

@@ -309,7 +309,20 @@ export async function fetchEmailAttribution(): Promise<Ga4EmailAttribution> {
       ga4RunReport(propertyId, token, {
         dateRanges,
         dimensionFilter,
-        dimensions: [{ name: "landingPagePlusQueryString" }],
+        // `landingPage`, NOT `landingPagePlusQueryString`.
+        //
+        // These are the pages email traffic lands on. Now that newsletter site
+        // links carry UTMs (`siteLink()` in lib/cron/newsletter-email.ts), the
+        // query-string variant would split one page into a separate row per
+        // issue AND placement — `/blog/x?...utm_content=2026-09-08-digest`
+        // apart from `/blog/x?...utm_content=2026-09-15-footer` — so the top-10
+        // would fill with fragments of the same article and understate every
+        // one of them. `landingPage` strips the query and aggregates.
+        //
+        // Placement-level truth has not been lost; it moved to where it belongs.
+        // `utm_content` is read by /api/reports/store-revenue, which reports it
+        // against revenue rather than against sessions.
+        dimensions: [{ name: "landingPage" }],
         metrics: [{ name: "sessions" }],
         orderBys: [{ metric: { metricName: "sessions" }, desc: true }],
         limit: 10,
