@@ -47,10 +47,20 @@ export const ALS_BUY_URL = "https://agedleadstore.com/all-lead-types/";
 export const ALS_LIFECYCLE_SEND_ENABLED =
   process.env.ALS_LIFECYCLE_SEND_ENABLED === "true";
 
+// A positive integer from env, or the default. Guards the throughput knobs:
+// `Number("250 ")` is fine but `Number("250/day")` is NaN, and a NaN cap makes
+// Math.max(0, cap) NaN too, so every downstream slice() silently takes nothing.
+// A mistyped env var must not read as "send no email today".
+function positiveIntFromEnv(raw: string | undefined, fallback: number): number {
+  const n = Number(raw);
+  return Number.isFinite(n) && n > 0 ? Math.floor(n) : fallback;
+}
+
 // Max emails actually sent per cron run — caps the first-launch drip to the
 // existing list so it warms up instead of blasting. Remaining fire next run.
-export const ALS_LIFECYCLE_SEND_CAP = Number(
-  process.env.ALS_LIFECYCLE_SEND_CAP || "150"
+export const ALS_LIFECYCLE_SEND_CAP = positiveIntFromEnv(
+  process.env.ALS_LIFECYCLE_SEND_CAP,
+  150
 );
 
 /**
@@ -80,11 +90,44 @@ export const ALS_LIFECYCLE_SEND_CAP = Number(
  * That was the deliberate "value track first" policy and it still holds for
  * everyone not signalling intent.
  *
- * Raise `ALS_LIFECYCLE_SEND_CAP` to clear the backlog faster once the sending
- * domain has proven itself; this reserve scales with it and needs no change.
+ * PROPORTIONAL TO THE CAP (corrected 2026-09-03). This comment previously said
+ * the reserve "scales with [the cap] and needs no change". It did not: the
+ * reserve was the absolute 50, and `allocateDueSlots` gives the value track
+ * `cap - reserve`, so raising the cap 150 -> 250 would have handed all 100 new
+ * slots to welcome/ai-series and left the buyer list moving at exactly its old
+ * pace. The stated reason for raising the cap was to clear the replenishment
+ * backlog faster, so the knob has to actually do that.
+ *
+ * Derived as `max(50, round(cap * share))`: 150 -> 60, 250 -> 100, 400 -> 160.
+ * The 50 floor keeps small caps from starving the buyer track back out.
+ *
+ * `ALS_LIFECYCLE_REPLENISH_RESERVE` still overrides with an absolute number if
+ * it is ever set, which is the escape hatch for pinning a value during a
+ * deliverability incident without touching the cap.
  */
-export const ALS_LIFECYCLE_REPLENISH_RESERVE = Number(
-  process.env.ALS_LIFECYCLE_REPLENISH_RESERVE || "50"
+export const ALS_LIFECYCLE_REPLENISH_SHARE = (() => {
+  const n = Number(process.env.ALS_LIFECYCLE_REPLENISH_SHARE);
+  return Number.isFinite(n) && n > 0 && n <= 1 ? n : 0.4;
+})();
+
+/** Floor below which the buyer track is never squeezed, whatever the cap. */
+export const ALS_LIFECYCLE_REPLENISH_FLOOR = 50;
+
+/**
+ * Exported as a function so the derivation is testable. The consts below are
+ * evaluated once at module load from `process.env`, which makes the formula
+ * itself unreachable from a test without import gymnastics — and this formula
+ * is exactly the thing that must not quietly stop scaling again.
+ */
+export function replenishReserveFor(cap: number, share: number): number {
+  if (!Number.isFinite(cap) || cap <= 0) return 0;
+  const safeShare = Number.isFinite(share) && share > 0 && share <= 1 ? share : 0.4;
+  return Math.min(cap, Math.max(ALS_LIFECYCLE_REPLENISH_FLOOR, Math.round(cap * safeShare)));
+}
+
+export const ALS_LIFECYCLE_REPLENISH_RESERVE = positiveIntFromEnv(
+  process.env.ALS_LIFECYCLE_REPLENISH_RESERVE,
+  replenishReserveFor(ALS_LIFECYCLE_SEND_CAP, ALS_LIFECYCLE_REPLENISH_SHARE)
 );
 
 // AI-for-aged-leads series gate. Ships dark — the series enrolls/sends only when

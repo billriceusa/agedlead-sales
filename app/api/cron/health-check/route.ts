@@ -89,13 +89,17 @@ async function checkPriceIndexStudy(
 // 2026-07-02 (superseded by the consolidated BRSG Portfolio Performance
 // Report in billricestrategy.com) — their routes remain but are unscheduled,
 // so a staleness check would alert forever.
-const MONITORED_CRONS = ["marketwatch", "als-email-report", "gsc-trend"] as const satisfies readonly CronName[];
+const MONITORED_CRONS = ["marketwatch", "als-email-report", "gsc-trend", "als-lifecycle"] as const satisfies readonly CronName[];
 const CRON_STALENESS: Record<(typeof MONITORED_CRONS)[number], { maxDays: number; label: string }> = {
   "marketwatch": { maxDays: 35, label: "Marketwatch cron" },
   "als-email-report": { maxDays: 8, label: "ALS email report cron" },
   // Runs daily; a 2-day gap means it stalled. This is the tripwire that would
   // have caught the 2026-06 Vercel WIF break (froze gsc-trend 4 days, silent).
   "gsc-trend": { maxDays: 2, label: "GSC trend snapshot cron" },
+  // Runs daily and is the only cron that mails the buyer list. A stalled run is
+  // invisible from the outside — no bounce, no error, just no revenue — which
+  // is how the replenishment track sat starved through August.
+  "als-lifecycle": { maxDays: 2, label: "ALS lifecycle cron" },
 };
 
 async function checkCronHeartbeats(
