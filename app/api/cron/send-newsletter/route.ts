@@ -7,6 +7,7 @@ import {
 import { checkIssueHtml } from "@/lib/newsletter/issue-gate";
 import { readIssue, readIssueHtml, archivePaths } from "@/lib/newsletter/archive-github";
 import { commitFilesToGitHub } from "@/lib/cron/git-commit";
+import { recordCronRun, type CronStatus } from "@/lib/cron/heartbeat";
 
 /**
  * The Tuesday sender — the second half of the opt-out review window.
@@ -60,16 +61,36 @@ export async function GET(request: Request) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
+  const startedAt = Date.now();
   const url = new URL(request.url);
   // `?date=` is for replaying a specific issue by hand. `?dryRun=1` reports what
   // would happen and mails nothing — the only safe way to exercise this route.
   const date = url.searchParams.get("date") ?? todayUtc();
   const dryRun = url.searchParams.get("dryRun") === "1";
 
+  // Heartbeat. This route mails the whole list once a week, so a run that stops
+  // firing is invisible in the worst way: the symptom is an issue that simply
+  // never arrives, and there is no bounce, no error, and no send to notice the
+  // absence of. A dry run deliberately records nothing — a manual probe must
+  // not stamp the heartbeat fresh and hide a genuinely stalled Tuesday.
+  const beat = async (status: CronStatus, detail: string) => {
+    if (dryRun) return;
+    await recordCronRun({
+      name: "send-newsletter",
+      status,
+      detail: `${date}: ${detail}`,
+      durationMs: Date.now() - startedAt,
+    });
+  };
+
   const log: string[] = [];
-  const skip = (reason: string) => {
+  const skip = async (reason: string) => {
     log.push(reason);
     console.log(`[SendCron] ${reason}`);
+    // Deliberately `ok`: no issue, a killed issue, and an already-sent issue are
+    // all correct outcomes. The route ran and decided not to mail, which is the
+    // opposite of the failure this heartbeat is watching for.
+    await beat("ok", reason);
     return NextResponse.json({ ok: true, sent: false, date, reason, log });
   };
 
@@ -83,6 +104,7 @@ export async function GET(request: Request) {
   } catch (err) {
     const msg = `Archive read failed: ${err instanceof Error ? err.message : err}`;
     console.error(`[SendCron] ${msg}`);
+    await beat("failed", msg);
     return NextResponse.json({ ok: false, sent: false, date, error: msg }, { status: 502 });
   }
 
@@ -108,6 +130,8 @@ export async function GET(request: Request) {
   if (!gate.ok) {
     const msg = `Issue ${date} FAILED the content gate at send time and was NOT sent: ${gate.reason}`;
     console.error(`[SendCron] ${msg}`);
+    // A ready issue blocked at the gate needs a person before next Tuesday.
+    await beat("failed", `content gate blocked the send: ${gate.reason}`);
     return NextResponse.json(
       { ok: false, sent: false, date, error: msg, blocking: gate.blocking },
       { status: 422 },
@@ -119,19 +143,26 @@ export async function GET(request: Request) {
   const audienceId = (process.env.RESEND_AUDIENCE_ID || "").trim();
   const fromEmail = (process.env.RESEND_FROM_EMAIL || "").trim();
   if (!apiKey || !audienceId || !fromEmail) {
+    await beat("failed", "RESEND_API_KEY, RESEND_AUDIENCE_ID or RESEND_FROM_EMAIL missing");
     return NextResponse.json(
       { ok: false, sent: false, date, error: "RESEND_API_KEY, RESEND_AUDIENCE_ID or RESEND_FROM_EMAIL missing" },
       { status: 500 },
     );
   }
 
-  const contacts = await fetchAudienceContacts(apiKey, audienceId);
+  // Records and re-throws — behaviour is unchanged, but a Resend outage on a
+  // Tuesday no longer 500s into silence with no trace that the send was missed.
+  const contacts = await fetchAudienceContacts(apiKey, audienceId).catch(async (err) => {
+    await beat("failed", `audience read failed: ${err instanceof Error ? err.message : err}`);
+    throw err;
+  });
   const mailable = contacts.filter((c) => !c.unsubscribed).length;
   log.push(`Audience ${audienceId}: ${mailable} mailable of ${contacts.length}`);
 
   if (mailable < MIN_EXPECTED_RECIPIENTS) {
     const msg = `Only ${mailable} mailable contacts, below the ${MIN_EXPECTED_RECIPIENTS} floor — refusing. The audience id is probably wrong.`;
     console.error(`[SendCron] ${msg}`);
+    await beat("failed", msg);
     return NextResponse.json({ ok: false, sent: false, date, error: msg, log }, { status: 500 });
   }
 
@@ -156,6 +187,11 @@ export async function GET(request: Request) {
     previewText: issue.previewText,
     name: `${issue.campaign === "direct-offer" ? "Direct Offer" : "Weekly Newsletter"} — ${date}`,
     replyTo: REPLY_TO_EMAIL,
+  }).catch(async (err) => {
+    // Nothing was mailed and the issue stays unsent, so next Tuesday would
+    // quietly move on to a new one. Record it or the week is simply lost.
+    await beat("failed", `broadcast failed: ${err instanceof Error ? err.message : err}`);
+    throw err;
   });
 
   const sentAt = new Date().toISOString();
@@ -184,6 +220,20 @@ export async function GET(request: Request) {
   }
 
   console.log(`[SendCron] Sent ${date} — broadcast ${broadcastId} to ${mailable}`);
+
+  // A send whose flag did not commit is recorded as `failed` even though the
+  // mail went out perfectly. It is the one state that can cause a DUPLICATE
+  // send next week, and it needs a person to set sent:true by hand before then.
+  // "The email arrived" is not the success condition here; "we know it arrived"
+  // is.
+  await beat(
+    flagCommitted ? "ok" : "failed",
+    flagCommitted
+      ? `sent to ${mailable} — broadcast ${broadcastId}`
+      : `SENT to ${mailable} as ${broadcastId} but the sent flag did NOT commit. ` +
+          `Set sent:true in the archive by hand or this issue can be mailed twice.`,
+  );
+
   return NextResponse.json({
     ok: true,
     sent: true,

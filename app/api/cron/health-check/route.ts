@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { createClient } from "next-sanity";
 import { Resend } from "resend";
 import { recordCronRun, type CronName } from "@/lib/cron/heartbeat";
+import { MONITORED_CRONS, CRON_STALENESS } from "@/lib/cron/monitored";
 
 export const maxDuration = 60;
 export const dynamic = "force-dynamic";
@@ -84,23 +85,6 @@ async function checkPriceIndexStudy(
   };
 }
 
-// Only crons still scheduled in vercel.json are monitored. weekly-content,
-// weekly-newsletter, seo-audit, and daily-performance were decommissioned
-// 2026-07-02 (superseded by the consolidated BRSG Portfolio Performance
-// Report in billricestrategy.com) — their routes remain but are unscheduled,
-// so a staleness check would alert forever.
-const MONITORED_CRONS = ["marketwatch", "als-email-report", "gsc-trend", "als-lifecycle"] as const satisfies readonly CronName[];
-const CRON_STALENESS: Record<(typeof MONITORED_CRONS)[number], { maxDays: number; label: string }> = {
-  "marketwatch": { maxDays: 35, label: "Marketwatch cron" },
-  "als-email-report": { maxDays: 8, label: "ALS email report cron" },
-  // Runs daily; a 2-day gap means it stalled. This is the tripwire that would
-  // have caught the 2026-06 Vercel WIF break (froze gsc-trend 4 days, silent).
-  "gsc-trend": { maxDays: 2, label: "GSC trend snapshot cron" },
-  // Runs daily and is the only cron that mails the buyer list. A stalled run is
-  // invisible from the outside — no bounce, no error, just no revenue — which
-  // is how the replenishment track sat starved through August.
-  "als-lifecycle": { maxDays: 2, label: "ALS lifecycle cron" },
-};
 
 async function checkCronHeartbeats(
   client: ReturnType<typeof getSanityClient>,
@@ -112,13 +96,16 @@ async function checkCronHeartbeats(
   const byName = new Map(heartbeats.map((h) => [h.name, h]));
   const results: HealthCheck[] = [];
   for (const name of MONITORED_CRONS) {
-    const { maxDays, label } = CRON_STALENESS[name];
+    const { maxDays, label, firstExpectedAt } = CRON_STALENESS[name];
     const hb = byName.get(name);
     if (!hb) {
+      const waiting = firstExpectedAt ? now < new Date(firstExpectedAt) : false;
       results.push({
         name: label,
-        ok: false,
-        detail: `No heartbeat recorded yet — cron has never run or can't write to Sanity`,
+        ok: waiting,
+        detail: waiting
+          ? `Newly monitored — first run expected by ${firstExpectedAt}, not alerting until then`
+          : `No heartbeat recorded yet — cron has never run or can't write to Sanity`,
       });
       continue;
     }

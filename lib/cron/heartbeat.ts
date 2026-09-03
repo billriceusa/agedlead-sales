@@ -10,7 +10,8 @@ export type CronName =
   | "als-email-report"
   | "gsc-trend"
   | "commission-report"
-  | "als-lifecycle";
+  | "als-lifecycle"
+  | "send-newsletter";
 
 export type CronStatus = "ok" | "partial" | "failed";
 
