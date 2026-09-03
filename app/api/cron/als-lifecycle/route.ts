@@ -10,8 +10,14 @@ import {
   journeyLength,
   type JourneyName,
 } from "@/lib/als/lifecycle";
-import { ALS_LIFECYCLE_SEND_ENABLED, ALS_LIFECYCLE_LAUNCH_AT } from "@/lib/als/config";
+import {
+  ALS_LIFECYCLE_SEND_ENABLED,
+  ALS_LIFECYCLE_LAUNCH_AT,
+  ALS_LIFECYCLE_SEND_CAP,
+  ALS_LIFECYCLE_REPLENISH_RESERVE,
+} from "@/lib/als/config";
 import { syncSuppressionToPostgres } from "@/lib/als/suppression-sync";
+import { recordCronRun } from "@/lib/cron/heartbeat";
 
 export const maxDuration = 300;
 export const dynamic = "force-dynamic";
@@ -81,15 +87,23 @@ export async function GET(req: NextRequest) {
   }
 
   // -------- Run (enroll + advance) --------
+  const startedAt = Date.now();
+
   const apiKey = resolveResendApiKey();
   if (live && !apiKey) {
+    // A missing key looks exactly like a quiet day: no email goes out and the
+    // run returns. Record it, or the program can sit dark for a week unnoticed.
+    await recordCronRun({
+      name: "als-lifecycle",
+      status: "failed",
+      detail: "Send enabled but no Resend API key resolved — nothing sent.",
+      durationMs: Date.now() - startedAt,
+    });
     return NextResponse.json(
       { success: false, error: "Send enabled but no Resend API key resolved" },
       { status: 500 }
     );
   }
-
-  const startedAt = Date.now();
 
   // Carry Resend's opt-outs into Postgres BEFORE deciding who to mail.
   // runLifecycle() gates on als_buyer_contacts.unsubscribed and never reads
@@ -112,6 +126,16 @@ export async function GET(req: NextRequest) {
       }
     } catch (err) {
       console.error("[als-lifecycle] suppression sync failed — not sending", err);
+      // Skipping is the correct call, but a skipped day and a healthy quiet day
+      // are indistinguishable from outside. Say which one this was.
+      await recordCronRun({
+        name: "als-lifecycle",
+        status: "failed",
+        detail:
+          "Suppression sync failed; refused to send on an unverified opt-out list. " +
+          (err instanceof Error ? err.message : String(err)),
+        durationMs: Date.now() - startedAt,
+      });
       return NextResponse.json(
         {
           success: false,
@@ -134,16 +158,70 @@ export async function GET(req: NextRequest) {
           : `DRY (${ALS_LIFECYCLE_SEND_ENABLED ? `scheduled for ${ALS_LIFECYCLE_LAUNCH_AT}` : "send disabled"}): ${result.plan?.welcomeEligible ?? 0} welcome-eligible, ${result.plan?.replenishEligible ?? 0} replen-eligible, ${result.plan?.dueNow ?? 0} due`
       } (${Date.now() - startedAt}ms)`
     );
+
+    // The heartbeat exists to answer one question after the fact: did the buyer
+    // track actually get its slots? On 2026-09-03 the reserve shipped and the
+    // run could not be checked at all — this route was the only cron recording
+    // nothing, and Vercel's CLI logs do not reach back a few hours.
+    //
+    // `starved` is the specific failure worth naming: replenishment rows were
+    // due and the run still gave them nothing. That is the bug fixed in #72
+    // regressing, and it reads as a perfectly normal run in every other field.
+    const backlog = Math.max(0, result.dueScanned - ALS_LIFECYCLE_SEND_CAP);
+    const starved =
+      live && result.dueScanned > 0 && result.replenishReserved === 0;
+    //
+    // Starvation is recorded as "failed", not "partial", on purpose: the health
+    // check only alerts on `failed` or staleness, and a starved run is stale in
+    // the only sense that matters — the buyer track did not move. A run that
+    // completes cleanly while doing none of its highest-value work should not
+    // be allowed to look healthy. `detail` says it was an allocation problem,
+    // not a crash.
+    await recordCronRun({
+      name: "als-lifecycle",
+      status: starved ? "failed" : result.errors.length > 0 ? "partial" : "ok",
+      detail: live
+        ? [
+            `sent ${result.sent}`,
+            `slots ${result.replenishReserved} replenish / ${result.valueSelected} value`,
+            `cap ${ALS_LIFECYCLE_SEND_CAP}, reserve ${ALS_LIFECYCLE_REPLENISH_RESERVE}`,
+            `due ${result.dueScanned}${backlog > 0 ? ` (${backlog} left for tomorrow)` : ""}`,
+            `enrolled ${result.enrolledWelcome}w/${result.enrolledAiSeries}ai/${result.enrolledReplenishment}r`,
+            `completed ${result.completed}, reorder-exits ${result.reorderExits}`,
+            starved ? "STARVED: replenishment got no slots" : "",
+            result.errors.length > 0 ? `errors: ${result.errors.join("; ")}` : "",
+          ]
+            .filter(Boolean)
+            .join(" | ")
+        : `DRY (${
+            ALS_LIFECYCLE_SEND_ENABLED
+              ? `scheduled for ${ALS_LIFECYCLE_LAUNCH_AT}`
+              : "send disabled"
+          }): ${result.plan?.dueNow ?? 0} due, ${
+            result.plan?.replenishEligible ?? 0
+          } replen-eligible`,
+      durationMs: Date.now() - startedAt,
+    });
+
     return NextResponse.json({
       success: true,
       live,
       sendEnabled: ALS_LIFECYCLE_SEND_ENABLED,
       launchAt: ALS_LIFECYCLE_LAUNCH_AT || null,
+      cap: ALS_LIFECYCLE_SEND_CAP,
+      replenishReserve: ALS_LIFECYCLE_REPLENISH_RESERVE,
+      backlogRemaining: backlog,
       suppression,
       result,
     });
   } catch (err) {
     console.error("[als-lifecycle] failed", err);
+    await recordCronRun({
+      name: "als-lifecycle",
+      status: "failed",
+      detail: err instanceof Error ? err.message : String(err),
+      durationMs: Date.now() - startedAt,
+    });
     return NextResponse.json(
       { success: false, error: err instanceof Error ? err.message : String(err) },
       { status: 500 }

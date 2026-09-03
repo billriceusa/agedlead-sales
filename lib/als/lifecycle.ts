@@ -729,6 +729,8 @@ export interface LifecycleResult {
   dueScanned: number;
   /** How many of this run's slots went to replenishment. */
   replenishReserved: number;
+  /** How many went to the value track (welcome + ai-series). */
+  valueSelected: number;
   errors: string[];
   plan?: LifecyclePlan; // included on dry runs
 }
@@ -868,6 +870,7 @@ export async function runLifecycle(
     reorderExits: 0,
     dueScanned: 0,
     replenishReserved: 0,
+    valueSelected: 0,
     errors: [],
   };
 
@@ -927,11 +930,12 @@ export async function runLifecycle(
     .orderBy(asc(alsBuyerJourneys.nextDueAt))
     .limit(DUE_SCAN_LIMIT);
 
-  const { selected, replenishCount } = allocateDueSlots(dueScan, cap, reserve);
+  const { selected, replenishCount, valueCount } = allocateDueSlots(dueScan, cap, reserve);
   const due = selected;
 
   result.dueScanned = dueScan.length;
   result.replenishReserved = replenishCount;
+  result.valueSelected = valueCount;
 
   for (const row of due) {
     const journey = row.journey as JourneyName;
