@@ -17,7 +17,7 @@ import {
   ALS_LIFECYCLE_REPLENISH_RESERVE,
 } from "@/lib/als/config";
 import { syncSuppressionToPostgres } from "@/lib/als/suppression-sync";
-import { recordCronRun } from "@/lib/cron/heartbeat";
+import { recordCronRun, describeError } from "@/lib/cron/heartbeat";
 
 export const maxDuration = 300;
 export const dynamic = "force-dynamic";
@@ -133,7 +133,7 @@ export async function GET(req: NextRequest) {
         status: "failed",
         detail:
           "Suppression sync failed; refused to send on an unverified opt-out list. " +
-          (err instanceof Error ? err.message : String(err)),
+          describeError(err),
         durationMs: Date.now() - startedAt,
       });
       return NextResponse.json(
@@ -142,7 +142,7 @@ export async function GET(req: NextRequest) {
           live,
           error:
             "Suppression sync failed; refusing to send on an unverified opt-out list: " +
-            (err instanceof Error ? err.message : String(err)),
+            describeError(err),
         },
         { status: 503 }
       );
@@ -219,11 +219,11 @@ export async function GET(req: NextRequest) {
     await recordCronRun({
       name: "als-lifecycle",
       status: "failed",
-      detail: err instanceof Error ? err.message : String(err),
+      detail: describeError(err),
       durationMs: Date.now() - startedAt,
     });
     return NextResponse.json(
-      { success: false, error: err instanceof Error ? err.message : String(err) },
+      { success: false, error: describeError(err) },
       { status: 500 }
     );
   }
