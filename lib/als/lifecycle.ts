@@ -191,6 +191,13 @@ export async function unsubscribeContact(contactId: number): Promise<void> {
 }
 
 // Shared email shell: lockup header, body, standing CTA button, BRC LLC footer.
+/** The buy button. Two per email — see `layout`. */
+function ctaBlock(href: string): string {
+  return `<div style="text-align:center;margin:20px 0 18px;">
+      <a href="${href}" style="display:inline-block;background:#e8a020;color:#1c2530;font-weight:800;text-decoration:none;padding:13px 28px;border-radius:8px;font-size:15px;">Buy Aged Leads &rarr;</a>
+    </div>`;
+}
+
 function layout(opts: {
   preheader: string;
   bodyHtml: string;
@@ -198,6 +205,23 @@ function layout(opts: {
   ctaContent?: string;
 }): string {
   const cta = buyUrl(opts.campaign, opts.ctaContent || "standing-cta");
+
+  // A second buy button directly under the opening paragraph, so the door sits
+  // in the top third instead of behind the whole email (Bill, 2026-09-04).
+  //
+  // This list has already shown intent — they either bought aged leads or asked
+  // how to. Making a buyer read to the end before they can act taxes the people
+  // most likely to convert. `top-cta` vs `standing-cta` are distinct
+  // `utm_content` values, so the placement scoreboard reads which one earns
+  // rather than leaving it to opinion.
+  const topCta = buyUrl(opts.campaign, "top-cta");
+  const afterFirstPara = opts.bodyHtml.indexOf("</p>");
+  const bodyHtml =
+    afterFirstPara === -1
+      ? ctaBlock(topCta) + opts.bodyHtml
+      : opts.bodyHtml.slice(0, afterFirstPara + 4) +
+        ctaBlock(topCta) +
+        opts.bodyHtml.slice(afterFirstPara + 4);
   return `<!doctype html><html><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1"></head>
 <body style="margin:0;background:#eceff3;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:#1c2530;">
@@ -209,10 +233,8 @@ function layout(opts: {
     <div style="font-size:18px;font-weight:700;color:#ffffff;margin-top:2px;">Bill Rice</div>
   </td></tr>
   <tr><td style="padding:26px 28px 8px;font-size:15px;line-height:1.62;color:#1c2530;">
-    ${opts.bodyHtml}
-    <div style="text-align:center;margin:24px 0 10px;">
-      <a href="${cta}" style="display:inline-block;background:#e8a020;color:#1c2530;font-weight:800;text-decoration:none;padding:13px 28px;border-radius:8px;font-size:15px;">Buy Aged Leads &rarr;</a>
-    </div>
+    ${bodyHtml}
+    ${ctaBlock(cta)}
   </td></tr>
   <tr><td style="border-top:1px solid #eef1f5;padding:16px 28px 22px;color:#7c8a99;font-size:12px;line-height:1.5;">
     You're receiving Aged Leads Insights — practical coaching on working aged leads — published by Bill Rice.<br>
@@ -284,9 +306,7 @@ const WELCOME: StepDef[] = [
     preheader: "The simple math behind why aged leads win.",
     body: (c) =>
       p(
-        `Hi ${hi(c)} — I'm Bill Rice. You picked up something of mine on working aged leads, so let me follow it with the three things that decide whether they pay: the math, the first touch, and the rhythm. One at a time, then I'll get out of your way.`,
-        `Start with the math, because once you see it you'll never look at a lead price the same way again.`,
-        `Most agents shop on <i>cost per lead</i>. That's the wrong number. The only one that pays your bills is <b>cost per sale</b>.`,
+        `Hi ${hi(c)} — most agents shop on <i>cost per lead</i>. That's the wrong number. The only one that pays your bills is <b>cost per sale</b>.`,
         `Here it is in round numbers. A fresh lead might cost $50 and close 1 in 10 — about $500 a sale. An aged lead might cost a dollar or two and close closer to 1 in 30 — call it $30–60 a sale. Same effort per dial, a fraction of the cost per sale. You trade a little contact rate for a big cost advantage, and at volume that math is lopsided in your favor.`,
         `Your real numbers will be different — that's exactly the point. Don't take my word for it; model your own. I built free calculators on ${SITE_HOST} so you can, before you spend a dollar:`,
         `<b><a href="${tool("/calculators/pipeline-calculator", "welcome-e2", "pipeline-calc")}" style="color:#0b6bcb;">Pipeline Calculator</a></b> — enter your revenue goal and close rate; it tells you how many aged leads you actually need.<br>
@@ -310,7 +330,7 @@ const WELCOME: StepDef[] = [
         `<span style="display:block;border-left:3px solid #0b6bcb;background:#f3f7fb;padding:10px 14px;border-radius:0 6px 6px 0;color:#33424f;font-size:14px;">Hi [First name], I'm [Name], a licensed [type] in [state]. I help people in your area find better options on [coverage], and I'd be glad to take a quick look at where you stand. Would a short call this week be useful? No pressure either way. — [Name], [phone]</span>`,
         `To send these without it feeling like marketing, use a simple <b>drip tool</b> that sends one personal-looking email at a time — I like <b>QuickMail</b>. Skip the mass-blast platforms like Constant Contact; their emails look like ads, which is exactly what you don't want here. Plain text from your own Gmail works too.`,
         `Notice the email never mentions a form from months ago, and it doesn't pitch. It offers a look. That's the whole job of the first touch.`,
-        `While we're here, the rest of staying clean on purchased data — four things. (Guidance, not legal advice; your compliance is on you.)`,
+        `The rest of staying clean on purchased data, four things. (Guidance, not legal advice — your compliance is on you.)`,
         `<b>1. Scrub before you dial.</b> Run the list against federal and applicable state Do-Not-Call registries plus your own internal DNC. You'll need a SAN for the federal list.<br>
          <b>2. Dial by hand.</b> Skip autodialers, prerecorded or artificial voice, and ringless voicemail on this data.<br>
          <b>3. Don't text it.</b> Covered above — it's the one that bites hardest.<br>
@@ -327,8 +347,7 @@ const WELCOME: StepDef[] = [
     preheader: "The difference between a gamble and a revenue engine.",
     body: (c) =>
       p(
-        `Hi ${hi(c)} — we've covered the two things that decide whether aged leads pay: the math that makes them work, and the warm-up that makes the first call welcome — scrubbed and compliant.`,
-        `Here's the last piece, and it's the one that actually builds income: <b>do it on a rhythm.</b>`,
+        `Hi ${hi(c)} — here's the piece that actually builds income: <b>do it on a rhythm.</b>`,
         `The agents who turn aged leads into real money don't buy when they're desperate and then go quiet. They keep a steady flow — a fresh batch every few weeks, worked the same way each time. That consistency is what makes aged leads beat the alternatives: you're not waiting on real-time leads to show up or hoping referrals trickle in. You control the tap.`,
         `And keep your tools simple and cheap — you don't need an expensive sales suite for this. <b>Google Workspace</b> covers almost everything: Gmail for outreach, Google Calendar for booking and consent, Google Meet for the appointments, Docs and Slides for anything you present. Add one drip email tool — I like <b>QuickMail</b> — and that's the whole stack. Affordable, frictionless, and it scales as you do.`,
         `A thin pipeline is a stressful pipeline, and stress shows up on the phone. Keep the engine running — line up your next batch before you finish this one:`,
@@ -346,8 +365,8 @@ const REPLENISHMENT: StepDef[] = [
     preheader: "The agents who win keep a steady flow.",
     body: (c) =>
       p(
-        `Hi ${hi(c)} — quick nudge from Bill.`,
-        `If you've been working your last batch, you've probably reached the easy contacts by now — and that's exactly the moment most agents let the pipeline go thin. The ones who keep their income steady reload <b>before</b> they run dry, so there's always a fresh batch behind the one they're finishing.`,
+        `Hi ${hi(c)} — if you've been working your last batch, you've probably reached the easy contacts by now.`,
+        `That's exactly the moment most agents let the pipeline go thin. The ones who keep their income steady reload <b>before</b> they run dry, so there's always a fresh batch behind the one they're finishing.`,
         `That steady rhythm is the whole advantage of aged leads over waiting on real-time leads or referrals: you decide when the next wave of opportunity shows up. Line it up:`,
         `— Bill`
       ),
@@ -359,8 +378,8 @@ const REPLENISHMENT: StepDef[] = [
     preheader: "A small tweak that lifts your contact rate.",
     body: (c) =>
       p(
-        `Hi ${hi(c)} — one tip before your next run.`,
-        `Most agents work a batch top to bottom and call it done. Try this instead: on your next list, send the warm-up email to <i>everyone</i> first, then prioritize your calls toward the people who opened or replied. You'll spend your dialing hours on the warmest names and your contact rate climbs.`,
+        `Hi ${hi(c)} — most agents work a batch top to bottom and call it done. Try this instead.`,
+        `On your next list, send the warm-up email to <i>everyone</i> first, then prioritize your calls toward the people who opened or replied. You'll spend your dialing hours on the warmest names and your contact rate climbs.`,
         `Small change, real difference — and it only works if there's a fresh batch to run it on. Ready when you are:`,
         `— Bill`
       ),
