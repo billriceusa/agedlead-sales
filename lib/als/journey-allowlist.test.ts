@@ -67,8 +67,13 @@ describe("program shape after the Phase 1 restart", () => {
  * for 34 days. Expressed here as the predicate the route applies, so the
  * conditions stay pinned even though the route itself needs a live request.
  */
-function sentNothingWhileDue(live: boolean, sent: number, dueScanned: number): boolean {
-  return live && sent === 0 && dueScanned > 0;
+function sentNothingWhileDue(
+  live: boolean,
+  sent: number,
+  dueScanned: number,
+  reorderExits = 0,
+): boolean {
+  return live && sent === 0 && dueScanned - reorderExits > 0;
 }
 
 describe("zero-send alarm", () => {
@@ -86,5 +91,16 @@ describe("zero-send alarm", () => {
 
   test("stays quiet on a dry run, which sends nothing by design", () => {
     assert.equal(sentNothingWhileDue(false, 0, 715), false);
+  });
+
+  test("stays quiet when the whole queue was reorder-exits", () => {
+    // Those rows close without sending because the buyer already bought again.
+    // A run like that sent zero and was entirely healthy — flagging it would
+    // train the alarm to be ignored, which is how the last outage was missed.
+    assert.equal(sentNothingWhileDue(true, 0, 9, 9), false);
+  });
+
+  test("still fires when only SOME of the queue was reorder-exits", () => {
+    assert.equal(sentNothingWhileDue(true, 0, 27, 9), true);
   });
 });

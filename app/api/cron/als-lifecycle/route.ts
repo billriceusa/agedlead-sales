@@ -179,7 +179,13 @@ export async function GET(req: NextRequest) {
     // `dueScanned` is allowlist-filtered, so this only fires for a track that is
     // actually cleared to send. A deliberately paused backlog is reported as
     // `paused`, never as a failure.
-    const sentNothingWhileDue = live && result.sent === 0 && result.dueScanned > 0;
+    // Reorder-exits are due rows that close WITHOUT sending — the buyer bought
+    // again, so the nudge is moot. A run whose whole queue is reorder-exits sent
+    // nothing and was completely healthy, so they are excluded or this alarm
+    // cries failure on a good day and gets ignored, which is how the last one
+    // was missed.
+    const sentNothingWhileDue =
+      live && result.sent === 0 && result.dueScanned - result.reorderExits > 0;
 
     // Journeys with due rows that the allowlist is holding — named so the
     // heartbeat says which track is paused, not merely that something is.
