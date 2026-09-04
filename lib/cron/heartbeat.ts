@@ -36,6 +36,36 @@ export type HeartbeatPayload = {
   durationMs?: number;
 };
 
+/**
+ * Turn a thrown value into a heartbeat-safe one-liner.
+ *
+ * Written after the 2026-09-04 als-lifecycle failure, where the detail field
+ * was actively unhelpful in two ways. Drizzle wraps a query error so that
+ * `.message` opens with `Failed query: <sql>\nparams: <every bound value>` and
+ * keeps the real Postgres error in `.cause`. So the 2000-char cap below spent
+ * its whole budget on SQL and parameters and truncated the one sentence that
+ * said what went wrong — and the parameters were 111 customer email addresses,
+ * which then sat in a Sanity document.
+ *
+ * Cause first, no params, hard cap. A heartbeat is a diagnosis, not a dump.
+ */
+export function describeError(err: unknown): string {
+  const cause = (err as { cause?: unknown })?.cause;
+  const causeMessage =
+    cause instanceof Error ? cause.message : typeof cause === "string" ? cause : "";
+
+  const own = err instanceof Error ? err.message : String(err);
+
+  // Drop drizzle's SQL/params dump, keeping any prose that precedes it.
+  const ownSummary = own.split(/\n?(?:Failed query:|params:)/)[0].trim();
+
+  const parts = [causeMessage.trim(), ownSummary].filter(Boolean);
+  const seen = new Set<string>();
+  const message = parts.filter((p) => !seen.has(p) && seen.add(p)).join(" — ");
+
+  return (message || "unknown error").slice(0, 300);
+}
+
 export async function recordCronRun(payload: HeartbeatPayload): Promise<void> {
   const client = getSanityWriteClient();
   if (!client) {

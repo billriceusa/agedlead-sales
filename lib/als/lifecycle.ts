@@ -16,7 +16,7 @@
 // by ALS_LIFECYCLE_SEND_CAP so the first launch drips instead of blasting.
 
 import { createHmac, timingSafeEqual } from "crypto";
-import { and, eq, isNull, lte, gte, asc, sql } from "drizzle-orm";
+import { and, eq, isNull, lte, gte, asc, sql, inArray, notInArray } from "drizzle-orm";
 import { db } from "@/lib/db";
 import { alsBuyerContacts, alsBuyerJourneys } from "@/lib/db/schema";
 import { sendSingleEmail } from "@/lib/resend";
@@ -28,7 +28,8 @@ import {
   ALS_LIFECYCLE_REPLENISH_RESERVE,
   ALS_UNSUB_SECRET,
   ALS_PUBLIC_APP_URL,
-  ALS_AI_SERIES_ENABLED,
+  ALS_LIFECYCLE_JOURNEYS,
+  journeyEnabled,
 } from "@/lib/als/config";
 import { SITE_HOST, SITE_URL } from "@/lib/site-url";
 import { AFFILIATE_UTM_SOURCE } from "@/lib/utm";
@@ -36,7 +37,7 @@ import { AFFILIATE_UTM_SOURCE } from "@/lib/utm";
 const DAY_MS = 86_400_000;
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
-export type JourneyName = "welcome" | "ai-series" | "replenishment";
+export type JourneyName = "welcome" | "replenishment";
 
 // Replenishment window: nudge buyers whose last order is 21–90 days old. Older
 // than 90d with no reorder → lapsed, handled by the (future) reactivation track.
@@ -190,6 +191,13 @@ export async function unsubscribeContact(contactId: number): Promise<void> {
 }
 
 // Shared email shell: lockup header, body, standing CTA button, BRC LLC footer.
+/** The buy button. Two per email — see `layout`. */
+function ctaBlock(href: string): string {
+  return `<div style="text-align:center;margin:20px 0 18px;">
+      <a href="${href}" style="display:inline-block;background:#e8a020;color:#1c2530;font-weight:800;text-decoration:none;padding:13px 28px;border-radius:8px;font-size:15px;">Buy Aged Leads &rarr;</a>
+    </div>`;
+}
+
 function layout(opts: {
   preheader: string;
   bodyHtml: string;
@@ -197,6 +205,23 @@ function layout(opts: {
   ctaContent?: string;
 }): string {
   const cta = buyUrl(opts.campaign, opts.ctaContent || "standing-cta");
+
+  // A second buy button directly under the opening paragraph, so the door sits
+  // in the top third instead of behind the whole email (Bill, 2026-09-04).
+  //
+  // This list has already shown intent — they either bought aged leads or asked
+  // how to. Making a buyer read to the end before they can act taxes the people
+  // most likely to convert. `top-cta` vs `standing-cta` are distinct
+  // `utm_content` values, so the placement scoreboard reads which one earns
+  // rather than leaving it to opinion.
+  const topCta = buyUrl(opts.campaign, "top-cta");
+  const afterFirstPara = opts.bodyHtml.indexOf("</p>");
+  const bodyHtml =
+    afterFirstPara === -1
+      ? ctaBlock(topCta) + opts.bodyHtml
+      : opts.bodyHtml.slice(0, afterFirstPara + 4) +
+        ctaBlock(topCta) +
+        opts.bodyHtml.slice(afterFirstPara + 4);
   return `<!doctype html><html><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1"></head>
 <body style="margin:0;background:#eceff3;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:#1c2530;">
@@ -208,10 +233,8 @@ function layout(opts: {
     <div style="font-size:18px;font-weight:700;color:#ffffff;margin-top:2px;">Bill Rice</div>
   </td></tr>
   <tr><td style="padding:26px 28px 8px;font-size:15px;line-height:1.62;color:#1c2530;">
-    ${opts.bodyHtml}
-    <div style="text-align:center;margin:24px 0 10px;">
-      <a href="${cta}" style="display:inline-block;background:#e8a020;color:#1c2530;font-weight:800;text-decoration:none;padding:13px 28px;border-radius:8px;font-size:15px;">Buy Aged Leads &rarr;</a>
-    </div>
+    ${bodyHtml}
+    ${ctaBlock(cta)}
   </td></tr>
   <tr><td style="border-top:1px solid #eef1f5;padding:16px 28px 22px;color:#7c8a99;font-size:12px;line-height:1.5;">
     You're receiving Aged Leads Insights — practical coaching on working aged leads — published by Bill Rice.<br>
@@ -237,32 +260,53 @@ interface StepDef {
 
 const hi = (c: RenderCtx) => esc(c.firstName || "there");
 
-// --- Welcome series (purchasers): value-first, subtle, never references an order ---
+// --- Welcome series (3 emails): the case, the method, the rhythm ---
+//
+// SHORTENED 7 -> 3 ON 2026-09-04 (Bill's call), and the second seven-email
+// "AI for aged leads" series removed entirely.
+//
+// WHY, IN NUMBERS
+//
+// At ~11 new contacts a day, seven welcome emails plus a seven-email follow-on
+// series is ~154 sends/day of structural demand against a 150/day cap. The
+// program was oversubscribed by its own design, which is why a backlog existed
+// before the August outage and would have rebuilt itself after any cap raise.
+//
+// It also had nothing to show for the volume. Across July, with the lifecycle
+// sending ~150/day, all seven welcome emails together took 46 store sessions to
+// ZERO transactions (GA4 357329146, store-side). The one lifecycle sale on
+// record is replenishment: `replenish-r1`, 1 session, 1 transaction, $420.
+//
+// Three emails at 3/7/14 days takes the same population to ~33 sends/day. That
+// is sustainable indefinitely, cannot build a backlog, and leaves the domain
+// headroom for the track that actually earns.
+//
+// WHICH THREE
+//
+// Kept the argument (`welcome-e2`), the method (`welcome-e3` — the only one
+// with a swipeable asset), and the close (`welcome-e7` — the only one that ends
+// at a reorder). Dropped the standalone intro, the booking email and the
+// objection email. The compliance email is dropped as a send but its rules are
+// folded into the method email below rather than lost: working purchased data
+// legally is this brand's whole differentiator, not a nice-to-have.
+//
+// WHY THE SLUGS LOOK OUT OF ORDER
+//
+// The campaigns stay `welcome-e2` / `-e3` / `-e7` even though they are now
+// steps 1/2/3. Their content is substantially unchanged, so keeping the slugs
+// keeps the GA4 scoreboard readable as one continuous series across the change
+// — the same reasoning that kept `header-nav` when howtoworkleads.com was
+// retired into this domain. Renaming them would silently reset the only
+// performance history this program has.
 const WELCOME: StepDef[] = [
   {
     offsetDays: WELCOME_START_DAYS, // 3
-    campaign: "welcome-e1",
-    subject: () => "The most underrated revenue source in your business",
-    preheader: "A quick note from Bill on getting the most out of aged leads.",
-    body: (c) =>
-      p(
-        `Hi ${hi(c)} — I'm Bill Rice. If you're working aged leads (or thinking about it), this short series is for you.`,
-        `Here's the case I want to make over the next couple of weeks: worked correctly, aged leads are the most <b>consistent, affordable</b> source of new business you have. More predictable than waiting on real-time leads to come in, and far faster than waiting for referrals to trickle back.`,
-        `The catch is in those two words — "worked correctly." Most agents treat a list of aged leads like a lottery ticket: dial a few, get discouraged, move on. The ones who build a real, repeatable revenue stream do a handful of things differently. That's what I'll walk you through — one idea per email, no fluff.`,
-        `First one lands in a couple of days. It's the simplest change that makes everything else work: how you make first contact.`,
-        `Want the full breakdown first? I laid out the numbers here: <a href="${tool("/blog/economics-of-aged-leads", "welcome-e1", "deep-read")}" style="color:#0b6bcb;">the economics of aged leads</a>.`,
-        `Talk soon,<br>Bill`
-      ),
-  },
-  {
-    offsetDays: 6,
     campaign: "welcome-e2",
     subject: () => "Cost per lead is the wrong number",
     preheader: "The simple math behind why aged leads win.",
     body: (c) =>
       p(
-        `Hi ${hi(c)} — let's talk numbers, because once you see this math you'll never look at a lead price the same way again.`,
-        `Most agents shop on <i>cost per lead</i>. That's the wrong number. The only one that pays your bills is <b>cost per sale</b>.`,
+        `Hi ${hi(c)} — most agents shop on <i>cost per lead</i>. That's the wrong number. The only one that pays your bills is <b>cost per sale</b>.`,
         `Here it is in round numbers. A fresh lead might cost $50 and close 1 in 10 — about $500 a sale. An aged lead might cost a dollar or two and close closer to 1 in 30 — call it $30–60 a sale. Same effort per dial, a fraction of the cost per sale. You trade a little contact rate for a big cost advantage, and at volume that math is lopsided in your favor.`,
         `Your real numbers will be different — that's exactly the point. Don't take my word for it; model your own. I built free calculators on ${SITE_HOST} so you can, before you spend a dollar:`,
         `<b><a href="${tool("/calculators/pipeline-calculator", "welcome-e2", "pipeline-calc")}" style="color:#0b6bcb;">Pipeline Calculator</a></b> — enter your revenue goal and close rate; it tells you how many aged leads you actually need.<br>
@@ -273,7 +317,7 @@ const WELCOME: StepDef[] = [
       ),
   },
   {
-    offsetDays: 9,
+    offsetDays: 7,
     campaign: "welcome-e3",
     subject: () => "Don't dial first. Do this instead.",
     preheader: "The simple warm-up that makes your first call welcome.",
@@ -286,70 +330,24 @@ const WELCOME: StepDef[] = [
         `<span style="display:block;border-left:3px solid #0b6bcb;background:#f3f7fb;padding:10px 14px;border-radius:0 6px 6px 0;color:#33424f;font-size:14px;">Hi [First name], I'm [Name], a licensed [type] in [state]. I help people in your area find better options on [coverage], and I'd be glad to take a quick look at where you stand. Would a short call this week be useful? No pressure either way. — [Name], [phone]</span>`,
         `To send these without it feeling like marketing, use a simple <b>drip tool</b> that sends one personal-looking email at a time — I like <b>QuickMail</b>. Skip the mass-blast platforms like Constant Contact; their emails look like ads, which is exactly what you don't want here. Plain text from your own Gmail works too.`,
         `Notice the email never mentions a form from months ago, and it doesn't pitch. It offers a look. That's the whole job of the first touch.`,
-        `Want more to swipe? Here's a stack of <a href="${tool("/blog/email-outreach-aged-leads-templates", "welcome-e3", "deep-read")}" style="color:#0b6bcb;">aged-lead email templates</a>.`,
-        `Next: turning that into a booked conversation.<br>— Bill`
-      ),
-  },
-  {
-    offsetDays: 12,
-    campaign: "welcome-e4",
-    subject: () => "Stop pitching. Start booking.",
-    preheader: "Why the appointment beats the pitch on aged leads.",
-    body: (c) =>
-      p(
-        `Hi ${hi(c)} — the biggest mistake on aged leads is trying to close on the first contact. The person doesn't remember the form, doesn't know you, and won't buy from a stranger in ninety seconds.`,
-        `So don't sell. <b>Book a conversation.</b> Your only goal on first contact is a short, no-pressure appointment to review their situation: "Let me take a look at what you've got and tell you honestly whether there's a better option." People say yes to help. They say no to a pitch.`,
-        `Then make saying yes effortless — put a <b>scheduling link</b> right in your email and your voicemail. When someone can pick their own time in a couple of taps, they feel in control, and that control builds trust faster than anything you can say on the phone. It's also frictionless, which means more booked calls and fewer games of phone tag.`,
-        `You don't need fancy software: Calendly's free plan works, and Google Calendar's appointment scheduling is free with any Google account. Pick one, put the link everywhere, and let people book themselves.`,
-        `On the phone, keep it just as soft:`,
-        `<span style="display:block;border-left:3px solid #0b6bcb;background:#f3f7fb;padding:10px 14px;border-radius:0 6px 6px 0;color:#33424f;font-size:14px;">"Hi [First name], this is [Name], a licensed [type] here in [state]. I sent you a note — I help folks in your area make sure they're not overpaying for [coverage]. Do you have two minutes now, or would it be easier if I sent you a link to grab a time that works for you?"</span>`,
-        `Present tense. Value. A question, not a monologue. If they're busy, you're booking a time — that's a win, not a rejection.`,
-        `Want a deeper script library? Here are the <a href="${tool("/blog/aged-lead-scripts-that-work", "welcome-e4", "deep-read")}" style="color:#0b6bcb;">aged-lead scripts that work</a>.`,
-        `Next: the part almost everyone gets wrong.<br>— Bill`
-      ),
-  },
-  {
-    offsetDays: 15,
-    campaign: "welcome-e5",
-    subject: () => 'Why most aged leads "don\'t work"',
-    preheader: "Most agents quit after one or two tries. Here's the data.",
-    body: (c) =>
-      p(
-        `Hi ${hi(c)} — here's the uncomfortable truth about why most aged leads "don't work": the agent gave up too soon.`,
-        `In one of the largest studies ever done on lead conversion, <b>93% of the leads that eventually converted were reached within six attempts</b> — but the average agent stops after one or two. They call once, get voicemail, and write the lead off. The person who keeps showing up gets the sale.`,
-        `I call it <b>polite persistence</b>. Not pestering — persistence with manners. You reach out again because you genuinely believe you can help, and you respect their time every time.`,
-        `A humane two-week rhythm: a few calls the first week (vary the time) plus your warm-up email; a few more the second week plus one more short note; then a light monthly check-in for the ones who went quiet. Call when people answer — <a href="${tool("/blog/best-time-to-call-aged-insurance-leads", "welcome-e5", "deep-read")}" style="color:#0b6bcb;">late morning and late afternoon</a>. Dial by hand, list scrubbed (more on that next).`,
-        `If you'd rather not map it by hand, I built a free <a href="${tool("/calculators/outreach-cadence-planner", "welcome-e5", "cadence-planner")}" style="color:#0b6bcb;">outreach cadence planner</a> on ${SITE_HOST} — plug in your batch and it lays the touches out day by day.`,
-        `That's the whole campaign. Politely persistent, by phone and email, every name treated like the person it is.<br>— Bill`
-      ),
-  },
-  {
-    offsetDays: 18,
-    campaign: "welcome-e6",
-    subject: () => "Work them hard — and stay out of trouble",
-    preheader: "The 5-minute compliance version for purchased leads.",
-    body: (c) =>
-      p(
-        `Hi ${hi(c)} — let me make this simple, because it matters and most agents never get a straight answer. (This is guidance, not legal advice — your compliance is on you.)`,
-        `When you work purchased leads, the consumer didn't give you consent, and that changes the rules. Four things keep you clean:`,
+        `The rest of staying clean on purchased data, four things. (Guidance, not legal advice — your compliance is on you.)`,
         `<b>1. Scrub before you dial.</b> Run the list against federal and applicable state Do-Not-Call registries plus your own internal DNC. You'll need a SAN for the federal list.<br>
          <b>2. Dial by hand.</b> Skip autodialers, prerecorded or artificial voice, and ringless voicemail on this data.<br>
-         <b>3. Don't text it.</b> Texting consumers who never consented is the fastest route to a TCPA problem. Email and phone.<br>
+         <b>3. Don't text it.</b> Covered above — it's the one that bites hardest.<br>
          <b>4. Honor every "no."</b> If someone asks not to be contacted, log it and stop.`,
-        `Now the pro move most agents miss: use your emails to <b>earn</b> the right to call and text. Email is allowed on this data, so let it do the heavy lifting. Put a scheduling link in your emails that asks for a phone number and permission to text when someone books — the moment they fill that out, you've turned a cold purchased lead into a fully <b>consented</b> one. Calendly and free Google Calendar booking both capture it for you. It's the cleanest way to build a list you can legally work hard.`,
-        `Do all this and you can work aggressively without looking over your shoulder. Polite persistence, inside the lines.`,
-        `Last one next: how to make this a steady paycheck instead of a one-off.<br>— Bill`
+        `And the move most agents miss: use the email to <b>earn</b> the right to call and text. Email is allowed on this data, so let it do the heavy lifting — put a scheduling link in it that asks for a phone number and permission to text when someone books. The moment they fill that out, a cold purchased lead has become a <b>consented</b> one. Calendly and free Google Calendar booking both capture it for you. It's the cleanest way to build a list you can legally work hard.`,
+        `Want more to swipe? Here's a stack of <a href="${tool("/blog/email-outreach-aged-leads-templates", "welcome-e3", "deep-read")}" style="color:#0b6bcb;">aged-lead email templates</a>.`,
+        `Last one: how to turn this from a good month into a steady paycheck.<br>— Bill`
       ),
   },
   {
-    offsetDays: 21,
+    offsetDays: 14,
     campaign: "welcome-e7",
     subject: () => "Turning aged leads into a steady paycheck",
     preheader: "The difference between a gamble and a revenue engine.",
     body: (c) =>
       p(
-        `Hi ${hi(c)} — we've covered the whole method: warm up with an email, earn a conversation, then be politely persistent on the phone — all scrubbed and compliant.`,
-        `Here's the last piece, and it's the one that actually builds income: <b>do it on a rhythm.</b>`,
+        `Hi ${hi(c)} — here's the piece that actually builds income: <b>do it on a rhythm.</b>`,
         `The agents who turn aged leads into real money don't buy when they're desperate and then go quiet. They keep a steady flow — a fresh batch every few weeks, worked the same way each time. That consistency is what makes aged leads beat the alternatives: you're not waiting on real-time leads to show up or hoping referrals trickle in. You control the tap.`,
         `And keep your tools simple and cheap — you don't need an expensive sales suite for this. <b>Google Workspace</b> covers almost everything: Gmail for outreach, Google Calendar for booking and consent, Google Meet for the appointments, Docs and Slides for anything you present. Add one drip email tool — I like <b>QuickMail</b> — and that's the whole stack. Affordable, frictionless, and it scales as you do.`,
         `A thin pipeline is a stressful pipeline, and stress shows up on the phone. Keep the engine running — line up your next batch before you finish this one:`,
@@ -367,8 +365,8 @@ const REPLENISHMENT: StepDef[] = [
     preheader: "The agents who win keep a steady flow.",
     body: (c) =>
       p(
-        `Hi ${hi(c)} — quick nudge from Bill.`,
-        `If you've been working your last batch, you've probably reached the easy contacts by now — and that's exactly the moment most agents let the pipeline go thin. The ones who keep their income steady reload <b>before</b> they run dry, so there's always a fresh batch behind the one they're finishing.`,
+        `Hi ${hi(c)} — if you've been working your last batch, you've probably reached the easy contacts by now.`,
+        `That's exactly the moment most agents let the pipeline go thin. The ones who keep their income steady reload <b>before</b> they run dry, so there's always a fresh batch behind the one they're finishing.`,
         `That steady rhythm is the whole advantage of aged leads over waiting on real-time leads or referrals: you decide when the next wave of opportunity shows up. Line it up:`,
         `— Bill`
       ),
@@ -380,8 +378,8 @@ const REPLENISHMENT: StepDef[] = [
     preheader: "A small tweak that lifts your contact rate.",
     body: (c) =>
       p(
-        `Hi ${hi(c)} — one tip before your next run.`,
-        `Most agents work a batch top to bottom and call it done. Try this instead: on your next list, send the warm-up email to <i>everyone</i> first, then prioritize your calls toward the people who opened or replied. You'll spend your dialing hours on the warmest names and your contact rate climbs.`,
+        `Hi ${hi(c)} — most agents work a batch top to bottom and call it done. Try this instead.`,
+        `On your next list, send the warm-up email to <i>everyone</i> first, then prioritize your calls toward the people who opened or replied. You'll spend your dialing hours on the warmest names and your contact rate climbs.`,
         `Small change, real difference — and it only works if there's a fresh batch to run it on. Ready when you are:`,
         `— Bill`
       ),
@@ -401,126 +399,8 @@ const REPLENISHMENT: StepDef[] = [
   },
 ];
 
-// --- AI-for-aged-leads series (after a contact completes welcome) ---
-// Value continuation. Anti-hype: AI removes friction (blank page + busywork),
-// never replaces the agent, never invents facts, never goes on the call.
-const AI_SERIES: StepDef[] = [
-  {
-    offsetDays: 0, // anchor = enrollment (right after welcome completes)
-    campaign: "ai-e1",
-    subject: () => "The unfair advantage hiding in plain sight",
-    preheader: "AI won't dial for you — but it kills the two things that slow you down.",
-    body: (c) =>
-      p(
-        `Hi ${hi(c)} — quick one. You've got the method down: warm up, book a conversation, politely persist. Now let me hand you the thing that makes all of it faster — AI.`,
-        `Let me be straight: AI is not magic and it won't dial a single lead for you. What it kills is the two things that actually slow agents down — the blank page and the busywork. Drafting the email, building the script, writing the follow-up, prepping for a call. Minutes instead of hours.`,
-        `One rule before we start: <b>AI writes the draft; you own the facts.</b> Never let it invent a rate, a quote, or a detail about a person. Everything it gives you is a first draft to check, not gospel. (More on the lines you don't cross at the end of this series.)`,
-        `I put my go-to prompts in one place — steal them: <a href="${tool("/blog/chatgpt-prompts-aged-leads", "ai-e1", "prompt-library")}" style="color:#0b6bcb;">the ChatGPT Prompt Library for aged-lead outreach</a>. Over the next few emails I'll show you exactly how I use the best ones.`,
-        `First up: writing your warm-up email in about 30 seconds, in your own voice.<br>— Bill`
-      ),
-  },
-  {
-    offsetDays: 3,
-    campaign: "ai-e2",
-    subject: () => "Write your warm-up email in 30 seconds",
-    preheader: "The prompt — plus how to make it sound like you, not a robot.",
-    body: (c) =>
-      p(
-        `Hi ${hi(c)} — remember the warm-up email, the one that makes your first call welcome? Here's how to write it in seconds without it sounding like a robot.`,
-        `Paste this into ChatGPT (or any AI), filling in the brackets:`,
-        `<span style="display:block;border-left:3px solid #0b6bcb;background:#f3f7fb;padding:10px 14px;border-radius:0 6px 6px 0;color:#33424f;font-size:14px;">"You're helping a licensed [type] agent in [state] write a SHORT, warm, plain-text email to someone who asked about [coverage] a while back. Goal: a quick, no-pressure phone call. No hype, no jargon, under 90 words, friendly and human. Don't mention a 'form.' Give me 3 versions."</span>`,
-        `The trick that makes it sound like <i>you</i>: paste in one or two emails you've actually written and add "match this voice." AI is a great mimic — give it a sample and it stops sounding generic.`,
-        `Then read it out loud before you send. If it sounds like a brochure, tell it "make it more casual, like a note to a neighbor." Thirty seconds, three drafts, pick the one that sounds like you.`,
-        `And the rule again: it can write the words, but you check every fact. Don't let it promise a rate or a product you can't stand behind.`,
-        `Want more angles to start from? Here's a library of <a href="${tool("/blog/email-outreach-aged-leads-templates", "ai-e2", "deep-read")}" style="color:#0b6bcb;">aged-lead email templates</a>.`,
-        `Tomorrow: a call script built for your exact leads.<br>— Bill`
-      ),
-  },
-  {
-    offsetDays: 6,
-    campaign: "ai-e3",
-    subject: () => "A call script built for your exact leads",
-    preheader: "Stop using someone else's generic script.",
-    body: (c) =>
-      p(
-        `Hi ${hi(c)} — a generic script feels generic on the phone. Here's how to get one built for your product, your state, your objections — in about two minutes.`,
-        `The prompt:`,
-        `<span style="display:block;border-left:3px solid #0b6bcb;background:#f3f7fb;padding:10px 14px;border-radius:0 6px 6px 0;color:#33424f;font-size:14px;">"Act as a sales coach for [type] insurance. Write a short, natural phone script for calling aged leads who inquired about [coverage]. Open with present-tense value (never 'you filled out a form'). The goal is to book a quick review, not to close. Then give me responses to the 3 objections I hear most: [your objections]. Keep it conversational, not salesy."</span>`,
-        `Feed it the objections that actually stop you and it'll hand you language for each. Tweak, don't recite — you want a script that sounds like you talking, not reading.`,
-        `One hard line, because it matters: use AI to <b>prep</b> the call, never to <b>make</b> it. AI voice agents and synthetic or prerecorded voices on non-consented leads are a TCPA minefield. You dial, you talk. The AI just gets you ready.`,
-        `Want a head start to feed it? Here are proven <a href="${tool("/blog/aged-lead-scripts-that-work", "ai-e3", "deep-read")}" style="color:#0b6bcb;">aged-lead scripts that work</a>.`,
-        `Next: turning every call into your next move — automatically.<br>— Bill`
-      ),
-  },
-  {
-    offsetDays: 9,
-    campaign: "ai-e4",
-    subject: () => "Turn every call into your next move",
-    preheader: "The after-the-call busywork, done in seconds.",
-    body: (c) =>
-      p(
-        `Hi ${hi(c)} — the thing that kills momentum isn't the calls, it's everything after: notes, logging, the follow-up email, remembering to circle back. AI eats that for breakfast.`,
-        `Right after a call, jot 3–4 messy bullets — what they said, their situation, the next step. Then:`,
-        `<span style="display:block;border-left:3px solid #0b6bcb;background:#f3f7fb;padding:10px 14px;border-radius:0 6px 6px 0;color:#33424f;font-size:14px;">"Here are my rough notes from a call with an aged lead: [paste bullets]. 1) Clean these into 2–3 sentences for my CRM. 2) Draft a short, friendly follow-up email matching what we discussed. 3) Tell me the single best next action, and when."</span>`,
-        `You get tidy notes, a ready-to-edit follow-up, and a clear next step — in the time it takes to grab coffee. Do it between calls and you never lose a lead to "I'll get to it later."`,
-        `Same rule: it organizes what <i>you</i> said happened. It doesn't get to invent what was discussed or what you promised.`,
-        `Want your CRM set up to catch all this automatically? Here's the <a href="${tool("/blog/aged-lead-crm-setup-guide", "ai-e4", "deep-read")}" style="color:#0b6bcb;">aged-lead CRM setup guide</a>.`,
-        `Next, for the advanced crowd: stop taking notes on your calls altogether.<br>— Bill`
-      ),
-  },
-  {
-    offsetDays: 12,
-    campaign: "ai-e5",
-    subject: () => "Stop taking notes. Record the whole call.",
-    preheader: "The upgrade serious operators use — done the compliant way.",
-    body: (c) =>
-      p(
-        `Hi ${hi(c)} — last email you jotted a few notes after each call. Here's the upgrade serious operators use: don't take notes at all. <b>Record and transcribe the whole conversation.</b>`,
-        `Why it changes everything: you stop splitting your attention between listening and scribbling, so you're fully present — and you capture every detail, including the offhand nuance (a kid starting college, a renewal coming up, "call me after the holidays") that's worth money later and that handwritten notes always miss.`,
-        `Then AI reads the full transcript and writes a follow-up that references what they <i>actually said</i>, in their own words. That's the difference between "great talking to you" and a note that proves you listened — the first gets ignored, the second books the next call.`,
-        `The tool I use is <b>Granola</b> — it runs quietly in the background and transcribes. Two things so you use it right: for a call you take <b>on your computer</b> (a softphone or dialer on your laptop) it captures both sides cleanly; for a <b>cell call</b>, put it on speaker with the app open — or just turn on your dialer's built-in recording. (Granola doesn't tap the phone line itself.) <a href="https://granola.ai" style="color:#0b6bcb;">granola.ai</a>`,
-        `And the one rule you can't skip: <b>get consent to record.</b> Federal law allows one-party consent, but about a dozen states — California, Florida, Illinois, Pennsylvania, Washington and more — require <i>everyone</i> on the call to agree, and on an out-of-state call the stricter law can apply. So make it bulletproof: open every call with "I record my calls so I can follow up accurately — is that okay with you?" and wait for a yes. That one sentence keeps you safe everywhere. (General guidance, not legal advice — check your state if unsure.)`,
-        `Want to go deeper on what to do with the recordings? Here's the full <a href="${tool("/blog/aged-lead-call-recording-analysis", "ai-e5", "deep-read")}" style="color:#0b6bcb;">call-recording analysis playbook</a>.`,
-        `Next: how to make all of this document itself.<br>— Bill`
-      ),
-  },
-  {
-    offsetDays: 15,
-    campaign: "ai-e6",
-    subject: () => "Your database should document itself",
-    preheader: "Let AI + your CRM do the data entry — and pay you for years.",
-    body: (c) =>
-      p(
-        `Hi ${hi(c)} — here's where it all comes together, and where a lot of money quietly hides: in the leads you already talked to.`,
-        `Once you're recording and transcribing, an AI agent can do the busywork you hate — take the transcript, write a clean summary, log it as a note in your CRM, update the fields (budget, timeline, renewal date), and set your next follow-up task. Automatically, while you're already on the next call.`,
-        `This isn't hypothetical. The big CRMs now plug straight into AI: <b>HubSpot</b> and <b>GoHighLevel</b> both have official connectors (they call them MCP servers) that let an AI assistant read and write your records — Salesforce has one in early release. And the dialer-CRMs a lot of agents use — Ricochet360, VanillaSoft, Ringy — all have APIs, so the same automation works with a little setup (or a tool like Zapier in between).`,
-        `Now the payoff. Every conversation you capture turns your database into a complete, searchable history of every relationship — and that's a goldmine you can work for years:`,
-        `<span style="display:block;border-left:3px solid #0b6bcb;background:#f3f7fb;padding:10px 14px;border-radius:0 6px 6px 0;color:#33424f;font-size:14px;"><b>Renewals:</b> AI flags every policy coming up and drafts the check-in.<br><b><a href="${tool("/blog/aged-refinance-leads-most-undervalued-mortgage-asset", "ai-e6", "deep-read-refi")}" style="color:#0b6bcb;">Refinance re-engagement:</a></b> the day rates drop, you've got a documented book of past mortgage prospects to call — with notes on exactly what each one needed.<br><b>Nurture &amp; win-back:</b> the folks who said "not now" told you when "now" would be. The transcript remembered, even if you didn't.</span>`,
-        `Most agents let that history evaporate. The ones who capture it never start from zero again — every lead they've ever touched becomes an asset they can re-engage on command. That's how a list of aged leads turns into a book of business.`,
-        `Want the full build? Here's how to turn your CRM into a <a href="${tool("/blog/aged-lead-follow-up-machine-crm-dialer", "ai-e6", "deep-read")}" style="color:#0b6bcb;">follow-up machine</a>.`,
-        `One more, the last one — using all this power without crossing the line.<br>— Bill`
-      ),
-  },
-  {
-    offsetDays: 18,
-    campaign: "ai-e7",
-    subject: () => "Using all this power without crossing the line",
-    preheader: "The guardrails that keep AI an asset, not a liability.",
-    body: (c) =>
-      p(
-        `Hi ${hi(c)} — last one, and it's the most important: how to use everything in this series without getting yourself in trouble.`,
-        `Quick win first: before a block of calls, have AI prep your talking points for the vertical and the area — common concerns for [coverage] buyers in [state], good questions to ask, what tends to matter to them. You'll sound like you did your homework, because you did.`,
-        `Now the lines you don't cross — this is where AI gets agents in trouble:`,
-        `<span style="display:block;border-left:3px solid #b4690e;background:#fdf3e6;padding:10px 14px;border-radius:0 6px 6px 0;color:#5b4a2e;font-size:14px;"><b>Get consent before you record</b> — every call, every time. Never feed AI a real person's private info and ask it to "find" more. Never let it generate facts, rates, or claims about an individual. Keep transcripts and client data in tools you trust — not pasted into random free websites. Never write something you wouldn't say to their face. And never put an AI voice on the actual call.</span>`,
-        `Used right, AI is the best assistant you'll ever have — it removes the friction so you spend your time where the money is: talking to people. Used wrong, it invents things and creates risk. You're the human in the loop. Keep it that way.`,
-        `That's the series. Go put it to work — and keep a fresh batch in the pipeline so there's always someone to call:<br>— Bill Rice, Aged Leads Insights`
-      ),
-  },
-];
-
 const STEPS: Record<JourneyName, StepDef[]> = {
   welcome: WELCOME,
-  "ai-series": AI_SERIES,
   replenishment: REPLENISHMENT,
 };
 
@@ -565,12 +445,9 @@ function ctxFromRow(row: {
 
 export interface LifecyclePlan {
   sendEnabled: boolean;
-  aiSeriesEnabled: boolean;
   welcomeEligible: number; // purchasers ready to enroll in welcome
-  aiSeriesEligible: number; // welcome-completed contacts ready for the AI series
   replenishEligible: number; // purchasers ready to enroll/refresh replenishment
   activeWelcome: number; // journeys currently active
-  activeAiSeries: number;
   activeReplenishment: number;
   dueNow: number; // active steps past due (would send this run)
 }
@@ -641,37 +518,6 @@ async function replenishCandidates(limit?: number) {
   return limit ? await q.limit(limit) : await q;
 }
 
-// Contacts who COMPLETED the welcome series — the pool for the AI series.
-async function aiSeriesCandidates(limit?: number) {
-  const q = db
-    .select({
-      contactId: alsBuyerContacts.id,
-      firstName: alsBuyerContacts.firstName,
-      leadType: alsBuyerContacts.leadType,
-      states: alsBuyerContacts.states,
-      lastOrderAmount: alsBuyerContacts.lastOrderAmount,
-      lifetimeOrders: alsBuyerContacts.lifetimeOrders,
-    })
-    .from(alsBuyerContacts)
-    .innerJoin(
-      alsBuyerJourneys,
-      and(
-        eq(alsBuyerJourneys.contactId, alsBuyerContacts.id),
-        eq(alsBuyerJourneys.journey, "welcome"),
-        eq(alsBuyerJourneys.status, "completed")
-      )
-    )
-    .where(
-      and(
-        eq(alsBuyerContacts.source, "purchaser"),
-        eq(alsBuyerContacts.sendable, true),
-        eq(alsBuyerContacts.unsubscribed, false)
-      )
-    )
-    .orderBy(asc(alsBuyerContacts.firstSeenAt));
-  return limit ? await q.limit(limit) : await q;
-}
-
 async function journeyCount(journey: JourneyName, status: string): Promise<number> {
   const r = await db
     .select({ n: sql<number>`count(*)::int` })
@@ -681,13 +527,11 @@ async function journeyCount(journey: JourneyName, status: string): Promise<numbe
 }
 
 export async function getLifecyclePlan(sendEnabled: boolean): Promise<LifecyclePlan> {
-  const [welcome, aiElig, replenish, activeWelcome, activeAi, activeRepl, due] =
+  const [welcome, replenish, activeWelcome, activeRepl, due] =
     await Promise.all([
       eligibleWelcome().then((r) => r.length),
-      aiSeriesCandidates().then((r) => r.length),
       replenishCandidates().then((r) => r.length),
       journeyCount("welcome", "active"),
-      journeyCount("ai-series", "active"),
       journeyCount("replenishment", "active"),
       db
         .select({ n: sql<number>`count(*)::int` })
@@ -702,12 +546,9 @@ export async function getLifecyclePlan(sendEnabled: boolean): Promise<LifecycleP
     ]);
   return {
     sendEnabled,
-    aiSeriesEnabled: ALS_AI_SERIES_ENABLED,
     welcomeEligible: welcome,
-    aiSeriesEligible: aiElig,
     replenishEligible: replenish,
     activeWelcome,
-    activeAiSeries: activeAi,
     activeReplenishment: activeRepl,
     dueNow: due,
   };
@@ -720,16 +561,17 @@ export async function getLifecyclePlan(sendEnabled: boolean): Promise<LifecycleP
 export interface LifecycleResult {
   sendEnabled: boolean;
   enrolledWelcome: number;
-  enrolledAiSeries: number;
   enrolledReplenishment: number;
   sent: number;
   completed: number;
   reorderExits: number;
   /** Due rows loaded before cap allocation — shows the size of the backlog. */
   dueScanned: number;
+  /** Due rows held back by ALS_LIFECYCLE_JOURNEYS. A paused track, not an empty one. */
+  duePaused: number;
   /** How many of this run's slots went to replenishment. */
   replenishReserved: number;
-  /** How many went to the value track (welcome + ai-series). */
+  /** How many went to the value track (welcome). */
   valueSelected: number;
   errors: string[];
   plan?: LifecyclePlan; // included on dry runs
@@ -759,44 +601,6 @@ async function enrollWelcome(): Promise<number> {
   return n;
 }
 
-// Enroll welcome-completed contacts into the AI series. Gated by
-// ALS_AI_SERIES_ENABLED so it ships dark until the copy is approved. One-time
-// per contact; never overlaps another active journey.
-async function enrollAiSeries(): Promise<number> {
-  if (!ALS_AI_SERIES_ENABLED) return 0;
-  const candidates = await aiSeriesCandidates(ENROLL_CAP);
-  if (candidates.length === 0) return 0;
-
-  const ids = candidates.map((c) => c.contactId);
-  const existing = await db
-    .select()
-    .from(alsBuyerJourneys)
-    .where(sql`${alsBuyerJourneys.contactId} in (${sql.join(ids, sql`,`)})`);
-  const byContact = new Map<number, typeof existing>();
-  for (const j of existing) {
-    const arr = byContact.get(j.contactId) || [];
-    arr.push(j);
-    byContact.set(j.contactId, arr);
-  }
-
-  const now = new Date();
-  let n = 0;
-  for (const c of candidates) {
-    const journeys = byContact.get(c.contactId) || [];
-    if (journeys.some((j) => j.journey === "ai-series")) continue; // one-time series
-    if (journeys.some((j) => j.status === "active")) continue; // don't overlap an active journey
-    await db.insert(alsBuyerJourneys).values({
-      contactId: c.contactId,
-      journey: "ai-series",
-      step: 0,
-      status: "active",
-      anchorAt: now,
-      nextDueAt: now,
-    });
-    n++;
-  }
-  return n;
-}
 
 async function enrollReplenishment(): Promise<number> {
   const candidates = await replenishCandidates(ENROLL_CAP);
@@ -819,14 +623,10 @@ async function enrollReplenishment(): Promise<number> {
   let n = 0;
   for (const c of candidates) {
     const journeys = byContact.get(c.contactId) || [];
-    // Skip if a welcome or AI-series journey is still active (don't double up).
-    if (
-      journeys.some(
-        (j) =>
-          (j.journey === "welcome" || j.journey === "ai-series") &&
-          j.status === "active"
-      )
-    )
+    // Don't stack a sales nudge on top of any other running journey. Named by
+    // exclusion rather than by listing journeys, so a retired one still left in
+    // the table (the 'ai-series' rows) keeps blocking until it is exited.
+    if (journeys.some((j) => j.journey !== "replenishment" && j.status === "active"))
       continue;
     const repl = journeys.find((j) => j.journey === "replenishment");
     if (repl) {
@@ -863,12 +663,12 @@ export async function runLifecycle(
   const result: LifecycleResult = {
     sendEnabled: opts.sendEnabled,
     enrolledWelcome: 0,
-    enrolledAiSeries: 0,
     enrolledReplenishment: 0,
     sent: 0,
     completed: 0,
     reorderExits: 0,
     dueScanned: 0,
+    duePaused: 0,
     replenishReserved: 0,
     valueSelected: 0,
     errors: [],
@@ -880,12 +680,15 @@ export async function runLifecycle(
     return result;
   }
 
-  // 1. Enroll. Value track first (welcome → AI series), then replenishment, so
-  //    a buyer gets the full education arc before sales nudges. AI series is
-  //    self-gated by ALS_AI_SERIES_ENABLED.
-  result.enrolledWelcome = await enrollWelcome();
-  result.enrolledAiSeries = await enrollAiSeries();
-  result.enrolledReplenishment = await enrollReplenishment();
+  // 1. Enroll, welcome before replenishment so a buyer gets the education arc
+  //    before a sales nudge. Both are gated by ALS_LIFECYCLE_JOURNEYS: enrolling
+  //    into a journey that cannot send would quietly rebuild the backlog that
+  //    took this program down, so the gate has to sit on enrollment too, not
+  //    only on the send.
+  result.enrolledWelcome = journeyEnabled("welcome") ? await enrollWelcome() : 0;
+  result.enrolledReplenishment = journeyEnabled("replenishment")
+    ? await enrollReplenishment()
+    : 0;
 
   // 2. Advance due steps, oldest-due first, capped — with a reserved share for
   //    replenishment. See ALS_LIFECYCLE_REPLENISH_RESERVE for the reasoning:
@@ -924,11 +727,31 @@ export async function runLifecycle(
     .where(
       and(
         eq(alsBuyerJourneys.status, "active"),
-        lte(alsBuyerJourneys.nextDueAt, new Date())
+        lte(alsBuyerJourneys.nextDueAt, new Date()),
+        // The guard that keeps a paused track paused. Without it the first run
+        // after the outage fix would have sent 4,151 owed emails — 483 people
+        // on seven consecutive days — because every missed step of an overdue
+        // journey is also overdue. Anything not on the allowlist stays put and
+        // is reported separately, not silently dropped.
+        inArray(alsBuyerJourneys.journey, ALS_LIFECYCLE_JOURNEYS)
       )
     )
     .orderBy(asc(alsBuyerJourneys.nextDueAt))
     .limit(DUE_SCAN_LIMIT);
+
+  // Due rows the allowlist is holding back. Reported so a paused backlog stays
+  // visible in the heartbeat instead of looking like an empty queue.
+  const [paused] = await db
+    .select({ n: sql<number>`count(*)::int` })
+    .from(alsBuyerJourneys)
+    .where(
+      and(
+        eq(alsBuyerJourneys.status, "active"),
+        lte(alsBuyerJourneys.nextDueAt, new Date()),
+        notInArray(alsBuyerJourneys.journey, ALS_LIFECYCLE_JOURNEYS)
+      )
+    );
+  result.duePaused = paused?.n ?? 0;
 
   const { selected, replenishCount, valueCount } = allocateDueSlots(dueScan, cap, reserve);
   const due = selected;

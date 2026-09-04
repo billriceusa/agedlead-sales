@@ -106,6 +106,33 @@ export async function fetchResendOptOuts(apiKey: string): Promise<Set<string>> {
 }
 
 /**
+ * Match a contact row against the opted-out address list, case-insensitively.
+ *
+ * The dedupe key on als_buyer_contacts is (email, source), so one address can
+ * hold both a purchaser row and an inquiry row. Both have to be flagged.
+ *
+ * WHY THIS IS A NAMED FUNCTION AND NOT AN INLINE PREDICATE
+ *
+ * It was written as ``rawSql`lower(email) = any(${emails})` ``. Interpolating a
+ * JS array into a `sql` template expands it to a placeholder LIST, not an
+ * array — `= any(($1, $2, $3))` — which is a row constructor, and `= ANY`
+ * wants an array or a subquery. Postgres rejected it on every call.
+ *
+ * The sync fails closed by design, so the whole lifecycle program went dark
+ * from 2026-08-01 (the day this shipped) to 2026-09-04: 34 days, ~150
+ * sends/day, and a 715-journey backlog that read as a throughput problem and
+ * drew a cap raise that could never have helped.
+ *
+ * `inArray` compiles to `in ($1, $2, $3)` — what was meant, and the form the
+ * two updates in the sync already used. Pulling it out here gives
+ * suppression-sync.test.ts something it can compile and assert on without a
+ * database, which is the check that was missing.
+ */
+export function matchesOptedOutEmail(emails: string[]) {
+  return inArray(rawSql`lower(${alsBuyerContacts.email})`, emails);
+}
+
+/**
  * Carry Resend's opt-outs into Postgres.
  *
  * Reads Resend first: if that throws, nothing has been written.
@@ -120,16 +147,11 @@ export async function syncSuppressionToPostgres(
 
   const emails = [...optedOut];
 
-  // The dedupe key on als_buyer_contacts is (email, source), so one address can
-  // hold both a purchaser row and an inquiry row. Both have to be flagged.
   const stale = await db
     .select({ id: alsBuyerContacts.id })
     .from(alsBuyerContacts)
     .where(
-      and(
-        rawSql`lower(${alsBuyerContacts.email}) = any(${emails})`,
-        eq(alsBuyerContacts.unsubscribed, false),
-      ),
+      and(matchesOptedOutEmail(emails), eq(alsBuyerContacts.unsubscribed, false)),
     );
 
   if (stale.length === 0) {
