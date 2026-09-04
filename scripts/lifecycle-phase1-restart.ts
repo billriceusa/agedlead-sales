@@ -24,7 +24,8 @@
  *      397 rows sit at step 0: this series never sent a single email. Exited.
  *   2. welcome    — shortened 7 -> 3. Rows already past the new final step are
  *      completed rather than resurrected. Rows within it stay put; welcome is
- *      not on the allowlist yet and returns in Phase 2 behind a re-introduction.
+ *      not on the allowlist yet. Phase 2 picks it up mid-conversation — this list
+ *      was mailed for months without complaint and needs no re-introduction.
  *   3. replenishment — re-anchored and staggered so each contact resumes at the
  *      designed 0/11/24 spacing from their own restart date, never a burst.
  *
@@ -127,7 +128,7 @@ async function main() {
   const projectedWelcome = (remainingWelcome[0]?.n ?? 0) - (APPLY ? 0 : pastEndCount);
   log(
     `   ${projectedWelcome} welcome row(s) remain active and PAUSED — welcome is not on ` +
-      `ALS_LIFECYCLE_JOURNEYS. They resume in Phase 2, after the re-introduction.`,
+      `ALS_LIFECYCLE_JOURNEYS. They resume in Phase 2.`,
   );
 
   // -------------------------------------------------------------------------
@@ -264,6 +265,8 @@ function stepOffsetDays(step: number): number {
 main()
   .then(() => process.exit(0))
   .catch((e) => {
-    console.error("FAILED:", e instanceof Error ? e.message : e);
+    console.error("FAILED:", e instanceof Error ? e.message.split("\n")[0] : e);
+    const c = (e as { cause?: unknown })?.cause;
+    console.error("CAUSE:", c instanceof Error ? c.message : c);
     process.exit(1);
   });
