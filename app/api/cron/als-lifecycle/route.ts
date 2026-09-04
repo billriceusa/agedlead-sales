@@ -15,6 +15,7 @@ import {
   ALS_LIFECYCLE_LAUNCH_AT,
   ALS_LIFECYCLE_SEND_CAP,
   ALS_LIFECYCLE_REPLENISH_RESERVE,
+  ALS_LIFECYCLE_JOURNEYS,
 } from "@/lib/als/config";
 import { syncSuppressionToPostgres } from "@/lib/als/suppression-sync";
 import { recordCronRun, describeError } from "@/lib/cron/heartbeat";
@@ -154,7 +155,7 @@ export async function GET(req: NextRequest) {
     console.log(
       `[als-lifecycle] ${
         live
-          ? `+${result.enrolledWelcome}/${result.enrolledAiSeries}/${result.enrolledReplenishment} enrolled (welcome/ai/replen), ${result.sent} sent, ${result.completed} completed`
+          ? `+${result.enrolledWelcome}/${result.enrolledReplenishment} enrolled (welcome/replen), ${result.sent} sent, ${result.completed} completed`
           : `DRY (${ALS_LIFECYCLE_SEND_ENABLED ? `scheduled for ${ALS_LIFECYCLE_LAUNCH_AT}` : "send disabled"}): ${result.plan?.welcomeEligible ?? 0} welcome-eligible, ${result.plan?.replenishEligible ?? 0} replen-eligible, ${result.plan?.dueNow ?? 0} due`
       } (${Date.now() - startedAt}ms)`
     );
@@ -170,6 +171,19 @@ export async function GET(req: NextRequest) {
     const backlog = Math.max(0, result.dueScanned - ALS_LIFECYCLE_SEND_CAP);
     const starved =
       live && result.dueScanned > 0 && result.replenishReserved === 0;
+
+    // The failure that hid for 34 days. When the opt-out query broke, every run
+    // sent zero and returned — and a zero-send run reads exactly like a quiet
+    // day from outside. It is not: rows were due and none of them moved.
+    //
+    // `dueScanned` is allowlist-filtered, so this only fires for a track that is
+    // actually cleared to send. A deliberately paused backlog is reported as
+    // `paused`, never as a failure.
+    const sentNothingWhileDue = live && result.sent === 0 && result.dueScanned > 0;
+
+    // Journeys with due rows that the allowlist is holding — named so the
+    // heartbeat says which track is paused, not merely that something is.
+    const pausedJourneys = result.duePaused > 0 ? "paused" : "";
     //
     // Starvation is recorded as "failed", not "partial", on purpose: the health
     // check only alerts on `failed` or staleness, and a starved run is stale in
@@ -179,16 +193,27 @@ export async function GET(req: NextRequest) {
     // not a crash.
     await recordCronRun({
       name: "als-lifecycle",
-      status: starved ? "failed" : result.errors.length > 0 ? "partial" : "ok",
+      status:
+        starved || sentNothingWhileDue
+          ? "failed"
+          : result.errors.length > 0
+            ? "partial"
+            : "ok",
       detail: live
         ? [
             `sent ${result.sent}`,
             `slots ${result.replenishReserved} replenish / ${result.valueSelected} value`,
             `cap ${ALS_LIFECYCLE_SEND_CAP}, reserve ${ALS_LIFECYCLE_REPLENISH_RESERVE}`,
             `due ${result.dueScanned}${backlog > 0 ? ` (${backlog} left for tomorrow)` : ""}`,
-            `enrolled ${result.enrolledWelcome}w/${result.enrolledAiSeries}ai/${result.enrolledReplenishment}r`,
+            `enrolled ${result.enrolledWelcome}w/${result.enrolledReplenishment}r`,
+            result.duePaused > 0
+              ? `paused ${result.duePaused} due on ${pausedJourneys || "no"} track(s)`
+              : "",
             `completed ${result.completed}, reorder-exits ${result.reorderExits}`,
             starved ? "STARVED: replenishment got no slots" : "",
+            sentNothingWhileDue
+              ? `SENT NOTHING: ${result.dueScanned} row(s) were due and none moved`
+              : "",
             result.errors.length > 0 ? `errors: ${result.errors.join("; ")}` : "",
           ]
             .filter(Boolean)
@@ -288,14 +313,12 @@ function buildDashboardHtml(
   .badge.ai-series{background:#3f1d52;color:#e9c7fc;}
 </style></head><body><div class="wrap">
   <h1>Aged Leads Insights — Lifecycle</h1>
-  <div class="sub">Triggered welcome → AI series → replenishment. Read-only QC view.</div>
-  <div class="gate">Status: ${gate} &middot; AI series: ${plan.aiSeriesEnabled ? '<span style="color:#22c55e;font-weight:700;">ENABLED</span>' : '<span style="color:#fbbf24;font-weight:700;">dark (gated off)</span>'}</div>
+  <div class="sub">Triggered welcome → replenishment. Read-only QC view.</div>
+  <div class="gate">Status: ${gate} &middot; Sending: ${ALS_LIFECYCLE_JOURNEYS.map((j: string) => `<b>${j}</b>`).join(", ")}</div>
   <div class="kpis">
     <div class="kpi"><span class="n">${plan.welcomeEligible}</span><span class="l">welcome-eligible</span></div>
-    <div class="kpi"><span class="n">${plan.aiSeriesEligible}</span><span class="l">ai-series-eligible</span></div>
     <div class="kpi"><span class="n">${plan.replenishEligible}</span><span class="l">replen-eligible</span></div>
     <div class="kpi"><span class="n">${plan.activeWelcome}</span><span class="l">active welcome</span></div>
-    <div class="kpi"><span class="n">${plan.activeAiSeries}</span><span class="l">active ai-series</span></div>
     <div class="kpi"><span class="n">${plan.activeReplenishment}</span><span class="l">active replen</span></div>
     <div class="kpi"><span class="n">${plan.dueNow}</span><span class="l">due now</span></div>
   </div>

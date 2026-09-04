@@ -130,11 +130,45 @@ export const ALS_LIFECYCLE_REPLENISH_RESERVE = positiveIntFromEnv(
   replenishReserveFor(ALS_LIFECYCLE_SEND_CAP, ALS_LIFECYCLE_REPLENISH_SHARE)
 );
 
-// AI-for-aged-leads series gate. Ships dark — the series enrolls/sends only when
-// this is "true". Flip on after the AI copy is approved. Independent of
-// ALS_LIFECYCLE_SEND_ENABLED, which still gates ALL sending.
-export const ALS_AI_SERIES_ENABLED =
-  process.env.ALS_AI_SERIES_ENABLED === "true";
+/**
+ * Which journeys may enroll and send. Comma-separated, e.g. "replenishment" or
+ * "welcome,replenishment".
+ *
+ * WHY AN ALLOWLIST AND NOT THE CAP (Bill, 2026-09-04)
+ *
+ * The lifecycle sent nothing from 2026-08-01 to 2026-09-04 — a malformed
+ * opt-out query, fixed separately. That left 715 journeys due and 4,151 emails
+ * owed, and firing them would have put 483 people on seven emails in seven
+ * consecutive days against copy that promises one idea every few days.
+ *
+ * The cap cannot express "restart this track and not that one" — it only
+ * throttles a blend. So the restart is scoped by journey instead, and the
+ * default here is the SAFE state rather than the previous one: an absent or
+ * malformed env restarts replenishment alone, never the whole backlog.
+ *
+ * Replenishment first because it is the only lifecycle track with a sale
+ * against its name — July: `replenish-r1`, 1 session, 1 transaction, $420,
+ * while all seven welcome emails together took 46 sessions to zero. It is also
+ * ~20-40 sends/day, which is a gentle warm-up for a domain that has been
+ * silent for a month.
+ *
+ * Widening this is a deliberate act. Add "welcome" once the Phase 2
+ * re-introduction has run and people have chosen to keep hearing from us.
+ */
+export const ALS_LIFECYCLE_JOURNEYS: string[] = (() => {
+  const raw = (process.env.ALS_LIFECYCLE_JOURNEYS || "").trim();
+  if (!raw) return ["replenishment"];
+  const parsed = raw
+    .split(",")
+    .map((s) => s.trim().toLowerCase())
+    .filter(Boolean);
+  return parsed.length > 0 ? parsed : ["replenishment"];
+})();
+
+/** True when `journey` is cleared to enroll and send. */
+export function journeyEnabled(journey: string): boolean {
+  return ALS_LIFECYCLE_JOURNEYS.includes(journey);
+}
 
 // Launch-date guard. Even when SEND_ENABLED is true, no email goes out before
 // this date (ISO, e.g. "2026-06-16"). Lets us pre-configure everything and have
