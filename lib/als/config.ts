@@ -170,6 +170,34 @@ export function journeyEnabled(journey: string): boolean {
   return ALS_LIFECYCLE_JOURNEYS.includes(journey);
 }
 
+/**
+ * How many replenishment journeys may become due on the SAME day through
+ * enrollment. Surplus enrollments are dated forward, one bucket per day.
+ *
+ * WHY THIS EXISTS — 2026-09-04, and it cost a real send
+ *
+ * Replenishment step 1 is `offsetDays: 0`, and enrollment runs BEFORE the due
+ * scan inside the same run. So a newly enrolled row is due the instant it is
+ * created and ships in that very run: N enrollments == N immediate sends,
+ * bounded only by the daily cap.
+ *
+ * That stayed invisible while enrollment trickled. Then the Phase 1 migration
+ * exited 397 ai-series journeys, which had been blocking replenishment
+ * enrollment via the "don't stack on another active journey" guard. 111
+ * purchasers became eligible at once and the next run mailed 128 people —
+ * against a staggered plan of 18/day, on a domain that had been silent for 34
+ * days. The re-anchor stagger could not help: it had re-dated the EXISTING
+ * rows, and these did not exist yet.
+ *
+ * Pacing the enrollment itself is the fix that holds no matter what unblocks a
+ * cohort. In steady state (~a handful of purchasers cross 21 days per day)
+ * every enrollment still lands due immediately and nothing changes.
+ */
+export const ALS_LIFECYCLE_ENROLL_PER_DAY = positiveIntFromEnv(
+  process.env.ALS_LIFECYCLE_ENROLL_PER_DAY,
+  18,
+);
+
 // Launch-date guard. Even when SEND_ENABLED is true, no email goes out before
 // this date (ISO, e.g. "2026-06-16"). Lets us pre-configure everything and have
 // the daily cron self-launch on the date — no manual flip at the moment.

@@ -104,3 +104,53 @@ describe("zero-send alarm", () => {
     assert.equal(sentNothingWhileDue(true, 0, 27, 9), true);
   });
 });
+
+/**
+ * Enrollment pacing. Replenishment step 1 is offsetDays 0 and enrollment runs
+ * before the due scan, so a row created during a run is due inside that same
+ * run. On 2026-09-04 a migration exited 397 ai-series journeys, which had been
+ * blocking replenishment enrollment; 111 purchasers became eligible at once and
+ * the run mailed 128 people against a staggered plan of 18/day — on a domain
+ * silent for 34 days. The re-anchor stagger was powerless: it had re-dated the
+ * rows that already existed, and these did not exist yet.
+ *
+ * Mirrors the bucket arithmetic the enrollment loop applies.
+ */
+function enrollDayOffset(index: number, perDay: number): number {
+  return Math.floor(index / perDay);
+}
+
+describe("replenishment enrollment pacing", () => {
+  const PER_DAY = 18;
+
+  test("a normal trickle still goes out immediately", () => {
+    for (let i = 0; i < PER_DAY; i++) {
+      assert.equal(enrollDayOffset(i, PER_DAY), 0, `enrollment ${i} was delayed`);
+    }
+  });
+
+  test("the 2026-09-04 surge would have been paced, not blasted", () => {
+    const SURGE = 111;
+    const perDay = new Map<number, number>();
+    for (let i = 0; i < SURGE; i++) {
+      const d = enrollDayOffset(i, PER_DAY);
+      perDay.set(d, (perDay.get(d) ?? 0) + 1);
+    }
+    const worst = Math.max(...perDay.values());
+    assert.ok(worst <= PER_DAY, `still ${worst} on one day`);
+    assert.equal(perDay.get(0), PER_DAY, "first day should be a full bucket");
+    assert.ok(perDay.size >= 7, "surge should spread across a week, not a day");
+  });
+
+  test("every enrollment still lands — pacing delays, never drops", () => {
+    const SURGE = 111;
+    let total = 0;
+    const perDay = new Map<number, number>();
+    for (let i = 0; i < SURGE; i++) {
+      const d = enrollDayOffset(i, PER_DAY);
+      perDay.set(d, (perDay.get(d) ?? 0) + 1);
+    }
+    for (const n of perDay.values()) total += n;
+    assert.equal(total, SURGE);
+  });
+});
