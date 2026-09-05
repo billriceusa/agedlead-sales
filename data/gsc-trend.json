@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-04T12:00:06.512Z",
+  "lastUpdated": "2026-09-05T12:00:07.591Z",
   "snapshots": [
     {
       "date": "2026-07-10",
@@ -11386,6 +11386,316 @@
           "impressions": 2,
           "ctr": 0,
           "position": 59.5
+        }
+      ]
+    },
+    {
+      "date": "2026-09-05",
+      "property": "agedleadsales",
+      "status": "ok",
+      "rolling7d": {
+        "clicks": 44,
+        "impressions": 4857,
+        "ctr": 0.0091,
+        "position": 18.9
+      },
+      "topPages": [
+        {
+          "page": "https://agedleadsales.com/blog/aged-lead-store-review-2026",
+          "clicks": 6,
+          "impressions": 173,
+          "ctr": 0.0347,
+          "position": 5.05
+        },
+        {
+          "page": "https://agedleadsales.com/lead-types/insurance-leads",
+          "clicks": 6,
+          "impressions": 456,
+          "ctr": 0.0132,
+          "position": 25.59
+        },
+        {
+          "page": "https://agedleadsales.com/lead-types/iul-leads",
+          "clicks": 3,
+          "impressions": 89,
+          "ctr": 0.0337,
+          "position": 10.78
+        },
+        {
+          "page": "https://agedleadsales.com/providers/aged-lead-store",
+          "clicks": 3,
+          "impressions": 332,
+          "ctr": 0.009,
+          "position": 6.99
+        },
+        {
+          "page": "https://agedleadsales.com/providers/best/mortgage",
+          "clicks": 3,
+          "impressions": 34,
+          "ctr": 0.0882,
+          "position": 22.97
+        },
+        {
+          "page": "https://agedleadsales.com/",
+          "clicks": 2,
+          "impressions": 76,
+          "ctr": 0.0263,
+          "position": 25.16
+        },
+        {
+          "page": "https://agedleadsales.com/blog/iul-leads-financial-advisors-playbook",
+          "clicks": 2,
+          "impressions": 85,
+          "ctr": 0.0235,
+          "position": 9.48
+        },
+        {
+          "page": "https://agedleadsales.com/lead-types/final-expense-leads",
+          "clicks": 2,
+          "impressions": 403,
+          "ctr": 0.005,
+          "position": 15.12
+        },
+        {
+          "page": "https://agedleadsales.com/lead-types/mva-leads",
+          "clicks": 2,
+          "impressions": 166,
+          "ctr": 0.012,
+          "position": 19.54
+        },
+        {
+          "page": "https://agedleadsales.com/providers",
+          "clicks": 2,
+          "impressions": 393,
+          "ctr": 0.0051,
+          "position": 23.73
+        }
+      ],
+      "topQueries": [
+        {
+          "query": "aged iul leads",
+          "clicks": 3,
+          "impressions": 11,
+          "ctr": 0.2727,
+          "position": 3.91
+        },
+        {
+          "query": "aged lead store",
+          "clicks": 1,
+          "impressions": 82,
+          "ctr": 0.0122,
+          "position": 4.68
+        },
+        {
+          "query": "aged lead store reviews",
+          "clicks": 1,
+          "impressions": 13,
+          "ctr": 0.0769,
+          "position": 2.23
+        },
+        {
+          "query": "aged leads",
+          "clicks": 1,
+          "impressions": 68,
+          "ctr": 0.0147,
+          "position": 8.57
+        },
+        {
+          "query": "aged leads store",
+          "clicks": 1,
+          "impressions": 19,
+          "ctr": 0.0526,
+          "position": 4.68
+        },
+        {
+          "query": "aged life insurance leads",
+          "clicks": 1,
+          "impressions": 43,
+          "ctr": 0.0233,
+          "position": 16.88
+        },
+        {
+          "query": "agedleadstore",
+          "clicks": 1,
+          "impressions": 63,
+          "ctr": 0.0159,
+          "position": 6.38
+        },
+        {
+          "query": "iul leads",
+          "clicks": 1,
+          "impressions": 38,
+          "ctr": 0.0263,
+          "position": 11.55
+        },
+        {
+          "query": "lead heroes",
+          "clicks": 1,
+          "impressions": 49,
+          "ctr": 0.0204,
+          "position": 7.61
+        },
+        {
+          "query": "lead store",
+          "clicks": 1,
+          "impressions": 4,
+          "ctr": 0.25,
+          "position": 11
+        }
+      ]
+    },
+    {
+      "date": "2026-09-05",
+      "property": "workagedleads",
+      "status": "ok",
+      "rolling7d": {
+        "clicks": 7,
+        "impressions": 1080,
+        "ctr": 0.0065,
+        "position": 45.35
+      },
+      "topPages": [
+        {
+          "page": "https://workagedleads.com/blog/aged-lead-store-review-2026",
+          "clicks": 2,
+          "impressions": 117,
+          "ctr": 0.0171,
+          "position": 6.65
+        },
+        {
+          "page": "https://workagedleads.com/blog/is-it-legal-to-call-purchased-leads",
+          "clicks": 1,
+          "impressions": 21,
+          "ctr": 0.0476,
+          "position": 4.14
+        },
+        {
+          "page": "https://workagedleads.com/blog/voicemail-scripts-insurance-leads",
+          "clicks": 1,
+          "impressions": 48,
+          "ctr": 0.0208,
+          "position": 6.67
+        },
+        {
+          "page": "https://workagedleads.com/lead-types/life-insurance-leads",
+          "clicks": 1,
+          "impressions": 220,
+          "ctr": 0.0045,
+          "position": 58.71
+        },
+        {
+          "page": "https://workagedleads.com/lead-types/ssdi-leads",
+          "clicks": 1,
+          "impressions": 23,
+          "ctr": 0.0435,
+          "position": 35.57
+        },
+        {
+          "page": "https://workagedleads.com/providers/best/final-expense",
+          "clicks": 1,
+          "impressions": 92,
+          "ctr": 0.0109,
+          "position": 42.87
+        },
+        {
+          "page": "https://workagedleads.com/",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 7
+        },
+        {
+          "page": "https://workagedleads.com/about/bill-rice",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 4
+        },
+        {
+          "page": "https://workagedleads.com/blog",
+          "clicks": 0,
+          "impressions": 7,
+          "ctr": 0,
+          "position": 5.86
+        },
+        {
+          "page": "https://workagedleads.com/blog/aged-lead-conversion-rates-by-industry-data-benchmarks",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 68
+        }
+      ],
+      "topQueries": [
+        {
+          "query": "aged leads store",
+          "clicks": 1,
+          "impressions": 14,
+          "ctr": 0.0714,
+          "position": 5.07
+        },
+        {
+          "query": "agedleadstore",
+          "clicks": 1,
+          "impressions": 18,
+          "ctr": 0.0556,
+          "position": 8.89
+        },
+        {
+          "query": "ac leads",
+          "clicks": 0,
+          "impressions": 5,
+          "ctr": 0,
+          "position": 49.4
+        },
+        {
+          "query": "affordable aged life leads",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 43
+        },
+        {
+          "query": "aged final expense leads",
+          "clicks": 0,
+          "impressions": 7,
+          "ctr": 0,
+          "position": 19.14
+        },
+        {
+          "query": "aged health insurance leads",
+          "clicks": 0,
+          "impressions": 6,
+          "ctr": 0,
+          "position": 34.83
+        },
+        {
+          "query": "aged insurance leads",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 17
+        },
+        {
+          "query": "aged iul leads",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 33
+        },
+        {
+          "query": "aged lead store",
+          "clicks": 0,
+          "impressions": 36,
+          "ctr": 0,
+          "position": 4.33
+        },
+        {
+          "query": "aged lead store reviews",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 7
         }
       ]
     }
