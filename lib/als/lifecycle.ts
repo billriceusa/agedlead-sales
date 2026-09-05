@@ -29,6 +29,7 @@ import {
   ALS_UNSUB_SECRET,
   ALS_PUBLIC_APP_URL,
   ALS_LIFECYCLE_JOURNEYS,
+  ALS_LIFECYCLE_ENROLL_PER_DAY,
   journeyEnabled,
 } from "@/lib/als/config";
 import { SITE_HOST, SITE_URL } from "@/lib/site-url";
@@ -621,6 +622,15 @@ async function enrollReplenishment(): Promise<number> {
 
   const now = new Date();
   let n = 0;
+  // Pace the batch. Step 1 is offsetDays 0 and enrollment runs before the due
+  // scan, so every row created here is due immediately and ships in this same
+  // run — N enrollments are N sends. Fine while enrollment trickles; on
+  // 2026-09-04 a migration unblocked 111 at once and the run mailed 128 against
+  // a planned 18/day. Surplus is dated forward a day at a time.
+  let enrolledToday = 0;
+  const dueForIndex = (i: number) =>
+    new Date(now.getTime() + Math.floor(i / ALS_LIFECYCLE_ENROLL_PER_DAY) * DAY_MS);
+
   for (const c of candidates) {
     const journeys = byContact.get(c.contactId) || [];
     // Don't stack a sales nudge on top of any other running journey. Named by
@@ -634,19 +644,21 @@ async function enrollReplenishment(): Promise<number> {
       // Completed/exited: re-enroll only if they reordered since (lastOrderAt newer than the cycle anchor).
       if (!c.lastOrderAt || !repl.anchorAt || new Date(c.lastOrderAt) <= new Date(repl.anchorAt))
         continue;
+      const due = dueForIndex(enrolledToday++);
       await db
         .update(alsBuyerJourneys)
-        .set({ step: 0, status: "active", anchorAt: now, nextDueAt: now, lastSentAt: null, updatedAt: now })
+        .set({ step: 0, status: "active", anchorAt: due, nextDueAt: due, lastSentAt: null, updatedAt: now })
         .where(eq(alsBuyerJourneys.id, repl.id));
       n++;
     } else {
+      const due = dueForIndex(enrolledToday++);
       await db.insert(alsBuyerJourneys).values({
         contactId: c.contactId,
         journey: "replenishment",
         step: 0,
         status: "active",
-        anchorAt: now,
-        nextDueAt: now,
+        anchorAt: due,
+        nextDueAt: due,
       });
       n++;
     }
