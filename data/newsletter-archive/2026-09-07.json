@@ -1,0 +1,40 @@
+{
+  "runDate": "2026-09-06T14:01:15.826Z",
+  "weekOf": "2026-09-07",
+  "sendDate": "2026-09-08",
+  "theme": "Tech & Tools",
+  "focusVertical": "topic-themed",
+  "calendarStatus": "Calendar: \"Tech & Tools\" for 2026-09-08. 16 issue(s) remain, through 2026-12-29.",
+  "calendarMatched": true,
+  "calendarRemaining": 16,
+  "subject": "The Free Tools Most Agents Never Open",
+  "previewText": "CPL calculator, pipeline math, and live lead pricing — all free, all on the site",
+  "html": "2026-09-07.html",
+  "sent": false,
+  "priceGuard": {
+    "blocking": [],
+    "warnings": [
+      "$600",
+      "$48",
+      "$12",
+      "Duplicate utm_content values (2026-09-07-digest) — GA4 merges these into one row, so those placements cannot be told apart."
+    ]
+  },
+  "featuredArticle": {
+    "title": "The Complete Lead-Data Hygiene Checklist for Agents Who Buy Leads (2026)",
+    "slug": "lead-data-hygiene-checklist",
+    "spotlight": "Buying the list is step one — this is the five-layer workflow (DNC scrub, litigator scrub, disconnected-number removal, landline split, internal suppression) that turns a raw purchased file into something safe and productive to dial. If you've ever wondered which cleaning step actually matters most, this lays out the order and the why behind each layer."
+  },
+  "quickTips": [
+    "Know Your CPL Before You Ever Click Buy",
+    "Reverse-Engineer Revenue Into a Daily Dial Count",
+    "Check the Lead Price Index Before You Assume You're Overpaying"
+  ],
+  "industryInsight": "Fresh leads are expensive by design — that's the whole aged-lead thesis",
+  "errors": [
+    "Warning: $600",
+    "Warning: $48",
+    "Warning: $12",
+    "Warning: Duplicate utm_content values (2026-09-07-digest) — GA4 merges these into one row, so those placements cannot be told apart."
+  ]
+}
