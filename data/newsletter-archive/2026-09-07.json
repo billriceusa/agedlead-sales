@@ -10,7 +10,7 @@
   "subject": "The Free Tools Most Agents Never Open",
   "previewText": "CPL calculator, pipeline math, and live lead pricing — all free, all on the site",
   "html": "2026-09-07.html",
-  "sent": false,
+  "sent": true,
   "priceGuard": {
     "blocking": [],
     "warnings": [
@@ -36,5 +36,8 @@
     "Warning: $48",
     "Warning: $12",
     "Warning: Duplicate utm_content values (2026-09-07-digest) — GA4 merges these into one row, so those placements cannot be told apart."
-  ]
+  ],
+  "sentAt": "2026-09-09T16:14:51.521Z",
+  "broadcastId": "32ad70d6-a5b5-40fc-ba2e-ed1bf0ce37e5",
+  "sentBy": "cron"
 }
