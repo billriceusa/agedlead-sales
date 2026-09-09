@@ -9,6 +9,10 @@ import { CtaBanner } from "@/components/cta-banner";
 import { InlineTextCta } from "@/components/inline-text-cta";
 import { JsonLd, breadcrumbJsonLd } from "@/components/json-ld";
 import { Breadcrumbs } from "@/components/breadcrumbs";
+import { getGuide } from "@/data/guides";
+import { StaticGuide } from "@/components/static-guide";
+import { makeGlossaryLinker } from "@/components/glossary-static";
+import { glossaryTooltipQuery } from "@/sanity/lib/queries";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
@@ -18,6 +22,29 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
+
+  // Code-backed guides (data/guides.ts) win over the Sanity `guide` type. Same
+  // static-first fork the lead-type route uses, so one URL space serves both the
+  // structured operator tier and one-off editorial guides.
+  const staticGuide = getGuide(slug);
+  if (staticGuide) {
+    return {
+      title: staticGuide.metaTitle,
+      description: staticGuide.metaDescription,
+      alternates: { canonical: `${baseUrl}/guides/${slug}` },
+      openGraph: {
+        title: staticGuide.metaTitle,
+        description: staticGuide.metaDescription,
+        url: `${baseUrl}/guides/${slug}`,
+        images: [
+          {
+            url: `${baseUrl}/api/og?title=${encodeURIComponent(staticGuide.title)}&type=guide`,
+          },
+        ],
+      },
+    };
+  }
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const guide: any = await sanityFetch(guideBySlugQuery, { slug });
   if (!guide) return {};
@@ -46,6 +73,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function GuidePage({ params }: Props) {
   const { slug } = await params;
+
+  const staticGuide = getGuide(slug);
+  if (staticGuide) {
+    // Glossary auto-linking has to be wired explicitly — the Sanity path below
+    // renders PortableText without the `glossary` prop, so this tier has never had
+    // it. Terms are read from the Sanity glossaryTerm dataset, NOT data/glossary-terms.ts.
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const glossary: any = await sanityFetch(glossaryTooltipQuery);
+    return (
+      <StaticGuide
+        guide={staticGuide}
+        baseUrl={baseUrl}
+        linkGlossary={makeGlossaryLinker(glossary || [])}
+      />
+    );
+  }
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const guide: any = await sanityFetch(guideBySlugQuery, { slug });
   if (!guide) notFound();

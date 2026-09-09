@@ -7,6 +7,7 @@ import {
 } from "@/data/providers";
 import { VERTICALS } from "@/data/verticals";
 import { hasTrustworthyBenchmarks } from "@/lib/benchmark-coverage";
+import { GUIDES, GUIDE_SLUGS } from "@/data/guides";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
@@ -152,6 +153,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     for (const term of data.glossaryTerms || []) {
       entries.push({ url: `${baseUrl}/glossary/${term.slug}`, lastModified: new Date(term.lastModified), priority: 0.6 });
     }
+    // Code-backed operator guides (data/guides.ts) are not in Sanity, so the CMS
+    // query above cannot see them. Emitted separately, and deduped against the CMS
+    // list in case a slug ever exists in both.
+    const cmsGuideSlugs = new Set((data.guides || []).map((g) => g.slug));
+    for (const slug of GUIDE_SLUGS) {
+      if (cmsGuideSlugs.has(slug)) continue;
+      entries.push({
+        url: `${baseUrl}/guides/${slug}`,
+        lastModified: new Date(GUIDES[slug].updatedAt),
+        changeFrequency: "monthly",
+        priority: 0.8,
+      });
+    }
+
     for (const guide of data.guides || []) {
       entries.push({ url: `${baseUrl}/guides/${guide.slug}`, lastModified: new Date(guide.lastModified), priority: 0.7 });
     }
