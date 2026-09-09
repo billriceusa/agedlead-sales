@@ -68,11 +68,48 @@ export function verifyResendSignature(input: VerifyInput): VerifyResult {
   return { ok: false, reason: "no matching signature" };
 }
 
+/**
+ * Sending domains whose events belong in THIS database.
+ *
+ * WHY A FILTER IS NOT OPTIONAL (2026-09-09)
+ *
+ * A Resend webhook is account-wide, and this account sends for 26 verified
+ * domains — billricestrategy.com, leadbuyersplaybook.com, go.kaleidico.com,
+ * go.zoomcasa.com, getdropprivacy.com and more. Without a filter this endpoint
+ * would store every one of them.
+ *
+ * Two separate problems, and the second is the serious one:
+ *
+ *   1. The daily report's open and click rates would blend other properties'
+ *      email into Work Aged Leads' numbers, making them meaningless.
+ *   2. It would write Kaleidico and Zoomcasa CLIENT recipients — real email
+ *      addresses and subject lines — into a BRSG-owned database. Those are
+ *      different business units and their data does not belong here.
+ *
+ * Caught because the first two captured events included "When to restock",
+ * which is not a subject this site sends.
+ *
+ * Matched on the from-domain, including subdomains, so `news.workagedleads.com`
+ * passes under `workagedleads.com`. The retired agedleadsales.com hostnames stay
+ * listed: mail sent before the rename is still this program's.
+ */
+export const OUR_SENDING_DOMAINS = ["workagedleads.com", "agedleadsales.com"];
+
+export function isOurSend(from: string | null): boolean {
+  if (!from) return false;
+  // `from` may be "Name <a@b.com>" or bare. Take what follows the last @.
+  const m = from.match(/@([^\s>]+)/);
+  const domain = (m?.[1] ?? "").toLowerCase().replace(/\.$/, "");
+  if (!domain) return false;
+  return OUR_SENDING_DOMAINS.some((d) => domain === d || domain.endsWith(`.${d}`));
+}
+
 export interface ParsedEvent {
   eventType: string;
   emailId: string | null;
   recipient: string | null;
   subject: string | null;
+  fromAddress: string | null;
   linkUrl: string | null;
   bounceType: string | null;
   occurredAt: Date;
@@ -114,6 +151,7 @@ export function parseResendEvent(body: unknown): ParsedEvent | null {
     emailId: typeof data.email_id === "string" ? data.email_id : null,
     recipient,
     subject: typeof data.subject === "string" ? data.subject : null,
+    fromAddress: typeof data.from === "string" ? data.from : null,
     linkUrl: typeof click.link === "string" ? click.link : null,
     bounceType:
       typeof bounce.type === "string"

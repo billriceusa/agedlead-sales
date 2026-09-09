@@ -124,6 +124,8 @@ export const alsEmailEvents = pgTable(
     emailId: text("email_id"),
     recipient: text("recipient"),
     subject: text("subject"),
+    /** Sender. Gates which events belong here — the webhook is account-wide across 26 domains. */
+    fromAddress: text("from_address"),
     /** For email.clicked — which link was followed. Makes per-placement click data possible. */
     linkUrl: text("link_url"),
     /** For email.bounced — hard vs soft decides whether the address gets suppressed. */
