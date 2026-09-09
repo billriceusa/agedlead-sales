@@ -16,7 +16,7 @@
 // by ALS_LIFECYCLE_SEND_CAP so the first launch drips instead of blasting.
 
 import { createHmac, timingSafeEqual } from "crypto";
-import { and, eq, isNull, lte, gte, asc, sql, inArray, notInArray } from "drizzle-orm";
+import { and, eq, ne, or, isNull, isNotNull, lte, gte, asc, desc, sql, inArray, notInArray } from "drizzle-orm";
 import { db } from "@/lib/db";
 import { alsBuyerContacts, alsBuyerJourneys } from "@/lib/db/schema";
 import { sendSingleEmail } from "@/lib/resend";
@@ -38,12 +38,20 @@ import { AFFILIATE_UTM_SOURCE } from "@/lib/utm";
 const DAY_MS = 86_400_000;
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
-export type JourneyName = "welcome" | "replenishment";
+export type JourneyName = "welcome" | "replenishment" | "winback";
 
 // Replenishment window: nudge buyers whose last order is 21–90 days old. Older
-// than 90d with no reorder → lapsed, handled by the (future) reactivation track.
+// than 90d with no reorder → lapsed, handled by the winback track below.
 const REPLENISH_MIN_DAYS = 21;
 const REPLENISH_MAX_DAYS = 90;
+/**
+ * Win-back opens exactly where replenishment closes, so no buyer sits in a gap
+ * and none is enrolled in both. 680 people qualified on 2026-09-09, averaging
+ * $302.10 on their last order and 2.7 lifetime orders — the largest untouched
+ * segment in the database, and the only cold one carrying a proven buying
+ * history.
+ */
+const WINBACK_MIN_DAYS = REPLENISH_MAX_DAYS;
 const WELCOME_START_DAYS = 3; // first welcome email fires this many days after list arrival
 
 // Caps so the first launch over the existing list ramps instead of blasting.
@@ -78,6 +86,16 @@ const DUE_SCAN_LIMIT = 5000;
  *
  * `input` is assumed already sorted by due date ascending.
  */
+/**
+ * Journeys the reserve protects.
+ *
+ * `winback` joins `replenishment` here because the reserve exists to stop
+ * $0/session education burying mail sent to people who have actually paid, and
+ * a lapsed buyer is exactly that. Both are defined by purchase history; welcome
+ * is defined by interest.
+ */
+const BUYER_INTENT_JOURNEYS = new Set(["replenishment", "winback"]);
+
 export function allocateDueSlots<T extends { journey: string; nextDueAt?: Date | null }>(
   input: T[],
   cap: number,
@@ -86,8 +104,8 @@ export function allocateDueSlots<T extends { journey: string; nextDueAt?: Date |
   const safeCap = Math.max(0, cap);
   const safeReserve = Math.min(Math.max(0, reserve), safeCap);
 
-  const replenish = input.filter((r) => r.journey === "replenishment");
-  const value = input.filter((r) => r.journey !== "replenishment");
+  const replenish = input.filter((r) => BUYER_INTENT_JOURNEYS.has(r.journey));
+  const value = input.filter((r) => !BUYER_INTENT_JOURNEYS.has(r.journey));
 
   const takeReplenish = replenish.slice(0, safeReserve);
   const takeValue = value.slice(0, Math.max(0, safeCap - takeReplenish.length));
@@ -400,9 +418,74 @@ const REPLENISHMENT: StepDef[] = [
   },
 ];
 
+// --- Win-back series (purchasers, 90+ days since last order) ---
+//
+// The segment the program has never spoken to. Replenishment stops at 90 days;
+// past that a buyer was simply dropped. On 2026-09-09 that was 680 people who
+// had already bought — average last order $302.10, average 2.7 lifetime orders.
+//
+// WHY THIS IS THE BEST COLD LIST WE HAVE
+//
+// Everything else in the value track is education aimed at people who may never
+// buy, and it has earned $0 across its entire history. These 680 have paid
+// before. The single lifecycle sale on record came from replenishment, the
+// other track defined by purchase intent rather than interest.
+//
+// VOICE. Bill, 2026-09-04: "just start talking stop with the intros, excuses,
+// and explanations - just get to the meat." So no "we noticed you've been
+// away", no apology for the gap, no re-introduction. A three-month gap is
+// unremarkable in this business, and drawing attention to it invites the reader
+// to conclude they had a reason to stop.
+//
+// PRICES. Never state a per-lead price and never imply one through volume
+// guidance — the standing rule, enforced on the newsletter path by
+// `scanForPriceClaims` for the same reason.
+const WINBACK: StepDef[] = [
+  {
+    offsetDays: 0, // anchor = enrollment
+    campaign: "winback-w1",
+    subject: () => "Your next batch is the cheapest month you'll have",
+    preheader: "Restarting costs less than most agents assume.",
+    body: (c) =>
+      p(
+        `Hi ${hi(c)} — the expensive part of a sales month isn't the leads. It's the weeks you spend rebuilding a pipeline you let run out.`,
+        `Starting from empty is slow because there's nothing in front of you while you wait. Starting from a batch is fast because the work begins the same day. That difference is the whole argument for keeping something in the hopper, and it's why the agents with steady months rarely have a dramatic one.`,
+        `You've run these before, so you already know how they work. Pick your vertical and go:`,
+        `— Bill`
+      ),
+  },
+  {
+    offsetDays: 6,
+    campaign: "winback-w2",
+    subject: () => "Start with a small batch, not a big one",
+    preheader: "How to restart without committing a month to it.",
+    body: (c) =>
+      p(
+        `Hi ${hi(c)} — if the reason you haven't reloaded is that a full batch feels like a big swing right now, take the smaller one.`,
+        `Buy a modest batch in one vertical and one or two states. Work only that. You'll know inside two weeks whether your current script and cadence still land, and you'll know it from your own numbers instead of from a guess. If it works, scale the next one. If it doesn't, you learned that cheaply and you change the approach rather than the budget.`,
+        `Most agents skip this and commit to a volume they haven't tested since their last batch. Start narrow:`,
+        `— Bill`
+      ),
+  },
+  {
+    offsetDays: 14,
+    campaign: "winback-w3",
+    subject: () => "Q4 is the wrong quarter to have an empty pipeline",
+    preheader: "The last quarter rewards whoever already has a list.",
+    body: (c) =>
+      p(
+        `Hi ${hi(c)} — the fourth quarter is when the people who kept a pipeline get paid and the people who let it go thin spend the quarter catching up.`,
+        `It isn't that buyers are different in Q4. It's that there's less runway. A batch you start working now has time to mature into closings before year end. One you start in December mostly doesn't, and it lands in the weeks when contact rates are at their worst anyway.`,
+        `If you're going to restart at all this year, the calendar argues for doing it now:`,
+        `— Bill`
+      ),
+  },
+];
+
 const STEPS: Record<JourneyName, StepDef[]> = {
   welcome: WELCOME,
   replenishment: REPLENISHMENT,
+  winback: WINBACK,
 };
 
 export function journeyLength(journey: JourneyName): number {
@@ -453,6 +536,34 @@ export interface LifecyclePlan {
   dueNow: number; // active steps past due (would send this run)
 }
 
+/**
+ * Who may receive lifecycle mail.
+ *
+ * BILL, 2026-09-09: "We don't need a verification gate — these are opt ins and
+ * people who have taken action."
+ *
+ * Deliberately NOT `sendable = true`. Contacts are harvested by a service
+ * outside this repo, so if that writer ever again sets `sendable = false` from
+ * a Kickbox `unknown` verdict, gating on the column would silently re-block
+ * more than half the list and the daily send would quietly shrink — which is
+ * exactly what had happened before today, 3,591 people deep.
+ *
+ * The two conditions that DO bind:
+ *   - `unsubscribed` is a person's own decision and is absolute.
+ *   - `undeliverable` is a mailbox already confirmed not to exist. Mailing it
+ *     hard-bounces, and hard bounces are the fastest way to wreck a five-week-old
+ *     sending domain. That is deliverability protection, not verification.
+ */
+function mailable() {
+  return and(
+    eq(alsBuyerContacts.unsubscribed, false),
+    or(
+      isNull(alsBuyerContacts.kickboxResult),
+      ne(alsBuyerContacts.kickboxResult, "undeliverable"),
+    ),
+  );
+}
+
 // Purchasers eligible to START the welcome series: on the list ≥3 days, sendable,
 // not unsubscribed, no welcome journey row yet.
 async function eligibleWelcome(limit?: number) {
@@ -479,8 +590,7 @@ async function eligibleWelcome(limit?: number) {
     .where(
       and(
         eq(alsBuyerContacts.source, "purchaser"),
-        eq(alsBuyerContacts.sendable, true),
-        eq(alsBuyerContacts.unsubscribed, false),
+        mailable(),
         lte(alsBuyerContacts.firstSeenAt, cutoff),
         isNull(alsBuyerJourneys.id)
       )
@@ -509,8 +619,7 @@ async function replenishCandidates(limit?: number) {
     .where(
       and(
         eq(alsBuyerContacts.source, "purchaser"),
-        eq(alsBuyerContacts.sendable, true),
-        eq(alsBuyerContacts.unsubscribed, false),
+        mailable(),
         gte(alsBuyerContacts.lastOrderAt, minDate),
         lte(alsBuyerContacts.lastOrderAt, maxDate)
       )
@@ -563,6 +672,7 @@ export interface LifecycleResult {
   sendEnabled: boolean;
   enrolledWelcome: number;
   enrolledReplenishment: number;
+  enrolledWinback: number;
   sent: number;
   completed: number;
   reorderExits: number;
@@ -570,7 +680,7 @@ export interface LifecycleResult {
   dueScanned: number;
   /** Due rows held back by ALS_LIFECYCLE_JOURNEYS. A paused track, not an empty one. */
   duePaused: number;
-  /** How many of this run's slots went to replenishment. */
+  /** How many of this run's slots went to the buyer-intent tracks. */
   replenishReserved: number;
   /** How many went to the value track (welcome). */
   valueSelected: number;
@@ -602,6 +712,109 @@ async function enrollWelcome(): Promise<number> {
   return n;
 }
 
+
+/**
+ * Buyers whose last order is older than the replenishment window.
+ *
+ * Opens exactly where replenishment closes, so nobody falls in a gap and nobody
+ * is eligible for both on the same day.
+ */
+async function winbackCandidates(limit?: number) {
+  const maxDate = new Date(Date.now() - WINBACK_MIN_DAYS * DAY_MS);
+  const q = db
+    .select({
+      contactId: alsBuyerContacts.id,
+      lastOrderAt: alsBuyerContacts.lastOrderAt,
+      firstName: alsBuyerContacts.firstName,
+      leadType: alsBuyerContacts.leadType,
+      states: alsBuyerContacts.states,
+      lastOrderAmount: alsBuyerContacts.lastOrderAmount,
+      lifetimeOrders: alsBuyerContacts.lifetimeOrders,
+    })
+    .from(alsBuyerContacts)
+    .where(
+      and(
+        eq(alsBuyerContacts.source, "purchaser"),
+        mailable(),
+        isNotNull(alsBuyerContacts.lastOrderAt),
+        lte(alsBuyerContacts.lastOrderAt, maxDate),
+      ),
+    )
+    // Most recently lapsed first: someone four months out is a better bet than
+    // someone two years out, and if the cap bites they should be ahead of them.
+    .orderBy(desc(alsBuyerContacts.lastOrderAt));
+  return limit ? await q.limit(limit) : await q;
+}
+
+/**
+ * Enroll lapsed buyers into the win-back series.
+ *
+ * Paced by ALS_LIFECYCLE_ENROLL_PER_DAY exactly as replenishment is, and for
+ * the same reason: step 1 is offsetDays 0 and enrollment runs before the due
+ * scan, so an unpaced batch of 680 would be 680 sends in one run.
+ */
+async function enrollWinback(): Promise<number> {
+  const candidates = await winbackCandidates(ENROLL_CAP);
+  if (candidates.length === 0) return 0;
+
+  const ids = candidates.map((c) => c.contactId);
+  const existing = await db
+    .select()
+    .from(alsBuyerJourneys)
+    .where(sql`${alsBuyerJourneys.contactId} in (${sql.join(ids, sql`,`)})`);
+  const byContact = new Map<number, typeof existing>();
+  for (const j of existing) {
+    const arr = byContact.get(j.contactId) || [];
+    arr.push(j);
+    byContact.set(j.contactId, arr);
+  }
+
+  const now = new Date();
+  let n = 0;
+  let enrolledToday = 0;
+  const dueForIndex = (i: number) =>
+    new Date(now.getTime() + Math.floor(i / ALS_LIFECYCLE_ENROLL_PER_DAY) * DAY_MS);
+
+  for (const c of candidates) {
+    const journeys = byContact.get(c.contactId) || [];
+    // Never stack on a running journey, whatever it is.
+    if (journeys.some((j) => j.journey !== "winback" && j.status === "active")) continue;
+    const prior = journeys.find((j) => j.journey === "winback");
+    if (prior) {
+      // One win-back per lapse. Re-run only if they actually came back and
+      // lapsed again — otherwise this becomes an indefinite loop aimed at the
+      // people least interested in hearing from us.
+      if (prior.status === "active") continue;
+      if (!c.lastOrderAt || !prior.anchorAt || new Date(c.lastOrderAt) <= new Date(prior.anchorAt))
+        continue;
+      const due = dueForIndex(enrolledToday++);
+      await db
+        .update(alsBuyerJourneys)
+        .set({
+          step: 0,
+          status: "active",
+          anchorAt: due,
+          nextDueAt: due,
+          lastSentAt: null,
+          updatedAt: now,
+        })
+        .where(eq(alsBuyerJourneys.id, prior.id));
+      n++;
+      continue;
+    }
+    const due = dueForIndex(enrolledToday++);
+    await db.insert(alsBuyerJourneys).values({
+      contactId: c.contactId,
+      journey: "winback",
+      step: 0,
+      status: "active",
+      anchorAt: due,
+      nextDueAt: due,
+    });
+    n++;
+  }
+  return n;
+}
 
 async function enrollReplenishment(): Promise<number> {
   const candidates = await replenishCandidates(ENROLL_CAP);
@@ -676,6 +889,7 @@ export async function runLifecycle(
     sendEnabled: opts.sendEnabled,
     enrolledWelcome: 0,
     enrolledReplenishment: 0,
+    enrolledWinback: 0,
     sent: 0,
     completed: 0,
     reorderExits: 0,
@@ -701,6 +915,7 @@ export async function runLifecycle(
   result.enrolledReplenishment = journeyEnabled("replenishment")
     ? await enrollReplenishment()
     : 0;
+  result.enrolledWinback = journeyEnabled("winback") ? await enrollWinback() : 0;
 
   // 2. Advance due steps, oldest-due first, capped — with a reserved share for
   //    replenishment. See ALS_LIFECYCLE_REPLENISH_RESERVE for the reasoning:

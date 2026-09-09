@@ -38,7 +38,20 @@ export const alsBuyerContacts = pgTable(
     // Bookkeeping
     gmailMsgId: text("gmail_msg_id"), // provenance / idempotency
     kickboxResult: text("kickbox_result"), // deliverable|undeliverable|risky|unknown|skipped
-    sendable: boolean("sendable").default(false).notNull(),
+    /**
+     * Defaults TRUE since 2026-09-09 (Bill): "We don't need a verification
+     * gate — these are opt ins and people who have taken action."
+     *
+     * It used to default false and only flip true on a Kickbox `deliverable`
+     * verdict, which blocked 3,591 people — 57% of the file — most of them on
+     * `unknown`, which is Kickbox declining to reach a verdict (catch-all
+     * domain, timeout), not a bad address. Everyone here either opted in or
+     * submitted a lead-request form.
+     *
+     * This flag now means "not known-undeliverable". It is NOT consent, and it
+     * is not the opt-out: `unsubscribed` is separate and is always honoured.
+     */
+    sendable: boolean("sendable").default(true).notNull(),
     unsubscribed: boolean("unsubscribed").default(false).notNull(), // honored by the lifecycle sender; synced from Resend unsubscribes (go-live: wire the webhook/sync)
     resendPushedAt: timestamp("resend_pushed_at"), // null until added to Resend
     firstSeenAt: timestamp("first_seen_at").defaultNow().notNull(),

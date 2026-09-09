@@ -22,7 +22,37 @@ describe("program shape after the Phase 1 restart", () => {
   test("ai-series is gone from the program", () => {
     const journeys = new Set(lifecycleStepIndex().map((s) => s.journey));
     assert.ok(!journeys.has("ai-series" as JourneyName), "ai-series still enrollable");
-    assert.deepEqual([...journeys].sort(), ["replenishment", "welcome"]);
+    // `winback` joined on 2026-09-09 for the 680 buyers lapsed past the
+    // replenishment window. This list is asserted exactly so that adding a
+    // journey has to be a deliberate edit here — reintroducing a seven-email
+    // track by accident is what put the program 4,151 emails in debt.
+    assert.deepEqual([...journeys].sort(), ["replenishment", "welcome", "winback"]);
+  });
+
+  test("winback is three emails and starts where replenishment stops", () => {
+    assert.equal(journeyLength("winback"), 3);
+    const offsets = lifecycleStepIndex()
+      .filter((s) => s.journey === "winback")
+      .sort((a, b) => a.step - b.step)
+      .map((s) => s.offsetDays);
+    assert.deepEqual(offsets, [0, 6, 14]);
+    // No two win-back emails land on consecutive days.
+    for (let i = 1; i < offsets.length; i++) {
+      assert.ok(offsets[i] - offsets[i - 1] >= 2, `steps ${i} and ${i + 1} are too close`);
+    }
+  });
+
+  test("winback campaign slugs are distinct from every other journey", () => {
+    // A slug collision would merge two tracks into one GA4 row and make the
+    // segment unreadable — the same failure the duplicated utm_content warning
+    // reports on the newsletter.
+    const all = lifecycleStepIndex().map((s) => s.campaign);
+    assert.equal(new Set(all).size, all.length, "duplicate campaign slug across journeys");
+    const winback = lifecycleStepIndex()
+      .filter((s) => s.journey === "winback")
+      .sort((a, b) => a.step - b.step)
+      .map((s) => s.campaign);
+    assert.deepEqual(winback, ["winback-w1", "winback-w2", "winback-w3"]);
   });
 
   test("welcome keeps its original campaign slugs so GA4 history survives", () => {
