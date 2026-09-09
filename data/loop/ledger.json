@@ -27,7 +27,7 @@
         "at8w": null
       },
       "verdict": "n/a",
-      "notes": "Per-page affiliate attribution added to /api/reports/outbound-clicks (affiliate.byPage30d, clickRate, leakage). Ledger created. scripts/price-index-gap.ts generates the Q3 study brief. Newsletter restart was found already complete and running — the 2026-08-10 issue sent 2026-08-12 as broadcast a830c99a."
+      "notes": "Per-page affiliate attribution added to /api/reports/outbound-clicks (affiliate.byPage30d, clickRate, leakage). Ledger created. scripts/price-index-gap.ts generates the Q3 study brief. Newsletter restart was found already complete and running \u2014 the 2026-08-10 issue sent 2026-08-12 as broadcast a830c99a."
     },
     {
       "iteration": 1,
@@ -40,7 +40,7 @@
         "P": null,
         "C": null,
         "clicksPerMonth": null,
-        "basis": "No prior estimate possible — the page had zero affiliate links, so its C was structurally 0 and any traffic it earned converted at 0. This is a wiring fix, not a demand bet. First real expected-value scores start at iteration 2, once affiliate.byPage30d has data."
+        "basis": "No prior estimate possible \u2014 the page had zero affiliate links, so its C was structurally 0 and any traffic it earned converted at 0. This is a wiring fix, not a demand bet. First real expected-value scores start at iteration 2, once affiliate.byPage30d has data."
       },
       "measured": {
         "at2w": {
@@ -53,7 +53,7 @@
         "at8w": null
       },
       "verdict": "kill",
-      "notes": "Site's most-cited asset (CiteThisButton, Dataset JSON-LD, CC-licensed) had no route to a purchase — every outbound link was internal. Added InlineTextCta after the pricing tables and a compact CtaBanner after the economics section. Two placements not three: a reference page that reads as a sales pitch stops being cited. UTM content values after-pricing / after-economics distinguish the placements. Verified in built HTML; destination returns 200 with a browser UA (bot-blocked for curl default). Page's lastUpdated is still 2026-04-08 — that is the Q3 study's job, not this one. MEASURED 2026-09-01: zero sessions from both placements in 13 days. The page earns citations, not purchases — its readers are researchers looking for a number to quote, not buyers. Do not add a third placement; the constraint is audience intent, not CTA count."
+      "notes": "Site's most-cited asset (CiteThisButton, Dataset JSON-LD, CC-licensed) had no route to a purchase \u2014 every outbound link was internal. Added InlineTextCta after the pricing tables and a compact CtaBanner after the economics section. Two placements not three: a reference page that reads as a sales pitch stops being cited. UTM content values after-pricing / after-economics distinguish the placements. Verified in built HTML; destination returns 200 with a browser UA (bot-blocked for curl default). Page's lastUpdated is still 2026-04-08 \u2014 that is the Q3 study's job, not this one. MEASURED 2026-09-01: zero sessions from both placements in 13 days. The page earns citations, not purchases \u2014 its readers are researchers looking for a number to quote, not buyers. Do not add a third placement; the constraint is audience intent, not CTA count."
     },
     {
       "iteration": 2,
@@ -66,7 +66,7 @@
         "P": null,
         "C": 0.05,
         "clicksPerMonth": 31,
-        "basis": "629 views/mo across the top four lead-type pages converting at ~0.95% today. Modelling C at 5% — 8x below the provider page's measured 43.33% — gives ~31 clicks vs 6, i.e. +25/mo on a 69-click base. A hypothesis to test, not a forecast: intent on a guide page is genuinely lower than on a provider review, and the gap will not fully close."
+        "basis": "629 views/mo across the top four lead-type pages converting at ~0.95% today. Modelling C at 5% \u2014 8x below the provider page's measured 43.33% \u2014 gives ~31 clicks vs 6, i.e. +25/mo on a 69-click base. A hypothesis to test, not a forecast: intent on a guide page is genuinely lower than on a provider review, and the gap will not fully close."
       },
       "measured": {
         "at2w": {
@@ -102,7 +102,7 @@
         "at8w": null
       },
       "verdict": "keep",
-      "notes": "Both hero buttons on these pages were internal (/compare, /price-index), so the site's highest-traffic commercial pages had no affiliate path above the fold. The mid-page CtaBanner also passes buttonHref, which sets useAffiliate=false — it is an internal compare link sitting exactly where intent peaks. Added a deep-linked door as the primary hero action; compare and pricing keep their position as secondary. Deep links verified per page: mortgage-leads -> /mortgage-leads-purchase-refinance/, final-expense-leads -> /life-insurance-leads/. insurance-leads correctly falls back to /all-lead-types/ — the partner has no generic-insurance buy page and that mapping is deliberate (lib/affiliate.ts, confirmed by Bill 2026-08-06). Destinations re-verified: 200, zero redirects, real buy pages ('Aged Mortgage Leads', 'Buy Aged Life Insurance Leads for Agents — From $0.25'). rel=nofollow sponsored and disclosure present on every instance. Measure via utm_content=hero-door. MEASURED 2026-09-01 (corrected): the door WORKED and beat its own hypothesis - 0.95% -> 7.24% on the four target pages, 6 -> 22 absolute clicks against a halving of traffic. An earlier same-day reading called it redistribution and said do-not-extend; that read used store-side sessions only, because the site-side denominator was wrongly believed unreadable. Extending the pattern to other commercial page types is now justified on evidence. Keep measuring at the STORE for revenue and at the SITE for design effect - the two moved 10% and 25% respectively over the same window."
+      "notes": "Both hero buttons on these pages were internal (/compare, /price-index), so the site's highest-traffic commercial pages had no affiliate path above the fold. The mid-page CtaBanner also passes buttonHref, which sets useAffiliate=false \u2014 it is an internal compare link sitting exactly where intent peaks. Added a deep-linked door as the primary hero action; compare and pricing keep their position as secondary. Deep links verified per page: mortgage-leads -> /mortgage-leads-purchase-refinance/, final-expense-leads -> /life-insurance-leads/. insurance-leads correctly falls back to /all-lead-types/ \u2014 the partner has no generic-insurance buy page and that mapping is deliberate (lib/affiliate.ts, confirmed by Bill 2026-08-06). Destinations re-verified: 200, zero redirects, real buy pages ('Aged Mortgage Leads', 'Buy Aged Life Insurance Leads for Agents \u2014 From $0.25'). rel=nofollow sponsored and disclosure present on every instance. Measure via utm_content=hero-door. MEASURED 2026-09-01 (corrected): the door WORKED and beat its own hypothesis - 0.95% -> 7.24% on the four target pages, 6 -> 22 absolute clicks against a halving of traffic. An earlier same-day reading called it redistribution and said do-not-extend; that read used store-side sessions only, because the site-side denominator was wrongly believed unreadable. Extending the pattern to other commercial page types is now justified on evidence. Keep measuring at the STORE for revenue and at the SITE for design effect - the two moved 10% and 25% respectively over the same window."
     },
     {
       "iteration": 4,
@@ -118,8 +118,8 @@
         "C": null,
         "basis": "1,107 site pageviews over the last 30d (GA4 528489903 via /api/reports/outbound-clicks). The header renders on all of them; the previous best single placement, /providers/aged-lead-store, reaches only 83. No click-rate forecast is stated on purpose - the point of this iteration is that clicks were the wrong unit. Judge it on store-side sessions and revenue under utm_campaign=header-nav in GA4 357329146."
       },
-      "killRule": "If utm_campaign=header-nav shows no measurable store-side session lift by 2026-09-16, revert to the internal button. A header slot is prime real estate and should not be spent on a link that does not earn.",
-      "measureAt": "2026-09-16",
+      "killRule": "REVISED 2026-09-09. Original rule: revert to the internal button if header-nav showed no store-side lift by 2026-09-16. That date is withdrawn, and the reason is a defect in the placement rather than a defence of it. Diagnosis on 2026-09-09 established that header-nav is STARVED, not broken: the live href carries all four UTMs, resolves 200 with zero redirects, and the destination preserves the query string. Two things made the 09-16 reading unsound. (1) UNDERPOWERED: 2 sessions over 7 days on a ~1,107 view/month base has a 95% interval of roughly 0.2-7.2 events; it cannot distinguish failure from noise. July's 96 sessions came from a site with an estimated 5-10x this traffic base. (2) THE PLACEMENT WAS HALF-BUILT: the button rendered only inside md:flex and inside the collapsed mobile menu, so below 768px roughly 40% of the audience had no header door at all unless they opened the hamburger. Verified live at 390px: hamburger only. Judging a placement that ~40% of readers could not see would have been a false negative. Fixed the same day - always-visible mobile bar button, breakpoint moved md -> xl so the nav stops clipping, and utm_content split three ways so desktop and mobile are separately attributable. New date gives a full 30 days on the repaired placement. Judge on click RATE against exposure, not absolute sessions, and note that July's figure was desktop-only so it is not like-for-like against a blended one.",
+      "measureAt": "2026-10-09",
       "verdict": "pending"
     },
     {
@@ -144,6 +144,29 @@
       "killRule": "If calculator-know-your-cpl and calculator-pipeline show no store-side sessions by 2026-09-30, revert both to internal-only CTAs. A calculator that sells badly is still a good lead magnet and a good embed; it does not need a door.",
       "measureAt": "2026-09-30",
       "verdict": "pending"
+    },
+    {
+      "iteration": 6,
+      "date": "2026-09-09",
+      "engine": "merchant-intelligence",
+      "asset": "app/(site)/page.tsx - HeroAffiliateDoor in the homepage hero",
+      "targetCluster": "/",
+      "rationale": "The homepage is the single highest-traffic page on the site - 398 views in 30d, more than the providers hub (163) and both calculators (142 + 93) combined - and it converts to the store at 0.5% (2 affiliate clicks). Its ONLY affiliate surface is <CtaBanner /> at line 450 of a 453-line file, i.e. the very bottom. The hero offers three buttons and every one is internal: /playbook, /providers, /price-index. That is precisely the defect HeroAffiliateDoor was built for - a reader at peak intent routed to another page on this site instead of to the merchant - and it is the same shape /providers had at 0.61% before iteration 4 took it to 3.68%.",
+      "hypothesis": "The homepage hero is a weaker intent moment than a provider review or a calculator result, so the provider page's 29% is not the target. But 0.5% is a floor set by having no door at all, not by intent. Adding one door without touching the existing internal routes should behave like the providers hub did.",
+      "expected": {
+        "D": 398,
+        "P": null,
+        "C": 0.03,
+        "basis": "398 views/mo at 0.5% today = 2 clicks. Modelling C at 3% - deliberately BELOW the 3.68% the providers hub reached and well below the 5% used for iterations 2 and 5, because homepage intent is broader and iteration 5 has already shown a door alone is not sufficient - gives ~12 clicks vs 2. At the $49/session the hero-door placement is currently earning, that is the largest single conversion gain available on the site without new traffic."
+      },
+      "implementation": {
+        "placement": "Added as its own row beneath the three existing hero buttons and above TrustStrip - still above the fold on desktop, and visually separated so it reads as a distinct outbound action rather than a fourth internal option.",
+        "editorial": "'Get the Free Playbook' KEPT as the styled primary. It is the lead-magnet CTA that feeds the 2,464-contact lifecycle program, and demoting it to buy an affiliate click would trade a compounding asset for a one-off. The door carries its own affiliate disclosure, as everywhere else.",
+        "destination": "No leadType passed, so storeCategoryPath returns undefined and affiliateUrl falls back to the full catalogue. A visitor on the homepage has not chosen a vertical; the catalogue is the honest destination. Same reasoning as the providers hub."
+      },
+      "killRule": "Kill if /  does not clear 2% by 2026-09-23. That is 4x today and still below the providers hub. If a door on the highest-traffic page cannot clear 2%, the door pattern has reached its limit on low-intent surfaces and the next iteration must buy intent rather than add placements.",
+      "measureAt": "2026-09-23",
+      "verdict": "pending"
     }
   ],
   "scoreboardReadings": [
@@ -154,7 +177,7 @@
       "affiliateClicks": 69,
       "affiliateDailyAvg": 2.3,
       "leakageClicks": 61,
-      "note": "First reading from the per-page attribution built in iteration 0. Affiliate daily average of 2.30 is BELOW the 3/day flag threshold in CLICK-LOOP.md — but this counts GA4 outbound click events, while the 5.4/day baseline counts sessions arriving at agedleadstore.com. Different denominators; do not read one as a decline against the other. Trend this series against itself going forward.",
+      "note": "First reading from the per-page attribution built in iteration 0. Affiliate daily average of 2.30 is BELOW the 3/day flag threshold in CLICK-LOOP.md \u2014 but this counts GA4 outbound click events, while the 5.4/day baseline counts sessions arriving at agedleadstore.com. Different denominators; do not read one as a decline against the other. Trend this series against itself going forward.",
       "topPages": [
         {
           "path": "/providers/aged-lead-store",
@@ -232,7 +255,7 @@
     {
       "readAt": "2026-09-01T15:00:00Z",
       "window": "last30d",
-      "source": "GET /api/reports/outbound-clicks — the same series as the 2026-08-18 reading, so these two ARE comparable to each other",
+      "source": "GET /api/reports/outbound-clicks \u2014 the same series as the 2026-08-18 reading, so these two ARE comparable to each other",
       "totalOutboundClicks": 149,
       "affiliateClicks": 86,
       "affiliateDailyAvg": 2.87,
@@ -293,7 +316,7 @@
       "readAt": "2026-09-02",
       "source": "GA4 357329146 (store-side), dimensions sessionSource/sessionMedium/sessionCampaignName, metrics sessions/totalRevenue/transactions",
       "headline": "Attributed store REVENUE is concentrated in one placement type, and site-side clicks do not track it.",
-      "why_this_matters": "This ledger's stated metric is `affiliate.last30d.clicks` — outbound clicks measured on the SITE property. Read revenue by placement on the STORE property and that metric turns out to be nearly uncorrelated with the money. In July 2026, `agedleadsales/affiliate/cta-banner` sent 91 sessions and produced $100.50 (1 txn), while `howtoworkleads/website/header-nav` sent 96 sessions — a comparable number of clicks — and produced $9,132.60 (6 txn). Optimizing clicks treats those as equal. They are not: ~$1/session against ~$95. RECOMMEND changing this loop's metric to store-side attributed revenue. Left unchanged here because the goal line is Bill's call, not a silent edit.",
+      "why_this_matters": "This ledger's stated metric is `affiliate.last30d.clicks` \u2014 outbound clicks measured on the SITE property. Read revenue by placement on the STORE property and that metric turns out to be nearly uncorrelated with the money. In July 2026, `agedleadsales/affiliate/cta-banner` sent 91 sessions and produced $100.50 (1 txn), while `howtoworkleads/website/header-nav` sent 96 sessions \u2014 a comparable number of clicks \u2014 and produced $9,132.60 (6 txn). Optimizing clicks treats those as equal. They are not: ~$1/session against ~$95. RECOMMEND changing this loop's metric to store-side attributed revenue. Left unchanged here because the goal line is Bill's call, not a silent edit.",
       "monthlyAttributed": [
         {
           "month": "2026-05",
@@ -358,25 +381,25 @@
       ],
       "consolidationEffect": "howtoworkleads.com was retired into workagedleads.com on 2026-08-03. The `header-nav` placement went from 96 sessions (July) to 2 (Aug 1 - Sep 2), and the `cta` placement disappeared entirely. No workagedleads placement replaced them: the surviving campaigns (lead-type 38, provider-aged-lead-store 21, lead-types-hub 19, cta-banner 17, weekly-newsletter 17) produced $150 between them. That is the whole revenue decline.",
       "sessionConversionIsStable": "Session -> transaction held at 1.9-3.3% across all four months, so the collapse is not a store-side conversion problem. Sessions, and the KIND of session, are the lever."
+    },
+    {
+      "readAt": "2026-09-09",
+      "source": "GA4 357329146 via /api/reports/store-revenue and 528489903 via /api/reports/outbound-clicks?days=9 (production routes, Workload Identity Federation)",
+      "headline": "September is carried entirely by ONE placement, and the calculator doors from iteration 5 are not converting at seven days.",
+      "why_this_matters": "September MTD store-side: 72 sessions, 3 transactions, $345 attributed, ~$55 likely commission against a $2,000 goal. ALL THREE transactions came from providers-hub, on 7 sessions ($49.29/session). That is iteration 4's five-line hero door carrying 100% of the month. Iteration 5 (calculator result doors, shipped 2026-09-02) is NOT tracking its 5% case at seven days: /calculators/know-your-cpl 142 views -> 1 affiliate click (0.7%), /calculators/pipeline-calculator 93 -> 1 (1.1%). No calculator campaign appears in the store-side byCampaign top 10. Formal verdict still belongs at measureAt; this is an interim reading. The likely cause is prominence, not placement: the calculator door renders px-4 py-2 text-sm as one of FOUR equal buttons at the bottom of a long result block, two of which are internal links leading away. The door that earns money renders px-8 py-3 font-semibold as the primary, above the fold. Same idea, opposite weight. Separately: the July->August 'collapse' is not a traffic loss. Strip header-nav out and July was $921, August $617, September $345 so far - the underlying business is flat. GSC clicks are flat-to-up and average position improved 23.6 -> 15.3; the 301s from both retired domains resolve in one hop. The entire drop was one deleted header link. Also newly measured: of 163 outbound clicks in 30d only 95 go to the partner. The other 68 (42%) go to eleven providers who pay nothing, because aged-lead-store is the only isAffiliate entry in lib/provider-links.ts."
     }
   ],
   "nextPick": {
-    "iteration": 3,
-    "engine": "demand",
-    "candidate": "Weekly newsletter on the three-CTA template (shipped fc11fa2, unsent)",
-    "rationale": "Iteration 1 returned zero and is killed. Iteration 2 succeeded on conversion - 0.95% -> 7.24%, beating its 5% case - but site-wide affiliate clicks still sit at 2.87/day against a 15/day milestone, because lead-type page views more than HALVED (629 -> 304) over the same fortnight. Conversion is no longer the binding constraint; traffic is. Email is the only lever that creates visitors without waiting on the stalled crawl: the single 2026-08-12 send produced 17 sessions, and workagedleads/email measured exactly 0 in the last window because nothing was mailed. The 2026-08-31 issue is drafted and seed-verified on the new template - 12 store links against 17 site links, first at 17% page depth.",
+    "iteration": 7,
+    "engine": "merchant-intelligence",
+    "candidate": "Monetize or reclaim the 68 outbound clicks/month going to non-paying providers",
+    "rationale": "Measured 2026-09-09: 163 outbound clicks in 30d, 95 to the partner and 68 (42%) to eleven providers who pay nothing - leadsdata.com 13, datatoleads.com 12, leadtycoons.com 8, ileads.com 5, needalead.com 5, smartfinancial.com 5, theleadswarehouse.com 5, agedleadsdepot.com 4, badassinsuranceleads.com 4, brokersdata.com 2, leadheroes.com 2. lib/provider-links.ts has aged-lead-store as its ONLY isAffiliate entry; everything else emits utm_medium=referral. This needs no new traffic and no ranking change. Standing constraint: the individual reviews' independence is the asset and is NOT for sale (Bill, standing no on removing competitor links), so the play is affiliate programs where they exist, not link removal.",
     "expected": {
-      "D": 2584,
+      "D": 68,
       "P": null,
       "C": null,
-      "clicksPerMonth": 74,
-      "basis": "17 sessions on the old one-link template x 4.3 sends/mo = 74/mo at parity, before any lift from the CTA rebuild. That alone would roughly double the 4.15/day site figure. Treat 17/send as the floor, since it was measured on a template with a single store link at 79% page depth."
-    },
-    "alsoConsidered": [
-      "Extend the hero door to other commercial page types. NOW JUSTIFIED - the earlier same-day note saying do-not-extend was based on a mis-measurement and is withdrawn. Ranked below the newsletter only because the door multiplies traffic the site is currently losing, while the newsletter supplies traffic that does not depend on the crawl.",
-      "GSC Change of Address - DONE 2026-09-01. Bill filed and passed validation for BOTH agedleadsales.com -> workagedleads.com and howtoworkleads.com -> workagedleads.com, after repeated failures in August that CLICK-LOOP.md had written off as 'Confirmed dead'. Why the retry passed is not established and should not be recorded as if it were: every redirect a validator follows is now a literal cross-domain 301 (howtoworkleads emitted a 308 until its homepage rule was switched to statusCode 301), and Google's own guidance on that error is also to wait and retry. Baseline for measuring it, captured the day of filing, 7-day rolling: agedleadsales 37 clicks / 4217 impressions / position 20.1; howtoworkleads ~4 clicks and ~600 impressions per day / position ~22; workagedleads 1 click / 338 impressions / position 65.0. Success = the two retiring properties draining into workagedleads while its position moves from 65 toward 20. Measure 2026-09-15. A flat fortnight is not failure: CoA prioritizes recrawl, it does not move rankings on our schedule, and the 301s were always doing the consolidation on their own.",
-      "Leakage recapture (63 of 149 outbound clicks). Flat since the last reading and still off-limits as removal - those links are what make the reviews independent."
-    ]
+      "basis": "68 clicks/mo already leaving. Value depends entirely on which of the eleven run an affiliate program - unknown until checked."
+    }
   },
   "kills": [
     {
