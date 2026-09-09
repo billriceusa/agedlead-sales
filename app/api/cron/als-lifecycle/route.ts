@@ -187,6 +187,23 @@ export async function GET(req: NextRequest) {
     const sentNothingWhileDue =
       live && result.sent === 0 && result.dueScanned - result.reorderExits > 0;
 
+    // BILL, 2026-09-09: "We must send emails every day! ... Alert if something
+    // is broken or prevents that."
+    //
+    // The alarm above only fires when rows were DUE and did not move. It stays
+    // silent on the other way to send nothing: a queue that is simply empty,
+    // because enrolment dried up, an allowlist is narrower than intended, or a
+    // journey finished and nothing replaced it. Under a daily-send requirement
+    // that is not a quiet day, it is the program stopping — and it looks
+    // identical to health from every other field, which is exactly how the
+    // 34-day outage stayed invisible.
+    //
+    // Deliberately excludes a deliberately-paused backlog: if `duePaused` is
+    // non-zero the queue is not dry, it is held, and that is reported as
+    // `paused` rather than as a failure.
+    const queueDry =
+      live && result.sent === 0 && result.dueScanned === 0 && result.duePaused === 0;
+
     // Journeys with due rows that the allowlist is holding — named so the
     // heartbeat says which track is paused, not merely that something is.
     const pausedJourneys = result.duePaused > 0 ? "paused" : "";
@@ -200,7 +217,7 @@ export async function GET(req: NextRequest) {
     await recordCronRun({
       name: "als-lifecycle",
       status:
-        starved || sentNothingWhileDue
+        starved || sentNothingWhileDue || queueDry
           ? "failed"
           : result.errors.length > 0
             ? "partial"
@@ -211,7 +228,8 @@ export async function GET(req: NextRequest) {
             `slots ${result.replenishReserved} replenish / ${result.valueSelected} value`,
             `cap ${ALS_LIFECYCLE_SEND_CAP}, reserve ${ALS_LIFECYCLE_REPLENISH_RESERVE}`,
             `due ${result.dueScanned}${backlog > 0 ? ` (${backlog} left for tomorrow)` : ""}`,
-            `enrolled ${result.enrolledWelcome}w/${result.enrolledReplenishment}r`,
+            `enrolled ${result.enrolledWelcome}w/${result.enrolledReplenishment}r/${result.enrolledWinback}b`,
+            queueDry ? "QUEUE DRY — nothing was due at all" : "",
             result.duePaused > 0
               ? `paused ${result.duePaused} due on ${pausedJourneys || "no"} track(s)`
               : "",

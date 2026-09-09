@@ -5,6 +5,7 @@ import { LeadTypeCard } from "@/components/lead-type-card";
 import { PostCard } from "@/components/post-card";
 import { PlaybookCard } from "@/components/playbook-card";
 import { CtaBanner } from "@/components/cta-banner";
+import { HeroAffiliateDoor } from "@/components/hero-affiliate-door";
 import { NewsletterSignup } from "@/components/newsletter-signup";
 import { TrustStrip } from "@/components/trust-strip";
 import { JsonLd, websiteJsonLd, organizationJsonLd } from "@/components/json-ld";
@@ -118,6 +119,33 @@ export default async function HomePage() {
                 Lead Price Index
               </Link>
             </div>
+
+            {/*
+              The outbound door. Iteration 6 — see data/loop/ledger.json.
+
+              This is the highest-traffic page on the site (398 views/30d, more
+              than the providers hub and both calculators combined) and it
+              converted to the store at 0.5%, because its only affiliate surface
+              was the <CtaBanner /> at the very bottom of a 453-line page. Every
+              button in this hero pointed somewhere else on this site — the same
+              defect HeroAffiliateDoor was built for on /lead-types, and the same
+              shape /providers had at 0.61% before iteration 4 took it to 3.68%.
+
+              "Get the Free Playbook" KEEPS the styled primary above. It feeds
+              the 2,464-contact lifecycle program, and demoting a compounding
+              list-building asset to buy a one-off affiliate click is not a trade
+              this site makes. The door sits on its own row instead, separated so
+              it reads as a distinct outbound action rather than a fourth
+              internal option.
+
+              No leadType is passed: a visitor on the homepage has not chosen a
+              vertical, so storeCategoryPath returns undefined and affiliateUrl
+              falls back to the full catalogue — the honest destination, and the
+              same reasoning already written into the providers hub. Secondary
+              links are omitted because the three internal routes directly above
+              already serve that purpose; repeating them would be noise.
+            */}
+            <HeroAffiliateDoor campaign="homepage-hero" />
 
             {/* Trust signals — real E-E-A-T, no fabricated counts */}
             <TrustStrip className="mt-10" />
