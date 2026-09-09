@@ -88,7 +88,14 @@ export default async function LeadTypePage({ params }: Props) {
           { name: title, url: `${baseUrl}/lead-types/${slug}` },
         ])}
       />
-      {data?.faqs && <JsonLd data={faqJsonLd(data.faqs)} />}
+      {/*
+        Gated on `!leadType?.body` to match the VISIBLE FAQ section further down, which
+        only renders on the static path. Without the guard, a lead type given a Sanity
+        body shipped FAQPage structured data for questions that were no longer on the
+        page — a Google structured-data policy violation, not merely a stale module.
+        Found 2026-09-09 while planning the operator-guide tier.
+      */}
+      {!leadType?.body && data?.faqs && <JsonLd data={faqJsonLd(data.faqs)} />}
 
       {/* Hero */}
       <section className="bg-gradient-to-br from-zinc-900 to-blue-950 py-16">
