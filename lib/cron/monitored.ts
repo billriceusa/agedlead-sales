@@ -17,7 +17,10 @@ import type { CronName } from "./heartbeat";
  */
 export const MONITORED_CRONS = [
   "marketwatch",
-  "als-email-report",
+  // Replaced the Sunday `als-email-report` on 2026-09-09 (Bill). That route
+  // still exists for manual runs but is unscheduled, so it must NOT be watched
+  // — a staleness check on an unscheduled cron alerts forever.
+  "als-daily-report",
   "gsc-trend",
   "als-lifecycle",
   "commission-report",
@@ -44,7 +47,10 @@ export type StalenessRule = {
 
 export const CRON_STALENESS: Record<MonitoredCron, StalenessRule> = {
   "marketwatch": { maxDays: 35, label: "Marketwatch cron" },
-  "als-email-report": { maxDays: 8, label: "ALS email report cron" },
+  // Runs daily at 12:30 UTC, after the 10:50 lifecycle run. This is now the
+  // only report that says whether the email program sent anything, so its own
+  // silence is the failure it exists to catch — 2 days, like the other dailies.
+  "als-daily-report": { maxDays: 2, label: "Daily email report cron", firstExpectedAt: "2026-09-10" },
   // Runs daily; a 2-day gap means it stalled. This is the tripwire that would
   // have caught the 2026-06 Vercel WIF break (froze gsc-trend 4 days, silent).
   "gsc-trend": { maxDays: 2, label: "GSC trend snapshot cron" },

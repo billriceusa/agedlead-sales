@@ -24,7 +24,11 @@ function scheduledCrons(): { name: string; schedule: string }[] {
   const raw = readFileSync(join(process.cwd(), "vercel.json"), "utf-8");
   const config = JSON.parse(raw) as VercelConfig;
   return (config.crons ?? []).map((c) => ({
-    name: c.path.replace(/^\/api\/cron\//, ""),
+    // Strip the query string as well as the prefix. A Vercel cron path may
+    // carry one — `als-daily-report?send=1` distinguishes the scheduled send
+    // from the same route serving a live view — and matching on the raw string
+    // would report a correctly-monitored cron as unwatched.
+    name: c.path.replace(/^\/api\/cron\//, "").split("?")[0],
     schedule: c.schedule,
   }));
 }

@@ -89,3 +89,51 @@ export const alsBuyerJourneys = pgTable(
     index("als_buyer_journeys_due").on(table.status, table.nextDueAt),
   ]
 );
+
+/**
+ * Resend delivery and engagement events.
+ *
+ * WHY THIS TABLE EXISTS (2026-09-09, Bill's call)
+ *
+ * Resend's API returns NO engagement data. Verified against both endpoints:
+ * `GET /broadcasts` returns only id/name/audience_id/status/timestamps, and
+ * `GET /broadcasts/{id}` adds only content and headers. There is no open rate,
+ * click rate, bounce count or delivery count anywhere in the API — those exist
+ * solely in the Resend dashboard.
+ *
+ * So a daily report can say what was SENT and what it EARNED, but nothing about
+ * what happened in between, unless we capture it ourselves. This table is that
+ * capture, fed by a Resend webhook.
+ *
+ * It matters more than usual right now: the verification gate came off on
+ * 2026-09-09 and 3,591 never-before-mailed contacts entered the sending pool. If
+ * a meaningful share of those hard-bounce, the sending domain pays for it, and
+ * without this table the first symptom would be silent deliverability decay.
+ *
+ * Data accrues from the day the webhook is registered. It is not retroactive.
+ */
+export const alsEmailEvents = pgTable(
+  "als_email_events",
+  {
+    id: serial("id").primaryKey(),
+    /** Svix message id. Unique — Resend retries deliveries, and a retry must not double-count an open. */
+    svixId: text("svix_id").notNull(),
+    /** email.sent | delivered | opened | clicked | bounced | complained | delivery_delayed */
+    eventType: text("event_type").notNull(),
+    /** Resend's per-message id. Ties several events to one send. */
+    emailId: text("email_id"),
+    recipient: text("recipient"),
+    subject: text("subject"),
+    /** For email.clicked — which link was followed. Makes per-placement click data possible. */
+    linkUrl: text("link_url"),
+    /** For email.bounced — hard vs soft decides whether the address gets suppressed. */
+    bounceType: text("bounce_type"),
+    occurredAt: timestamp("occurred_at").notNull(),
+    receivedAt: timestamp("received_at").defaultNow().notNull(),
+  },
+  (table) => [
+    uniqueIndex("als_email_events_svix_id").on(table.svixId),
+    index("als_email_events_type_time").on(table.eventType, table.occurredAt),
+    index("als_email_events_recipient").on(table.recipient),
+  ]
+);

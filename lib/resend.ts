@@ -95,14 +95,31 @@ export async function fetchAudiences(
   return data.data || [];
 }
 
+/**
+ * The audience's contacts, always read fresh.
+ *
+ * NOT via `resendFetch`, which sets `next: { revalidate: 300 }`. That cache is
+ * fine for a dashboard and wrong here, and it bit on 2026-09-09: after 3,465
+ * contacts were added, the daily report showed 2,633 — a cached figure from
+ * before the expansion.
+ *
+ * A stale count is worse than slow in both places this is called. The daily
+ * report would state a list size that is simply untrue, and `send-newsletter`
+ * uses this count for its MIN_EXPECTED_RECIPIENTS floor, the guard that refuses
+ * to mail when the audience looks wrong. A guard reading five-minute-old data
+ * can both block a good send and wave through a bad one.
+ */
 export async function fetchAudienceContacts(
   apiKey: string,
   audienceId: string
 ): Promise<ResendContact[]> {
-  const res = await resendFetch(
-    apiKey,
-    `/audiences/${audienceId}/contacts`
-  );
+  const res = await fetch(`${RESEND_BASE}/audiences/${audienceId}/contacts`, {
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
+    },
+    cache: "no-store",
+  });
 
   if (!res.ok) return [];
 
