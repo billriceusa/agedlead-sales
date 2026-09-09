@@ -1,53 +1,102 @@
 /**
- * Release the next scheduled replenishment cohort so it sends on this run
- * instead of waiting for its staggered date.
+ * Reschedule lifecycle journey rows so a cohort drips instead of firing in one
+ * cron run. Two modes:
  *
- * `lifecycle-phase1-restart.ts` spread 124 re-anchored journeys across seven
- * days starting tomorrow. That is the right default, but it also means the
- * program sends nothing today — and after 34 dark days the first send is worth
- * getting out rather than waiting one more cron tick.
+ *   RELEASE (default) — move the earliest scheduled cohort to now, so the
+ *   program sends today instead of waiting for its staggered date.
  *
- * Moves the EARLIEST scheduled cohort to now. The anchor is recomputed as
- * `now - offset[nextStep]`, not simply set to `now`, so the steps that follow
- * keep the designed 0/11/24 spacing measured from today. Setting the anchor
- * naively would push a mid-sequence row's next step 24 days out.
+ *   --restagger — spread rows across days under a per-day budget. This is the
+ *   safety mode: it is what stops a held-back journey from mailing everyone at
+ *   once the moment it is re-enabled.
  *
- * Skips unsubscribed contacts and rows the cron will close as reorder-exits.
+ * The anchor is recomputed as `due - offset[nextStep]`, never set naively to
+ * the due date, so the steps that follow keep their designed spacing measured
+ * from the new date. See `anchorFor` in lib/als/restagger.ts.
+ *
+ * Skips unsubscribed contacts. In replenishment it also skips rows the cron
+ * will close as reorder-exits — releasing them would only make the cron exit
+ * them a day early.
  *
  * DRY RUN BY DEFAULT. `--apply` to write. Sends nothing itself — the cron does
  * the sending.
  *
  *   npx tsx scripts/lifecycle-release-cohort.ts
  *   npx tsx scripts/lifecycle-release-cohort.ts --apply
+ *   npx tsx scripts/lifecycle-release-cohort.ts --journey=welcome --restagger
+ *   npx tsx scripts/lifecycle-release-cohort.ts --journey=welcome --restagger \
+ *     --per-day=18 --combined-max=40 --start=2026-09-10 --apply
+ *
+ * WHY --journey EXISTS (Phase 2, 2026-09-09)
+ *
+ * This script was written for replenishment and hard-coded it in two places:
+ * the offsets it read and the rows it selected. Phase 2 needs the same pacing
+ * for welcome, whose offsets are 3/7/14 rather than 0/11/24 — re-dating welcome
+ * rows with replenishment offsets would have mis-spaced every follow-on email.
  */
 import { config } from "dotenv";
 config({ path: ".env.local", quiet: true } as never);
 
-import { and, eq, sql, isNotNull, asc } from "drizzle-orm";
+import { and, eq, sql, isNotNull, asc, ne } from "drizzle-orm";
 import { db } from "../lib/db";
 import { alsBuyerContacts, alsBuyerJourneys } from "../lib/db/schema";
-import { lifecycleStepIndex } from "../lib/als/lifecycle";
+import { lifecycleStepIndex, type JourneyName } from "../lib/als/lifecycle";
+import { planRestagger, anchorFor, dayKey, DAY_MS } from "../lib/als/restagger";
 
 const APPLY = process.argv.includes("--apply");
-const DAY_MS = 86_400_000;
-const LIMIT = Number(process.argv.find((a) => a.startsWith("--limit="))?.split("=")[1] ?? 18);
-/**
- * `--restagger` spreads any future day holding more than PER_DAY rows across
- * following days instead of releasing a cohort early. Needed after 2026-09-04,
- * when 128 sends in one run left 129 second-step rows all landing on 09-15.
- */
 const RESTAGGER = process.argv.includes("--restagger");
-const PER_DAY = 18;
 
-/** Offsets read from the program, never restated locally. */
+function arg(name: string): string | undefined {
+  return process.argv.find((a) => a.startsWith(`--${name}=`))?.split("=")[1];
+}
+function numArg(name: string, fallback: number): number {
+  const n = Number(arg(name));
+  return Number.isFinite(n) && n >= 0 ? Math.floor(n) : fallback;
+}
+
+const JOURNEY = (arg("journey") ?? "replenishment") as JourneyName;
+const LIMIT = numArg("limit", 18);
+
+/** Max rows of THIS journey allowed to land on one day. */
+const PER_DAY = numArg("per-day", 18);
+/**
+ * Max rows across ALL journeys on one day. 0 disables the check.
+ *
+ * Matters because the journeys share one send budget and one sending domain.
+ * On 2026-09-09 replenishment already carried 36/day on 09-17..09-20, so
+ * pacing welcome to 18/day in isolation would still have put 54 on those days.
+ */
+const COMBINED_MAX = numArg("combined-max", 0);
+
+/** Offsets read from the program for THIS journey, never restated locally. */
 const OFFSETS: number[] = lifecycleStepIndex()
-  .filter((s) => s.journey === "replenishment")
+  .filter((s) => s.journey === JOURNEY)
   .sort((a, b) => a.step - b.step)
   .map((s) => s.offsetDays);
 
+function startDay(): Date {
+  const raw = arg("start");
+  if (raw) return new Date(raw + "T12:00:00.000Z");
+  // Default to tomorrow: today's run may already have fired.
+  return new Date(Date.now() + DAY_MS);
+}
+
 async function main() {
   console.log(APPLY ? "=== APPLY ===" : "=== DRY RUN (--apply to write) ===");
+  console.log(`journey: ${JOURNEY}   offsets: ${OFFSETS.join("/")}`);
+  if (OFFSETS.length === 0) {
+    throw new Error(`No steps defined for journey "${JOURNEY}" — check --journey.`);
+  }
   const now = new Date();
+
+  // Restagger deliberately includes PAST-DUE rows; release only future ones.
+  //
+  // A past-due row is precisely the row that fires in the next cron run, so
+  // excluding it from the restagger excluded the entire problem. The old
+  // implementation filtered `next_due_at > now()` and would have selected none
+  // of the 123 July-dated welcome rows while reporting success.
+  const dueFilter = RESTAGGER
+    ? sql`true`
+    : sql`${alsBuyerJourneys.nextDueAt} > now()`;
 
   const rows = await db
     .select({
@@ -64,46 +113,93 @@ async function main() {
     .innerJoin(alsBuyerContacts, eq(alsBuyerContacts.id, alsBuyerJourneys.contactId))
     .where(
       and(
-        eq(alsBuyerJourneys.journey, "replenishment"),
+        eq(alsBuyerJourneys.journey, JOURNEY),
         eq(alsBuyerJourneys.status, "active"),
         isNotNull(alsBuyerJourneys.nextDueAt),
-        sql`${alsBuyerJourneys.nextDueAt} > now()`,
+        dueFilter,
         eq(alsBuyerContacts.unsubscribed, false),
       ),
     )
     .orderBy(asc(alsBuyerJourneys.nextDueAt));
 
-  // A buyer who ordered again since the cycle began gets closed, not nudged —
-  // releasing them would only make the cron exit them a day early.
-  const eligible = rows.filter(
-    (r) => !(r.lastOrderAt && r.anchorAt && new Date(r.lastOrderAt) > new Date(r.anchorAt)),
-  );
-  // --- restagger: flatten any future day carrying more than PER_DAY ---------
+  // A buyer who ordered again since the cycle began gets closed, not nudged.
+  // Only replenishment has reorder-exits; welcome is education, not a nudge.
+  const eligible =
+    JOURNEY === "replenishment"
+      ? rows.filter(
+          (r) => !(r.lastOrderAt && r.anchorAt && new Date(r.lastOrderAt) > new Date(r.anchorAt)),
+        )
+      : rows;
+
   if (RESTAGGER) {
-    const byDay = new Map<string, typeof eligible>();
-    for (const r of eligible) {
-      const k = r.nextDueAt!.toISOString().slice(0, 10);
-      (byDay.get(k) ?? byDay.set(k, []).get(k)!).push(r);
+    // What the OTHER journeys already have booked, so the combined ceiling is
+    // measured against reality rather than this journey alone.
+    //
+    // Always loaded, even when the ceiling is off. The dry run is what someone
+    // reads before deciding to send, and a table showing "0 other journeys"
+    // beside a day already carrying 36 replenishment rows would misinform
+    // exactly the decision this script exists to protect.
+    const occupancy = new Map<string, number>();
+    {
+      const others = await db
+        .select({
+          day: sql<string>`to_char(date_trunc('day', ${alsBuyerJourneys.nextDueAt}), 'YYYY-MM-DD')`,
+          n: sql<number>`count(*)::int`,
+        })
+        .from(alsBuyerJourneys)
+        .innerJoin(alsBuyerContacts, eq(alsBuyerContacts.id, alsBuyerJourneys.contactId))
+        .where(
+          and(
+            ne(alsBuyerJourneys.journey, JOURNEY),
+            eq(alsBuyerJourneys.status, "active"),
+            isNotNull(alsBuyerJourneys.nextDueAt),
+            eq(alsBuyerContacts.unsubscribed, false),
+          ),
+        )
+        .groupBy(sql`1`);
+      for (const o of others) occupancy.set(o.day, o.n);
     }
-    const moves: { jid: number; step: number; to: Date }[] = [];
-    for (const [day, group] of [...byDay.entries()].sort()) {
-      if (group.length <= PER_DAY) continue;
-      console.log(`  ${day}: ${group.length} rows — spreading the surplus`);
-      const base = new Date(day + "T12:00:00.000Z");
-      group.forEach((r, i) => {
-        const offset = Math.floor(i / PER_DAY);
-        if (offset === 0) return;
-        moves.push({ jid: r.jid, step: r.step, to: new Date(base.getTime() + offset * DAY_MS) });
-      });
+
+    const start = startDay();
+    const { moves, perDayPlan, unplaced } = planRestagger({
+      rows: eligible.map((r) => ({ jid: r.jid, step: r.step, nextDueAt: r.nextDueAt! })),
+      perDay: PER_DAY,
+      combinedMax: COMBINED_MAX,
+      occupancy,
+      start,
+    });
+
+    console.log(`eligible rows: ${eligible.length}`);
+    console.log(
+      `budget: ${PER_DAY}/day for ${JOURNEY}` +
+        (COMBINED_MAX > 0
+          ? `, ${COMBINED_MAX}/day across all journeys`
+          : ", no combined ceiling (other-journey load shown but NOT enforced)"),
+    );
+    console.log(`schedule starts ${dayKey(start)}`);
+    console.log("\n  day          this journey   other journeys   combined");
+    let peak = 0;
+    for (const [day, n] of [...perDayPlan.entries()].sort()) {
+      const others = occupancy.get(day) ?? 0;
+      peak = Math.max(peak, n + others);
+      console.log(
+        `  ${day}   ${String(n).padStart(6)}         ${String(others).padStart(6)}       ${String(n + others).padStart(6)}`,
+      );
     }
-    console.log(`rows to move: ${moves.length}`);
-    if (!APPLY) { console.log("nothing written."); return; }
+    console.log(`\npeak combined day: ${peak} email(s)`);
+    console.log(`rows to move: ${moves.length} (of ${eligible.length} eligible)`);
+    if (unplaced > 0) {
+      console.log(`WARNING: ${unplaced} row(s) could not be placed inside the horizon.`);
+    }
+    if (!APPLY) {
+      console.log("nothing written.");
+      return;
+    }
     for (const m of moves) {
-      const nextStepOffset = OFFSETS[Math.min(m.step + 1, OFFSETS.length) - 1] ?? 0;
       await db
         .update(alsBuyerJourneys)
         .set({
-          anchorAt: new Date(m.to.getTime() - nextStepOffset * DAY_MS),
+          anchorAt: anchorFor(m.to, m.step, OFFSETS),
           nextDueAt: m.to,
           updatedAt: now,
         })
@@ -131,11 +227,10 @@ async function main() {
   }
 
   for (const r of cohort) {
-    const nextStepOffset = OFFSETS[Math.min(r.step + 1, OFFSETS.length) - 1] ?? 0;
     await db
       .update(alsBuyerJourneys)
       .set({
-        anchorAt: new Date(now.getTime() - nextStepOffset * DAY_MS),
+        anchorAt: anchorFor(now, r.step, OFFSETS),
         nextDueAt: now,
         updatedAt: now,
       })
