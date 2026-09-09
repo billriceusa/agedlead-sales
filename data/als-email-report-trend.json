@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-06T11:00:38.926Z",
+  "lastUpdated": "2026-09-09T15:48:16.065Z",
   "snapshots": [
     {
       "date": "2026-06-29",
@@ -205,6 +205,25 @@
           "total": 1371,
           "subscribed": 1346,
           "unsubscribed": 25
+        }
+      ],
+      "emailSessions": 0,
+      "emailKeyEvents": 0
+    },
+    {
+      "date": "2026-09-09",
+      "audiences": [
+        {
+          "name": "ALS Aged-Lead Buyers — Purchasers",
+          "total": 1201,
+          "subscribed": 1164,
+          "unsubscribed": 37
+        },
+        {
+          "name": "ALS Aged-Lead Buyers — Inquiries",
+          "total": 1400,
+          "subscribed": 1367,
+          "unsubscribed": 33
         }
       ],
       "emailSessions": 0,
