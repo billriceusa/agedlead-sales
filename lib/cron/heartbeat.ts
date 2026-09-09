@@ -8,6 +8,7 @@ export type CronName =
   | "marketwatch"
   | "health-check"
   | "als-email-report"
+  | "als-daily-report"
   | "gsc-trend"
   | "commission-report"
   | "als-lifecycle"
