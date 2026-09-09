@@ -8,6 +8,7 @@ import { checkIssueHtml } from "@/lib/newsletter/issue-gate";
 import { readIssue, readIssueHtml, archivePaths } from "@/lib/newsletter/archive-github";
 import { commitFilesToGitHub } from "@/lib/cron/git-commit";
 import { recordCronRun, type CronStatus } from "@/lib/cron/heartbeat";
+import { issueLabelFor } from "@/lib/newsletter/issue-date";
 
 /**
  * The Tuesday sender — the second half of the opt-out review window.
@@ -50,9 +51,17 @@ export const maxDuration = 60;
 /** Below this, the audience id is wrong or the merge never ran. Refuse. */
 const MIN_EXPECTED_RECIPIENTS = 500;
 
-/** The Tuesday this run is for, in UTC. */
-function todayUtc(): string {
-  return new Date().toISOString().slice(0, 10);
+/**
+ * The archive label this run is for.
+ *
+ * NOT today's date. The drafting cron names archives after the MONDAY before
+ * the send Tuesday (`getWeekDates().weekLabel` is `fmt(monday)`), so a Tuesday
+ * run asking for its own date has never matched a real file. See
+ * lib/newsletter/issue-date.ts for the full account — this cost the 2026-09-08
+ * send to 2,628 people, and reported itself healthy while doing it.
+ */
+function issueLabel(): string {
+  return issueLabelFor(new Date());
 }
 
 export async function GET(request: Request) {
@@ -65,7 +74,7 @@ export async function GET(request: Request) {
   const url = new URL(request.url);
   // `?date=` is for replaying a specific issue by hand. `?dryRun=1` reports what
   // would happen and mails nothing — the only safe way to exercise this route.
-  const date = url.searchParams.get("date") ?? todayUtc();
+  const date = url.searchParams.get("date") ?? issueLabel();
   const dryRun = url.searchParams.get("dryRun") === "1";
 
   // Heartbeat. This route mails the whole list once a week, so a run that stops
@@ -108,10 +117,27 @@ export async function GET(request: Request) {
     return NextResponse.json({ ok: false, sent: false, date, error: msg }, { status: 502 });
   }
 
-  // No issue for this date is the ordinary case on 51 of 52 Tuesdays if the
-  // calendar lapses, and on every non-Tuesday. Not an error.
+  // A missing issue is ordinary on a manual replay or an off-day run. It is NOT
+  // ordinary on the scheduled Tuesday: the Sunday cron should have archived one
+  // two days earlier, so nothing to send means either the drafting run failed or
+  // the two halves disagree about the label again.
+  //
+  // Reporting that as `ok` is exactly how the 2026-09-08 miss stayed invisible —
+  // the route skipped a ready issue, stamped the heartbeat healthy, and 2,628
+  // people got nothing. Escalate on the day it was supposed to mail.
   if (!issue || !html) {
-    return skip(`No archived issue for ${date} — nothing to send.`);
+    const reason = `No archived issue for ${date} — nothing to send.`;
+    const scheduledDay = new Date().getUTCDay() === 2; // Tuesday
+    if (scheduledDay && !url.searchParams.get("date")) {
+      const msg =
+        `${reason} This ran on the scheduled Tuesday, so an issue was expected: ` +
+        `either Sunday's drafting run failed or the archive label does not match ` +
+        `what this route asked for.`;
+      console.error(`[SendCron] ${msg}`);
+      await beat("failed", msg);
+      return NextResponse.json({ ok: false, sent: false, date, error: msg, log: [msg] }, { status: 424 });
+    }
+    return skip(reason);
   }
   if (issue.killed) {
     return skip(
