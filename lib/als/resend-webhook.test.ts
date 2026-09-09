@@ -1,7 +1,7 @@
 import { test, describe } from "node:test";
 import assert from "node:assert/strict";
 import { createHmac } from "crypto";
-import { verifyResendSignature, parseResendEvent } from "./resend-webhook";
+import { verifyResendSignature, parseResendEvent, isOurSend } from "./resend-webhook";
 
 /**
  * A webhook that writes to a production table has two failure directions and
@@ -112,12 +112,57 @@ describe("verifyResendSignature", () => {
   });
 });
 
+describe("isOurSend", () => {
+  /**
+   * The Resend account sends for 26 verified domains. Without this filter the
+   * webhook wrote Kaleidico and Zoomcasa CLIENT recipients into a BRSG database
+   * and blended their engagement into this site's numbers. Caught live when the
+   * first captured events included "When to restock", a subject this site does
+   * not send.
+   */
+  test("accepts this program's sending addresses", () => {
+    assert.ok(isOurSend("Work Aged Leads <bill@workagedleads.com>"));
+    assert.ok(isOurSend('"Bill Rice · Aged Leads Insights" <bill@news.workagedleads.com>'));
+    assert.ok(isOurSend("bill@workagedleads.com"));
+  });
+
+  test("accepts the retired hostnames — that mail is still ours", () => {
+    assert.ok(isOurSend("bill@agedleadsales.com"));
+    assert.ok(isOurSend("bill@news.agedleadsales.com"));
+  });
+
+  test("rejects every other property on the shared account", () => {
+    for (const from of [
+      "hello@go.kaleidico.com",
+      "team@go.zoomcasa.com",
+      "bill@billricestrategy.com",
+      "hi@getdropprivacy.com",
+      "books@leadbuyersplaybook.com",
+      "noreply@getagedleads.com",
+    ]) {
+      assert.equal(isOurSend(from), false, `${from} must not be stored here`);
+    }
+  });
+
+  test("does not match a lookalike domain by suffix", () => {
+    // "notworkagedleads.com" ends with the same letters. Requires a dot boundary.
+    assert.equal(isOurSend("a@notworkagedleads.com"), false);
+    assert.equal(isOurSend("a@workagedleads.com.evil.test"), false);
+  });
+
+  test("rejects a missing or unparseable sender rather than defaulting to store", () => {
+    assert.equal(isOurSend(null), false);
+    assert.equal(isOurSend(""), false);
+    assert.equal(isOurSend("not-an-address"), false);
+  });
+});
+
 describe("parseResendEvent", () => {
   test("flattens a delivered event", () => {
     const e = parseResendEvent({
       type: "email.delivered",
       created_at: "2026-09-09T16:20:00.000Z",
-      data: { email_id: "e1", to: ["Dave@Example.com"], subject: "Hello" },
+      data: { email_id: "e1", to: ["Dave@Example.com"], subject: "Hello", from: "bill@workagedleads.com" },
     });
     assert.equal(e?.eventType, "email.delivered");
     assert.equal(e?.emailId, "e1");

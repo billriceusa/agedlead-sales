@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { sql } from "drizzle-orm";
 import { db } from "@/lib/db";
 import { alsEmailEvents } from "@/lib/db/schema";
-import { verifyResendSignature, parseResendEvent } from "@/lib/als/resend-webhook";
+import { verifyResendSignature, parseResendEvent, isOurSend } from "@/lib/als/resend-webhook";
 
 /**
  * Resend delivery/engagement webhook.
@@ -62,6 +62,19 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true, stored: false, reason: "no event type" });
   }
 
+  // A Resend webhook is ACCOUNT-wide, and this account sends for 26 verified
+  // domains across BRSG, Kaleidico clients and the book properties. Storing all
+  // of them would blend other properties' engagement into this report AND write
+  // Kaleidico and Zoomcasa client recipients into a BRSG database. Acknowledged
+  // with 200 so Svix stops retrying — this is a correct outcome, not a failure.
+  if (!isOurSend(event.fromAddress)) {
+    return NextResponse.json({
+      ok: true,
+      stored: false,
+      reason: "not a workagedleads sending domain",
+    });
+  }
+
   const svixId = request.headers.get("svix-id") as string;
   try {
     await db
@@ -72,6 +85,7 @@ export async function POST(request: Request) {
         emailId: event.emailId,
         recipient: event.recipient,
         subject: event.subject,
+        fromAddress: event.fromAddress,
         linkUrl: event.linkUrl,
         bounceType: event.bounceType,
         occurredAt: event.occurredAt,
