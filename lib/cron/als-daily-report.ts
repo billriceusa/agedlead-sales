@@ -237,9 +237,26 @@ export async function buildDailyEmailReport(): Promise<DailyEmailReport> {
       "No engagement events captured yet. Register the Resend webhook at /api/webhooks/resend, or every open/click/bounce figure below stays at zero regardless of reality.",
     );
   }
+  // A structural zero, not a real one. Resend's open and click tracking are per-DOMAIN
+  // flags, off by default, and when they are off `email.opened` and `email.clicked`
+  // simply never fire — so the report would show "0.0% open rate" on hundreds of
+  // delivered emails and read as catastrophic engagement rather than absent measurement.
+  // Found 2026-09-10: all four sending domains had open_tracking and click_tracking
+  // false while the report displayed 0 opens on 247 deliveries.
+  if (engagementTracking && engagement7d.delivered >= 50 && engagement7d.opened === 0) {
+    warnings.push(
+      `Zero opens across ${engagement7d.delivered} delivered emails in 7 days. That is almost certainly Resend open tracking being OFF for the sending domain rather than nobody opening. Check open_tracking on the domain in Resend before treating any engagement figure here as real.`,
+    );
+  }
+
   const delivered7d = engagement7d.delivered;
   if (delivered7d > 100) {
-    const bounceRate = engagement7d.bounced / delivered7d;
+    // Denominator is ATTEMPTED, not delivered. A bounce is by definition not a
+    // delivery, so dividing by `delivered` overstates the rate — it read 6.9% on
+    // 2026-09-10 where the true figure was 6.4%. This number gates a behaviour
+    // change, so it has to be the one mailbox providers actually compute.
+    const attempted7d = engagement7d.delivered + engagement7d.bounced;
+    const bounceRate = attempted7d > 0 ? engagement7d.bounced / attempted7d : 0;
     if (bounceRate > 0.03) {
       warnings.push(
         `Bounce rate ${(bounceRate * 100).toFixed(1)}% over 7 days, above the 3% line where mailbox providers start throttling. 3,591 never-mailed contacts entered the pool on 2026-09-09.`,
@@ -299,7 +316,7 @@ function engagementTable(label: string, e: EngagementRow, tracking: boolean): st
     <tr><td style="padding:3px 14px 3px 0;color:#6b7280;">Delivered</td><td style="padding:3px 0;font-weight:600;">${e.delivered}</td></tr>
     <tr><td style="padding:3px 14px 3px 0;color:#6b7280;">Opened</td><td style="padding:3px 0;font-weight:600;">${e.opened} <span style="color:#6b7280;font-weight:400;">(${pct(e.opened, e.delivered)})</span></td></tr>
     <tr><td style="padding:3px 14px 3px 0;color:#6b7280;">Clicked</td><td style="padding:3px 0;font-weight:600;">${e.clicked} <span style="color:#6b7280;font-weight:400;">(${pct(e.clicked, e.delivered)})</span></td></tr>
-    <tr><td style="padding:3px 14px 3px 0;color:#6b7280;">Bounced</td><td style="padding:3px 0;font-weight:600;color:${e.bounced > 0 ? "#b45309" : "#111827"};">${e.bounced} <span style="color:#6b7280;font-weight:400;">(${pct(e.bounced, e.delivered)}, ${e.hardBounced} hard)</span></td></tr>
+    <tr><td style="padding:3px 14px 3px 0;color:#6b7280;">Bounced</td><td style="padding:3px 0;font-weight:600;color:${e.bounced > 0 ? "#b45309" : "#111827"};">${e.bounced} <span style="color:#6b7280;font-weight:400;">(${pct(e.bounced, e.delivered + e.bounced)} of attempted, ${e.hardBounced} hard)</span></td></tr>
     <tr><td style="padding:3px 14px 3px 0;color:#6b7280;">Complaints</td><td style="padding:3px 0;font-weight:600;color:${e.complained > 0 ? "#dc2626" : "#111827"};">${e.complained}</td></tr>
   </table>`;
 }
