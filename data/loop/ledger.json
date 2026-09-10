@@ -167,6 +167,29 @@
       "killRule": "Kill if /  does not clear 2% by 2026-09-23. That is 4x today and still below the providers hub. If a door on the highest-traffic page cannot clear 2%, the door pattern has reached its limit on low-intent surfaces and the next iteration must buy intent rather than add placements.",
       "measureAt": "2026-09-23",
       "verdict": "pending"
+    },
+    {
+      "iteration": 7,
+      "date": "2026-09-10",
+      "engine": "experiences",
+      "asset": "data/guides.ts \u2014 the operator guide tier: Fresh-Consent Ladder, PEWC, warm-up sequence",
+      "targetCluster": "/guides/* and the five reframed /blog/sms-templates-* and dialer posts",
+      "rationale": "The site's promise is 'You Bought the Leads. Now Work Them.' The audit on 2026-09-09 found the library heavy on scripts and economics but missing the layer where an operator loses money, and worse, publishing SMS-template and dialer content that read as though inherited consent were sufficient while the doctrine saying otherwise sat inside a gated PDF. Keywords: 'prior express written consent' 150/mo KD 7 with no page on the site targeting it; the re-engagement cluster is 0-80/mo, so that half is an AEO and email-list play rather than an SEO one. Deliberately did NOT write a broad 'tcpa consent' article \u2014 /blog/tcpa-compliance-lead-buyers is a 3,642-word pillar already covering the 1:1 rule, revocation, ATDS, SMS, DNC, state mini-TCPAs and vendor diligence, and a second one would have split the site against itself.",
+      "hypothesis": "Authority content converts differently from a product page. The bet is NOT that these guides produce affiliate clicks directly \u2014 it is that a reader who arrives on a consent question and finds the definitive answer subscribes, and that the cluster lifts the commercial pages it links to. Judge on assisted paths and email signups, not on clicks from the guide itself.",
+      "expected": {
+        "D": 150,
+        "P": null,
+        "C": null,
+        "basis": "'prior express written consent' is 150/mo at KD 7, and DR 2-3 sites rank top-10 in this niche, so ranking is a content question rather than an authority one. The warm-up guide targets terms with almost no volume and is written for citation and for the 6,086-person list instead."
+      },
+      "implementation": {
+        "tier": "Code-backed data/guides.ts rather than the Sanity guide type, whose body is [block, image] only \u2014 no table, codeBlock, callout or step type. The tier emits FAQ JSON-LD and wires glossary auto-linking, neither of which /guides had before.",
+        "doctrine": "Five off-doctrine posts reframed rather than unpublished (sms-templates-insurance-leads ranks position 27 on 88 impressions). Copy leads with the benefit \u2014 'Text the people who asked you to' \u2014 not the prohibition.",
+        "glossary": "Eight consent terms added to BOTH data/glossary-terms.ts and the Sanity glossaryTerm dataset; they are separate sources and the auto-linker reads only the second."
+      },
+      "killRule": "Measure 2026-10-10. Kill the per-lead-type guide expansion (13 more) if the three consent guides together have not produced either a measurable email-signup lift or a top-10 ranking for 'prior express written consent' by then. The doctrine pages stay regardless \u2014 they exist to stop the site contradicting itself and that value does not depend on traffic.",
+      "measureAt": "2026-10-10",
+      "verdict": "pending"
     }
   ],
   "scoreboardReadings": [
@@ -390,7 +413,7 @@
     }
   ],
   "nextPick": {
-    "iteration": 7,
+    "iteration": 8,
     "engine": "merchant-intelligence",
     "candidate": "Monetize or reclaim the 68 outbound clicks/month going to non-paying providers",
     "rationale": "Measured 2026-09-09: 163 outbound clicks in 30d, 95 to the partner and 68 (42%) to eleven providers who pay nothing - leadsdata.com 13, datatoleads.com 12, leadtycoons.com 8, ileads.com 5, needalead.com 5, smartfinancial.com 5, theleadswarehouse.com 5, agedleadsdepot.com 4, badassinsuranceleads.com 4, brokersdata.com 2, leadheroes.com 2. lib/provider-links.ts has aged-lead-store as its ONLY isAffiliate entry; everything else emits utm_medium=referral. This needs no new traffic and no ranking change. Standing constraint: the individual reviews' independence is the asset and is NOT for sale (Bill, standing no on removing competitor links), so the play is affiliate programs where they exist, not link removal.",
