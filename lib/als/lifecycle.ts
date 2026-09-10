@@ -688,12 +688,81 @@ export interface LifecycleResult {
   plan?: LifecyclePlan; // included on dry runs
 }
 
+/**
+ * Where a welcome enrollment should land, and what anchor supports it.
+ *
+ * Pure and exported so the rule can be tested without a database. This exact shape has
+ * now caused three incidents — replenishment on 2026-09-04, welcome on 2026-09-10, and
+ * winback was only spared because it was paced pre-emptively — so the decision lives in
+ * one testable function rather than inline in an enrollment loop.
+ *
+ * A contact whose natural date (signup + WELCOME_START_DAYS) is still in the future keeps
+ * it and consumes NO backlog slot; steady-state signups are unaffected. A contact whose
+ * natural date has already passed is backlog: it gets the next paced slot, and the anchor
+ * moves with it so the cron's `anchorAt + offsets[nextStep]` keeps steps 2 and 3 correctly
+ * spaced instead of firing them relative to a signup months ago.
+ */
+export function welcomeEnrollmentDate(opts: {
+  firstSeenAt: Date;
+  now: Date;
+  /** How many backlog rows have already been placed in this run. */
+  backlogIndex: number;
+  perDay: number;
+  startDays: number;
+}): { due: Date; anchor: Date; usedBacklogSlot: boolean } {
+  const { firstSeenAt, now, backlogIndex, perDay, startDays } = opts;
+  const naturalDue = new Date(firstSeenAt.getTime() + startDays * DAY_MS);
+  if (naturalDue > now) {
+    return { due: naturalDue, anchor: firstSeenAt, usedBacklogSlot: false };
+  }
+  const safePerDay = perDay > 0 ? perDay : 1;
+  const due = new Date(now.getTime() + Math.floor(backlogIndex / safePerDay) * DAY_MS);
+  return { due, anchor: new Date(due.getTime() - startDays * DAY_MS), usedBacklogSlot: true };
+}
+
+/**
+ * Enroll purchasers into the welcome series.
+ *
+ * PACED SINCE 2026-09-10, AND IT COST A SEND TO LEARN
+ *
+ * This used to set `nextDueAt = firstSeenAt + WELCOME_START_DAYS` unconditionally. For a
+ * contact who joined three days ago that is correct and lands today. For a contact who
+ * joined eight months ago it is a date deep in the PAST, so the row is due the instant it
+ * is created.
+ *
+ * That stayed harmless while everyone eligible was recent. Then the email-verification
+ * gate came off on 2026-09-09 and 3,591 long-standing contacts became eligible at once.
+ * The next run enrolled them with back-dated due dates and mailed 202 people against a
+ * staggered plan of 12/day, on a five-week-old domain that had been silent for 34 days.
+ *
+ * This is the THIRD time this exact shape has bitten: replenishment on 2026-09-04 (128
+ * sent against a planned 18), winback was paced pre-emptively when it was built, and
+ * welcome was simply never done. Pacing the enrollment is the fix that holds no matter
+ * what unblocks a cohort, because it does not depend on anyone remembering to re-stagger
+ * afterwards.
+ *
+ * A back-dated row takes a paced slot; a genuinely future one keeps its natural date and
+ * consumes no slot, so steady-state signups are completely unaffected. `anchorAt` moves
+ * with the due date — the cron computes step 2 as `anchorAt + offsets[1]`, so leaving the
+ * anchor on `firstSeenAt` while moving the send would silently mis-space the rest of the
+ * sequence.
+ */
 async function enrollWelcome(): Promise<number> {
   const eligible = await eligibleWelcome(ENROLL_CAP);
+  const now = new Date();
   let n = 0;
+  let backlogIndex = 0;
   for (const c of eligible) {
-    const anchor = c.firstSeenAt;
-    const due = new Date(new Date(anchor).getTime() + WELCOME_START_DAYS * DAY_MS);
+    const placed = welcomeEnrollmentDate({
+      firstSeenAt: new Date(c.firstSeenAt),
+      now,
+      backlogIndex,
+      perDay: ALS_LIFECYCLE_ENROLL_PER_DAY,
+      startDays: WELCOME_START_DAYS,
+    });
+    if (placed.usedBacklogSlot) backlogIndex++;
+    const { due, anchor } = placed;
+
     await db
       .insert(alsBuyerJourneys)
       .values({
