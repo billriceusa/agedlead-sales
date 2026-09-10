@@ -43,6 +43,11 @@ const CONSENT_SLUGS = [
   "calling-window",
   "suppression-list",
   "permission-pass",
+  // Added 2026-09-10 from a live buyer conversation: a captive P&C agent stopped buying
+  // aged leads because a 100-record batch scrubbed to 67 and, unlike fresh inventory,
+  // carried no credit-back. The site had no name for either half of that.
+  "lead-spoilage",
+  "net-usable-rate",
 ];
 
 const client = createClient({
