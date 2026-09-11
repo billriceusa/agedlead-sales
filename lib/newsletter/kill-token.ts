@@ -23,7 +23,21 @@ import { createHmac, timingSafeEqual } from "node:crypto";
  * this must not have. Killing is the safe direction.
  */
 
-const PURPOSE = "newsletter-kill-v1";
+import type { ArchiveKind } from "./archive-github";
+
+/**
+ * One purpose string per archive.
+ *
+ * The newsletter's stays EXACTLY as it was. Preview emails already sitting in
+ * Bill's inbox carry tokens signed with it, and those links have to keep
+ * working — a kill link that stopped verifying would fail in the one direction
+ * this design refuses to fail in. The offer gets its own purpose so a token for
+ * one archive cannot stop an issue in the other, even on the same date.
+ */
+const PURPOSES: Record<ArchiveKind, string> = {
+  newsletter: "newsletter-kill-v1",
+  offer: "offer-kill-v1",
+};
 
 function secret(): string {
   const s = process.env.CRON_SECRET;
@@ -32,9 +46,9 @@ function secret(): string {
 }
 
 /** Hex HMAC binding this purpose to one issue date. */
-export function killToken(date: string): string {
+export function killToken(date: string, kind: ArchiveKind = "newsletter"): string {
   return createHmac("sha256", secret())
-    .update(`${PURPOSE}:${date}`)
+    .update(`${PURPOSES[kind]}:${date}`)
     .digest("hex");
 }
 
@@ -45,11 +59,15 @@ export function killToken(date: string): string {
  * response timing, which is enough to forge one byte at a time. `timingSafeEqual`
  * throws on a length mismatch, so length is checked first.
  */
-export function verifyKillToken(date: string, token: string | null | undefined): boolean {
+export function verifyKillToken(
+  date: string,
+  token: string | null | undefined,
+  kind: ArchiveKind = "newsletter",
+): boolean {
   if (!token) return false;
   let expected: string;
   try {
-    expected = killToken(date);
+    expected = killToken(date, kind);
   } catch {
     return false;
   }
@@ -62,8 +80,18 @@ export function verifyKillToken(date: string, token: string | null | undefined):
   }
 }
 
-/** The absolute URL to drop into the preview email. */
-export function killUrl(siteUrl: string, date: string): string {
+/**
+ * The absolute URL to drop into the preview email.
+ *
+ * The `kind` parameter is omitted for the newsletter so the URL shape is byte
+ * for byte what it has always been, and the kill route defaults to the same.
+ */
+export function killUrl(
+  siteUrl: string,
+  date: string,
+  kind: ArchiveKind = "newsletter",
+): string {
   const base = siteUrl.replace(/\/$/, "");
-  return `${base}/api/newsletter/kill?date=${encodeURIComponent(date)}&t=${killToken(date)}`;
+  const suffix = kind === "newsletter" ? "" : `&kind=${kind}`;
+  return `${base}/api/newsletter/kill?date=${encodeURIComponent(date)}&t=${killToken(date, kind)}${suffix}`;
 }

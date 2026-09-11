@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { verifyKillToken } from "@/lib/newsletter/kill-token";
-import { readIssue, archivePaths } from "@/lib/newsletter/archive-github";
+import { readIssue, archivePaths, type ArchiveKind } from "@/lib/newsletter/archive-github";
 import { commitFilesToGitHub } from "@/lib/cron/git-commit";
 
 /**
@@ -48,11 +48,19 @@ export async function GET(request: Request) {
   const url = new URL(request.url);
   const date = url.searchParams.get("date") ?? "";
   const token = url.searchParams.get("t");
+  // Absent means the weekly newsletter, so every link already in Bill's inbox
+  // keeps resolving to the archive it was signed against.
+  const kindParam = url.searchParams.get("kind");
+  if (kindParam !== null && kindParam !== "offer" && kindParam !== "newsletter") {
+    return page("Bad request", "That link names an archive that does not exist.", false);
+  }
+  const kind: ArchiveKind = kindParam === "offer" ? "offer" : "newsletter";
+  const what = kind === "offer" ? "restock offer" : "issue";
 
   if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
     return page("Bad request", "That link is missing a valid issue date.", false);
   }
-  if (!verifyKillToken(date, token)) {
+  if (!verifyKillToken(date, token, kind)) {
     // Deliberately does not say whether the date exists — an unauthenticated
     // caller learns nothing about the schedule.
     return page("Not authorised", "That link is not valid.", false);
@@ -60,7 +68,7 @@ export async function GET(request: Request) {
 
   let issue;
   try {
-    issue = await readIssue(date);
+    issue = await readIssue(date, kind);
   } catch (err) {
     console.error("[Kill] archive read failed:", err);
     return page(
@@ -71,7 +79,7 @@ export async function GET(request: Request) {
   }
 
   if (!issue) {
-    return page("No such issue", `Nothing is archived for ${date}.`, false);
+    return page("No such issue", `No ${what} is archived for ${date}.`, false);
   }
 
   if (issue.sent) {
@@ -97,13 +105,13 @@ export async function GET(request: Request) {
     ...issue,
     killed: true,
     killedAt: new Date().toISOString(),
-    killedReason: "Stopped by Bill from the Sunday preview email.",
+    killedReason: "Stopped by Bill from the preview email.",
   };
 
   try {
     await commitFilesToGitHub(
-      [{ path: archivePaths.json(date), content: JSON.stringify(killed, null, 2) + "\n" }],
-      `chore(newsletter): stop the ${date} issue — killed from the preview`,
+      [{ path: archivePaths.json(date, kind), content: JSON.stringify(killed, null, 2) + "\n" }],
+      `chore(${kind}): stop the ${date} ${what} — killed from the preview`,
     );
   } catch (err) {
     console.error("[Kill] commit failed:", err);
@@ -114,11 +122,11 @@ export async function GET(request: Request) {
     );
   }
 
-  console.log(`[Kill] Issue ${date} marked killed`);
+  console.log(`[Kill] ${kind} ${date} marked killed`);
   return page(
     "Stopped",
-    `Issue <strong>${date}</strong> will not send. Nothing goes to the list. ` +
-      `The archive records it as killed, so neither the Tuesday cron nor the send script will pick it up — including by accident later.`,
+    `The ${what} for <strong>${date}</strong> will not send. Nothing goes to the list. ` +
+      `The archive records it as killed, so no scheduled run and no send script will pick it up — including by accident later.`,
     true,
   );
 }

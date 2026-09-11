@@ -23,14 +23,24 @@ type VercelConfig = { crons?: { path: string; schedule: string }[] };
 function scheduledCrons(): { name: string; schedule: string }[] {
   const raw = readFileSync(join(process.cwd(), "vercel.json"), "utf-8");
   const config = JSON.parse(raw) as VercelConfig;
-  return (config.crons ?? []).map((c) => ({
-    // Strip the query string as well as the prefix. A Vercel cron path may
-    // carry one — `als-daily-report?send=1` distinguishes the scheduled send
-    // from the same route serving a live view — and matching on the raw string
-    // would report a correctly-monitored cron as unwatched.
-    name: c.path.replace(/^\/api\/cron\//, "").split("?")[0],
-    schedule: c.schedule,
-  }));
+  return (config.crons ?? []).map((c) => {
+    // Strip the prefix and the query string. A Vercel cron path may carry one —
+    // `als-daily-report?send=1` distinguishes the scheduled send from the same
+    // route serving a live view — and matching on the raw string would report a
+    // correctly-monitored cron as unwatched.
+    const [path, query] = c.path.replace(/^\/api\/cron\//, "").split("?");
+    // `?mode=` is the exception, and it widens this guard rather than loosening
+    // it. One route scheduled twice under different modes writes a SEPARATE
+    // heartbeat per mode — `restock-offer` drafts on Sunday and sends on
+    // Thursday — and collapsing both to the route name would let a healthy
+    // draft run stand in for a send that has stopped firing. Including the mode
+    // means every mode has to be watched on its own.
+    const mode = new URLSearchParams(query ?? "").get("mode");
+    return {
+      name: mode ? `${path}-${mode}` : path,
+      schedule: c.schedule,
+    };
+  });
 }
 
 /** health-check cannot meaningfully monitor its own staleness. */
