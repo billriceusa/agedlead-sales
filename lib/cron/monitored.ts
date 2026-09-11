@@ -84,17 +84,25 @@ export const CRON_STALENESS: Record<MonitoredCron, StalenessRule> = {
   // so a heartbeat is expected every week even though the offer mails monthly.
   // That is the whole reason they are watchable: if the beat were monthly, an
   // 8-day window could not tell a stalled cron from a normal off-week.
+  //
+  // firstExpectedAt is the FIRST WEEKLY BEAT, not the first month the offer
+  // actually mails. Setting it to the October send date instead — which is what
+  // these said when they shipped — would have suppressed every missing-heartbeat
+  // alert until 2026-10-05, so a cron Vercel never registered would have looked
+  // healthy for three and a half weeks and then simply not run. The point of
+  // watching a weekly no-op is that it proves the schedule is alive; dating the
+  // watch to the monthly send throws that away.
   "restock-offer-draft": {
     maxDays: 8,
     label: "Restock offer draft cron (Sunday)",
-    firstExpectedAt: "2026-10-05",
+    firstExpectedAt: "2026-09-14", // first Sunday run is 2026-09-13
   },
-  // The send half. Its silence is the expensive one — the draft would still
+  // The send half. Its silence is the expensive one: the draft would still
   // archive an offer and mail Bill a preview announcing a Thursday send that
-  // then never happens, which looks like everything working.
+  // then never happens, which looks exactly like everything working.
   "restock-offer-send": {
     maxDays: 8,
     label: "Restock offer send cron (Thursday)",
-    firstExpectedAt: "2026-10-09",
+    firstExpectedAt: "2026-09-18", // first Thursday run is 2026-09-17
   },
 };

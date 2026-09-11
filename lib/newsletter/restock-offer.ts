@@ -190,6 +190,24 @@ export function editionFor(date: Date): RestockEdition {
  * itself healthy while doing it.
  */
 /**
+ * The next draft day on or after `date` — this month's if it has not passed,
+ * otherwise next month's.
+ *
+ * `firstSundayLabel` answers "which label does a run happening now belong to",
+ * which is what both cron modes need. It is the wrong question for a human
+ * asking when the next offer goes out: on 2026-09-11 it returns 2026-09-06, a
+ * date that has already gone by and will never draft anything. Reporting that
+ * as an upcoming send is how a status check ends up reassuring someone about a
+ * run that cannot happen.
+ */
+export function nextDraftLabel(date: Date): string {
+  const thisMonth = firstSundayLabel(date);
+  const today = date.toISOString().slice(0, 10);
+  if (thisMonth >= today) return thisMonth;
+  return firstSundayLabel(new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth() + 1, 1)));
+}
+
+/**
  * Hours elapsed since the draft run that wrote `label`.
  *
  * The draft cron fires at 14:00 UTC, so the label plus that time is when the

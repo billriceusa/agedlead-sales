@@ -5,6 +5,7 @@ import {
   editionFor,
   firstSundayLabel,
   hoursSinceDraft,
+  nextDraftLabel,
   RESTOCK_CAMPAIGN,
   RESTOCK_EDITIONS,
 } from "./restock-offer";
@@ -298,6 +299,39 @@ describe("editionFor", () => {
         run.add(editionFor(new Date(Date.UTC(2026, start + i, 15))).key);
       }
       assert.equal(run.size, RESTOCK_EDITIONS.length, `repeat starting at month ${start}`);
+    }
+  });
+});
+
+describe("nextDraftLabel", () => {
+  // A status check that reports a date already in the past reads as a promise
+  // about a run that cannot happen. This is the function that stops that.
+  test("returns this month's draft day when it is still ahead", () => {
+    assert.equal(nextDraftLabel(new Date("2026-10-01T12:00:00Z")), "2026-10-04");
+  });
+
+  test("returns the draft day itself on the day", () => {
+    assert.equal(nextDraftLabel(new Date("2026-10-04T09:00:00Z")), "2026-10-04");
+  });
+
+  test("rolls to next month once this month's has passed", () => {
+    // 2026-09-11: September's first Sunday was the 6th and is gone.
+    assert.equal(nextDraftLabel(new Date("2026-09-11T12:00:00Z")), "2026-10-04");
+    assert.equal(nextDraftLabel(new Date("2026-10-05T12:00:00Z")), "2026-11-01");
+  });
+
+  test("rolls across a year boundary", () => {
+    assert.equal(nextDraftLabel(new Date("2026-12-20T12:00:00Z")), "2027-01-03");
+  });
+
+  test("never returns a date in the past", () => {
+    for (let m = 0; m < 24; m++) {
+      for (const d of [1, 7, 15, 28]) {
+        const now = new Date(Date.UTC(2026, m, d));
+        const next = nextDraftLabel(now);
+        assert.ok(next >= now.toISOString().slice(0, 10), `${now.toISOString()} -> ${next}`);
+        assert.equal(new Date(`${next}T00:00:00Z`).getUTCDay(), 0, `${next} is not a Sunday`);
+      }
     }
   });
 });
