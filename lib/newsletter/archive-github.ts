@@ -19,6 +19,23 @@
  * both are fetched fresh on every run.
  */
 
+/**
+ * Which archive an issue belongs to.
+ *
+ * The weekly newsletter and the monthly restock offer are both "an issue that
+ * gets archived, previewed, optionally killed, then sent", so they share every
+ * mechanism here. They must NOT share a slot: the archive is keyed by date, the
+ * offer drafts on a Sunday like the newsletter does, and one would silently
+ * overwrite the other. Separate directories keep the two cadences independent
+ * and keep each one's performance readable on its own.
+ */
+export type ArchiveKind = "newsletter" | "offer";
+
+const ARCHIVE_DIRS: Record<ArchiveKind, string> = {
+  newsletter: "data/newsletter-archive",
+  offer: "data/offer-archive",
+};
+
 export interface ArchivedIssue {
   weekOf: string;
   sendDate?: string;
@@ -67,19 +84,32 @@ async function fetchRaw(path: string): Promise<string | null> {
   return res.text();
 }
 
-/** The issue record, or null when no issue is archived for that date. */
-export async function readIssue(date: string): Promise<ArchivedIssue | null> {
-  const raw = await fetchRaw(`data/newsletter-archive/${date}.json`);
+/**
+ * The issue record, or null when no issue is archived for that date.
+ *
+ * `kind` defaults to "newsletter" so every caller that predates the offer
+ * archive keeps reading exactly what it read before.
+ */
+export async function readIssue(
+  date: string,
+  kind: ArchiveKind = "newsletter",
+): Promise<ArchivedIssue | null> {
+  const raw = await fetchRaw(archivePaths.json(date, kind));
   if (raw === null) return null;
   return JSON.parse(raw) as ArchivedIssue;
 }
 
 /** The rendered HTML — the exact bytes that get mailed. */
-export async function readIssueHtml(date: string): Promise<string | null> {
-  return fetchRaw(`data/newsletter-archive/${date}.html`);
+export async function readIssueHtml(
+  date: string,
+  kind: ArchiveKind = "newsletter",
+): Promise<string | null> {
+  return fetchRaw(archivePaths.html(date, kind));
 }
 
 export const archivePaths = {
-  json: (date: string) => `data/newsletter-archive/${date}.json`,
-  html: (date: string) => `data/newsletter-archive/${date}.html`,
+  json: (date: string, kind: ArchiveKind = "newsletter") =>
+    `${ARCHIVE_DIRS[kind]}/${date}.json`,
+  html: (date: string, kind: ArchiveKind = "newsletter") =>
+    `${ARCHIVE_DIRS[kind]}/${date}.html`,
 };

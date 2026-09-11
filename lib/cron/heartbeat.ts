@@ -12,7 +12,13 @@ export type CronName =
   | "gsc-trend"
   | "commission-report"
   | "als-lifecycle"
-  | "send-newsletter";
+  | "send-newsletter"
+  // The monthly restock offer beats separately per mode. One name for both
+  // would let a healthy weekly draft run mask a send that has stopped firing,
+  // and a send that never fires is invisible in the worst way: no bounce, no
+  // error, just an offer that silently stops reaching the list.
+  | "restock-offer-draft"
+  | "restock-offer-send";
 
 export type CronStatus = "ok" | "partial" | "failed";
 

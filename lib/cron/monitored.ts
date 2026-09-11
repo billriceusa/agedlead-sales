@@ -26,6 +26,8 @@ export const MONITORED_CRONS = [
   "commission-report",
   "weekly-newsletter",
   "send-newsletter",
+  "restock-offer-draft",
+  "restock-offer-send",
 ] as const satisfies readonly CronName[];
 
 export type MonitoredCron = (typeof MONITORED_CRONS)[number];
@@ -77,5 +79,22 @@ export const CRON_STALENESS: Record<MonitoredCron, StalenessRule> = {
     maxDays: 8,
     label: "Newsletter send cron (Tuesday)",
     firstExpectedAt: "2026-09-09",
+  },
+  // Both restock crons fire WEEKLY and no-op on the weeks that are not theirs,
+  // so a heartbeat is expected every week even though the offer mails monthly.
+  // That is the whole reason they are watchable: if the beat were monthly, an
+  // 8-day window could not tell a stalled cron from a normal off-week.
+  "restock-offer-draft": {
+    maxDays: 8,
+    label: "Restock offer draft cron (Sunday)",
+    firstExpectedAt: "2026-10-05",
+  },
+  // The send half. Its silence is the expensive one — the draft would still
+  // archive an offer and mail Bill a preview announcing a Thursday send that
+  // then never happens, which looks like everything working.
+  "restock-offer-send": {
+    maxDays: 8,
+    label: "Restock offer send cron (Thursday)",
+    firstExpectedAt: "2026-10-09",
   },
 };

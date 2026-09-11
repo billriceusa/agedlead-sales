@@ -32,6 +32,14 @@
       "schedule": "0 13 * * 2"
     },
     {
+      "path": "/api/cron/restock-offer?mode=draft",
+      "schedule": "0 14 * * 0"
+    },
+    {
+      "path": "/api/cron/restock-offer?mode=send",
+      "schedule": "0 13 * * 4"
+    },
+    {
       "path": "/api/cron/commission-report",
       "schedule": "0 10 * * *"
     },
