@@ -1,0 +1,34 @@
+{
+  "runDate": "2026-09-13T14:01:01.039Z",
+  "weekOf": "2026-09-14",
+  "sendDate": "2026-09-15",
+  "theme": "The Numbers Game",
+  "focusVertical": "topic-themed",
+  "calendarStatus": "Calendar: \"The Numbers Game\" for 2026-09-15. 15 issue(s) remain, through 2026-12-29.",
+  "calendarMatched": true,
+  "calendarRemaining": 15,
+  "subject": "The Numbers Game: Q4 Math That Fills Pipelines",
+  "previewText": "Work backwards from your Q4 target — here's the formula.",
+  "html": "2026-09-14.html",
+  "sent": false,
+  "priceGuard": {
+    "blocking": [],
+    "warnings": [
+      "Duplicate utm_content values (2026-09-14-digest) — GA4 merges these into one row, so those placements cannot be told apart."
+    ]
+  },
+  "featuredArticle": {
+    "title": "How to Work Aged Leads: The Complete System for Maximum ROI",
+    "slug": "how-to-work-aged-leads-the-complete-system-for-maximum-roi",
+    "spotlight": "This is the piece to read before you build your Q4 numbers — it lays out the full system for turning aged leads into revenue, not just the scripts but the economics behind why the math works. If you're trying to figure out how many leads you actually need and what kind of ROI is realistic, this is your starting point."
+  },
+  "quickTips": [
+    "Work the formula backwards",
+    "Cost per lead is a vanity number",
+    "Build your break-even table before you order"
+  ],
+  "industryInsight": "Q4 is when the industry's own data says to push",
+  "errors": [
+    "Warning: Duplicate utm_content values (2026-09-14-digest) — GA4 merges these into one row, so those placements cannot be told apart."
+  ]
+}
