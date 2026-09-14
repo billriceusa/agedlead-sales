@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-13T12:00:05.410Z",
+  "lastUpdated": "2026-09-14T12:00:05.593Z",
   "snapshots": [
     {
       "date": "2026-07-10",
@@ -14176,6 +14176,316 @@
           "impressions": 2,
           "ctr": 0,
           "position": 31
+        }
+      ]
+    },
+    {
+      "date": "2026-09-14",
+      "property": "agedleadsales",
+      "status": "ok",
+      "rolling7d": {
+        "clicks": 16,
+        "impressions": 2930,
+        "ctr": 0.0055,
+        "position": 12.39
+      },
+      "topPages": [
+        {
+          "page": "https://agedleadsales.com/providers/the-leads-warehouse",
+          "clicks": 3,
+          "impressions": 90,
+          "ctr": 0.0333,
+          "position": 5.29
+        },
+        {
+          "page": "https://agedleadsales.com/providers/aged-lead-store",
+          "clicks": 2,
+          "impressions": 302,
+          "ctr": 0.0066,
+          "position": 6.84
+        },
+        {
+          "page": "https://agedleadsales.com/blog/aged-lead-scripts-that-work",
+          "clicks": 1,
+          "impressions": 4,
+          "ctr": 0.25,
+          "position": 2.75
+        },
+        {
+          "page": "https://agedleadsales.com/blog/how-to-work-aged-leads-the-complete-system-for-maximum-roi",
+          "clicks": 1,
+          "impressions": 7,
+          "ctr": 0.1429,
+          "position": 5.71
+        },
+        {
+          "page": "https://agedleadsales.com/blog/how-to-work-heloc-leads",
+          "clicks": 1,
+          "impressions": 9,
+          "ctr": 0.1111,
+          "position": 6
+        },
+        {
+          "page": "https://agedleadsales.com/compare/aged-lead-store-vs-the-leads-warehouse",
+          "clicks": 1,
+          "impressions": 29,
+          "ctr": 0.0345,
+          "position": 8.31
+        },
+        {
+          "page": "https://agedleadsales.com/lead-types/iul-leads",
+          "clicks": 1,
+          "impressions": 82,
+          "ctr": 0.0122,
+          "position": 12.29
+        },
+        {
+          "page": "https://agedleadsales.com/price-index/life-insurance",
+          "clicks": 1,
+          "impressions": 45,
+          "ctr": 0.0222,
+          "position": 9.44
+        },
+        {
+          "page": "https://agedleadsales.com/providers",
+          "clicks": 1,
+          "impressions": 94,
+          "ctr": 0.0106,
+          "position": 18.55
+        },
+        {
+          "page": "https://agedleadsales.com/providers/best/mca-business-loans",
+          "clicks": 1,
+          "impressions": 3,
+          "ctr": 0.3333,
+          "position": 8.67
+        }
+      ],
+      "topQueries": [
+        {
+          "query": "aged leads",
+          "clicks": 2,
+          "impressions": 52,
+          "ctr": 0.0385,
+          "position": 8.06
+        },
+        {
+          "query": "iul",
+          "clicks": 1,
+          "impressions": 1,
+          "ctr": 1,
+          "position": 11
+        },
+        {
+          "query": "the leads warehouse reviews",
+          "clicks": 1,
+          "impressions": 8,
+          "ctr": 0.125,
+          "position": 1.25
+        },
+        {
+          "query": "40. non-compliance management workflow",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 56
+        },
+        {
+          "query": "affordable aged life leads",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 25
+        },
+        {
+          "query": "aged final expense leads",
+          "clicks": 0,
+          "impressions": 6,
+          "ctr": 0,
+          "position": 17.17
+        },
+        {
+          "query": "aged health insurance leads",
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 18.67
+        },
+        {
+          "query": "aged homeowner insurance leads",
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 5
+        },
+        {
+          "query": "aged homeowners insurance leads",
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 5.67
+        },
+        {
+          "query": "aged insurance leads",
+          "clicks": 0,
+          "impressions": 6,
+          "ctr": 0,
+          "position": 12.67
+        }
+      ]
+    },
+    {
+      "date": "2026-09-14",
+      "property": "workagedleads",
+      "status": "ok",
+      "rolling7d": {
+        "clicks": 9,
+        "impressions": 3950,
+        "ctr": 0.0023,
+        "position": 42.02
+      },
+      "topPages": [
+        {
+          "page": "https://workagedleads.com/lead-types/mortgage-leads",
+          "clicks": 3,
+          "impressions": 114,
+          "ctr": 0.0263,
+          "position": 42.15
+        },
+        {
+          "page": "https://workagedleads.com/blog/aged-lead-store-review-2026",
+          "clicks": 1,
+          "impressions": 230,
+          "ctr": 0.0043,
+          "position": 6.09
+        },
+        {
+          "page": "https://workagedleads.com/blog/final-expense-door-knocking-playbook",
+          "clicks": 1,
+          "impressions": 3,
+          "ctr": 0.3333,
+          "position": 5.33
+        },
+        {
+          "page": "https://workagedleads.com/blog/is-it-legal-to-call-purchased-leads",
+          "clicks": 1,
+          "impressions": 33,
+          "ctr": 0.0303,
+          "position": 7
+        },
+        {
+          "page": "https://workagedleads.com/blog/voicemail-scripts-insurance-leads",
+          "clicks": 1,
+          "impressions": 61,
+          "ctr": 0.0164,
+          "position": 6.95
+        },
+        {
+          "page": "https://workagedleads.com/glossary/exclusive-lead",
+          "clicks": 1,
+          "impressions": 18,
+          "ctr": 0.0556,
+          "position": 51.06
+        },
+        {
+          "page": "https://workagedleads.com/lead-types/life-insurance-leads",
+          "clicks": 1,
+          "impressions": 288,
+          "ctr": 0.0035,
+          "position": 56.32
+        },
+        {
+          "page": "https://workagedleads.com/",
+          "clicks": 0,
+          "impressions": 44,
+          "ctr": 0,
+          "position": 35.75
+        },
+        {
+          "page": "https://workagedleads.com/about/bill-rice",
+          "clicks": 0,
+          "impressions": 9,
+          "ctr": 0,
+          "position": 7
+        },
+        {
+          "page": "https://workagedleads.com/blog",
+          "clicks": 0,
+          "impressions": 5,
+          "ctr": 0,
+          "position": 19
+        }
+      ],
+      "topQueries": [
+        {
+          "query": "#roi",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 79
+        },
+        {
+          "query": "1-10 closing technique",
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 30.5
+        },
+        {
+          "query": "2025 sga limit",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 100
+        },
+        {
+          "query": "2026 sga limit",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 92
+        },
+        {
+          "query": "a loan officer",
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 64.33
+        },
+        {
+          "query": "affordable aged life leads",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 27
+        },
+        {
+          "query": "affordable health insurance leads",
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 47.5
+        },
+        {
+          "query": "aged auto insurance leads",
+          "clicks": 0,
+          "impressions": 5,
+          "ctr": 0,
+          "position": 14.6
+        },
+        {
+          "query": "aged final expense leads",
+          "clicks": 0,
+          "impressions": 25,
+          "ctr": 0,
+          "position": 24.56
+        },
+        {
+          "query": "aged health insurance leads",
+          "clicks": 0,
+          "impressions": 23,
+          "ctr": 0,
+          "position": 13.87
         }
       ]
     }
