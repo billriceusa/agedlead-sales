@@ -19,6 +19,8 @@ needs a terminal.
 | Sun 09-20, 09-27 14:00 | Newsletter draft | email: "[PREVIEW] …" with a red Stop button |
 | Tue 09-22, 09-29 13:00 | Newsletter send | goes to the list unless you pressed Stop |
 | Sun 14:00 / Thu 13:00 weekly | Restock offer draft / send checks | nothing — they no-op until October |
+| **Wed 09-23 13:00** | Mortgage protection announcement, scheduled in Resend | goes to ~2,950 life and final expense agents unless deleted — see Scenario 8 |
+| **Fri 09-25 13:00** | Mortgage protection reminder, scheduled in Resend | same group, same cancel path |
 
 The first restock offer drafts **2026-10-04** and sends **2026-10-08**, after you are back.
 
@@ -121,6 +123,22 @@ Store pages are Troy's WordPress site, not this repository.
 
 - A copy tweak you can do in the WordPress admin in Safari.
 - Anything larger, reply that it will be done in the first week of October.
+
+---
+
+## Scenario 8 — cancel a mortgage protection launch email
+
+Both launch emails are already scheduled inside Resend. Nothing in our code runs to send them, so
+nothing here can be fixed with a deploy — only cancelled.
+
+1. In Safari, go to **resend.com** and sign in.
+2. Open **Broadcasts**.
+3. Find **MP Launch — Announcement — 2026-09-23** or **MP Launch — Reminder — 2026-09-25**. Status shows **Scheduled**.
+4. Open it, then **Delete**. Deleting a scheduled broadcast cancels the send.
+5. Done looks like the broadcast gone from the list. The other one is unaffected.
+
+Cancel only the one that is wrong. The broadcast IDs are in
+`data/campaigns/mortgage-protection-launch-2026-09.json`.
 
 ---
 

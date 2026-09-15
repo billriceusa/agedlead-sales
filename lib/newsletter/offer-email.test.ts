@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { buildOfferHtml, OFFER_CAMPAIGN, OFFER_CONTENT } from "./offer-email";
 import { STORE_VERTICALS } from "./store-links";
 import { checkIssueHtml } from "./issue-gate";
+import { SENDER_POSTAL_ADDRESS } from "@/lib/sender";
 
 const LABEL = "2026-09-10";
 const SITE = "https://workagedleads.com";
@@ -77,6 +78,11 @@ describe("buildOfferHtml", () => {
     const html = buildOfferHtml(LABEL, "https://example.test");
     assert.equal(html.includes("agedleadsales.com"), false);
     assert.ok(html.includes("https://example.test/calculators/know-your-cpl"));
+  });
+
+  test("carries the sender's physical postal address", () => {
+    // CAN-SPAM, 15 U.S.C. § 7704(a)(5)(A)(iii). Missing from this template until 2026-09-15.
+    assert.ok(buildOfferHtml(LABEL, SITE).includes(SENDER_POSTAL_ADDRESS));
   });
 
   test("keeps the unsubscribe merge tag intact", () => {

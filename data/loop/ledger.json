@@ -236,6 +236,28 @@
       "killRule": "Measure 2026-11-08, one month after the first send. Stop the program if the first edition earns no attributed store revenue on utm_campaign=restock-offer AND its unsubscribe rate exceeds the weekly newsletter's. Revenue with high unsubscribes, or unsubscribes normal with no revenue, is a copy problem to iterate on, not a kill.",
       "measureAt": "2026-11-08",
       "verdict": "pending"
+    },
+    {
+      "iteration": 10,
+      "date": "2026-09-15",
+      "engine": "merchant-intelligence",
+      "asset": "lib/newsletter/mortgage-protection-launch.ts + scripts/mp-launch-{segment,schedule}.ts \u2014 mortgage protection product launch",
+      "targetCluster": "Resend segment of Life Insurance + Final Expense inquirers (2,951 on 2026-09-15); landing page agedleadstore.com/mortgage-protection-leads/",
+      "rationale": "Aged Lead Store added mortgage protection leads and Troy asked (2026-09-14) for an announcement to life insurance agents to move the new inventory quickly. Bill set the terms 2026-09-15: landing page with affiliate UTMs, announcement plus reminder, audience limited to Life and Final Expense inquirers, no homeowner-verification claim, both scheduled in Resend before his Europe trip.",
+      "hypothesis": "A product-launch email to the segment that already sells the adjacent product earns attributed store revenue at a far higher rate per recipient than the general list, because the offer is news to them rather than noise.",
+      "expected": {
+        "D": null,
+        "P": null,
+        "C": null,
+        "basis": "No prior segmented launch to compare. Nearest reference is the 2026-09-10 direct offer to the full list. Read revenue per recipient against it, not raw revenue."
+      },
+      "implementation": {
+        "sends": "Announcement Wed 2026-09-23 13:00 UTC, reminder Fri 2026-09-25 13:00 UTC, scheduled Resend broadcasts to one segment. Cancel = delete the broadcast.",
+        "cadenceNote": "This group also receives the weekly newsletter Tue 2026-09-22, so three emails in four days, 13 days after the 2026-09-10 offer. Bill chose this knowing the collision; read unsubscribes with that in mind."
+      },
+      "killRule": "Measure 2026-10-02. Do not repeat segmented product launches in this form if the two sends together earn no attributed store revenue on utm_campaign=mortgage-protection-launch AND the segment's unsubscribe rate exceeds the weekly newsletter's by more than double. Revenue with elevated unsubscribes is a cadence lesson, not a kill.",
+      "measureAt": "2026-10-02",
+      "verdict": "pending"
     }
   ],
   "scoreboardReadings": [

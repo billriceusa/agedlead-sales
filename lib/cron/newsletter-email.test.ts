@@ -2,6 +2,7 @@ import { test, describe } from "node:test";
 import assert from "node:assert/strict";
 import { buildNewsletterHtml } from "./newsletter-email";
 import type { NewsletterContent } from "./newsletter-ai";
+import { SENDER_POSTAL_ADDRESS } from "@/lib/sender";
 
 const SITE = "https://workagedleads.com";
 const WEEK = "2026-09-08";
@@ -90,5 +91,13 @@ describe("newsletter site-link tagging", () => {
     for (const u of links(html).filter((x) => x.origin === SITE)) {
       assert.notEqual(u.searchParams.get("utm_medium"), "affiliate", u.pathname);
     }
+  });
+
+  test("carries the sender's physical postal address", () => {
+    // CAN-SPAM, 15 U.S.C. § 7704(a)(5)(A)(iii): a commercial email must include a
+    // valid physical postal address of the sender. This template shipped without
+    // one until 2026-09-15 — the lifecycle mailer had it, the broadcasts did not.
+    const html = buildNewsletterHtml(content, SITE, WEEK);
+    assert.ok(html.includes(SENDER_POSTAL_ADDRESS), "postal address missing from the newsletter footer");
   });
 });

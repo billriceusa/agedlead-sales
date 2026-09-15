@@ -186,6 +186,101 @@ export async function createAndSendBroadcast(
   return { broadcastId };
 }
 
+/**
+ * Create a broadcast to a SEGMENT and schedule it for a fixed time.
+ *
+ * Separate from `createAndSendBroadcast` on purpose. That function sends
+ * immediately, uses the legacy `audience_id`, and is what the live weekly
+ * newsletter depends on — it is not touched.
+ *
+ * Resend renamed Audiences to Segments; `segment_id` is the current parameter.
+ * Scheduling is `scheduled_at` on the send call (ISO 8601). A scheduled
+ * broadcast is cancelled by deleting it, which the dashboard can do from a
+ * phone — the point of scheduling while the sender is travelling.
+ *
+ * If the send/schedule step fails, the just-created broadcast is deleted so a
+ * retry does not leave an orphan draft that could later be sent by hand in
+ * error. The delete error, if any, is reported alongside the original one.
+ */
+export async function createScheduledBroadcast(
+  apiKey: string,
+  options: {
+    segmentId: string;
+    from: string;
+    subject: string;
+    html: string;
+    previewText?: string;
+    name: string;
+    replyTo?: string;
+    /** ISO 8601, e.g. 2026-09-23T13:00:00Z. Must be in the future. */
+    scheduledAt: string;
+  },
+): Promise<{ broadcastId: string }> {
+  if (!(Date.parse(options.scheduledAt) > Date.now())) {
+    throw new Error(`scheduledAt ${options.scheduledAt} is not in the future — refusing.`);
+  }
+
+  const createRes = await fetch(`${RESEND_BASE}/broadcasts`, {
+    method: "POST",
+    headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
+    body: JSON.stringify({
+      segment_id: options.segmentId,
+      from: options.from,
+      subject: options.subject,
+      html: options.html,
+      preview_text: options.previewText,
+      name: options.name,
+      ...(options.replyTo ? { reply_to: options.replyTo } : {}),
+    }),
+  });
+  if (!createRes.ok) {
+    throw new Error(`Resend create broadcast error ${createRes.status}: ${await createRes.text()}`);
+  }
+  const broadcastId: string = (await createRes.json()).id;
+
+  const sendRes = await fetch(`${RESEND_BASE}/broadcasts/${broadcastId}/send`, {
+    method: "POST",
+    headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
+    body: JSON.stringify({ scheduled_at: options.scheduledAt }),
+  });
+  if (!sendRes.ok) {
+    const sendError = `Resend schedule broadcast error ${sendRes.status}: ${await sendRes.text()}`;
+    const del = await fetch(`${RESEND_BASE}/broadcasts/${broadcastId}`, {
+      method: "DELETE",
+      headers: { Authorization: `Bearer ${apiKey}` },
+    });
+    throw new Error(
+      del.ok
+        ? `${sendError} (the draft broadcast ${broadcastId} was deleted)`
+        : `${sendError} — AND deleting draft ${broadcastId} failed (${del.status}); delete it in the dashboard`,
+    );
+  }
+
+  return { broadcastId };
+}
+
+export interface ResendBroadcastRecord {
+  id: string;
+  name?: string;
+  status?: string;
+  scheduled_at?: string | null;
+  sent_at?: string | null;
+  segment_id?: string | null;
+  audience_id?: string | null;
+  subject?: string;
+  [key: string]: unknown;
+}
+
+/** Read one broadcast back, uncached — used to verify a schedule actually took. */
+export async function getBroadcast(apiKey: string, broadcastId: string): Promise<ResendBroadcastRecord> {
+  const res = await fetch(`${RESEND_BASE}/broadcasts/${broadcastId}`, {
+    headers: { Authorization: `Bearer ${apiKey}` },
+    cache: "no-store",
+  });
+  if (!res.ok) throw new Error(`Resend get broadcast error ${res.status}: ${await res.text()}`);
+  return (await res.json()) as ResendBroadcastRecord;
+}
+
 /** Find an audience by exact name, or create it. Returns the audience id.
  *
  * Uses cache:"no-store" deliberately — the shared resendFetch helper caches GETs

@@ -11,6 +11,7 @@ import {
 } from "./restock-offer";
 import { STORE_VERTICALS } from "./store-links";
 import { checkIssueHtml } from "./issue-gate";
+import { SENDER_POSTAL_ADDRESS } from "@/lib/sender";
 
 const LABEL = "2026-10-04";
 const SITE = "https://workagedleads.com";
@@ -244,6 +245,13 @@ describe("restock offer editions", () => {
       const html = buildRestockHtml(edition, LABEL, "https://example.test");
       assert.equal(html.includes("agedleadsales.com"), false, `${key} hardcodes a host`);
       assert.ok(html.includes("https://example.test/calculators/know-your-cpl"), key);
+    }
+  });
+
+  test("every edition carries the sender's physical postal address", () => {
+    // CAN-SPAM, 15 U.S.C. § 7704(a)(5)(A)(iii). Missing from this template until 2026-09-15.
+    for (const [key, edition] of ALL) {
+      assert.ok(buildRestockHtml(edition, LABEL, SITE).includes(SENDER_POSTAL_ADDRESS), key);
     }
   });
 

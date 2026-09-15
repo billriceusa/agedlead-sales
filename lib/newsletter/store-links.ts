@@ -100,3 +100,37 @@ export function catalogueUrl(
 ): string {
   return storeUrl(weekLabel, placement, undefined, campaign);
 }
+
+/**
+ * Landing pages on the marketing site, for sends that must point at one.
+ *
+ * `storeUrl` deliberately skips the marketing page and goes straight into the
+ * storefront app. A product LAUNCH is the exception: the landing page is where
+ * the partner explains the new product, and Bill asked for it by name on
+ * 2026-09-15. Same GA4 property as the storefront, so attribution is unchanged.
+ *
+ * Keys are explicit rather than a free-form path so a typo cannot mail a link
+ * to a page that does not exist — the site serves a 200 for bogus slugs too.
+ * Verified 2026-09-15: 200, zero redirects, titled "Mortgage Protection Leads".
+ */
+export const LANDING_PAGES = {
+  "mortgage-protection": "https://agedleadstore.com/mortgage-protection-leads/",
+} as const;
+
+export type LandingPageKey = keyof typeof LANDING_PAGES;
+
+/** A tagged landing-page URL. Same UTM shape as `storeUrl`. */
+export function landingPageUrl(
+  page: LandingPageKey,
+  label: string,
+  placement: string,
+  campaign: string,
+): string {
+  const params = new URLSearchParams({
+    utm_source: AFFILIATE_UTM_SOURCE,
+    utm_medium: "email",
+    utm_campaign: campaign,
+    utm_content: `${label}-${placement}`,
+  });
+  return `${LANDING_PAGES[page]}?${params.toString()}`;
+}
