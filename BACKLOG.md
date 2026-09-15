@@ -146,7 +146,11 @@ These are the levers that actually move the stalled step. None of them are code.
       Address, and the trend cron does not watch it — so the drain will only be half visible in
       `data/gsc-trend.json`. It can be read manually from the GSC property in the meantime, which
       is why this is not a blocker for the 09-15 measurement.
-- [ ] **Request Indexing on the top ~15 new-domain money pages** via URL Inspection. Manual and
+- [x] **SKIPPED 2026-09-15 (Bill).** The +2 week reading above shows new-domain impressions up tenfold, which
+      means Google has already crawled and indexed these pages. The gap is ranking (position ~42 vs ~20),
+      and requesting indexing does not move ranking. Revisit only if the 2026-10-13 query-level check shows
+      money pages missing from the index rather than ranking low.
+- ~~**Request Indexing on the top ~15 new-domain money pages**~~ via URL Inspection. Manual and
       tedious, but it forces a crawl instead of waiting for one. Start with the pages carrying the
       most old-domain clicks: `/lead-types/iul-leads`, `/lead-types/life-insurance-leads`,
       `/lead-types/mortgage-leads`, `/lead-types/insurance-leads`, `/lead-types/final-expense-leads`,
