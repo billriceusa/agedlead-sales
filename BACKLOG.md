@@ -94,7 +94,7 @@ These are the levers that actually move the stalled step. None of them are code.
       thing to check, and the `https://` URL-prefix properties (domain-level, therefore eligible)
       are the fallback to file from.
 
-- [ ] **Measure the Change of Address at +2 weeks — 2026-09-15.** This is the whole point of
+- [x] **Measure the Change of Address at +2 weeks — 2026-09-15.** This is the whole point of
       having filed it, and nothing else on this list tells us whether it took. Baseline captured
       2026-09-01, the day of filing (7-day rolling, from `data/gsc-trend.json` plus the GSC
       property for howtoworkleads):
@@ -115,12 +115,42 @@ These are the levers that actually move the stalled step. None of them are code.
       days. The redirects were always doing the consolidation on their own — this is an
       accelerator, and it was never a requirement.
 
+      **MEASURED 2026-09-15 (+2 weeks).** 7-day rolling; `workagedleads` and `agedleadsales` from
+      `data/gsc-trend.json` on main, `howtoworkleads` from the URL-prefix GSC property (the
+      `sc-domain:` form returns 403 to the MCP identity; the URL-prefix one is owner-verified).
+
+      | property | clicks | impressions | avg position |
+      |---|---:|---:|---:|
+      | `agedleadsales.com` (retiring) | 15 (was 37) | 2,529 (was 4,217) | 12.1 (was 20.1) |
+      | `howtoworkleads.com` (retiring) | 6 (was ~28) | ~2,030 (was ~4,200) | 17.6 (was ~22) |
+      | **`workagedleads.com`** (live) | **8** (was 1) | **3,454** (was 338) | **41.7** (was 65.0) |
+      | combined | ~29 (was ~66) | ~8,000 (was ~8,750) | — |
+
+      Read: **the visibility transferred, the clicks did not.** New-domain impressions rose tenfold
+      while the two old domains drained, and combined impressions held within ~8%. But the new host
+      is ranking those impressions around position 42 against the ~20 the old domains held, so
+      combined clicks are down by roughly half. The old domains' average position *improving* to
+      12–18 is survivorship — their weak pages redirected away first and the strong ones remain.
+
+      Caveats: two weeks, GSC's 2–3 day reporting lag, mixed page sets, tiny click counts. Per the
+      standing rule, do not act on page-aggregate position — the real test is query-level position
+      on the money terms.
+
+      Not failure yet, and not success. **Next checkpoint +6 weeks, 2026-10-13**, after Bill is back:
+      pull query-level position for the top 15 old-domain money queries. If the new host still sits
+      near 40 on those, the problem is on-page or authority, not crawl, and the Request Indexing item
+      below will not fix it.
+
 - [ ] **Add `howtoworkleads.com` to `GSC_PROPERTIES` in `lib/cron/gsc-properties.ts`.** It is a
       third pool of live search equity (~600 impressions/day) now under an active Change of
       Address, and the trend cron does not watch it — so the drain will only be half visible in
       `data/gsc-trend.json`. It can be read manually from the GSC property in the meantime, which
       is why this is not a blocker for the 09-15 measurement.
-- [ ] **Request Indexing on the top ~15 new-domain money pages** via URL Inspection. Manual and
+- [x] **SKIPPED 2026-09-15 (Bill).** The +2 week reading above shows new-domain impressions up tenfold, which
+      means Google has already crawled and indexed these pages. The gap is ranking (position ~42 vs ~20),
+      and requesting indexing does not move ranking. Revisit only if the 2026-10-13 query-level check shows
+      money pages missing from the index rather than ranking low.
+- ~~**Request Indexing on the top ~15 new-domain money pages**~~ via URL Inspection. Manual and
       tedious, but it forces a crawl instead of waiting for one. Start with the pages carrying the
       most old-domain clicks: `/lead-types/iul-leads`, `/lead-types/life-insurance-leads`,
       `/lead-types/mortgage-leads`, `/lead-types/insurance-leads`, `/lead-types/final-expense-leads`,
@@ -440,7 +470,10 @@ review out-earned our own affiliate partner's review by 4.3× at a lower rank.
 All 12 rewritten (titles ≤60 chars, descriptions ≤155, complete sentences), published, and verified
 live — 0 of 329 pages now ship truncated metadata.
 
-- [ ] **P1 [content-ops] — a Sanity publish does not reach the live site.** This is the finding that
+- [x] **RESOLVED (verified 2026-09-15) — `sanity/lib/fetch.ts` on main now sets `SANITY_REVALIDATE_SECONDS = 300` with a
+  `SANITY_CACHE_TAG`, and `app/api/revalidate/route.ts` exists for the Studio webhook. A publish reaches the site within five
+  minutes; the first request after an edit can still serve the old copy while it revalidates, so check twice.**
+- ~~**P1 [content-ops] — a Sanity publish does not reach the live site.**~~ This is the finding that
   outlasts the batch above. `sanity/lib/fetch.ts` calls `client.fetch` with no cache options, the blog
   route exports no `revalidate`, and there is no webhook or on-demand revalidation route anywhere in
   `app/api`. Pages are baked at build, so publishing changes nothing until someone happens to deploy.
@@ -1025,11 +1058,12 @@ Set up profiles on Source of Sources, Featured.com, QWOTED for expert quote oppo
 
 Audited the email program (welcome + AI + replenishment series) against the live site. The editorial calendar is already deep, so only the **genuine gaps** were added as `status: "brief"` items in `data/editorial-calendar.ts` (weeks 13–14) — ready for a writing session:
 
-- [ ] **Call Recording Consent by State** (Compliance) — the consent-law map + universal-safe disclosure; pairs with the email's record-every-call lesson (existing call-recording-analysis post is about *analysis*, not consent).
-- [ ] **The Aged-Lead Sales Stack <$100/mo** (Metrics) — software recommender (Workspace + dialer + CRM + drip + recording + scheduling); `/providers` covers lead sellers, not tools. **Affiliate-monetizable.**
-- [ ] **Put Your CRM on Autopilot: AI Agents + MCP** (Metrics) — the 2026 auto-documentation angle the existing crm-setup/ai-lead-scoring posts predate.
-- [ ] **Scheduling Links That Book + Capture Consent** (Channel Tactics) — booking links as a consent-capture mechanism.
-- [ ] **AI Guardrails for Aged-Lead Agents** (Compliance) — the responsible-AI companion to the prompts content.
+- [x] *(All five below were written and published 2026-06-13 — see the Done section. Ticked 2026-09-15 after confirming two of them live; they had stayed open here.)*
+- [x] **Call Recording Consent by State** (Compliance) — the consent-law map + universal-safe disclosure; pairs with the email's record-every-call lesson (existing call-recording-analysis post is about *analysis*, not consent).
+- [x] **The Aged-Lead Sales Stack <$100/mo** (Metrics) — software recommender (Workspace + dialer + CRM + drip + recording + scheduling); `/providers` covers lead sellers, not tools. **Affiliate-monetizable.**
+- [x] **Put Your CRM on Autopilot: AI Agents + MCP** (Metrics) — the 2026 auto-documentation angle the existing crm-setup/ai-lead-scoring posts predate.
+- [x] **Scheduling Links That Book + Capture Consent** (Channel Tactics) — booking links as a consent-capture mechanism.
+- [x] **AI Guardrails for Aged-Lead Agents** (Compliance) — the responsible-AI companion to the prompts content.
 - [ ] **FLAG — revise existing Week-9 brief** `aged-lead-text-sms-strategies`: it leans pro-SMS, which **conflicts** with the program's stance (don't text non-consent purchased data; earn consent first). Re-angle it around earning consent, or retire it. **Bill's call.**
 - Full reasoning: `~/Documents/agedleadstore/agedleadsales-integration-audit.html`.
 

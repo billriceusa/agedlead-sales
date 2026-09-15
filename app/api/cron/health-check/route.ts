@@ -3,6 +3,7 @@ import { createClient } from "next-sanity";
 import { Resend } from "resend";
 import { recordCronRun, type CronName } from "@/lib/cron/heartbeat";
 import { MONITORED_CRONS, CRON_STALENESS } from "@/lib/cron/monitored";
+import { evaluatePriceIndexAge } from "@/lib/cron/price-index-check";
 
 export const maxDuration = 60;
 export const dynamic = "force-dynamic";
@@ -54,7 +55,8 @@ function daysBetween(fromIso: string, to: Date): number {
 //
 // So: measure the study on the study's own quarterly cadence, and let the
 // marketwatch heartbeat below be the only thing that speaks for the cron.
-const PRICE_INDEX_MAX_AGE_DAYS = 100;
+// The age threshold and the dated snooze live in lib/cron/price-index-check.ts,
+// where the snooze's expiry is tested.
 
 async function checkPriceIndexStudy(
   client: ReturnType<typeof getSanityClient>,
@@ -71,15 +73,11 @@ async function checkPriceIndexStudy(
     };
   }
   const age = daysBetween(latest._updatedAt, now);
-  const ok = age <= PRICE_INDEX_MAX_AGE_DAYS;
+  const { ok, detail } = evaluatePriceIndexAge(age, now);
   return {
     name: "Lead Price Index study",
     ok,
-    detail: ok
-      ? `Latest benchmark published ${age}d ago`
-      : `Benchmarks are ${age}d old — the quarterly Lead Price Index study is due. ` +
-        `This is a human publishing task, not a cron failure; marketwatch only ` +
-        `surfaces pricing signals to verify.`,
+    detail,
     lastSeen: latest._updatedAt,
     ageDays: age,
   };

@@ -142,8 +142,9 @@
         "editorial": "Internal /providers and /price-index links kept, demoted to secondary. Both blocks carry their own disclosure line: the know-your-cpl block is titled 'Recommendation' and reads as editorial advice, which is the single place an unmarked affiliate link would be least honest."
       },
       "killRule": "If calculator-know-your-cpl and calculator-pipeline show no store-side sessions by 2026-09-30, revert both to internal-only CTAs. A calculator that sells badly is still a good lead magnet and a good embed; it does not need a door.",
-      "measureAt": "2026-09-30",
-      "verdict": "pending"
+      "measureAt": "2026-10-01",
+      "verdict": "pending",
+      "deferral": "DEFERRED 2026-09-15 (Bill): this kill date falls inside Bill's Europe trip (2026-09-17 to 09-30). Hold the measurement and the kill decision until the week of 2026-10-01. Nothing is reverted while he is away. The rule itself is unchanged."
     },
     {
       "iteration": 6,
@@ -165,8 +166,9 @@
         "destination": "No leadType passed, so storeCategoryPath returns undefined and affiliateUrl falls back to the full catalogue. A visitor on the homepage has not chosen a vertical; the catalogue is the honest destination. Same reasoning as the providers hub."
       },
       "killRule": "Kill if /  does not clear 2% by 2026-09-23. That is 4x today and still below the providers hub. If a door on the highest-traffic page cannot clear 2%, the door pattern has reached its limit on low-intent surfaces and the next iteration must buy intent rather than add placements.",
-      "measureAt": "2026-09-23",
-      "verdict": "pending"
+      "measureAt": "2026-10-01",
+      "verdict": "pending",
+      "deferral": "DEFERRED 2026-09-15 (Bill): this kill date falls inside Bill's Europe trip (2026-09-17 to 09-30). Hold the measurement and the kill decision until the week of 2026-10-01. Nothing is reverted while he is away. The rule itself is unchanged."
     },
     {
       "iteration": 7,
@@ -189,6 +191,72 @@
       },
       "killRule": "Measure 2026-10-10. Kill the per-lead-type guide expansion (13 more) if the three consent guides together have not produced either a measurable email-signup lift or a top-10 ranking for 'prior express written consent' by then. The doctrine pages stay regardless \u2014 they exist to stop the site contradicting itself and that value does not depend on traffic.",
       "measureAt": "2026-10-10",
+      "verdict": "pending"
+    },
+    {
+      "iteration": 8,
+      "date": "2026-09-11",
+      "engine": "experiences",
+      "asset": "data/guides.ts \u2014 pilot lead-type operator guides: final expense, life insurance, auto insurance",
+      "targetCluster": "/guides/working-aged-{final-expense,life-insurance,auto-insurance}-leads, linked from the matching /lead-types pages",
+      "rationale": "Bill's item 2 of the 2026-09-09 plan: per-lead-type guides covering who the customer is, what happened to the record while it aged, what they want now, the email sequence that earns renewed consent, tooling with honest limits, and the compliance boundary. Piloted on three verticals rather than all fourteen so the format is proven before ~35,000 words are committed. Auto carries real objections from a captive P&C buyer (2026-09-10): a 100-record batch scrubbed to 67 workable records, aged inventory carries no credit-back, and carrier CRMs strip purchased email addresses until contact and permission.",
+      "hypothesis": "A vertical-specific operating guide converts a reader who arrived on a lead-type query better than the lead-type page alone, because it answers the question that decides whether they buy again \u2014 what to do with the batch. Judge on affiliate clicks from the guide and its lead-type page together, not on guide traffic.",
+      "expected": {
+        "D": null,
+        "P": null,
+        "C": null,
+        "basis": "Pilot verticals were chosen for low difficulty \u2014 final expense KD 1, auto KD 3, life KD 4 \u2014 with existing pages ranking 13\u201331. Search volume per guide is small (60\u2013150/mo), so the read is conversion, not traffic."
+      },
+      "implementation": {
+        "tier": "Static-first entries in data/guides.ts rendered by the /guides/[slug] fork ahead of the Sanity lookup, with FAQ JSON-LD and glossary auto-linking. Invariant tests enforce one consent ask per sequence, a stated limit on every tool, and no per-lead price.",
+        "glossary": "Two terms added in both sources from the buyer conversation: lead spoilage and net usable rate."
+      },
+      "killRule": "Measure 2026-10-10. Do not write the other eleven lead-type guides if the three pilots, with their lead-type pages, have not cleared the lead-type pages' pre-launch affiliate click rate. Read via /api/reports/outbound-clicks. The three pilots stay live regardless.",
+      "measureAt": "2026-10-10",
+      "verdict": "pending"
+    },
+    {
+      "iteration": 9,
+      "date": "2026-09-11",
+      "engine": "merchant-intelligence",
+      "asset": "lib/newsletter/restock-offer.ts + app/api/cron/restock-offer \u2014 the monthly restock offer broadcast",
+      "targetCluster": "The full Resend audience, including the purchaser contacts; sent first Thursday after the month's first Sunday",
+      "rationale": "The only thing that ever asked a reader to buy again was a per-person journey \u2014 replenishment 21\u201390 days, win-back 90+ \u2014 and both are one-shot, so a buyer who finished them never saw an offer again. Store-side GA4 (357329146), Aug 1 \u2013 Sep 10: our affiliate link 137 sessions for $707, returning buyers landing on /customers/login 76 sessions for $8,693. The money in the store is repeat purchase, and nothing reached that group on a schedule.",
+      "hypothesis": "A monthly, evergreen, pull-posture restock email reaches repeat buyers the per-person journeys stopped reaching, and earns attributed store revenue that the weekly newsletter does not. Six rotating editions keep the send from training the list to ignore it.",
+      "expected": {
+        "D": null,
+        "P": null,
+        "C": null,
+        "basis": "No baseline for a recurring offer exists. The one-off direct offer of 2026-09-10 is the nearest comparison. Read attributed revenue on utm_campaign=restock-offer against that send."
+      },
+      "implementation": {
+        "schedule": "Drafts the first Sunday 14:00 UTC and mails Bill a preview with a one-click STOP link; sends the following Thursday 13:00 UTC after a 48-hour minimum window. Own archive (data/offer-archive), own campaign tag, own heartbeats watched by health-check.",
+        "firstCycle": "Draft 2026-10-04, send 2026-10-08. Deliberately not September: the one-off offer mailed 2026-09-10."
+      },
+      "killRule": "Measure 2026-11-08, one month after the first send. Stop the program if the first edition earns no attributed store revenue on utm_campaign=restock-offer AND its unsubscribe rate exceeds the weekly newsletter's. Revenue with high unsubscribes, or unsubscribes normal with no revenue, is a copy problem to iterate on, not a kill.",
+      "measureAt": "2026-11-08",
+      "verdict": "pending"
+    },
+    {
+      "iteration": 10,
+      "date": "2026-09-15",
+      "engine": "merchant-intelligence",
+      "asset": "lib/newsletter/mortgage-protection-launch.ts + scripts/mp-launch-{segment,schedule}.ts \u2014 mortgage protection product launch",
+      "targetCluster": "Resend segment of Life Insurance + Final Expense inquirers (2,951 on 2026-09-15); landing page agedleadstore.com/mortgage-protection-leads/",
+      "rationale": "Aged Lead Store added mortgage protection leads and Troy asked (2026-09-14) for an announcement to life insurance agents to move the new inventory quickly. Bill set the terms 2026-09-15: landing page with affiliate UTMs, announcement plus reminder, audience limited to Life and Final Expense inquirers, no homeowner-verification claim, both scheduled in Resend before his Europe trip.",
+      "hypothesis": "A product-launch email to the segment that already sells the adjacent product earns attributed store revenue at a far higher rate per recipient than the general list, because the offer is news to them rather than noise.",
+      "expected": {
+        "D": null,
+        "P": null,
+        "C": null,
+        "basis": "No prior segmented launch to compare. Nearest reference is the 2026-09-10 direct offer to the full list. Read revenue per recipient against it, not raw revenue."
+      },
+      "implementation": {
+        "sends": "Announcement Wed 2026-09-23 13:00 UTC, reminder Fri 2026-09-25 13:00 UTC, scheduled Resend broadcasts to one segment. Cancel = delete the broadcast.",
+        "cadenceNote": "This group also receives the weekly newsletter Tue 2026-09-22, so three emails in four days, 13 days after the 2026-09-10 offer. Bill chose this knowing the collision; read unsubscribes with that in mind."
+      },
+      "killRule": "Measure 2026-10-02. Do not repeat segmented product launches in this form if the two sends together earn no attributed store revenue on utm_campaign=mortgage-protection-launch AND the segment's unsubscribe rate exceeds the weekly newsletter's by more than double. Revenue with elevated unsubscribes is a cadence lesson, not a kill.",
+      "measureAt": "2026-10-02",
       "verdict": "pending"
     }
   ],

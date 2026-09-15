@@ -1,4 +1,5 @@
 import { rebrandNoticeHtml } from "@/lib/rebrand-notice";
+import { senderAddressHtml } from "@/lib/sender";
 import { STORE_VERTICALS, storeUrl, catalogueUrl } from "./store-links";
 
 /**
@@ -159,6 +160,7 @@ export function buildOfferHtml(label: string, siteUrl: string): string {
               <p style="margin: 0 0 8px 0; color: #9ca3af; font-size: 12px;">
                 You're receiving this because you signed up at ${host}. Links to Aged Lead Store are affiliate links.
               </p>
+              ${senderAddressHtml()}
               ${rebrandNoticeHtml()}
               <p style="margin: 0; color: #9ca3af; font-size: 12px;">
                 <a href="{{{RESEND_UNSUBSCRIBE_URL}}}" style="color: #9ca3af; text-decoration: underline;">Unsubscribe</a>

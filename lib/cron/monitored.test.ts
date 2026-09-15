@@ -120,4 +120,31 @@ describe("monitored crons match vercel.json", () => {
       );
     }
   });
+
+  test("a first-run grace date is never further out than one missed run", () => {
+    // The grace date defers MISSING-heartbeat alerts, so a date set far in the
+    // future is a blind spot rather than a courtesy: a cron that Vercel never
+    // registered looks healthy right up until it arrives, and then simply does
+    // not run.
+    //
+    // The restock crons shipped with grace dates set to the first month the
+    // offer actually MAILS (2026-10-05 and 2026-10-09) rather than to their
+    // first weekly run. Both fire every week and no-op on the weeks that are
+    // not theirs, so that would have muted a genuine failure for three and a
+    // half weeks — over exactly the stretch nobody was going to be watching.
+    //
+    // The rule: date the grace period to the next run, not to the next outcome.
+    // Anything already in the past passes untouched, so this does not rot.
+    const now = Date.now();
+    for (const name of MONITORED_CRONS) {
+      const { firstExpectedAt: at, maxDays } = CRON_STALENESS[name];
+      if (!at) continue;
+      const limit = now + maxDays * 86_400_000;
+      assert.ok(
+        new Date(at).getTime() <= limit,
+        `${name}: firstExpectedAt "${at}" is more than its own ${maxDays}d window away. ` +
+          `Set it to just after the cron's FIRST RUN, not to the first time its work has a visible result.`,
+      );
+    }
+  });
 });
