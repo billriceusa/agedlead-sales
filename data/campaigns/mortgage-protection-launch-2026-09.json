@@ -2,5 +2,30 @@
   "segmentId": "bf4d58ac-9467-4e4b-8fc6-9f8c14c90af0",
   "segmentName": "Mortgage Protection Launch — Life & FE inquirers (2026-09)",
   "segmentCount": 2950,
-  "segmentBuiltAt": "2026-09-15T16:03:58.336Z"
+  "segmentBuiltAt": "2026-09-15T16:03:58.336Z",
+  "broadcasts": [
+    {
+      "key": "announce",
+      "broadcastId": "9852c329-e34d-41d1-af6b-4cd73536547e",
+      "name": "MP Launch — Announcement — 2026-09-23",
+      "scheduledAt": "2026-09-23T13:00:00Z",
+      "verified": {
+        "status": "scheduled",
+        "scheduled_at": "2026-09-23 13:00:00+00",
+        "segment": "bf4d58ac-9467-4e4b-8fc6-9f8c14c90af0"
+      }
+    },
+    {
+      "key": "reminder",
+      "broadcastId": "7d197ecb-9c36-4b45-a6c9-26abdcfe7bb9",
+      "name": "MP Launch — Reminder — 2026-09-25",
+      "scheduledAt": "2026-09-25T13:00:00Z",
+      "verified": {
+        "status": "scheduled",
+        "scheduled_at": "2026-09-25 13:00:00+00",
+        "segment": "bf4d58ac-9467-4e4b-8fc6-9f8c14c90af0"
+      }
+    }
+  ],
+  "scheduledAtRun": "2026-09-15T17:57:07.612Z"
 }
