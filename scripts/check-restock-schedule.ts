@@ -100,10 +100,11 @@ async function main() {
         `preview, and it sends on ${sendDayFor(label)} unless stopped.\n`,
     );
   } else {
+    const unfired = WATCHED.filter((n) => !byName.has(n)).map((n) => CRON_STALENESS[n].label);
     console.log(
-      `\n  Not yet proven. Nothing is wrong, but neither cron has fired yet, so the schedule ` +
-        `is unverified. Re-run this after the first Sunday and Thursday runs — if either still ` +
-        `shows no heartbeat then, Vercel did not register it.\n`,
+      `\n  Not yet proven. Nothing is wrong, but ${unfired.length === WATCHED.length ? "neither cron has" : `${unfired.join(" and ")} has not`} ` +
+        `fired yet, so the schedule is only partly verified. Re-run after its first run date above — ` +
+        `if it still shows no heartbeat then, Vercel did not register it.\n`,
     );
   }
   process.exit(healthy ? 0 : 1);

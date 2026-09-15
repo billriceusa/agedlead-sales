@@ -190,6 +190,50 @@
       "killRule": "Measure 2026-10-10. Kill the per-lead-type guide expansion (13 more) if the three consent guides together have not produced either a measurable email-signup lift or a top-10 ranking for 'prior express written consent' by then. The doctrine pages stay regardless \u2014 they exist to stop the site contradicting itself and that value does not depend on traffic.",
       "measureAt": "2026-10-10",
       "verdict": "pending"
+    },
+    {
+      "iteration": 8,
+      "date": "2026-09-11",
+      "engine": "experiences",
+      "asset": "data/guides.ts \u2014 pilot lead-type operator guides: final expense, life insurance, auto insurance",
+      "targetCluster": "/guides/working-aged-{final-expense,life-insurance,auto-insurance}-leads, linked from the matching /lead-types pages",
+      "rationale": "Bill's item 2 of the 2026-09-09 plan: per-lead-type guides covering who the customer is, what happened to the record while it aged, what they want now, the email sequence that earns renewed consent, tooling with honest limits, and the compliance boundary. Piloted on three verticals rather than all fourteen so the format is proven before ~35,000 words are committed. Auto carries real objections from a captive P&C buyer (2026-09-10): a 100-record batch scrubbed to 67 workable records, aged inventory carries no credit-back, and carrier CRMs strip purchased email addresses until contact and permission.",
+      "hypothesis": "A vertical-specific operating guide converts a reader who arrived on a lead-type query better than the lead-type page alone, because it answers the question that decides whether they buy again \u2014 what to do with the batch. Judge on affiliate clicks from the guide and its lead-type page together, not on guide traffic.",
+      "expected": {
+        "D": null,
+        "P": null,
+        "C": null,
+        "basis": "Pilot verticals were chosen for low difficulty \u2014 final expense KD 1, auto KD 3, life KD 4 \u2014 with existing pages ranking 13\u201331. Search volume per guide is small (60\u2013150/mo), so the read is conversion, not traffic."
+      },
+      "implementation": {
+        "tier": "Static-first entries in data/guides.ts rendered by the /guides/[slug] fork ahead of the Sanity lookup, with FAQ JSON-LD and glossary auto-linking. Invariant tests enforce one consent ask per sequence, a stated limit on every tool, and no per-lead price.",
+        "glossary": "Two terms added in both sources from the buyer conversation: lead spoilage and net usable rate."
+      },
+      "killRule": "Measure 2026-10-10. Do not write the other eleven lead-type guides if the three pilots, with their lead-type pages, have not cleared the lead-type pages' pre-launch affiliate click rate. Read via /api/reports/outbound-clicks. The three pilots stay live regardless.",
+      "measureAt": "2026-10-10",
+      "verdict": "pending"
+    },
+    {
+      "iteration": 9,
+      "date": "2026-09-11",
+      "engine": "merchant-intelligence",
+      "asset": "lib/newsletter/restock-offer.ts + app/api/cron/restock-offer \u2014 the monthly restock offer broadcast",
+      "targetCluster": "The full Resend audience, including the purchaser contacts; sent first Thursday after the month's first Sunday",
+      "rationale": "The only thing that ever asked a reader to buy again was a per-person journey \u2014 replenishment 21\u201390 days, win-back 90+ \u2014 and both are one-shot, so a buyer who finished them never saw an offer again. Store-side GA4 (357329146), Aug 1 \u2013 Sep 10: our affiliate link 137 sessions for $707, returning buyers landing on /customers/login 76 sessions for $8,693. The money in the store is repeat purchase, and nothing reached that group on a schedule.",
+      "hypothesis": "A monthly, evergreen, pull-posture restock email reaches repeat buyers the per-person journeys stopped reaching, and earns attributed store revenue that the weekly newsletter does not. Six rotating editions keep the send from training the list to ignore it.",
+      "expected": {
+        "D": null,
+        "P": null,
+        "C": null,
+        "basis": "No baseline for a recurring offer exists. The one-off direct offer of 2026-09-10 is the nearest comparison. Read attributed revenue on utm_campaign=restock-offer against that send."
+      },
+      "implementation": {
+        "schedule": "Drafts the first Sunday 14:00 UTC and mails Bill a preview with a one-click STOP link; sends the following Thursday 13:00 UTC after a 48-hour minimum window. Own archive (data/offer-archive), own campaign tag, own heartbeats watched by health-check.",
+        "firstCycle": "Draft 2026-10-04, send 2026-10-08. Deliberately not September: the one-off offer mailed 2026-09-10."
+      },
+      "killRule": "Measure 2026-11-08, one month after the first send. Stop the program if the first edition earns no attributed store revenue on utm_campaign=restock-offer AND its unsubscribe rate exceeds the weekly newsletter's. Revenue with high unsubscribes, or unsubscribes normal with no revenue, is a copy problem to iterate on, not a kill.",
+      "measureAt": "2026-11-08",
+      "verdict": "pending"
     }
   ],
   "scoreboardReadings": [
