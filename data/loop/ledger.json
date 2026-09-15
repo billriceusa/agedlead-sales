@@ -142,8 +142,9 @@
         "editorial": "Internal /providers and /price-index links kept, demoted to secondary. Both blocks carry their own disclosure line: the know-your-cpl block is titled 'Recommendation' and reads as editorial advice, which is the single place an unmarked affiliate link would be least honest."
       },
       "killRule": "If calculator-know-your-cpl and calculator-pipeline show no store-side sessions by 2026-09-30, revert both to internal-only CTAs. A calculator that sells badly is still a good lead magnet and a good embed; it does not need a door.",
-      "measureAt": "2026-09-30",
-      "verdict": "pending"
+      "measureAt": "2026-10-01",
+      "verdict": "pending",
+      "deferral": "DEFERRED 2026-09-15 (Bill): this kill date falls inside Bill's Europe trip (2026-09-17 to 09-30). Hold the measurement and the kill decision until the week of 2026-10-01. Nothing is reverted while he is away. The rule itself is unchanged."
     },
     {
       "iteration": 6,
@@ -165,8 +166,9 @@
         "destination": "No leadType passed, so storeCategoryPath returns undefined and affiliateUrl falls back to the full catalogue. A visitor on the homepage has not chosen a vertical; the catalogue is the honest destination. Same reasoning as the providers hub."
       },
       "killRule": "Kill if /  does not clear 2% by 2026-09-23. That is 4x today and still below the providers hub. If a door on the highest-traffic page cannot clear 2%, the door pattern has reached its limit on low-intent surfaces and the next iteration must buy intent rather than add placements.",
-      "measureAt": "2026-09-23",
-      "verdict": "pending"
+      "measureAt": "2026-10-01",
+      "verdict": "pending",
+      "deferral": "DEFERRED 2026-09-15 (Bill): this kill date falls inside Bill's Europe trip (2026-09-17 to 09-30). Hold the measurement and the kill decision until the week of 2026-10-01. Nothing is reverted while he is away. The rule itself is unchanged."
     },
     {
       "iteration": 7,

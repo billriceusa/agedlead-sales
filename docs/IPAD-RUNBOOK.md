@@ -22,6 +22,11 @@ needs a terminal.
 
 The first restock offer drafts **2026-10-04** and sends **2026-10-08**, after you are back.
 
+**Deliberately on hold until you are back** (decided 2026-09-15): the homepage hero door and
+calculator door kill rules (originally due 09-23 and 09-30) and the unsubscribe port off
+agency-manager. Nothing on the site changes on its own while you are away. Do not retire
+agency-manager during the trip — every email's unsubscribe link still depends on it.
+
 ---
 
 ## Scenario 1 — a newsletter preview looks wrong
@@ -59,7 +64,7 @@ To turn it back on, repeat with `true`. The mailer picks up where it left off; i
 
 | alert | meaning | action |
 |---|---|---|
-| "[ALERT] Lead Price Index study … benchmarks are Nd old" | the quarterly price study is due | none while away — known and expected until the study is written |
+| "[ALERT] Lead Price Index study … benchmarks are Nd old" | the quarterly price study is due | should not arrive — snoozed until 2026-10-05. If it does, the snooze deploy did not land; ignore it |
 | "[ALERT] … restock-offer-send" or "restock-offer-draft" | the weekly restock check stopped firing | none needed before October, but note it — the October 8 send will not happen unless fixed |
 | "[ALERT] … als-lifecycle" | the mailer stopped running | no subscriber harm — it fails closed. Look at it when back |
 | "[ALERT] … send-newsletter" or "weekly-newsletter" | an issue did not draft or send | no harm — nothing mailed. Look at it when back |
