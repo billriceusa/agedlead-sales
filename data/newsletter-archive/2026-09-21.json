@@ -1,0 +1,36 @@
+{
+  "runDate": "2026-09-20T14:01:07.369Z",
+  "weekOf": "2026-09-21",
+  "sendDate": "2026-09-22",
+  "theme": "Scripts That Close",
+  "focusVertical": "topic-themed",
+  "calendarStatus": "Calendar: \"Scripts That Close\" for 2026-09-22. 14 issue(s) remain, through 2026-12-29.",
+  "calendarMatched": true,
+  "calendarRemaining": 14,
+  "subject": "The 3-Sentence Voicemail That Gets Called Back",
+  "previewText": "Plus: how to reference an old inquiry without sounding like a stalker.",
+  "html": "2026-09-21.html",
+  "sent": false,
+  "priceGuard": {
+    "blocking": [],
+    "warnings": [
+      "$75",
+      "Duplicate utm_content values (2026-09-21-digest) — GA4 merges these into one row, so those placements cannot be told apart."
+    ]
+  },
+  "featuredArticle": {
+    "title": "How to Work Aged Leads: The Complete System for Maximum ROI",
+    "slug": "how-to-work-aged-leads-the-complete-system-for-maximum-roi",
+    "spotlight": "This is the field manual for anyone tired of watching expensive real-time leads go cold in a CRM. It walks through the full system — scripts, follow-up sequencing, and the cost math — that turns a stack of months-old inquiries into a dependable pipeline instead of a one-time gamble. If you only click one link this week, make it this one."
+  },
+  "quickTips": [
+    "The \"Things Change\" Opener",
+    "Reference the Category, Not the File",
+    "The Three-Sentence Voicemail"
+  ],
+  "industryInsight": "Fresh lead costs keep climbing — the gap keeps widening",
+  "errors": [
+    "Warning: $75",
+    "Warning: Duplicate utm_content values (2026-09-21-digest) — GA4 merges these into one row, so those placements cannot be told apart."
+  ]
+}
