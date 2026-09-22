@@ -10,7 +10,7 @@
   "subject": "The 3-Sentence Voicemail That Gets Called Back",
   "previewText": "Plus: how to reference an old inquiry without sounding like a stalker.",
   "html": "2026-09-21.html",
-  "sent": false,
+  "sent": true,
   "priceGuard": {
     "blocking": [],
     "warnings": [
@@ -32,5 +32,8 @@
   "errors": [
     "Warning: $75",
     "Warning: Duplicate utm_content values (2026-09-21-digest) — GA4 merges these into one row, so those placements cannot be told apart."
-  ]
+  ],
+  "sentAt": "2026-09-22T13:01:07.696Z",
+  "broadcastId": "b383d293-9897-492e-bff6-837e900f893a",
+  "sentBy": "cron"
 }
