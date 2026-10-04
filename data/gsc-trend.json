@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-03T12:00:05.600Z",
+  "lastUpdated": "2026-10-04T12:00:05.182Z",
   "snapshots": [
     {
       "date": "2026-07-10",
@@ -20376,6 +20376,316 @@
           "impressions": 2,
           "ctr": 0,
           "position": 1
+        }
+      ]
+    },
+    {
+      "date": "2026-10-04",
+      "property": "agedleadsales",
+      "status": "ok",
+      "rolling7d": {
+        "clicks": 4,
+        "impressions": 427,
+        "ctr": 0.0094,
+        "position": 9.58
+      },
+      "topPages": [
+        {
+          "page": "https://agedleadsales.com/blog/aged-lead-scripts-that-work",
+          "clicks": 2,
+          "impressions": 8,
+          "ctr": 0.25,
+          "position": 3.88
+        },
+        {
+          "page": "https://agedleadsales.com/blog/how-to-work-debt-leads",
+          "clicks": 1,
+          "impressions": 6,
+          "ctr": 0.1667,
+          "position": 11.33
+        },
+        {
+          "page": "https://agedleadsales.com/providers/best/medicare",
+          "clicks": 1,
+          "impressions": 49,
+          "ctr": 0.0204,
+          "position": 14.63
+        },
+        {
+          "page": "https://agedleadsales.com/about",
+          "clicks": 0,
+          "impressions": 5,
+          "ctr": 0,
+          "position": 5
+        },
+        {
+          "page": "https://agedleadsales.com/blog/aged-home-improvement-leads-playbook",
+          "clicks": 0,
+          "impressions": 5,
+          "ctr": 0,
+          "position": 4.4
+        },
+        {
+          "page": "https://agedleadsales.com/blog/aged-lead-budget-allocation-roi-optimization",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 11
+        },
+        {
+          "page": "https://agedleadsales.com/blog/aged-lead-call-recording-consent-by-state",
+          "clicks": 0,
+          "impressions": 5,
+          "ctr": 0,
+          "position": 4.6
+        },
+        {
+          "page": "https://agedleadsales.com/blog/aged-lead-performance-benchmarks-2026",
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 5.5
+        },
+        {
+          "page": "https://agedleadsales.com/blog/aged-lead-roi-calculation-methodology-by-industry",
+          "clicks": 0,
+          "impressions": 5,
+          "ctr": 0,
+          "position": 6.4
+        },
+        {
+          "page": "https://agedleadsales.com/blog/aged-lead-team-performance-benchmarking-guide",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 8
+        }
+      ],
+      "topQueries": [
+        {
+          "query": "aged medicare leads",
+          "clicks": 1,
+          "impressions": 9,
+          "ctr": 0.1111,
+          "position": 4.89
+        },
+        {
+          "query": "aged homeowner insurance leads",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 5
+        },
+        {
+          "query": "aged homeowners insurance leads",
+          "clicks": 0,
+          "impressions": 4,
+          "ctr": 0,
+          "position": 5
+        },
+        {
+          "query": "aged lead store",
+          "clicks": 0,
+          "impressions": 4,
+          "ctr": 0,
+          "position": 9
+        },
+        {
+          "query": "aged lead store reviews",
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 12.5
+        },
+        {
+          "query": "aged medical insurance leads provider",
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 16
+        },
+        {
+          "query": "agedleadstore",
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 12.33
+        },
+        {
+          "query": "best insurance leads review",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 48
+        },
+        {
+          "query": "best medicare leads",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 69
+        },
+        {
+          "query": "best medicare leads spanish",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 14
+        }
+      ]
+    },
+    {
+      "date": "2026-10-04",
+      "property": "workagedleads",
+      "status": "ok",
+      "rolling7d": {
+        "clicks": 32,
+        "impressions": 3252,
+        "ctr": 0.0098,
+        "position": 15.85
+      },
+      "topPages": [
+        {
+          "page": "https://workagedleads.com/blog/voicemail-scripts-mortgage-leads",
+          "clicks": 3,
+          "impressions": 47,
+          "ctr": 0.0638,
+          "position": 7.81
+        },
+        {
+          "page": "https://workagedleads.com/blog/aged-lead-store-review-2026",
+          "clicks": 2,
+          "impressions": 133,
+          "ctr": 0.015,
+          "position": 5.68
+        },
+        {
+          "page": "https://workagedleads.com/blog/iul-leads-financial-advisors-playbook",
+          "clicks": 2,
+          "impressions": 58,
+          "ctr": 0.0345,
+          "position": 9.6
+        },
+        {
+          "page": "https://workagedleads.com/blog/sms-templates-insurance-leads",
+          "clicks": 2,
+          "impressions": 97,
+          "ctr": 0.0206,
+          "position": 20.87
+        },
+        {
+          "page": "https://workagedleads.com/blog/sms-templates-mortgage-leads",
+          "clicks": 2,
+          "impressions": 48,
+          "ctr": 0.0417,
+          "position": 17.25
+        },
+        {
+          "page": "https://workagedleads.com/lead-types/final-expense-leads",
+          "clicks": 2,
+          "impressions": 32,
+          "ctr": 0.0625,
+          "position": 20.16
+        },
+        {
+          "page": "https://workagedleads.com/lead-types/life-insurance-leads",
+          "clicks": 2,
+          "impressions": 128,
+          "ctr": 0.0156,
+          "position": 24.52
+        },
+        {
+          "page": "https://workagedleads.com/lead-types/medicare-leads",
+          "clicks": 2,
+          "impressions": 29,
+          "ctr": 0.069,
+          "position": 27.28
+        },
+        {
+          "page": "https://workagedleads.com/blog/dnc-scrubbing-on-a-budget",
+          "clicks": 1,
+          "impressions": 60,
+          "ctr": 0.0167,
+          "position": 16.68
+        },
+        {
+          "page": "https://workagedleads.com/blog/final-expense-door-knocking-playbook",
+          "clicks": 1,
+          "impressions": 1,
+          "ctr": 1,
+          "position": 8
+        }
+      ],
+      "topQueries": [
+        {
+          "query": "aged iul leads",
+          "clicks": 1,
+          "impressions": 5,
+          "ctr": 0.2,
+          "position": 5.4
+        },
+        {
+          "query": "aged lead store reviews",
+          "clicks": 1,
+          "impressions": 9,
+          "ctr": 0.1111,
+          "position": 2.67
+        },
+        {
+          "query": "aged medicare leads",
+          "clicks": 1,
+          "impressions": 9,
+          "ctr": 0.1111,
+          "position": 8.22
+        },
+        {
+          "query": "the leads warehouse reviews",
+          "clicks": 1,
+          "impressions": 2,
+          "ctr": 0.5,
+          "position": 2
+        },
+        {
+          "query": "+exclusive vs shared leads conversion comparison news",
+          "clicks": 0,
+          "impressions": 5,
+          "ctr": 0,
+          "position": 9
+        },
+        {
+          "query": "10dlc for mortgage lenders",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 1
+        },
+        {
+          "query": "about me: agency operations / office manager a day-to-day agency operator responsible for workflows, client and policy records, staff coordination, renewals, compliance processes, reporting, and making systems practical for producers and service teams. question: what is the difference between a scope of appointment and a recorded consent?",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 1
+        },
+        {
+          "query": "about me: medicare enrollment specialist a medicare-focused agent or enrollment specialist managing plan comparisons, enrollment periods, scopes of appointment, client follow-up, compliance documentation, and connections between enrollment tools and agency records. question: what is the difference between a scope of appointment and a recorded consent?",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 5
+        },
+        {
+          "query": "accident leads",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 88
+        },
+        {
+          "query": "afff lawsuit mass tort case leads",
+          "clicks": 0,
+          "impressions": 6,
+          "ctr": 0,
+          "position": 24.67
         }
       ]
     }
