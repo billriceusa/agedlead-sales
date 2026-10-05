@@ -18,6 +18,7 @@ import { getProvider, PROVIDERS } from "@/data/providers";
 import { getVertical } from "@/data/verticals";
 import { leadTypeForVertical } from "@/data/lead-type-vertical-map";
 import { ProviderCompareSelector } from "@/components/provider-compare-selector";
+import { ProviderStoreAlternative } from "@/components/provider-store-alternative";
 import { TrackedOutboundLink } from "@/components/tracked-outbound-link";
 import { providerWebsiteUrl, isAffiliateProvider } from "@/lib/provider-links";
 
@@ -327,6 +328,18 @@ export default async function ProviderProfilePage({
                   }))}
                 />
               </div>
+              {/* The alternative, at the same decision point as the outbound
+                  link above — which keeps its primary styling and its position.
+                  Every non-affiliate outbound click the site recorded in the 30
+                  days to 2026-10-05 left from this button (42 of 202, all
+                  carrying utm_campaign=provider-{slug}), on pages that offered
+                  the reader no comparison until six screens down. Renders
+                  nothing on the partner's own profile. See the component. */}
+              <ProviderStoreAlternative
+                providerSlug={p.slug}
+                providerName={p.name}
+                providerRating={p.overallRating}
+              />
             </div>
             <div className="flex flex-col items-center gap-2">
               <ProviderRatingBadge score={p.overallRating} size="lg" />
