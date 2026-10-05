@@ -257,7 +257,10 @@
       },
       "killRule": "Measure 2026-10-02. Do not repeat segmented product launches in this form if the two sends together earn no attributed store revenue on utm_campaign=mortgage-protection-launch AND the segment's unsubscribe rate exceeds the weekly newsletter's by more than double. Revenue with elevated unsubscribes is a cadence lesson, not a kill.",
       "measureAt": "2026-10-02",
-      "verdict": "pending"
+      "verdict": "kill",
+      "measuredOn": "2026-10-05",
+      "result": "KILLED. Both sends went out on time (announcement 2026-09-23, reminder 2026-09-25) to the 2,950-contact Life + Final Expense segment. Store-side GA4 357329146, 2026-09-16 to 10-04: utm_campaign=mortgage-protection-launch produced 23 sessions, 0 transactions, $0.00. Unsubscribes in the segment went from 0 at build to 40, which is 1.36% of recipients across two sends. Click-to-store was 0.8%. The kill rule's second test (unsubscribe rate against the newsletter's) could not be measured cleanly \u2014 the main list only exposes a cumulative 4.37% across its whole history, not a per-send rate \u2014 so this is called on revenue alone, which is unambiguous. In the SAME window the weekly newsletter earned 3 orders and $2,224.40 from 63 sessions, and welcome-e3 earned 1 order and $500.00 from 3 sessions. The list is not fatigued; this offer was simply not wanted.",
+      "lesson": "A product launch is not a reason to email. The two sends that earn on this list are the weekly newsletter, which people opted in for, and the lifecycle steps that arrive when a buyer is already in motion. A partner announcement interrupts without either. Future partner news rides inside the newsletter, where it costs no extra send and no unsubscribes, rather than as its own broadcast."
     }
   ],
   "scoreboardReadings": [
@@ -498,6 +501,12 @@
       "asset": "/blog/aged-lead-industry-statistics affiliate CTAs",
       "killedOn": "2026-09-01",
       "reason": "Zero sessions from after-pricing and after-economics in 13 days. Killing the BET, not the code: the two placements stay (they cost nothing and do not harm citation value), but the statistics page is retired as a monetization target. Its readers want a number to quote, not leads to buy."
+    },
+    {
+      "iteration": 10,
+      "asset": "Mortgage protection launch broadcasts (announcement + reminder) to the Life & FE segment",
+      "killedOn": "2026-10-05",
+      "reason": "2,950 recipients, 23 store sessions, 0 orders, $0.00, and 40 unsubscribes. Killing the FORMAT, not the partner's product: the mortgage protection landing page, the segment and the scripts stay, and the lead type keeps its place in the newsletter's vertical list. What stops is the standalone segmented product launch as a send type. Bill's call, 2026-10-05."
     }
   ]
 }

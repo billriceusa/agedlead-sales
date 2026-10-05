@@ -95,12 +95,22 @@ export async function generateMetadata({
     };
   }
 
+  // "{brand} leads" is the AGENT query; "{brand} reviews" is largely a CONSUMER
+  // one. Checked on the live SERPs 2026-09-30: "quotewizard reviews" (450/mo) is
+  // owned by Trustpilot, the BBB, ConsumerAffairs and r/Insurance — people asking
+  // whether the quote site is safe. "quotewizard leads" (200/mo, KD 1) is agents,
+  // and the pages above us there are small review sites at DR 35 and DR 18.
+  // Naming the lead product is what puts these pages in the right search.
+  // Substring, not word-boundary: "iLeads" and "DataToLeads" carry the word
+  // mid-name, and a \b check produced "iLeads Leads Review".
+  const searchName = /lead/i.test(name) ? name : `${name} Leads`;
+
   return {
-    title: `${name} Review: Pricing, Ratings & Verdict`,
-    description: `Independent review and rating of ${name}: honest assessment, 6-dimension scores, and how they compare to other providers.`,
+    title: `${searchName} Review: Pricing & Verdict`,
+    description: `Independent review of ${searchName} for agents: pricing, lead types, compliance, and our 6-dimension ratings against other providers.`,
     alternates: { canonical: `${baseUrl}/providers/${slug}` },
     openGraph: {
-      title: `${name} Review | Work Aged Leads`,
+      title: `${searchName} Review | Work Aged Leads`,
       description: `Independent ${name} review with transparent ratings across pricing, value, compliance, flexibility, platform, and reputation.`,
       url: `${baseUrl}/providers/${slug}`,
       images: [

@@ -49,14 +49,28 @@ const MAIN_SEGMENT = (process.env.RESEND_AUDIENCE_ID || "").trim();
 const H = { Authorization: `Bearer ${KEY}`, "Content-Type": "application/json" };
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
-let calls = 0;
 
-/** Paced fetch: 4 requests/second, retries a 429 with backoff. */
+/**
+ * Evenly spaced, not bursted.
+ *
+ * The first version sent four requests back to back and then slept a second —
+ * the pacing the 2026-09-09 audience add used. Resend's default limit is two
+ * requests a second, so every burst tripped 429s and the exponential backoff
+ * dragged the real rate to about 0.45 a second: 67 contacts in two and a half
+ * minutes, which is nearly two hours for this segment. 550 ms between every
+ * call is about 1.8 a second, under the limit with room for the listing calls.
+ */
+const MIN_GAP_MS = 550;
+let lastCall = 0;
+let rateLimited = 0;
+
 async function paced(url: string, init?: RequestInit): Promise<Response> {
   for (let attempt = 0; attempt < 6; attempt++) {
-    calls++;
-    if (calls % 4 === 0) await sleep(1000);
+    const wait = lastCall + MIN_GAP_MS - Date.now();
+    if (wait > 0) await sleep(wait);
+    lastCall = Date.now();
     const res = await fetch(url, { ...init, headers: { ...H, ...(init?.headers ?? {}) } });
+    if (res.status === 429) rateLimited++;
     if (res.status !== 429) return res;
     await sleep(2000 * (attempt + 1));
   }
@@ -164,7 +178,7 @@ async function main() {
     const res = await paced(`${RESEND}/contacts/${enc}/segments/${segment!.id}`, { method: "POST" });
     if (res.ok) added++;
     else failures.push(`add ${res.status}`);
-    if ((i + 1) % 250 === 0) console.log(`  ${i + 1}/${toAdd.length}`);
+    if ((i + 1) % 250 === 0) console.log(`  ${i + 1}/${toAdd.length}  (429s so far: ${rateLimited})`);
   }
 
   const finalCount = (await allContacts(segment!.id)).length;
