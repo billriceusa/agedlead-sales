@@ -3,9 +3,18 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ComparisonTable } from "@/components/comparison-table";
 import { CtaBanner } from "@/components/cta-banner";
+import { HeroAffiliateDoor } from "@/components/hero-affiliate-door";
 import { CiteThisButton } from "@/components/cite-this-button";
 import { JsonLd, breadcrumbJsonLd } from "@/components/json-ld";
 import { getProvider, getProviderPairs } from "@/data/providers";
+
+/**
+ * The slug of the one provider in this directory we are paid by. Every other
+ * outbound host on the site earns nothing (`isAffiliateDomain` in
+ * `lib/affiliate.ts`), which is what makes the disclosure on this page accurate
+ * rather than boilerplate.
+ */
+const PARTNER_SLUG = "aged-lead-store";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
@@ -47,8 +56,7 @@ export async function generateMetadata({
   // search intent; the other 91 are programmatic filler that dilutes topical
   // authority. Noindex them but keep follow=true so internal links still pass
   // equity. Reversible — flip the rule any time.
-  const involvesAls =
-    slugA === "aged-lead-store" || slugB === "aged-lead-store";
+  const involvesAls = slugA === PARTNER_SLUG || slugB === PARTNER_SLUG;
   return {
     title,
     description: `Side-by-side comparison of ${pA.name} (${pA.overallRating}/10) vs ${pB.name} (${pB.overallRating}/10). Ratings, features, pricing models, and which is right for you.`,
@@ -84,6 +92,44 @@ export default async function ComparePage({
 
   // Determine recommendation
   const diff = providerA.overallRating - providerB.overallRating;
+
+  /*
+    AN OUTBOUND DOOR ON THE 14 PAIRS THAT INCLUDE THE PARTNER (2026-10-05)
+
+    `generateStaticParams` emits all 105 combinatorial pairs, but only the 14
+    that feature Aged Lead Store carry a destination we are paid for; the other
+    91 are already noindexed as programmatic filler. Until now every one of the
+    14 carried exactly one affiliate surface — the sitewide `CtaBanner` at the
+    very bottom — which is the same shape `/providers` had at 0.61% before
+    iteration 4 took it to 3.68% by putting a door where the decision happens.
+
+    Placed AFTER the recommendation, not in the hero. The reader's reason for
+    being here is the head-to-head; a door above the table would be selling
+    before the comparison that earns the click. Nothing is removed or demoted to
+    make room — both "Full Review" links, the ratings table and the methodology
+    link are untouched, and the competitor's review sits directly beside this
+    door as the secondary action.
+
+    NO VERTICAL IS DECLARED ON A PAIR PAGE. Two providers can overlap on several
+    verticals or on none, and there is nothing on the page that says which one
+    the reader came for. So this resolves no segment and lands on the full
+    catalogue — the honest answer, and not a weak one: the catalogue card grid is
+    exactly where `providers-hub / hero-door` sends its traffic, and that is the
+    door earning the money (22 sessions, 15 add-to-carts, 5 orders, $545.00 over
+    2026-09-01 -> 10-05). Picking a vertical for the reader would be a guess
+    dressed as a recommendation.
+  */
+  const partner =
+    providerA.slug === PARTNER_SLUG
+      ? providerA
+      : providerB.slug === PARTNER_SLUG
+        ? providerB
+        : undefined;
+  const alternative = partner
+    ? partner.slug === providerA.slug
+      ? providerB
+      : providerA
+    : undefined;
 
   return (
     <>
@@ -183,6 +229,43 @@ export default async function ComparePage({
               </Link>
             </div>
           </div>
+
+          {partner && alternative && (
+            <div className="mt-10 rounded-xl border border-zinc-200 bg-zinc-50 p-6 dark:border-zinc-800 dark:bg-zinc-900">
+              <h2 className="text-lg font-bold text-zinc-900 dark:text-white">
+                Buy aged leads from {partner.name}
+              </h2>
+              <p className="mt-2 max-w-2xl text-sm text-zinc-600 dark:text-zinc-400">
+                {partner.name} is the one provider in this comparison we have an
+                affiliate relationship with, and we say so here rather than only
+                in the footer. Their catalog is self-serve with published
+                per-lead pricing, so you can check what your vertical and state
+                actually cost before you commit to anything.{" "}
+                {alternative.pricingModel === "transparent"
+                  ? `${alternative.name} publishes pricing too — compare both before you buy.`
+                  : `${alternative.name} quotes through a salesperson, so you will need to contact them for a number to compare against.`}
+              </p>
+              <HeroAffiliateDoor
+                campaign="compare-pair"
+                content="compare-door"
+                tone="light"
+                secondary={[
+                  // The alternative stays directly beside the paid door, not
+                  // only above it. Worded differently from the "Full ... Review"
+                  // button in the recommendation block so the two reads do not
+                  // look like the same link repeated.
+                  // "See X instead" rather than "Read our X review": provider
+                  // names that start with an article ("The Leads Warehouse")
+                  // make a possessive label read as "Read our The Leads
+                  // Warehouse review".
+                  {
+                    label: `See ${alternative.name} instead`,
+                    href: `/providers/${alternative.slug}`,
+                  },
+                ]}
+              />
+            </div>
+          )}
 
           {/* Disclosure */}
           <div className="mt-8 text-center">

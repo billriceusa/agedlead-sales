@@ -3,12 +3,15 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ProviderCard } from "@/components/provider-card";
 import { CtaBanner } from "@/components/cta-banner";
+import { HeroAffiliateDoor } from "@/components/hero-affiliate-door";
 import { RelatedLinks } from "@/components/related-links";
 import { JsonLd, breadcrumbJsonLd } from "@/components/json-ld";
 import { VERTICALS, getVertical } from "@/data/verticals";
 import { getProvidersByVertical } from "@/data/providers";
 import { LEAD_TYPES } from "@/data/lead-types";
 import { leadTypeForVertical } from "@/data/lead-type-vertical-map";
+import { storefrontSegment } from "@/lib/store-front";
+import { storeCategoryPath } from "@/lib/affiliate";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
 
@@ -62,6 +65,49 @@ export default async function BestByVerticalPage({
   // guide and price benchmarks for the same vertical.
   const guideSlug = leadTypeForVertical(verticalSlug);
   const guide = guideSlug ? LEAD_TYPES[guideSlug] : undefined;
+
+  /*
+    AN OUTBOUND DOOR ON THE BEST-OF PAGES (2026-10-05)
+
+    These pages rank up to 15 providers and, until now, offered the reader no
+    way out to a merchant except the sitewide `CtaBanner` in the footer. That
+    footer banner alone produced 3 affiliate clicks on 16 views of
+    /providers/best/medicare, which is the whole argument: the intent is here and
+    the page was not serving it. `/providers` had the same shape at 0.61% before
+    iteration 4 put a door in its header and took it to 3.68%.
+
+    Unlike a /compare pair page, the vertical IS declared here, so the door can
+    deep-link precisely — and the destination precedence is the hero door's
+    (storefront segment -> marketing buy page -> full catalogue), resolved from
+    the lead-type guide's own title so the label matches what
+    /lead-types/[slug] renders ("aged IUL leads", not "aged iul leads").
+
+    WHAT FALLS THROUGH TO THE CATALOGUE, AND WHY IT IS NOT A BUG:
+
+      medicare, debt-settlement, mca-business-loans, long-term-care,
+      auto-warranty, home-security
+
+    The partner's card grid at /all-lead-types/ stocks none of them and there is
+    no marketing buy page either. `leadType` is withheld in that case rather than
+    passed through, because the door's label is built from it: naming Medicare on
+    a button that lands on a catalogue with no Medicare card would be a claim the
+    destination does not support. The generic "Browse Aged Leads" door to the
+    catalogue is the honest version, and the catalogue is the destination the
+    one door on this property that earns already uses (`providers-hub`, 22
+    sessions -> 5 orders -> $545.00, 2026-09-01 -> 10-05).
+
+    `legal` deliberately lands on the MIDDLE rung: `/legal/leads` is a verified
+    404 and the partner sells all legal intake from the marketing page.
+
+    DO NOT invent a segment for Medicare. The storefront's root nav does link
+    `medicare_supplement/leads`, but it is absent from the card grid that is the
+    authoritative source, and `lib/store-front.ts` records that it needs Bill's
+    confirmation against what Troy is actually selling first.
+  */
+  const leadTypeKey = guide?.title ?? guideSlug ?? verticalSlug;
+  const partnerStocksVertical = Boolean(
+    storefrontSegment(leadTypeKey) || storeCategoryPath(leadTypeKey)
+  );
   const relatedLinks = [
     guide && {
       href: `/lead-types/${guideSlug}`,
@@ -119,20 +165,23 @@ export default async function BestByVerticalPage({
                 ? `We independently reviewed ${providers.length} ${vertical.name.toLowerCase()} lead providers. Here are the top-rated options, ranked by our 6-dimension scoring methodology.`
                 : `We're currently building our ${vertical.name.toLowerCase()} provider reviews. Check back soon.`}
             </p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Link
-                href={`/price-index/${verticalSlug}`}
-                className="inline-flex items-center rounded-lg border border-zinc-300 px-4 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800"
-              >
-                {vertical.name} Pricing Benchmarks &rarr;
-              </Link>
-              <Link
-                href="/calculators/know-your-cpl"
-                className="inline-flex items-center rounded-lg border border-zinc-300 px-4 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800"
-              >
-                Calculate Your CPL &rarr;
-              </Link>
-            </div>
+            {/* The two internal tools keep their position — they lose the
+                outline styling, not the place. The ranked provider list below,
+                and every competitor link in it, is untouched: this adds a
+                disclosed affiliate option, it does not displace the
+                alternatives that make the ranking worth reading. */}
+            <HeroAffiliateDoor
+              leadType={partnerStocksVertical ? leadTypeKey : undefined}
+              campaign="providers-best"
+              tone="light"
+              secondary={[
+                {
+                  label: `${vertical.name} Pricing Benchmarks`,
+                  href: `/price-index/${verticalSlug}`,
+                },
+                { label: "Calculate Your CPL", href: "/calculators/know-your-cpl" },
+              ]}
+            />
           </div>
 
           {providers.length > 0 ? (

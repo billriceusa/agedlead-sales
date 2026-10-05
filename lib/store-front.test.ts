@@ -1,6 +1,6 @@
 import { test, describe } from "node:test";
 import assert from "node:assert/strict";
-import { storefrontSegment, storefrontUrl } from "./store-front";
+import { storefrontSegment, storefrontUrl, affiliateDestination } from "./store-front";
 import { storeCategoryPath, isAffiliateDomain } from "./affiliate";
 import { STORE_VERTICALS } from "./newsletter/store-links";
 import { LEAD_TYPES } from "../data/lead-types";
@@ -28,6 +28,29 @@ const DELIBERATELY_UNSTOCKED: Record<string, string> = {
   // No single segment covers generic insurance, exactly as there is no generic
   // insurance marketing buy page.
   "insurance-leads": "generic bucket, no single segment",
+  // Added 2026-10-05 with the annuity guide, and this one needs explaining
+  // because the evidence cuts both ways.
+  //
+  // The card grid at /all-lead-types/ — the authoritative source per
+  // lib/store-front.ts — was re-read on 2026-10-05 and links exactly the eight
+  // documented segments. "annuity" is not among them, so the guide resolves
+  // nothing and the hero door falls through to the catalogue.
+  //
+  // BUT the body diff says the segment is real and stocked. On 2026-10-05
+  // https://store.agedleadstore.com/annuity/leads returned 200 at 81,642 bytes
+  // (the 404 control /bogus_vertical/leads: 30,511 bytes), carrying its own
+  // "Get Annuity Leads" heading, "validated Internet Annuity quote requests",
+  // two Add to Cart controls, the full state filter grid, and a real
+  // volume-tiered price table with two freshness brackets ("Annuity 15-85 Days",
+  // "Annuity 86-500 Days"). That is indistinguishable from homeowner_insurance
+  // or iul_insurance on every test this project uses.
+  //
+  // This is the Medicare situation again — a segment the storefront serves that
+  // the marketing card grid does not show — and solar sat here once before it
+  // appeared on the grid. It needs Bill's confirmation against what the partner
+  // is actually selling before any page points at it. Do not map it on the
+  // strength of the body diff alone.
+  "annuity-leads": "not on the card grid; storefront serves /annuity/leads — needs Bill's confirmation",
 };
 
 describe("storefrontSegment", () => {
@@ -163,5 +186,98 @@ describe("storefrontUrl", () => {
       assert.equal(parsed.protocol, "https:");
       assert.match(parsed.pathname, /^\/[a-z_]+\/leads$/);
     }
+  });
+});
+
+/**
+ * These pin the single destination helper.
+ *
+ * The precedence shipped as three separate four-line copies on 2026-10-05 —
+ * hero-affiliate-door, cta-banner and inline-text-cta — because they were built
+ * under a file-ownership split. The defect that created the precedence in the
+ * first place was a lead-type page whose hero door and body CTAs pointed at
+ * DIFFERENT destinations, so three copies of the fix was the wrong shape. These
+ * tests exist so the one copy cannot drift back.
+ */
+describe("affiliateDestination", () => {
+  test("a stocked vertical deep-links the storefront and suffixes the content", () => {
+    const d = affiliateDestination({
+      leadType: "Mortgage Leads",
+      campaign: "lead-type",
+      content: "hero-door",
+    });
+    assert.equal(d.isStorefront, true);
+    assert.equal(d.segment, "mortgage_refinance");
+    assert.equal(d.content, "hero-door-store");
+    assert.match(d.href, /^https:\/\/store\.agedleadstore\.com\/mortgage_refinance\/leads\?/);
+    assert.match(d.href, /utm_content=hero-door-store/);
+    assert.match(d.href, /utm_campaign=lead-type/);
+  });
+
+  test("an unstocked vertical falls through and does NOT suffix the content", () => {
+    // Medicare has no storefront segment and no marketing buy page. Suffixing
+    // here would split the marketing-page history for no reason.
+    const d = affiliateDestination({
+      leadType: "Medicare Leads",
+      campaign: "lead-type",
+      content: "hero-door",
+    });
+    assert.equal(d.isStorefront, false);
+    assert.equal(d.segment, undefined);
+    assert.equal(d.content, "hero-door");
+    assert.ok(!d.href.startsWith("https://store."), `fell through to ${d.href}`);
+  });
+
+  test("legal lands on the marketing rung, never store.../legal/leads", () => {
+    // /legal/leads is a verified 404 — the partner sells all legal intake from
+    // the marketing page.
+    const d = affiliateDestination({
+      leadType: "Legal Leads",
+      campaign: "lead-type",
+      content: "hero-door",
+    });
+    assert.equal(d.isStorefront, false);
+    assert.ok(!d.href.includes("/legal/leads"), `would 404: ${d.href}`);
+  });
+
+  test("fallbackPath is honoured only when no segment resolves", () => {
+    const stocked = affiliateDestination({
+      leadType: "Mortgage Leads",
+      campaign: "cta-banner",
+      content: "primary",
+      fallbackPath: "/some-marketing-page/",
+    });
+    assert.equal(stocked.isStorefront, true, "a resolved segment must win over fallbackPath");
+    assert.ok(!stocked.href.includes("some-marketing-page"));
+
+    const unstocked = affiliateDestination({
+      leadType: "Medicare Leads",
+      campaign: "cta-banner",
+      content: "primary",
+      fallbackPath: "/some-marketing-page/",
+    });
+    assert.equal(unstocked.isStorefront, false);
+    assert.match(unstocked.href, /some-marketing-page/);
+  });
+
+  test("no lead type at all resolves the catalogue, not a guess", () => {
+    const d = affiliateDestination({ campaign: "compare-pair", content: "compare-door" });
+    assert.equal(d.isStorefront, false);
+    assert.equal(d.content, "compare-door");
+  });
+
+  test("the three callers produce ONE destination and three contents", () => {
+    // This is the actual defect the helper exists to prevent: the hero door and
+    // the body CTAs on the same page disagreeing about where to send a reader.
+    const hero = affiliateDestination({ leadType: "Mortgage Leads", campaign: "lead-type", content: "hero-door" });
+    const inline = affiliateDestination({ leadType: "Mortgage Leads", campaign: "lead-type", content: "inline-text" });
+    const banner = affiliateDestination({ leadType: "Mortgage Leads", campaign: "lead-type", content: "mortgage-leads" });
+
+    const path = (u: string) => new URL(u).origin + new URL(u).pathname;
+    assert.equal(path(hero.href), path(inline.href));
+    assert.equal(path(hero.href), path(banner.href));
+
+    const contents = [hero.content, inline.content, banner.content];
+    assert.equal(new Set(contents).size, 3, `utm_content must stay distinct: ${contents.join(", ")}`);
   });
 });

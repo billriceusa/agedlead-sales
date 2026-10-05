@@ -520,12 +520,22 @@ export default async function LeadTypePage({ params }: Props) {
         </div>
       </section>
 
-      {/* Bottom CTA — deep-linked to this vertical's category at the partner
-          rather than the full catalogue. Falls back to /all-lead-types/ for a
-          lead type the partner has no category for (Medicare). */}
+      {/* Bottom CTA — deep-linked to this vertical at the partner rather than
+          the full catalogue.
+
+          `leadType` opts it into the same destination precedence the hero door
+          on this page uses (storefront segment -> marketing buy page -> full
+          catalogue). Without it this banner pointed at the marketing page while
+          the hero door above pointed at the storefront — two doors on one page
+          with two different destinations, which would have made the
+          iteration-11 reading on 2026-11-09 unattributable. `affiliatePath`
+          stays as the explicit middle rung for verticals with no storefront
+          segment (legal/SSDI/MVA); Medicare and generic insurance have neither
+          and still reach /all-lead-types/. */}
       <CtaBanner
         campaign="lead-type"
         affiliateContent={slug}
+        leadType={title}
         affiliatePath={storeCategoryPath(title)}
       />
     </>
