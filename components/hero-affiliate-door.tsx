@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { affiliateUrl, storeCategoryPath, agedLeadLabel } from "@/lib/affiliate";
-import { storefrontSegment, storefrontUrl } from "@/lib/store-front";
+import { agedLeadLabel } from "@/lib/affiliate";
+import { affiliateDestination } from "@/lib/store-front";
 import { TrackedAffiliateLink } from "./tracked-affiliate-link";
 
 /**
@@ -134,7 +134,8 @@ export function HeroAffiliateDoor({
     so `storeCategoryPath` is the best available answer there, not a fallback
     that failed.
   */
-  const segment = storefrontSegment(leadType);
+  const destination = affiliateDestination({ leadType, campaign, content });
+  const segment = destination.segment;
 
   /*
     `-store` suffix so the destination change is legible in the scoreboard
@@ -145,11 +146,9 @@ export function HeroAffiliateDoor({
     turns ~32 sessions a month, and a tag per vertical would make every future
     reading underpowered by construction.
   */
-  const resolvedContent = segment ? `${content}-store` : content;
+  const resolvedContent = destination.content;
 
-  const href = segment
-    ? storefrontUrl({ segment, campaign, content: resolvedContent })
-    : affiliateUrl({ path: storeCategoryPath(leadType), campaign, content });
+  const href = destination.href;
 
   return (
     <div className="mt-8">

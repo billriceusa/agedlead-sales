@@ -1,3 +1,4 @@
+import { affiliateUrl, storeCategoryPath } from "./affiliate";
 import { AFFILIATE_UTM_SOURCE } from "./utm";
 
 /**
@@ -180,4 +181,62 @@ export function storefrontUrl({
     utm_content: content,
   });
   return `${STOREFRONT_BASE}/${segment}/leads?${params.toString()}`;
+}
+
+/**
+ * The one place the destination precedence lives.
+ *
+ * WHY THIS EXISTS (2026-10-05)
+ *
+ * The precedence — storefront segment, then marketing buy page, then full
+ * catalogue — shipped the same day into three components at once:
+ * `hero-affiliate-door.tsx`, `cta-banner.tsx` and `inline-text-cta.tsx`. Each
+ * carried its own four-line copy, written separately, because they were built
+ * by different hands under a file-ownership split.
+ *
+ * Four lines is nothing. Four lines that must never disagree is a defect
+ * waiting for the next person who changes two of the three. The whole reason
+ * this precedence exists is that a lead-type page's hero door and its body CTAs
+ * pointed at DIFFERENT destinations, which would have corrupted the
+ * iteration-11 reading on 2026-11-09 — so leaving three copies of the rule that
+ * fixed that is precisely the wrong shape.
+ *
+ * `fallbackPath` exists for CtaBanner, which accepts an explicit
+ * `affiliatePath` override and must keep honouring it when no segment resolves.
+ *
+ * The `-store` suffix on `content` is what keeps storefront destinations
+ * separable in GA4 from the marketing-page history under the same campaign. It
+ * is applied here, once, rather than remembered in three places.
+ */
+export function affiliateDestination({
+  leadType,
+  campaign,
+  content,
+  fallbackPath,
+}: {
+  leadType?: string;
+  campaign: string;
+  content: string;
+  /** CtaBanner's explicit `affiliatePath` override; ignored when a segment resolves. */
+  fallbackPath?: string;
+}): { href: string; segment?: string; content: string; isStorefront: boolean } {
+  const segment = storefrontSegment(leadType);
+  if (segment) {
+    const resolved = `${content}-store`;
+    return {
+      href: storefrontUrl({ segment, campaign, content: resolved }),
+      segment,
+      content: resolved,
+      isStorefront: true,
+    };
+  }
+  return {
+    href: affiliateUrl({
+      path: fallbackPath ?? storeCategoryPath(leadType),
+      campaign,
+      content,
+    }),
+    content,
+    isStorefront: false,
+  };
 }

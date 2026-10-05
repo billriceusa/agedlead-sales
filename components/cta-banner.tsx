@@ -1,7 +1,27 @@
 import Link from "next/link";
-import { affiliateUrl } from "@/lib/affiliate";
+import { agedLeadLabel } from "@/lib/affiliate";
+import { affiliateDestination } from "@/lib/store-front";
 import { TrackedAffiliateLink } from "./tracked-affiliate-link";
 
+/**
+ * The sitewide bottom CTA, plus a `compact` in-body variant.
+ *
+ * ITERATION 11 (2026-10-05) — DESTINATION PARITY WITH THE HERO DOOR
+ *
+ * `HeroAffiliateDoor` moved to the partner's storefront wherever the vertical is
+ * stocked: across two doors, ~25 sessions landed on the partner's MARKETING
+ * pages and produced zero add-to-carts, while the weekly newsletter — which has
+ * deep-linked past those pages since 2026-08-27 — is the only surface on this
+ * property that reliably produces orders. A page of prose has no cart on it.
+ * See `lib/store-front.ts` for the segment map, the card-grid provenance and the
+ * body-diff verification.
+ *
+ * This banner renders on the same `/lead-types/[slug]` pages as that hero door.
+ * Two doors on one page pointing at two different destinations makes the
+ * iteration-11 reading on 2026-11-09 unattributable, so when this banner is
+ * given a `leadType` it resolves the SAME precedence, copied from the hero door
+ * rather than re-derived.
+ */
 interface CtaBannerProps {
   headline?: string;
   description?: string;
@@ -12,8 +32,28 @@ interface CtaBannerProps {
   campaign?: string;
   variant?: "default" | "compact";
   affiliate?: boolean;
+  /**
+   * The `utm_content` base. A `-store` suffix is appended automatically when
+   * `leadType` resolves to a storefront segment, so the destination change stays
+   * readable in the store-side scoreboard instead of averaging into the
+   * marketing-page history under the same tag. Pass the base, never the
+   * suffixed value. Same convention as `HeroAffiliateDoor`.
+   */
   affiliateContent?: string;
+  /**
+   * An explicit marketing path on `agedleadstore.com`. Only consulted when
+   * `leadType` resolves no storefront segment — the storefront is strictly
+   * closer to a cart, so it outranks a hand-passed marketing path.
+   */
   affiliatePath?: string;
+  /**
+   * A Sanity `leadType.title` ("Mortgage Leads") or a slug — both work. Supplying
+   * it opts this banner into the hero door's destination precedence
+   * (storefront segment -> marketing buy page -> full catalogue) and labels the
+   * button with the vertical. Omit it and the banner behaves exactly as before:
+   * generic copy, `affiliatePath` or the full catalogue, unsuffixed `utm_content`.
+   */
+  leadType?: string;
 }
 
 export function CtaBanner({
@@ -28,8 +68,38 @@ export function CtaBanner({
   affiliate = true,
   affiliateContent = "primary",
   affiliatePath,
+  leadType,
 }: CtaBannerProps) {
   const useAffiliate = affiliate && !buttonHref;
+
+  /*
+    Destination precedence: storefront segment -> marketing buy page -> full
+    catalogue. Every step is strictly closer to a cart, and each falls through
+    only when the one above it does not exist for this vertical.
+
+    Legal, SSDI and MVA land on the middle rung by design — `/legal/leads` is a
+    verified 404 and the partner sells all legal intake from the marketing page,
+    so `storeCategoryPath` is the best available answer there, not a fallback
+    that failed. Medicare and the generic insurance bucket have neither a
+    segment nor a buy page and correctly reach the catalogue.
+  */
+  const destination = affiliateDestination({
+    leadType,
+    campaign,
+    content: affiliateContent,
+    fallbackPath: affiliatePath,
+  });
+  const segment = destination.segment;
+
+  /*
+    `-store` suffix so the destination change is legible in the scoreboard
+    instead of averaging into the marketing-page history under the same tag.
+    Two buckets, not one per vertical — a tag per vertical would make every
+    future reading underpowered by construction.
+  */
+  const resolvedContent = destination.content;
+
+  const verticalLabel = agedLeadLabel(leadType);
 
   const finalHeadline =
     headline ??
@@ -39,20 +109,31 @@ export function CtaBanner({
   const finalDescription =
     description ??
     (useAffiliate
-      ? "Browse aged leads across mortgage, insurance, home services, and more — with data verification and hygiene, suppression support, and fair-market pricing."
+      ? segment
+        ? // Expectation-setting, not a price claim: the storefront is a buying
+          // screen, and saying so is what makes the click worth making.
+          `Filter ${verticalLabel} by state and see current pricing before you buy — no minimums, no contract.`
+        : "Browse aged leads across mortgage, insurance, home services, and more — with data verification and hygiene, suppression support, and fair-market pricing."
       : "Compare providers, check fair market pricing, and calculate your ROI — all with our free tools.");
   const finalButtonText =
     buttonText ??
-    (useAffiliate ? "Browse Aged Leads at Aged Lead Store" : "Compare Providers");
+    (useAffiliate
+      ? segment
+        ? // "Shop" rather than "Browse" when the link lands on the storefront:
+          // a label promising browsing sets the reader up to bounce off a
+          // buying screen. "Browse" stays accurate for a marketing page.
+          `Shop ${verticalLabel}`
+        : leadType
+          ? `Browse ${verticalLabel} at Aged Lead Store`
+          : "Browse Aged Leads at Aged Lead Store"
+      : "Compare Providers");
   const finalSecondaryText =
     secondaryText ?? (useAffiliate ? "Compare All Providers" : "Check Pricing");
   const finalSecondaryHref = useAffiliate
     ? secondaryHref ?? "/providers"
     : secondaryHref ?? "/price-index";
 
-  const primaryUrl = useAffiliate
-    ? affiliateUrl({ path: affiliatePath, campaign, content: affiliateContent })
-    : buttonHref ?? "/providers";
+  const primaryUrl = useAffiliate ? destination.href : buttonHref ?? "/providers";
 
   if (variant === "compact") {
     return (
@@ -69,7 +150,7 @@ export function CtaBanner({
           {useAffiliate ? (
             <TrackedAffiliateLink
               href={primaryUrl}
-              ctaId={`cta-banner-${campaign}-${affiliateContent}`}
+              ctaId={`cta-banner-${campaign}-${resolvedContent}`}
               ctaLocation="cta-banner-compact"
               className="shrink-0 rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
             >
@@ -113,7 +194,7 @@ export function CtaBanner({
           {useAffiliate ? (
             <TrackedAffiliateLink
               href={primaryUrl}
-              ctaId={`cta-banner-${campaign}-${affiliateContent}`}
+              ctaId={`cta-banner-${campaign}-${resolvedContent}`}
               ctaLocation="cta-banner"
               className="rounded-lg bg-white px-8 py-3 text-base font-semibold text-blue-700 shadow-lg transition-colors hover:bg-blue-50"
             >
