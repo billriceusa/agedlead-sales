@@ -5,7 +5,6 @@ import { LeadTypeCard } from "@/components/lead-type-card";
 import { PostCard } from "@/components/post-card";
 import { PlaybookCard } from "@/components/playbook-card";
 import { CtaBanner } from "@/components/cta-banner";
-import { HeroAffiliateDoor } from "@/components/hero-affiliate-door";
 import { NewsletterSignup } from "@/components/newsletter-signup";
 import { TrustStrip } from "@/components/trust-strip";
 import { JsonLd, websiteJsonLd, organizationJsonLd } from "@/components/json-ld";
@@ -121,31 +120,47 @@ export default async function HomePage() {
             </div>
 
             {/*
-              The outbound door. Iteration 6 — see data/loop/ledger.json.
+              KILL RULE APPLIED 2026-10-05 — the homepage outbound door is gone.
+              Iteration 6, data/loop/ledger.json.
 
-              This is the highest-traffic page on the site (398 views/30d, more
-              than the providers hub and both calculators combined) and it
-              converted to the store at 0.5%, because its only affiliate surface
-              was the <CtaBanner /> at the very bottom of a 453-line page. Every
-              button in this hero pointed somewhere else on this site — the same
-              defect HeroAffiliateDoor was built for on /lead-types, and the same
-              shape /providers had at 0.61% before iteration 4 took it to 3.68%.
+              Ledger rule: "Kill if / does not clear 2% by 2026-09-23. That is 4x
+              today and still below the providers hub. If a door on the
+              highest-traffic page cannot clear 2%, the door pattern has reached
+              its limit on low-intent surfaces and the next iteration must buy
+              intent rather than add placements."
 
-              "Get the Free Playbook" KEEPS the styled primary above. It feeds
-              the 2,464-contact lifecycle program, and demoting a compounding
-              list-building asset to buy a one-off affiliate click is not a trade
-              this site makes. The door sits on its own row instead, separated so
-              it reads as a distinct outbound action rather than a fourth
-              internal option.
+              WHAT THE RULE'S OWN METRIC SHOWS: nothing, and that is worth
+              recording. Door-clicks ÷ sessions on / is not computable today.
+              The numerator is not door-isolated — / carries three affiliate
+              surfaces (this door, the bottom CtaBanner, and the site header) and
+              the outbound-clicks report attributes 7 affiliate clicks to the
+              page as a whole; GA4 truncates linkUrl at 100 chars, so its
+              topLinks rows are cut before utm_campaign and cannot be split. The
+              denominator available is screenPageViews (459), not sessions, and
+              sessions-per-page needs site-side GA4 528489903, which 403s.
 
-              No leadType is passed: a visitor on the homepage has not chosen a
-              vertical, so storeCategoryPath returns undefined and affiliateUrl
-              falls back to the full catalogue — the honest destination, and the
-              same reasoning already written into the providers hub. Secondary
-              links are omitted because the three internal routes directly above
-              already serve that purpose; repeating them would be noise.
+              WHAT DECIDED IT: store-side GA4 357329146, door-isolated by
+              utm_content, 2026-09-01→10-05 — homepage-hero/hero-door produced
+              1 session, 0 transactions, $0.00. Against up to 7 clicks measured
+              leaving the page, 1 store session says most of those clicks were
+              the header or the banner, not this door. No plausible denominator
+              rescues ~1 click in five weeks against a 2% bar.
+
+              THE CONSEQUENCE THE RULE NAMED NOW BINDS. Across the same window
+              every low-intent door earned exactly $0 — homepage 1 session,
+              both calculator doors 0 sessions, header-nav 40 sessions. All 9
+              orders and all $3,269.40 came from high-intent surfaces: the
+              providers hub door (22 sessions → 5 orders → $545) and the weekly
+              newsletter (13 sessions → 3 orders → $2,224.40). So stop adding
+              placements; buy or match intent instead.
+
+              NOT REMOVED: the bottom CtaBanner (utm_campaign=cta-banner), which
+              this rule does not cover, and HeroAffiliateDoor itself, which earns
+              on /providers and /lead-types. Only the homepage instance is gone.
+
+              "Get the Free Playbook" above is untouched — it feeds the lifecycle
+              program, and that list is a compounding asset.
             */}
-            <HeroAffiliateDoor campaign="homepage-hero" />
 
             {/* Trust signals — real E-E-A-T, no fabricated counts */}
             <TrustStrip className="mt-10" />

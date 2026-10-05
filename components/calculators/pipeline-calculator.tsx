@@ -3,8 +3,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
-import { affiliateUrl } from "@/lib/affiliate";
-import { TrackedAffiliateLink } from "@/components/tracked-affiliate-link";
 
 export function PipelineCalculator() {
   const searchParams = useSearchParams();
@@ -205,27 +203,24 @@ export function PipelineCalculator() {
         <p className="mb-3 font-semibold text-zinc-900 dark:text-white">
           Ready to fill your pipeline?
         </p>
+        {/*
+          KILL RULE APPLIED 2026-10-05 — the affiliate door that stood here is gone.
+
+          Same rule and same measurement as the Know Your CPL door: store-side
+          GA4 357329146 returned NO ROWS for utm_campaign=calculator-pipeline in
+          2026-09-01→09-30 and again →10-05, confirmed by a full campaign sweep
+          and by a targeted unfiltered query (row_count 0). Zero store sessions,
+          so zero orders and zero revenue, for the whole life of the placement.
+
+          /providers was always the secondary here; it is now the only CTA.
+          The calculator keeps its job as a lead magnet and an embed.
+        */}
         <div className="flex flex-wrap justify-center gap-3">
-          <TrackedAffiliateLink
-            href={affiliateUrl({
-              campaign: "calculator-pipeline",
-              content: "result-door",
-            })}
-            ctaId="calculator-result-door"
-            ctaLocation="pipeline-calculator"
-            className="inline-block rounded-lg bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
-          >
-            Browse Aged Leads at Aged Lead Store &rarr;
-          </TrackedAffiliateLink>
           <Link href="/providers"
-            className="inline-block rounded-lg border border-zinc-300 bg-white px-6 py-2.5 text-sm font-medium text-zinc-700 transition-colors hover:bg-zinc-50 dark:border-zinc-700 dark:bg-transparent dark:text-zinc-300 dark:hover:bg-zinc-800">
-            Compare Lead Providers
+            className="inline-block rounded-lg bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-blue-700">
+            Compare Lead Providers &rarr;
           </Link>
         </div>
-        <p className="mt-3 text-xs text-zinc-500 dark:text-zinc-500">
-          Affiliate link — we may earn a commission at no cost to you, and it
-          never affects our ratings.
-        </p>
       </div>
     </div>
   );
