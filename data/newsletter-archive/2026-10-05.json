@@ -1,0 +1,34 @@
+{
+  "runDate": "2026-10-05T17:28:24.211Z",
+  "weekOf": "2026-10-05",
+  "sendDate": "2026-10-06",
+  "theme": "Seasonal Strategy",
+  "focusVertical": "topic-themed",
+  "calendarStatus": "Calendar: \"Seasonal Strategy\" for 2026-10-06. 12 issue(s) remain, through 2026-12-29.",
+  "calendarMatched": true,
+  "calendarRemaining": 12,
+  "subject": "AEP Opens Oct 15: What It Does to Lead Prices",
+  "previewText": "Enrollment season is about to flip the lead market. Buy before the window, not during.",
+  "html": "2026-10-05.html",
+  "sent": false,
+  "priceGuard": {
+    "blocking": [],
+    "warnings": [
+      "Duplicate utm_content values (2026-10-05-digest) — GA4 merges these into one row, so those placements cannot be told apart."
+    ]
+  },
+  "featuredArticle": {
+    "title": "How to Work Aged Leads: The Complete System for Maximum ROI",
+    "slug": "how-to-work-aged-leads-the-complete-system-for-maximum-roi",
+    "spotlight": "If you're trying to figure out how a lead that's 60, 90, or 180 days old can out-earn a fresh one, this is the piece that walks through the actual economics. It covers the scripts, the follow-up cadence, and the math that makes aged leads the quiet workhorse of a sustainable pipeline — especially useful reading right before enrollment season makes fresh leads expensive and scarce."
+  },
+  "quickTips": [
+    "AEP opens Oct 15 — the supply squeeze starts before that",
+    "ACA opens Nov 1 — staff the phone before the surge, not during it",
+    "The cheapest week to buy is always the one right before the window opens"
+  ],
+  "industryInsight": "Two enrollment clocks, one calendar collision",
+  "errors": [
+    "Warning: Duplicate utm_content values (2026-10-05-digest) — GA4 merges these into one row, so those placements cannot be told apart."
+  ]
+}
