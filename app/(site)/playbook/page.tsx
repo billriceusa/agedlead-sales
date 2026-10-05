@@ -4,6 +4,7 @@ import { allFlagshipVerticals } from "@/data/flagship-verticals";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { JsonLd, breadcrumbJsonLd } from "@/components/json-ld";
 import { PostCard } from "@/components/post-card";
+import { NextStepRouter } from "@/components/next-step-router";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { postsByCategorySlugsQuery } from "@/sanity/lib/queries";
 
@@ -130,6 +131,52 @@ export default async function PlaybookIndexPage() {
           </div>
         </div>
       </section>
+
+      {/*
+        Internal routing, not a door — Click Loop iteration P4, 2026-10-05.
+
+        /playbook drew 409 views and produced 1 affiliate click in the measured
+        window. The reader here is an operator: they have decided to do the work
+        and are about to build a cadence. What the page never gave them was a
+        route to the supply side, which is where the system's own math comes
+        from — so the three destinations below are the inputs the playbook
+        assumes the reader already has.
+
+        Deliberately NOT a store door. The door pattern has been killed three
+        times on these low-intent surfaces (ledger kills[], iterations 1, 5, 6).
+        Every href here is first-party.
+
+        Vertical choice stays with the three playbook cards above; this block
+        does not re-ask it, which is why it routes to hubs and to one worked
+        review rather than to a single vertical's buying guide.
+      */}
+      <NextStepRouter
+        heading="The system assumes you bought well"
+        intro="Scripts and cadence cannot rescue a file that was overpriced, or one from a seller who will not say where the data came from. Settle the supply side before you run week one."
+        items={[
+          {
+            href: "/providers",
+            label: "Compare aged lead providers",
+            description:
+              "Independent six-dimension ratings of the sellers we have reviewed — pricing transparency, verticals covered, data age and replacement terms, each with a verification date.",
+            icon: "providers",
+          },
+          {
+            href: "/blog/aged-lead-store-review-2026",
+            label: "A seller vetted end to end",
+            description:
+              "One provider taken apart in full: catalog, data sourcing, replacement policy, and where it falls short. Useful mainly as the list of questions to put to any seller.",
+            icon: "review",
+          },
+          {
+            href: "/price-index",
+            label: "Lead Price Index",
+            description:
+              "The playbook's unit economics all start from a cost-per-lead input. This is where that number comes from — quarterly benchmarks by vertical, with the sourcing shown.",
+            icon: "pricing",
+          },
+        ]}
+      />
 
       {clusterPosts.length > 0 && (
         <section className="border-t border-zinc-200 bg-zinc-50 py-16 dark:border-zinc-800 dark:bg-zinc-950/50">
