@@ -173,21 +173,21 @@ const rawProviders: Omit<ProviderData, "overallRating">[] = [
     name: "iLeads",
     slug: "ileads",
     shortDescription:
-      "CoreLogic-owned provider specializing in credit-triggered and intent-based leads with 271+ data points per record.",
+      "Independent property-data company selling aged and real-time mortgage, insurance and solar leads screened against title-grade public records.",
     website: "https://ileads.com",
     foundedYear: 1996,
     bbbRating: "A",
     headquartersState: "CA",
     bestFor: [
       "Mortgage lenders",
-      "Data-driven buyers",
-      "Enterprise-grade compliance",
-      "Trigger lead buyers",
+      "Aged mortgage lead buyers",
+      "Leads screened on property and equity data",
+      "Scoring leads you already own",
     ],
     notIdealFor: [
-      "Budget-conscious agents",
-      "Small volume buyers",
-      "Insurance-only agents",
+      "Buyers who need published pricing",
+      "Verticals that do not sell to homeowners",
+      "Credit-inquiry trigger lead buyers",
     ],
     ratingTransparency: 3,
     ratingValue: 7,
@@ -196,26 +196,34 @@ const rawProviders: Omit<ProviderData, "overallRating">[] = [
     ratingPlatform: 8,
     ratingReputation: 9,
     ratingNotes:
-      "Premium data provider owned by CoreLogic. Proprietary homeowner database covers 99.8% of US households with 271+ data points. Excellent for mortgage and insurance verticals. Enterprise-grade compliance. Pricing is sales-driven and premium.",
-    lastVerified: "2026-04-28",
+      "Re-verified against ileads.com on 2026-10-05. NOT CoreLogic-owned: inside First American 2001-2010, public with the CoreLogic spin-off 2010-2012, independent since a 2012 management buyback. Data layer is 150M+ US properties from multiple national title sets, re-read as often as weekly, plus a proprietary consumer lead database; a basic append returns 291 elements, not the 271 we previously published. Pricing is a booked call for everything except LeadsDirect's live inventory. Ratings below predate this re-verification and are not re-scored here — the no-minimum LeadsDirect channel in particular argues the flexibility score is now too low.",
+    lastVerified: "2026-10-05",
     verticals: [
       "mortgage",
       "auto-insurance",
       "life-insurance",
       "health-insurance",
       "homeowners-insurance",
+      "solar",
     ],
-    leadTypes: ["real-time", "trigger", "data-list"],
+    // "trigger" removed 2026-10-05: the only trigger product on the live site
+    // is Trigger Alerts, which notifies you when a record in your OWN file
+    // crosses a lien/equity/rate threshold. That is not a credit-inquiry
+    // trigger lead, and the badge implied one. "aged" added — Revive and
+    // LeadsDirect both sell aged leads outright (ileads.com/aged-mortgage-leads,
+    // ileads.com/aged-insurance-leads, retrieved 2026-10-05).
+    leadTypes: ["aged", "real-time", "data-list"],
     pricingModel: "sales-required",
     hasMinimums: true,
-    minimumDescription: "Enterprise minimums — contact sales",
+    minimumDescription:
+      "Enterprise minimums on the core products; LeadsDirect sells single leads with no minimum",
     contractRequired: true,
     returnPolicy: "Negotiated per contract",
     deliveryMethods: ["api", "crm-push", "real-time-post"],
     complianceFeatures: ["tcpa-docs", "dnc-scrubbing"],
     isFeatured: false,
     editorialReview:
-      "iLeads is a different animal from most providers on this list. Owned by CoreLogic, they have access to a proprietary homeowner database covering 99.8% of US households with 271+ data points per record. They specialize in credit-triggered leads — identifying consumers who have recently pulled credit or made financial inquiries. This is premium data that commands premium pricing. Best suited for mortgage lenders and large insurance operations with enterprise budgets. If you're a solo agent buying 200 leads a month, iLeads isn't built for you. But if you're a lender or call center running high-volume campaigns with sophisticated targeting needs, the data quality is hard to match.",
+      "Re-verified against ileads.com on 2026-10-05, and two things in our earlier profile were wrong. iLeads is not CoreLogic-owned — it sat inside First American from 2001, went public with the CoreLogic spin-off in 2010, and management bought it back in 2012, taking the data infrastructure with it. And it does sell aged leads, which our profile did not credit it for. Revive buys aged internet leads from aggregator partners, matches each one to title-grade property records, drops the 40-50% whose collateral cannot support a loan, and sells you the rest; LeadsDirect sells single aged leads from live inventory at up to 80% off retail, with no minimum. The pitch is that age is the wrong sort column — a 120-day lead on clean equity beats a 30-day lead on a property that cannot carry the loan. They publish match-back findings across 40 orders: about 1 in 7 aged Revive leads records a funded mortgage, roughly two-thirds of those fund with a lender other than the original real-time buyer, and about three in four fund within six months. Read those as the vendor's own analysis of its own batches, not an independent audit. The same engine also runs backwards over leads you already hold — GateKeeper scores inbound leads by API before the first call, Performance is a free match-back that tells a mortgage lender which of its leads funded and with whom, and Recapture works an existing aged book. The real cost of entry is opacity: no pricing is published anywhere except LeadsDirect, so the core products start with a booked call, and the compliance story is deliberately framed as a handling discipline rather than a certification. Worth a conversation if you buy aged mortgage leads in volume and want the property read before you pay. The solo agent buying 200 leads a month now has a door in through LeadsDirect that did not exist when we first rated them.",
   },
   {
     name: "Need-A-Lead",
@@ -441,21 +449,29 @@ const rawProviders: Omit<ProviderData, "overallRating">[] = [
   {
     name: "LeadsData",
     slug: "leadsdata",
+    // NOT A LEAD SOURCE as of 2026-10-05. The entry is left in place because
+    // removing a published rating is an editorial call, not a build-time one —
+    // see the editorial review and ratingNotes below. The structured fields
+    // (verticals, leadTypes, deliveryMethods, complianceFeatures, the six
+    // ratings) still describe the lead marketplace this used to be; they are
+    // rendered as badge lists under fixed section headings, so emptying them
+    // produces orphan headings rather than a visible flag. They stay until the
+    // keep-or-retire decision is made.
     shortDescription:
-      "Self-serve marketplace for aged data and real-time lead feeds with transparent pricing and TCPA compliance focus.",
+      "No longer sells leads. Re-verified 2026-10-05: leadsdata.com is now a website behavior-analytics and visitor identity-resolution SaaS.",
     website: "https://leadsdata.com",
     foundedYear: 2019,
     bbbRating: "NR",
     headquartersState: "TX",
     bestFor: [
-      "Self-service buyers",
-      "Mixed aged + real-time strategy",
-      "TCPA-conscious buyers",
+      "Nobody buying leads — kept listed pending review",
+      "Session-level website behavior analytics",
+      "Testing visitor identity resolution",
     ],
     notIdealFor: [
-      "Enterprise volume",
-      "Non-digital lead types",
-      "Those needing established track record",
+      "Aged lead buyers",
+      "Real-time lead feeds",
+      "Buying consumer data of any kind",
     ],
     ratingTransparency: 8,
     ratingValue: 7,
@@ -464,8 +480,8 @@ const rawProviders: Omit<ProviderData, "overallRating">[] = [
     ratingPlatform: 7,
     ratingReputation: 4,
     ratingNotes:
-      "Newer marketplace with good transparency and self-service UX. TCPA compliance messaging is strong. Limited track record as a younger company.",
-    lastVerified: "2026-04-28",
+      "The scores below are stranded. They were assigned on 2026-04-28 to a self-serve aged-data marketplace, and leadsdata.com no longer sells leads or data of any kind (re-verified 2026-10-05). They are deliberately left unchanged rather than re-scored: the open question is whether this provider belongs in an aged-lead directory at all, not what it should score. data/price-disclosure.ts flagged the same repositioning on 2026-09-02.",
+    lastVerified: "2026-10-05",
     verticals: [
       "auto-insurance",
       "life-insurance",
@@ -479,12 +495,12 @@ const rawProviders: Omit<ProviderData, "overallRating">[] = [
     pricingModel: "transparent",
     hasMinimums: false,
     contractRequired: false,
-    returnPolicy: "Credits for invalid data within defined criteria",
+    returnPolicy: "Not applicable — no lead or data product is sold",
     deliveryMethods: ["instant-download", "email", "real-time-post"],
     complianceFeatures: ["tcpa-docs", "dnc-scrubbing"],
     isFeatured: false,
     editorialReview:
-      "LeadsData positions itself as a modern, self-serve lead marketplace with transparent pricing. The platform is clean and easy to use. They offer both aged data and real-time feeds across insurance and financial verticals. The main concern is limited track record — founded in 2019 with no BBB rating yet. For buyers who prioritize transparency and self-service, it's worth testing with a small batch. Verify their data verification, hygiene, and DNC-scrubbing standards match your requirements before scaling.",
+      "LeadsData is no longer a lead source, and this entry is out of date rather than merely stale. Re-verified against leadsdata.com on 2026-10-05: the site now sells a single JavaScript tag with two SaaS modules. Signals is session-level website behavior analytics — journeys, funnels, field-level form abandonment, rage and dead clicks — at $49/mo per 10,000 sessions. Identity is visitor identity resolution, tiered by how well each match is corroborated and billed at $0.18 per activatable resolution, with only the two strongest tiers consuming a credit. Both carry a 14-day trial. There is no aged-data marketplace, no real-time lead feed, and no per-lead price anywhere on the site, and the tag explicitly never reads the value of an input field. Our earlier profile described a self-serve marketplace for aged data and real-time feeds. We cannot tell from the public site alone whether the company pivoted, the domain changed hands, or the original entry was wrong — so that is not asserted either way here. What is certain is that an aged lead buyer arriving on this page today has nothing to buy at the other end of the link. Treat the ratings above as a historical artifact, not a current assessment.",
   },
   {
     name: "Lead Heroes",
