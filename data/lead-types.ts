@@ -7,7 +7,20 @@ export interface LeadTypeData {
   metaDescription: string;
   primaryKeyword: string;
   secondaryKeywords: string[];
-  costRange: string;
+  /**
+   * A per-lead price range, e.g. "$0.30-$1.50".
+   *
+   * OPTIONAL, since 2026-10-05. It was required, and the template renders it
+   * with the words "per lead" hard-coded after it in two places. Annuity and
+   * homeowners insurance have no benchmark in data/price-benchmarks.ts, so the
+   * only ways to satisfy a required field were to invent a number — which the
+   * no-fabricated-data rule forbids — or to put a phrase where a price goes,
+   * which produced "Average cost: a fraction of real-time rates per lead".
+   *
+   * Omit it when there is no verified benchmark. Both render sites gate on it
+   * and say something true instead.
+   */
+  costRange?: string;
   whoItsFor: string[];
   whatYouGet: string[];
   sections: {
@@ -1833,7 +1846,6 @@ export const LEAD_TYPES: Record<string, LeadTypeData> = {
       "retirement income leads",
       "annuity lead generation",
     ],
-    costRange: "a fraction of real-time rates",
     whoItsFor: [
       "Life and annuity producers licensed in the states on the file",
       "Independent agents affiliated with an IMO or FMO who can compare several carriers' products",
@@ -1986,7 +1998,6 @@ export const LEAD_TYPES: Record<string, LeadTypeData> = {
       "homeowner insurance lead generation",
       "bundle home and auto leads",
     ],
-    costRange: "a fraction of real-time rates",
     whoItsFor: [
       "Property and casualty agents who write home and auto and want the household, not the one policy",
       "Independent agencies with appointments across several carriers and access to surplus lines in hard markets",

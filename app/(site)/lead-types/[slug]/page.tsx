@@ -269,7 +269,18 @@ export default async function LeadTypePage({ params }: Props) {
           <CtaBanner
             variant="compact"
             headline={`Compare ${title} Providers`}
-            description={`See which providers offer the best aged ${title.toLowerCase()} — with independent ratings and fair market pricing from ${data.costRange} per lead.`}
+            /*
+              "from {costRange} per lead" is only true when we have a verified
+              benchmark for this vertical. Annuity and homeowners insurance have
+              none, and inventing one to fill the sentence is the exact trade the
+              no-fabricated-data rule forbids — so the sentence changes rather
+              than the number.
+            */
+            description={
+              data.costRange
+                ? `See which providers offer the best aged ${title.toLowerCase()} — with independent ratings and fair market pricing from ${data.costRange} per lead.`
+                : `See which providers offer the best aged ${title.toLowerCase()} — with independent ratings and current pricing brackets from the Lead Price Index.`
+            }
             buttonText="Compare Providers"
             buttonHref={compareHref}
           />
