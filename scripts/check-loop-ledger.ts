@@ -21,7 +21,25 @@ const ENGINES = new Set([
   "experiences",
   "unblock",
 ]);
-const VERDICTS = new Set(["pending", "keep", "kill", "n/a"]);
+/**
+ * "change" added 2026-10-05, for the header-nav verdict.
+ *
+ * The loop had three outcomes and the header door fit none of them. It did not
+ * pass — 40 sessions, 0 orders, $0.00, and no cart movement from the readers it
+ * actually sends. It could not honestly be killed either: 0-of-40 is ~11%
+ * likely at the old order rate, and the evidence could not separate "this
+ * placement is worthless" from "the destination is a dead end", because the
+ * lead-type door showed the identical signature on a different placement. The
+ * two were confounded, so a kill would have removed the only site-wide path to
+ * the merchant while blaming the wrong variable.
+ *
+ * "change" means: the asset was modified rather than kept or removed, and a NEW
+ * kill rule with a new measure date is attached. Recording that as "keep" would
+ * claim a bet passed when it did not; recording it as "pending" would hide that
+ * a decision was taken and the asset edited. It is a real fourth outcome and
+ * the vocabulary should carry it rather than force a wrong label.
+ */
+const VERDICTS = new Set(["pending", "keep", "kill", "change", "n/a"]);
 
 const problems: string[] = [];
 
