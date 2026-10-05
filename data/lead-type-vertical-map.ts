@@ -43,6 +43,17 @@ export const LEAD_TYPE_TO_VERTICAL: Record<string, string> = {
   // verticalForLeadType would otherwise fall back to "home-services", which is
   // not a real vertical. Keep the mapping.
   "home-services-leads": "home-improvement",
+  // Added 2026-10-05 with the annuity guide. REQUIRED, not cosmetic: without it
+  // `verticalForLeadType` strips the suffix to "annuity", which is not a slug in
+  // VERTICALS, so the guide's hero would render secondary links to
+  // /providers/best/annuity and /price-index/annuity — two routes that do not
+  // exist. "annuity-iul" is the vertical that covers it, and it is also where
+  // the adjacent IUL cluster already converts.
+  "annuity-leads": "annuity-iul",
+  // The suffix-strip fallback would resolve "homeowners-insurance" correctly on
+  // its own, since that IS a real vertical. Stated explicitly anyway so the
+  // relationship is curated rather than accidental, matching every other entry.
+  "homeowners-insurance-leads": "homeowners-insurance",
 };
 
 export function verticalForLeadType(leadTypeSlug: string): string {
@@ -75,6 +86,13 @@ export const VERTICAL_TO_LEAD_TYPE: Record<string, string> = {
   legal: "legal-leads",
   solar: "solar-leads",
   medicare: "medicare-leads",
+  // Added 2026-10-05: the homeowners-insurance vertical had no guide at all, so
+  // /price-index/homeowners-insurance and /providers/best/homeowners-insurance
+  // rendered no cluster link. Deliberately NOT adding annuity-iul -> annuity-leads
+  // in this direction: that vertical's established guide is iul-leads and it owns
+  // the head term, so reassigning it would take the cluster link off a page that
+  // already converts and give it to a brand-new one.
+  "homeowners-insurance": "homeowners-insurance-leads",
 };
 
 export function leadTypeForVertical(
