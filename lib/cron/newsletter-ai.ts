@@ -191,11 +191,70 @@ Respond with ONLY valid JSON (no markdown fences, no commentary):
     throw new Error("No text response from AI for newsletter generation");
   }
 
-  // Extract JSON — handle potential markdown fences
-  let jsonStr = textBlock.text.trim();
-  if (jsonStr.startsWith("```")) {
-    jsonStr = jsonStr.replace(/^```(?:json)?\n?/, "").replace(/\n?```$/, "");
+  return JSON.parse(extractJsonObject(textBlock.text)) as NewsletterContent;
+}
+
+/**
+ * Pull the first complete JSON object out of a model response.
+ *
+ * WHY (2026-10-04 outage)
+ *
+ * The old version stripped a markdown fence only when the response STARTED with
+ * one and ended with one, then handed everything else to JSON.parse. On
+ * 2026-10-04 the model emitted a valid object followed by a sentence of
+ * commentary, and the whole Sunday run died with "Unexpected non-whitespace
+ * character after JSON at position 1187". No issue was archived, so the Tuesday
+ * sender had nothing to send — the same chain that had already cost 2026-09-29.
+ * Two weeks of the single best-earning email on the site, lost to a preamble.
+ *
+ * This is NOT the forgiving-parser mistake the truncation guard above warns
+ * about. Truncation is still fatal and still throws: the guard runs before this
+ * and checks stop_reason, and a cut-off object has no balanced closing brace, so
+ * the scan below finds no complete value and throws as well. What this tolerates
+ * is only text OUTSIDE a complete object — a preamble, a fence, a trailing note.
+ *
+ * Brace counting is string-aware: a `{` or `}` inside a JSON string literal, and
+ * any character after a backslash, must not move the depth. Newsletter copy
+ * contains both braces and escaped quotes, so a naive count lands mid-string.
+ */
+export function extractJsonObject(raw: string): string {
+  const start = raw.indexOf("{");
+  if (start === -1) {
+    throw new Error(
+      `No JSON object in the model response (${raw.length} chars). First 200: ${raw.slice(0, 200)}`,
+    );
   }
 
-  return JSON.parse(jsonStr) as NewsletterContent;
+  let depth = 0;
+  let inString = false;
+  let escaped = false;
+
+  for (let i = start; i < raw.length; i++) {
+    const ch = raw[i];
+
+    if (escaped) {
+      escaped = false;
+      continue;
+    }
+    if (ch === "\\") {
+      if (inString) escaped = true;
+      continue;
+    }
+    if (ch === '"') {
+      inString = !inString;
+      continue;
+    }
+    if (inString) continue;
+
+    if (ch === "{") depth++;
+    else if (ch === "}") {
+      depth--;
+      if (depth === 0) return raw.slice(start, i + 1);
+    }
+  }
+
+  throw new Error(
+    `JSON object never closed — ${depth} unclosed brace(s) after ${raw.length} chars. ` +
+      `This is a TRUNCATED response, not a malformed one; raise max_tokens or shorten the prompt.`,
+  );
 }
