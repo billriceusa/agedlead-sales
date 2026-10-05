@@ -141,7 +141,18 @@ export async function fetchAudienceStats(apiKey: string): Promise<AudienceStat[]
     }
     let best = { total: -1, subscribed: 0, unsubscribed: 0 };
     for (const a of matches) {
-      const contacts = await fetchAudienceContacts(apiKey, a.id);
+      // A Resend error on one segment must not blank the whole report. The
+      // throw is deliberate in fetchAudienceContacts (the send floor needs it),
+      // so tolerance belongs at the reporting call sites.
+      let contacts;
+      try {
+        contacts = await fetchAudienceContacts(apiKey, a.id);
+      } catch (err) {
+        console.warn(
+          `[ALS report] Skipping segment ${a.id} ("${name}"): ${err instanceof Error ? err.message : err}`
+        );
+        continue;
+      }
       const total = contacts.length;
       if (total > best.total) {
         best = {

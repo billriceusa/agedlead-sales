@@ -119,3 +119,41 @@ describe("calendarStatus", () => {
     assert.ok(calendarStatus("2099-01-06").message.includes(last.sendDate));
   });
 });
+
+describe("forward coverage — the tripwire for a silently expiring calendar", () => {
+  /**
+   * WHY THIS TEST CAN FAIL ON A DAY NOBODY TOUCHED THE CODE
+   *
+   * That is the point. When the last calendar ran out on 2026-06-02, thirteen
+   * consecutive issues went out with a theme the model invented, and nothing
+   * anywhere said so — `calendarStatus()` only speaks through a banner in the
+   * preview email, which depends on a human reading it.
+   *
+   * This asserts the calendar still covers the next four Tuesdays. It starts
+   * failing about a month before the calendar actually runs dry, which is the
+   * loud, early warning the banner never was. If it fails: add entries to
+   * NEWSLETTER_CALENDAR. Do not widen the window to make it pass.
+   */
+  const WEEKS_OF_COVER = 4;
+
+  test(`covers the next ${WEEKS_OF_COVER} Tuesdays`, () => {
+    const now = new Date();
+    const uncovered: string[] = [];
+
+    for (let i = 0; i < WEEKS_OF_COVER; i++) {
+      const d = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
+      // Next Tuesday (today, if today is a Tuesday), then weekly from there.
+      d.setUTCDate(d.getUTCDate() + ((2 - d.getUTCDay() + 7) % 7) + i * 7);
+      const iso = d.toISOString().slice(0, 10);
+      if (!findPlanForDate(iso)) uncovered.push(iso);
+    }
+
+    assert.deepEqual(
+      uncovered,
+      [],
+      `NEWSLETTER_CALENDAR has no plan for ${uncovered.join(", ")}. ` +
+        `The calendar runs through ${NEWSLETTER_CALENDAR[NEWSLETTER_CALENDAR.length - 1].sendDate}. ` +
+        `Add entries in data/newsletter-calendar.ts — an issue with no plan gets a theme the model made up.`,
+    );
+  });
+});

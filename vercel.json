@@ -25,7 +25,7 @@
     },
     {
       "path": "/api/cron/weekly-newsletter",
-      "schedule": "0 14 * * 0"
+      "schedule": "0 14 * * 0,1"
     },
     {
       "path": "/api/cron/send-newsletter",
@@ -33,7 +33,7 @@
     },
     {
       "path": "/api/cron/restock-offer?mode=draft",
-      "schedule": "0 14 * * 0"
+      "schedule": "20 14 * * 0"
     },
     {
       "path": "/api/cron/restock-offer?mode=send",

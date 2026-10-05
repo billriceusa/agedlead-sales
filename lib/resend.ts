@@ -121,9 +121,29 @@ export async function fetchAudienceContacts(
     cache: "no-store",
   });
 
-  if (!res.ok) return [];
+  // THROW, never return []. An empty list here used to mean two completely
+  // different things — "this segment is empty" and "Resend just 429'd us" — and
+  // the caller cannot tell them apart. send-newsletter's recipient floor then
+  // reports the wrong cause: a transient 5xx came out as "the audience id is
+  // probably wrong", which sends someone looking for a config bug that isn't
+  // there while the real fix is to retry.
+  if (!res.ok) {
+    throw new Error(
+      `Resend contact listing failed for segment ${audienceId}: ${res.status} ${await res.text()}`
+    );
+  }
 
-  const data: { data: ResendContact[] } = await res.json();
+  const data: { data: ResendContact[]; has_more?: boolean } = await res.json();
+  // The segment returns in a single page today (6,220 rows, has_more false on
+  // 2026-10-05) but the recipient floor is computed off this length, so a
+  // silently truncated page would be a guard that passes on bad data.
+  // scripts/migrate-newsletter-audience.ts has always refused this; so must we.
+  if (data.has_more) {
+    throw new Error(
+      `Resend reported has_more for segment ${audienceId} — the list has outgrown one page. ` +
+        `Paginate before trusting any count computed from it (the recipient floor depends on it).`
+    );
+  }
   return data.data || [];
 }
 
@@ -405,7 +425,20 @@ export async function fetchListHealth(
   let unsubscribedCount = 0;
 
   for (const audience of audiences) {
-    const contacts = await fetchAudienceContacts(apiKey, audience.id);
+    // fetchAudienceContacts throws on a Resend error now, by design — the send
+    // path must never mistake a 429 for an empty list. This is a reporting
+    // aggregate across ~19 segments on several properties, though, where the
+    // right behaviour is the opposite: skip the one that failed rather than
+    // blank the whole list-health panel.
+    let contacts: ResendContact[];
+    try {
+      contacts = await fetchAudienceContacts(apiKey, audience.id);
+    } catch (err) {
+      console.warn(
+        `[Resend] Skipping segment ${audience.id} in list health: ${err instanceof Error ? err.message : err}`
+      );
+      continue;
+    }
     totalContacts += contacts.length;
     subscribedCount += contacts.filter((c) => !c.unsubscribed).length;
     unsubscribedCount += contacts.filter((c) => c.unsubscribed).length;

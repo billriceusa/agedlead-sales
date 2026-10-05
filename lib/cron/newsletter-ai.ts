@@ -83,7 +83,101 @@ CRITICAL RULES — DO NOT VIOLATE:
 - Fresh/real-time lead costs from published industry sources may be cited WITH the source named, since those are not our prices to misstate.
 - NEVER imply a post is new unless its publishedAt date is within the last 7 days. The post list below carries real dates — read them. Publishing gaps happen, and "we just published" about a month-old article is a claim the reader can check in one click. Say "worth revisiting" or just describe the piece.`;
 
+/**
+ * Generate an issue, retrying once on a bad response.
+ *
+ * WHY (2026-10-04, and 2026-09-27 before it)
+ *
+ * Two consecutive Sunday runs died inside this function and each one cost a
+ * whole week of the site's best-earning email: the Sunday cron fires once, the
+ * Tuesday sender asks for an archive that was never written, and the next
+ * Sunday asks for a different week's label. Nothing retried, so a single bad
+ * response from the model was a total loss.
+ *
+ * The SDK already retries 429s and 5xx. What it cannot retry is a 200 whose
+ * body the parser rejects — trailing commentary, a truncated object, a missing
+ * field — which is the failure that actually happened. That retry belongs here,
+ * and it is cheap: one extra call, only on a path that is otherwise a dead week.
+ *
+ * Two attempts, not more. A third would mostly buy latency, and a prompt the
+ * model reliably fails twice needs a human, not another round trip.
+ */
 export async function generateNewsletterContent(
+  plan: NewsletterPlan | null,
+  recentPosts: RecentPost[],
+  siteUrl: string,
+  weekLabel: string
+): Promise<NewsletterContent> {
+  let lastErr: unknown;
+  for (let attempt = 1; attempt <= 2; attempt++) {
+    try {
+      const content = await generateOnce(plan, recentPosts, siteUrl, weekLabel);
+      assertNewsletterShape(content);
+      if (attempt > 1) {
+        console.log(`[Newsletter] Generation succeeded on attempt ${attempt}`);
+      }
+      return content;
+    } catch (err) {
+      lastErr = err;
+      console.error(
+        `[Newsletter] Generation attempt ${attempt} failed: ${err instanceof Error ? err.message : err}`
+      );
+    }
+  }
+  throw new Error(
+    `Newsletter generation failed on both attempts. Last error: ${
+      lastErr instanceof Error ? lastErr.message : lastErr
+    }`
+  );
+}
+
+/**
+ * Reject a response that parsed but is not a usable issue.
+ *
+ * WHY: `JSON.parse(...) as NewsletterContent` is a lie the compiler cannot
+ * catch. Valid JSON missing `quickTips` threw a TypeError further downstream in
+ * buildNewsletterHtml, outside any try block, which 500'd the route BEFORE it
+ * recorded a heartbeat — so the health check saw the previous week's beat and
+ * stayed quiet for eight days. Failing here instead makes it a retryable
+ * generation error with a message that names the missing field.
+ */
+export function assertNewsletterShape(c: unknown): asserts c is NewsletterContent {
+  const o = c as Record<string, unknown> | null;
+  if (!o || typeof o !== "object") throw new Error("Generated issue is not an object");
+
+  const missing: string[] = [];
+  for (const k of ["subject", "previewText", "personalIntro", "closingNote", "ctaText"]) {
+    if (typeof o[k] !== "string" || !(o[k] as string).trim()) missing.push(k);
+  }
+
+  const fa = o.featuredArticle as Record<string, unknown> | undefined;
+  if (!fa || typeof fa.title !== "string" || typeof fa.slug !== "string") {
+    missing.push("featuredArticle{title,slug}");
+  }
+
+  const ii = o.industryInsight as Record<string, unknown> | undefined;
+  if (!ii || typeof ii.headline !== "string" || typeof ii.body !== "string") {
+    missing.push("industryInsight{headline,body}");
+  }
+
+  const tips = o.quickTips;
+  if (!Array.isArray(tips) || tips.length === 0) missing.push("quickTips[]");
+  else if (tips.some((t) => !t || typeof t.title !== "string" || typeof t.body !== "string")) {
+    missing.push("quickTips[].{title,body}");
+  }
+
+  // An empty digest is legitimate — a week with no new posts still has an issue.
+  if (!Array.isArray(o.weeklyDigest)) missing.push("weeklyDigest[]");
+
+  if (missing.length) {
+    throw new Error(
+      `Generated issue is missing or malformed: ${missing.join(", ")}. ` +
+        `The response parsed as JSON but is not a usable newsletter.`
+    );
+  }
+}
+
+async function generateOnce(
   plan: NewsletterPlan | null,
   recentPosts: RecentPost[],
   siteUrl: string,

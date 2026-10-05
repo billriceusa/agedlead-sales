@@ -10,6 +10,7 @@ import {
 import { buildNewsletterHtml } from "@/lib/cron/newsletter-email";
 import { checkIssueHtml, type IssueGate } from "@/lib/newsletter/issue-gate";
 import { commitFilesToGitHub } from "@/lib/cron/git-commit";
+import { readIssue } from "@/lib/newsletter/archive-github";
 import { recordCronRun } from "@/lib/cron/heartbeat";
 import { REPLY_TO_EMAIL } from "@/lib/resend";
 import { killUrl } from "@/lib/newsletter/kill-token";
@@ -19,8 +20,34 @@ export const dynamic = "force-dynamic";
 
 const REVIEW_EMAIL = "bill@billricestrategy.com";
 
+/**
+ * The origin every link in the issue is built from.
+ *
+ * WHY THE HARD REFUSAL: agedleadsales.com is a RETIRED hostname. The fallback
+ * below predates the 2026-08-03 consolidation, and an unset NEXT_PUBLIC_SITE_URL
+ * would render every article link, every store link and the STOP link on the dead
+ * brand — and then mail it, because nothing downstream inspects the host. A test
+ * send caught exactly this in scripts/draft-newsletter.ts, which already refuses;
+ * the route that writes the archives did not. Better a loud 500 on Sunday, with
+ * the whole week still available to fix it, than 5,900 people receiving dead links.
+ */
 function getSiteUrl(): string {
-  return process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
+  const url = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
+  let host: string;
+  try {
+    host = new URL(url).host.replace(/^www\./, "");
+  } catch {
+    throw new Error(`NEXT_PUBLIC_SITE_URL is not a valid URL: ${url}`);
+  }
+  if (host !== "workagedleads.com") {
+    throw new Error(
+      `Refusing to draft an issue for host "${host}". ` +
+        `NEXT_PUBLIC_SITE_URL must be https://workagedleads.com — ` +
+        `agedleadsales.com has been retired since 2026-08-03 and every link, ` +
+        `including the STOP link, would point at the dead brand.`
+    );
+  }
+  return url;
 }
 
 function getSanityClient() {
@@ -202,13 +229,76 @@ export async function GET(request: Request) {
   // a flag someone can flip by accident. Sending is a separate, deliberate,
   // human-run step — `npm run newsletter:send -- --date <YYYY-MM-DD> --confirm`.
   const startTime = Date.now();
+  try {
+    return await draftThisWeeksIssue(request, startTime);
+  } catch (err) {
+    // WHY THIS EXISTS: everything after generation used to run unguarded. A
+    // throw here — a malformed issue reaching buildNewsletterHtml, a missing
+    // Sanity token, a bad NEXT_PUBLIC_SITE_URL — 500'd the route BEFORE
+    // recordCronRun was ever reached, so the health check saw last week's beat
+    // and said nothing for eight days. A failure must always leave a heartbeat.
+    const msg = err instanceof Error ? err.message : String(err);
+    console.error(`[Newsletter] Run failed: ${msg}`);
+    await recordCronRun({
+      name: "weekly-newsletter",
+      status: "failed",
+      detail: msg,
+      durationMs: Date.now() - startTime,
+    }).catch((beatErr) => {
+      console.error(`[Newsletter] Heartbeat write also failed: ${beatErr}`);
+    });
+    return NextResponse.json(
+      { success: false, error: msg, duration: Date.now() - startTime },
+      { status: 500 }
+    );
+  }
+}
+
+async function draftThisWeeksIssue(request: Request, startTime: number) {
   const errors: string[] = [];
   const weekDates = getWeekDates();
   const siteUrl = getSiteUrl();
+  const force = new URL(request.url).searchParams.get("force") === "1";
 
   console.log(
     `[Newsletter] Starting run for week of ${weekDates.weekLabel}, send date: ${weekDates.tuesday}`
   );
+
+  // ── Step 0: Never overwrite an issue that already exists ─────
+  //
+  // This route used to commit unconditionally. Bill clicks STOP in the preview,
+  // anyone re-triggers the route for the same week, and the fresh record — which
+  // carries no `killed` key — erases the kill and the issue mails. The restock
+  // route has refused this since it shipped; this one did not.
+  //
+  // It also makes the cron idempotent, which is what lets the Monday run exist:
+  // the schedule is Sunday AND Monday, so a Sunday that dies still has a second
+  // chance, and a Sunday that succeeded makes Monday a free no-op that spends no
+  // Anthropic tokens. Deliberate redrafts pass ?force=1.
+  const existing = await readIssue(weekDates.weekLabel).catch((err) => {
+    // A read failure must not block drafting a week that has nothing archived.
+    console.warn(`[Newsletter] Could not read existing archive: ${err}`);
+    return null;
+  });
+  if (existing && !force) {
+    const state = existing.sent ? "already sent" : existing.killed ? "killed" : "drafted";
+    const detail = `Issue ${weekDates.weekLabel} is ${state} — refusing to overwrite it. Pass ?force=1 to redraft deliberately.`;
+    console.log(`[Newsletter] ${detail}`);
+    await recordCronRun({
+      name: "weekly-newsletter",
+      status: "ok",
+      detail,
+      durationMs: Date.now() - startTime,
+    });
+    return NextResponse.json({
+      success: true,
+      skipped: true,
+      reason: detail,
+      weekOf: weekDates.weekLabel,
+      subject: existing.subject,
+      duration: Date.now() - startTime,
+    });
+  }
 
   // ── Step 1: Gather context ───────────────────────────────────
   const recentPosts = await fetchRecentPosts();
@@ -283,6 +373,15 @@ export async function GET(request: Request) {
   const fromEmail =
     process.env.RESEND_FROM_EMAIL || "Work Aged Leads <bill@workagedleads.com>";
 
+  //
+  // THE PREVIEW *IS* THE REVIEW. This newsletter is opt-out: nobody approves an
+  // issue, Bill only stops one he dislikes, using the STOP link in this email.
+  // So a preview that never arrives is not a logged warning — it means Tuesday
+  // would mail ~5,900 people an issue no human ever saw, with no way to have
+  // stopped it. A failed preview therefore kills the issue; Bill can redraft
+  // with ?force=1 once the mail path is working.
+  let previewFailed: string | null = null;
+
   if (resendApiKey) {
     const resend = new Resend(resendApiKey);
     try {
@@ -298,18 +397,20 @@ export async function GET(request: Request) {
       if (preview.success) {
         console.log(`[Newsletter] Preview sent to ${REVIEW_EMAIL}`);
       } else {
-        const msg = `Preview email failed: ${preview.error}`;
-        console.error(msg);
-        errors.push(msg);
+        previewFailed = `Preview email failed: ${preview.error}`;
       }
     } catch (err) {
-      const msg = `Preview email error: ${err instanceof Error ? err.message : err}`;
-      console.error(msg);
-      errors.push(msg);
+      previewFailed = `Preview email error: ${err instanceof Error ? err.message : err}`;
     }
   } else {
-    console.warn("[Newsletter] RESEND_API_KEY not set — skipping preview email");
-    errors.push("RESEND_API_KEY not set — preview email not sent");
+    previewFailed = "RESEND_API_KEY not set — preview email not sent";
+  }
+
+  if (previewFailed) {
+    console.error(`[Newsletter] ${previewFailed}`);
+    errors.push(
+      `${previewFailed} — archived with killed:true, because an unreviewed issue must not send.`
+    );
   }
 
   // ── Step 5: (removed) ────────────────────────────────────────
@@ -341,14 +442,17 @@ export async function GET(request: Request) {
     // review gate — so the approved bytes are what get stored and sent.
     html: `${weekDates.weekLabel}.html`,
     sent: false,
-    // Set only on a blocking gate failure. send-newsletter.ts already refuses
-    // any issue carrying this flag, so quarantine needs no new code there.
-    ...(gate.ok
+    // Set on a blocking gate failure, or when the preview never reached Bill.
+    // send-newsletter.ts already refuses any issue carrying this flag, so both
+    // cases need no new code there.
+    ...(gate.ok && !previewFailed
       ? {}
       : {
           killed: true,
           killedAt: new Date().toISOString(),
-          killedReason: `AUTO-QUARANTINE (price guard): ${gate.blocking.join(", ")}`,
+          killedReason: !gate.ok
+            ? `AUTO-QUARANTINE (price guard): ${gate.blocking.join(", ")}`
+            : `AUTO-QUARANTINE (no review possible): ${previewFailed}`,
         }),
     priceGuard: { blocking: gate.blocking, warnings: gate.warnings },
     featuredArticle: content.featuredArticle,
@@ -357,6 +461,7 @@ export async function GET(request: Request) {
     errors,
   };
 
+  let archiveCommitted = true;
   try {
     await commitFilesToGitHub(
       [
@@ -373,7 +478,13 @@ export async function GET(request: Request) {
     );
     console.log("[Newsletter] Committed newsletter archive to GitHub");
   } catch (err) {
-    const msg = `GitHub commit failed: ${err instanceof Error ? err.message : err}`;
+    // THE ONE ERROR THAT GUARANTEES NOTHING CAN BE SENT. The Tuesday sender
+    // reads the archive from main; if this commit did not land, there is no
+    // issue to mail and the week is lost. It used to be filed as `partial`
+    // alongside cosmetic warnings, and health-check alerts only on `failed`,
+    // so the single fatal error was the one that stayed silent.
+    archiveCommitted = false;
+    const msg = `GitHub commit failed — NOTHING IS ARCHIVED, so Tuesday has nothing to send: ${err instanceof Error ? err.message : err}`;
     console.error(msg);
     errors.push(msg);
   }
@@ -401,9 +512,12 @@ export async function GET(request: Request) {
     `[Newsletter] Completed in ${(duration / 1000).toFixed(1)}s — ${errors.length} errors`
   );
 
+  // `partial` is for cosmetic warnings; health-check only alerts on `failed`.
+  // A missing archive or an unreviewable issue must reach Bill, so both are
+  // `failed` — not filed beside the duplicate-utm_content warning.
   await recordCronRun({
     name: "weekly-newsletter",
-    status: errors.length === 0 ? "ok" : "partial",
+    status: !archiveCommitted || previewFailed ? "failed" : errors.length === 0 ? "ok" : "partial",
     detail:
       errors.length > 0
         ? errors.join("; ")

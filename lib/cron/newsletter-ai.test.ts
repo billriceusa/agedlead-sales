@@ -1,6 +1,6 @@
 import { test, describe } from "node:test";
 import assert from "node:assert/strict";
-import { extractJsonObject } from "./newsletter-ai";
+import { extractJsonObject, assertNewsletterShape } from "./newsletter-ai";
 
 /**
  * These pin the 2026-10-04 outage.
@@ -69,5 +69,87 @@ describe("extractJsonObject", () => {
 
   test("no object at all throws with the start of the response", () => {
     assert.throws(() => extractJsonObject("I cannot help with that."), /No JSON object/);
+  });
+});
+
+/**
+ * These pin the OTHER half of the 2026-10-04 class of failure.
+ *
+ * extractJsonObject only guarantees the bytes parse. `JSON.parse(...) as
+ * NewsletterContent` then asserts a shape nobody checked, and a response
+ * missing quickTips threw a TypeError inside buildNewsletterHtml — which sat
+ * outside any try block, so the route 500'd BEFORE recording a heartbeat and
+ * the health check stayed quiet for eight days. Failing in the validator makes
+ * it a retryable generation error instead.
+ */
+describe("assertNewsletterShape", () => {
+  const valid = () => ({
+    subject: "Q4 math",
+    previewText: "Work the renewal clock.",
+    personalIntro: "Hello.",
+    featuredArticle: { title: "T", slug: "t", spotlight: "S" },
+    quickTips: [{ title: "Tip", body: "Body" }],
+    industryInsight: { headline: "H", body: "B" },
+    weeklyDigest: [{ title: "D", slug: "d", oneLiner: "O" }],
+    closingNote: "Bye.",
+    ctaText: "Browse leads",
+  });
+
+  test("a complete issue passes", () => {
+    assert.doesNotThrow(() => assertNewsletterShape(valid()));
+  });
+
+  test("an empty weeklyDigest is legitimate — a quiet week is still an issue", () => {
+    assert.doesNotThrow(() => assertNewsletterShape({ ...valid(), weeklyDigest: [] }));
+  });
+
+  test("missing quickTips throws and names the field — the real downstream crash", () => {
+    const o = valid() as Record<string, unknown>;
+    delete o.quickTips;
+    assert.throws(() => assertNewsletterShape(o), /quickTips/);
+  });
+
+  test("a quickTip missing its body throws", () => {
+    assert.throws(
+      () => assertNewsletterShape({ ...valid(), quickTips: [{ title: "Tip" }] }),
+      /quickTips/,
+    );
+  });
+
+  test("a blank subject throws — whitespace is not a subject line", () => {
+    assert.throws(() => assertNewsletterShape({ ...valid(), subject: "   " }), /subject/);
+  });
+
+  test("missing featuredArticle slug throws", () => {
+    assert.throws(
+      () => assertNewsletterShape({ ...valid(), featuredArticle: { title: "T" } }),
+      /featuredArticle/,
+    );
+  });
+
+  test("missing industryInsight throws", () => {
+    const o = valid() as Record<string, unknown>;
+    delete o.industryInsight;
+    assert.throws(() => assertNewsletterShape(o), /industryInsight/);
+  });
+
+  test("null and a bare string are rejected, not coerced", () => {
+    assert.throws(() => assertNewsletterShape(null), /not an object/);
+    assert.throws(() => assertNewsletterShape("an issue"), /not an object/);
+  });
+
+  test("every missing field is reported at once, not one per round trip", () => {
+    const err = (() => {
+      try {
+        assertNewsletterShape({ subject: "S" });
+        return null;
+      } catch (e) {
+        return e as Error;
+      }
+    })();
+    assert.ok(err, "expected a throw");
+    for (const f of ["previewText", "quickTips", "industryInsight", "featuredArticle"]) {
+      assert.match(err!.message, new RegExp(f));
+    }
   });
 });

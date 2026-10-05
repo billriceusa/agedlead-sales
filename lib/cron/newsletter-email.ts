@@ -88,12 +88,18 @@ export function buildNewsletterHtml(
     )
     .join("");
 
+  // Every digest row used to share the placement "digest", so the gate flagged
+  // duplicate utm_content on every multi-post issue. That warning was correct —
+  // GA4 really does merge them, and we could not tell which post was read — but
+  // because it fired every single week, `errors` was never empty, the heartbeat
+  // was permanently `partial`, and a genuinely fatal error had nowhere louder to
+  // go. Numbering the rows fixes the attribution AND restores the signal.
   const digestHtml = content.weeklyDigest
     .map(
-      (post) => `
+      (post, i) => `
         <tr>
           <td style="padding: 12px 0; border-bottom: 1px solid #f3f4f6;">
-            <a href="${siteLink(siteUrl, `/blog/${post.slug}`, weekLabel, "digest")}" style="color: #1e40af; font-weight: 600; text-decoration: none; font-size: 15px;">${post.title}</a>
+            <a href="${siteLink(siteUrl, `/blog/${post.slug}`, weekLabel, `digest-${i + 1}`)}" style="color: #1e40af; font-weight: 600; text-decoration: none; font-size: 15px;">${post.title}</a>
             <p style="margin: 4px 0 0 0; color: #6b7280; font-size: 14px; line-height: 1.5;">${post.oneLiner}</p>
           </td>
         </tr>`
