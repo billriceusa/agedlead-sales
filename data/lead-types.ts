@@ -1793,4 +1793,316 @@ export const LEAD_TYPES: Record<string, LeadTypeData> = {
     getCompareUrl: () =>
       `/providers/best/home-improvement`,
   },
+
+  // ── Annuity ──────────────────────────────────────────────────────────────
+  // Built 2026-10-05 to catch two things at once: an unserved head term
+  // ("annuity leads", 450/mo, KD 0, and page one's lowest-DR organic winner is
+  // DR 0 against our DR 7), and ~483 stranded impressions that a pending
+  // Change of Address will route here from /buying-leads/buy-annuity-leads
+  // (243 impr, avg pos 27.3) and /blog/how-to-work-iul-leads (240, pos 10.3).
+  //
+  // DESTINATION — READ `lib/store-front.ts` BEFORE CHANGING ANYTHING HERE.
+  // "annuity" is NOT one of the eight segments on the partner's card grid at
+  // /all-lead-types/, which is the authoritative source, so this entry
+  // deliberately resolves NO storefront segment and NO marketing buy page. The
+  // hero door correctly falls through to the full catalogue. A storefront page
+  // does answer at /annuity/leads — see the body-diff evidence filed with this
+  // change — but putting it in the segment map is Bill's call, not a content
+  // decision, and guessing a segment is the one failure mode that sends
+  // declared intent into a 404.
+  //
+  // CLUSTER: mapped to the "annuity-iul" vertical in
+  // data/lead-type-vertical-map.ts so the hero's secondary links reach
+  // /providers/best/annuity-iul and /price-index/annuity-iul — the two adjacent
+  // pages that already convert — rather than /providers/best/annuity, which
+  // does not exist.
+  "annuity-leads": {
+    slug: "annuity-leads",
+    title: "Annuity Leads",
+    icon: "💰",
+    heroDescription:
+      "People who asked what guaranteed retirement income would cost them. The deadline on an annuity decision is a retirement date, not the day the form was filled out — which is why these records keep far better than the price suggests.",
+    metaTitle: "Aged Annuity Leads – Working a Retirement-Date Timeline",
+    metaDescription:
+      "Aged annuity leads keep because the deadline is a retirement date, not the inquiry date. How to work them, the product shelf, and the suitability rules.",
+    primaryKeyword: "aged annuity leads",
+    secondaryKeywords: [
+      "buy annuity leads",
+      "annuity sales leads",
+      "fixed indexed annuity leads",
+      "retirement income leads",
+      "annuity lead generation",
+    ],
+    costRange: "a fraction of real-time rates",
+    whoItsFor: [
+      "Life and annuity producers licensed in the states on the file",
+      "Independent agents affiliated with an IMO or FMO who can compare several carriers' products",
+      "Retirement-income specialists whose practice is built on rollovers rather than first-time savers",
+      "Advisors who hold both insurance and securities licenses and can discuss registered and non-registered products",
+      "Producers with the patience for a multi-meeting, paperwork-heavy sale",
+      "Agencies that measure on placed premium per case rather than on cost per lead",
+    ],
+    whatYouGet: [
+      "Name, phone and email from a retirement-income or annuity quote form",
+      "State, which decides your licensing and the product shelf you can actually offer",
+      "Age or age band where the source form captured it — the single most useful suitability filter on the record",
+      "Original inquiry date, which estimates how close the prospect was to a retirement decision",
+      "Stated interest (guaranteed income, principal protection, a rollover) and an investable-asset band on some sources",
+    ],
+    sections: {
+      whatAre:
+        "Aged annuity leads are consumer records from people who asked about annuities — typically 30 to 365 days ago — on a retirement-income comparison site, a carrier form or an advisor's landing page. The category covers the whole product shelf, and the differences matter: multi-year guaranteed annuities and other fixed contracts compete with CDs on a stated rate; fixed indexed annuities credit interest linked to an index subject to caps, participation rates and spreads; variable annuities and registered index-linked annuities are securities, sold on a prospectus; and immediate and deferred income annuities convert a lump sum into a payment stream. What almost every inquiry has in common is the question underneath it, which is rarely about an annuity at all. It is whether the money they have saved will still be arriving when they are eighty.",
+      whyUse:
+        "Annuities are the longest-cycle product most producers sell, and that is the entire case for buying the file aged. A prospect is not deciding between two annuities; they are deciding whether to move a meaningful share of their retirement savings out of an account they understand into a contract they do not yet understand. That takes weeks of reading, a conversation with a spouse, and usually more than one meeting. Whoever paid real-time money for the record had one shot at a prospect who was not ready, and most of them pitched a product instead of running a discovery. The record is not spent. Separately, the economics invert the usual aged-lead argument: the case for cheap records in most verticals is dial volume, while here a single placed case can cover a year of lead spend, so the number that decides your return is cost per placed case against target premium. Current brackets and freshness pricing are maintained on the price index rather than restated here, because those figures are refreshed on a schedule and copy goes stale.",
+      howToWork:
+        "Run a discovery, not a product pitch. The two questions that convert an undated record into a working one are when they intend to stop working and where the money is sitting now, because the answers tell you both the timeline and whether you are even the right person to help. A prospect with a rollover-eligible balance and a retirement date three years out is a planning conversation; a prospect whose savings are entirely in a taxable account with a six-month horizon may be better served by something you do not sell, and saying so is what earns the referral. Expect three or more conversations and real paperwork. Treat the first call as qualification and scheduling rather than as a close, and never lead with a product name — the prospect does not want an annuity, they want to know their income will not run out, and the contract is only one of several ways to answer that.",
+      script: {
+        opener:
+          '"Hi [Name], [Your Name] with [Agency] — licensed here in [State]. You asked for information about retirement income a while back. I am not calling to pitch you a contract; I am calling because most people who ask that question never get a straight answer about the gap between what their Social Security will pay and what their expenses actually are. Do you have a target date for stepping back from work? If you tell me roughly when, I will put the numbers together and we can look at them."',
+        whyItWorks: [
+          "Names the real subject — retirement income — rather than the product, which the prospect never asked for",
+          "Asks for the retirement date, the one field that turns an undated record into a scheduled pipeline",
+          "Offers analysis before a recommendation, which is also what a best-interest standard expects of you",
+          "Sets up a second conversation instead of trying to close a six-figure decision on a cold call",
+        ],
+      },
+      costComparison: {
+        realTime: "Full market price",
+        aged: "A small fraction of it",
+        savings: "See the price index for the current brackets",
+      },
+      bestPractices: [
+        "Capture the intended retirement date on every contact — it converts a dead record into a dated one",
+        "Ask where the money sits before you discuss any product; a rollover and a taxable account are different conversations",
+        "Run the income-gap analysis first and present a recommendation second",
+        "Confirm the prospect's age band early, because suitability rules out more cases than objections do",
+        "Quote with conservative assumptions and explain the surrender schedule before the prospect asks",
+        "Track cost per placed case and placed premium, not cost per lead — one case can outweigh the whole batch",
+        "Keep your suitability file as you go; reconstructing it later is how a good sale becomes a complaint",
+        "Scrub against the Do Not Call registry and a litigator list before every campaign, and dial manually",
+      ],
+    },
+    deepDive: [
+      {
+        heading: "The Deadline Is a Retirement Date, Not the Inquiry Date",
+        body: "Most aged-lead pricing assumes a decay curve: the prospect was interested on day one, less interested on day ninety, and worthless by day three hundred. That model describes a vertical where the prospect was racing to buy something. Annuities are not that vertical.\n\nThe event that forces an annuity decision is almost never the inquiry. It is a date — the one the prospect has in mind for stepping back from work, or a job change that frees up a retirement plan balance, or an age at which the tax code starts making decisions for them. Those dates do not move because a form went stale. A person who asked about guaranteed income eleven months ago and intends to retire in two years is closer to the decision now than they were when they filled out the form, not further from it.\n\nThat changes what the inquiry date is for. In a speed vertical it is a decay signal. Here it is a crude position marker on a timeline you can ask about directly, and the first call's real job is to replace that guess with the prospect's own answer. An agent who ends every first conversation with a retirement date written down has converted a flat file into a dated pipeline, and the file keeps earning for years rather than weeks.",
+      },
+      {
+        heading: "Where the Money Already Sits — Rollovers and the Distribution Clock",
+        body: "An annuity is funded from somewhere, and the somewhere decides most of the conversation. Ask it early.\n\nQualified money — a 401(k) from a former employer, a traditional IRA, a 403(b) — can generally move into an annuity by direct rollover without a current tax bill, which is why so many cases originate in a job change or a retirement date rather than in a decision to buy insurance. Non-qualified money is already taxed, so the contract's tax deferral is the feature that matters, and the suitability analysis looks different. A prospect who tells you their savings are in a taxable brokerage account has given you more information in one sentence than the entire lead record did.\n\nTwo ages are worth knowing because they create timing you can plan around rather than invent. The Internal Revenue Code's additional tax on early distributions generally applies before age fifty-nine and a half, which is why a prospect in their mid-fifties is usually planning rather than moving money. And the SECURE 2.0 Act of 2022 set the required beginning age for minimum distributions at seventy-three for those reaching seventy-two after 2022, rising to seventy-five for a later cohort — so people in their early seventies are frequently repositioning assets whether or not anyone called them. Confirm the current rule for the individual rather than quoting a rule of thumb; this is tax law, it has changed twice in five years, and the prospect's own tax advisor is the right authority.\n\nSo the funding question is also the timing question. It tells you whether this is a case this quarter, a case in three years, or not a case at all — and a cheap aged file is only an asset if you can sort it that way.",
+      },
+      {
+        heading: "Fixed, Indexed, Variable: Why the Product Shelf Decides the Conversation",
+        body: "\"Annuity leads\" is one label over several genuinely different products, and treating them as interchangeable is the fastest way to waste a file.\n\nMulti-year guaranteed annuities and other fixed contracts pay a stated rate for a stated term. The prospect comparing one is usually comparing it to a certificate of deposit, the conversation is short, and the case size is often smaller. Fixed indexed annuities credit interest tied to an index, limited by caps, participation rates and spreads, with a floor that prevents a negative credit — a structure that takes real explaining, which is exactly why a patient agent beats a fast one. Variable annuities and registered index-linked annuities are securities: they are sold with a prospectus, they require securities registration as well as an insurance license, and deferred variable annuity recommendations carry their own supervisory rules. Immediate and deferred income annuities do something different again — they convert a lump sum into a payment stream, and the prospect is buying a paycheck rather than an account balance.\n\nTwo features cut across the whole shelf and should be on the table before the prospect asks. The first is the surrender schedule: how many years the contract charges to get out of, what the free-withdrawal corridor allows each year, and whether a market value adjustment applies. The second is the income rider, where one exists — what it guarantees, what it costs annually, and what the prospect gives up to have it.\n\nWhich of these you can offer depends on your licensing and carrier appointments, and that constrains which records are worth your time — an agent with no securities registration should not be buying a file to sell variable contracts. The adjacent indexed universal life guide on this site covers the other half of the cash-value conversation.",
+      },
+      {
+        heading: "The Real Math: Cost Per Placed Case When One Case Is the Year",
+        body: "In most verticals the argument for an aged file is volume: enough cheap at-bats that a low conversion rate still pays. Annuities invert it. The conversion rate here is low in absolute terms and almost irrelevant, because the premium on a single placed case is large enough that lead cost stops being a line item worth optimizing.\n\nThe number to model is cost per placed case against target premium, and the funnel has more stages than most. Records become contacts; contacts become discoveries, which is where the retirement date and the funding source get captured; discoveries become presentations; presentations become applications; and applications become placed cases only after suitability review and, frequently, a transfer that takes weeks. Every one of those stages is a place to lose a case for reasons that have nothing to do with lead quality — an unanswered suitability question, a transfer form sent to the wrong custodian, a spouse who was never in the room.\n\nSo the lever is not price per record and it is not even contact rate. It is how many discoveries you can run per month and how few applications you lose after submission. Model your own funnel with your own numbers rather than trusting a benchmark, because case size varies more in this vertical than in any other on this site.\n\nThe honest consequence: if you cannot commit to the meeting volume, a cheap annuity file does not rescue the economics — it just gives you more prospects you will not get back to. Our annuity and indexed universal life price index tracks the current brackets if you want to size a batch before you commit the calendar to it.",
+      },
+      {
+        heading: "Discovery Before Product: The Income-Gap Conversation",
+        body: "What works on an aged annuity record is a discovery that may or may not end in a recommendation, rather than a pitch with a discovery bolted to the front. The prospect can tell the difference within about a minute.\n\nStart with the arithmetic the prospect has usually never done. What will their Social Security actually pay, and at what claiming age. What other guaranteed income exists — a pension, rental income, a spouse's benefit. What do their fixed monthly expenses come to once working income stops. The difference between those two figures is the income gap, and it is the only number in the conversation that belongs to the prospect rather than to a product. Put it in front of them before you have mentioned any contract.\n\nFrom there the recommendation almost writes itself, including when the recommendation is nothing. A prospect with a small gap and a healthy cash reserve may not need a contract at all. A prospect with a large gap, a low tolerance for a bad market in their first retirement years, and a rollover-eligible balance is looking at exactly the problem a guaranteed income product was built for. And a prospect who cannot fund a contract without draining their emergency reserve should be told so plainly, because a case that lapses or surrenders early costs you more than the one you declined.\n\nBetween conversations, send something that teaches rather than sells: a plain-language explanation of how index crediting works, a comparison of claiming Social Security early against later, a sample contract summary with conservative assumptions. The prospect is going to research this whether or not you help them. Being the source they research with is the whole advantage a patient agent has over the one who called them first.",
+      },
+      {
+        heading: "Suitability and Best Interest: What Governs an Annuity Recommendation",
+        body: "Aged annuity leads are purchased consumer records, not pre-consented contacts, so the outreach baseline is the same as every other vertical on this site: scrub against the National Do Not Call registry and a litigator list before each campaign, dial manually rather than through prohibited automated technology, honor opt-outs immediately, and observe calling windows in the prospect's own time zone. Several states run their own mini-TCPA statutes — Florida, Oklahoma, Washington, Maryland and Texas among them — so a campaign that is clean federally can still create state exposure. The FCC's one-to-one consent rule was vacated in early 2025 before it took effect, which removed a requirement that was never in force rather than loosening anything that was.\n\nThe recommendation itself is where this vertical differs, and the rules are specific enough to name. Annuity sales are governed at the state level by the NAIC's Suitability in Annuity Transactions Model Regulation, Model #275, which the NAIC revised in 2020 to add a best-interest standard of conduct and which most states have since adopted. Under it a producer must have a reasonable basis to believe a recommended annuity effectively addresses the consumer's financial situation, insurance needs and financial objectives, must not place their own compensation ahead of the consumer's interest, and must document the basis for the recommendation. Model #275 also carries a producer training requirement, so check whether your state requires an annuity-specific course before you solicit. Where the product is a security — a variable annuity or a registered index-linked annuity — the SEC's Regulation Best Interest applies to the recommendation, and deferred variable annuity transactions carry additional supervisory review obligations.\n\nTwo cautions belong in the script rather than in your memory. Several states restrict senior-specific certifications and professional designations in life and annuity sales, so a credential that looks impressive in a signature block can itself be a violation. And never describe a fixed indexed annuity as market participation without limits, or an income rider's roll-up as a rate of return — both are common misstatements that regulators look for.\n\nConfirm the current requirements in each state you write before you launch, and run your specific program past qualified compliance counsel. The cross-vertical outreach framework, including the consent ladder, is in the free playbook.",
+      },
+    ],
+    faqs: [
+      {
+        question: "What is an aged annuity lead?",
+        answer:
+          "A consumer record from someone who asked about annuities or retirement income — usually 30 to 365 days ago — on a comparison site, a carrier form or an advisor's landing page. It is a purchased data record rather than a pre-consented contact, which is what decides how you are allowed to work it.",
+      },
+      {
+        question: "Do aged annuity leads go stale?",
+        answer:
+          "Less than almost any other vertical, because the deadline is not the inquiry. Annuity decisions are forced by a retirement date, a job change that frees up a plan balance, or a tax-code age — none of which move because a form got older. A record from eleven months ago attached to a prospect retiring in two years is closer to the decision now than it was then.",
+      },
+      {
+        question: "Why were these leads not closed the first time?",
+        answer:
+          "Usually a mismatch rather than a bad prospect. The producer who bought the record fresh needed a close that month; the prospect was weighing whether to move a large share of their savings into a contract they did not yet understand, which takes weeks and more than one conversation. Most of those records were pitched once and abandoned, not worked.",
+      },
+      {
+        question: "What should the first call accomplish?",
+        answer:
+          "Two things: the prospect's intended retirement date and where their money currently sits. The date turns an undated record into a scheduled pipeline, and the funding source — a rollover-eligible plan balance versus a taxable account — tells you whether this is a case this quarter, a case in three years, or not a case at all. Everything else can wait for the second conversation.",
+      },
+      {
+        question: "Do I need a securities license to work annuity leads?",
+        answer:
+          "It depends on the product. Fixed and fixed indexed annuities are insurance contracts regulated by the states and need an insurance license with the right carrier appointments. Variable annuities and registered index-linked annuities are securities, sold with a prospectus, and require securities registration as well — so a file you intend to work for registered products is only useful if you hold both.",
+      },
+      {
+        question: "What standard applies to an annuity recommendation?",
+        answer:
+          "At the state level, the NAIC's Suitability in Annuity Transactions Model Regulation (Model #275), revised in 2020 to add a best-interest standard of conduct and since adopted by most states. It requires a reasonable basis for the recommendation, prohibits placing your compensation ahead of the consumer's interest, and expects documentation. Model #275 also carries a producer training requirement, and where the product is a security the SEC's Regulation Best Interest applies as well. Confirm the current rule in each state you write.",
+      },
+      {
+        question: "What is the right metric for an annuity campaign?",
+        answer:
+          "Cost per placed case measured against placed premium — not cost per lead and not conversion rate. Case size varies more here than in any other vertical, and a single placed case can cover a year of lead spend, so the thing worth optimizing is how many discovery conversations you can run per month and how few applications you lose after submission.",
+      },
+      {
+        question: "Where can I buy aged annuity leads?",
+        answer:
+          "Several established providers sell aged annuity and retirement-income records, often filtered by age band and geography. Because a single case is large, weigh data quality, age-band filtering and consent documentation ahead of headline price, and check the refund or replacement policy. Our independent provider directory rates lead sellers across those dimensions, and the annuity and indexed universal life price index tracks current market brackets.",
+      },
+    ],
+    getCompareUrl: () =>
+      `/providers/best/annuity-iul`,
+  },
+
+  // ── Homeowners Insurance ─────────────────────────────────────────────────
+  // Built 2026-10-05. The partner stocks this vertical and the guide simply did
+  // not exist — /lead-types/homeowners-insurance-leads was a verified 404 on
+  // 2026-10-05, while `lib/store-front.ts` has had the slug mapped to the
+  // card-grid segment `homeowner_insurance` and `lib/affiliate.ts` has had the
+  // marketing path `/homeowner-insurance-leads/` the whole time. So this entry
+  // inherits a verified storefront deep link with no change to either map.
+  // Do NOT add anything to `lib/store-front.ts` for this page.
+  //
+  // CLUSTER: "homeowners-insurance" is already a real vertical in
+  // data/verticals.ts, so `verticalForLeadType` resolves it by suffix-strip and
+  // the hero's secondary links reach /providers/best/homeowners-insurance and
+  // /price-index/homeowners-insurance without a forward-map entry. The reverse
+  // entry in data/lead-type-vertical-map.ts is what gives the vertical's
+  // provider page a cluster link back to this guide.
+  "homeowners-insurance-leads": {
+    slug: "homeowners-insurance-leads",
+    title: "Homeowners Insurance Leads",
+    icon: "🏡",
+    heroDescription:
+      "Property owners who shopped coverage — nearly all of whom are insured today, and most of whom cannot tell you what they pay, because the premium leaves through an escrow account. That gap is the opening.",
+    metaTitle: "Aged Homeowners Insurance Leads – The Escrow Opening",
+    metaDescription:
+      "Aged homeowners insurance leads are mostly insured prospects. Why the escrow analysis beats the renewal notice as an opening, and the bundle economics.",
+    primaryKeyword: "aged homeowners insurance leads",
+    secondaryKeywords: [
+      "buy homeowners insurance leads",
+      "home insurance leads",
+      "aged property insurance leads",
+      "homeowner insurance lead generation",
+      "bundle home and auto leads",
+    ],
+    costRange: "a fraction of real-time rates",
+    whoItsFor: [
+      "Property and casualty agents who write home and auto and want the household, not the one policy",
+      "Independent agencies with appointments across several carriers and access to surplus lines in hard markets",
+      "Captive agents whose carrier just filed an increase or stopped writing new business in part of their state",
+      "Agents in markets where carriers are non-renewing, where an aged file is a list of people already shopping",
+      "Agencies measuring on bound households and lines per household rather than first-policy premium",
+    ],
+    whatYouGet: [
+      "Name, phone and email from a home insurance comparison or quote form",
+      "Property address plus state and ZIP, which decide licensing, catastrophe exposure and the rate environment",
+      "Original inquiry date, which tells you roughly where they sit in a twelve-month policy term",
+      "Dwelling detail where the source form captured it — year built, construction type, roof age, approximate dwelling value",
+      "Current-carrier and mortgage-escrow flags on some sources, which are the two most useful fields on the record",
+    ],
+    sections: {
+      whatAre:
+        "Aged homeowners insurance leads are consumer records from property owners who requested home insurance quotes — typically 30 to 365 days ago — on a comparison site or a carrier form. The product behind them is usually a standard homeowners form covering the dwelling, other structures, personal property, loss of use and personal liability, written on a twelve-month term. The defining fact about the file is that almost everybody on it is insured, because mortgage lenders require hazard coverage as a condition of the loan and will place coverage themselves if it lapses. So an aged record here is not someone who fell out of a funnel. It is someone who shopped, bought or stayed put, and then stopped thinking about it — which is a different prospect, and a different conversation, from the one most lead copy assumes.",
+      whyUse:
+        "Two things make this vertical unusual. The first is that the market is generating the demand for you. In several states carriers have filed large increases, tightened underwriting or stopped writing new business altogether, pushing homeowners toward residual-market options they did not choose. An aged file in a market like that is a list of people who were already unhappy enough to fill out a form once, and whose situation has probably gotten worse rather than better since. The second is that the premium is usually invisible to them, because it is paid out of escrow — so unlike auto, where the renewal notice lands in the prospect's inbox, a homeowner often learns their insurance went up only when their mortgage payment changes. That is a conversation nobody is having with them. On price, the gap between real-time and aged records in this vertical runs to orders of magnitude rather than a percentage discount, which changes the operating model rather than just the budget line; the current brackets are maintained on the price index rather than restated here, because those figures are refreshed on a schedule.",
+      howToWork:
+        "Open on the mortgage payment, not on coverage. Nobody wants a coverage review and almost everybody has noticed their housing payment going up, so the escrow analysis is both the more honest opening and the more interesting one. Then underwrite before you quote: roof age, construction type and prior claims decide whether you can actually place the risk, and finding that out on the first call saves you from a quote you cannot honor. The timing rule here is the opposite of auto — a homeowners policy can generally be replaced mid-term, with unearned premium refunded, so you are not waiting for a renewal date. What you must not do is create a gap, because a lapse invites lender-placed coverage at a worse price. Bind the new policy effective the cancellation date and get the declarations page to the servicer. Finally, treat the home policy as the door rather than the prize, because the economics of this vertical live in the household.",
+      script: {
+        opener:
+          '"Hi [Name], [Your Name] with [Agency] — licensed here in [State]. You compared home insurance rates a while back. I am not going to ask you to switch today. I am calling because most homeowners pay their insurance through escrow, so when the premium goes up what they actually see is their mortgage payment changing, and nobody explains it. Has your monthly payment moved in the last year? If it has, I can tell you how much of that was insurance."',
+        whyItWorks: [
+          "Opens on the mortgage payment, which the prospect has noticed, rather than on coverage, which they have not thought about",
+          "Concedes they already have a policy — which they almost certainly do, since the lender requires it",
+          "Offers to explain something before asking for anything, which is the only reason a stranger stays on the call",
+          "Surfaces the escrow mechanism most homeowners have never had described to them, and positions you as the person who did",
+        ],
+      },
+      costComparison: {
+        realTime: "Full market price",
+        aged: "A small fraction of it",
+        savings: "See the price index for the current brackets",
+      },
+      bestPractices: [
+        "Open on the escrow and the mortgage payment, not on a coverage review",
+        "Ask roof age, construction type and prior claims before you quote anything",
+        "Never let coverage lapse between policies — bind the new one effective the cancellation date",
+        "Send the new declarations page to the mortgage servicer yourself rather than leaving it to the client",
+        "Quote the household; a standalone home policy rarely justifies the acquisition effort",
+        "Prioritize states and ZIP codes where your carriers can actually write — appetite, not demand, is the constraint here",
+        "Be explicit that flood is a separate policy; implying a homeowners form covers it is a misrepresentation",
+        "Scrub against the Do Not Call registry and a litigator list before every campaign, and dial manually",
+      ],
+    },
+    deepDive: [
+      {
+        heading: "They Are Insured, and They Probably Cannot Tell You What They Pay",
+        body: "The single most useful thing to know about an aged homeowners file is structural rather than behavioral: for most of the people on it, the insurance premium never passes through their hands.\n\nWhere there is a mortgage, the lender generally requires hazard coverage and collects it through an escrow account along with property taxes. The servicer pays the carrier, reviews the account periodically, and adjusts the monthly payment when the collected amount no longer covers what is going out. Federal mortgage servicing rules require the servicer to send the borrower an annual escrow account statement, and in practice that statement — or the payment-change notice attached to it — is the moment the homeowner finds out their insurance went up. Not the renewal declaration from the carrier, which many never read.\n\nThis has two consequences that should shape every call. First, the prospect frequently cannot answer \"what are you paying for insurance?\" and asking it early makes you sound like every other agent who called. Asking whether their mortgage payment changed is a question they can answer, and the answer tells you whether there is a reason to keep talking. Second, the shock is delayed and displaced. A premium increase that landed months ago may only now be showing up as a payment change, which means an aged record can arrive at a better moment than a fresh one.\n\nIt also explains a chunk of why the record went cold. The homeowner who shopped quotes last spring may never have learned what happened to their premium, so nothing forced a decision. Something has probably forced one since.",
+      },
+      {
+        heading: "You Do Not Have to Wait for the Renewal Date",
+        body: "Auto insurance is a renewal-clock vertical: coverage is effectively mandatory to drive, switching mid-term is awkward, and the sensible play is to be holding the phone number when the renewal notice lands. Homeowners insurance looks similar on the surface and behaves differently, and the difference is worth real money.\n\nA homeowners policy can generally be replaced mid-term. The homeowner requests cancellation, the carrier refunds the unearned premium, and the new policy takes effect the same day the old one ends. There is no lapse, no penalty for switching early, and no reason to tell a prospect to call you back in seven months. In a market where a carrier has just filed a double-digit increase, that matters: the prospect does not have to live with it until renewal, and you do not have to park the record.\n\nWhat you cannot do is create a gap. If coverage lapses, the mortgage servicer is entitled to place insurance itself, and lender-placed coverage is typically more expensive and narrower than what the homeowner would have bought — a bad outcome you caused. The sequence is not optional: bind the new policy with an effective date matching the cancellation, confirm it is in force, then cancel, then get the declarations page to the servicer so the escrow account is adjusted against the right number. Many agents hand that last step to the client and then wonder why the escrow never caught up.\n\nTwo caveats to carry. Confirm the specific contract's cancellation and refund terms rather than assuming pro-rata, and check whether a condominium, rental or dwelling-fire form is actually in play, because the cancellation mechanics and the lender's requirements are not identical across forms.",
+      },
+      {
+        heading: "Underwrite Before You Quote: Roof Age, Claims History and a Hard Market",
+        body: "In a soft market the limiting factor on a homeowners file is the prospect's willingness to switch. In the market several states are in now, the limiting factor is whether anyone will write the risk at all — and that reorders your whole workflow.\n\nThree facts decide placeability more than anything the prospect says. Roof age and material, because many carriers will not write an older roof at replacement cost and some will not write it at all. Construction type and dwelling characteristics, which drive both eligibility and the catastrophe loading in exposed territories. And prior claims, which carriers see through industry loss-history reporting whether or not the prospect mentions them — two claims in five years can make an otherwise attractive household unwritable on your preferred paper.\n\nSo ask those three things on the first call, before you promise a number. An agent who quotes on price and then discovers the roof is twenty years old has spent the goodwill of the call and has nothing to place. An agent who establishes the facts first either has a real quote or an honest answer, and in a hard market the honest answer — a higher deductible, a different form, a surplus-lines carrier, or a residual-market option while the roof is replaced — is still a service, and still a household you may write next year.\n\nIt is also worth being blunt with yourself about appetite. Buying records in a territory your carriers have stopped writing produces calls you cannot convert no matter how good the script is. Filter the batch on where you can actually place business, not on where the demand is loudest. Demand and appetite have come apart in this vertical, and that is a buying decision, not a sales problem.",
+      },
+      {
+        heading: "Why the Home Policy Alone Rarely Pays for Itself",
+        body: "A standalone homeowners policy is thin business. Commission on one household's home premium does not support much acquisition cost or much service effort, which is why real-time leads in this vertical are a hard trade for most agencies and why an aged file is interesting at all.\n\nThe economics change when the home policy is an entry point rather than the product. A household that brings home plus auto, or home plus auto plus an umbrella, is worth a multiple of the home policy alone and retains materially better — multi-line households are stickier than monoline ones, which is why carriers price the multi-policy discount in the first place. The metric that follows is bound households and lines per household, not conversion rate on the file and certainly not cost per lead.\n\nPractically, that means the auto question belongs on the first call even when the prospect only asked about the house. Who writes it, when does it renew, and are both on the same carrier today. A homeowner shopping because their premium jumped is often carrying an auto increase from the same cycle and has not connected the two. Quoting the pair is frequently how the number finally works for them — and it is the version of the sale where the acquisition cost of the record disappears entirely.\n\nThere is a licensing corollary. You must be appropriately licensed in the state on the record for the lines you intend to write, and a file that spans twenty states is only as useful as the subset you are appointed in.",
+      },
+      {
+        heading: "The Real Math: Cost Per Bound Household",
+        body: "The per-record price in this vertical is low enough that it is not the number to optimize, and treating it as one leads agencies to buy badly.\n\nModel the funnel instead, with your own figures: records become contacts, contacts become quotable prospects once you have roof age and claims history, quotable prospects become quotes you can actually place, and placed quotes become bound households — some of them multi-line. The leaks are specific and they are not where people look. They are the territory where your carriers have no appetite, the roof that fails underwriting, the claim the prospect forgot, and the household that bought the home policy and left their auto where it was.\n\nThat last one is the expensive leak, because it converts a household you won into business that barely covers its own service cost. An agency tracking cost per bound policy will not see it. An agency tracking lines per bound household sees it immediately.\n\nThe reason to work this file at volume is that records at aged pricing let you absorb a low placement rate and still build households, which an agency on real-time pricing cannot do — at full market price you must convert to justify the spend, so every record gets worked carefully and the file is small. Run the arithmetic on your own close rates before you size a batch, because appetite and catastrophe exposure make this vertical vary more by state than almost any other.",
+      },
+      {
+        heading: "Compliance: Purchased Data, Licensed Lines, and Claims You Cannot Make",
+        body: "Aged homeowners insurance leads are purchased consumer records, not pre-consented contacts. The outreach baseline is the same as every vertical on this site: scrub against the National Do Not Call registry and a litigator list before every campaign, dial manually rather than through prohibited automated technology, honor opt-outs immediately, and observe calling windows in the prospect's own time zone. Several states run their own mini-TCPA statutes — Florida, Oklahoma, Washington, Maryland and Texas among them — so a campaign that is clean federally can still create state exposure. The FCC's one-to-one consent rule was vacated in early 2025 before it took effect. Text messaging purchased data deserves the same caution as anywhere else, because messaging generally requires prior express written consent and a purchased record does not carry it.\n\nThe product-specific exposure here is misrepresentation, and it is easy to commit by accident. Flood is not covered by a standard homeowners form; it is a separate policy, and for a property in a special flood hazard area with a federally related mortgage it may be required by law. Implying otherwise in a sales conversation is the kind of statement that becomes a complaint after a loss. Replacement cost and actual cash value are not interchangeable, particularly on roofs, where a schedule can quietly convert one into the other at a given age. Percentage wind or hurricane deductibles in coastal states are not the same thing as the flat deductible a prospect is picturing. Say which one you are quoting.\n\nTwo more process points. You must hold the right property and casualty license in the state on the record, and you must never advise a homeowner to cancel existing coverage before replacement coverage is in force — a lapse exposes them to lender-placed insurance and exposes you.\n\nConfirm current state rules before each campaign and run your specific program past qualified compliance counsel. The cross-vertical framework, including the consent ladder, is in the free playbook.",
+      },
+    ],
+    faqs: [
+      {
+        question: "If they already have homeowners insurance, what am I selling?",
+        answer:
+          "Price and fit, usually surfaced through the mortgage payment. Nearly everyone on an aged homeowners file is insured, because the lender requires it. What most of them do not have is any idea what their premium did last year, since it is paid out of escrow and they see only a payment change. Being the person who explains that is the opening.",
+      },
+      {
+        question: "Why is the escrow account the way in?",
+        answer:
+          "Because it breaks the normal feedback loop. The servicer collects the premium with the mortgage payment and pays the carrier, so a rate increase reaches the homeowner as a payment-change notice months later rather than as a renewal bill. Federal servicing rules require an annual escrow statement, and that statement is often the first time the homeowner notices. Asking whether their payment moved is a question they can actually answer.",
+      },
+      {
+        question: "Do I have to wait for their renewal date?",
+        answer:
+          "No, and this is where homeowners differs from auto. A homeowners policy can generally be replaced mid-term with the unearned premium refunded, so there is no reason to park a record for seven months. The rule is simply never to create a gap: bind the new policy effective the cancellation date, confirm it is in force, then cancel, then send the declarations page to the servicer.",
+      },
+      {
+        question: "What should I establish before quoting?",
+        answer:
+          "Roof age and material, construction type, and prior claims. Those three decide whether the risk is placeable at all, and carriers see claims history through industry loss reporting whether or not the prospect volunteers it. Quoting a price and then discovering a twenty-year-old roof spends the call and leaves you nothing to place.",
+      },
+      {
+        question: "Does an aged file still work in a hard market?",
+        answer:
+          "Often better, because the market is generating the demand. Where carriers have filed large increases, tightened underwriting or stopped writing new business, an aged file is a list of homeowners who were already shopping and whose situation has probably worsened since. The constraint shifts from demand to appetite — buy in territories where your carriers can actually write, not where the complaints are loudest.",
+      },
+      {
+        question: "Should I quote the home policy on its own?",
+        answer:
+          "Usually not. Commission on a single home policy barely supports the acquisition and service effort, while a household carrying home plus auto is worth a multiple of it and retains materially better. Ask the auto question on the first call even though the prospect asked about the house — a homeowner hit by a home increase is frequently carrying an auto increase from the same cycle.",
+      },
+      {
+        question: "What about flood?",
+        answer:
+          "Flood is a separate policy and is not covered by a standard homeowners form. For a property in a special flood hazard area with a federally related mortgage it may be required by law. Implying that the homeowners policy handles it is a misrepresentation that surfaces after a loss, so state the boundary plainly in the conversation.",
+      },
+      {
+        question: "Where can I buy aged homeowners insurance leads?",
+        answer:
+          "Several established providers sell aged homeowners and property insurance records, generally filtered by state and ZIP. Because placeability depends on dwelling detail, weigh which fields a provider actually supplies — roof age and year built in particular — ahead of headline price, and check the refund or replacement policy. Our independent provider directory rates lead sellers across those dimensions.",
+      },
+    ],
+    getCompareUrl: () =>
+      `/providers/best/homeowners-insurance`,
+  },
 };

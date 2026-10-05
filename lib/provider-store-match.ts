@@ -72,9 +72,13 @@ export interface ProviderStoreComparison {
  * Two indirections, both load-bearing. `leadTypeForVertical` covers the
  * verticals whose slug differs from their lead-type slug ("annuity-iul" →
  * "iul-leads"). The `?? verticalSlug` fallback covers the ones that have a store
- * path but no guide page — "homeowners-insurance" is absent from
- * VERTICAL_TO_LEAD_TYPE yet maps cleanly through `storeCategoryPath`'s own
+ * path but no guide page, which map cleanly through `storeCategoryPath`'s own
  * `-leads` retry. Dropping either one silently under-reports the catalogue.
+ *
+ * "homeowners-insurance" used to be the live example of that second case. It
+ * gained a guide on 2026-10-05 and now resolves through the map like the rest,
+ * so no real vertical currently exercises the fallback — keep it anyway, since
+ * the next vertical that gets a store path before a guide will need it.
  */
 export function storeLeadTypeKey(verticalSlug: string): string | undefined {
   const key = leadTypeForVertical(verticalSlug) ?? verticalSlug;

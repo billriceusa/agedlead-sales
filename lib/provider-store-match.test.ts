@@ -15,10 +15,24 @@ describe("storeLeadTypeKey", () => {
     assert.equal(storeLeadTypeKey("final-expense"), "final-expense-leads");
   });
 
-  test("resolves a vertical that has a store path but no guide page", () => {
-    // Absent from VERTICAL_TO_LEAD_TYPE; reachable only via the bare-slug
-    // fallback. The regression this guards is silent under-reporting.
-    assert.equal(storeLeadTypeKey("homeowners-insurance"), "homeowners-insurance");
+  test("homeowners-insurance resolves through its guide and still lands on a store path", () => {
+    // This vertical gained a guide on 2026-10-05, so it now resolves through
+    // VERTICAL_TO_LEAD_TYPE instead of the bare-slug fallback. The key changed;
+    // the destination did not, which is the part that matters.
+    assert.equal(
+      storeLeadTypeKey("homeowners-insurance"),
+      "homeowners-insurance-leads"
+    );
+    assert.ok(storeCategoryPath("homeowners-insurance-leads"));
+  });
+
+  test("the bare-slug fallback still resolves a vertical with no guide page", () => {
+    // Guards the `?? verticalSlug` branch directly. Since 2026-10-05 no real
+    // vertical exercises it — homeowners-insurance was the last one — so it is
+    // pinned against a key that has a store path and deliberately no guide.
+    // The regression this guards is silent under-reporting.
+    assert.equal(storeLeadTypeKey("aca"), "aca");
+    assert.ok(storeCategoryPath("aca"));
   });
 
   test("returns undefined for a vertical with no vertical-specific destination", () => {
