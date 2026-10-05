@@ -102,10 +102,11 @@ Include 4-8 updates, prioritized by relevance to our site.
 Respond ONLY with valid JSON, no other text.`,
       },
     ],
-    temperature: 0.3,
+    // No `temperature` — Sonnet 5.x rejects sampling params (400).
   });
 
-  const content = response.content[0]?.type === "text" ? response.content[0].text : null;
+  // Thinking is on by default, so content[0] may be a thinking block.
+  const content = response.content.find((b) => b.type === "text")?.text ?? null;
   if (!content) throw new Error("No response from AI for Google updates research");
 
   const parsed = parseJsonResponse<{ updates: GoogleUpdateSummary[] }>(content);
@@ -220,10 +221,11 @@ Include 8-15 findings across different categories. Prioritize actionable items. 
 Respond ONLY with valid JSON, no other text.`,
       },
     ],
-    temperature: 0.4,
+    // No `temperature` — Sonnet 5.x rejects sampling params (400).
   });
 
-  const content = response.content[0]?.type === "text" ? response.content[0].text : null;
+  // Thinking is on by default, so content[0] may be a thinking block.
+  const content = response.content.find((b) => b.type === "text")?.text ?? null;
   if (!content) throw new Error("No response from AI for site audit");
 
   return parseJsonResponse<{

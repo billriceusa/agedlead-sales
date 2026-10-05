@@ -218,10 +218,11 @@ Include 5-8 insights and 4-6 recommendations. Be specific with numbers.
 Respond ONLY with valid JSON, no other text.`,
       },
     ],
-    temperature: 0.4,
+    // No `temperature` — Sonnet 5.x rejects sampling params (400).
   });
 
-  const content = response.content[0]?.type === "text" ? response.content[0].text : null;
+  // Thinking is on by default, so content[0] may be a thinking block.
+  const content = response.content.find((b) => b.type === "text")?.text ?? null;
   if (!content) throw new Error("No response from AI for performance analysis");
 
   return parseJsonResponse<PerformanceAnalysis>(content);

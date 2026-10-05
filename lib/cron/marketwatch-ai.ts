@@ -107,11 +107,11 @@ export async function extractProviderData(
   }
 
   const message = await anthropic.messages.create({
-    // claude-sonnet-4 retired 2026-06-15 (was 404ing every run). Thinking is
-    // explicitly disabled so content[0] stays a text block for the parser
-    // below and max_tokens isn't consumed by thinking output.
+    // claude-sonnet-4 retired 2026-06-15 (was 404ing every run); the ID now
+    // comes from model-config.ts. `thinking: { type: "disabled" }` used to live
+    // here to keep content[0] a text block, but Sonnet 5.x rejects it (400) —
+    // the parser below finds the text block by type instead.
     model: SONNET_MODEL,
-    thinking: { type: "disabled" },
     max_tokens: 2000,
     messages: [
       {
@@ -150,8 +150,10 @@ If no relevant information is found, return empty arrays. Do NOT fabricate data.
   });
 
   try {
-    const content = message.content[0];
-    if (content.type !== "text") throw new Error("Unexpected response type");
+    // Thinking is on by default on Sonnet 5.x, so content[0] can be a thinking
+    // block — find the text block by type rather than trusting position.
+    const content = message.content.find((b) => b.type === "text");
+    if (!content) throw new Error("Unexpected response type");
 
     // Extract JSON from response (handle possible markdown wrapping)
     const jsonStr = content.text
@@ -213,9 +215,9 @@ export async function generateBenchmarkEstimates(
   }
 
   const message = await anthropic.messages.create({
-    // Same retired-model swap + explicit no-thinking as extractProviderData.
+    // Same centralized model ID + find-the-text-block parsing as
+    // extractProviderData. No `thinking: { type: "disabled" }` — Sonnet 5.x 400s.
     model: SONNET_MODEL,
-    thinking: { type: "disabled" },
     max_tokens: 4000,
     messages: [
       {
@@ -257,8 +259,8 @@ Respond with ONLY a valid JSON array of benchmark objects.`,
   });
 
   try {
-    const content = message.content[0];
-    if (content.type !== "text") return [];
+    const content = message.content.find((b) => b.type === "text");
+    if (!content) return [];
 
     const jsonStr = content.text
       .replace(/^```json?\s*/i, "")

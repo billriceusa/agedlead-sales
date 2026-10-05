@@ -135,10 +135,11 @@ Respond with valid JSON matching this structure exactly:
     messages: [
       { role: "user", content: prompt + "\n\nRespond ONLY with valid JSON, no other text." },
     ],
-    temperature: 0.7,
+    // No `temperature` — Sonnet 5.x rejects sampling params (400).
   });
 
-  const content = response.content[0]?.type === "text" ? response.content[0].text : null;
+  // Thinking is on by default, so content[0] may be a thinking block.
+  const content = response.content.find((b) => b.type === "text")?.text ?? null;
   if (!content) throw new Error("No response from AI for content planning");
 
   return parseJsonResponse<ContentPlan>(content);
@@ -201,10 +202,11 @@ Write the FULL article with all sections. Each "sections" entry is one paragraph
     messages: [
       { role: "user", content: prompt + "\n\nRespond ONLY with valid JSON, no other text." },
     ],
-    temperature: 0.8,
+    // No `temperature` — Sonnet 5.x rejects sampling params (400).
   });
 
-  const content = response.content[0]?.type === "text" ? response.content[0].text : null;
+  // Thinking is on by default, so content[0] may be a thinking block.
+  const content = response.content.find((b) => b.type === "text")?.text ?? null;
   if (!content) throw new Error(`No response from AI for article: ${brief.title}`);
 
   const parsed = parseJsonResponse<{
