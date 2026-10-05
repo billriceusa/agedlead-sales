@@ -7,6 +7,7 @@ import { PlaybookCard } from "@/components/playbook-card";
 import { CtaBanner } from "@/components/cta-banner";
 import { NewsletterSignup } from "@/components/newsletter-signup";
 import { TrustStrip } from "@/components/trust-strip";
+import { NextStepRouter } from "@/components/next-step-router";
 import { JsonLd, websiteJsonLd, organizationJsonLd } from "@/components/json-ld";
 
 const LEAD_TYPE_DEFAULTS = [
@@ -321,6 +322,51 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      {/*
+        Internal routing, not a door — Click Loop iteration P4, 2026-10-05.
+
+        Placed directly after "How Aged Leads Work" on purpose. A reader who has
+        just absorbed why aged data works has exactly three open questions
+        left — which vertical, what it costs, who sells it — and this is where
+        they surface naturally. The homepage audience has not declared a
+        vertical, so every destination here is a hub that lets them choose; none
+        of them picks a vertical or a seller on their behalf.
+
+        No affiliate or store link belongs in this block. The homepage door was
+        killed today on measured evidence (ledger kills[], iteration 6), and the
+        kill's own stated consequence is to buy or match intent rather than add
+        placements. These are first-party paths only.
+      */}
+      <NextStepRouter
+        tone="plain"
+        heading="Three decisions stand between this and your first order"
+        intro="Aged data only pays when the vertical, the price and the seller line up. Each of these covers one of them, and each lets you pick for yourself rather than taking our word for it."
+        items={[
+          {
+            href: "/lead-types",
+            label: "Lead types by vertical",
+            description:
+              "Buying guides for mortgage, Medicare, final expense, life, solar, legal, home improvement and more — what each file actually contains, who it suits, and how it gets worked.",
+            icon: "verticals",
+            meta: "Start here if your vertical is still open",
+          },
+          {
+            href: "/price-index",
+            label: "Lead Price Index",
+            description:
+              "Quarterly benchmarks for aged, real-time and live-transfer leads across fifteen verticals, so you arrive at a quote with a reference point instead of a guess.",
+            icon: "pricing",
+          },
+          {
+            href: "/providers",
+            label: "Provider comparison",
+            description:
+              "Independent six-dimension ratings of the sellers we have reviewed, with a published methodology and a verification date on every one.",
+            icon: "providers",
+          },
+        ]}
+      />
 
       {/* Pipeline Calculator — featured tool */}
       <section className="bg-white py-16 dark:bg-zinc-950">

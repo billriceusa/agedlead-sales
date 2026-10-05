@@ -16,6 +16,7 @@ import { CredibilityBadges } from "@/components/credibility-badges";
 import { StickyToc } from "@/components/sticky-toc";
 import { NextReadBar } from "@/components/next-read-bar";
 import { ReactionButtons } from "@/components/reaction-buttons";
+import { NextStepRouter } from "@/components/next-step-router";
 import { PROVIDERS } from "@/data/providers";
 import { CONTACT_EMAIL } from "@/lib/site-url";
 import { fitMetaDescription } from "@/lib/meta-description";
@@ -344,6 +345,95 @@ export default async function BlogPostPage({ params }: Props) {
           </div>
 
           <ReactionButtons slug={post.slug.current} contentType="blog" />
+
+          {/*
+            Where to go next — loop iteration P4.
+
+            MEASURED 2026-10-05 (/api/reports/outbound-clicks, last 30d): the
+            four highest-traffic pages on the site draw 1,615 views between them
+            and produce 12 affiliate clicks, 0.74%. The eleven lead-type and
+            provider pages draw 333 views and produce 76, 22.8%. A 31x gap with
+            the traffic sitting on the wrong side of it, and this template
+            renders the worst of the four — /blog/how-to-work-aged-leads-...
+            -maximum-roi, 373 views and 3 clicks.
+
+            THIS IS NAVIGATION, NOT A DOOR, and the distinction is load-bearing.
+            The ledger has killed the add-a-store-door family on exactly these
+            low-intent surfaces three times on measured evidence: the homepage
+            hero door (1 store session, 0 orders, $0.00), both calculator result
+            doors (zero store sessions ever), and the statistics-page CTAs. A
+            fourth attempt would be the same disproven bet. So every href below
+            is first-party: send the reader to the surface that already converts
+            at 22.8% instead of trying to convert them where they stand.
+
+            Vertical-aware where the post declares one. Where it does not, it
+            routes to hubs that let the reader choose rather than picking a
+            vertical for them.
+
+            Deliberately NOT linking /price-index/{vertical}: that route is
+            keyed on its own vertical slugs, which are not guaranteed to match a
+            lead-type slug, and inferring a URL that might 404 is the exact
+            mistake the storefront segment map is documented against. The
+            /price-index hub always resolves.
+          */}
+          <NextStepRouter
+            className="mt-12"
+            heading="Where to go next"
+            intro={
+              post.leadTypes?.[0]
+                ? `If you are working ${post.leadTypes[0].title.toLowerCase()}, these are the three pages that answer what this article does not: who sells them, what they cost, and how the vertical behaves.`
+                : "The three pages that answer what this article does not: which vertical fits you, what leads cost, and who sells them."
+            }
+            items={
+              post.leadTypes?.[0]?.slug?.current
+                ? [
+                    {
+                      href: `/lead-types/${post.leadTypes[0].slug.current}`,
+                      label: `${post.leadTypes[0].title} buying guide`,
+                      description:
+                        "What this vertical costs, who stocks it, and how the economics differ from the rest.",
+                      icon: "verticals" as const,
+                    },
+                    {
+                      href: "/providers",
+                      label: "Compare lead providers",
+                      description:
+                        "Independent six-dimension ratings across every seller we have reviewed.",
+                      icon: "providers" as const,
+                    },
+                    {
+                      href: "/price-index",
+                      label: "Lead Price Index",
+                      description:
+                        "Quarterly benchmarks, so you know whether a quote is in range before you take it.",
+                      icon: "pricing" as const,
+                    },
+                  ]
+                : [
+                    {
+                      href: "/lead-types",
+                      label: "Browse by lead type",
+                      description:
+                        "Start here if your vertical is still open — each one has its own economics.",
+                      icon: "verticals" as const,
+                    },
+                    {
+                      href: "/price-index",
+                      label: "Lead Price Index",
+                      description:
+                        "Quarterly benchmarks, so you know whether a quote is in range before you take it.",
+                      icon: "pricing" as const,
+                    },
+                    {
+                      href: "/providers",
+                      label: "Compare lead providers",
+                      description:
+                        "Independent six-dimension ratings across every seller we have reviewed.",
+                      icon: "providers" as const,
+                    },
+                  ]
+            }
+          />
 
           <div className="mt-12">
             <CtaBanner variant="compact" />

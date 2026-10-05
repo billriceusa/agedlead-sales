@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CtaBanner } from "@/components/cta-banner";
+import { NextStepRouter } from "@/components/next-step-router";
 import { JsonLd, breadcrumbJsonLd } from "@/components/json-ld";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
@@ -23,6 +24,21 @@ export const metadata: Metadata = {
   },
 };
 
+/**
+ * `nextStep` — Click Loop iteration P4, 2026-10-05.
+ *
+ * /calculators drew 374 views and produced 1 affiliate click in the measured
+ * window, while the lead-type and provider pages converted at 22.8%. Both
+ * calculator result doors were killed today for returning zero store sessions
+ * across their whole life (ledger kills[], iteration 5), so the response here is
+ * routing rather than another placement.
+ *
+ * Each tool answers a different question, so each one's natural follow-on is a
+ * different page: a volume answer leads to who can supply it, a price answer
+ * leads to the benchmarks, and a per-vertical answer leads to the vertical
+ * guide. One destination per tool, chosen for that tool — never a generic
+ * "see also" row repeated five times.
+ */
 const CALCULATORS = [
   {
     title: "Pipeline Volume Calculator",
@@ -32,6 +48,7 @@ const CALCULATORS = [
     icon: "📈",
     status: "live",
     popular: true,
+    nextStep: { href: "/providers", label: "Who can supply that volume" },
   },
   {
     title: "Know Your CPL",
@@ -40,6 +57,10 @@ const CALCULATORS = [
       "Calculate your maximum cost per lead based on your vertical, close rate, and deal value. Compare aged vs. real-time ROI side by side.",
     icon: "🎯",
     status: "live",
+    nextStep: {
+      href: "/price-index",
+      label: "Check your ceiling against the market",
+    },
   },
   {
     title: "Aged Lead ROI Calculator",
@@ -48,6 +69,10 @@ const CALCULATORS = [
       "Compare the ROI of aged leads vs. real-time leads. Input your budget, conversion rates, and deal values to see the difference.",
     icon: "📊",
     status: "live",
+    nextStep: {
+      href: "/lead-types",
+      label: "How the economics differ by vertical",
+    },
   },
   {
     title: "Lead Cost Calculator",
@@ -56,6 +81,10 @@ const CALCULATORS = [
       "Calculate your true cost per acquisition when factoring in lead cost, contact rate, and conversion rate.",
     icon: "💰",
     status: "live",
+    nextStep: {
+      href: "/price-index",
+      label: "Current benchmarks by vertical",
+    },
   },
   {
     title: "Outreach Cadence Planner",
@@ -64,6 +93,10 @@ const CALCULATORS = [
       "Plan your multi-channel follow-up sequence for aged leads — calls, emails, direct mail, and door knocking.",
     icon: "📅",
     status: "live",
+    nextStep: {
+      href: "/lead-types",
+      label: "How each lead type gets worked",
+    },
   },
 ];
 
@@ -132,11 +165,55 @@ export default function CalculatorsPage() {
                 >
                   Open Calculator &rarr;
                 </Link>
+                {calc.nextStep && (
+                  <div className="mt-3 border-t border-zinc-200 pt-3 dark:border-zinc-800">
+                    <Link
+                      href={calc.nextStep.href}
+                      className="inline-flex items-center gap-1 text-sm text-zinc-600 hover:text-blue-600 dark:text-zinc-400 dark:hover:text-blue-400"
+                    >
+                      <span className="font-medium">Then:</span>
+                      <span>{calc.nextStep.label}</span>
+                      <span aria-hidden="true">&rarr;</span>
+                    </Link>
+                  </div>
+                )}
               </div>
             ))}
           </div>
         </div>
       </section>
+
+      {/*
+        Internal routing, not a door — Click Loop iteration P4, 2026-10-05.
+
+        For the reader who browses the tools without opening one. A calculator
+        answers only as well as the figures put into it, and the two pages that
+        test those figures are both first-party. Nothing here links to a store:
+        the calculator result doors were killed today for producing zero store
+        sessions over their entire life (ledger kills[], iteration 5), and the
+        lesson recorded there is that supplying inputs does not make a reader a
+        buyer. So this routes to where the real numbers live instead.
+      */}
+      <NextStepRouter
+        heading="Every figure above is one you supplied"
+        intro="These tools are honest about arithmetic and silent about the market. Two pages tell you whether the assumptions you just typed in survive contact with it."
+        items={[
+          {
+            href: "/price-index",
+            label: "Lead Price Index",
+            description:
+              "Quarterly benchmarks for aged, real-time and live-transfer leads across fifteen verticals, with the sourcing shown — so the cost per lead you assumed has something to be measured against.",
+            icon: "pricing",
+          },
+          {
+            href: "/providers",
+            label: "Provider comparison",
+            description:
+              "Which sellers publish what they charge and which make you ask, scored alongside verticals covered, data age and replacement terms. Only one of the fifteen we have reviewed posts a comparable per-lead price.",
+            icon: "providers",
+          },
+        ]}
+      />
 
       <CtaBanner />
     </>
