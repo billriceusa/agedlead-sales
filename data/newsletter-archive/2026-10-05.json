@@ -10,7 +10,7 @@
   "subject": "AEP Opens Oct 15: What It Does to Lead Prices",
   "previewText": "Enrollment season is about to flip the lead market. Buy before the window, not during.",
   "html": "2026-10-05.html",
-  "sent": false,
+  "sent": true,
   "priceGuard": {
     "blocking": [],
     "warnings": [
@@ -30,5 +30,8 @@
   "industryInsight": "Two enrollment clocks, one calendar collision",
   "errors": [
     "Warning: Duplicate utm_content values (2026-10-05-digest) — GA4 merges these into one row, so those placements cannot be told apart."
-  ]
+  ],
+  "sentAt": "2026-10-06T13:00:23.266Z",
+  "broadcastId": "00534430-efd0-43af-b25b-8a35354aefb0",
+  "sentBy": "cron"
 }
