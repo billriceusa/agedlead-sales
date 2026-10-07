@@ -53,3 +53,30 @@ export function evaluatePriceIndexAge(ageDays: number, now: Date): PriceIndexVer
 
   return { ok: false, snoozed: false, detail: overdue };
 }
+
+/**
+ * The newest month present in the PUBLISHED study, or null when empty.
+ *
+ * Separated from the health-check route so it can be tested. The bug this
+ * guards against was not in the arithmetic — it was in WHICH artifact got
+ * measured. The route used to read Sanity's machine-written priceBenchmark
+ * docs; the study readers actually see is data/price-benchmarks.ts. On
+ * 2026-10-07 those disagreed by 92 days, and the alert reported the smaller
+ * number.
+ */
+export function latestPublishedMonth(benchmarks: { month: string }[]): string | null {
+  if (benchmarks.length === 0) return null;
+  return [...new Set(benchmarks.map((b) => b.month))].sort().pop() ?? null;
+}
+
+/**
+ * Age in days of a "YYYY-MM" study month, measured from the FIRST of that
+ * month — the conservative reading. A study stamped 2026-03 is at least as old
+ * as 2026-03-01, and claiming it is newer than that is the direction of error
+ * this whole check exists to avoid.
+ */
+export function studyAgeDays(month: string, now: Date): number {
+  const started = Date.parse(`${month}-01T00:00:00Z`);
+  if (Number.isNaN(started)) throw new Error(`Not a YYYY-MM month: ${month}`);
+  return Math.floor((now.getTime() - started) / 86_400_000);
+}

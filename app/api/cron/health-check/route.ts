@@ -3,7 +3,8 @@ import { createClient } from "next-sanity";
 import { Resend } from "resend";
 import { recordCronRun, type CronName } from "@/lib/cron/heartbeat";
 import { MONITORED_CRONS, CRON_STALENESS } from "@/lib/cron/monitored";
-import { evaluatePriceIndexAge } from "@/lib/cron/price-index-check";
+import { evaluatePriceIndexAge, latestPublishedMonth, studyAgeDays } from "@/lib/cron/price-index-check";
+import { PRICE_BENCHMARKS, quarterLabel } from "@/data/price-benchmarks";
 
 export const maxDuration = 60;
 export const dynamic = "force-dynamic";
@@ -58,27 +59,50 @@ function daysBetween(fromIso: string, to: Date): number {
 // The age threshold and the dated snooze live in lib/cron/price-index-check.ts,
 // where the snooze's expiry is tested.
 
-async function checkPriceIndexStudy(
-  client: ReturnType<typeof getSanityClient>,
-  now: Date
-): Promise<HealthCheck> {
-  const latest = await client.fetch<{ _updatedAt: string } | null>(
-    `*[_type == "priceBenchmark"] | order(_updatedAt desc)[0]{ _updatedAt }`
-  );
-  if (!latest) {
+/**
+ * MEASURE THE PUBLISHED STUDY, NOT THE SANITY DOCS (fixed 2026-10-07).
+ *
+ * This used to read `*[_type == "priceBenchmark"] | order(_updatedAt desc)[0]`
+ * — the documents the marketwatch cron wrote monthly until 2026-06-01. Those
+ * are not the study. `data/price-benchmarks.ts` is, and its own header says so:
+ * "published as a quarterly human-verified study (not a live AI-estimated
+ * feed)". The page serves PRICE_BENCHMARKS; that is what a reader sees and what
+ * the Cite-This button cites.
+ *
+ * The gap was not academic. On 2026-10-07 the alert reported 128 days, measured
+ * off the June Sanity docs, while the PUBLISHED study was month 2026-03 — 220
+ * days old. The check was understating the staleness of the thing readers
+ * actually read by 92 days, and it was the mild number that went into the
+ * daily email.
+ *
+ * Same failure shape as the provider "Verified" badge: a monitor pointed at the
+ * machine-written artifact instead of the human-published one, and therefore
+ * reporting the comfortable number.
+ */
+function checkPriceIndexStudy(now: Date): HealthCheck {
+  const newest = latestPublishedMonth(PRICE_BENCHMARKS);
+
+  if (!newest) {
     return {
       name: "Lead Price Index study",
       ok: false,
-      detail: "No priceBenchmark docs exist",
+      detail: "PRICE_BENCHMARKS is empty — nothing is published",
     };
   }
-  const age = daysBetween(latest._updatedAt, now);
+
+  // Month granularity: treat the study as published at the start of its month,
+  // which is the conservative reading. A study stamped 2026-03 is at least as
+  // old as 2026-03-01.
+  const publishedAt = `${newest}-01T00:00:00Z`;
+  const age = studyAgeDays(newest, now);
   const { ok, detail } = evaluatePriceIndexAge(age, now);
+
+  const count = PRICE_BENCHMARKS.filter((b) => b.month === newest).length;
   return {
     name: "Lead Price Index study",
     ok,
-    detail,
-    lastSeen: latest._updatedAt,
+    detail: `${detail} Published study: ${quarterLabel(newest)} (${newest}), ${count} benchmarks.`,
+    lastSeen: publishedAt,
     ageDays: age,
   };
 }
@@ -170,7 +194,7 @@ export async function GET(request: Request) {
   const client = getSanityClient();
 
   const [contentChecks, heartbeatChecks] = await Promise.all([
-    Promise.all([checkPriceIndexStudy(client, now)]),
+    Promise.all([Promise.resolve(checkPriceIndexStudy(now))]),
     checkCronHeartbeats(client, now),
   ]);
 
