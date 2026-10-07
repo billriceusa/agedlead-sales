@@ -19,7 +19,7 @@ revenue engine — and drive agedleadstore.com traffic + orders.
 | Datastore | Postgres (`DATABASE_URL`, drizzle) | **same Postgres**, shared |
 | Sends from | `"Bill Rice · Aged Leads Insights" <bill@news.agedleadsales.com>` (Resend, verified) | unchanged |
 | Reply-to | `bill@billricestrategy.com` | unchanged |
-| Unsubscribe | `https://email.agedleadsales.com/api/als/unsubscribe` (HMAC of `ALS_UNSUB_SECRET`) | repointed to agedleadsales.com deploy |
+| Unsubscribe | `https://email.agedleadsales.com/api/als/unsubscribe` (HMAC of `ALS_UNSUB_SECRET`) | **PORTED 2026-10-07** — this repo serves `/api/als/unsubscribe`. Flip `ALS_PUBLIC_APP_URL` to `https://workagedleads.com` to repoint NEW mail; old links stay on the old host until in-flight sends age out. |
 
 ## Datastore (Postgres, drizzle)
 

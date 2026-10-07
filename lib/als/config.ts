@@ -1,3 +1,4 @@
+import { SITE_URL } from "@/lib/site-url";
 // AgedLeadStore report configuration.
 
 export const ALS_GA4_PROPERTY = "357329146";
@@ -208,10 +209,25 @@ export const ALS_LIFECYCLE_LAUNCH_AT = process.env.ALS_LIFECYCLE_LAUNCH_AT || ""
 // unsubscribe URL in every email). Falls back to CRON_SECRET for signing.
 export const ALS_UNSUB_SECRET =
   process.env.ALS_UNSUB_SECRET || process.env.CRON_SECRET || "";
+/**
+ * Base URL for the unsubscribe link in every lifecycle email.
+ *
+ * The fallback used to be https://app.myagencyco.com — agency-manager, which is
+ * on the decommission path. As of 2026-10-07 this app serves
+ * /api/als/unsubscribe itself, so an unset env should land HERE rather than on
+ * a third-party app with a retirement date. A CAN-SPAM opt-out must not have a
+ * default that points at something scheduled to be switched off.
+ *
+ * NOTE FOR THE CUTOVER: production sets ALS_PUBLIC_APP_URL explicitly (to
+ * https://email.agedleadsales.com, a host on the RETIRED brand domain served by
+ * agency-manager), so changing this default alone repoints nothing. The env var
+ * has to be updated too. Until it is, new mail keeps pointing at the old host —
+ * which still works, because the old route is deliberately left running.
+ */
 export const ALS_PUBLIC_APP_URL = (
   process.env.ALS_PUBLIC_APP_URL ||
   process.env.NEXT_PUBLIC_APP_URL ||
-  "https://app.myagencyco.com"
+  SITE_URL
 ).replace(/\/$/, "");
 
 // Revenue targets

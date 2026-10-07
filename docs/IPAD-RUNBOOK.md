@@ -24,10 +24,17 @@ needs a terminal.
 
 The first restock offer drafts **2026-10-04** and sends **2026-10-08**, after you are back.
 
-**Deliberately on hold until you are back** (decided 2026-09-15): the homepage hero door and
-calculator door kill rules (originally due 09-23 and 09-30) and the unsubscribe port off
-agency-manager. Nothing on the site changes on its own while you are away. Do not retire
-agency-manager during the trip — every email's unsubscribe link still depends on it.
+**Resolved since.** The homepage hero door and calculator door kill rules were applied
+2026-10-05 (both killed on measured evidence). The unsubscribe port off agency-manager
+shipped 2026-10-07 — this app now serves `/api/als/unsubscribe` itself.
+
+**agency-manager still cannot be retired yet, for one reason.** Every email ALREADY SENT
+carries an absolute unsubscribe link to `email.agedleadsales.com`, which agency-manager
+serves. Those links keep working only while it is up. The cutover order is: new mail points
+here (needs `ALS_PUBLIC_APP_URL` updated in Vercel), old links keep resolving on the old
+host, and agency-manager retires only once the in-flight sends have aged out. Retiring it
+before then breaks opt-out for anyone holding an older email, which is a CAN-SPAM problem,
+not a cleanup problem.
 
 ---
 
