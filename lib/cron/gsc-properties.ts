@@ -48,6 +48,23 @@ export const GSC_PROPERTIES: GscPropertyConfig[] = [
     label: "Aged Lead Sales (retiring)",
   },
   {
+    // Added 2026-10-07, the day the Change of Address was finally filed.
+    //
+    // This domain was invisible to our own instrumentation for the entire
+    // migration — it appears in none of the 148 snapshots taken before today —
+    // which is why nobody noticed it never got a Change of Address while the
+    // other two did. Baseline on the day of filing: 389 impressions over five
+    // days at positions 7.2-17.1 and ZERO clicks, the signature of redirect
+    // limbo rather than of bad pages.
+    //
+    // Registered as a URL-prefix property, not sc-domain. That matters: a
+    // sc-domain property cannot always accept a Change of Address, and this one
+    // could.
+    key: "howtoworkleads",
+    gscSiteUrl: "https://howtoworkleads.com/",
+    label: "How To Work Leads (migrating)",
+  },
+  {
     key: "workagedleads",
     gscSiteUrl: "sc-domain:workagedleads.com",
     label: "Work Aged Leads",
