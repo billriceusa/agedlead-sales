@@ -161,14 +161,33 @@ export default function MethodologyPage() {
                 provider websites to capture any publicly listed per-lead
                 pricing.
               </li>
+              {/*
+                CORRECTED 2026-10-07. This step used to read: "Quote requests:
+                For providers that don't publish pricing, we request quotes as a
+                prospective buyer."
+
+                We do not do that, and describing a method we do not use is the
+                one thing a methodology page cannot do. Most of this market
+                quotes only by phone or form, so the honest description is what
+                is below: we report what is published, we say plainly how thin
+                the published data is, and we label every inference as an
+                inference rather than dressing it as a measurement.
+              */}
               <li>
-                <strong>Quote requests:</strong> For providers that don&apos;t
-                publish pricing, we request quotes as a prospective buyer.
+                <strong>Where pricing is not published:</strong> Most of this
+                market does not post prices — only a handful of the providers we
+                track publish a usable per-lead figure, and several publish only
+                a floor (&ldquo;starting at&rdquo;) or a package rate. Where a
+                provider publishes nothing, we say so on their profile rather
+                than filling the gap with a number.
               </li>
               <li>
-                <strong>Market analysis:</strong> We analyze industry reports,
-                forum discussions, and public data to triangulate pricing where
-                direct data is limited.
+                <strong>Triangulation, labelled as such:</strong> Where direct
+                data is thin we reason from published rates, package and volume
+                pricing, and public market sources. Those benchmarks carry a
+                lower confidence rating, and the rating is the signal — a
+                triangulated range is an informed estimate, not an observed
+                price, and we mark it that way.
               </li>
               <li>
                 <strong>AI-assisted monitoring:</strong> Between quarterly

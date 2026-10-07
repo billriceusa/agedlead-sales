@@ -71,9 +71,9 @@ export const PRICE_DISCLOSURE: PriceDisclosure[] = [
     slug: "aged-lead-store",
     level: "published",
     note:
-      "Publishes a full per-lead price table across nine verticals, each with its age band and exclusivity — e.g. mortgage $1.50–$2.50 at 30–85 days, shared. The only provider surveyed whose public pricing is specific enough to compare.",
-    sourceUrl: "https://agedleadstore.com/all-lead-types/",
-    verified: "2026-09-02",
+      "Publishes a full per-lead price matrix on the storefront: TEN segments (mortgage_refinance, life_insurance, mortgage_protection, auto_insurance, health_insurance, iul_insurance, homeowner_insurance, home_improvement, solar_installation, annuity), each with its age bracket and six volume tiers from 1-249 to 25,000+, all stated shared, $100 minimum order. SOURCE CORRECTED 2026-10-07: this used to cite agedleadstore.com/all-lead-types/, which CONTRADICTS the storefront it links to. Verified that day: the marketing card says IUL is \"$7.00-8.00 Per Lead, 86-365 Days Old\" while the storefront page reads \"Indexed Universal Life Insurance 181-500 Days\" at $6.00 down to $2.00 — the card\u2019s FLOOR is above the storefront\u2019s CEILING, and the bracket is wrong too. Five of nine cards mislabel their age bracket, and both annuity and mortgage protection are missing from the card grid entirely despite being sold and priced. Cite the storefront segment pages; treat /all-lead-types/ as stale marketing.",
+    sourceUrl: "https://store.agedleadstore.com/iul_insurance/leads",
+    verified: "2026-10-07",
   },
   {
     slug: "badass-insurance-leads",
@@ -88,8 +88,12 @@ export const PRICE_DISCLOSURE: PriceDisclosure[] = [
     level: "package-only",
     note:
       'Shows a package range of "$800.00 – $3,400.00" with volume tiers, but no per-lead price and no lead age, exclusivity or source type — so the cost per lead cannot be derived.',
-    sourceUrl: "https://leadheroes.com/final-expense-leads/",
-    verified: "2026-09-02",
+    // SOURCE CORRECTED 2026-10-07: /final-expense-leads/ now 301s to
+    // /final-expense-life-leads/, which shows NO price at all and carries a
+    // 2022 copyright and a 2022-02-25 modified date. The $800/$3,400 figures
+    // survive only on the order page, which was modified 2026-08-10.
+    sourceUrl: "https://leadheroes.com/order-fe/",
+    verified: "2026-10-07",
   },
   {
     slug: "brokers-data",
