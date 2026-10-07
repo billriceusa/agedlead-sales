@@ -25,3 +25,26 @@ body {
   color: var(--foreground);
   font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
 }
+
+/*
+  Long unbreakable tokens in editorial prose must wrap, not overflow.
+
+  MEASURED 2026-10-05: /blog/how-to-work-aged-leads-... scrolled 31px
+  horizontally at 390px. Mobile-responsive is a hardline requirement here, and
+  a page that scrolls sideways on a phone fails it.
+
+  Two different causes turned up across a scan of all 232 Sanity bodies, and
+  only this one is a styling problem. The glossary entry for UTM parameters
+  carries a full example URL — "yoursite.com/quote?utm_source=facebook&..." —
+  which is legitimate content that cannot be shortened without destroying the
+  point of the example. It has nowhere to break, so it must be allowed to.
+
+  `anywhere` rather than `break-word`: break-word will not break a long token
+  that is the sole content of a line box, which is exactly this case.
+
+  Applied at .prose-wrapper, so it covers blog, guides, playbooks and glossary
+  from one place — all four render Portable Text through the same wrapper.
+*/
+.prose-wrapper {
+  overflow-wrap: anywhere;
+}
