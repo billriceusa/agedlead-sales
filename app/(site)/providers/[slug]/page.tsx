@@ -132,17 +132,20 @@ export default async function ProviderProfilePage({
 
   // Try Sanity first, fall back to static data
   const sanityProvider = (await sanityFetch(providerBySlugQuery, { slug })) as
-    | { lastVerified?: string }
+    | { lastVerified?: string; lastScanned?: string }
     | null;
   const staticProvider = getProvider(slug);
 
   if (!sanityProvider && !staticProvider) return notFound();
 
-  // Static data carries the editorial review; Sanity overrides time-sensitive
-  // fields like lastVerified that the marketwatch cron keeps fresh.
+  // Static data carries the editorial review. Sanity's lastVerified is now a
+  // HUMAN field too — the marketwatch cron stamps lastScanned instead, as of
+  // 2026-10-07 — so preferring it is safe: it means an editor updated the
+  // profile in Studio more recently than the static file was touched.
   const p = {
     ...staticProvider!,
     lastVerified: sanityProvider?.lastVerified || staticProvider!.lastVerified,
+    lastScanned: sanityProvider?.lastScanned,
   };
 
   const ratings = [
@@ -299,7 +302,7 @@ export default async function ProviderProfilePage({
                     {p.headquartersState}
                   </span>
                 )}
-                <FreshnessIndicator lastVerified={p.lastVerified} />
+                <FreshnessIndicator lastVerified={p.lastVerified} lastScanned={p.lastScanned} />
               </div>
               <p className="mt-5 max-w-2xl text-lg leading-relaxed text-zinc-300">
                 {p.shortDescription}

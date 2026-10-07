@@ -130,6 +130,27 @@ const STOREFRONT_SEGMENTS: Record<string, string> = {
   // declared solar intent to the full catalogue. It now deep-links like every
   // other stocked vertical.
   "solar-leads": "solar_installation",
+  // ANNUITY — mapped 2026-10-07 on Bill's confirmation, and the provenance
+  // matters because this one did NOT come from the card grid.
+  //
+  // The grid at /all-lead-types/ is the authoritative list and it does not show
+  // annuity; it links exactly eight segments. What it does not do is prove a
+  // segment is absent from the STOREFRONT. Body diff, re-run 2026-10-07:
+  // /annuity/leads returns 200 at 81,642 bytes against a 404 control at 30,511,
+  // with its own "Get Annuity Leads" heading, an Add to Cart control, the full
+  // state filter grid, and a volume-tiered price table carrying two real
+  // freshness brackets ("Annuity 15-85 Days", "Annuity 86-500 Days").
+  //
+  // The standing rule is "re-derive from the card grid, never infer from a URL
+  // pattern". That rule is about not GUESSING, and nothing here was guessed —
+  // the page was fetched and diffed. The grid-vs-storefront gap is a fact about
+  // the partner's marketing site, not evidence the inventory is missing. Solar
+  // sat in this exact position before it appeared on the grid.
+  //
+  // Bill confirmed on 2026-10-07: if it is available, push traffic to it.
+  // Medicare stays unmapped — it is absent BY DECISION per lib/affiliate.ts
+  // ("Troy is not selling it"), which is a different claim entirely.
+  "annuity-leads": "annuity",
 };
 
 /**

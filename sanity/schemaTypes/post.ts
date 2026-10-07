@@ -70,6 +70,7 @@ export const postType = defineType({
         },
         { type: "table" },
         { type: "codeBlock" },
+        { type: "videoEmbed" },
       ],
     }),
     defineField({

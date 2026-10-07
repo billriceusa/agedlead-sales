@@ -11,6 +11,7 @@ import { verticalType } from "./vertical";
 import { cronHeartbeatType } from "./cronHeartbeat";
 import { tableType, tableRowType } from "./objects/table";
 import { codeBlockType } from "./objects/codeBlock";
+import { videoEmbedType } from "./objects/videoEmbed";
 
 export const schemaTypes = [
   authorType,
@@ -27,4 +28,5 @@ export const schemaTypes = [
   tableType,
   tableRowType,
   codeBlockType,
+  videoEmbedType,
 ];
