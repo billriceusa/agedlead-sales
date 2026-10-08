@@ -5,5 +5,9 @@
   "campaign": "restock-offer",
   "edition": "steady-beats-big",
   "theme": "Steady beats big",
-  "killed": false
+  "killed": false,
+  "sent": true,
+  "sentAt": "2026-10-08T13:00:53.848Z",
+  "broadcastId": "d198af5b-9c4e-4825-944e-628195a3f796",
+  "sentBy": "cron"
 }
