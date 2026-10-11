@@ -1,0 +1,30 @@
+{
+  "runDate": "2026-10-11T14:01:04.826Z",
+  "weekOf": "2026-10-12",
+  "sendDate": "2026-10-13",
+  "theme": "Channel Deep Dive",
+  "focusVertical": "topic-themed",
+  "calendarStatus": "Calendar: \"Channel Deep Dive\" for 2026-10-13. 11 issue(s) remain, through 2026-12-29.",
+  "calendarMatched": true,
+  "calendarRemaining": 11,
+  "subject": "Email first, dial second: channel rules for aged leads",
+  "previewText": "When to email, when to dial, and when to stop: a channel playbook for any vertical.",
+  "html": "2026-10-12.html",
+  "sent": false,
+  "priceGuard": {
+    "blocking": [],
+    "warnings": []
+  },
+  "featuredArticle": {
+    "title": "How to Work Aged Leads: The Complete System for Maximum ROI",
+    "slug": "how-to-work-aged-leads-the-complete-system-for-maximum-roi",
+    "spotlight": "If this week's channel tips raise the question of how it all fits together, this is the full picture: scripts, follow-up sequences, and the economics of working aged data. It's worth revisiting as a reference. Read it once, then build your own cadence from it."
+  },
+  "quickTips": [
+    "Email first, call second: let the inbox qualify your dial list",
+    "Don't trust anyone's 'best dial time.' Run a 2-week window test.",
+    "Set a stop rule before you start the cadence"
+  ],
+  "industryInsight": "Consent rules for lead resale are still moving. Keep your process documented.",
+  "errors": []
+}
