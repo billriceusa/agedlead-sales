@@ -77,11 +77,14 @@ export const PRICE_DISCLOSURE: PriceDisclosure[] = [
   },
   {
     slug: "badass-insurance-leads",
-    level: "partial",
+    // RAISED from "partial" to "published" on 2026-10-12, on Bill's ruling that
+    // a publicly linked sheet counts as published pricing.
+    level: "published",
     note:
-      "Publishes life insurance at $1.00 per lead (3–12 months, exclusive) and Spanish-language life at $1.85. Final expense, Medicare, health and IUL are offered but priced on request.",
-    sourceUrl: "https://badassinsuranceleads.com",
-    verified: "2026-09-02",
+      "Publishes explicit per-lead wholesale prices by vertical, age bracket and volume tier \u2014 Life/FEX, Health (U65), Mortgage Refi and IUL \u2014 in a public Google Sheet titled \"Badass Insurance Leads [Wholesale] Pricing: 2026\", linked from /wholesale/ under a \"See Wholesale Pricing Here\" button. Every row is labelled \"Cost Per Lead\". Life/FEX re-read directly 2026-10-12: aged 90-365 days at 0.68 / 0.47 / 0.40 across the 1001-4,999 / 5,000-9,999 / 10,000-24,999 tiers. Retail package tables with explicit lead counts also run on each product page. TWO CAVEATS. The same /wholesale/ page's FAQ still says pricing is something \"we can share and work with you on\", contradicting the sheet it links to \u2014 the sheet is the better evidence. And their meta descriptions state per-lead prices that match nothing on the pages (\"Starting at .99 cents per lead\"); never cite those. Stated exclusivity is \"exclusive to the client and never resold by us\", which puts them in a DIFFERENT exclusivity bucket from Aged Lead Store \u2014 see data/price-evidence-2026-10.md \u00a74 for why that blocks a blended benchmark.",
+    sourceUrl:
+      "https://docs.google.com/spreadsheets/d/1mTSser6yvTxECQMmrIS75VM2dBKccitv7zqlGIjQmcc",
+    verified: "2026-10-12",
   },
   {
     slug: "lead-heroes",
