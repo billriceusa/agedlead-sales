@@ -416,8 +416,9 @@ async function draftThisWeeksIssue(request: Request, startTime: number) {
   // ── Step 5: (removed) ────────────────────────────────────────
   // Scheduling a live broadcast used to happen here, in the same run that
   // emailed the "preview". That is the whole reason this cron was switched off
-  // on 2026-06-23. Sending now lives in scripts/send-newsletter.ts and is run
-  // by a human against an archived, already-reviewed issue.
+  // on 2026-06-23. Sending now lives in app/api/cron/send-newsletter (Tuesday,
+  // unless stopped) and scripts/send-newsletter.ts (manual early send), both
+  // against the archived, already-previewed issue.
 
   // ── Step 6: Commit newsletter content to GitHub ──────────────
   const reportData = {
@@ -497,7 +498,7 @@ async function draftThisWeeksIssue(request: Request, startTime: number) {
         from: fromEmail,
         to: REVIEW_EMAIL,
         subject: `Newsletter Report — ${weekDates.weekLabel}`,
-        html: buildReportHtml(reportData, weekDates),
+        html: buildReportHtml(reportData, weekDates, archiveCommitted),
       });
       console.log(`[Newsletter] Report email sent to ${REVIEW_EMAIL}`);
     } catch (err) {
@@ -548,13 +549,49 @@ function buildReportHtml(
     previewText: string;
     html: string;
     sent: boolean;
+    killed?: boolean;
+    killedReason?: string;
     featuredArticle: { title: string; slug: string };
     quickTips: string[];
     industryInsight: string;
     errors: string[];
   },
-  weekDates: { tuesday: string; weekLabel: string }
+  weekDates: { tuesday: string; weekLabel: string },
+  archiveCommitted: boolean
 ): string {
+  // This report used to say "not scheduled — it goes nowhere until someone
+  // runs" a terminal command, three weeks after the Tuesday sender went live
+  // (2026-09-02). Bill read it as the truth and tried to send by hand. The
+  // report and the preview must state the same next step, and that step is
+  // whatever send-newsletter will actually do on Tuesday.
+  const stopLink = (() => {
+    try {
+      return killUrl(getSiteUrl(), weekDates.weekLabel);
+    } catch {
+      return null;
+    }
+  })();
+
+  const status = !archiveCommitted
+    ? { color: "#dc2626", text: "NOT archived — Tuesday has nothing to send" }
+    : report.killed
+      ? { color: "#dc2626", text: "Stopped — will not send" }
+      : { color: "#b45309", text: `Sends ${weekDates.tuesday} at 9:00 AM ET unless you stop it` };
+
+  const nextStepHtml = !archiveCommitted
+    ? `<p style="color: #991b1b; font-size: 13px;">The archive commit failed, so the Tuesday sender has no issue to mail. See Issues below.</p>`
+    : report.killed
+      ? `<p style="color: #991b1b; font-size: 13px;">This issue was stopped automatically${report.killedReason ? `: ${report.killedReason}` : ""}. Tuesday will skip it.</p>`
+      : `<p style="color: #374151; font-size: 13px;">Do nothing and this issue goes to the list on Tuesday. A preview copy was sent separately.</p>
+  ${
+    stopLink
+      ? `<p style="margin: 0 0 16px;"><a href="${stopLink}" style="display: inline-block; background: #dc2626; color: #ffffff; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 14px;">Stop this issue</a></p>`
+      : `<p style="color: #991b1b; font-size: 13px; font-weight: 600;">No stop link — CRON_SECRET is not set on this deployment. Kill it by hand if needed.</p>`
+  }
+  <p style="color: #6b7280; font-size: 13px;">Optional, before Tuesday: add the week's new buyers to the list. Run from the repo folder:</p>
+  <pre style="padding: 10px 12px; background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 6px; font-size: 12px; overflow-x: auto;">cd ~/Code/sites/brsg/owned/agedleadsales.com
+npm run newsletter:migrate -- --apply</pre>`;
+
   const tipsHtml = report.quickTips
     .map((t) => `<li style="margin-bottom: 4px;">${t}</li>`)
     .join("");
@@ -581,7 +618,7 @@ function buildReportHtml(
     <tr><td style="padding: 8px 0; font-weight: 600; border-top: 1px solid #e5e7eb;">Theme</td><td style="padding: 8px 0; border-top: 1px solid #e5e7eb;">${report.theme}</td></tr>
     <tr><td style="padding: 8px 0; font-weight: 600; border-top: 1px solid #e5e7eb;">Vertical</td><td style="padding: 8px 0; border-top: 1px solid #e5e7eb;">${report.focusVertical}</td></tr>
     <tr><td style="padding: 8px 0; font-weight: 600; border-top: 1px solid #e5e7eb;">Target send</td><td style="padding: 8px 0; border-top: 1px solid #e5e7eb;">${weekDates.tuesday} at 9:00 AM ET</td></tr>
-    <tr><td style="padding: 8px 0; font-weight: 600; border-top: 1px solid #e5e7eb;">Status</td><td style="padding: 8px 0; border-top: 1px solid #e5e7eb; color: #b45309; font-weight: 600;">Drafted — nothing scheduled, nothing sent</td></tr>
+    <tr><td style="padding: 8px 0; font-weight: 600; border-top: 1px solid #e5e7eb;">Status</td><td style="padding: 8px 0; border-top: 1px solid #e5e7eb; color: ${status.color}; font-weight: 600;">${status.text}</td></tr>
     <tr><td style="padding: 8px 0; font-weight: 600; border-top: 1px solid #e5e7eb;">Featured</td><td style="padding: 8px 0; border-top: 1px solid #e5e7eb;">${report.featuredArticle.title}</td></tr>
   </table>
 
@@ -591,9 +628,7 @@ function buildReportHtml(
   <h3 style="margin: 0 0 8px; font-size: 16px;">Industry Insight</h3>
   <p style="margin: 0 0 20px;">${report.industryInsight}</p>
 
-  <p style="color: #6b7280; font-size: 13px;">A preview copy of the newsletter was sent separately. This issue is <strong>not scheduled</strong> — it goes nowhere until someone runs:</p>
-  <pre style="padding: 10px 12px; background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 6px; font-size: 12px; overflow-x: auto;">npm run newsletter:migrate -- --apply   # fold in the week's new buyers
-npm run newsletter:send -- --date ${report.weekOf} --confirm</pre>
+  ${nextStepHtml}
 
   ${errorsHtml}
 
