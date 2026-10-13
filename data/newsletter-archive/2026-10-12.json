@@ -10,7 +10,7 @@
   "subject": "Email first, dial second: channel rules for aged leads",
   "previewText": "When to email, when to dial, and when to stop: a channel playbook for any vertical.",
   "html": "2026-10-12.html",
-  "sent": false,
+  "sent": true,
   "priceGuard": {
     "blocking": [],
     "warnings": []
@@ -26,5 +26,8 @@
     "Set a stop rule before you start the cadence"
   ],
   "industryInsight": "Consent rules for lead resale are still moving. Keep your process documented.",
-  "errors": []
+  "errors": [],
+  "sentAt": "2026-10-13T13:00:29.139Z",
+  "broadcastId": "e11c8596-2ef5-4a61-bead-85982ae2505f",
+  "sentBy": "cron"
 }
