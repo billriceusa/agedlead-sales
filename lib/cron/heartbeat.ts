@@ -13,6 +13,7 @@ export type CronName =
   | "commission-report"
   | "als-lifecycle"
   | "send-newsletter"
+  | "newsletter-audience-sync"
   // The monthly restock offer beats separately per mode. One name for both
   // would let a healthy weekly draft run mask a send that has stopped firing,
   // and a send that never fires is invisible in the worst way: no bounce, no

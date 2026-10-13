@@ -26,6 +26,7 @@ export const MONITORED_CRONS = [
   "commission-report",
   "weekly-newsletter",
   "send-newsletter",
+  "newsletter-audience-sync",
   "restock-offer-draft",
   "restock-offer-send",
 ] as const satisfies readonly CronName[];
@@ -79,6 +80,15 @@ export const CRON_STALENESS: Record<MonitoredCron, StalenessRule> = {
     maxDays: 8,
     label: "Newsletter send cron (Tuesday)",
     firstExpectedAt: "2026-09-09",
+  },
+  // Daily 11:20 UTC — folds new signups and ALS buyers into the list, and
+  // honors opt-outs made on the ALS side. Its silence is invisible: the send
+  // still goes out, just to a list that is missing the week's buyers and still
+  // mailing people who opted out. 2 days, like the other dailies.
+  "newsletter-audience-sync": {
+    maxDays: 2,
+    label: "Newsletter audience sync cron",
+    firstExpectedAt: "2026-10-15", // first run 2026-10-14 11:20 UTC
   },
   // Both restock crons fire WEEKLY and no-op on the weeks that are not theirs,
   // so a heartbeat is expected every week even though the offer mails monthly.
