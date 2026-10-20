@@ -10,7 +10,7 @@
   "subject": "Test a lead source without betting the quarter",
   "previewText": "How big a test batch needs to be, and the three numbers that say scale or cut.",
   "html": "2026-10-19.html",
-  "sent": false,
+  "sent": true,
   "priceGuard": {
     "blocking": [],
     "warnings": []
@@ -26,5 +26,8 @@
     "Three numbers decide scale or cut"
   ],
   "industryInsight": "A vendor's average isn't your result",
-  "errors": []
+  "errors": [],
+  "sentAt": "2026-10-20T13:00:23.303Z",
+  "broadcastId": "e0133038-85b9-4cbe-afb2-3098ae9705b2",
+  "sentBy": "cron"
 }
