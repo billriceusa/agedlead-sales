@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-21T12:00:05.891Z",
+  "lastUpdated": "2026-10-22T12:00:06.568Z",
   "snapshots": [
     {
       "date": "2026-07-10",
@@ -25956,6 +25956,316 @@
           "impressions": 1,
           "ctr": 0,
           "position": 6
+        }
+      ]
+    },
+    {
+      "date": "2026-10-22",
+      "property": "agedleadsales",
+      "status": "ok",
+      "rolling7d": {
+        "clicks": 2,
+        "impressions": 432,
+        "ctr": 0.0046,
+        "position": 13.91
+      },
+      "topPages": [
+        {
+          "page": "https://agedleadsales.com/blog/aged-refinance-leads-most-undervalued-mortgage-asset",
+          "clicks": 1,
+          "impressions": 3,
+          "ctr": 0.3333,
+          "position": 8.67
+        },
+        {
+          "page": "https://agedleadsales.com/glossary/aged-lead",
+          "clicks": 1,
+          "impressions": 60,
+          "ctr": 0.0167,
+          "position": 14.38
+        },
+        {
+          "page": "https://agedleadsales.com/blog/aged-auto-insurance-leads-overlooked-goldmine-pc-agents",
+          "clicks": 0,
+          "impressions": 4,
+          "ctr": 0,
+          "position": 8.25
+        },
+        {
+          "page": "https://agedleadsales.com/blog/aged-home-improvement-leads-playbook",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 6
+        },
+        {
+          "page": "https://agedleadsales.com/blog/aged-lead-conversion-rates-by-industry-data-benchmarks",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 2
+        },
+        {
+          "page": "https://agedleadsales.com/blog/aged-lead-roi-calculation-methodology-by-industry",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 6
+        },
+        {
+          "page": "https://agedleadsales.com/blog/aged-lead-scripts-that-work",
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 4
+        },
+        {
+          "page": "https://agedleadsales.com/blog/aged-lead-team-performance-benchmarking-guide",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 4
+        },
+        {
+          "page": "https://agedleadsales.com/blog/aged-leads-buying-guide-profit-leads-other-reps-gave-up",
+          "clicks": 0,
+          "impressions": 4,
+          "ctr": 0,
+          "position": 7.25
+        },
+        {
+          "page": "https://agedleadsales.com/blog/aged-leads-pricing-2026-complete-industry-guide",
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 7.5
+        }
+      ],
+      "topQueries": [
+        {
+          "query": "affordable aged life leads",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 19
+        },
+        {
+          "query": "aged final expense leads",
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 24.5
+        },
+        {
+          "query": "aged health insurance leads",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 42
+        },
+        {
+          "query": "aged internet leads",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 74
+        },
+        {
+          "query": "aged lead",
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 4
+        },
+        {
+          "query": "aged lead store",
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 23.67
+        },
+        {
+          "query": "aged lead store reviews",
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 11
+        },
+        {
+          "query": "aged leads",
+          "clicks": 0,
+          "impressions": 23,
+          "ctr": 0,
+          "position": 17.13
+        },
+        {
+          "query": "aged leads for call centers",
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 5.67
+        },
+        {
+          "query": "aged leads marketplace",
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 15
+        }
+      ]
+    },
+    {
+      "date": "2026-10-22",
+      "property": "workagedleads",
+      "status": "ok",
+      "rolling7d": {
+        "clicks": 55,
+        "impressions": 5279,
+        "ctr": 0.0104,
+        "position": 21.08
+      },
+      "topPages": [
+        {
+          "page": "https://workagedleads.com/blog/voicemail-scripts-insurance-leads",
+          "clicks": 8,
+          "impressions": 202,
+          "ctr": 0.0396,
+          "position": 5.59
+        },
+        {
+          "page": "https://workagedleads.com/lead-types/insurance-leads",
+          "clicks": 5,
+          "impressions": 483,
+          "ctr": 0.0104,
+          "position": 33.78
+        },
+        {
+          "page": "https://workagedleads.com/providers",
+          "clicks": 4,
+          "impressions": 335,
+          "ctr": 0.0119,
+          "position": 14.87
+        },
+        {
+          "page": "https://workagedleads.com/blog/iul-leads-financial-advisors-playbook",
+          "clicks": 3,
+          "impressions": 124,
+          "ctr": 0.0242,
+          "position": 7.56
+        },
+        {
+          "page": "https://workagedleads.com/blog/sms-templates-insurance-leads",
+          "clicks": 3,
+          "impressions": 189,
+          "ctr": 0.0159,
+          "position": 18.05
+        },
+        {
+          "page": "https://workagedleads.com/providers/best/health-insurance",
+          "clicks": 3,
+          "impressions": 171,
+          "ctr": 0.0175,
+          "position": 20.6
+        },
+        {
+          "page": "https://workagedleads.com/providers/the-leads-warehouse",
+          "clicks": 3,
+          "impressions": 65,
+          "ctr": 0.0462,
+          "position": 6
+        },
+        {
+          "page": "https://workagedleads.com/blog/aged-lead-store-review-2026",
+          "clicks": 2,
+          "impressions": 248,
+          "ctr": 0.0081,
+          "position": 4.91
+        },
+        {
+          "page": "https://workagedleads.com/blog/dnc-scrubbing-on-a-budget",
+          "clicks": 2,
+          "impressions": 70,
+          "ctr": 0.0286,
+          "position": 12.91
+        },
+        {
+          "page": "https://workagedleads.com/blog/ssdi-leads-disability-attorneys",
+          "clicks": 2,
+          "impressions": 47,
+          "ctr": 0.0426,
+          "position": 13.15
+        }
+      ],
+      "topQueries": [
+        {
+          "query": "ssdi leads",
+          "clicks": 3,
+          "impressions": 27,
+          "ctr": 0.1111,
+          "position": 11.93
+        },
+        {
+          "query": "aged iul leads",
+          "clicks": 1,
+          "impressions": 20,
+          "ctr": 0.05,
+          "position": 18.95
+        },
+        {
+          "query": "aged lead store reviews",
+          "clicks": 1,
+          "impressions": 22,
+          "ctr": 0.0455,
+          "position": 1.86
+        },
+        {
+          "query": "aged leads",
+          "clicks": 1,
+          "impressions": 74,
+          "ctr": 0.0135,
+          "position": 7.61
+        },
+        {
+          "query": "badass insurance leads",
+          "clicks": 1,
+          "impressions": 10,
+          "ctr": 0.1,
+          "position": 6.6
+        },
+        {
+          "query": "iul leads",
+          "clicks": 1,
+          "impressions": 44,
+          "ctr": 0.0227,
+          "position": 8.7
+        },
+        {
+          "query": "iul leads for sale",
+          "clicks": 1,
+          "impressions": 14,
+          "ctr": 0.0714,
+          "position": 12.86
+        },
+        {
+          "query": "\"15-20 hrs/week\" founders calls emails follow-ups",
+          "clicks": 0,
+          "impressions": 6,
+          "ctr": 0,
+          "position": 27.67
+        },
+        {
+          "query": "1003 mortgage leads",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 8
+        },
+        {
+          "query": "10dlc for mortgage lenders",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 11
         }
       ]
     }
