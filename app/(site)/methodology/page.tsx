@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { JsonLd, breadcrumbJsonLd } from "@/components/json-ld";
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://workagedleads.com";
 
 export const metadata: Metadata = {
   title: "Our Methodology: How We Rate Lead Providers",

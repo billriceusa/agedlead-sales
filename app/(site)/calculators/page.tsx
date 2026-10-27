@@ -4,7 +4,7 @@ import { CtaBanner } from "@/components/cta-banner";
 import { NextStepRouter } from "@/components/next-step-router";
 import { JsonLd, breadcrumbJsonLd } from "@/components/json-ld";
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://workagedleads.com";
 
 export const metadata: Metadata = {
   title: "Free Sales Calculators & Tools",

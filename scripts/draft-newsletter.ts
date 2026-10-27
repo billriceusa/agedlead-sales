@@ -18,7 +18,7 @@
  *
  * The checked-out `.env.local` in this repo has been observed STALE: it carried
  * NEXT_PUBLIC_SITE_URL=agedleadsales.com (the retired domain), the 187-contact
- * newsletter-only audience, and a noreply@agedleadsales.com sender. Drafting
+ * newsletter-only audience, and a noreply@workagedleads.com sender. Drafting
  * against it silently produces an issue whose every site link points at the
  * dead brand. Pull production env and pass it explicitly:
  *

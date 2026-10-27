@@ -87,7 +87,7 @@ const MIN_EXPECTED_RECIPIENTS = 500;
 const REVIEW_WINDOW_HOURS = 48;
 
 function getSiteUrl(): string {
-  return process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
+  return process.env.NEXT_PUBLIC_SITE_URL || "https://workagedleads.com";
 }
 
 export async function GET(request: Request) {

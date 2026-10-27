@@ -26,7 +26,7 @@ import {
   hasTrustworthyBenchmarks,
 } from "@/lib/benchmark-coverage";
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://workagedleads.com";
 
 export function generateStaticParams() {
   return VERTICALS.map((v) => ({ vertical: v.slug }));

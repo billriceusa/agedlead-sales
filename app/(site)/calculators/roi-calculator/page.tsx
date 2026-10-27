@@ -13,7 +13,7 @@ import {
 } from "@/components/json-ld";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://workagedleads.com";
 
 export const metadata: Metadata = {
   title: "Aged Lead ROI Calculator | Free Lead Comparison Tool",

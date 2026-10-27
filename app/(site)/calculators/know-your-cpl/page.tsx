@@ -6,7 +6,7 @@ import { EmbedCode } from "@/components/embed-code";
 import { JsonLd, breadcrumbJsonLd } from "@/components/json-ld";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://workagedleads.com";
 
 export const metadata: Metadata = {
   title: "Know Your CPL — What Should You Pay for Leads?",

@@ -16,7 +16,7 @@ import { getProvider, getProviderPairs } from "@/data/providers";
  */
 const PARTNER_SLUG = "aged-lead-store";
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://workagedleads.com";
 
 function parsePair(pair: string): [string, string] | null {
   const idx = pair.indexOf("-vs-");

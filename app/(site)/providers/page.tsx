@@ -9,7 +9,7 @@ import { PROVIDERS } from "@/data/providers";
 import { getVertical } from "@/data/verticals";
 import Link from "next/link";
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://workagedleads.com";
 
 export const metadata: Metadata = {
   // "aged" is the money term this page ranks for and the old title omitted it.

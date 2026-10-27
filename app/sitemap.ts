@@ -9,7 +9,7 @@ import { VERTICALS } from "@/data/verticals";
 import { hasTrustworthyBenchmarks } from "@/lib/benchmark-coverage";
 import { GUIDES, GUIDE_SLUGS } from "@/data/guides";
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://workagedleads.com";
 
 type ContentItem = { slug: string; lastModified: string };
 

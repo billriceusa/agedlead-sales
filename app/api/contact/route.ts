@@ -59,7 +59,7 @@ export async function POST(request: Request) {
     const toEmail = process.env.CONTACT_TO_EMAIL || "bill@billricestrategy.com";
     const fromEmail =
       process.env.RESEND_FROM_EMAIL ||
-      "Work Aged Leads <noreply@agedleadsales.com>";
+      "Work Aged Leads <noreply@workagedleads.com>";
 
     if (!apiKey) {
       console.warn("[Contact] RESEND_API_KEY not set");

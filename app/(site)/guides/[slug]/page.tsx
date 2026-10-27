@@ -14,7 +14,7 @@ import { StaticGuide } from "@/components/static-guide";
 import { makeGlossaryLinker } from "@/components/glossary-static";
 import { glossaryTooltipQuery } from "@/sanity/lib/queries";
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://workagedleads.com";
 
 interface Props {
   params: Promise<{ slug: string }>;

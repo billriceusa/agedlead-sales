@@ -13,7 +13,7 @@ import { leadTypeForVertical } from "@/data/lead-type-vertical-map";
 import { storefrontSegment } from "@/lib/store-front";
 import { storeCategoryPath } from "@/lib/affiliate";
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://workagedleads.com";
 
 export function generateStaticParams() {
   return VERTICALS.map((v) => ({ vertical: v.slug }));

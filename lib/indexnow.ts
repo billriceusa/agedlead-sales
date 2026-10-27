@@ -1,5 +1,5 @@
 const INDEXNOW_KEY = "3af0b98696984205a902c5c28d9be6d0";
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://workagedleads.com";
 
 /**
  * Notify IndexNow (Bing, Yandex, Naver) about new or updated URLs.

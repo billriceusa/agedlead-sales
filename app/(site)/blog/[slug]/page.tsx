@@ -21,7 +21,7 @@ import { PROVIDERS } from "@/data/providers";
 import { CONTACT_EMAIL } from "@/lib/site-url";
 import { fitMetaDescription } from "@/lib/meta-description";
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://workagedleads.com";
 
 interface Props {
   params: Promise<{ slug: string }>;

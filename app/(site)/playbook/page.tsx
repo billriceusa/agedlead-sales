@@ -8,7 +8,7 @@ import { NextStepRouter } from "@/components/next-step-router";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { postsByCategorySlugsQuery } from "@/sanity/lib/queries";
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://workagedleads.com";
 
 // Operations cluster: tactics that turn the playbook into daily reps —
 // scripts/outreach, strategies, compliance, getting-started.

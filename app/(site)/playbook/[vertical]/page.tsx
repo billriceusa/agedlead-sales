@@ -10,7 +10,7 @@ import { sanityFetch } from "@/sanity/lib/fetch";
 import { glossaryTooltipQuery } from "@/sanity/lib/queries";
 import { makeGlossaryLinker } from "@/components/glossary-static";
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://workagedleads.com";
 
 interface PageProps {
   params: Promise<{ vertical: string }>;

@@ -16,7 +16,7 @@ import { StickyToc } from "@/components/sticky-toc";
 import { NextReadBar } from "@/components/next-read-bar";
 import { ReactionButtons } from "@/components/reaction-buttons";
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://workagedleads.com";
 
 interface Props {
   params: Promise<{ slug: string }>;

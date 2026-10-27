@@ -4,7 +4,7 @@ import { CtaBanner } from "@/components/cta-banner";
 import { JsonLd, breadcrumbJsonLd } from "@/components/json-ld";
 import { PROVIDERS, getProviderPairs } from "@/data/providers";
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://workagedleads.com";
 
 export const metadata: Metadata = {
   title: "Lead Provider & Lead Type Comparisons",

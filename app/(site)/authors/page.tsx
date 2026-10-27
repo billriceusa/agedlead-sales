@@ -6,7 +6,7 @@ import { PostCard } from "@/components/post-card";
 import { JsonLd, breadcrumbJsonLd } from "@/components/json-ld";
 import { CtaBanner } from "@/components/cta-banner";
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://workagedleads.com";
 
 export const metadata: Metadata = {
   title: "Authors — Work Aged Leads",

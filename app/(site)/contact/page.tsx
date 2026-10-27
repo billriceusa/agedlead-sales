@@ -3,7 +3,7 @@ import { ContactForm } from "./contact-form";
 import { JsonLd, breadcrumbJsonLd } from "@/components/json-ld";
 import { CONTACT_EMAIL } from "@/lib/site-url";
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://workagedleads.com";
 
 export const metadata: Metadata = {
   title: "Contact — Work Aged Leads",

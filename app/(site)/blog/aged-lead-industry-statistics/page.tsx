@@ -17,7 +17,7 @@ import {
 import { AGE_BRACKET_LABELS } from "@/data/price-benchmarks";
 import { billRicePersonRef } from "@/lib/identity";
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://workagedleads.com";
 const lastUpdated = "2026-04-08";
 const pageUrl = `${baseUrl}/blog/aged-lead-industry-statistics`;
 

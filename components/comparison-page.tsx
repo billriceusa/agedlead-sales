@@ -6,7 +6,7 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 import { RelatedLinks, type RelatedLink } from "@/components/related-links";
 import { JsonLd, breadcrumbJsonLd, faqJsonLd } from "@/components/json-ld";
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://workagedleads.com";
 
 export interface ComparisonRow {
   /** Row label (the dimension being compared). */

@@ -1,4 +1,4 @@
-// On-demand GA4 report: outbound (referral) clicks from agedleadsales.com,
+// On-demand GA4 report: outbound (referral) clicks from workagedleads.com,
 // grouped by destination domain, for last 30 days and last 90 days.
 //
 // Auth: Bearer ${CRON_SECRET} — same gating as the daily-performance cron.

@@ -162,7 +162,7 @@ export async function GET(request: Request) {
       const resend = new Resend(resendApiKey);
       const fromEmail =
         process.env.RESEND_FROM_EMAIL ||
-        "Work Aged Leads <noreply@agedleadsales.com>";
+        "Work Aged Leads <noreply@workagedleads.com>";
 
       await resend.emails.send({
         from: fromEmail,

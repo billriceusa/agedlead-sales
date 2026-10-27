@@ -6,7 +6,7 @@ import {
   type ComparisonFaq,
 } from "@/components/comparison-page";
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://workagedleads.com";
 
 export const metadata: Metadata = {
   title: "IUL vs. Term Life Insurance: Which Is Right for Your Client?",

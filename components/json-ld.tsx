@@ -1,6 +1,6 @@
 import { billRicePersonRef } from "@/lib/identity";
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://workagedleads.com";
 
 interface JsonLdProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -6,7 +6,7 @@ import type { Vertical } from "@/lib/email-course/types";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { affiliateUrl } from "@/lib/affiliate";
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://workagedleads.com";
 
 interface PageProps {
   params: Promise<{ vertical: string }>;

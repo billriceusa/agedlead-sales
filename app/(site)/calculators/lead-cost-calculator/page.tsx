@@ -8,7 +8,7 @@ import { NewsletterSignup } from "@/components/newsletter-signup";
 import { JsonLd, breadcrumbJsonLd, faqJsonLd, webApplicationJsonLd } from "@/components/json-ld";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://workagedleads.com";
 
 export const metadata: Metadata = {
   title: "Lead Cost Calculator | Free Cost Per Acquisition Tool",

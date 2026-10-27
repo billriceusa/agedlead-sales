@@ -7,7 +7,7 @@ import {
 } from "@/components/comparison-page";
 import { getVertical } from "@/data/verticals";
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://workagedleads.com";
 
 // Whole-percent for larger rates; one decimal for small ones (e.g. a 1.5%
 // close rate must not round to 2% and look like half the real-time rate).

@@ -7,7 +7,7 @@ export async function sendWeeklyReport(
 ): Promise<boolean> {
   const apiKey = process.env.RESEND_API_KEY;
   const fromEmail =
-    process.env.RESEND_FROM_EMAIL || "noreply@agedleadsales.com";
+    process.env.RESEND_FROM_EMAIL || "noreply@workagedleads.com";
 
   if (!apiKey) {
     console.warn("RESEND_API_KEY not set — skipping email notification");

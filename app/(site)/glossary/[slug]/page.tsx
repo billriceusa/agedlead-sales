@@ -15,7 +15,7 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 import { GLOSSARY_TERMS } from "@/data/glossary-terms";
 import { fitMetaDescription } from "@/lib/meta-description";
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://workagedleads.com";
 
 interface Props {
   params: Promise<{ slug: string }>;

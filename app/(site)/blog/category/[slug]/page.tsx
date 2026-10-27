@@ -12,7 +12,7 @@ import { CtaBanner } from "@/components/cta-banner";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { JsonLd, breadcrumbJsonLd } from "@/components/json-ld";
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://workagedleads.com";
 
 interface Props {
   params: Promise<{ slug: string }>;

@@ -18,7 +18,7 @@ import { NewsletterSignup } from "@/components/newsletter-signup";
 import { LEAD_TYPES } from "@/data/lead-types";
 import { verticalForLeadType } from "@/data/lead-type-vertical-map";
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://workagedleads.com";
 
 interface Props {
   params: Promise<{ slug: string }>;

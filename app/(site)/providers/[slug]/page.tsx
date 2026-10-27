@@ -22,7 +22,7 @@ import { ProviderStoreAlternative } from "@/components/provider-store-alternativ
 import { TrackedOutboundLink } from "@/components/tracked-outbound-link";
 import { providerWebsiteUrl, isAffiliateProvider } from "@/lib/provider-links";
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://workagedleads.com";
 
 const LEAD_TYPE_LABELS: Record<string, string> = {
   aged: "Aged Internet Leads",

@@ -197,7 +197,7 @@ export async function publishArticle(
   console.log(`Published: ${article.brief.title}`);
 
   const siteUrl =
-    process.env.NEXT_PUBLIC_SITE_URL || "https://agedleadsales.com";
+    process.env.NEXT_PUBLIC_SITE_URL || "https://workagedleads.com";
   await notifyIndexNow(`${siteUrl}/blog/${article.brief.slug}`);
 
   return { status: "created", id: postId, slug: article.brief.slug };
