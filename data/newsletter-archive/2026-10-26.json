@@ -10,7 +10,7 @@
   "subject": "The 7-day cadence, hour by hour",
   "previewText": "Plus what to change on touch four, and a re-engagement text that doesn't read as spam.",
   "html": "2026-10-26.html",
-  "sent": false,
+  "sent": true,
   "priceGuard": {
     "blocking": [],
     "warnings": []
@@ -26,5 +26,8 @@
     "The re-engagement text that doesn't read as spam"
   ],
   "industryInsight": "Speed to first contact still decides who gets the conversation",
-  "errors": []
+  "errors": [],
+  "sentAt": "2026-10-27T13:00:24.392Z",
+  "broadcastId": "6e17f52a-34e7-43ac-a543-c9e604b10afa",
+  "sentBy": "cron"
 }
