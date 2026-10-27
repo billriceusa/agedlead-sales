@@ -161,7 +161,25 @@ export async function updateProviderVerifiedDate(
   );
 
   if (provider) {
-    await client.patch(provider).set({ lastVerified: today }).commit();
+    // `lastScanned`, NOT `lastVerified`.
+    //
+    // This used to stamp lastVerified, with a comment reasoning that "a
+    // successful scan is a verification event. Without this, the 'Verified'
+    // freshness indicator on the public site never advances." The indicator
+    // advancing was the bug, not the goal: it meant all fifteen providers
+    // displayed a recent verification date while their human review dates were
+    // 138-160 days old.
+    //
+    // This scan reads pricing and policy pages. It reported zero changes for
+    // LeadsData across the weeks in which that company stopped selling aged
+    // leads and became a behavior-analytics SaaS, because its PRICES did not
+    // move in a way the extractor noticed. A check that cannot see a company
+    // change business model is not a verification, and on a directory selling
+    // independent verification, saying otherwise is the costly kind of wrong.
+    //
+    // If the indicator now goes stale, that is the system telling the truth
+    // about when someone last actually looked.
+    await client.patch(provider).set({ lastScanned: today }).commit();
   }
 }
 

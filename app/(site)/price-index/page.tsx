@@ -292,14 +292,22 @@ export default async function PriceIndexPage() {
           <h2 className="text-2xl font-bold text-zinc-900 dark:text-white">
             How We Collect This Data
           </h2>
+          {/*
+            CORRECTED 2026-10-07 — this claimed we request quotes "as a
+            prospective buyer". We do not. See the note in
+            app/(site)/methodology/page.tsx; a method we do not use cannot stay
+            on the page that explains our method.
+          */}
           <p className="mt-4 text-zinc-600 dark:text-zinc-400">
-            Each quarter our team verifies pricing across the aged-lead provider
-            market — aggregating published pricing, requesting quotes as a
-            prospective buyer, and triangulating against market analysis. Every
-            data point includes a confidence rating indicating data quality, and
-            we only publish benchmarks backed by more than one provider.
-            Benchmarks represent fair market ranges, not specific provider
-            pricing.
+            Each quarter we review the aged-lead market and report what
+            providers actually publish. Most of them publish nothing — a
+            minority post a usable per-lead figure, and several post only a
+            starting price or a package rate. Where the published data is thin
+            we triangulate from package pricing, volume tiers and public market
+            sources, and those benchmarks carry a lower confidence rating to say
+            so. Every data point carries that rating, we only publish a
+            benchmark backed by more than one provider, and the ranges describe
+            the market rather than any single company&apos;s pricing.
           </p>
           <div className="mt-6 flex items-center justify-center gap-6 text-sm">
             <span className="inline-flex items-center gap-1.5">

@@ -319,6 +319,7 @@ export const providersQuery = defineQuery(
       ratingReputation * 0.10
     , 1),
     lastVerified,
+    lastScanned,
     verticals[defined(@->)]->{name, slug, icon},
     leadTypes,
     pricingModel,
@@ -356,6 +357,7 @@ export const providerBySlugQuery = defineQuery(
     , 1),
     ratingNotes,
     lastVerified,
+    lastScanned,
     verticals[defined(@->)]->{name, slug, icon},
     leadTypes,
     pricingModel,
@@ -414,6 +416,7 @@ export const providersByVerticalQuery = defineQuery(
       ratingReputation * 0.10
     , 1),
     lastVerified,
+    lastScanned,
     verticals[defined(@->)]->{name, slug, icon},
     leadTypes,
     pricingModel,
@@ -449,6 +452,7 @@ export const providerPairQuery = defineQuery(
       ratingReputation * 0.10
     , 1),
     lastVerified,
+    lastScanned,
     verticals[defined(@->)]->{name, slug, icon},
     leadTypes,
     pricingModel,

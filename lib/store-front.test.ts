@@ -13,7 +13,31 @@ import { LEAD_TYPES } from "../data/lead-types";
  * verified against the card grid; if a segment is added or renamed there, this
  * file's map has to agree or the test fails.
  */
-const STOCKED = new Set(STORE_VERTICALS.map((v) => v.segment));
+const CARD_GRID = new Set(STORE_VERTICALS.map((v) => v.segment));
+
+/**
+ * Segments the storefront serves that the marketing card grid does NOT list.
+ *
+ * This set exists so the guard below can tell an EVIDENCED exception from a
+ * guess, which is the distinction that actually matters. The rule this project
+ * runs on is "never infer a segment from a URL pattern" — it forbids guessing,
+ * not evidence. The card grid is the partner's marketing page; its silence is
+ * not proof that inventory is absent.
+ *
+ * Nothing goes in here without a body diff recorded beside it and a human
+ * confirming the partner really sells it. Solar sat off-grid once before it
+ * appeared on the grid, so this gap is a known shape, not an anomaly.
+ */
+const OFF_GRID_VERIFIED: Record<string, string> = {
+  // Body diff 2026-10-05 and re-run 2026-10-07: /annuity/leads returns 200 at
+  // 81,642 bytes against a 404 control at 30,511, with its own "Get Annuity
+  // Leads" heading, an Add to Cart control, the full state filter grid, and a
+  // volume-tiered price table carrying two freshness brackets ("Annuity 15-85
+  // Days", "Annuity 86-500 Days"). Confirmed by Bill 2026-10-07.
+  annuity: "off the card grid; body-diffed stocked and confirmed by Bill 2026-10-07",
+};
+
+const STOCKED = new Set([...CARD_GRID, ...Object.keys(OFF_GRID_VERIFIED)]);
 
 /** Lead types that must NOT resolve a storefront segment, and why. */
 const DELIBERATELY_UNSTOCKED: Record<string, string> = {
@@ -28,29 +52,6 @@ const DELIBERATELY_UNSTOCKED: Record<string, string> = {
   // No single segment covers generic insurance, exactly as there is no generic
   // insurance marketing buy page.
   "insurance-leads": "generic bucket, no single segment",
-  // Added 2026-10-05 with the annuity guide, and this one needs explaining
-  // because the evidence cuts both ways.
-  //
-  // The card grid at /all-lead-types/ — the authoritative source per
-  // lib/store-front.ts — was re-read on 2026-10-05 and links exactly the eight
-  // documented segments. "annuity" is not among them, so the guide resolves
-  // nothing and the hero door falls through to the catalogue.
-  //
-  // BUT the body diff says the segment is real and stocked. On 2026-10-05
-  // https://store.agedleadstore.com/annuity/leads returned 200 at 81,642 bytes
-  // (the 404 control /bogus_vertical/leads: 30,511 bytes), carrying its own
-  // "Get Annuity Leads" heading, "validated Internet Annuity quote requests",
-  // two Add to Cart controls, the full state filter grid, and a real
-  // volume-tiered price table with two freshness brackets ("Annuity 15-85 Days",
-  // "Annuity 86-500 Days"). That is indistinguishable from homeowner_insurance
-  // or iul_insurance on every test this project uses.
-  //
-  // This is the Medicare situation again — a segment the storefront serves that
-  // the marketing card grid does not show — and solar sat here once before it
-  // appeared on the grid. It needs Bill's confirmation against what the partner
-  // is actually selling before any page points at it. Do not map it on the
-  // strength of the body diff alone.
-  "annuity-leads": "not on the card grid; storefront serves /annuity/leads — needs Bill's confirmation",
 };
 
 describe("storefrontSegment", () => {
@@ -63,7 +64,7 @@ describe("storefrontSegment", () => {
       if (segment) {
         assert.ok(
           STOCKED.has(segment),
-          `${slug} resolves "${segment}", which is not in the card-grid set`
+          `${slug} resolves "${segment}", which is neither on the card grid nor in OFF_GRID_VERIFIED. Do not add it to OFF_GRID_VERIFIED on the strength of the URL — body-diff it against the 404 control and get it confirmed first.`
         );
       }
     }

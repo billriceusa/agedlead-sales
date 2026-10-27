@@ -37,7 +37,7 @@ export interface GscTrendQuery {
 }
 
 /** Stable join key for a property, so a row survives the site URL changing. */
-export type GscPropertyKey = "agedleadsales" | "workagedleads";
+export type GscPropertyKey = "agedleadsales" | "workagedleads" | "howtoworkleads";
 
 /** The property every pre-2026-08-05 row was written against. */
 export const LEGACY_PROPERTY: GscPropertyKey = "agedleadsales";

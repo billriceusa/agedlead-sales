@@ -4,6 +4,7 @@ import {
 } from "@portabletext/react";
 import type { PortableTextBlock } from "sanity";
 import { urlForImage } from "@/sanity/lib/image";
+import { extractYouTubeId } from "@/sanity/schemaTypes/objects/videoEmbed";
 import { GlossaryTooltip } from "./glossary-tooltip";
 import {
   injectGlossaryLinks,
@@ -242,6 +243,42 @@ function buildComponents(headingIds?: Map<string, string>): PortableTextComponen
       ),
     },
     types: {
+      /*
+        Video. Added 2026-10-07 after a raw <iframe> pasted into a post body
+        rendered as a wall of escaped markup on the site's top blog post.
+
+        The schema stores an ID, never markup, so content cannot inject HTML
+        again. youtube-nocookie keeps a reader who merely scrolls past out of
+        YouTube's ad-tracking cookies. The aspect-ratio wrapper is what keeps it
+        from overflowing on a phone — the original paste was also the cause of
+        31px of horizontal scroll at 390px.
+      */
+      videoEmbed: ({ value }) => {
+        const id = extractYouTubeId(String(value?.url ?? ""));
+        if (!id) return null;
+        const title = String(value?.title ?? "Video");
+
+        return (
+          <figure className="my-8">
+            <div className="relative w-full overflow-hidden rounded-lg bg-zinc-900 pt-[56.25%]">
+              <iframe
+                className="absolute inset-0 h-full w-full"
+                src={`https://www.youtube-nocookie.com/embed/${id}`}
+                title={title}
+                loading="lazy"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </div>
+            {value?.caption ? (
+              <figcaption className="mt-2 text-center text-sm text-zinc-500 dark:text-zinc-500">
+                {String(value.caption)}
+              </figcaption>
+            ) : null}
+          </figure>
+        );
+      },
       image: ({ value }) => {
         const imageUrl = urlForImage(value)?.width(1200).url();
         if (!imageUrl) return null;

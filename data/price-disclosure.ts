@@ -71,25 +71,32 @@ export const PRICE_DISCLOSURE: PriceDisclosure[] = [
     slug: "aged-lead-store",
     level: "published",
     note:
-      "Publishes a full per-lead price table across nine verticals, each with its age band and exclusivity — e.g. mortgage $1.50–$2.50 at 30–85 days, shared. The only provider surveyed whose public pricing is specific enough to compare.",
-    sourceUrl: "https://agedleadstore.com/all-lead-types/",
-    verified: "2026-09-02",
+      "Publishes a full per-lead price matrix on the storefront: TEN segments (mortgage_refinance, life_insurance, mortgage_protection, auto_insurance, health_insurance, iul_insurance, homeowner_insurance, home_improvement, solar_installation, annuity), each with its age bracket and six volume tiers from 1-249 to 25,000+, all stated shared, $100 minimum order. SOURCE CORRECTED 2026-10-07: this used to cite agedleadstore.com/all-lead-types/, which CONTRADICTS the storefront it links to. Verified that day: the marketing card says IUL is \"$7.00-8.00 Per Lead, 86-365 Days Old\" while the storefront page reads \"Indexed Universal Life Insurance 181-500 Days\" at $6.00 down to $2.00 — the card\u2019s FLOOR is above the storefront\u2019s CEILING, and the bracket is wrong too. Five of nine cards mislabel their age bracket, and both annuity and mortgage protection are missing from the card grid entirely despite being sold and priced. Cite the storefront segment pages; treat /all-lead-types/ as stale marketing.",
+    sourceUrl: "https://store.agedleadstore.com/iul_insurance/leads",
+    verified: "2026-10-07",
   },
   {
     slug: "badass-insurance-leads",
-    level: "partial",
+    // RAISED from "partial" to "published" on 2026-10-12, on Bill's ruling that
+    // a publicly linked sheet counts as published pricing.
+    level: "published",
     note:
-      "Publishes life insurance at $1.00 per lead (3–12 months, exclusive) and Spanish-language life at $1.85. Final expense, Medicare, health and IUL are offered but priced on request.",
-    sourceUrl: "https://badassinsuranceleads.com",
-    verified: "2026-09-02",
+      "Publishes explicit per-lead wholesale prices by vertical, age bracket and volume tier \u2014 Life/FEX, Health (U65), Mortgage Refi and IUL \u2014 in a public Google Sheet titled \"Badass Insurance Leads [Wholesale] Pricing: 2026\", linked from /wholesale/ under a \"See Wholesale Pricing Here\" button. Every row is labelled \"Cost Per Lead\". Life/FEX re-read directly 2026-10-12: aged 90-365 days at 0.68 / 0.47 / 0.40 across the 1001-4,999 / 5,000-9,999 / 10,000-24,999 tiers. Retail package tables with explicit lead counts also run on each product page. TWO CAVEATS. The same /wholesale/ page's FAQ still says pricing is something \"we can share and work with you on\", contradicting the sheet it links to \u2014 the sheet is the better evidence. And their meta descriptions state per-lead prices that match nothing on the pages (\"Starting at .99 cents per lead\"); never cite those. Stated exclusivity is \"exclusive to the client and never resold by us\", which puts them in a DIFFERENT exclusivity bucket from Aged Lead Store \u2014 see data/price-evidence-2026-10.md \u00a74 for why that blocks a blended benchmark.",
+    sourceUrl:
+      "https://docs.google.com/spreadsheets/d/1mTSser6yvTxECQMmrIS75VM2dBKccitv7zqlGIjQmcc",
+    verified: "2026-10-12",
   },
   {
     slug: "lead-heroes",
     level: "package-only",
     note:
       'Shows a package range of "$800.00 – $3,400.00" with volume tiers, but no per-lead price and no lead age, exclusivity or source type — so the cost per lead cannot be derived.',
-    sourceUrl: "https://leadheroes.com/final-expense-leads/",
-    verified: "2026-09-02",
+    // SOURCE CORRECTED 2026-10-07: /final-expense-leads/ now 301s to
+    // /final-expense-life-leads/, which shows NO price at all and carries a
+    // 2022 copyright and a 2022-02-25 modified date. The $800/$3,400 figures
+    // survive only on the order page, which was modified 2026-08-10.
+    sourceUrl: "https://leadheroes.com/order-fe/",
+    verified: "2026-10-07",
   },
   {
     slug: "brokers-data",

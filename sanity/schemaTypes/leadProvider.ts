@@ -179,11 +179,20 @@ export const leadProviderType = defineType({
     }),
     defineField({
       name: "lastVerified",
-      title: "Last Verified",
+      title: "Last Reviewed (by a human)",
       type: "date",
       group: "ratings",
-      description: "When this profile was last reviewed and verified for accuracy",
+      description:
+        "When a PERSON last read this profile and confirmed it still describes what the company actually sells. Only ever set by hand. The marketwatch cron must not touch this field — it used to, which is how every provider showed a recent 'Verified' date while the real review dates were 138-160 days old.",
       validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: "lastScanned",
+      title: "Last Automated Price Check",
+      type: "date",
+      group: "ratings",
+      description:
+        "When the marketwatch cron last scanned this provider's public pricing and policy pages. Set automatically. NOT a review: the scan looks for pricing and policy changes, so it reported no changes for LeadsData throughout the period that company stopped selling leads altogether.",
     }),
 
     // ── Operations ───────────────────────────────────────────
