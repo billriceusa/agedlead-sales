@@ -589,7 +589,7 @@ function buildReportHtml(
       : `<p style="color: #991b1b; font-size: 13px; font-weight: 600;">No stop link — CRON_SECRET is not set on this deployment. Kill it by hand if needed.</p>`
   }
   <p style="color: #6b7280; font-size: 13px;">Optional, before Tuesday: add the week's new buyers to the list. Run from the repo folder:</p>
-  <pre style="padding: 10px 12px; background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 6px; font-size: 12px; overflow-x: auto;">cd ~/Code/sites/brsg/owned/agedleadsales.com
+  <pre style="padding: 10px 12px; background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 6px; font-size: 12px; overflow-x: auto;">cd ~/Code/sites/brsg/owned/workagedleads.com
 npm run newsletter:migrate -- --apply</pre>`;
 
   const tipsHtml = report.quickTips
